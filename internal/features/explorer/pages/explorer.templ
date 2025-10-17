@@ -1,0 +1,241 @@
+package pages
+
+import "northstar/internal/features/common/layouts"
+import "northstar/internal/features/explorer/components"
+
+var schemas = []components.Schema{
+	{
+		Name:       "auth",
+		TableCount: 2,
+		Tables: []components.Table{
+			{Name: "sso_domains", IsActive: false},
+			{Name: "users", IsActive: false},
+		},
+	},
+	{
+		Name:       "public",
+		TableCount: 2,
+		Tables: []components.Table{
+			{Name: "test", IsActive: true}, // This table is currently selected
+			{Name: "products", IsActive: false},
+		},
+	},
+}
+
+var breadcrumbsData = []components.BreadcrumbItem{
+	{Name: "postgres_catalog", Href: "/"},
+	{Name: "public"},
+	{Name: "gaaay"},
+}
+
+// 2. Table Data View
+var tableData = components.TableData{
+	Headers: []string{"id", "name", "created_at", "status", "value"},
+	Rows: [][]any{
+		{1, "First Item", "2023-10-27T10:00:00Z", "active", 105.99},
+		{2, "Second Item", "2023-10-27T11:00:00Z", "inactive", 250.00},
+		{3, "Third Item", "2023-10-28T12:30:00Z", "pending", 99.50},
+	},
+}
+
+// 3. Columns View Data
+var columnsData = []components.ColumnInfo{
+	{
+		Name:         "id",
+		DataType:     "integer",
+		IsNullable:   false,
+		DefaultValue: "nextval('test_id_seq')",
+	},
+	{
+		Name:         "name",
+		DataType:     "character varying(255)",
+		IsNullable:   true,
+		DefaultValue: "NULL",
+	},
+	{
+		Name:         "created_at",
+		DataType:     "timestamp with time zone",
+		IsNullable:   false,
+		DefaultValue: "now()",
+	},
+	{
+		Name:         "status",
+		DataType:     "character varying(50)",
+		IsNullable:   true,
+		DefaultValue: "'active'::character varying",
+	},
+	{
+		Name:         "value",
+		DataType:     "numeric(10,2)",
+		IsNullable:   true,
+		DefaultValue: "NULL",
+	},
+}
+
+// 4. Details View Data
+var detailsData = components.TableDetails{
+	Owner:              "postgres",
+	RowSecurityEnabled: false,
+	EstimatedRows:      2,
+	CreatedAt:          "2023-01-01 12:00:00 UTC",
+}
+
+var mainContentParams = components.MainContentParams{
+	Breadcrumbs:  breadcrumbsData,
+	TableData:    tableData,
+	Columns:      columnsData,
+	TableDetails: detailsData,
+}
+
+templ ExplorerPage() {
+	@layouts.AppShell("Unity Explorer - test") {
+		<div id="table-explorer-component" class="flex h-screen font-sans">
+			@components.Sidebar(schemas)
+			@components.MainContent(mainContentParams)
+		</div>
+	}
+}
+
+// templ Sidebar() {
+// 	<aside class="w-80 bg-base-200 p-4 flex flex-col shrink-0">
+// 		<header class="mb-4 text-center border-b border-base-100 pb-4">
+// 			<h1 class="text-2xl font-bold text-primary">Unity Explorer</h1>
+// 			<p class="text-xs text-base-content/60">Postgres Edition</p>
+// 		</header>
+// 		<div class="mb-4">
+// 			<input type="text" id="catalog-search" placeholder="Search tables..." class="input input-bordered w-full"/>
+// 		</div>
+// 		<nav id="catalog-nav" class="flex-grow overflow-y-auto pr-2">
+// 			<!-- Static Catalog Layout with Icons -->
+// 			<div class="collapse collapse-arrow bg-base-100 rounded-lg mb-1">
+// 				<input type="checkbox"/>
+// 				<div class="collapse-title font-medium flex items-center gap-2">
+// 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-1.178 7A2 2 0 0 1 12.731 14H3.27a2 2 0 0 1-1.991-1.819l-1.178-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996.81l-1.178 7A1 1 0 0 0 1.27 13H12.73a1 1 0 0 0 .996-.81l1.178-7A1 1 0 0 0 13.81 4H9.828a1 1 0 0 1-.707-.293L8.293 2.854A1 1 0 0 0 7.586 2.5H3.5A1 1 0 0 0 2.5 3.5v.5l-.31.37z"></path></svg>
+// 					auth
+// 					<div class="badge badge-neutral badge-sm">2</div>
+// 				</div>
+// 				<div class="collapse-content">
+// 					<ul class="menu menu-compact p-0 pl-4">
+// 						<li><a><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm5 0v3h4V4h-4z"></path></svg> sso_domains</a></li>
+// 						<li><a><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm5 0v3h4V4h-4z"></path></svg> users</a></li>
+// 					</ul>
+// 				</div>
+// 			</div>
+// 			<div class="collapse collapse-arrow bg-base-100 rounded-lg mb-1">
+// 				<input type="checkbox" checked/>
+// 				<div class="collapse-title font-medium flex items-center gap-2">
+// 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-1.178 7A2 2 0 0 1 12.731 14H3.27a2 2 0 0 1-1.991-1.819l-1.178-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996.81l-1.178 7A1 1 0 0 0 1.27 13H12.73a1 1 0 0 0 .996-.81l1.178-7A1 1 0 0 0 13.81 4H9.828a1 1 0 0 1-.707-.293L8.293 2.854A1 1 0 0 0 7.586 2.5H3.5A1 1 0 0 0 2.5 3.5v.5l-.31.37z"></path></svg>
+// 					public
+// 					<div class="badge badge-neutral badge-sm">2</div>
+// 				</div>
+// 				<div class="collapse-content">
+// 					<ul class="menu menu-compact p-0 pl-4">
+// 						<li><a class="active"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm5 0v3h4V4h-4z"></path></svg> test</a></li>
+// 						<li><a><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm5 0v3h4V4h-4z"></path></svg> products</a></li>
+// 					</ul>
+// 				</div>
+// 			</div>
+// 			<!-- Other schemas omitted for brevity -->
+// 		</nav>
+// 		<footer class="text-center pt-4 border-t border-base-100">
+// 			<div class="badge badge-outline">Connected</div>
+// 		</footer>
+// 	</aside>
+// }
+
+// // --- Main Page Component ---
+// templ ExplorerPage() {
+// 	@layouts.AppShell("Data Table") {
+// 		<div id="table-explorer-component" class="flex h-screen font-sans">
+// 			@Sidebar()
+// 			<main class="flex-1 p-6 overflow-y-auto">
+// 				<div id="breadcrumbs" class="text-sm breadcrumbs mb-4">
+// 					<ul>
+// 						<li><a class="text-primary font-semibold">postgres_catalog</a></li>
+// 						<li>public</li>
+// 						<li>test</li>
+// 					</ul>
+// 				</div>
+// 				<div id="view-container">
+// 					<div class="card bg-base-100 shadow-xl">
+// 						<div class="card-body">
+// 							<div role="tablist" class="tabs tabs-bordered">
+// 								<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Data" checked/>
+// 								<div role="tabpanel" class="tab-content p-4">
+// 									<!-- Data Content -->
+// 									<div class="overflow-x-auto">
+// 										<table class="table table-zebra w-full">
+// 											<thead>
+// 												<tr>
+// 													<th>id</th>
+// 													<th>name</th>
+// 													<th>created_at</th>
+// 													<th>status</th>
+// 													<th>value</th>
+// 												</tr>
+// 											</thead>
+// 											<tbody>
+// 												<tr>
+// 													<td>1</td>
+// 													<td>First Item</td>
+// 													<td>2023-10-27T10:00:00Z</td>
+// 													<td><div class="badge badge-success">active</div></td>
+// 													<td>105.99</td>
+// 												</tr>
+// 												<tr>
+// 													<td>2</td>
+// 													<td>Second Item</td>
+// 													<td>2023-10-27T11:00:00Z</td>
+// 													<td><div class="badge badge-ghost">inactive</div></td>
+// 													<td>250.00</td>
+// 												</tr>
+// 											</tbody>
+// 										</table>
+// 									</div>
+// 								</div>
+// 								<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Columns"/>
+// 								<div role="tabpanel" class="tab-content p-4">
+// 									<!-- Columns Content -->
+// 									<div class="overflow-x-auto">
+// 										<table class="table w-full">
+// 											<thead><tr><th>Column</th><th>Type</th><th>Nullable</th><th>Default</th></tr></thead>
+// 											<tbody>
+// 												<tr><td>id</td><td class="font-mono">integer</td><td>No</td><td class="font-mono">nextval('test_id_seq')</td></tr>
+// 												<tr><td>name</td><td class="font-mono">character varying(255)</td><td>Yes</td><td class="font-mono">NULL</td></tr>
+// 												<tr><td>created_at</td><td class="font-mono">timestamp with time zone</td><td>No</td><td class="font-mono">now()</td></tr>
+// 												<tr><td>status</td><td class="font-mono">character varying(50)</td><td>Yes</td><td class="font-mono">'active'::character varying</td></tr>
+// 												<tr><td>value</td><td class="font-mono">numeric(10,2)</td><td>Yes</td><td class="font-mono">NULL</td></tr>
+// 											</tbody>
+// 										</table>
+// 									</div>
+// 								</div>
+// 								<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Details"/>
+// 								<div role="tabpanel" class="tab-content p-4">
+// 									<!-- Details Content -->
+// 									<div class="space-y-2">
+// 										<div class="grid grid-cols-3 gap-4">
+// 											<div class="font-semibold">Table Owner</div>
+// 											<div class="col-span-2 font-mono">postgres</div>
+// 										</div>
+// 										<div class="grid grid-cols-3 gap-4">
+// 											<div class="font-semibold">Row Security</div>
+// 											<div class="col-span-2"><div class="badge badge-error">Disabled</div></div>
+// 										</div>
+// 										<div class="grid grid-cols-3 gap-4">
+// 											<div class="font-semibold">Estimated Rows</div>
+// 											<div class="col-span-2 font-mono">2</div>
+// 										</div>
+// 										<div class="grid grid-cols-3 gap-4">
+// 											<div class="font-semibold">Created On</div>
+// 											<div class="col-span-2 font-mono">2023-01-01 12:00:00 UTC</div>
+// 										</div>
+// 									</div>
+// 								</div>
+// 							</div>
+// 						</div>
+// 					</div>
+// 				</div>
+// 			</main>
+// 		</div>
+// 	}
+// }

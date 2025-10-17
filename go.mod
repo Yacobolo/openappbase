@@ -8,13 +8,13 @@ require (
 )
 
 require (
-	github.com/Jeffail/gabs/v2 v2.7.0
 	github.com/a-h/templ v0.3.943
 	github.com/benbjohnson/hashfs v0.2.2
 	github.com/delaneyj/toolbelt v0.5.3
 	github.com/dustin/go-humanize v1.0.1
 	github.com/evanw/esbuild v0.25.9
 	github.com/gorilla/sessions v1.4.0
+	github.com/jackc/pgx/v5 v5.7.6
 	github.com/joho/godotenv v1.5.1
 	github.com/nats-io/nats-server/v2 v2.11.9
 	github.com/nats-io/nats.go v1.45.0
@@ -80,6 +80,9 @@ require (
 	github.com/hookenz/gotailwind/v4 v4.1.13 // indirect
 	github.com/iancoleman/strcase v0.3.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
+	github.com/jackc/pgpassfile v1.0.0 // indirect
+	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
+	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect

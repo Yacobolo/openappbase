@@ -1,0 +1,179 @@
+package components
+
+import "fmt"
+
+// --- Data Structures ---
+
+type BreadcrumbItem struct {
+	Name string
+	Href string // Optional link for the breadcrumb
+}
+
+type TableData struct {
+	Headers []string
+	Rows    [][]any // Using []any (or []interface{}) to allow for mixed data types in rows
+}
+
+type ColumnInfo struct {
+	Name         string
+	DataType     string
+	IsNullable   bool
+	DefaultValue string
+}
+
+type TableDetails struct {
+	Owner              string
+	RowSecurityEnabled bool
+	EstimatedRows      int
+	CreatedAt          string
+}
+
+type MainContentParams struct {
+	Breadcrumbs  []BreadcrumbItem
+	TableData    TableData
+	Columns      []ColumnInfo
+	TableDetails TableDetails
+}
+
+// --- Components ---
+templ Breadcrumbs(items []BreadcrumbItem) {
+	<div id="breadcrumbs" class="text-sm breadcrumbs mb-4">
+		<ul>
+			for i, item := range items {
+				if i == 0 && item.Href != "" {
+					// First item is typically a link
+					<li><a class="text-primary font-semibold" href={ templ.URL(item.Href) }>{ item.Name }</a></li>
+				} else {
+					// Subsequent items are just text
+					<li>{ item.Name }</li>
+				}
+			}
+		</ul>
+	</div>
+}
+
+templ DataView(data TableData) {
+	<div role="tabpanel" class="tab-content p-4">
+		<div class="overflow-x-auto">
+			if len(data.Rows) == 0 {
+				<div class="text-center p-8 text-base-content/60">No data to display.</div>
+			} else {
+				<table class="table table-zebra w-full">
+					<thead>
+						<tr>
+							for _, header := range data.Headers {
+								<th>{ header }</th>
+							}
+						</tr>
+					</thead>
+					<tbody>
+						for _, row := range data.Rows {
+							<tr>
+								for i, cell := range row {
+									<td>
+										// Special handling for a "status" column to render a badge
+										if data.Headers[i] == "status" {
+											switch fmt.Sprintf("%v", cell) {
+												case "active":
+													<div class="badge badge-success">active</div>
+												case "inactive":
+													<div class="badge badge-ghost">inactive</div>
+												default:
+													<div class="badge badge-outline">{ fmt.Sprintf("%v", cell) }</div>
+											}
+										} else {
+											{ fmt.Sprintf("%v", cell) }
+										}
+									</td>
+								}
+							</tr>
+						}
+					</tbody>
+				</table>
+			}
+		</div>
+	</div>
+}
+
+templ ColumnsView(columns []ColumnInfo) {
+	<div role="tabpanel" class="tab-content p-4">
+		<div class="overflow-x-auto">
+			<table class="table w-full">
+				<thead>
+					<tr>
+						<th>Column</th>
+						<th>Type</th>
+						<th>Nullable</th>
+						<th>Default</th>
+					</tr>
+				</thead>
+				<tbody>
+					for _, col := range columns {
+						<tr>
+							<td>{ col.Name }</td>
+							<td class="font-mono">{ col.DataType }</td>
+							<td>
+								if col.IsNullable {
+									Yes
+								} else {
+									No
+								}
+							</td>
+							<td class="font-mono">{ col.DefaultValue }</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+}
+
+templ DetailsView(details TableDetails) {
+	<div role="tabpanel" class="tab-content p-4">
+		<div class="space-y-2">
+			<div class="grid grid-cols-3 gap-4">
+				<div class="font-semibold">Table Owner</div>
+				<div class="col-span-2 font-mono">{ details.Owner }</div>
+			</div>
+			<div class="grid grid-cols-3 gap-4">
+				<div class="font-semibold">Row Security</div>
+				<div class="col-span-2">
+					if details.RowSecurityEnabled {
+						<div class="badge badge-success">Enabled</div>
+					} else {
+						<div class="badge badge-error">Disabled</div>
+					}
+				</div>
+			</div>
+			<div class="grid grid-cols-3 gap-4">
+				<div class="font-semibold">Estimated Rows</div>
+				<div class="col-span-2 font-mono">{ fmt.Sprintf("%d", details.EstimatedRows) }</div>
+			</div>
+			<div class="grid grid-cols-3 gap-4">
+				<div class="font-semibold">Created On</div>
+				<div class="col-span-2 font-mono">{ details.CreatedAt }</div>
+			</div>
+		</div>
+	</div>
+}
+
+templ MainContent(params MainContentParams) {
+	<main class="flex-1 p-6 overflow-y-auto">
+		// Access data through the 'params' variable
+		@Breadcrumbs(params.Breadcrumbs)
+		<div id="view-container">
+			<div class="card bg-base-100 shadow-xl">
+				<div class="card-body">
+					<div role="tablist" class="tabs tabs-bordered">
+						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Data" checked/>
+						@DataView(params.TableData)
+						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Columns"/>
+						@ColumnsView(params.Columns)
+						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Details"/>
+						@DetailsView(params.TableDetails)
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+}

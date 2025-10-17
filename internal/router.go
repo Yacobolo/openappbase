@@ -9,6 +9,7 @@ import (
 
 	"northstar/config"
 	"northstar/internal/features/editor"
+	"northstar/internal/features/explorer"
 	indexFeature "northstar/internal/features/index"
 	"northstar/web/resources"
 
@@ -28,6 +29,7 @@ func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.
 
 	if err := errors.Join(
 		indexFeature.SetupRoutes(router, sessionStore, ns),
+		explorer.SetupRoutes(router, sessionStore),
 		editor.SetupRoutes(router, sessionStore),
 	); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)

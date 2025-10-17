@@ -3,27 +3,26 @@ package pages
 import "northstar/internal/features/common/layouts"
 import "northstar/internal/features/editor/components" // Import the new components
 
+// Define the data for the table
+var columns = []components.Column{
+	{Title: "Name", Width: "200px"},
+	{Title: "Job", Width: "400px"},
+	{Title: "Favorite Color", Width: "150px"},
+}
+
+var rows = [][]string{
+	{"Cy Ganderton", "Quality Control Specialist", "Blue"},
+	{"Hart Hagerty", "Desktop Support Technician", "Purple"},
+	{"Brice Swyre", "Tax Accountant", "Red"},
+	{"Marjy Ferencz", "Office Assistant I", "Crimson"},
+}
+
 // --- Main Page Component ---
 templ EditorPage() {
-	// Define the data for the table
-	var columns = []components.Column{
-		{Title: "Name", Width: "200px"},
-		{Title: "Job", Width: "400px"},
-		{Title: "Favorite Color", Width: "150px"},
-	}
-
-	var rows = [][]string{
-		{"Cy Ganderton", "Quality Control Specialist", "Blue"},
-		{"Hart Hagerty", "Desktop Support Technician", "Purple"},
-		{"Brice Swyre", "Tax Accountant", "Red"},
-		{"Marjy Ferencz", "Office Assistant I", "Crimson"},
-	}
-
 	@layouts.AppShell("Data Table") {
 		<div class="max-w-7xl mx-auto">
 			<h1 class="text-2xl font-bold text-gray-800 mb-2">Tailwind Slim Header Spreadsheet</h1>
 			<p class="text-gray-600 mb-6">A fully responsive and resizable spreadsheet with a slimmer header row.</p>
-			
 			// Use the reusable DataTable component
 			@components.DataTable(columns, rows)
 		</div>

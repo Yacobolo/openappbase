@@ -41,39 +41,34 @@ func tableHeader(columns []Column) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		for i, col := range columns {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, " var thClass = \"bg-gray-100 border-b border-gray-300\" ")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, " ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
+
+			thClass := "bg-gray-100 border-b border-gray-300"
 			if i < len(columns)-1 {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "thClass = thClass + \" border-r\"")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, " ")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
+				thClass += " border-r"
 			}
 			var templ_7745c5c3_Var2 = []any{thClass}
 			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<th style=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<th style=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues("width: " + col.Width + ";")
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/editor/components/datatable.templ`, Line: 19, Col: 43}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/editor/components/datatable.templ`, Line: 21, Col: 43}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" class=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -86,25 +81,25 @@ func tableHeader(columns []Column) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"><div class=\"cell-content py-2 px-4 text-left text-sm font-semibold text-gray-700 uppercase\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\"><div class=\"cell-content py-2 px-4 text-left text-sm font-semibold text-gray-700 uppercase\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(col.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/editor/components/datatable.templ`, Line: 20, Col: 108}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/editor/components/datatable.templ`, Line: 22, Col: 108}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div></th>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div></th>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</tr></thead>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</tr></thead>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -134,31 +129,26 @@ func tableRow(row []string) templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<tr class=\"hover:bg-gray-50\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<tr class=\"hover:bg-gray-50\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for i, cell := range row {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, " var class = \"border-b border-gray-200\" ")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, " ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
+
+			tdClass := "border-b border-gray-200"
 			if i < len(row)-1 {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "class = class + \" border-r\"")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
+				tdClass += " border-r"
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, " ")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var7 = []any{class}
+			var templ_7745c5c3_Var7 = []any{tdClass}
 			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var7...)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<td class=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<td class=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -171,25 +161,25 @@ func tableRow(row []string) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "\"><div class=\"cell-content py-2 px-4 text-gray-800\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "\"><div class=\"cell-content py-2 px-4 text-gray-800\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var9 string
 			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(cell)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/editor/components/datatable.templ`, Line: 37, Col: 60}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/editor/components/datatable.templ`, Line: 41, Col: 60}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</div></td>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</div></td>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</tr>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</tr>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -219,7 +209,7 @@ func DataTable(columns []Column, rows [][]string) templ.Component {
 			templ_7745c5c3_Var10 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<div class=\"spreadsheet-container border border-gray-300 bg-white rounded-none\"><div class=\"header-wrapper overflow-x-hidden\"><table id=\"header-table\" class=\"w-full border-collapse\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<div class=\"spreadsheet-container border border-gray-300 bg-white rounded-none\"><div class=\"header-wrapper overflow-x-hidden\"><table id=\"header-table\" class=\"w-full border-collapse\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -227,7 +217,7 @@ func DataTable(columns []Column, rows [][]string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</table></div><div class=\"data-wrapper overflow-auto\" style=\"max-height: 400px; overflow-y: scroll;\"><table id=\"data-table\" class=\"table-fixed w-full border-collapse\"><tbody>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</table></div><div class=\"data-wrapper overflow-auto\" style=\"max-height: 400px; overflow-y: scroll;\"><table id=\"data-table\" class=\"table-fixed w-full border-collapse\"><tbody>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -237,7 +227,7 @@ func DataTable(columns []Column, rows [][]string) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</tbody></table></div></div><style>\n\t\t.cell-content {\n\t\t\twhite-space: nowrap;\n\t\t\toverflow: hidden;\n\t\t\ttext-overflow: ellipsis;\n\t\t}\n\t</style><script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js\"></script><script src=\"https://cdn.jsdelivr.net/npm/colresizable@1.6.0/colResizable-1.6.min.js\"></script><script>\n\t\t// This script is scoped to the DataTable component\n\t\t$(document).ready(function() {\n\t\t\tconst headerTable = $(\"#header-table\");\n\t\t\tconst dataTable = $(\"#data-table\");\n\t\t\tconst headerWrapper = $('.header-wrapper');\n\t\t\tconst dataWrapper = $('.data-wrapper');\n\n\t\t\tif ($.fn.colResizable && headerTable.length) {\n\t\t\t\theaderTable.colResizable({\n\t\t\t\t\tliveDrag: true,\n\t\t\t\t\tresizeMode: 'overflow',\n\t\t\t\t\tonDrag: syncColumnWidths,\n\t\t\t\t\tonResize: syncColumnWidths\n\t\t\t\t});\n\t\t\t}\n\n\t\t\tdataWrapper.on('scroll', function() {\n\t\t\t\theaderWrapper.scrollLeft($(this).scrollLeft());\n\t\t\t});\n\n\t\t\tfunction syncColumnWidths() {\n\t\t\t\tif (!headerTable.length || !dataTable.length) return;\n\n\t\t\t\tdataTable.width(headerTable.outerWidth());\n\t\t\t\tconst headerCols = headerTable.find(\"th\");\n\t\t\t\tconst dataCols = dataTable.find(\"tbody tr:first-child td\");\n\n\t\t\t\tif (headerCols.length === dataCols.length) {\n\t\t\t\t\theaderCols.each(function(index) {\n\t\t\t\t\t\tconst colWidth = $(this).outerWidth();\n\t\t\t\t\t\tdataCols.eq(index).outerWidth(colWidth);\n\t\t\t\t\t});\n\t\t\t\t}\n\t\t\t}\n\t\t\t\n\t\t\tsyncColumnWidths();\n\t\t});\n\t</script>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</tbody></table></div></div><style>\n\t\t.cell-content {\n\t\t\twhite-space: nowrap;\n\t\t\toverflow: hidden;\n\t\t\ttext-overflow: ellipsis;\n\t\t}\n\t</style><script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js\"></script><script src=\"https://cdn.jsdelivr.net/npm/colresizable@1.6.0/colResizable-1.6.min.js\"></script><script>\n\t\t// This script is scoped to the DataTable component\n\t\t$(document).ready(function() {\n\t\t\tconst headerTable = $(\"#header-table\");\n\t\t\tconst dataTable = $(\"#data-table\");\n\t\t\tconst headerWrapper = $('.header-wrapper');\n\t\t\tconst dataWrapper = $('.data-wrapper');\n\n\t\t\tif ($.fn.colResizable && headerTable.length) {\n\t\t\t\theaderTable.colResizable({\n\t\t\t\t\tliveDrag: true,\n\t\t\t\t\tresizeMode: 'overflow',\n\t\t\t\t\tonDrag: syncColumnWidths,\n\t\t\t\t\tonResize: syncColumnWidths\n\t\t\t\t});\n\t\t\t}\n\n\t\t\tdataWrapper.on('scroll', function() {\n\t\t\t\theaderWrapper.scrollLeft($(this).scrollLeft());\n\t\t\t});\n\n\t\t\tfunction syncColumnWidths() {\n\t\t\t\tif (!headerTable.length || !dataTable.length) return;\n\n\t\t\t\tdataTable.width(headerTable.outerWidth());\n\t\t\t\tconst headerCols = headerTable.find(\"th\");\n\t\t\t\tconst dataCols = dataTable.find(\"tbody tr:first-child td\");\n\n\t\t\t\tif (headerCols.length === dataCols.length) {\n\t\t\t\t\theaderCols.each(function(index) {\n\t\t\t\t\t\tconst colWidth = $(this).outerWidth();\n\t\t\t\t\t\tdataCols.eq(index).outerWidth(colWidth);\n\t\t\t\t\t});\n\t\t\t\t}\n\t\t\t}\n\t\t\t\n\t\t\tsyncColumnWidths();\n\t\t});\n\t</script>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

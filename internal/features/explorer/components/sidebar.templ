@@ -1,0 +1,68 @@
+package components
+
+import "strconv"
+
+type Table struct {
+	Name     string
+	IsActive bool // To determine which link is active
+}
+
+type Schema struct {
+	Name       string
+	TableCount int
+	Tables     []Table
+}
+
+// SchemaItem is a collapsible component for a single schema and its tables.
+templ SchemaItem(schema Schema, isOpen bool) {
+	<div class="collapse collapse-arrow bg-base-100 rounded-lg mb-1">
+		<input type="checkbox" checked?={ isOpen }/>
+		<div class="collapse-title font-medium flex items-center gap-2">
+			@FolderIcon()
+			{ schema.Name }
+			<div class="badge badge-neutral badge-sm">{ strconv.Itoa(schema.TableCount) }</div>
+		</div>
+		<div class="collapse-content">
+			<ul class="menu menu-compact p-0 pl-4">
+				for _, table := range schema.Tables {
+					<li>
+						<a class={ templ.KV("active", table.IsActive) } href="#">
+							@TableIcon()
+							{ table.Name }
+						</a>
+					</li>
+				}
+			</ul>
+		</div>
+	</div>
+}
+
+// Sidebar is the main sidebar component.
+templ Sidebar(schemas []Schema) {
+	<aside class="w-80 bg-base-200 p-4 flex flex-col shrink-0">
+		<header class="mb-4 text-center border-b border-base-100 pb-4">
+			<h1 class="text-2xl font-bold text-primary">Unity Explorer</h1>
+			<p class="text-xs text-base-content/60">Postgres Edition</p>
+		</header>
+		<div class="mb-4">
+			<input type="text" id="catalog-search" placeholder="Search tables..." class="input input-bordered w-full"/>
+		</div>
+		<nav id="catalog-nav" class="flex-grow overflow-y-auto pr-2">
+			for _, schema := range schemas {
+				{{
+	var isOpen bool
+	for _, table := range schema.Tables {
+		if table.IsActive {
+			isOpen = true
+			break
+		}
+	}
+				}}
+				@SchemaItem(schema, isOpen)
+			}
+		</nav>
+		<footer class="text-center pt-4 border-t border-base-100">
+			<div class="badge badge-outline">Connected</div>
+		</footer>
+	</aside>
+}

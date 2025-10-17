@@ -39,7 +39,7 @@ func Navigation(page page) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"drawer-side\"><label for=\"my-drawer-2\" aria-label=\"close sidebar\" class=\"drawer-overlay\"></label><ul class=\"menu p-4 w-80 min-h-full bg-base-200 text-base-content\"><li class=\"menu-title\"><span>Nav</span></li><li><a href=\"/\">Home</a></li><li><a href=\"/editor\">SQL Editor</a></li></ul></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"drawer-side\"><label for=\"my-drawer-2\" aria-label=\"close sidebar\" class=\"drawer-overlay\"></label><ul class=\"menu p-4 w-80 min-h-full bg-base-200 text-base-content\"><li class=\"menu-title\"><span>Nav</span></li><li><a href=\"/\">Home</a></li><li><a href=\"/explorer\">Explorer</a></li><li><a href=\"/editor\">SQL Editor</a></li></ul></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

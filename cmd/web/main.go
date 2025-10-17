@@ -1,3 +1,4 @@
+// cmd/web/main.go
 package main
 
 import (
@@ -9,6 +10,7 @@ import (
 	"northstar/config"
 	internal "northstar/internal"
 	"northstar/internal/nats"
+	"northstar/internal/store"
 	"os"
 	"os/signal"
 	"syscall"
@@ -37,6 +39,10 @@ func main() {
 }
 
 func run(ctx context.Context) error {
+
+	store.InitDB(config.Global.ConnectionString)
+
+	defer store.CloseDB()
 
 	addr := fmt.Sprintf("%s:%s", config.Global.Host, config.Global.Port)
 	slog.Info("server started", "addr", addr)

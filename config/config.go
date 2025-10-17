@@ -16,11 +16,12 @@ const (
 )
 
 type Config struct {
-	Environment   Environment
-	Host          string
-	Port          string
-	LogLevel      slog.Level
-	SessionSecret string
+	Environment      Environment
+	Host             string
+	Port             string
+	LogLevel         slog.Level
+	SessionSecret    string
+	ConnectionString string
 }
 
 var (
@@ -41,12 +42,20 @@ func getEnv(key, fallback string) string {
 	return fallback
 }
 
+func MustGetEnv(key string) string {
+	if val, ok := os.LookupEnv(key); ok {
+		return val
+	}
+	panic("environment variable not set: " + key)
+}
+
 func loadBase() *Config {
 	godotenv.Load()
 
 	return &Config{
-		Host: getEnv("HOST", "0.0.0.0"),
-		Port: getEnv("PORT", "8080"),
+		Host:             getEnv("HOST", "0.0.0.0"),
+		Port:             getEnv("PORT", "8080"),
+		ConnectionString: MustGetEnv("CONNECTION_STRING"),
 		LogLevel: func() slog.Level {
 			switch os.Getenv("LOG_LEVEL") {
 			case "DEBUG":

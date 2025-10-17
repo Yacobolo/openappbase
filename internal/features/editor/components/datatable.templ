@@ -14,7 +14,7 @@ templ tableHeader(columns []Column) {
 				// Define the class variable inside a Go block
 				{{
 					thClass := "bg-gray-100 border-b border-gray-300"
-					if i < len(columns) - 1 {
+					if i < len(columns)-1 {
 						thClass += " border-r"
 					}
 				}}
@@ -33,7 +33,7 @@ templ tableRow(row []string) {
 			// Create a Go block to define the class variable
 			{{
 				tdClass := "border-b border-gray-200"
-				if i < len(row) - 1 {
+				if i < len(row)-1 {
 					tdClass += " border-r"
 				}
 			}}
@@ -42,7 +42,6 @@ templ tableRow(row []string) {
 			</td>
 		}
 	</tr>
-}
 }
 
 // --- Main DataTable Component ---
