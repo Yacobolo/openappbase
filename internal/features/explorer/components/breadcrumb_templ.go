@@ -467,7 +467,15 @@ func MainContent(params MainContentParams) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<div id=\"view-container\"><div class=\"card bg-base-100 shadow-xl\"><div class=\"card-body\"><div role=\"tablist\" class=\"tabs tabs-bordered\"><input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Data\" checked>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<div id=\"view-container\"><div class=\"card bg-base-100 shadow-xl\"><div class=\"card-body\"><div role=\"tablist\" class=\"tabs tabs-bordered\"><input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Details\" checked>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = DetailsView(params.TableDetails).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "<input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Data\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -475,19 +483,11 @@ func MainContent(params MainContentParams) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "<input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Columns\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "<input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Columns\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = ColumnsView(params.Columns).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "<input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Details\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = DetailsView(params.TableDetails).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

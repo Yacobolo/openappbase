@@ -165,12 +165,12 @@ templ MainContent(params MainContentParams) {
 			<div class="card bg-base-100 shadow-xl">
 				<div class="card-body">
 					<div role="tablist" class="tabs tabs-bordered">
-						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Data" checked/>
+						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Details" checked/>
+						@DetailsView(params.TableDetails)
+						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Data"/>
 						@DataView(params.TableData)
 						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Columns"/>
 						@ColumnsView(params.Columns)
-						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Details"/>
-						@DetailsView(params.TableDetails)
 					</div>
 				</div>
 			</div>

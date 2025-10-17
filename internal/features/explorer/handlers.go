@@ -3,7 +3,7 @@ package explorer
 import (
 	"net/http"
 
-	"northstar/internal/features/Explorer/pages"
+	"northstar/internal/features/explorer/pages"
 
 	"github.com/gorilla/sessions"
 )
