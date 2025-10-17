@@ -1,0 +1,115 @@
+package components
+
+// Column defines the structure for a table header.
+type Column struct {
+	Title string
+	Width string
+}
+
+// --- Header Row Component ---
+templ tableHeader(columns []Column) {
+	<thead>
+		<tr>
+			for i, col := range columns {
+				// Define the class variable inside a Go block
+				{{
+					thClass := "bg-gray-100 border-b border-gray-300"
+					if i < len(columns) - 1 {
+						thClass += " border-r"
+					}
+				}}
+				<th style={ "width: " + col.Width + ";" } class={ thClass }>
+					<div class="cell-content py-2 px-4 text-left text-sm font-semibold text-gray-700 uppercase">{ col.Title }</div>
+				</th>
+			}
+		</tr>
+	</thead>
+}
+
+// --- Data Row Component ---
+templ tableRow(row []string) {
+	<tr class="hover:bg-gray-50">
+		for i, cell := range row {
+			// Create a Go block to define the class variable
+			{{
+				tdClass := "border-b border-gray-200"
+				if i < len(row) - 1 {
+					tdClass += " border-r"
+				}
+			}}
+			<td class={ tdClass }>
+				<div class="cell-content py-2 px-4 text-gray-800">{ cell }</div>
+			</td>
+		}
+	</tr>
+}
+}
+
+// --- Main DataTable Component ---
+templ DataTable(columns []Column, rows [][]string) {
+	<div class="spreadsheet-container border border-gray-300 bg-white rounded-none">
+		<div class="header-wrapper overflow-x-hidden">
+			<table id="header-table" class="w-full border-collapse">
+				@tableHeader(columns)
+			</table>
+		</div>
+		<div class="data-wrapper overflow-auto" style="max-height: 400px; overflow-y: scroll;">
+			<table id="data-table" class="table-fixed w-full border-collapse">
+				<tbody>
+					for _, rowData := range rows {
+						@tableRow(rowData)
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	// --- Styles and Scripts for the component ---
+	<style>
+		.cell-content {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/colresizable@1.6.0/colResizable-1.6.min.js"></script>
+	<script>
+		// This script is scoped to the DataTable component
+		$(document).ready(function() {
+			const headerTable = $("#header-table");
+			const dataTable = $("#data-table");
+			const headerWrapper = $('.header-wrapper');
+			const dataWrapper = $('.data-wrapper');
+
+			if ($.fn.colResizable && headerTable.length) {
+				headerTable.colResizable({
+					liveDrag: true,
+					resizeMode: 'overflow',
+					onDrag: syncColumnWidths,
+					onResize: syncColumnWidths
+				});
+			}
+
+			dataWrapper.on('scroll', function() {
+				headerWrapper.scrollLeft($(this).scrollLeft());
+			});
+
+			function syncColumnWidths() {
+				if (!headerTable.length || !dataTable.length) return;
+
+				dataTable.width(headerTable.outerWidth());
+				const headerCols = headerTable.find("th");
+				const dataCols = dataTable.find("tbody tr:first-child td");
+
+				if (headerCols.length === dataCols.length) {
+					headerCols.each(function(index) {
+						const colWidth = $(this).outerWidth();
+						dataCols.eq(index).outerWidth(colWidth);
+					});
+				}
+			}
+			
+			syncColumnWidths();
+		});
+	</script>
+}
