@@ -11,91 +11,12 @@ import templruntime "github.com/a-h/templ/runtime"
 import "northstar/internal/features/common/layouts"
 import "northstar/internal/features/explorer/components"
 
-var schemas = []components.Schema{
-	{
-		Name:       "auth",
-		TableCount: 2,
-		Tables: []components.Table{
-			{Name: "sso_domains", IsActive: false},
-			{Name: "users", IsActive: false},
-		},
-	},
-	{
-		Name:       "public",
-		TableCount: 2,
-		Tables: []components.Table{
-			{Name: "test", IsActive: true}, // This table is currently selected
-			{Name: "products", IsActive: false},
-		},
-	},
+type ExplorerPageData struct {
+	SidebarSchemas []components.SchemaView
+	MainContent    components.MainContentData
 }
 
-var breadcrumbsData = []components.BreadcrumbItem{
-	{Name: "postgres_catalog", Href: "/"},
-	{Name: "public"},
-	{Name: "gaaay"},
-}
-
-// 2. Table Data View
-var tableData = components.TableData{
-	Headers: []string{"id", "name", "created_at", "status", "value"},
-	Rows: [][]any{
-		{1, "First Item", "2023-10-27T10:00:00Z", "active", 105.99},
-		{2, "Second Item", "2023-10-27T11:00:00Z", "inactive", 250.00},
-		{3, "Third Item", "2023-10-28T12:30:00Z", "pending", 99.50},
-	},
-}
-
-// 3. Columns View Data
-var columnsData = []components.ColumnInfo{
-	{
-		Name:         "id",
-		DataType:     "integer",
-		IsNullable:   false,
-		DefaultValue: "nextval('test_id_seq')",
-	},
-	{
-		Name:         "name",
-		DataType:     "character varying(255)",
-		IsNullable:   true,
-		DefaultValue: "NULL",
-	},
-	{
-		Name:         "created_at",
-		DataType:     "timestamp with time zone",
-		IsNullable:   false,
-		DefaultValue: "now()",
-	},
-	{
-		Name:         "status",
-		DataType:     "character varying(50)",
-		IsNullable:   true,
-		DefaultValue: "'active'::character varying",
-	},
-	{
-		Name:         "value",
-		DataType:     "numeric(10,2)",
-		IsNullable:   true,
-		DefaultValue: "NULL",
-	},
-}
-
-// 4. Details View Data
-var detailsData = components.TableDetails{
-	Owner:              "postgres",
-	RowSecurityEnabled: false,
-	EstimatedRows:      2,
-	CreatedAt:          "2023-01-01 12:00:00 UTC",
-}
-
-var mainContentParams = components.MainContentParams{
-	Breadcrumbs:  breadcrumbsData,
-	TableData:    tableData,
-	Columns:      columnsData,
-	TableDetails: detailsData,
-}
-
-func ExplorerPage() templ.Component {
+func ExplorerPage(data ExplorerPageData) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -132,11 +53,11 @@ func ExplorerPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = components.Sidebar(schemas).Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = components.Sidebar(data.SidebarSchemas).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = components.MainContent(mainContentParams).Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = components.MainContent(data.MainContent).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

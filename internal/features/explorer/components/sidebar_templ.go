@@ -9,20 +9,20 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import "strconv"
+import "northstar/internal/domain"
 
-type Table struct {
-	Name     string
+type TableView struct {
+	domain.Table
 	IsActive bool // To determine which link is active
 }
 
-type Schema struct {
-	Name       string
-	TableCount int
-	Tables     []Table
+type SchemaView struct {
+	domain.Schema
+	Tables []TableView
 }
 
 // SchemaItem is a collapsible component for a single schema and its tables.
-func SchemaItem(schema Schema, isOpen bool) templ.Component {
+func SchemaItem(schema SchemaView, isOpen bool) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -75,9 +75,9 @@ func SchemaItem(schema Schema, isOpen bool) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(schema.TableCount))
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(len(schema.Tables)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/sidebar.templ`, Line: 23, Col: 78}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/sidebar.templ`, Line: 23, Col: 79}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -141,7 +141,7 @@ func SchemaItem(schema Schema, isOpen bool) templ.Component {
 }
 
 // Sidebar is the main sidebar component.
-func Sidebar(schemas []Schema) templ.Component {
+func Sidebar(schemas []SchemaView) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {

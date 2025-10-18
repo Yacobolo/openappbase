@@ -9,6 +9,7 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import "fmt"
+import "northstar/internal/domain"
 
 // --- Data Structures ---
 
@@ -22,25 +23,11 @@ type TableData struct {
 	Rows    [][]any // Using []any (or []interface{}) to allow for mixed data types in rows
 }
 
-type ColumnInfo struct {
-	Name         string
-	DataType     string
-	IsNullable   bool
-	DefaultValue string
-}
-
-type TableDetails struct {
-	Owner              string
-	RowSecurityEnabled bool
-	EstimatedRows      int
-	CreatedAt          string
-}
-
-type MainContentParams struct {
+type MainContentData struct {
 	Breadcrumbs  []BreadcrumbItem
 	TableData    TableData
-	Columns      []ColumnInfo
-	TableDetails TableDetails
+	Columns      []domain.Column
+	TableDetails domain.Table
 }
 
 // --- Components ---
@@ -78,7 +65,7 @@ func Breadcrumbs(items []BreadcrumbItem) templ.Component {
 				var templ_7745c5c3_Var2 templ.SafeURL
 				templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(item.Href))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 45, Col: 74}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 32, Col: 74}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 				if templ_7745c5c3_Err != nil {
@@ -91,7 +78,7 @@ func Breadcrumbs(items []BreadcrumbItem) templ.Component {
 				var templ_7745c5c3_Var3 string
 				templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(item.Name)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 45, Col: 88}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 32, Col: 88}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 				if templ_7745c5c3_Err != nil {
@@ -109,7 +96,7 @@ func Breadcrumbs(items []BreadcrumbItem) templ.Component {
 				var templ_7745c5c3_Var4 string
 				templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(item.Name)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 48, Col: 20}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 35, Col: 20}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 				if templ_7745c5c3_Err != nil {
@@ -172,7 +159,7 @@ func DataView(data TableData) templ.Component {
 				var templ_7745c5c3_Var6 string
 				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(header)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 65, Col: 20}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 52, Col: 20}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 				if templ_7745c5c3_Err != nil {
@@ -217,7 +204,7 @@ func DataView(data TableData) templ.Component {
 							var templ_7745c5c3_Var7 string
 							templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%v", cell))
 							if templ_7745c5c3_Err != nil {
-								return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 82, Col: 71}
+								return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 69, Col: 71}
 							}
 							_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 							if templ_7745c5c3_Err != nil {
@@ -232,7 +219,7 @@ func DataView(data TableData) templ.Component {
 						var templ_7745c5c3_Var8 string
 						templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%v", cell))
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 85, Col: 36}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 72, Col: 36}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 						if templ_7745c5c3_Err != nil {
@@ -262,7 +249,7 @@ func DataView(data TableData) templ.Component {
 	})
 }
 
-func ColumnsView(columns []ColumnInfo) templ.Component {
+func ColumnsView(columns []domain.Column) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -295,7 +282,7 @@ func ColumnsView(columns []ColumnInfo) templ.Component {
 			var templ_7745c5c3_Var10 string
 			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(col.Name)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 113, Col: 21}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 100, Col: 21}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {
@@ -308,7 +295,7 @@ func ColumnsView(columns []ColumnInfo) templ.Component {
 			var templ_7745c5c3_Var11 string
 			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(col.DataType)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 114, Col: 43}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 101, Col: 43}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
@@ -334,9 +321,9 @@ func ColumnsView(columns []ColumnInfo) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var12 string
-			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(col.DefaultValue)
+			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(col.ColumnDefault)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 122, Col: 47}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 109, Col: 48}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
@@ -355,7 +342,7 @@ func ColumnsView(columns []ColumnInfo) templ.Component {
 	})
 }
 
-func DetailsView(details TableDetails) templ.Component {
+func DetailsView(details domain.Table) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -383,7 +370,7 @@ func DetailsView(details TableDetails) templ.Component {
 		var templ_7745c5c3_Var14 string
 		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(details.Owner)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 136, Col: 53}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 123, Col: 53}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
@@ -411,26 +398,13 @@ func DetailsView(details TableDetails) templ.Component {
 		var templ_7745c5c3_Var15 string
 		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", details.EstimatedRows))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 150, Col: 80}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 137, Col: 80}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "</div></div><div class=\"grid grid-cols-3 gap-4\"><div class=\"font-semibold\">Created On</div><div class=\"col-span-2 font-mono\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var16 string
-		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(details.CreatedAt)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/explorer/components/breadcrumb.templ`, Line: 154, Col: 57}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "</div></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "</div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -438,7 +412,7 @@ func DetailsView(details TableDetails) templ.Component {
 	})
 }
 
-func MainContent(params MainContentParams) templ.Component {
+func MainContent(params MainContentData) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -454,12 +428,12 @@ func MainContent(params MainContentParams) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var17 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var17 == nil {
-			templ_7745c5c3_Var17 = templ.NopComponent
+		templ_7745c5c3_Var16 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var16 == nil {
+			templ_7745c5c3_Var16 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "<main class=\"flex-1 p-6 overflow-y-auto\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "<main class=\"flex-1 p-6 overflow-y-auto\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -467,7 +441,7 @@ func MainContent(params MainContentParams) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<div id=\"view-container\"><div class=\"card bg-base-100 shadow-xl\"><div class=\"card-body\"><div role=\"tablist\" class=\"tabs tabs-bordered\"><input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Details\" checked>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "<div id=\"view-container\"><div class=\"card bg-base-100 shadow-xl\"><div class=\"card-body\"><div role=\"tablist\" class=\"tabs tabs-bordered\"><input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Details\" checked>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -475,7 +449,7 @@ func MainContent(params MainContentParams) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "<input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Data\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Data\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -483,7 +457,7 @@ func MainContent(params MainContentParams) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "<input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Columns\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "<input type=\"radio\" name=\"table_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Columns\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -491,7 +465,7 @@ func MainContent(params MainContentParams) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "</div></div></div></div></main>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "</div></div></div></div></main>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

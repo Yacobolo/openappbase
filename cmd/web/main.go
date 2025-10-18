@@ -40,9 +40,11 @@ func main() {
 
 func run(ctx context.Context) error {
 
-	store.InitDB(config.Global.ConnectionString)
+	db := store.InitDB(config.Global.ConnectionString)
 
 	defer store.CloseDB()
+
+	queries := store.New(db)
 
 	addr := fmt.Sprintf("%s:%s", config.Global.Host, config.Global.Port)
 	slog.Info("server started", "addr", addr)
@@ -68,7 +70,7 @@ func run(ctx context.Context) error {
 		return err
 	}
 
-	if err := internal.SetupRoutes(egctx, router, sessionStore, ns); err != nil {
+	if err := internal.SetupRoutes(egctx, router, sessionStore, ns, queries); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)
 	}
 

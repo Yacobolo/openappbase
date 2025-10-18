@@ -1,26 +1,26 @@
 package components
 
 import "strconv"
+import "northstar/internal/domain"
 
-type Table struct {
-	Name     string
+type TableView struct {
+	domain.Table
 	IsActive bool // To determine which link is active
 }
 
-type Schema struct {
-	Name       string
-	TableCount int
-	Tables     []Table
+type SchemaView struct {
+	Name   string
+	Tables []TableView
 }
 
 // SchemaItem is a collapsible component for a single schema and its tables.
-templ SchemaItem(schema Schema, isOpen bool) {
+templ SchemaItem(schema SchemaView, isOpen bool) {
 	<div class="collapse collapse-arrow bg-base-100 rounded-lg mb-1">
 		<input type="checkbox" checked?={ isOpen }/>
 		<div class="collapse-title font-medium flex items-center gap-2">
 			@FolderIcon()
 			{ schema.Name }
-			<div class="badge badge-neutral badge-sm">{ strconv.Itoa(schema.TableCount) }</div>
+			<div class="badge badge-neutral badge-sm">{ strconv.Itoa(len(schema.Tables)) }</div>
 		</div>
 		<div class="collapse-content">
 			<ul class="menu menu-compact p-0 pl-4">
@@ -38,7 +38,7 @@ templ SchemaItem(schema Schema, isOpen bool) {
 }
 
 // Sidebar is the main sidebar component.
-templ Sidebar(schemas []Schema) {
+templ Sidebar(schemas []SchemaView) {
 	<aside class="w-80 bg-base-200 p-4 flex flex-col shrink-0">
 		<header class="mb-4 text-center border-b border-base-100 pb-4">
 			<h1 class="text-2xl font-bold text-primary">Unity Explorer</h1>

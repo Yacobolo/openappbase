@@ -5,7 +5,6 @@
 # files, developer configurations or IDE-specific files etc.
 #
 # Recommended: Go.AllowList.gitignore
-data/
 
 # Ignore everything
 *
@@ -17,6 +16,7 @@ data/
 !*.templ
 !go.sum
 !go.mod
+!*.sql
 
 !README.md
 !LICENSE

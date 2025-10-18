@@ -1,6 +1,7 @@
 package components
 
 import "fmt"
+import "northstar/internal/domain"
 
 // --- Data Structures ---
 
@@ -14,25 +15,11 @@ type TableData struct {
 	Rows    [][]any // Using []any (or []interface{}) to allow for mixed data types in rows
 }
 
-type ColumnInfo struct {
-	Name         string
-	DataType     string
-	IsNullable   bool
-	DefaultValue string
-}
-
-type TableDetails struct {
-	Owner              string
-	RowSecurityEnabled bool
-	EstimatedRows      int
-	CreatedAt          string
-}
-
-type MainContentParams struct {
+type MainContentData struct {
 	Breadcrumbs  []BreadcrumbItem
 	TableData    TableData
-	Columns      []ColumnInfo
-	TableDetails TableDetails
+	Columns      []domain.Column
+	TableDetails domain.Table
 }
 
 // --- Components ---
@@ -95,7 +82,7 @@ templ DataView(data TableData) {
 	</div>
 }
 
-templ ColumnsView(columns []ColumnInfo) {
+templ ColumnsView(columns []domain.Column) {
 	<div role="tabpanel" class="tab-content p-4">
 		<div class="overflow-x-auto">
 			<table class="table w-full">
@@ -119,7 +106,7 @@ templ ColumnsView(columns []ColumnInfo) {
 									No
 								}
 							</td>
-							<td class="font-mono">{ col.DefaultValue }</td>
+							<td class="font-mono">{ col.ColumnDefault }</td>
 						</tr>
 					}
 				</tbody>
@@ -128,7 +115,7 @@ templ ColumnsView(columns []ColumnInfo) {
 	</div>
 }
 
-templ DetailsView(details TableDetails) {
+templ DetailsView(details domain.Table) {
 	<div role="tabpanel" class="tab-content p-4">
 		<div class="space-y-2">
 			<div class="grid grid-cols-3 gap-4">
@@ -149,15 +136,11 @@ templ DetailsView(details TableDetails) {
 				<div class="font-semibold">Estimated Rows</div>
 				<div class="col-span-2 font-mono">{ fmt.Sprintf("%d", details.EstimatedRows) }</div>
 			</div>
-			<div class="grid grid-cols-3 gap-4">
-				<div class="font-semibold">Created On</div>
-				<div class="col-span-2 font-mono">{ details.CreatedAt }</div>
-			</div>
 		</div>
 	</div>
 }
 
-templ MainContent(params MainContentParams) {
+templ MainContent(params MainContentData) {
 	<main class="flex-1 p-6 overflow-y-auto">
 		// Access data through the 'params' variable
 		@Breadcrumbs(params.Breadcrumbs)

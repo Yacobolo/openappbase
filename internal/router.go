@@ -11,6 +11,7 @@ import (
 	"northstar/internal/features/editor"
 	"northstar/internal/features/explorer"
 	indexFeature "northstar/internal/features/index"
+	"northstar/internal/store"
 	"northstar/web/resources"
 
 	"github.com/delaneyj/toolbelt/embeddednats"
@@ -19,7 +20,7 @@ import (
 	"github.com/starfederation/datastar-go/datastar"
 )
 
-func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.CookieStore, ns *embeddednats.Server) (err error) {
+func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.CookieStore, ns *embeddednats.Server, q *store.Queries) (err error) {
 
 	if config.Global.Environment == config.Dev {
 		setupReload(ctx, router)
@@ -29,7 +30,7 @@ func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.
 
 	if err := errors.Join(
 		indexFeature.SetupRoutes(router, sessionStore, ns),
-		explorer.SetupRoutes(router, sessionStore),
+		explorer.SetupRoutes(router, sessionStore, ns, q),
 		editor.SetupRoutes(router, sessionStore),
 	); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)

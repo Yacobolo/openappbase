@@ -1,14 +1,11 @@
 package editor
 
 import (
-	"fmt"
 	"net/http"
 
 	"northstar/internal/features/editor/pages"
-	"northstar/internal/store"
 
 	"github.com/gorilla/sessions"
-	"github.com/starfederation/datastar-go/datastar"
 )
 
 type Handlers struct {
@@ -27,15 +24,15 @@ func (h *Handlers) EditorPage(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 	}
 
-	sse := datastar.NewSSE(w, r)
-	data, err := store.GetTableData("test")
+	// sse := datastar.NewSSE(w, r)
+	// data, err := store.GetTableData("test")
 
-	if err != nil {
-		sse.ConsoleLog(fmt.Sprintf("Error fetching table data: %v", err))
-		return
-	}
+	// if err != nil {
+	// 	sse.ConsoleLog(fmt.Sprintf("Error fetching table data: %v", err))
+	// 	return
+	// }
 
-	for _, row := range data {
-		sse.ConsoleLog(fmt.Sprintf("%+v", row))
-	}
+	// for _, row := range data {
+	// 	sse.ConsoleLog(fmt.Sprintf("%+v", row))
+	// }
 }
