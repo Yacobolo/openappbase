@@ -9,24 +9,20 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import "northstar/internal/features/common/layouts"
-import "northstar/internal/features/editor/components" // Import the new components
+import "northstar/internal/features/editor/components"
+import "northstar/internal/domain"
 
-// Define the data for the table
-var columns = []components.Column{
-	{Title: "Name", Width: "200px"},
-	{Title: "Job", Width: "400px"},
-	{Title: "Favorite Color", Width: "150px"},
-}
-
-var rows = [][]string{
-	{"Cy Ganderton", "Quality Control Specialist", "Blue"},
-	{"Hart Hagerty", "Desktop Support Technician", "Purple"},
-	{"Brice Swyre", "Tax Accountant", "Red"},
-	{"Marjy Ferencz", "Office Assistant I", "Crimson"},
+// EditorPageData holds all data needed to render the editor page
+type EditorPageData struct {
+	TableName  string
+	Columns    []components.Column
+	Rows       [][]string
+	Pagination domain.PaginationInfo
+	Error      string
 }
 
 // --- Main Page Component ---
-func EditorPage() templ.Component {
+func EditorPage(data EditorPageData) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -59,21 +55,64 @@ func EditorPage() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"max-w-7xl mx-auto\"><h1 class=\"text-2xl font-bold text-gray-800 mb-2\">Tailwind Slim Header Spreadsheet</h1><p class=\"text-gray-600 mb-6\">A fully responsive and resizable spreadsheet with a slimmer header row.</p>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"max-w-7xl mx-auto\"><h1 class=\"text-2xl font-bold text-gray-800 mb-2\">Database Table Editor</h1><p class=\"text-gray-600 mb-4\">View and navigate database tables dynamically.</p><div class=\"mb-6\" data-signals-table-name=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = components.DataTable(columns, rows).Render(ctx, templ_7745c5c3_Buffer)
+			var templ_7745c5c3_Var3 string
+			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(data.TableName)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/editor/pages/editor.templ`, Line: 24, Col: 61}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><label for=\"table-input\" class=\"block text-sm font-medium text-gray-700 mb-2\">Table Name (format: schema.table)</label><div class=\"flex gap-2\"><input type=\"text\" id=\"table-input\" data-bind-table-name placeholder=\"e.g., public.users\" class=\"flex-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500\" data-on-keydown.enter=\"@get('/editor/load?table=' + $tableName)\"> <button class=\"px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2\" data-on-click=\"@get('/editor/load?table=' + $tableName)\">Load Table</button></div></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			if data.Error != "" {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"mb-4 p-4 bg-red-50 border border-red-200 rounded-md\"><p class=\"text-red-800\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var4 string
+				templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(data.Error)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/editor/pages/editor.templ`, Line: 49, Col: 40}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</p></div>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div id=\"table-container\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			if len(data.Columns) > 0 {
+				templ_7745c5c3_Err = components.DataTable(data.Columns, data.Rows, data.Pagination, data.TableName).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			} else if data.Error == "" && data.TableName == "" {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<div class=\"text-center py-12 text-gray-500\"><p>Enter a table name above to view its data.</p></div>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = layouts.AppShell("Data Table").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layouts.AppShell("Data Table Editor").Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

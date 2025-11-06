@@ -2,6 +2,7 @@
 package explorer
 
 import (
+	"fmt"
 	"net/http"
 
 	"northstar/internal/domain"
@@ -9,37 +10,62 @@ import (
 	"northstar/internal/features/explorer/pages"
 	"northstar/internal/features/explorer/services"
 
-	"github.com/delaneyj/toolbelt/embeddednats"
+	"github.com/go-chi/chi/v5"
 	"github.com/gorilla/sessions"
 )
 
 type Handlers struct {
-	sessionStore sessions.Store
-	ns           *embeddednats.Server
-	s            *services.ExplorerService
+	explorerService *services.ExplorerService
 }
 
-func NewHandlers(sessionStore sessions.Store, ns *embeddednats.Server, explorerService *services.ExplorerService) *Handlers {
+func NewHandlers(sessionStore sessions.Store, explorerService *services.ExplorerService) *Handlers {
 	return &Handlers{
-		sessionStore: sessionStore,
-		ns:           ns,
-		s:            explorerService,
+		explorerService: explorerService,
 	}
 }
 
 func (h *Handlers) ExplorerPage(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
 
-	schemas, err := h.s.GetSchemaOverview(r.Context())
+	// 1. Get the active schema and table directly from the URL.
+	activeSchemaName := chi.URLParam(r, "schemaName")
+	activeTableName := chi.URLParam(r, "tableName")
+
+	schemas, err := h.explorerService.GetSchemaOverview(ctx)
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
 
-	activeSchemaName := schemas[0].Name
-	activeTableName := schemas[0].Tables[0].Name
-	activeTable := schemas[0].Tables[0]
+	if len(schemas) == 0 {
+		// Handle the case where the database is empty.
+		pages.ExplorerPage(pages.ExplorerPageData{}).Render(ctx, w)
+		return
+	}
 
-	tableColumns, err := h.s.GetTableColumns(r.Context(), activeSchemaName, activeTableName)
+	if activeSchemaName == "" {
+		activeSchemaName = schemas[0].Name // Default to the first schema
+	}
+	if activeTableName == "" {
+		// Find the first table in the now-active schema.
+		for _, s := range schemas {
+			if s.Name == activeSchemaName && len(s.Tables) > 0 {
+				activeTableName = s.Tables[0].Name
+				break
+			}
+		}
+	}
+
+	activeTable := findActiveTable(schemas, activeSchemaName, activeTableName)
+
+	if activeTable == nil {
+		// The requested table does not exist. Return a 404 Not Found.
+		http.Error(w, fmt.Sprintf("Table not found: %s.%s", activeSchemaName, activeTableName), http.StatusNotFound)
+		return
+	}
+
+	tableColumns, err := h.explorerService.GetTableColumns(r.Context(), activeSchemaName, activeTableName)
+
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
@@ -49,7 +75,7 @@ func (h *Handlers) ExplorerPage(w http.ResponseWriter, r *http.Request) {
 		schemas,
 		activeSchemaName,
 		activeTableName,
-		activeTable,
+		*activeTable,
 		tableColumns,
 	)
 
@@ -68,17 +94,17 @@ func toExplorerPageData(
 
 	// Map Schemas for the Sidebar
 	sidebarSchemas := make([]components.SchemaView, len(schemas))
-	for i, s := range schemas {
-		tables := make([]components.TableView, len(s.Tables))
-		for j, t := range s.Tables {
+	for i, schema := range schemas {
+		tables := make([]components.TableView, len(schema.Tables))
+		for j, table := range schema.Tables {
 			tables[j] = components.TableView{
-				Table:    t,
-				IsActive: s.Name == activeSchemaName && t.Name == activeTableName,
+				Table:    table,
+				IsActive: schema.Name == activeSchemaName && table.Name == activeTableName,
 			}
 		}
 
 		sidebarSchemas[i] = components.SchemaView{
-			Schema: s,
+			Name:   schema.Name,
 			Tables: tables,
 		}
 	}
@@ -106,4 +132,17 @@ func toExplorerPageData(
 		SidebarSchemas: sidebarSchemas,
 		MainContent:    mainContent,
 	}
+}
+
+func findActiveTable(schemas []domain.Schema, schemaName, tableName string) *domain.Table {
+	for i := range schemas {
+		if schemas[i].Name == schemaName {
+			for j := range schemas[i].Tables {
+				if schemas[i].Tables[j].Name == tableName {
+					return &schemas[i].Tables[j]
+				}
+			}
+		}
+	}
+	return nil
 }

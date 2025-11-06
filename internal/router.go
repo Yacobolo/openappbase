@@ -10,17 +10,17 @@ import (
 	"northstar/config"
 	"northstar/internal/features/editor"
 	"northstar/internal/features/explorer"
-	indexFeature "northstar/internal/features/index"
 	"northstar/internal/store"
 	"northstar/web/resources"
 
-	"github.com/delaneyj/toolbelt/embeddednats"
 	"github.com/go-chi/chi/v5"
 	"github.com/gorilla/sessions"
+	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/nats-io/nats.go/jetstream"
 	"github.com/starfederation/datastar-go/datastar"
 )
 
-func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.CookieStore, ns *embeddednats.Server, q *store.Queries) (err error) {
+func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.CookieStore, js jetstream.JetStream, pool *pgxpool.Pool, q *store.Queries) (err error) {
 
 	if config.Global.Environment == config.Dev {
 		setupReload(ctx, router)
@@ -29,9 +29,8 @@ func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.
 	router.Handle("/static/*", resources.Handler())
 
 	if err := errors.Join(
-		indexFeature.SetupRoutes(router, sessionStore, ns),
-		explorer.SetupRoutes(router, sessionStore, ns, q),
-		editor.SetupRoutes(router, sessionStore),
+		explorer.SetupRoutes(router, sessionStore, js, q),
+		editor.SetupRoutes(router, sessionStore, pool, q),
 	); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)
 	}

@@ -19,6 +19,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/gorilla/sessions"
+	"github.com/nats-io/nats.go/jetstream"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -70,7 +71,17 @@ func run(ctx context.Context) error {
 		return err
 	}
 
-	if err := internal.SetupRoutes(egctx, router, sessionStore, ns, queries); err != nil {
+	nc, err := ns.Client()
+	if err != nil {
+		return fmt.Errorf("error creating nats client: %w", err)
+	}
+
+	js, err := jetstream.New(nc)
+	if err != nil {
+		return fmt.Errorf("error creating jetstream client: %w", err)
+	}
+
+	if err := internal.SetupRoutes(egctx, router, sessionStore, js, db, queries); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)
 	}
 

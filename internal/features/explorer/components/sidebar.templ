@@ -1,7 +1,11 @@
 package components
 
-import "strconv"
-import "northstar/internal/domain"
+import (
+	"fmt"
+	"github.com/starfederation/datastar-go/datastar"
+	"northstar/internal/domain"
+	"strconv"
+)
 
 type TableView struct {
 	domain.Table
@@ -26,7 +30,10 @@ templ SchemaItem(schema SchemaView, isOpen bool) {
 			<ul class="menu menu-compact p-0 pl-4">
 				for _, table := range schema.Tables {
 					<li>
-						<a class={ templ.KV("active", table.IsActive) } href="#">
+						<a
+							class={ templ.KV("active", table.IsActive) }
+							data-on-click={ datastar.GetSSE(fmt.Sprintf("/explorer/%s/%s", schema.Name, table.Name)) }
+						>
 							@TableIcon()
 							{ table.Name }
 						</a>

@@ -3,20 +3,65 @@ package services
 
 import (
 	"context"
+	"fmt"
+	"net/http"
 	"northstar/internal/domain"
+	"northstar/internal/session"
 	"northstar/internal/store"
+	"time"
 
+	"github.com/gorilla/sessions"
 	"github.com/jackc/pgx/v5/pgtype"
+	"github.com/nats-io/nats.go/jetstream"
 )
 
+type ExplorerState struct {
+	ActiveSchema string `json:"active_schema"`
+	ActiveTable  string `json:"active_table"`
+}
 type ExplorerService struct {
-	q *store.Queries
+	q     *store.Queries
+	kv    jetstream.KeyValue
+	state *session.StateStore[ExplorerState]
 }
 
-func NewExplorerService(q *store.Queries) *ExplorerService {
-	return &ExplorerService{
-		q: q,
+func NewExplorerService(q *store.Queries, js jetstream.JetStream, store sessions.Store) (*ExplorerService, error) {
+
+	// Create a specific KV bucket for the explorer's state
+	kv, err := js.CreateOrUpdateKeyValue(context.Background(), jetstream.KeyValueConfig{
+		Bucket:      "explorer_state",
+		Description: "State for the Unity Explorer",
+		Compression: true,
+		TTL:         24 * time.Hour, // Remember state for a day
+	})
+	if err != nil {
+		return nil, fmt.Errorf("error creating key value for explorer: %w", err)
 	}
+
+	stateStore := session.NewStateStore[ExplorerState](kv, store)
+
+	return &ExplorerService{
+		q:     q,
+		kv:    kv,
+		state: stateStore,
+	}, nil
+}
+
+func (s *ExplorerService) GetSessionID(r *http.Request, w http.ResponseWriter) (string, error) {
+	return s.state.GetSessionID(r, w)
+}
+
+func (s *ExplorerService) GetState(ctx context.Context, sessionID string) (*ExplorerState, error) {
+	state, err := s.state.Get(ctx, sessionID)
+	// Add feature-specific default logic if needed
+	if state.ActiveSchema == "" {
+		state.ActiveSchema = "public"
+	}
+	return state, err
+}
+
+func (s *ExplorerService) SaveState(ctx context.Context, sessionID string, state *ExplorerState) error {
+	return s.state.Save(ctx, sessionID, state)
 }
 
 func (s *ExplorerService) GetSchemaOverview(ctx context.Context) ([]domain.Schema, error) {
@@ -74,11 +119,15 @@ func (s *ExplorerService) GetTableColumns(ctx context.Context, schemaName, table
 
 	var columns []domain.Column
 	for _, row := range rows {
+		columnDefault := ""
+		if row.ColumnDefault.Valid {
+			columnDefault = row.ColumnDefault.String
+		}
 		columns = append(columns, domain.Column{
-			Name:          row.ColumnName.(string),
-			DataType:      row.DataType.(string),
+			Name:          row.ColumnName,
+			DataType:      row.DataType,
 			IsNullable:    row.IsNullable,
-			ColumnDefault: row.ColumnDefault.(string),
+			ColumnDefault: columnDefault,
 		})
 	}
 
