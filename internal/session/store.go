@@ -20,6 +20,11 @@ type StateStore[T any] struct {
 	store sessions.Store
 }
 
+// KV returns the underlying KeyValue bucket for direct access
+func (s *StateStore[T]) KV() jetstream.KeyValue {
+	return s.kv
+}
+
 func NewStateStore[T any](kv jetstream.KeyValue, store sessions.Store) *StateStore[T] {
 	return &StateStore[T]{
 		kv:    kv,
@@ -76,4 +81,42 @@ func (s *StateStore[T]) Save(ctx context.Context, sessionID string, state *T) er
 		return fmt.Errorf("failed to save state to kv: %w", err)
 	}
 	return nil
+}
+
+// Watch creates a watcher for state changes on a specific session ID.
+// Returns a channel that receives state updates whenever the key changes.
+// The watcher continues until the context is canceled.
+func (s *StateStore[T]) Watch(ctx context.Context, sessionID string) (<-chan *T, error) {
+	watcher, err := s.kv.Watch(ctx, sessionID)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create watcher: %w", err)
+	}
+
+	stateChan := make(chan *T)
+
+	go func() {
+		defer close(stateChan)
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			case entry := <-watcher.Updates():
+				if entry == nil {
+					return
+				}
+				state := new(T)
+				if err := json.Unmarshal(entry.Value(), state); err != nil {
+					// Log error but continue watching
+					continue
+				}
+				select {
+				case stateChan <- state:
+				case <-ctx.Done():
+					return
+				}
+			}
+		}
+	}()
+
+	return stateChan, nil
 }

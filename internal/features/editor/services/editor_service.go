@@ -6,25 +6,37 @@ import (
 	"fmt"
 	"math"
 	"northstar/internal/domain"
+	"northstar/internal/session"
 	"northstar/internal/store"
 	"strings"
 
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/nats-io/nats.go/jetstream"
 )
 
 const PageSize = 50
 
-type EditorService struct {
-	q    *store.Queries
-	pool *pgxpool.Pool
+// EditorState represents the ephemeral UI state for an editor session.
+// This state is stored in NATS KV and does not persist in PostgreSQL.
+type EditorState struct {
+	TableName string `json:"tableName"` // "schema.table" format or empty
+	Page      int    `json:"page"`      // 1-based page number
+	Version   int    `json:"version"`   // Increment to force refresh
 }
 
-func NewEditorService(q *store.Queries, pool *pgxpool.Pool) *EditorService {
+type EditorService struct {
+	q          *store.Queries
+	pool       *pgxpool.Pool
+	stateStore *session.StateStore[EditorState]
+}
+
+func NewEditorService(q *store.Queries, pool *pgxpool.Pool, stateStore *session.StateStore[EditorState]) *EditorService {
 	return &EditorService{
-		q:    q,
-		pool: pool,
+		q:          q,
+		pool:       pool,
+		stateStore: stateStore,
 	}
 }
 
@@ -194,4 +206,21 @@ func (s *EditorService) getTableRows(ctx context.Context, schema, table string, 
 	}
 
 	return result, nil
+}
+
+// GetState retrieves the editor state for a given session ID.
+// Returns an empty state if not found (no error).
+func (s *EditorService) GetState(ctx context.Context, sessionID string) (*EditorState, error) {
+	return s.stateStore.Get(ctx, sessionID)
+}
+
+// SaveState persists the editor state for a given session ID to NATS KV.
+func (s *EditorService) SaveState(ctx context.Context, sessionID string, state *EditorState) error {
+	return s.stateStore.Save(ctx, sessionID, state)
+}
+
+// WatchState creates a watcher for state changes on a specific session ID.
+// Returns a KeyWatcher that provides updates whenever the key changes.
+func (s *EditorService) WatchState(ctx context.Context, sessionID string) (jetstream.KeyWatcher, error) {
+	return s.stateStore.KV().Watch(ctx, sessionID)
 }

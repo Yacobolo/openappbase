@@ -1,10 +1,12 @@
 package pages
 
-import "northstar/internal/features/common/layouts"
-import "northstar/internal/features/editor/components"
-import "northstar/internal/domain"
+import (
+	"github.com/starfederation/datastar-go/datastar"
+	"northstar/internal/domain"
+	"northstar/internal/features/common/layouts"
+	"northstar/internal/features/editor/components"
+)
 
-// EditorPageData holds all data needed to render the editor page
 type EditorPageData struct {
 	TableName  string
 	Columns    []components.Column
@@ -17,49 +19,7 @@ type EditorPageData struct {
 templ EditorPage(data EditorPageData) {
 	@layouts.AppShell("Data Table Editor") {
 		<div class="max-w-7xl mx-auto">
-			<h1 class="text-2xl font-bold text-gray-800 mb-2">Database Table Editor</h1>
-			<p class="text-gray-600 mb-4">View and navigate database tables dynamically.</p>
-			
-			// Table selector input
-			<div class="mb-6" data-signals-table-name={ data.TableName }>
-				<label for="table-input" class="block text-sm font-medium text-gray-700 mb-2">
-					Table Name (format: schema.table)
-				</label>
-				<div class="flex gap-2">
-					<input
-						type="text"
-						id="table-input"
-						data-bind-table-name
-						placeholder="e.g., public.users"
-						class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-						data-on-keydown.enter="@get('/editor/load?table=' + $tableName)"
-					/>
-					<button
-						class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-						data-on-click="@get('/editor/load?table=' + $tableName)"
-					>
-						Load Table
-					</button>
-				</div>
-			</div>
-
-		// Error message
-		if data.Error != "" {
-			<div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-md">
-				<p class="text-red-800">{ data.Error }</p>
-			</div>
-		}
-
-		// Data table container (always present so Datastar can patch it)
-		<div id="table-container">
-			if len(data.Columns) > 0 {
-				@components.DataTable(data.Columns, data.Rows, data.Pagination, data.TableName)
-			} else if data.Error == "" && data.TableName == "" {
-				<div class="text-center py-12 text-gray-500">
-					<p>Enter a table name above to view its data.</p>
-				</div>
-			}
-		</div>
+			<div id="table-container" data-init={ datastar.GetSSE("/api/editor") }></div>
 		</div>
 	}
 }

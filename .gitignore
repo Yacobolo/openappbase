@@ -19,6 +19,9 @@
 !*.sql
 !*.md
 
+# re-ignore templ-generated Go files
+**/*_templ.go
+
 !README.md
 !LICENSE
 
