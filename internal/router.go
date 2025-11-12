@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"northstar/config"
+	"northstar/internal/features/admin"
 	"northstar/internal/store"
 	"northstar/web/resources"
 
@@ -38,8 +39,9 @@ func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.
 	}
 
 	if err := errors.Join(
-	// explorer.SetupRoutes(router, sessionStore, js, q),
-	// editor.SetupRoutes(router, sessionStore, js, db, q),
+		// explorer.SetupRoutes(router, sessionStore, js, q),
+		// editor.SetupRoutes(router, sessionStore, js, db, q),
+		admin.SetupRoutes(router, q),
 	); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)
 	}

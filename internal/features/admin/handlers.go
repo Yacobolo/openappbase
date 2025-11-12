@@ -1,4 +1,4 @@
-package connections
+package admin
 
 import (
 	"encoding/json"
@@ -7,7 +7,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"northstar/internal/features/connections/services"
+	"northstar/internal/features/admin/pages"
+	"northstar/internal/features/admin/services"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/gorilla/sessions"
@@ -18,10 +19,19 @@ type Handlers struct {
 	connectionService *services.ConnectionService
 }
 
-func NewHandlers(sessionStore sessions.Store, connectionService *services.ConnectionService) *Handlers {
+func NewHandlers(connectionService *services.ConnectionService) *Handlers {
 	return &Handlers{
-		sessionStore:      sessionStore,
 		connectionService: connectionService,
+	}
+}
+
+func (h *Handlers) AdminPage(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+
+	// Just render the shell - SSE will handle state updates
+	if err := pages.AdminPage().Render(ctx, w); err != nil {
+		slog.Error("Failed to render editor page", "error", err)
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 	}
 }
 

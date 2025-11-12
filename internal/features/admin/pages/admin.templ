@@ -1,0 +1,16 @@
+package pages
+
+import (
+	"github.com/starfederation/datastar-go/datastar"
+	"northstar/internal/features/common/layouts"
+)
+
+templ AdminPage() {
+	@layouts.AppShell("Data Table Editor") {
+		<div class="max-w-7xl mx-auto">
+			<div id="admin-container" data-init={ datastar.GetSSE("/api/admin") }>
+				loading...
+			</div>
+		</div>
+	}
+}

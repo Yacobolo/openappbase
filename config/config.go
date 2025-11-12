@@ -1,6 +1,7 @@
 package config
 
 import (
+	"log"
 	"log/slog"
 	"os"
 	"sync"
@@ -21,6 +22,7 @@ type Config struct {
 	Port          string
 	LogLevel      slog.Level
 	SessionSecret string
+	EncryptionKey string
 }
 
 var (
@@ -48,8 +50,18 @@ func MustGetEnv(key string) string {
 	panic("environment variable not set: " + key)
 }
 
+func ValidateEncryptionKey(key string) {
+	if len(key) != 32 {
+		log.Fatalf("ENCRYPTION_KEY must be exactly 32 bytes, got %d bytes", len(key))
+	}
+}
+
 func loadBase() *Config {
 	godotenv.Load()
+
+	encryptionKey := MustGetEnv("ENCRYPTION_KEY")
+
+	ValidateEncryptionKey(encryptionKey)
 
 	return &Config{
 		Host: getEnv("HOST", "0.0.0.0"),
@@ -69,5 +81,6 @@ func loadBase() *Config {
 			}
 		}(),
 		SessionSecret: getEnv("SESSION_SECRET", "session-secret"),
+		EncryptionKey: encryptionKey,
 	}
 }
