@@ -27,6 +27,7 @@ The application **does not pollute your database**. It maintains all of its own 
 - **Connect to Any PostgreSQL:** Instantly connect to an existing database. The application introspects the schema and requires no changes to your tables.
 - **Selective Table Exposure:** Administrators can securely select _which_ tables and columns are exposed to business users, keeping sensitive data hidden.
 - **Powerful Spreadsheet UI:** A fast, intuitive, spreadsheet-like interface for viewing, editing, and filtering data.
+- **Real-time Updates:** Changes made by one user are broadcast in real-time to all other users viewing the same data, ensuring everyone is working from the latest version.
 - **Enterprise-Grade Security:**
   - **Role-Based Access Control (RBAC):** Create roles (e.g., "Admin," "Editor," "Viewer") and define granular permissions.
   - **Row-Level Security (RLS):** Define rules to restrict row access (e.g., "Sales managers can only see data for their own region").
@@ -35,12 +36,23 @@ The application **does not pollute your database**. It maintains all of its own 
   - **Excel & CSV Upload:** Easily upload spreadsheet data directly into the selected database table, with validation and mapping.
 - **Clean & Isolated:** The application's core logic is stored in its own SQLite database. It adds **zero tables, columns, or logic** to your target PostgreSQL database.
 
+### Architecture Overview
+
+The application uses a "Targeted Ping" architecture to achieve scalable, real-time updates without high server load.
+
+1. **PostgreSQL Triggers:** `FOR EACH ROW` triggers on monitored tables send a rich JSON payload (containing table name, operation type, and a shared key like `project_id`) to a single PostgreSQL `NOTIFY` channel.
+2. **Go Bridge Service:** A single, persistent Go service `LISTEN`s to this channel, parses the JSON, and republishes the event to a dynamic, targeted NATS subject (e.g., `todos_updates.project_abc`).
+3. **NATS Pub/Sub:** Serves as a lightweight, scalable message bus for these targeted "ping" events.
+4. **Go SSE Handlers:** When a user views a dataset (e.g., "project_abc"), their SSE handler `Subscribe`s to the specific NATS subject (`todos_updates.project_abc`). When a ping is received, it re-queries the database for fresh data, ensuring only relevant clients are updated.
+5. **SQLite Database:** All "single-player" application state, such as user column preferences, saved filters, and RBAC rules, is stored persistently in the app's local SQLite database.
+
 ### Tech Stack
 
 - **Backend:** Go (Golang)
 - **Frontend:** Datastar & Templ
 - **Frontend Styling:** Tailwind CSS
-- **Ephemeral State:** Embedded NATS JetStream KV
+- **Application Database:** SQLite (for storing roles, user preferences, and app state)
+- **Real-time Messaging:** Embedded NATS (for high-performance Pub/Sub)
 - **SSO / Authentication:** markbates/goth
 
 ### Use Cases
