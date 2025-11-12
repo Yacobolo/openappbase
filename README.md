@@ -62,3 +62,16 @@ The application uses a "Targeted Ping" architecture to achieve scalable, real-ti
 3. **Safe Admin Interface:** Provide a safe, access-controlled "admin panel" for an existing application without building a custom one from scratch.
 
 _This project empowers organizations to scale their data management by finally connecting their business users directly and securely to their central database._
+
+---
+
+## Development Roadmap
+
+- [ ] **Phase 1:** Admin Panel - Database Connections 🚧
+- [ ] **Phase 2:** Table & Column Exposure Management (read-only)
+- [ ] **Phase 3:** Role & Permission System (RBAC)
+- [ ] **Phase 4:** User Management & Authentication
+- [ ] **Phase 5:** Row-Level Security (RLS)
+- [ ] **Phase 6:** Saved Filters & User Preferences
+- [ ] **Phase 7:** Excel/CSV Upload
+- [ ] **Phase 8:** Real-time Updates (LISTEN/NOTIFY + SSE)
