@@ -1,133 +1,52 @@
-# NORTHSTAR
+# Project Title (e.g., "OpenPostgresSheet" or "DB-Bizview")
 
-# Stack
+## One-Page Project Description
 
-- [Go](https://go.dev/doc/)
-- [NATS](https://docs.nats.io/)
-- [Datastar](https://github.com/starfederation/datastar)
-- [Templ](https://templ.guide/)
-  - [Tailwind](https://tailwindcss.com/) x [DaisyUI](https://daisyui.com/)
+### The Problem
 
-# Setup
+In modern organizations, critical business data is often scattered across countless disconnected Excel spreadsheets and CSV files. This manual process is inefficient, prone to error, and fundamentally unscalable.
 
-1. Clone this repository
+While "CRUD app" builders and no-code platforms like Airtable or NocoDB offer a partial solution, they force critical limitations on serious businesses:
 
-```shell
-git clone https://github.com/zangster300/northstar.git
-```
+- **Row Limits:** They impose strict caps on the number of records, penalizing growth.
+- **Limited "Bring Your Own DB" Support:** While some platforms _can_ connect to an existing PostgreSQL database, they fail to provide the necessary granular security—like table and column-level permissions—making this feature unusable in a secure enterprise environment.
+- **Expensive Enterprise Features:** Essential needs like granular Role-Based Access Control (RBAC), Row-Level Security, and Single Sign-On (SSO) integration are often missing entirely or locked behind expensive, usage-based subscription plans.
 
-2. Install Dependencies
+There is no open, scalable solution that empowers business users to manage their data directly within their company's existing PostgreSQL infrastructure _securely_.
 
-```shell
-go mod tidy
-```
+### The Solution
 
-3. Create 🚀
+This application is an open-source, self-hosted platform that instantly generates a powerful, spreadsheet-like CRUD application on top of **any existing PostgreSQL database**.
 
-# Development
+It acts as a secure data management portal, allowing non-technical business users to safely view, update, and upload data, while giving administrators full control over access and security.
 
-Live Reload is setup out of the box - powered by [Air](https://github.com/air-verse/air) + [esbuild](cmd/web/build/main.go)
+The application **does not pollute your database**. It maintains all of its own configuration—roles, permissions, and selected tables—in a separate, self-contained SQLite database, leaving your core PostgreSQL schema clean.
 
-Use the [live task](./Taskfile.yml#L76) from the [Taskfile](https://taskfile.dev/) to start with live reload setup
+### Core Features
 
-```shell
-go tool task live
-```
+- **Connect to Any PostgreSQL:** Instantly connect to an existing database. The application introspects the schema and requires no changes to your tables.
+- **Selective Table Exposure:** Administrators can securely select _which_ tables and columns are exposed to business users, keeping sensitive data hidden.
+- **Powerful Spreadsheet UI:** A fast, intuitive, spreadsheet-like interface for viewing, editing, and filtering data.
+- **Enterprise-Grade Security:**
+  - **Role-Based Access Control (RBAC):** Create roles (e.g., "Admin," "Editor," "Viewer") and define granular permissions.
+  - **Row-Level Security (RLS):** Define rules to restrict row access (e.g., "Sales managers can only see data for their own region").
+  - **SSO Integration:** Authenticate users through your existing identity provider (OIDC, SAML).
+- **Easy Data Onboarding:**
+  - **Excel & CSV Upload:** Easily upload spreadsheet data directly into the selected database table, with validation and mapping.
+- **Clean & Isolated:** The application's core logic is stored in its own SQLite database. It adds **zero tables, columns, or logic** to your target PostgreSQL database.
 
-Navigate to [`http://localhost:8080`](http://localhost:8080) in your favorite web browser to begin
+### Tech Stack
 
-## Debugging
+- **Backend:** Go (Golang)
+- **Frontend:** Datastar & Templ
+- **Frontend Styling:** Tailwind CSS
+- **Ephemeral State:** Embedded NATS JetStream KV
+- **SSO / Authentication:** markbates/goth
 
-The [debug task](./Taskfile.yml#L42) will launch [delve](https://github.com/go-delve/delve) to begin a debugging session with your project's binary
+### Use Cases
 
-```shell
-go tool task debug
-```
+1. **Empower Business Users:** Give your finance, operations, or marketing teams a secure way to manage their own "lookup" data (e.g., product lists, pricing tiers, user-profiles) without filing IT tickets.
+2. **Replace Scattered Spreadsheets:** Consolidate dozens of disconnected Excel files into a single, secure, version-controlled database with a user-friendly interface.
+3. **Safe Admin Interface:** Provide a safe, access-controlled "admin panel" for an existing application without building a custom one from scratch.
 
-## IDE Support
-
-- [Templ / TailwindCSS Support](https://templ.guide/commands-and-tools/ide-support)
-
-### Visual Studio Code Integration
-
-[Reference](https://code.visualstudio.com/docs/languages/go)
-
-- [launch.json](./.vscode/launch.json)
-- [settings.json](./.vscode/settings.json)
-
-a `Debug Main` configuration has been added to the [launch.json](./.vscode/launch.json)
-
-# Starting the Server
-
-```shell
-go tool task run
-```
-
-Navigate to [`http://localhost:8080`](http://localhost:8080) in your favorite web browser
-
-# Deployment
-
-## Building an Executable
-
-The `task build` [task](./Taskfile.yml#L33) will assemble and build a binary
-
-## Docker
-
-```shell
-# build an image
-docker build -t northstar:latest .
-
-# run the image in a container
-docker run --name northstar -p 8080:9001 northstar:latest
-```
-
-[Dockerfile](./Dockerfile)
-
-# Contributing
-
-Completely open to PR's and feature requests
-
-# References
-
-## Server
-
-- [go](https://go.dev/)
-- [nats](https://docs.nats.io/)
-- [datastar sdk](https://github.com/starfederation/datastar/tree/develop/sdk)
-- [templ](https://templ.guide/)
-
-### Embedded NATS
-
-The NATS server that powers the `TODO` application is [embedded into the web server](./cmd/web/main.go#L60)
-
-To interface with it, you should install the [nats-cli](https://github.com/nats-io/natscli)
-
-Here are some commands to inspect and make changes to the bucket backing the `TODO` app:
-
-```shell
-# list key value buckets
-nats kv ls
-
-# list keys in the `todos` bucket
-nats kv ls todos
-
-# get the value for [key]
-nats kv get --raw todos [key]
-
-# put a value into [key]
-nats kv put todos [key] '{"todos":[{"text":"Hello, NATS!","completed":true}],"editingIdx":-1,"mode":0}'
-```
-
-## Web Components x Datastar
-
-[🔗 Vanilla Web Components Setup](./web/libs/web-components/README.md)
-
-[🔗 Lit Web Components Setup](./web/libs/lit/README.md)
-
-## Client
-
-- [datastar](https://www.jsdelivr.com/package/gh/starfederation/datastar)
-- [tailwindcss](https://tailwindcss.com/)
-- [daisyui](https://daisyui.com/)
-- [esbuild](https://esbuild.github.io/)
-- [lit](https://lit.dev/)
+_This project empowers organizations to scale their data management by finally connecting their business users directly and securely to their central database._
