@@ -3,3 +3,174 @@
 //   sqlc v1.30.0
 
 package store
+
+import (
+	"database/sql"
+	"time"
+)
+
+type AuditLog struct {
+	ID             int64
+	UserID         sql.NullInt64
+	ExposedTableID sql.NullInt64
+	OperationType  string
+	RowIdentifier  sql.NullString
+	ChangedData    sql.NullString
+	IpAddress      sql.NullString
+	UserAgent      sql.NullString
+	CreatedAt      time.Time
+}
+
+type Connection struct {
+	ID                int64
+	Name              string
+	Host              string
+	Port              int64
+	Database          string
+	Username          string
+	EncryptedPassword string
+	SslMode           string
+	SslConfig         sql.NullString
+	IsActive          int64
+	CreatedAt         time.Time
+	UpdatedAt         time.Time
+}
+
+type ExposedColumn struct {
+	ID              int64
+	ExposedTableID  int64
+	ColumnName      string
+	DisplayName     string
+	DataType        string
+	IsVisible       int64
+	IsEditable      int64
+	DisplayOrder    int64
+	ValidationRules sql.NullString
+	CreatedAt       time.Time
+	UpdatedAt       time.Time
+}
+
+type ExposedTable struct {
+	ID           int64
+	ConnectionID int64
+	SchemaName   string
+	TableName    string
+	DisplayName  string
+	Description  sql.NullString
+	IsActive     int64
+	CreatedAt    time.Time
+	UpdatedAt    time.Time
+}
+
+type Permission struct {
+	ID             int64
+	RoleID         int64
+	ExposedTableID int64
+	CanView        int64
+	CanCreate      int64
+	CanUpdate      int64
+	CanDelete      int64
+	CreatedAt      time.Time
+	UpdatedAt      time.Time
+}
+
+type Role struct {
+	ID           int64
+	Name         string
+	Description  sql.NullString
+	IsSystemRole int64
+	CreatedAt    time.Time
+	UpdatedAt    time.Time
+}
+
+type RowLevelSecurityRule struct {
+	ID               int64
+	ExposedTableID   int64
+	RoleID           int64
+	RuleName         string
+	FilterExpression string
+	IsActive         int64
+	CreatedAt        time.Time
+	UpdatedAt        time.Time
+}
+
+type SavedFilter struct {
+	ID             int64
+	UserID         int64
+	ExposedTableID int64
+	FilterName     string
+	FilterConfig   string
+	IsPublic       int64
+	CreatedAt      time.Time
+	UpdatedAt      time.Time
+}
+
+type Session struct {
+	ID           int64
+	UserID       int64
+	SessionToken string
+	IpAddress    sql.NullString
+	UserAgent    sql.NullString
+	ExpiresAt    time.Time
+	CreatedAt    time.Time
+}
+
+type SsoProvider struct {
+	ID                    int64
+	ProviderName          string
+	ProviderType          string
+	ClientID              string
+	EncryptedClientSecret string
+	AuthUrl               sql.NullString
+	TokenUrl              sql.NullString
+	UserInfoUrl           sql.NullString
+	Config                sql.NullString
+	IsActive              int64
+	CreatedAt             time.Time
+	UpdatedAt             time.Time
+}
+
+type UploadJob struct {
+	ID             int64
+	UserID         int64
+	ExposedTableID int64
+	Filename       string
+	RowCount       int64
+	Status         string
+	ErrorMessage   sql.NullString
+	MappingConfig  sql.NullString
+	CreatedAt      time.Time
+	CompletedAt    sql.NullTime
+}
+
+type User struct {
+	ID             int64
+	Email          string
+	Username       string
+	DisplayName    string
+	HashedPassword sql.NullString
+	SsoProvider    sql.NullString
+	SsoID          sql.NullString
+	IsActive       int64
+	IsAdmin        int64
+	CreatedAt      time.Time
+	UpdatedAt      time.Time
+	LastLoginAt    sql.NullTime
+}
+
+type UserPreference struct {
+	ID              int64
+	UserID          int64
+	ExposedTableID  sql.NullInt64
+	PreferenceKey   string
+	PreferenceValue string
+	CreatedAt       time.Time
+	UpdatedAt       time.Time
+}
+
+type UserRole struct {
+	ID        int64
+	UserID    int64
+	RoleID    int64
+	CreatedAt time.Time
+}

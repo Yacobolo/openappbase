@@ -41,11 +41,17 @@ func main() {
 
 func run(ctx context.Context) error {
 
-	db := store.InitDB(config.Global.ConnectionString)
+	database, err := store.InitDB(ctx)
+	if err != nil {
+		return fmt.Errorf("failed to initialize database: %w", err)
+	}
+	defer func() {
+		if closeErr := database.Close(); closeErr != nil {
+			slog.Error("error closing database", "error", closeErr)
+		}
+	}()
 
-	defer store.CloseDB()
-
-	queries := store.New(db)
+	queries := store.New(database)
 
 	addr := fmt.Sprintf("%s:%s", config.Global.Host, config.Global.Port)
 	slog.Info("server started", "addr", addr)
@@ -81,7 +87,7 @@ func run(ctx context.Context) error {
 		return fmt.Errorf("error creating jetstream client: %w", err)
 	}
 
-	if err := internal.SetupRoutes(egctx, router, sessionStore, js, db, queries); err != nil {
+	if err := internal.SetupRoutes(egctx, router, sessionStore, js, database.DB, queries); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)
 	}
 

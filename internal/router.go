@@ -2,6 +2,7 @@ package internal
 
 import (
 	"context"
+	"database/sql"
 	"errors"
 	"fmt"
 	"net/http"
@@ -9,19 +10,16 @@ import (
 	"time"
 
 	"northstar/config"
-	"northstar/internal/features/editor"
-	"northstar/internal/features/explorer"
 	"northstar/internal/store"
 	"northstar/web/resources"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/gorilla/sessions"
-	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/nats-io/nats.go/jetstream"
 	"github.com/starfederation/datastar-go/datastar"
 )
 
-func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.CookieStore, js jetstream.JetStream, pool *pgxpool.Pool, q *store.Queries) (err error) {
+func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.CookieStore, js jetstream.JetStream, db *sql.DB, q *store.Queries) (err error) {
 
 	if config.Global.Environment == config.Dev {
 		setupReload(ctx, router)
@@ -40,8 +38,8 @@ func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.
 	}
 
 	if err := errors.Join(
-		explorer.SetupRoutes(router, sessionStore, js, q),
-		editor.SetupRoutes(router, sessionStore, js, pool, q),
+	// explorer.SetupRoutes(router, sessionStore, js, q),
+	// editor.SetupRoutes(router, sessionStore, js, db, q),
 	); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)
 	}
