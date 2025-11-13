@@ -1,3 +1,4 @@
+-- +goose Up
 -- PostgresUI SQLite Schema
 -- This database stores all application configuration and state
 -- It does NOT modify the target PostgreSQL databases
@@ -252,72 +253,119 @@ CREATE INDEX idx_sessions_user ON sessions(user_id);
 CREATE INDEX idx_sessions_expires ON sessions(expires_at);
 
 -- Trigger to update 'updated_at' timestamps
+-- +goose StatementBegin
 CREATE TRIGGER update_connections_timestamp 
 AFTER UPDATE ON connections
 FOR EACH ROW
 BEGIN
     UPDATE connections SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
 END;
+-- +goose StatementEnd
 
+-- +goose StatementBegin
 CREATE TRIGGER update_exposed_tables_timestamp 
 AFTER UPDATE ON exposed_tables
 FOR EACH ROW
 BEGIN
     UPDATE exposed_tables SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
 END;
+-- +goose StatementEnd
 
+-- +goose StatementBegin
 CREATE TRIGGER update_exposed_columns_timestamp 
 AFTER UPDATE ON exposed_columns
 FOR EACH ROW
 BEGIN
     UPDATE exposed_columns SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
 END;
+-- +goose StatementEnd
 
+-- +goose StatementBegin
 CREATE TRIGGER update_users_timestamp 
 AFTER UPDATE ON users
 FOR EACH ROW
 BEGIN
     UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
 END;
+-- +goose StatementEnd
 
+-- +goose StatementBegin
 CREATE TRIGGER update_roles_timestamp 
 AFTER UPDATE ON roles
 FOR EACH ROW
 BEGIN
     UPDATE roles SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
 END;
+-- +goose StatementEnd
 
+-- +goose StatementBegin
 CREATE TRIGGER update_permissions_timestamp 
 AFTER UPDATE ON permissions
 FOR EACH ROW
 BEGIN
     UPDATE permissions SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
 END;
+-- +goose StatementEnd
 
+-- +goose StatementBegin
 CREATE TRIGGER update_rls_rules_timestamp 
 AFTER UPDATE ON row_level_security_rules
 FOR EACH ROW
 BEGIN
     UPDATE row_level_security_rules SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
 END;
+-- +goose StatementEnd
 
+-- +goose StatementBegin
 CREATE TRIGGER update_user_preferences_timestamp 
 AFTER UPDATE ON user_preferences
 FOR EACH ROW
 BEGIN
     UPDATE user_preferences SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
 END;
+-- +goose StatementEnd
 
+-- +goose StatementBegin
 CREATE TRIGGER update_saved_filters_timestamp 
 AFTER UPDATE ON saved_filters
 FOR EACH ROW
 BEGIN
     UPDATE saved_filters SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
 END;
+-- +goose StatementEnd
 
+-- +goose StatementBegin
 CREATE TRIGGER update_sso_providers_timestamp 
 AFTER UPDATE ON sso_providers
 FOR EACH ROW
 BEGIN
     UPDATE sso_providers SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
 END;
+-- +goose StatementEnd
+
+-- +goose Down
+DROP TRIGGER IF EXISTS update_sso_providers_timestamp;
+DROP TRIGGER IF EXISTS update_saved_filters_timestamp;
+DROP TRIGGER IF EXISTS update_user_preferences_timestamp;
+DROP TRIGGER IF EXISTS update_rls_rules_timestamp;
+DROP TRIGGER IF EXISTS update_permissions_timestamp;
+DROP TRIGGER IF EXISTS update_roles_timestamp;
+DROP TRIGGER IF EXISTS update_users_timestamp;
+DROP TRIGGER IF EXISTS update_exposed_columns_timestamp;
+DROP TRIGGER IF EXISTS update_exposed_tables_timestamp;
+DROP TRIGGER IF EXISTS update_connections_timestamp;
+
+DROP TABLE IF EXISTS sessions;
+DROP TABLE IF EXISTS upload_jobs;
+DROP TABLE IF EXISTS sso_providers;
+DROP TABLE IF EXISTS audit_logs;
+DROP TABLE IF EXISTS saved_filters;
+DROP TABLE IF EXISTS user_preferences;
+DROP TABLE IF EXISTS row_level_security_rules;
+DROP TABLE IF EXISTS permissions;
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS exposed_columns;
+DROP TABLE IF EXISTS exposed_tables;
+DROP TABLE IF EXISTS connections;

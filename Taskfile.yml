@@ -86,6 +86,28 @@ tasks:
     deps:
       - build
 
+  # Database migration tasks
+  db:migrate:up:
+    cmds:
+      - goose -dir internal/store/migrations sqlite3 data/app.db up
+
+  db:migrate:down:
+    cmds:
+      - goose -dir internal/store/migrations sqlite3 data/app.db down
+
+  db:migrate:status:
+    cmds:
+      - goose -dir internal/store/migrations sqlite3 data/app.db status
+
+  db:migrate:create:
+    cmds:
+      - goose -dir internal/store/migrations create {{.CLI_ARGS}} sql
+
+  db:reset:
+    cmds:
+      - rm -f data/app.db
+      - task: db:migrate:up
+
   default:
     cmds:
       - task: live
