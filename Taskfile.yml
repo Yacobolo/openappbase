@@ -108,6 +108,20 @@ tasks:
       - rm -f data/app.db
       - task: db:migrate:up
 
+  # Setup development environment
+  setup:
+    desc: "Setup development environment (copy .env.example if needed and run migrations)"
+    cmds:
+      - |
+        if [ ! -f .env ]; then
+          echo "Creating .env from .env.example..."
+          cp .env.example .env
+          echo "✓ .env file created. Review and customize if needed."
+        else
+          echo "✓ .env file already exists."
+        fi
+      - task: db:migrate:up
+
   default:
     cmds:
       - task: live

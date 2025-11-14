@@ -81,6 +81,50 @@ _This project empowers organizations to scale their data management by finally c
 
 ## Development Setup
 
+### Quick Start
+
+**Option 1: Automatic setup (recommended)**
+```bash
+task setup
+task live
+```
+
+**Option 2: Manual setup**
+```bash
+# Copy environment template (optional - dev mode has safe defaults)
+cp .env.example .env
+
+# Run migrations
+task db:migrate:up
+
+# Start development server with live reload
+task live
+```
+
+### Environment Configuration
+
+The application uses environment variables for configuration. In **development mode**, all variables have safe defaults, so you can start immediately without a `.env` file. This makes working with git worktrees seamless.
+
+**For production**, you must provide proper values via environment variables or a `.env` file.
+
+Create a `.env` file (optional in dev):
+```bash
+cp .env.example .env
+```
+
+**Key environment variables:**
+- `ENCRYPTION_KEY` - Required in production; has dev default (must be exactly 32 bytes)
+- `HOST` - Server host (default: `0.0.0.0`)
+- `PORT` - Server port (default: `8080`)
+- `SESSION_SECRET` - Session cookie signing key (default: `session-secret`)
+- `LOG_LEVEL` - Logging level: DEBUG, INFO, WARN, ERROR (default: `INFO`)
+- `SQLITE_DB_PATH` - SQLite database path (default: `data/app.db`)
+
+**Generate a secure encryption key for production:**
+```bash
+openssl rand -hex 16
+```
+
 ### Database Migrations
 
 This project uses [Goose](https://github.com/pressly/goose) for database migrations.
