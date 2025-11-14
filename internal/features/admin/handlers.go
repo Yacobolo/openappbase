@@ -6,22 +6,29 @@ import (
 	"log/slog"
 	"net/http"
 	"strconv"
+	"time"
 
+	"northstar/internal/features/admin/components"
 	"northstar/internal/features/admin/pages"
 	"northstar/internal/features/admin/services"
+	"northstar/internal/store"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/gorilla/sessions"
+	"github.com/nats-io/nats.go"
+	"github.com/starfederation/datastar-go/datastar"
 )
 
 type Handlers struct {
 	sessionStore      sessions.Store
 	connectionService *services.ConnectionService
+	nc                *nats.Conn
 }
 
-func NewHandlers(connectionService *services.ConnectionService) *Handlers {
+func NewHandlers(connectionService *services.ConnectionService, nc *nats.Conn) *Handlers {
 	return &Handlers{
 		connectionService: connectionService,
+		nc:                nc,
 	}
 }
 
@@ -32,6 +39,162 @@ func (h *Handlers) AdminPage(w http.ResponseWriter, r *http.Request) {
 	if err := pages.AdminPage().Render(ctx, w); err != nil {
 		slog.Error("Failed to render editor page", "error", err)
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+	}
+}
+
+// SSE Handlers for Datastar
+
+// AdminConnectionsSSE maintains a long-lived SSE connection watching for updates
+func (h *Handlers) AdminConnectionsSSE(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	sse := datastar.NewSSE(w, r)
+
+	// Helper function to fetch and render connections
+	renderConnections := func() error {
+		connections, err := h.connectionService.ListConnections(ctx)
+		if err != nil {
+			slog.Error("Failed to list connections", "error", err)
+			return err
+		}
+
+		// Convert to component connections
+		componentConns := make([]components.Connection, len(connections))
+		for i, conn := range connections {
+			componentConns[i] = toComponentConnection(conn)
+		}
+
+		// Render the connections tab content (includes modal)
+		return sse.PatchElementTempl(components.ConnectionsTabContent(componentConns), datastar.WithSelector("#connections-tab-panel"))
+	}
+
+	// Render initial state
+	if err := renderConnections(); err != nil {
+		sse.ConsoleError(fmt.Errorf("failed to load initial connections: %w", err))
+		return
+	}
+
+	// Subscribe to NATS updates
+	sub, err := h.nc.Subscribe("admin.connections.update", func(msg *nats.Msg) {
+		if err := renderConnections(); err != nil {
+			sse.ConsoleError(fmt.Errorf("failed to update connections: %w", err))
+		}
+	})
+	if err != nil {
+		slog.Error("Failed to subscribe to connection updates", "error", err)
+		sse.ConsoleError(fmt.Errorf("failed to subscribe to updates: %w", err))
+		return
+	}
+	defer sub.Unsubscribe()
+
+	// Keep connection alive until client disconnects
+	<-ctx.Done()
+}
+
+// CreateConnectionSSE creates a new connection via SSE
+
+// TestConnectionSSE tests an existing connection via SSE
+func (h *Handlers) TestConnectionSSE(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	sse := datastar.NewSSE(w, r)
+
+	// Read the connection ID from signals
+	var signals struct {
+		ID int64 `json:"id"`
+	}
+
+	if err := datastar.ReadSignals(r, &signals); err != nil {
+		slog.Error("Failed to read signals", "error", err)
+		sse.ConsoleError(fmt.Errorf("invalid request data: %w", err))
+		return
+	}
+
+	// Test the connection
+	if err := h.connectionService.TestConnection(ctx, signals.ID); err != nil {
+		slog.Error("Connection test failed", "id", signals.ID, "error", err)
+		sse.ConsoleError(fmt.Errorf("connection test failed: %w", err))
+		return
+	}
+
+	// Show success message
+	if err := sse.ConsoleLog("Connection test successful!"); err != nil {
+		slog.Error("Failed to send console log", "error", err)
+	}
+}
+
+// DeleteConnectionSSE deletes a connection via SSE
+func (h *Handlers) DeleteConnectionSSE(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	sse := datastar.NewSSE(w, r)
+
+	// Read the connection ID from signals
+	var signals struct {
+		ID int64 `json:"id"`
+	}
+
+	if err := datastar.ReadSignals(r, &signals); err != nil {
+		slog.Error("Failed to read signals", "error", err)
+		sse.ConsoleError(fmt.Errorf("invalid request data: %w", err))
+		return
+	}
+
+	// Delete the connection
+	if err := h.connectionService.DeleteConnection(ctx, signals.ID); err != nil {
+		slog.Error("Failed to delete connection", "id", signals.ID, "error", err)
+		sse.ConsoleError(fmt.Errorf("failed to delete connection: %w", err))
+		return
+	}
+
+	// Notify all subscribers
+	h.publishConnectionUpdate()
+}
+
+func (h *Handlers) CreateConnectionSSE(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	sse := datastar.NewSSE(w, r)
+
+	// Read form signals
+	var signals struct {
+		Name        string `json:"name"`
+		Host        string `json:"host"`
+		Port        int64  `json:"port"`
+		Database    string `json:"database"`
+		Username    string `json:"username"`
+		Password    string `json:"password"`
+		SSLMode     string `json:"ssl_mode"`
+		Environment string `json:"environment"`
+	}
+
+	if err := datastar.ReadSignals(r, &signals); err != nil {
+		slog.Error("Failed to read signals", "error", err)
+		sse.ConsoleError(fmt.Errorf("invalid form data: %w", err))
+		return
+	}
+
+	// Create connection input
+	input := services.CreateConnectionInput{
+		Name:     signals.Name,
+		Host:     signals.Host,
+		Port:     signals.Port,
+		Database: signals.Database,
+		Username: signals.Username,
+		Password: signals.Password,
+		SSLMode:  signals.SSLMode,
+	}
+
+	// Create the connection
+	_, err := h.connectionService.CreateConnection(ctx, input)
+	if err != nil {
+		slog.Error("Failed to create connection", "error", err)
+		sse.ConsoleError(fmt.Errorf("failed to create connection: %w", err))
+		return
+	}
+
+	// Notify all subscribers
+	h.publishConnectionUpdate()
+
+	// Close the modal
+	if err := sse.ExecuteScript("add_connection_modal.close()"); err != nil {
+		slog.Error("Failed to close modal", "error", err)
 	}
 }
 
@@ -218,4 +381,62 @@ func (h *Handlers) TestConnectionByID(w http.ResponseWriter, r *http.Request) {
 		"success": true,
 		"message": "Connection successful!",
 	})
+}
+
+// Helper Functions
+
+// publishConnectionUpdate notifies all subscribers that connections have changed
+func (h *Handlers) publishConnectionUpdate() {
+	// NATS is required for app startup - no nil check needed
+	if err := h.nc.Publish("admin.connections.update", []byte("{}")); err != nil {
+		slog.Error("Failed to publish connection update", "error", err)
+		// Best-effort notification - don't fail the HTTP request
+	}
+}
+
+// toComponentConnection converts store.Connection to components.Connection
+func toComponentConnection(conn store.Connection) components.Connection {
+	return components.Connection{
+		ID:          conn.ID,
+		Name:        conn.Name,
+		Host:        conn.Host,
+		Port:        conn.Port,
+		Database:    conn.Database,
+		Username:    conn.Username,
+		SSLMode:     conn.SslMode,
+		IsActive:    conn.IsActive == 1,
+		Environment: "", // Not in DB schema yet
+		UpdatedAt:   formatTime(conn.UpdatedAt),
+	}
+}
+
+// formatTime formats a time.Time to a human-readable string
+func formatTime(t time.Time) string {
+	now := time.Now()
+	diff := now.Sub(t)
+
+	switch {
+	case diff < time.Minute:
+		return "just now"
+	case diff < time.Hour:
+		mins := int(diff.Minutes())
+		if mins == 1 {
+			return "1 minute ago"
+		}
+		return fmt.Sprintf("%d minutes ago", mins)
+	case diff < 24*time.Hour:
+		hours := int(diff.Hours())
+		if hours == 1 {
+			return "1 hour ago"
+		}
+		return fmt.Sprintf("%d hours ago", hours)
+	case diff < 7*24*time.Hour:
+		days := int(diff.Hours() / 24)
+		if days == 1 {
+			return "1 day ago"
+		}
+		return fmt.Sprintf("%d days ago", days)
+	default:
+		return t.Format("Jan 2, 2006")
+	}
 }

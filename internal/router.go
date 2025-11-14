@@ -16,11 +16,12 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/gorilla/sessions"
+	"github.com/nats-io/nats.go"
 	"github.com/nats-io/nats.go/jetstream"
 	"github.com/starfederation/datastar-go/datastar"
 )
 
-func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.CookieStore, js jetstream.JetStream, db *sql.DB, q *store.Queries) (err error) {
+func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.CookieStore, js jetstream.JetStream, db *sql.DB, q *store.Queries, nc *nats.Conn) (err error) {
 
 	if config.Global.Environment == config.Dev {
 		setupReload(ctx, router)
@@ -41,7 +42,7 @@ func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.
 	if err := errors.Join(
 		// explorer.SetupRoutes(router, sessionStore, js, q),
 		// editor.SetupRoutes(router, sessionStore, js, db, q),
-		admin.SetupRoutes(router, q),
+		admin.SetupRoutes(router, q, nc),
 	); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)
 	}
