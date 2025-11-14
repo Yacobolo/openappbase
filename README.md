@@ -52,6 +52,7 @@ The application uses a "Targeted Ping" architecture to achieve scalable, real-ti
 - **Frontend:** Datastar & Templ
 - **Frontend Styling:** Tailwind CSS
 - **Application Database:** SQLite (for storing roles, user preferences, and app state)
+- **Database Migrations:** Goose (for managing schema changes)
 - **Real-time Messaging:** Embedded NATS (for high-performance Pub/Sub)
 - **SSO / Authentication:** markbates/goth
 
@@ -75,3 +76,39 @@ _This project empowers organizations to scale their data management by finally c
 - [ ] **Phase 6:** Saved Filters & User Preferences
 - [ ] **Phase 7:** Excel/CSV Upload
 - [ ] **Phase 8:** Real-time Updates (LISTEN/NOTIFY + SSE)
+
+---
+
+## Development Setup
+
+### Database Migrations
+
+This project uses [Goose](https://github.com/pressly/goose) for database migrations.
+
+**Available commands:**
+
+```bash
+# Apply all pending migrations
+task db:migrate:up
+
+# Rollback the last migration
+task db:migrate:down
+
+# Check migration status
+task db:migrate:status
+
+# Create a new migration (provide name as argument)
+task db:migrate:create -- add_new_feature
+
+# Reset database (WARNING: deletes all data)
+task db:reset
+```
+
+**Migration workflow:**
+
+1. Create a new migration: `task db:migrate:create -- descriptive_name`
+2. Edit the generated file in `internal/store/migrations/`
+3. Apply the migration: `task db:migrate:up`
+4. If you need to use triggers or other multi-line statements, wrap them in `-- +goose StatementBegin` and `-- +goose StatementEnd` directives
+
+**Note:** Migrations are stored in `internal/store/migrations/` and applied to `data/app.db`

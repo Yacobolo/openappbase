@@ -5,5 +5,5 @@
 }
 
 @plugin "./daisyui/daisyui.js" {
-  themes: dark --default;
+  themes: light --default;
 }

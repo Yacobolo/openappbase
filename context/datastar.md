@@ -1,1161 +1,64 @@
-### Datastar Signal Nesting Examples
+### POST /endpoint with Options Example
 
 Source: https://data-star.dev/docs
 
-Demonstrates how to nest signals using dot-notation, object syntax, and two-way binding in HTML. This allows for more granular targeting of state on the backend, useful for managing repeated state like menu open/closed status.
+Example of using @get action with various options.
+
+```APIDOC
+## Example Request with Options
 
 ```html
-<div data-signals-foo.bar="1"></div>
-
-```
-
-```html
-<div data-signals="{foo: {bar: 1}}"></div>
-
-```
-
-```html
-<input data-bind-foo.bar />
-
-```
-
-```html
-<div data-signals="{menu: {isOpen: {desktop: false, mobile: false}}}">
-    <button data-on-click="@toggleAll({include: /^menu\.isOpen\./})">
-        Open/close menu
-    </button>
-</div>
-
-```
-
---------------------------------
-
-### Combine data-signals, data-on, and data-text for Reactivity
-
-Source: https://data-star.dev/guide/reactive_signals
-
-This example demonstrates frontend reactivity by combining `data-signals` for initialization, `data-on-click` for user interaction, and `data-text` to display signal values. The button click updates the `$hal` signal, which is then reflected in the text content.
-
-```html
-<div data-signals-hal="'...'">
-    <button data-on-click="$hal = 'Affirmative, Dave. I read you.'">
-        HAL, do you read me?
-    </button>
-    <div data-text="$hal"></div>
-</div>
-```
-
---------------------------------
-
-### Read Datastar Signals in PHP
-
-Source: https://data-star.dev/docs
-
-A simple PHP example showing how to read all signals from the current request using the `ServerSentEventGenerator::readSignals()` static method.
-
-```php
-use starfederation\datastar\ServerSentEventGenerator;
-
-// Reads all signals from the request.
-$signals = ServerSentEventGenerator::readSignals();
-
-```
-
---------------------------------
-
-### Executing Backend Scripts via Button Click (HTML)
-
-Source: https://data-star.dev/docs
-
-This HTML demonstrates triggering a backend script execution when a button is clicked. The `@get('/endpoint')` syntax initiates a GET request to the specified endpoint. If the response is JavaScript, it will be executed on the frontend.
-
-```html
-<button data-on-click="@get('/endpoint')">
-    What are you talking about, HAL?
-</button>
-```
-
---------------------------------
-
-### Stream SSE Events in Rust
-
-Source: https://data-star.dev/docs
-
-This Rust example demonstrates streaming Server-Sent Events (SSE) using the `datastar` crate. It shows how to create an `Sse` stream that yields `PatchElements` and `PatchSignals` events.
-
-```rust
-use datastar::prelude::*;
-use async_stream::stream;
-
-Sse(stream! {
-    // Patches elements into the DOM.
-    yield PatchElements::new("<div id='question'>What do you put in a toaster?</div>").into();
-
-    // Patches signals.
-    yield PatchSignals::new("{response: '', answer: 'bread'}").into();
-})
-```
-
---------------------------------
-
-### Stream SSE Events in C#
-
-Source: https://data-star.dev/docs
-
-This C# example illustrates how to configure a backend endpoint to stream Server-Sent Events (SSE) using DataStar. It shows how to add DataStar as a service and then use the `IDatastarService` to patch elements and signals.
-
-```csharp
-using StarFederation.Datastar.DependencyInjection;
-
-// Adds Datastar as a service
-builder.Services.AddDatastar();
-
-app.MapGet("/", async (IDatastarService datastarService) =>
-{
-    // Patches elements into the DOM.
-    await datastarService.PatchElementsAsync(@"<div id=\"question\">What do you put in a toaster?</div>");
-
-    // Patches signals.
-    await datastarService.PatchSignalsAsync(new { response = "", answer = "bread" });
-});
-```
-
---------------------------------
-
-### C# DataStar ExecuteScriptAsync and PatchElementsAsync
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This C# example illustrates how to use `PatchElementsAsync` and `ExecuteScriptAsync` from the DataStar library for server-initiated redirects. It includes a `Task.Delay` to simulate a waiting period before the redirection.
-
-```csharp
-using StarFederation.Datastar.DependencyInjection;
-
-app.MapGet("/redirect", async (IDatastarService datastarService) =>
-{
-    await datastarService.PatchElementsAsync("<div id=\"indicator\">Redirecting in 3 seconds...</div>");
-    await Task.Delay(TimeSpan.FromSeconds(3));
-    await datastarService.ExecuteScriptAsync("window.location = \"/guide\";");
-});
-```
-
---------------------------------
-
-### Install Datastar Locally
-
-Source: https://data-star.dev/guide/getting_started
-
-Integrate Datastar by hosting the script file yourself. Download the script or create your own bundle and reference it from your project's path.
-
-```html
-<script type="module" src="/path/to/datastar.js"></script>
-```
-
---------------------------------
-
-### Stream SSE Events in Python
-
-Source: https://data-star.dev/docs
-
-This Python example demonstrates streaming Server-Sent Events (SSE) using the `datastar_py` library, particularly with Litestar. It shows how to return a `DatastarResponse` containing multiple SSE events, including patching elements and signals.
-
-```python
-from datastar_py import ServerSentEventGenerator as SSE
-from datastar_py.litestar import DatastarResponse
-
-async def endpoint():
-    return DatastarResponse([
-        SSE.patch_elements('<div id="question">What do you put in a toaster?</div>'),
-        SSE.patch_signals({"response": "", "answer": "bread"})
-    ])
-```
-
---------------------------------
-
-### Listening for Data-Star Fetch Events
-
-Source: https://data-star.dev/reference/actions
-
-Provides an example of how to listen for `datastar-fetch` events dispatched during the lifecycle of a Data-Star fetch request. This allows for custom handling of events like 'error', 'started', 'finished', and more, enabling dynamic UI updates or logging based on request status.
-
-```html
-<div data-on-datastar-fetch="
-    evt.detail.type === 'error' && console.log('Fetch error encountered')
-"></div>
-```
-
---------------------------------
-
-### HTML Button for DataStar Redirect
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This snippet shows how to add a `data-on-click` attribute to an HTML button, which triggers a GET request to a specified backend endpoint when clicked. It also includes a placeholder `div` for visual feedback during the redirection process.
-
-```html
-<button data-on-click="@get('/endpoint')">
-    Click to be redirected from the backend
-</button>
-<div id="indicator"></div>
-```
-
---------------------------------
-
-### Kotlin DataStar ExecuteScript and PatchElements
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This Kotlin example demonstrates using the `ServerSentEventGenerator` to patch elements and execute a script for redirection, including a 3-second delay.
-
-```kotlin
-val generator = ServerSentEventGenerator(response)
-
-generator.patchElements(
-    elements =
-        """
-        <div id="indicator">Redirecting in 3 seconds...</div>
-        """.trimIndent()
-)
-
-Thread.sleep(3 * ONE_SECOND)
-
-generator.executeScript(
-    script = "window.location.href = '/success'",
-)
-```
-
---------------------------------
-
-### Reading Signals in Ruby
-
-Source: https://data-star.dev/guide/backend_requests
-
-A Ruby example showing how to initialize DataStar with a request and response, and then access signals.
-
-```ruby
-# Setup with request
-datastar = Datastar.new(request:, response:)
-
-# Read signals
-some_signal = datastar.signals[:some_signal]
-```
-
---------------------------------
-
-### Install Datastar via CDN
-
-Source: https://data-star.dev/guide/getting_started
-
-Include the Datastar framework in your project by adding this script tag to your HTML. This is the quickest method for integration and fetches the latest version from the CDN.
-
-```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@1.0.0-RC.5/bundles/datastar.js"></script>
-```
-
---------------------------------
-
-### Configure Datastar Action with Options
-
-Source: https://data-star.dev/docs
-
-Example of configuring a Datastar action with multiple options including signal filtering, custom headers, and request cancellation. This demonstrates how to send specific signals, add authentication tokens, keep connections open when hidden, and disable automatic request cancellation.
-
-```html
-<button data-on-click="@get('/endpoint', {
+<button data-on:click="@get('/endpoint', {
     filterSignals: {include: /^foo\./},
     headers: {
         'X-Csrf-Token': 'JImikTbsoCYQ9oGOcvugov0Awc5LbqFsZW6ObRCxuq',
     },
     openWhenHidden: true,
     requestCancellation: 'disabled',
-})"></button>
+})" data-request-id="1"></button>
+```
 ```
 
 --------------------------------
 
-### Stream SSE Events in PHP
+### Configure Datastar Action Options
 
 Source: https://data-star.dev/docs
 
-This PHP example shows how to stream Server-Sent Events (SSE) using the DataStar PHP library. It demonstrates creating a `ServerSentEventGenerator` instance and using its methods to patch DOM elements and signals.
-
-```php
-use starfederation\datastar\ServerSentEventGenerator;
-
-// Creates a new `ServerSentEventGenerator` instance.
-$sse = new ServerSentEventGenerator();
-
-// Patches elements into the DOM.
-$sse->patchElements(
-    '<div id="question">What do you put in a toaster?</div>'
-);
-
-// Patches signals.
-$sse->patchSignals(['response' => '', 'answer' => 'bread']);
-```
-
---------------------------------
-
-### Python Redirect with DataStar-py
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-Implements a redirect in Python using the datastar_py library. This asynchronous example yields SSE events for patching elements, sleeping, and executing a redirect script.
-
-```python
-from datastar_py import ServerSentEventGenerator as SSE
-from datastar_py.sanic import datastar_response
-
-@app.get("/redirect")
-@datastar_response
-async def redirect_from_backend():
-    yield SSE.patch_elements('<div id="indicator">Redirecting in 3 seconds...</div>')
-    await asyncio.sleep(3)
-    yield SSE.execute_script('setTimeout(() => window.location = "/guide")')
-
-```
-
---------------------------------
-
-### Send GET Request to Patch Elements with Datastar
-
-Source: https://data-star.dev/docs
-
-This snippet demonstrates how to use the `@get()` action in Datastar to send a GET request to a specified URL. The response, if HTML, will be used to morph elements into the DOM. It requires the Datastar library.
+This example demonstrates how to configure various options for a Datastar action, including filtering signals, setting custom headers, enabling open-when-hidden, and disabling request cancellation. It shows a button triggering a GET request with these configurations.
 
 ```html
-1<button data-on-click="@get('/endpoint')">
-2    Open the pod bay doors, HAL.
-3</button>
-4<div id="hal"></div>
+<button data-on:click="@get('/endpoint', {
+    filterSignals: {include: /^foo\./},
+    headers: {
+        'X-Csrf-Token': 'JImikTbsoCYQ9oGOcvugov0Awc5LbqFsZW6ObRCxuq',
+    },
+    openWhenHidden: true,
+    requestCancellation: 'disabled',
+})" ></button>
 ```
 
 --------------------------------
 
-### C# SDK Example for Dynamic List Loading
+### JavaScript SSE Event Handling Setup
 
-Source: https://data-star.dev/how_tos/load_more_list_items
+Source: https://data-star.dev/docs
 
-This C# example uses ASP.NET Core and the DataStar SDK to implement dynamic list loading. It defines a signal record, reads the offset signal, and then uses the IDatastarService to patch elements into the list, update signals, or remove the load-more button.
-
-```csharp
- 1using System.Text.Json;
- 2using StarFederation.Datastar;
- 3using StarFederation.Datastar.DependencyInjection;
- 4
- 5public class Program
- 6{
- 7    public record OffsetSignals(int offset);
- 8
- 9    public static void Main(string[] args)
-10    {
-11        var builder = WebApplication.CreateBuilder(args);
-12        builder.Services.AddDatastar();
-13        var app = builder.Build();
-14
-15        app.MapGet("/more", async (IDatastarService datastarService) =>
-16        {
-17            var max = 5;
-18            var limit = 1;
-19            var signals = await datastarService.ReadSignalsAsync<OffsetSignals>();
-20            var offset = signals.offset;
-21            if (offset < max)
-22            {
-23                var newOffset = offset + limit;
-24                await datastarService.PatchElementsAsync($"<div>Item {newOffset}</div>", new()
-25                {
-26                    Selector = "#list",
-27                    PatchMode = PatchElementsMode.Append,
-28                });
-29                if (newOffset < max)
-30                    await datastarService.PatchSignalsAsync(new OffsetSignals(newOffset));
-31                else
-32                    await datastarService.RemoveElementAsync("#load-more");
-33            }
-34        });
-35
-36        app.Run();
-37    }
-38}
-
-```
-
---------------------------------
-
-### Server-Sent Events for DataStar Redirect (SSE)
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This SSE example demonstrates how a backend can initiate a redirect. It first sends a `datastar-patch-elements` event to update an indicator, then waits for 3 seconds, and finally sends another SSE event to append a script that redirects the user.
-
-```sse
-event: datastar-patch-elements
-data: elements <div id="indicator">Redirecting in 3 seconds...</div>
-
-// Wait 3 seconds
-
-event: datastar-patch-elements
-selector body
-mode append
-data: elements <script>window.location.href = "/guide"</script>
-```
-
---------------------------------
-
-### Go Redirect with Server-Sent Events (SSE)
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-Handles redirects in Go using Server-Sent Events (SSE) by patching elements, sleeping for a duration, and then redirecting the client. This example uses the datastar-go library.
-
-```go
-import (
-    "time"
-    "github.com/starfederation/datastar-go/datastar"
-)
-
-sse := datastar.NewSSE(w, r)
-sse.PatchElements(`
-    <div id="indicator">Redirecting in 3 seconds...</div>
-`)
-time.Sleep(3 * time.Second)
-sse.ExecuteScript(`
-    setTimeout(() => window.location = "/guide")
-`)
-
-```
-
-```go
-import (
-    "time"
-    "github.com/starfederation/datastar-go/datastar"
-)
-
-sse := datastar.NewSSE(w, r)
-sse.PatchElements(`
-    <div id="indicator">Redirecting in 3 seconds...</div>
-`)
-time.Sleep(3 * time.Second)
-sse.Redirect("/guide")
-
-```
-
---------------------------------
-
-### Node.js DataStar ExecuteScript and PatchElements
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This Node.js example demonstrates using the `ServerSentEventGenerator` to stream SSE events for patching elements and executing a script to redirect the user after a 3-second delay using `setTimeout`.
+This JavaScript snippet shows the initial setup for creating a `ServerSentEventGenerator` instance, which also sends the necessary headers for SSE. It's the starting point for sending SSE events from a server.
 
 ```javascript
-import { createServer } from "node:http";
-import { ServerSentEventGenerator } from "../npm/esm/node/serverSentEventGenerator.js";
-
-const server = createServer(async (req, res) => {
-
-  ServerSentEventGenerator.stream(req, res, async (sse) => {
-    sse.patchElements(`
-      <div id="indicator">Redirecting in 3 seconds...</div>
-    `);
-
-    setTimeout(() => {
-      sse.executeScript(`window.location = "/guide"`);
-    }, 3000);
-  });
-});
-```
-
---------------------------------
-
-### Clojure Redirect with DataStar API
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-Demonstrates a redirect in Clojure using the DataStar API. It sets up an SSE response that patches elements, pauses for 3 seconds, and then redirects the client.
-
-```clojure
-(require
-  '[starfederation.datastar.clojure.api :as d*]
-  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]]
-  '[some.hiccup.library :refer [html]])
-
-
-(defn handler [ring-request]
-  (->sse-response ring-request
-    {on-open
-      (fn [sse]
-        (d*/patch-elements! sse
-          (html [:div#indicator "Redirecting in 3 seconds..."]))
-        (Thread/sleep 3000)
-        (d*/redirect! sse "/guide")
-        (d*/close-sse! sse))}))
+// Creates a new `ServerSentEventGenerator` instance (this also sends required headers)
+ServerSentEventGenerator.stream(req, res, (stream) => {
 
 ```
 
 --------------------------------
 
-### Rust DataStar ExecuteScript and PatchElements
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This Rust example utilizes DataStar's SSE capabilities to patch elements and execute a script for redirection, incorporating a Tokio-based delay.
-
-```rust
-use datastar::prelude::*;
-use async_stream::stream;
-use core::time::Duration;
-
-Sse(stream! {
-    yield PatchElements::new("<div id='indicator'>Redirecting in 3 seconds...</div>").into();
-    tokio::time::sleep(core::time::Duration::from_secs(3)).await;
-    yield ExecuteScript::new("window.location = '/guide'").into();
-});
-```
-
---------------------------------
-
-### Read Datastar Signals in Go
+### C# SDK for Patch Signals
 
 Source: https://data-star.dev/docs
 
-Provides an example of reading nested signals from an HTTP request in Go using the `datastar-go` library. It defines a `Signals` struct to match the expected JSON payload and uses `datastar.ReadSignals` to unmarshal the data.
-
-```go
-import ("github.com/starfederation/datastar-go/datastar")
-
-type Signals struct {
-    Foo struct {
-        Bar string `json:"bar"`
-    } `json:"foo"`
-}
-
-signals := &Signals{}
-if err := datastar.ReadSignals(request, signals); err != nil {
-    http.Error(w, err.Error(), http.StatusBadRequest)
-    return
-}
-
-```
-
---------------------------------
-
-### Multiple Element Patches via SSE with Datastar
-
-Source: https://data-star.dev/docs
-
-This example demonstrates sending multiple 'datastar-patch-elements' SSE events in a stream to update the DOM sequentially. This allows for dynamic content changes over time, such as showing a response and then updating it.
-
-```html
-1event: datastar-patch-elements
-2data: elements <div id="hal">
-3data: elements     I’m sorry, Dave. I’m afraid I can’t do that.
-4data: elements </div>
-5
-6event: datastar-patch-elements
-7data: elements <div id="hal">
-8data: elements     Waiting for an order...
-9data: elements </div>
-```
-
---------------------------------
-
-### Submit Form Data using data-on-submit with ContentType 'form'
-
-Source: https://data-star.dev/examples/form_data
-
-This example shows how to initiate a GET request with contentType set to 'form' when a form is submitted. The @get() action is triggered by the 'data-on-submit' attribute on the form element, automatically sending the form's data.
-
-```html
-<form data-on-submit="@get('/endpoint', {contentType: 'form'})">
-    foo: <input type="text" name="foo" required />
-    <button>
-        Submit form
-    </button>
-</form>
-```
-
---------------------------------
-
-### Clojure SDK Example for Dynamic List Loading
-
-Source: https://data-star.dev/how_tos/load_more_list_items
-
-This Clojure code demonstrates how to handle requests and send DataStar events using the SDK. It reads signals to get the current offset, patches new elements to the list in append mode, and either patches new signals or removes the load-more button based on the offset.
-
-```clojure
- 1(require
- 2  '[starfederation.datastar.clojure.api :as d*]
- 3  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]]
- 4  '[some.hiccup.library :refer [html]]
- 5  '[some.json.library :refer [read-json-str write-json-str]]))
- 6
- 7
- 8(def max-offset 5)
- 9
-10(defn handler [ring-request]
-11  (->sse-response ring-request
-12    {on-open
-13     (fn [sse]
-14       (let [d*-signals (-> ring-request d*/get-signals read-json-str)
-15             offset (get d*-signals "offset")
-16             limit 1
-17             new-offset (+ offset limit)]
-18
-19         (d*/patch-elements! sse
-20                             (html [:div "Item " new-offset])
-21                             {d*/selector   "#list"
-22                              d*/merge-mode d*/mm-append})
-23
-24         (if (< new-offset max-offset)
-25           (d*/patch-signals! sse (write-json-str {"offset" new-offset}))
-26           (d*/remove-fragment! sse "#load-more"))
-27
-28         (d*/close-sse! sse)))}))
-
-```
-
---------------------------------
-
-### Patch Elements using Datastar Kotlin SDK
-
-Source: https://data-star.dev/docs
-
-This Kotlin code snippet shows how to use the ServerSentEventGenerator to patch HTML elements into the DOM. It includes an example of sending an initial patch and then updating it after a delay.
-
-```kotlin
-1val generator = ServerSentEventGenerator(response)
-2
-3generator.patchElements(
-4    elements = """<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>""",
-5)
-6
-7Thread.sleep(ONE_SECOND)
-8
-9generator.patchElements(
-
-```
-
---------------------------------
-
-### Stream SSE Events in Java
-
-Source: https://data-star.dev/docs
-
-This Java example shows how to stream Server-Sent Events (SSE) using the DataStar Java SDK. It involves creating a `ServerSentEventGenerator` and using its `send` method with `PatchElements` and `PatchSignals` builders to send data.
-
-```java
-import starfederation.datastar.utils.ServerSentEventGenerator;
-
-// Creates a new `ServerSentEventGenerator` instance.
-AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
-ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
-
-// Patches elements into the DOM.
-generator.send(PatchElements.builder()
-    .data("<div id=\"question\">What do you put in a toaster?</div>")
-    .build()
-);
-
-// Patches signals.
-generator.send(PatchSignals.builder()
-    .data("{\"response\": \"\", \"answer\": \"\"}")
-    .build()
-);
-```
-
---------------------------------
-
-### Alpine.js data-on-interval Basic Usage (JavaScript)
-
-Source: https://data-star.dev/docs
-
-A simple example of the 'data-on-interval' directive, which repeatedly executes an expression at a default interval (one second). This snippet increments a counter on each interval.
-
-```html
-<div data-on-interval="$count++"></div>
-
-```
-
---------------------------------
-
-### HTML Button for Click-to-Load
-
-Source: https://data-star.dev/examples/click_to_load
-
-This HTML snippet represents the button that initiates the 'click-to-load' functionality. It includes attributes for dynamic styling based on a fetching state and an event handler for the click action. The `data-on-click` attribute specifies the function to call, which in turn fetches more data.
-
-```html
-<button
-    class="info wide"
-    data-indicator-_fetching
-    data-attr-aria-disabled="`${$_fetching}`"
-    data-on-click="!$_fetching && @get('/examples/click_to_load/more')">
-    Load More
-</button>
-```
-
---------------------------------
-
-### Rust Redirect with DataStar Prelude
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-Shows a redirect implementation in Rust using the datastar crate. It leverages async streams to send SSE events for patching elements, delaying, and executing a script for redirection.
-
-```rust
-use datastar::prelude::*;
-use async_stream::stream;
-use core::time::Duration;
-
-Sse(stream! {
-    yield PatchElements::new("<div id='indicator'>Redirecting in 3 seconds...</div>").into();
-    tokio::time::sleep(core::time::Duration::from_secs(3)).await;
-    yield ExecuteScript::new("setTimeout(() => window.location = '/guide')").into();
-});
-
-```
-
---------------------------------
-
-### Python DataStar ExecuteScript and PatchElements (Sanic)
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This Python example uses DataStar with the Sanic framework to perform server-initiated redirects. It yields SSE events for patching elements and executing a script, with an asynchronous delay.
-
-```python
-from datastar_py import ServerSentEventGenerator as SSE
-from datastar_py.sanic import datastar_response
-import asyncio
-
-@app.get("/redirect")
-@datastar_response
-async def redirect_from_backend():
-    yield SSE.patch_elements('<div id="indicator">Redirecting in 3 seconds...</div>')
-    await asyncio.sleep(3)
-    yield SSE.execute_script('window.location = "/guide"')
-```
-
---------------------------------
-
-### PHP Redirect with ServerSentEventGenerator
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-Shows how to perform a redirect in PHP using the ServerSentEventGenerator class. This includes patching elements, a short sleep, and then executing the redirect script.
-
-```php
-use starfederation\datastar\ServerSentEventGenerator;
-
-$sse = new ServerSentEventGenerator();
-$sse->patchElements(`
-    <div id="indicator">Redirecting in 3 seconds...</div>
-`);
-sleep(3);
-$sse->executeScript(`
-    setTimeout(() => window.location = "/guide")
-`);
-
-```
-
---------------------------------
-
-### Go DataStar ExecuteScript and PatchElements
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This Go snippet shows the implementation of DataStar's `ExecuteScript` and `PatchElements` methods using Server-Sent Events. It includes a 3-second sleep before executing the script for redirection.
-
-```go
-import (
-    "time"
-    "github.com/starfederation/datastar-go/datastar"
-)
-
-sse := datastar.NewSSE(w, r)
-sse.PatchElements(`
-    <div id="indicator">Redirecting in 3 seconds...</div>
-`)
-time.Sleep(3 * time.Second)
-sse.ExecuteScript(`
-    window.location = "/guide"
-`)
-```
-
---------------------------------
-
-### Kotlin Redirect with ServerSentEventGenerator
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-Demonstrates how to implement redirects in Kotlin using the ServerSentEventGenerator. It involves patching HTML elements, pausing execution, and then initiating a redirect.
-
-```kotlin
-val generator = ServerSentEventGenerator(response)
-
-generator.patchElements(
-    elements = 
-        """
-        <div id="indicator">Redirecting in 3 seconds...</div>
-        """.trimIndent(),
-)
-
-Thread.sleep(3 * ONE_SECOND)
-
-generator.executeScript(
-    script = "setTimeout(() => window.location = '/guide')",
-)
-
-```
-
-```kotlin
-val generator = ServerSentEventGenerator(response)
-
-generator.patchElements(
-    elements = 
-        """
-        <div id="indicator">Redirecting in 3 seconds...</div>
-        """.trimIndent(),
-)
-
-Thread.sleep(3 * ONE_SECOND)
-
-generator.redirect("/guide")
-
-```
-
---------------------------------
-
-### Backend Redirect with Python Sanic Server-Sent Events
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This Python example using the Sanic framework shows how to perform a backend redirect. It yields SSE events to patch an indicator and then initiate a redirect after a 3-second asynchronous sleep.
-
-```python
-from datastar_py import ServerSentEventGenerator as SSE
-from datastar_py.sanic import datastar_response
-
-@app.get("/redirect")
-@datastar_response
-async def redirect_from_backend():
-    yield SSE.patch_elements('<div id="indicator">Redirecting in 3 seconds...</div>')
-    await asyncio.sleep(3)
-    yield SSE.redirect("/guide")
-```
-
---------------------------------
-
-### Java (Servlet): Patching Signals with SSE
-
-Source: https://data-star.dev/docs
-
-This Java example demonstrates how to patch signals using Server-Sent Events (SSE) within a Servlet environment using the DataStar SDK. It creates a `ServerSentEventGenerator` and uses its `send` method with `PatchSignals.builder()` to emit signal updates.
-
-```java
- 1import starfederation.datastar.utils.ServerSentEventGenerator;
- 2
- 3// Creates a new `ServerSentEventGenerator` instance.
- 4AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
- 5ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
- 6
- 7// Patches signals.
- 8generator.send(PatchSignals.builder()
- 9    .data("{\"hal\": \"Affirmative, Dave. I read you.\"}")
-10    .build()
-11);
-12
-13Thread.sleep(1000);
-14
-15generator.send(PatchSignals.builder()
-16    .data("{\"hal\": \"...\"}")
-17    .build()
-18);
-19
-```
-
---------------------------------
-
-### PHP DataStar ExecuteScript and PatchElements
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This PHP snippet shows how to use the `ServerSentEventGenerator` to patch elements and execute a script for redirection, with a 3-second sleep in between.
-
-```php
-use starfederation\datastar\ServerSentEventGenerator;
-
-$sse = new ServerSentEventGenerator();
-$sse->patchElements(`
-    <div id="indicator">Redirecting in 3 seconds...</div>
-`);
-sleep(3);
-$sse->executeScript(`
-    window.location = "/guide"
-`);
-```
-
---------------------------------
-
-### Alpine.js data-on-intersect with Modifiers (JavaScript)
-
-Source: https://data-star.dev/docs
-
-Demonstrates advanced usage of 'data-on-intersect' with modifiers like '__once' and '__full'. This example triggers an expression only once when the entire element is visible in the viewport.
-
-```html
-<div data-on-intersect__once__full="$fullyIntersected = true"></div>
-
-```
-
---------------------------------
-
-### Sequential SSE Signal Patching
-
-Source: https://data-star.dev/guide/reactive_signals
-
-This SSE example demonstrates sending multiple 'datastar-patch-signals' events in a stream, including a delay. This pattern is useful for orchestrating a sequence of UI updates, such as showing a response and then clearing it after a period.
-
-```sse
-1event: datastar-patch-signals
-2data: signals {hal: 'Affirmative, Dave. I read you.'}
-3
-4// Wait 1 second
-5
-6event: datastar-patch-signals
-7data: signals {hal: '...'}
-```
-
---------------------------------
-
-### Implement File Upload Progress with DataStar Pro
-
-Source: https://data-star.dev/docs
-
-This example demonstrates how to monitor file upload progress using DataStar Pro. It involves an HTML form configured for multipart/form-data submission. The `data-on-datastar-fetch` attribute is used to capture `upload-progress` events, updating signal values for `$uploading` and `$progress`, and displaying a progress bar.
-
-```html
- 1<form enctype="multipart/form-data"
- 2    data-signals="{progress: 0, uploading: false}"
- 3    data-on-submit__prevent="@post('https://example.com/upload', {contentType: 'form'})"
- 4    data-on-datastar-fetch="
- 5        if (evt.detail.type !== 'upload-progress') return;
- 6
- 7        const {progress, loaded, total} = evt.detail.argsRaw;
- 8        $uploading = true;
- 9        $progress = Number(progress);
-10
-11        if ($progress >= 100) {
-12            $uploading = false;
-13        }
-14    "
-15>
-16    <input type="file" name="files" multiple />
-17    <button type="submit">Upload</button>
-18    <progress data-show="$uploading" data-attr-value="$progress" max="100"></progress>
-19</form>
-```
-
---------------------------------
-
-### Executing JavaScript via Server-Sent Events (SSE) (HTML)
-
-Source: https://data-star.dev/docs
-
-This example demonstrates executing JavaScript using Server-Sent Events (SSE). A `script` tag is embedded within a `datastar-patch-elements` SSE event, allowing for dynamic script execution on the client-side.
-
-```text
-event: datastar-patch-elements
-data: elements <div id="hal">
-data: elements     <script>alert('This mission is too important for me to allow you to jeopardize it.')</script>
-data: elements </div>
-```
-
---------------------------------
-
-### Go SDK Example for Dynamic List Loading
-
-Source: https://data-star.dev/how_tos/load_more_list_items
-
-This Go code demonstrates using the DataStar SDK to handle dynamic list loading. It reads offset signals, and then uses the SSE object to patch elements into the '#list' container with append mode, update signals, or remove the load-more button.
-
-```go
- 1import (
- 2    "fmt"
- 3    "net/http"
- 4
- 5    "github.com/go-chi/chi/v5"
- 6    "github.com/starfederation/datastar-go/datastar"
- 7)
- 8
- 9type OffsetSignals struct {
-10    Offset int `json:"offset"`
-11}
-12
-13signals := &OffsetSignals{}
-14if err := datastar.ReadSignals(r, signals); err != nil {
-15    http.Error(w, err.Error(), http.StatusBadRequest)
-16}
-17
-18max := 5
-19limit := 1
-20offset := signals.Offset
-21
-22sse := datastar.NewSSE(w, r)
-23
-24if offset < max {
-25    newOffset := offset + limit
-26    sse.PatchElements(fmt.Sprintf(`<div>Item %d</div>`, newOffset),
-27        datastar.WithSelectorID("list"),
-28        datastar.WithModeAppend(),
-29    )
-30    if newOffset < max {
-31        sse.PatchSignals([]byte(fmt.Sprintf(`{offset: %d}`, newOffset)))
-32    } else {
-33        sse.RemoveElements(`#load-more`)
-34    }
-35}
-
-```
-
---------------------------------
-
-### Appending JavaScript to Body via SSE (HTML)
-
-Source: https://data-star.dev/docs
-
-This SSE example shows how to append a script tag directly to the `body` element of the DOM. This is useful for executing scripts that don't require specific element placement or patching.
-
-```text
-event: datastar-patch-elements
-data: mode append
-data: selector body
-data: elements <script>alert('This mission is too important for me to allow you to jeopardize it.')</script>
-```
-
---------------------------------
-
-### Read Datastar Signals in Ruby
-
-Source: https://data-star.dev/docs
-
-Shows how to initialize Datastar with a request and response object in Ruby, and then access a specific signal (e.g., `some_signal`) using attribute-style access on the `datastar.signals` object.
-
-```ruby
-# Setup with request
-datastar = Datastar.new(request:, response:)
-
-# Read signals
-some_signal = datastar.signals[:some_signal]
-
-```
-
---------------------------------
-
-### PHP: Patching Signals with SSE
-
-Source: https://data-star.dev/docs
-
-This PHP example shows how to patch signals using Server-Sent Events (SSE) with the DataStar SDK. It creates a `ServerSentEventGenerator` instance and uses its `patchSignals` method to send signal data, including a `sleep` call for a delay.
-
-```php
- 1use starfederation\datastar\ServerSentEventGenerator;
- 2
- 3// Creates a new `ServerSentEventGenerator` instance.
- 4$sse = new ServerSentEventGenerator();
- 5
- 6// Patches signals.
- 7$sse->patchSignals(['hal' => 'Affirmative, Dave. I read you.']);
- 8
- 9sleep(1)
-10
-11$sse->patchSignals(['hal' => '...']);
-12
-```
-
---------------------------------
-
-### HTML Structure for Progressive Loading
-
-Source: https://data-star.dev/examples/progressive_load
-
-This HTML snippet defines the main structure of a page designed for progressive loading. It includes a button to trigger the loading and placeholders for content sections like header, article, and comments, which are intended to be populated dynamically via SSE.
-
-```html
-<div>
-    <div class="actions">
-        <button
-            id="load-button"
-            data-signals-load-disabled="false"
-            data-on-click="$loadDisabled=true; @get('/examples/progressive_load/updates')"
-            data-attr-disabled="$loadDisabled"
-            data-indicator-progressive-Load
-        >
-            Load
-        </button>
-        <!-- Indicator element -->
-    </div>
-    <p>
-        Each part is loaded randomly and progressively.
-    </p>
-</div>
-<div id="Load">
-    <header id="header">Welcome to my blog</header>
-    <section id="article">
-        <h4>This is my article</h4>
-        <section id="articleBody">
-            <p>
-                Lorem ipsum dolor sit amet...
-            </p>
-        </section>
-    </section>
-    <section id="comments">
-        <h5>Comments</h5>
-        <p>
-            This is the comments section. It will also be progressively loaded as you scroll down.
-        </p>
-        <ul id="comments-list">
-            <li id="1">
-                <img src="https://avatar.iran.liara.run/username?username=example" alt="Avatar" class="avatar"/>
-                This is a comment...
-            </li>
-            <!-- More comments loaded progressively -->
-        </ul>
-    </section>
-    <div id="footer">Hope you like it</div>
-</div>
-```
-
---------------------------------
-
-### PHP: Patch Signals via SSE
-
-Source: https://data-star.dev/guide/reactive_signals
-
-This PHP example demonstrates patching signals using Server-Sent Events (SSE) with the DataStar PHP library. It shows creating a `ServerSentEventGenerator` instance and using the `patchSignals` method to send signal updates.
-
-```php
- 1use starfederation\datastar\ServerSentEventGenerator;
- 2
- 3// Creates a new `ServerSentEventGenerator` instance.
- 4$sse = new ServerSentEventGenerator();
- 5
- 6// Patches signals.
- 7$sse->patchSignals(['hal' => 'Affirmative, Dave. I read you.']);
- 8
- 9sleep(1)
-10
-11$sse->patchSignals(['hal' => '...']);
-```
-
---------------------------------
-
-### C# ASP.NET Core: Patch Signals
-
-Source: https://data-star.dev/guide/reactive_signals
-
-This C# example shows how to use the DataStar SDK within an ASP.NET Core application to patch signals. It demonstrates adding DataStar as a service and then using `PatchSignalsAsync` to send updates, including a delay between them.
+Example using the Datastar C# SDK to add Datastar as a service and patch signals asynchronously. It demonstrates patching signals with a delay between updates.
 
 ```csharp
  1using StarFederation.Datastar.DependencyInjection;
@@ -1172,244 +75,180 @@ This C# example shows how to use the DataStar SDK within an ASP.NET Core applica
 12
 13    await datastarService.PatchSignalsAsync(new { hal = "..." });
 14});
+
 ```
 
 --------------------------------
 
-### Loading Indicator with data-indicator-fetching
-
-Source: https://data-star.dev/guide/backend_requests
-
-This HTML example utilizes the `data-indicator-fetching` attribute to manage a loading state. When a GET request is in flight (triggered by `data-on-click`), the element with `data-indicator-fetching` will have its associated signal set to true, allowing conditional styling like a loading indicator via `data-class-loading`.
-
-```html
-<div id="question"></div>
-<button
-    data-on-click="@get('/actions/quiz')"
-    data-indicator-fetching
->
-    Fetch a question
-</button>
-<div data-class-loading="$fetching" class="indicator"></div>
-```
-
---------------------------------
-
-### Clojure DataStar ExecuteScript and PatchElements
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This Clojure snippet demonstrates using DataStar's `execute-script!` and `patch-elements!` functions within an SSE response. It includes a 3-second delay before executing the script for redirection.
-
-```clojure
-(require
-  '[starfederation.datastar.clojure.api :as d*]
-  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]]
-  '[some.hiccup.library :refer [html]])
-
-
-(defn handle [ring-request]
-  (->sse-response ring-request
-    {on-open
-      (fn [sse]
-        (d*/patch-elements! sse
-          (html [:div#indicator "Redirecting in 3 seconds..."]))
-        (Thread/sleep 3000)
-        (d*/execute-script! sse "window.location = \"/guide\"")
-        (d*/close-sse! sse)}))
-```
-
---------------------------------
-
-### Alpine.js data-on-interval with Duration Modifier (JavaScript)
+### Reading Signals in Ruby
 
 Source: https://data-star.dev/docs
 
-Shows how to customize the interval duration using the '__duration' modifier with 'data-on-interval'. This example sets the interval to 500 milliseconds, causing the counter to increment twice as fast.
-
-```html
-<div data-on-interval__duration.500ms="$count++"></div>
-
-```
-
---------------------------------
-
-### Patch Elements via SSE with Datastar
-
-Source: https://data-star.dev/docs
-
-This example shows how to send Server-Sent Events (SSE) with the 'datastar-patch-elements' event type to update the DOM. It's useful for real-time updates and long-lived connections. The 'morph' strategy is used by default.
-
-```html
-1event: datastar-patch-elements
-2data: elements <div id="hal">
-3data: elements     I’m sorry, Dave. I’m afraid I can’t do that.
-4data: elements </div>
-```
-
---------------------------------
-
-### Alpine.js data-on-load with Delay Modifier (JavaScript)
-
-Source: https://data-star.dev/docs
-
-Illustrates using the '__delay' modifier with 'data-on-load' to postpone the execution of the directive's expression. This example waits for 500 milliseconds after the element loads before initializing the count variable.
-
-```html
-<div data-on-load__delay.500ms="$count = 1"></div>
-
-```
-
---------------------------------
-
-### Initialize ServerSentEventGenerator
-
-Source: https://data-star.dev/docs
-
-This JavaScript snippet shows the initialization of the `ServerSentEventGenerator` which also sends the necessary headers for SSE. This is a prerequisite for streaming events.
-
-```javascript
-// Creates a new `ServerSentEventGenerator` instance (this also sends required headers)
-ServerSentEventGenerator.stream(req, res, (stream) => {
-```
-
---------------------------------
-
-### Alpine.js data-on-click with Modifiers (JavaScript)
-
-Source: https://data-star.dev/docs
-
-Demonstrates using the 'data-on-click' attribute with modifiers like '__window', '__debounce', and '.leading' to control event triggering behavior. This example attaches a click listener to the window that only triggers once after a 500ms debounce with a leading edge execution.
-
-```html
-<button data-on-click__window__debounce.500ms.leading="$foo = ''"></button>
-
-```
-
---------------------------------
-
-### Reading Signals in PHP
-
-Source: https://data-star.dev/guide/backend_requests
-
-A PHP example demonstrating how to read all signals from an incoming request using the `ServerSentEventGenerator` class.
-
-```php
-use starfederation\datastar\ServerSentEventGenerator;
-
-// Reads all signals from the request.
-$signals = ServerSentEventGenerator::readSignals();
-```
-
---------------------------------
-
-### HTML Input for Active Search with Debounce
-
-Source: https://data-star.dev/examples/active_search
-
-This HTML input element facilitates active searching. The `data-bind-search` attribute likely binds the input's value for searching, while `data-on-input__debounce.200ms` specifies that a GET request to '/examples/active_search/search' should be made 200ms after the user stops typing, passing the input value.
-
-```html
-<input
-    type="text"
-    placeholder="Search..."
-    data-bind-search
-    data-on-input__debounce.200ms="@get('/examples/active_search/search')"
-/>
-```
-
---------------------------------
-
-### JavaScript Redirect with ServerSentEventGenerator
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-Implements a redirect in Node.js using the ServerSentEventGenerator. It streams SSE to patch the UI and then uses setTimeout to execute a script that redirects the client.
-
-```javascript
-import { createServer } from "node:http";
-import { ServerSentEventGenerator } from "../npm/esm/node/serverSentEventGenerator.js";
-
-const server = createServer(async (req, res) => {
-
-  ServerSentEventGenerator.stream(req, res, async (sse) => {
-    sse.patchElements(`
-      <div id="indicator">Redirecting in 3 seconds...</div>
-    `);
-
-    setTimeout(() => {
-      sse.executeScript(`setTimeout(() => window.location = "/guide")`);
-    }, 3000);
-  });
-});
-
-```
-
---------------------------------
-
-### C# Redirect with DataStar Service
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-Implements a redirect by patching HTML elements, delaying, and then executing a JavaScript redirect script using the IDatastarService in C#.
-
-```csharp
-using StarFederation.Datastar.DependencyInjection;
-
-app.MapGet("/redirect", async (IDatastarService datastarService) =>
-{
-    await datastarService.PatchElementsAsync("<div id=\"indicator\">Redirecting in 3 seconds...</div>");
-    await Task.Delay(TimeSpan.FromSeconds(3));
-    await datastarService.ExecuteScriptAsync("setTimeout(() => window.location = \"/guide\");");
-});
-
-```
-
-```csharp
-using StarFederation.Datastar.DependencyInjection;
-using StarFederation.Datastar.Scripts;
-
-app.MapGet("/redirect", async (IDatastarService datastarService) =>
-{
-    await datastarService.PatchElementsAsync("<div id=\"indicator\">Redirecting in 3 seconds...</div>");
-    await Task.Delay(TimeSpan.FromSeconds(3));
-    await datastarService.Redirect("/guide");
-});
-
-```
-
---------------------------------
-
-### Ruby DataStar ExecuteScript and PatchElements
-
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
-
-This Ruby snippet demonstrates using DataStar to patch elements and execute a script for redirection within a streaming context, including a sleep interval.
+An example of setting up and reading signals in Ruby using the Datastar library. It initializes Datastar with the request and response objects and then accesses signals via `datastar.signals[:some_signal]`.
 
 ```ruby
-datastar = Datastar.new(request:, response:)
-
-datastar.stream do |sse|
-  sse.patch_elements '<div id="indicator">Redirecting in 3 seconds...</div>'
-  sleep 3
-  sse.execute_script 'window.location = "/guide"'
-end
+1# Setup with request
+2datastar = Datastar.new(request:, response:)
+3
+4# Read signals
+5some_signal = datastar.signals[:some_signal]
 ```
 
 --------------------------------
 
-### Java: Patch Signals via SSE
+### Ruby SDK for SSE Patch Signals
 
-Source: https://data-star.dev/guide/reactive_signals
+Source: https://data-star.dev/docs
 
-This Java example demonstrates patching signals using Server-Sent Events (SSE) with the DataStar Java SDK. It involves creating a `ServerSentEventGenerator` and using its `send` method with `PatchSignals.builder()` to construct the event data.
+Example using the Datastar Ruby SDK to create a streaming response and patch signals. It demonstrates how to instantiate a Datastar::Dispatcher and send patch signals with a delay.
+
+```ruby
+ 1require 'datastar'
+ 2
+ 3# Create a Datastar::Dispatcher instance
+ 4
+ 5datastar = Datastar.new(request:, response:)
+ 6
+ 7# In a Rack handler, you can instantiate from the Rack env
+ 8# datastar = Datastar.from_rack_env(env)
+ 9
+10# Start a streaming response
+11datastar.stream do |sse|
+12  # Patches signals
+13  sse.patch_signals(hal: 'Affirmative, Dave. I read you.')
+14
+15  sleep 1
+16  
+17  sse.patch_signals(hal: '...')
+18end
+
+```
+
+--------------------------------
+
+### Go SDK for SSE Patch Signals
+
+Source: https://data-star.dev/docs
+
+Example using the Datastar Go SDK to create an SSE generator and patch signals. It shows how to send patch signal data and include a delay.
+
+```go
+ 1import (
+ 2    "github.com/starfederation/datastar-go/datastar"
+ 3)
+ 4
+ 5// Creates a new `ServerSentEventGenerator` instance.
+ 6sse := datastar.NewSSE(w, r)
+ 7
+ 8// Patches signals
+ 9sse.PatchSignals([]byte(`{hal: 'Affirmative, Dave. I read you.'}`))
+10
+11time.Sleep(1 * time.Second)
+12
+13sse.PatchSignals([]byte(`{hal: '...'}`))
+
+```
+
+--------------------------------
+
+### Datastar Runtime Error Example
+
+Source: https://data-star.dev/docs
+
+Presents an example of a Datastar runtime error due to an invalid attribute key (`data-text-foo`), showing the console output with error details and a link to more information.
+
+```log
+Uncaught datastar runtime error: textKeyNotAllowed
+More info: https://data-star.dev/errors/key_not_allowed?metadata=%7B%22plugin%22%3A%7B%22name%22%3A%22text%22%2C%22type%22%3A%22attribute%22%7D%2C%22element%22%3A%7B%22id%22%3A%22%22%2C%22tag%22%3A%22DIV%22%7D%2C%22expression%22%3A%7B%22rawKey%22%3A%22textFoo%22%2C%22key%22%3A%22foo%22%2C%22value%22%3A%22%22%2C%22fnContent%22%3A%22%22%7D%7D
+Context: {
+    "plugin": {
+        "name": "text",
+        "type": "attribute"
+    },
+    "element": {
+        "id": "",
+        "tag": "DIV"
+    },
+    "expression": {
+        "rawKey": "textFoo",
+        "key": "foo",
+        "value": "",
+        "fnContent": ""
+    }
+}
+```
+
+--------------------------------
+
+### Datastar Action Options
+
+Source: https://data-star.dev/docs
+
+Explains the available options for Datastar actions, which are passed as a second argument.
+
+```APIDOC
+## Datastar Action Options
+
+All Datastar actions accept an `options` object as their second argument to customize behavior.
+
+### Options Available:
+
+- **`contentType`** (`string`): Specifies the content type for the request. Accepts `json` (default) or `form`. `form` content type triggers form validation and submission without sending signals.
+- **`filterSignals`** (`object`): Filters signals based on inclusion and exclusion criteria.
+    - `include` (`RegExp`): Regular expression to match signal paths to include. Defaults to all signals (`/.*/`).
+    - `exclude` (`RegExp`): Regular expression to exclude specific signal paths. Defaults to signals without a `_` prefix (`/(^_|._).*/`).
+- **`selector`** (`string` | `null`): Specifies a form element to use when `contentType` is `form`. If `null`, the closest form is used. Defaults to `null`.
+- **`headers`** (`object`): An object containing custom headers to send with the request.
+- **`openWhenHidden`** (`boolean`): Determines if the connection should remain open when the page is hidden. Defaults to `false`.
+- **`retry`** (`string`): Configures retry behavior for requests. Options include `'auto'` (default), `'error'`, `'always'`, and `'never'`.
+- **`retryInterval`** (`number`): The interval in milliseconds between retries. Defaults to `1000`.
+- **`retryScaler`** (`number`): A multiplier for scaling retry wait times. Defaults to `2`.
+- **`retryMaxWaitMs`** (`number`): The maximum wait time in milliseconds between retries. Defaults to `30000`.
+- **`retryMaxCount`** (`number`): The maximum number of retry attempts. Defaults to `10`.
+- **`requestCancellation`** (`string` | `AbortController`): Controls request cancellation behavior. Options include `'auto'` (default), `'disabled'`, or an `AbortController` instance.
+```
+
+--------------------------------
+
+### Datastar Backend SDKs
+
+Source: https://data-star.dev/docs
+
+Overview of the available backend Software Development Kits (SDKs) for Datastar, simplifying the generation of SSE events.
+
+```APIDOC
+# SDKs
+
+Datastar provides backend SDKs to simplify the process of generating SSE events. Below is a list of available SDKs by language:
+
+- **Clojure**: SDK and helper libraries available.
+- **C# (.NET)**: SDK for working with Datastar.
+- **Go**: SDK available.
+- **Java**: SDK and examples available.
+- **Kotlin**: SDK available.
+- **PHP**: SDK available.
+  - **Craft CMS**: Plugin for integrating Datastar with Craft CMS.
+  - **Laravel**: Package for integrating Datastar with Laravel.
+- **Python**: SDK and PyPI package available.
+- **Ruby**: SDK available.
+- **Rust**: SDK available.
+  - **Rama**: Module for integrating Datastar with Rama (Rust-based HTTP proxy).
+```
+
+--------------------------------
+
+### Java SDK for SSE Patch Signals
+
+Source: https://data-star.dev/docs
+
+Example using the Datastar Java SDK to send SSE patch signals. It demonstrates creating a `ServerSentEventGenerator` and sending patch signal data with a delay.
 
 ```java
  1import starfederation.datastar.utils.ServerSentEventGenerator;
  2
  3// Creates a new `ServerSentEventGenerator` instance.
  4AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
- 5ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
+5ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
  6
  7// Patches signals.
  8generator.send(PatchSignals.builder()
@@ -1428,48 +267,1608 @@ This Java example demonstrates patching signals using Server-Sent Events (SSE) w
 
 --------------------------------
 
-### Reading Nested Signals in Go
+### Patch DOM Elements with Python datastar_py
 
-Source: https://data-star.dev/guide/backend_requests
+Source: https://data-star.dev/guide/getting_started
 
-Provides a Go example for reading nested signals from an HTTP request using the `datastar-go` library.
+Shows how to patch HTML elements using the Python datastar_py library. This asynchronous example yields SSE patch elements, waits for a second, and then yields another patch element to update the DOM.
 
-```go
-import ("github.com/starfederation/datastar-go/datastar")
+```python
+from datastar_py import ServerSentEventGenerator as SSE
+from datastar_py.sanic import datastar_response
+import asyncio
 
-type Signals struct {
-    Foo struct {
-        Bar string `json:"bar"`
-    } `json:"foo"`
-}
-
-signals := &Signals{}
-if err := datastar.ReadSignals(request, signals); err != nil {
-    http.Error(w, err.Error(), http.StatusBadRequest)
-    return
-}
+@app.get('/open-the-bay-doors')
+@datastar_response
+async def open_doors(request):
+    yield SSE.patch_elements('<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>')
+    await asyncio.sleep(1)
+    yield SSE.patch_elements('<div id="hal">Waiting for an order...</div>')
 ```
 
 --------------------------------
 
-### HTML with data-on-signal-patch Example
+### PHP SDK for SSE Patch Signals
+
+Source: https://data-star.dev/docs
+
+Example using the Datastar PHP SDK to generate SSE patch signals. It demonstrates creating a `ServerSentEventGenerator` and sending patch signal data with a delay.
+
+```php
+ 1use starfederation\datastar\ServerSentEventGenerator;
+ 2
+ 3// Creates a new `ServerSentEventGenerator` instance.
+ 4$sse = new ServerSentEventGenerator();
+ 5
+ 6// Patches signals.
+ 7$sse->patchSignals(['hal' => 'Affirmative, Dave. I read you.']);
+ 8
+ 9sleep(1);
+10
+11$sse->patchSignals(['hal' => '...']);
+
+```
+
+--------------------------------
+
+### Send GET Request with Datastar
+
+Source: https://data-star.dev/guide/getting_started
+
+This snippet demonstrates how to use the `@get()` action in Datastar to send a GET request to a specified URL. The response, if HTML, will be morphed into the DOM based on element IDs. This is useful for fetching data or triggering backend actions that update the UI.
+
+```html
+<button data-on:click="@get('/endpoint')">
+    Open the pod bay doors, HAL.
+</button>
+<div id="hal"></div>
+```
+
+--------------------------------
+
+### Datastar Attribute Order and Initialization
+
+Source: https://data-star.dev/docs
+
+Demonstrates the order of attribute processing in Datastar, specifically highlighting the importance of `data-indicator` preceding `data-init` for fetch requests.
+
+```html
+<div data-indicator:fetching data-init="@get('/endpoint')"></div>
+```
+
+--------------------------------
+
+### Datastar Attribute Casing Conventions
+
+Source: https://data-star.dev/docs
+
+Explains Datastar's handling of attribute casing, converting `data-*` attributes to `camelCase` for signals and `kebab-case` for other attributes by default. Includes examples of manual casing control using `__case` and object syntax.
+
+```html
+<div data-signals:my-signal></div>
+<div data-class:text-blue-700></div>
+<div data-on:rocket-launched></div>
+<div data-on:widget-loaded__case.camel></div>
+```
+
+--------------------------------
+
+### GET Request with @get()
+
+Source: https://data-star.dev/docs
+
+Sends a GET request to a specified URI using the Fetch API. The response must contain Datastar SSE events. Supports options for controlling request behavior, like `openWhenHidden` and `contentType`.
+
+```html
+<button data-on:click="@get('/endpoint')"></button>
+
+<button data-on:click="@get('/endpoint', {openWhenHidden: true})"></button>
+
+<button data-on:click="@get('/endpoint', {contentType: 'form'})"></button>
+
+<form enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <button data-on:click="@get('/endpoint', {contentType: 'form'})"></button>
+</form>
+```
+
+--------------------------------
+
+### Kotlin SDK for SSE Patch Signals
+
+Source: https://data-star.dev/docs
+
+Example using the Datastar Kotlin SDK to generate SSE patch signals. It shows how to create a `ServerSentEventGenerator` and send patch signal data with a delay.
+
+```kotlin
+ 1val generator = ServerSentEventGenerator(response)
+ 2
+ 3generator.patchSignals(
+ 4    signals = """{"hal": "Affirmative, Dave. I read you."} """,
+ 5)
+ 6
+ 7Thread.sleep(ONE_SECOND)
+ 8
+ 9generator.patchSignals(
+10    signals = """{"hal": "..."} """,
+11)
+
+```
+
+--------------------------------
+
+### Customizing Datastar Request Cancellation
+
+Source: https://data-star.dev/docs
+
+Shows how to customize request cancellation behavior in Datastar. The first example disables automatic cancellation, allowing multiple concurrent requests. The second example demonstrates using a custom AbortController for fine-grained control over request cancellation.
+
+```html
+<!-- Allow concurrent requests (no automatic cancellation) -->
+<button data-on:click="@get('/endpoint', {requestCancellation: 'disabled'})">Allow Multiple</button>
+
+<!-- Custom abort controller for fine-grained control -->
+<div data-signals:controller="new AbortController()">
+    <button data-on:click="@get('/endpoint', {requestCancellation: $controller})">Start Request</button>
+    <button data-on:click="$controller.abort()">Cancel Request</button>
+</div>
+```
+
+--------------------------------
+
+### Response Handling
+
+Source: https://data-star.dev/docs
+
+Details how Datastar handles different response content types from the backend.
+
+```APIDOC
+## Response Handling
+
+Datastar automatically handles various response content types:
+
+- **`text/event-stream`**: Processes standard Server-Sent Events (SSE) with Datastar SSE events.
+- **`text/html`**: Patches HTML elements into the DOM.
+- **`application/json`**: Patches JSON encoded signals.
+- **`text/javascript`**: Executes JavaScript code in the browser.
+
+### `text/html` Response Headers:
+
+When returning `text/html`, the server can optionally include the following headers to control patching behavior:
+
+- **`datastar-selector`** (`string`): A CSS selector specifying the target elements for patching.
+- **`datastar-mode`** (`string`): The patching mode. Options include `outer`, `inner`, `remove`, `replace`, `prepend`, `append`, `before`, `after`. Defaults to `outer`.
+- **`datastar-use-view-transition`** (`boolean`): Enables the use of the View Transition API for patching. Defaults to `false`.
+
+#### Example HTML Response Headers:
+
+```javascript
+response.headers.set('Content-Type', 'text/html');
+response.headers.set('datastar-selector', '#my-element');
+response.headers.set('datastar-mode', 'inner');
+response.body = '<p>New content</p>';
+```
+```
+
+--------------------------------
+
+### Including Datastar Aliased Bundle
+
+Source: https://data-star.dev/docs
+
+Shows how to include the Datastar framework with aliased attributes using a script tag pointing to a CDN.
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@1.0.0-RC.6/bundles/datastar-aliased.js"></script>
+```
+
+--------------------------------
+
+### Python SDK for SSE Patch Signals
+
+Source: https://data-star.dev/docs
+
+Example using the Datastar Python SDK with a Sanic web framework integration to send SSE patch signals. It shows how to yield SSE events and include asynchronous delays.
+
+```python
+1from datastar_py import ServerSentEventGenerator as SSE
+2from datastar_py.sanic import datastar_response
+3
+4@app.get('/do-you-read-me')
+5@datastar_response
+6async def open_doors(request):
+7    yield SSE.patch_signals({"hal": "Affirmative, Dave. I read you."})
+8    await asyncio.sleep(1)
+9    yield SSE.patch_signals({"hal": "..."})
+
+```
+
+--------------------------------
+
+### Patch Elements using SSE (C#)
+
+Source: https://data-star.dev/guide/getting_started
+
+This C# code demonstrates how to use Datastar's SDK to patch elements into the DOM via Server-Sent Events (SSE). It sets up Datastar as a service and then, within an HTTP GET handler, sends an initial message and updates it after a delay. This allows for dynamic UI updates in response to backend events.
+
+```csharp
+using StarFederation.Datastar.DependencyInjection;
+
+// Adds Datastar as a service
+builder.Services.AddDatastar();
+
+app.MapGet("/", async (IDatastarService datastarService) =>
+{
+    // Patches elements into the DOM.
+    await datastarService.PatchElementsAsync(@"<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>");
+
+    await Task.Delay(TimeSpan.FromSeconds(1));
+
+    await datastarService.PatchElementsAsync(@"<div id=\"hal\">Waiting for an order...</div>");
+});
+```
+
+--------------------------------
+
+### Content Security Policy Configuration
+
+Source: https://data-star.dev/docs
+
+This example demonstrates how to configure a Content Security Policy (CSP) to allow DataStar to evaluate expressions using the `Function()` constructor. The `unsafe-eval` directive must be included in the `script-src` directive.
+
+```html
+<meta http-equiv="Content-Security-Policy" 
+    content="script-src 'self' 'unsafe-eval';"
+>
+```
+
+--------------------------------
+
+### Python SSE Event Handling with Datastar
+
+Source: https://data-star.dev/docs
+
+This Python example shows how to use Datastar's `ServerSentEventGenerator` within a Litestar endpoint to return SSE events. It demonstrates returning a `DatastarResponse` containing both patched elements and signals.
+
+```python
+1from datastar_py import ServerSentEventGenerator as SSE
+2from datastar_py.litestar import DatastarResponse
+3
+4async def endpoint():
+5    return DatastarResponse([
+6        SSE.patch_elements('<div id="question">What do you put in a toaster?</div>'),
+7        SSE.patch_signals({"response": "", "answer": "bread"})
+8    ])
+```
+
+--------------------------------
+
+### Datastar Expressions with Signals and Element Access
+
+Source: https://data-star.dev/docs
+
+Illustrates the use of Datastar expressions within `data-*` attributes, demonstrating how to access signals (prefixed with `$`) and the element context (`el`).
+
+```html
+<div id="bar" data-text="$foo + el.id"></div>
+```
+
+--------------------------------
+
+### Datastar Expression: Multiple Statements
+
+Source: https://data-star.dev/docs
+
+This HTML example shows how to execute multiple statements within a single Datastar expression by separating them with a semicolon, useful for updating signals and triggering actions.
+
+```html
+<div data-signals:foo="1">
+    <button data-on:click="$landingGearRetracted = true; @post('/launch')">
+        Force launch
+    </button>
+</div>
+```
+
+--------------------------------
+
+### Clojure SDK for SSE Patch Signals
+
+Source: https://data-star.dev/docs
+
+Example using the Datastar Clojure SDK to generate SSE events for patching signals. It shows how to create an SSE response and send patch signals with a delay.
+
+```clojure
+ 1;; Import the SDK's api and your adapter
+ 2(require
+ 3  '[starfederation.datastar.clojure.api :as d*]
+ 4  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
+ 5
+ 6;; in a ring handler
+ 7(defn handler [request]
+ 8  ;; Create an SSE response
+ 9  (->sse-response request
+10                  {on-open
+11                   (fn [sse] 
+12                     ;; Patches signal.
+13                     (d*/patch-signals! sse "{hal: 'Affirmative, Dave. I read you.'}")
+14                     (Thread/sleep 1000)
+15                     (d*/patch-signals! sse "{hal: '...'}"))}))
+
+```
+
+--------------------------------
+
+### HTML for Nesting Signals in Datastar
+
+Source: https://data-star.dev/docs
+
+Demonstrates how to use HTML attributes to define nested signals in Datastar. It shows examples using dot-notation, object syntax, and two-way binding for attributes like `data-signals` and `data-bind`.
+
+```html
+1<div data-signals:foo.bar="1"></div>
+```
+
+```html
+1<div data-signals="{foo: {bar: 1}}"></div>
+```
+
+```html
+1<input data-bind:foo.bar />
+```
+
+```html
+1<div data-signals="{menu: {isOpen: {desktop: false, mobile: false}}}">
+2    <button data-on:click="@toggleAll({include: /^menu\.isOpen\./})">
+3        Open/close menu
+4    </button>
+5</div>
+```
+
+--------------------------------
+
+### Show Loading Indicator During Request with Data-Star
+
+Source: https://data-star.dev/docs
+
+This example uses the `data-indicator` attribute to manage a loading state. The `data-indicator:fetching` attribute sets a signal to true while a request is in flight and false otherwise. This signal can then be used with `data-show` or `data-class` to display loading indicators. It requires an element with `id='question'` and a button to trigger the request.
+
+```html
+<div id="question"></div>
+<button
+    data-on:click="@get('/actions/quiz')"
+    data-indicator:fetching
+>
+    Fetch a question
+</button>
+<div data-class:loading="$fetching" class="indicator"></div>
+```
+
+--------------------------------
+
+### Reading Nested Signals in Kotlin (Ktor)
+
+Source: https://data-star.dev/docs
+
+Provides an example of reading signals in Kotlin using the Ktor framework. It defines a `Signals` data class and uses `Json.decodeFromString` with a `jsonUnmarshaller` to parse the request body.
+
+```kotlin
+ 1@Serializable
+ 2data class Signals(
+ 3    val foo: String,
+ 4)
+ 5
+ 6val jsonUnmarshaller: JsonUnmarshaller<Signals> = { json -> Json.decodeFromString(json) }
+ 7
+ 8val request: Request =
+ 9    postRequest(
+10        body =
+11            """
+12            {
+13                "foo": "bar"
+14            }
+15            """.trimIndent()
+16)
+17
+18val signals = readSignals(request, jsonUnmarshaller)
+```
+
+--------------------------------
+
+### Install Datastar from local file
+
+Source: https://data-star.dev/guide
+
+If you prefer to host Datastar yourself, include the script from its local path after downloading or bundling it.
+
+```html
+<script type="module" src="/path/to/datastar.js"></script>
+```
+
+--------------------------------
+
+### Send Multiple SSE Events (Patch Elements and Signals)
+
+Source: https://data-star.dev/docs
+
+This showcases sending multiple Server-Sent Events (SSE) in a single response. It includes examples for patching HTML elements and sending patch signals, demonstrating the flexibility of SSE for real-time updates.
+
+```datastar
+(d*/patch-elements! sse "<div id=\"question\">...</div>")
+(d*/patch-elements! sse "<div id=\"instructions\">...</div>")
+(d*/patch-signals! sse "{answer: '...', prize: '...'}")
+```
+
+```csharp
+datastarService.PatchElementsAsync(@"<div id=\"question\">...</div>");
+datastarService.PatchElementsAsync(@"<div id=\"instructions\">...</div>");
+datastarService.PatchSignalsAsync(new { answer = "...", prize = "..." } );
+```
+
+```javascript
+sse.PatchElements(`<div id="question">...</div>`)
+sse.PatchElements(`<div id="instructions">...</div>`)
+sse.PatchSignals([]byte(`{answer: '...', prize: '...'}`))
+```
+
+```java
+generator.send(PatchElements.builder()
+    .data("<div id=\"question\">...</div>")
+    .build()
+);
+generator.send(PatchElements.builder()
+    .data("<div id=\"instructions\">...</div>")
+    .build()
+);
+generator.send(PatchSignals.builder()
+    .data("{\"answer\": \"...\", \"prize\": \"...\"}")
+    .build()
+);
+```
+
+```python
+generator.patchElements(
+    elements = """<div id=\"question\">...</div>""",
+)
+generator.patchElements(
+    elements = """<div id=\"instructions\">...</div>""",
+)
+generator.patchSignals(
+    signals = "{\"answer\": \"...\", \"prize\": \"...\"}",
+)
+```
+
+```php
+$sse->patchElements('<div id="question">...</div>');
+$sse->patchElements('<div id="instructions">...</div>');
+$sse->patchSignals(['answer' => '...', 'prize' => '...']);
+```
+
+```ruby
+return DatastarResponse([
+    SSE.patch_elements('<div id="question">...</div>'),
+    SSE.patch_elements('<div id="instructions">...</div>'),
+    SSE.patch_signals({"answer": "...", "prize": "..."})
+])
+```
+
+```ruby
+datastar.stream do |sse|
+  sse.patch_elements('<div id="question">...</div>')
+  sse.patch_elements('<div id="instructions">...</div>')
+  sse.patch_signals(answer: '...', prize: '...')
+end
+```
+
+```ruby
+yield PatchElements::new("<div id='question'>...</div>").into()
+yield PatchElements::new("<div id='instructions'>...</div>").into()
+yield PatchSignals::new("{answer: '...', prize: '...'}").into()
+```
+
+```javascript
+stream.patchElements('<div id="question">...</div>');
+stream.patchElements('<div id="instructions">...</div>');
+stream.patchSignals({'answer': '...', 'prize': '...'});
+```
+
+--------------------------------
+
+### data-init with Delay Modifier
+
+Source: https://data-star.dev/docs
+
+Demonstrates using the `__delay` modifier with `data-init` to introduce a delay before executing the initialization expression. This allows for controlled timing of initial actions.
+
+```html
+<div data-init__delay.500ms="$count = 1"></div>
+```
+
+--------------------------------
+
+### Kotlin SDK Example
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+Example implementation in Kotlin demonstrating how to read signals and generate Server-Sent Events for updating the UI.
+
+```APIDOC
+## Kotlin SDK Example
+
+### Description
+This Kotlin code snippet shows how to read signals from a request and use `ServerSentEventGenerator` to send patch events for elements and signals, or to remove elements.
+
+### Method
+N/A (Server-side logic)
+
+### Endpoint
+N/A (Server-side logic)
+
+### Parameters
+#### Query Parameters
+N/A
+
+#### Request Body
+N/A (Signals are read from request context)
+
+### Request Example
+```kotlin
+@Serializable
+data class OffsetSignals(
+    val offset: Int,
+)
+
+val signals = 
+    readSignals(
+        request,
+        { json: String -> Json.decodeFromString<OffsetSignals>(json) },
+    )
+
+val max = 5
+val limit = 1
+val offset = signals.offset
+
+val generator = ServerSentEventGenerator(response)
+
+// Logic to patch elements, signals, or remove elements based on offset
+// (Illustrative, actual implementation details may vary)
+if (offset < max) {
+    // Example: Patching new item
+    // generator.patchElements(htmlElement, PatchMode.Append, "#list")
+    // Example: Patching signals
+    // generator.patchSignals(OffsetSignals(offset + limit))
+} else {
+    // Example: Removing button
+    // generator.removeElement("#load-more")
+}
+```
+
+### Response
+#### Success Response (200)
+Server-Sent Events (SSE) containing `datastar-patch-elements` and `datastar-patch-signals` events.
+
+#### Response Example
+```
+# See Backend Response section for SSE examples
+```
+```
+
+--------------------------------
+
+### Trigger GET Request on Click with Data-Star
+
+Source: https://data-star.dev/docs
+
+This code illustrates how to use the `data-on:click` attribute to trigger a `GET` request to a specified endpoint when an element is clicked. It also shows how to bind signals and computed properties for dynamic UI updates. The server response can modify DOM elements and signals.
+
+```html
+<div
+    data-signals="{response: '', answer: ''}"
+    data-computed:correct="$response.toLowerCase() == $answer"
+>
+    <div id="question"></div>
+    <button data-on:click="@get('/actions/quiz')">Fetch a question</button>
+    <button
+        data-show="$answer != ''"
+        data-on:click="$response = prompt('Answer:') ?? ''"
+    >
+        BUZZ
+    </button>
+    <div data-show="$response != ''">
+        You answered “<span data-text="$response"></span>”.
+        <span data-show="$correct">That is correct ✅</span>
+        <span data-show="!$correct">
+        The correct answer is “<span data-text="$answer"></span>” 🤷
+        </span>
+    </div>
+</div>
+```
+
+--------------------------------
+
+### Go SDK Example
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+Example implementation in Go using the Datastar SDK for handling HTTP requests and sending Server-Sent Events.
+
+```APIDOC
+## Go SDK Example
+
+### Description
+This Go code demonstrates how to use the Datastar SDK to handle incoming requests, read signals, and send SSE events to patch elements, append content, and update signals or remove elements.
+
+### Method
+GET
+
+### Endpoint
+`/how_tos/load_more/data` (or similar, triggered by client)
+
+### Parameters
+#### Query Parameters
+N/A
+
+#### Request Body
+N/A (Signals are read from request context)
+
+### Request Example
+```go
+import (
+    "fmt"
+    "net/http"
+
+    "github.com/go-chi/chi/v5"
+    "github.com/starfederation/datastar-go/datastar"
+)
+
+type OffsetSignals struct {
+    Offset int `json:"offset"`
+}
+
+signals := &OffsetSignals{}
+if err := datastar.ReadSignals(r, signals); err != nil {
+    http.Error(w, err.Error(), http.StatusBadRequest)
+}
+
+max := 5
+limit := 1
+offset := signals.Offset
+
+sse := datastar.NewSSE(w, r)
+
+if offset < max {
+    newOffset := offset + limit
+    sse.PatchElements(fmt.Sprintf(`<div>Item %d</div>`, newOffset),
+        datastar.WithSelectorID("list"),
+        datastar.WithModeAppend(),
+    )
+    if newOffset < max {
+        sse.PatchSignals([]byte(fmt.Sprintf(`{offset: %d}`, newOffset)))
+    } else {
+        sse.RemoveElements(`#load-more`)
+    }
+}
+```
+
+### Response
+#### Success Response (200)
+Server-Sent Events (SSE) containing `datastar-patch-elements` and `datastar-patch-signals` events.
+
+#### Response Example
+```
+# See Backend Response section for SSE examples
+```
+```
+
+--------------------------------
+
+### C#: Registering and Using Datastar Service for DOM Patching
+
+Source: https://data-star.dev/docs
+
+This C# code demonstrates how to register Datastar as a service and then use its `PatchElementsAsync` method to update the DOM. It simulates sending an initial message and then updating it after a delay.
+
+```csharp
+1using StarFederation.Datastar.DependencyInjection;
+2
+3// Adds Datastar as a service
+4builder.Services.AddDatastar();
+5
+6app.MapGet("/", async (IDatastarService datastarService) =>
+7{
+8    // Patches elements into the DOM.
+9    await datastarService.PatchElementsAsync(@"<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>");
+10
+11    await Task.Delay(TimeSpan.FromSeconds(1));
+12
+13    await datastarService.PatchElementsAsync(@"<div id=\"hal\">Waiting for an order...</div>");
+14});
+
+```
+
+--------------------------------
+
+### Reading Signals in Python (FastAPI)
+
+Source: https://data-star.dev/docs
+
+Shows how to read signals in Python using FastAPI and the Datastar library. It utilizes the `@datastar_response` decorator and the `read_signals` utility function to get signal data from the request.
+
+```python
+1from datastar_py.fastapi import datastar_response, read_signals
+2
+3@app.get("/updates")
+4@datastar_response
+5async def updates(request: Request):
+6    # Retrieve a dictionary with the current state of the signals from the frontend
+7    signals = await read_signals(request)
+```
+
+--------------------------------
+
+### data-init for Initialization Expressions
+
+Source: https://data-star.dev/docs
+
+Explains the `data-init` attribute, which executes an expression upon initialization. This can occur during page load, DOM patching, or attribute modification, useful for setting initial states.
+
+```html
+<div data-init="$count = 1"></div>
+```
+
+--------------------------------
+
+### Server-Sent Events (SSE) for Datastar Patch Elements with Script
+
+Source: https://data-star.dev/docs
+
+An example of Server-Sent Events (SSE) formatted for Datastar. This specifically shows how to send a 'datastar-patch-elements' event containing HTML, including a script tag, to be rendered and executed on the client.
+
+```text
+event: datastar-patch-elements
+data: elements <div id="hal">
+data:     <script>alert('This mission is too important for me to allow you to jeopardize it.')</script>
+data: </div>
+
+```
+
+--------------------------------
+
+### Patch DOM Elements with PHP ServerSentEventGenerator
+
+Source: https://data-star.dev/guide/getting_started
+
+Demonstrates patching HTML elements into the DOM using the PHP ServerSentEventGenerator class. It sends an initial message, waits for 1 second, and then sends a subsequent message to update the same element.
+
+```php
+use starfederation\datastar\ServerSentEventGenerator;
+
+// Creates a new `ServerSentEventGenerator` instance.
+$sse = new ServerSentEventGenerator();
+
+// Patches elements into the DOM.
+$sse->patchElements(
+    '<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>'
+);
+
+sleep(1);
+
+$sse->patchElements(
+    '<div id="hal">Waiting for an order...</div>'
+);
+```
+
+--------------------------------
+
+### Patching Elements and Signals
+
+Source: https://data-star.dev/docs
+
+Demonstrates how to patch HTML elements into the DOM and update frontend signals using the `stream.patchElements()` and `stream.patchSignals()` functions.
+
+```APIDOC
+## PATCH /actions/quiz (Simulated)
+
+### Description
+This endpoint is simulated via frontend actions. It's triggered by a user click and demonstrates patching HTML elements into the DOM and updating frontend signals. The `stream.patchElements()` function updates a specific DOM element, and `stream.patchSignals()` updates signal values.
+
+### Method
+GET (Triggered by frontend action)
+
+### Endpoint
+/actions/quiz
+
+### Parameters
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```javascript
+// Frontend JavaScript triggering the action
+stream.patchElements(`<div id="question">What do you put in a toaster?</div>`);
+stream.patchSignals({'response':  '', 'answer': 'bread'});
+```
+
+### Response
+#### Success Response (200)
+Signals and DOM elements are updated directly by the frontend functions. The server's response is interpreted as events to modify the DOM and signals.
+
+#### Response Example
+```json
+// Example of server-sent events that would trigger frontend updates
+// These are not direct JSON responses but instructions for the frontend.
+{
+  "type": "patch_elements",
+  "payload": {
+    "html": "<div id=\"question\">What do you put in a toaster?</div>"
+  }
+}
+{
+  "type": "patch_signals",
+  "payload": {
+    "signals": {
+      "response": "",
+      "answer": "bread"
+    }
+  }
+}
+```
+```
+
+--------------------------------
+
+### Clojure SDK Example
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+Example implementation in Clojure using the Datastar SDK to handle the 'load more' logic, including patching elements and signals.
+
+```APIDOC
+## Clojure SDK Example
+
+### Description
+This Clojure code demonstrates how to handle the `load_more` request. It reads the current offset, patches the new item into the `#list` container using append mode, and either patches the updated offset signal or removes the load more button if the maximum offset is reached.
+
+### Method
+POST
+
+### Endpoint
+`/how_tos/load_more/data` (or similar, triggered by client)
+
+### Parameters
+#### Query Parameters
+N/A
+
+#### Request Body
+N/A (Signals are read from request headers/context)
+
+### Request Example
+```clojure
+(require
+  '[starfederation.datastar.clojure.api :as d*]
+  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]]
+  '[some.hiccup.library :refer [html]]
+  '[some.json.library :refer [read-json-str write-json-str]]))
+
+(def max-offset 5)
+
+(defn handler [ring-request]
+  (->sse-response ring-request
+    {on-open
+     (fn [sse]
+       (let [d*-signals (-> ring-request d*/get-signals read-json-str)
+             offset (get d*-signals "offset")
+             limit 1
+             new-offset (+ offset limit)]
+
+         (d*/patch-elements! sse
+                             (html [:div "Item " new-offset])
+                             {d*/selector   "#list"
+                              d*/merge-mode d*/mm-append})
+
+         (if (< new-offset max-offset)
+           (d*/patch-signals! sse (write-json-str {"offset" new-offset}))
+           (d*/remove-fragment! sse "#load-more")
+
+           (d*/close-sse! sse)))}
+    ))
+```
+
+### Response
+#### Success Response (200)
+Server-Sent Events (SSE) containing `datastar-patch-elements` and `datastar-patch-signals` events.
+
+#### Response Example
+```
+# See Backend Response section for SSE examples
+```
+```
+
+--------------------------------
+
+### Generate SSE for Patching Elements (Kotlin)
+
+Source: https://data-star.dev/guide/getting_started
+
+This Kotlin code shows how to use Datastar's `ServerSentEventGenerator` to patch elements into the DOM via SSE. It sends an initial HTML element and then updates it after a delay, illustrating real-time DOM manipulation. This approach is effective for dynamic user interfaces.
+
+```kotlin
+val generator = ServerSentEventGenerator(response)
+
+generator.patchElements(
+    elements = """<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>""",
+)
+
+Thread.sleep(ONE_SECOND)
+
+
+```
+
+--------------------------------
+
+### Data Indicator for Loading States
+
+Source: https://data-star.dev/docs
+
+Shows how to use the `data-indicator` attribute to manage loading states. The `data-indicator` attribute sets a signal to `true` while a request is in flight, allowing for visual loading indicators.
+
+```APIDOC
+## GET /actions/quiz (with Loading Indicator)
+
+### Description
+This endpoint demonstrates using the `data-indicator` attribute to visually indicate when a request is in progress. The `data-indicator:<signal_name>` attribute on an element will set the specified signal to `true` during the request and `false` afterwards. This signal can then be used to conditionally display loading indicators.
+
+### Method
+GET
+
+### Endpoint
+/actions/quiz
+
+### Parameters
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```html
+<button
+    data-on:click="@get('/actions/quiz')"
+    data-indicator:fetching
+>
+    Fetch a question
+</button>
+<div data-class:loading="$fetching" class="indicator"></div>
+```
+
+### Response
+#### Success Response (200)
+Upon successful completion, the `fetching` signal will be set to `false`, and any element bound to this signal (e.g., via `data-class:loading`) will update accordingly.
+
+#### Response Example
+```json
+// Server response for a successful request (content depends on the action)
+{
+  "message": "Question fetched successfully"
+}
+```
+```
+
+--------------------------------
+
+### Configure Datastar GET Request with Options
+
+Source: https://data-star.dev/reference/actions
+
+This example demonstrates how to configure a Datastar GET request using various options. It includes signal filtering, custom headers, enabling open-when-hidden, and disabling request cancellation. This is useful for fine-tuning network requests and their behavior.
+
+```html
+<button data-on:click="@get('/endpoint', {
+    filterSignals: {include: /^foo\./},
+    headers: {
+        'X-Csrf-Token': 'JImikTbsoCYQ9oGOcvugov0Awc5LbqFsZW6ObRCxuq',
+    },
+    openWhenHidden: true,
+    requestCancellation: 'disabled',
+})" data-on-click="@get('/endpoint', {
+    filterSignals: {include: /^foo\./},
+    headers: {
+        'X-Csrf-Token': 'JImikTbsoCYQ9oGOcvugov0Awc5LbqFsZW6ObRCxuq',
+    },
+    openWhenHidden: true,
+    requestCancellation: 'disabled',
+})"></button>
+```
+
+--------------------------------
+
+### SSE Event: datastar-patch-signals
+
+Source: https://data-star.dev/docs
+
+Handles patching of signals into the existing signals on the page. Allows for conditional updates and setting signal values.
+
+```APIDOC
+## SSE Event: datastar-patch-signals
+
+### Description
+Patches signals into the existing signals on the page. The `onlyIfMissing` directive controls whether to update signals only if they do not already exist. The `signals` directive expects a valid `data-signals` attribute value.
+
+### Event Type
+`datastar-patch-signals`
+
+### Data Directives
+- **`onlyIfMissing <boolean>`**: If true, updates signals only if a signal with that name does not yet exist. Defaults to `false`.
+- **`signals <json_object>`**: A JSON object representing the signals to patch, where keys are signal names and values are their new values. Setting a value to `null` removes the signal.
+
+### Request Example (Patching Signals)
+```
+event: datastar-patch-signals
+data: signals {foo: 1, bar: 2}
+```
+
+### Request Example (Removing Signals)
+```
+event: datastar-patch-signals
+data: signals {foo: null, bar: null}
+```
+
+### Request Example (Conditional Patching)
+```
+event: datastar-patch-signals
+data: onlyIfMissing true
+data: signals {foo: 1, bar: 2}
+```
+
+### Response
+N/A (This is a client-side event triggered by the server).
+```
+
+--------------------------------
+
+### Set Multiple HTML Attributes using data-attr
+
+Source: https://data-star.dev/docs
+
+This example shows how to use the `data-attr` attribute to set multiple HTML attributes on an element simultaneously. It accepts a key-value pair object where keys are attribute names and values are Datastar expressions.
+
+```html
+<div data-attr="{title: $foo, disabled: $bar}"></div>
+```
+
+--------------------------------
+
+### Request Cancellation Behavior
+
+Source: https://data-star.dev/docs
+
+Explains the default request cancellation behavior and how to control it.
+
+```APIDOC
+## Request Cancellation
+
+By default, Datastar automatically cancels any ongoing request on the same element when a new request is initiated. This prevents conflicts from rapid user interactions.
+
+### Default Behavior Example:
+
+```html
+<!-- Clicking this button multiple times will cancel previous requests (default behavior) -->
+<button data-on:click="@get('/slow-endpoint')">Load Data</button>
+```
+
+This cancellation is element-specific; requests on different elements can run concurrently.
+
+### Controlling Request Cancellation:
+
+You can modify this behavior using the `requestCancellation` option:
+
+- **Allow Concurrent Requests:**
+```html
+<!-- Allow concurrent requests (no automatic cancellation) -->
+<button data-on:click="@get('/endpoint', {requestCancellation: 'disabled'})">Allow Multiple</button>
+```
+
+- **Custom Abort Controller:**
+```html
+<div data-signals:controller="new AbortController()">
+    <button data-on:click="@get('/endpoint', {requestCancellation: $controller})">Start Request</button>
+    <button data-on:click="$controller.abort()">Cancel Request</button>
+</div>
+```
+```
+
+--------------------------------
+
+### C# SDK Example
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+Example implementation in C# using the Datastar SDK for ASP.NET Core to manage the 'load more' functionality.
+
+```APIDOC
+## C# SDK Example
+
+### Description
+This C# code demonstrates a minimal ASP.NET Core application using Datastar. The `/more` endpoint reads signals, patches new elements with append mode, and updates signals or removes the button based on the offset.
+
+### Method
+GET
+
+### Endpoint
+`/more`
+
+### Parameters
+#### Query Parameters
+N/A
+
+#### Request Body
+N/A (Signals are read from request context)
+
+### Request Example
+```csharp
+using System.Text.Json;
+using StarFederation.Datastar;
+using StarFederation.Datastar.DependencyInjection;
+
+public class Program
+{
+    public record OffsetSignals(int offset);
+
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+        builder.Services.AddDatastar();
+        var app = builder.Build();
+
+        app.MapGet("/more", async (IDatastarService datastarService) =>
+        {
+            var max = 5;
+            var limit = 1;
+            var signals = await datastarService.ReadSignalsAsync<OffsetSignals>();
+            var offset = signals.offset;
+            if (offset < max)
+            {
+                var newOffset = offset + limit;
+                await datastarService.PatchElementsAsync($"<div>Item {newOffset}</div>", new()
+                {
+                    Selector = "#list",
+                    PatchMode = PatchElementsMode.Append,
+                });
+                if (newOffset < max)
+                    await datastarService.PatchSignalsAsync(new OffsetSignals(newOffset));
+                else
+                    await datastarService.RemoveElementAsync("#load-more");
+            }
+        });
+
+        app.Run();
+    }
+}
+```
+
+### Response
+#### Success Response (200)
+HTTP 200 OK with response body handled by Datastar client-side logic based on signals and patched elements.
+
+#### Response Example
+N/A (Response is typically SSE or handled via Datastar's client-side state management)
+```
+
+--------------------------------
+
+### Reading Signals in PHP
+
+Source: https://data-star.dev/docs
+
+Demonstrates how to read all signals from an incoming request in PHP using the `ServerSentEventGenerator::readSignals()` helper function provided by Datastar.
+
+```php
+1use starfederation\datastar\ServerSentEventGenerator;
+2
+3// Reads all signals from the request.
+4$signals = ServerSentEventGenerator::readSignals();
+```
+
+--------------------------------
+
+### Generate SSE for Patching Elements (Java)
+
+Source: https://data-star.dev/guide/getting_started
+
+This Java snippet demonstrates generating Server-Sent Events (SSE) to patch elements into the DOM using Datastar's Java library. It initializes an SSE generator and then sends an initial patch, followed by an update after a one-second delay, facilitating dynamic content updates.
+
+```java
+import starfederation.datastar.utils.ServerSentEventGenerator;
+
+// Creates a new `ServerSentEventGenerator` instance.
+AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
+ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
+
+// Patches elements into the DOM.
+generator.send(PatchElements.builder()
+    .data("<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
+    .build()
+);
+
+Thread.sleep(1000);
+
+generator.send(PatchElements.builder()
+    .data("<div id=\"hal\">Waiting for an order...</div>")
+    .build()
+);
+```
+
+--------------------------------
+
+### Datastar Declarative Signals and Event Handling (HTML)
+
+Source: https://data-star.dev/docs
+
+This snippet demonstrates Datastar's declarative approach to managing frontend state and user interactions. It uses `data-signals` to initialize reactive variables, `data-on:click` to trigger actions, and `data-text` to display signal values, enabling dynamic UI updates based on user input.
+
+```html
+<div data-signals:hal="'...'">
+    <button data-on:click="$hal = 'Affirmative, Dave. I read you.'">
+        HAL, do you read me?
+    </button>
+    <div data-text="$hal"></div>
+</div>
+```
+
+--------------------------------
+
+### Install Datastar using CDN
+
+Source: https://data-star.dev/guide
+
+Include Datastar in your project by adding this script tag to your HTML. This fetches the latest version from the CDN.
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@1.0.0-RC.6/bundles/datastar.js"></script>
+```
+
+--------------------------------
+
+### Ruby SSE Event Handling with Datastar
+
+Source: https://data-star.dev/docs
+
+This Ruby code demonstrates how to use the Datastar gem to stream SSE events within a Rack handler. It shows how to instantiate `Datastar` and use the `stream` method to send patched elements and signals.
+
+```ruby
+1require 'datastar'
+2
+3# Create a Datastar::Dispatcher instance
+4
+datastar = Datastar.new(request:, response:)
+5
+6# In a Rack handler, you can instantiate from the Rack env
+7# datastar = Datastar.from_rack_env(env)
+8
+9# Start a streaming response
+10datastar.stream do |sse|
+11  # Patches elements into the DOM
+12  sse.patch_elements %(<div id="question">What do you put in a toaster?</div>)
+13
+14  # Patches signals
+15  sse.patch_signals(response: '', answer: 'bread')
+16end
+```
+
+--------------------------------
+
+### Patch Elements using Server-Sent Events (SSE)
+
+Source: https://data-star.dev/guide/getting_started
+
+This code illustrates how to send Server-Sent Events (SSE) to patch multiple HTML elements into the DOM. It shows how to send an initial response and then update it after a delay, demonstrating real-time content updates. The `datastar-patch-elements` event type is used for this purpose.
+
+```sse
+event: datastar-patch-elements
+data: elements <div id="hal">
+    I’m sorry, Dave. I’m afraid I can’t do that.
+</div>
+
+event: datastar-patch-elements
+data: elements <div id="hal">
+    Waiting for an order...
+</div>
+
+
+```
+
+--------------------------------
+
+### Reading Nested Signals in Go
+
+Source: https://data-star.dev/docs
+
+Illustrates how to read nested signals in Go using the `datastar-go` library. It defines a `Signals` struct with a nested `Foo` struct and uses `datastar.ReadSignals` to parse the incoming request.
+
+```go
+ 1import ("github.com/starfederation/datastar-go/datastar")
+ 2
+ 3type Signals struct {
+ 4    Foo struct {
+ 5        Bar string `json:"bar"`
+ 6    } `json:"foo"`
+ 7}
+ 8
+ 9signals := &Signals{}
+10if err := datastar.ReadSignals(request, signals); err != nil {
+11    http.Error(w, err.Error(), http.StatusBadRequest)
+12    return
+13}
+```
+
+--------------------------------
+
+### Java: Generating SSE Events for Datastar DOM Patching (JSP)
+
+Source: https://data-star.dev/docs
+
+This Java code example demonstrates using Datastar's `ServerSentEventGenerator` within a JSP context to send SSE events for patching elements. It shows how to send an initial HTML update and then a subsequent update after a delay.
+
+```java
+1import starfederation.datastar.utils.ServerSentEventGenerator;
+2
+3// Creates a new `ServerSentEventGenerator` instance.
+4AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
+5ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
+6
+7// Patches elements into the DOM.
+8generator.send(PatchElements.builder()
+9    .data("<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
+10    .build()
+11);
+12
+13Thread.sleep(1000);
+14
+15generator.send(PatchElements.builder()
+16    .data("<div id=\"hal\">Waiting for an order...</div>")
+17    .build()
+18);
+
+```
+
+--------------------------------
+
+### Datastar: Patching Elements with HTML Content-Type
+
+Source: https://data-star.dev/docs
+
+This example shows how Datastar patches HTML elements into the DOM when the backend response has a 'text/html' content-type. The morphing strategy updates existing DOM elements based on their IDs, ensuring efficient rendering.
+
+```html
+1<div id="hal">
+2    I’m sorry, Dave. I’m afraid I can’t do that.
+3</div>
+```
+
+--------------------------------
+
+### Generate SSE for Patching Elements (Go)
+
+Source: https://data-star.dev/guide/getting_started
+
+This Go snippet shows how to generate Server-Sent Events (SSE) for patching elements into the DOM using Datastar's Go SDK. It creates an SSE generator, sends an initial HTML response, waits for a second, and then sends an updated response. This enables real-time UI modifications.
+
+```go
+import (
+	"github.com/starfederation/datastar-go/datastar"
+	time
+)
+
+// Creates a new `ServerSentEventGenerator` instance.
+sse := datastar.NewSSE(w,r)
+
+// Patches elements into the DOM.
+sse.PatchElements(
+    `<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>`
+)
+
+time.Sleep(1 * time.Second)
+
+sse.PatchElements(
+    `<div id="hal">Waiting for an order...</div>`
+)
+```
+
+--------------------------------
+
+### C# SSE Event Handling with Datastar
+
+Source: https://data-star.dev/docs
+
+This C# code demonstrates how to add Datastar as a service and handle SSE requests using `MapGet`. It shows asynchronous patching of DOM elements and signals within an ASP.NET Core application.
+
+```csharp
+1using StarFederation.Datastar.DependencyInjection;
+2
+3// Adds Datastar as a service
+4builder.Services.AddDatastar();
+5
+6app.MapGet("/", async (IDatastarService datastarService) =>
+7{
+8    // Patches elements into the DOM.
+9    await datastarService.PatchElementsAsync(@"<div id=\"question\">What do you put in a toaster?</div>");
+10
+11    // Patches signals.
+12    await datastarService.PatchSignalsAsync(new { response = "", answer = "bread" });
+13});
+```
+
+--------------------------------
+
+### Server-Sent Events (SSE) for Appending Script to Body
+
+Source: https://data-star.dev/docs
+
+This SSE example demonstrates how to use Datastar's 'append' mode to insert a script tag directly into the document's body. This is useful for executing scripts that don't require specific element patching.
+
+```text
+event: datastar-patch-elements
+data: mode append
+data: selector body
+data: elements <script>alert('This mission is too important for me to allow you to jeopardize it.')</script>
+
+```
+
+--------------------------------
+
+### GET /redirect (Go with Redirect Helper)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Handles a GET request to initiate a redirect after patching elements using Server-Sent Events and a redirect helper.
+
+```APIDOC
+## GET /redirect
+
+### Description
+Handles a redirect request using Server-Sent Events. It patches elements to show a redirect message, waits for 3 seconds, and then calls a `Redirect` method to navigate the client to the \"/guide\" page.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```go
+sse := datastar.NewSSE(w, r)
+sse.PatchElements(`
+    <div id="indicator">Redirecting in 3 seconds...</div>
+`)
+time.Sleep(3 * time.Second)
+sse.Redirect("/guide")
+```
+
+### Response
+#### Success Response (200)
+A successful response initiates the SSE stream for UI updates and redirection.
+
+#### Response Example
+(No specific JSON response, SSE stream is used)
+```
+
+--------------------------------
+
+### GET /redirect (C# with Redirect Helper)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Handles a GET request to initiate a redirect using a helper method after patching elements.
+
+```APIDOC
+## GET /redirect
+
+### Description
+Handles a GET request to redirect the client. It first updates the UI by patching elements to display a message, then uses a `Redirect` helper method to navigate the client to the specified URL after a short delay.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```csharp
+await datastarService.PatchElementsAsync("<div id=\"indicator\">Redirecting in 3 seconds...</div>");
+await Task.Delay(TimeSpan.FromSeconds(3));
+await datastarService.Redirect("/guide");
+```
+
+### Response
+#### Success Response (200)
+Returns an HTTP 200 OK response, and the client will be redirected after a delay.
+
+#### Response Example
+(No specific JSON response body, the client is redirected)
+```
+
+--------------------------------
+
+### GET /redirect (C#)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Handles a GET request to initiate a redirect after patching elements and executing a script.
+
+```APIDOC
+## GET /redirect
+
+### Description
+Initiates a redirect to a new URL after updating the client's UI. It first patches specific HTML elements to display a message, waits for a few seconds, and then executes a script to perform the redirect.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```csharp
+await datastarService.PatchElementsAsync("<div id=\"indicator\">Redirecting in 3 seconds...</div>");
+await Task.Delay(TimeSpan.FromSeconds(3));
+await datastarService.ExecuteScriptAsync("setTimeout(() => window.location = \"/guide\");");
+```
+
+### Response
+#### Success Response (200)
+Returns an HTTP 200 OK response, and the client will be redirected after a delay.
+
+#### Response Example
+(No specific JSON response body, the client is redirected)
+```
+
+--------------------------------
+
+### Display Initial State with Data Signals
 
 Source: https://data-star.dev/examples/on_signal_patch
 
-This HTML snippet demonstrates the usage of the `data-on-signal-patch` plugin. It includes buttons to update a message and a counter, clear changes, and display current values. It also shows how to capture and display signal patches, both all changes and counter-specific changes, using `data-on-signal-patch-filter`.
+This HTML snippet demonstrates the initial setup of a Data-Star application, defining initial signal values for counter and message directly within the `data-signals` attribute. It also includes buttons to trigger updates and displays for current values.
 
 ```html
 <div data-signals="{counter: 0, message: 'Hello World', allChanges: [], counterChanges: []}">
     <div class="actions">
-        <button data-on-click="$message = `Updated: ${performance.now().toFixed(2)}`">
+        <button data-on:click="$message = `Updated: ${performance.now().toFixed(2)}`">
             Update Message
         </button>
-        <button data-on-click="$counter++">
+        <button data-on:click="$counter++">
             Increment Counter
         </button>
         <button
             class="error"
-            data-on-click="$allChanges.length = 0; $counterChanges.length = 0"
+            data-on:click="$allChanges.length = 0; $counterChanges.length = 0"
         >
             Clear All Changes
         </button>
@@ -1498,62 +1897,495 @@ This HTML snippet demonstrates the usage of the `data-on-signal-patch` plugin. I
 
 --------------------------------
 
-### C# Backend for Real-time Time Updates
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-A C# example using `StarFederation.Datastar.DependencyInjection` to create an endpoint that patches elements with the current time. It utilizes `IDatastarService` for patching.
-
-```csharp
-using StarFederation.Datastar.DependencyInjection;
-
-app.MapGet("/endpoint", async (IDatastarService datastarService) =>
-{
-    var currentTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-    await datastarService.PatchElementsAsync($"\
-        <div id=\"time\" data-on-interval__duration.5s=\"@get('/endpoint')\">\
-            {currentTime}\
-        </div>
-    ");
-});
-```
-
---------------------------------
-
-### Asynchronous External Scripts with Custom Events (JavaScript)
+### Rust SSE Event Handling with Datastar
 
 Source: https://data-star.dev/docs
 
-This example shows how to handle asynchronous operations in external scripts by dispatching custom events. Datastar does not await asynchronous calls within expressions. The `myfunction` is asynchronous and dispatches a 'mycustomevent' with the result in `evt.detail.value`.
+This Rust code snippet shows how to generate SSE events using Datastar's prelude and the `async_stream` crate. It demonstrates yielding `PatchElements` and `PatchSignals` within a stream.
 
-```html
-<div data-signals-result>
-    <input data-bind-foo 
-           data-on-input="myfunction(el, $foo)"
-           data-on-mycustomevent__window="$result = evt.detail.value"
-    >
-    <span data-text="$result"></span>
-</div>
-```
-
-```javascript
-async function myfunction(element, data) {
-    const value = await new Promise((resolve) => {
-        setTimeout(() => resolve(`You entered: ${data}`), 1000);
-    });
-    element.dispatchEvent(
-        new CustomEvent('mycustomevent', {detail: {value}})
-    );
-}
+```rust
+1use datastar::prelude::*;
+2use async_stream::stream;
+3
+4Sse(stream! {
+5    // Patches elements into the DOM.
+6    yield PatchElements::new("<div id='question'>What do you put in a toaster?</div>").into();
+7
+8    // Patches signals.
+9    yield PatchSignals::new("{response: '', answer: 'bread'}").into();
+10})
 ```
 
 --------------------------------
 
-### Backend Redirect with Ruby Server-Sent Events
+### PHP SSE Event Handling with Datastar
+
+Source: https://data-star.dev/docs
+
+This PHP code demonstrates using Datastar's `ServerSentEventGenerator` to send SSE events, including patching DOM elements and signals. It shows how to initialize the generator and send data.
+
+```php
+1use starfederation\datastar\ServerSentEventGenerator;
+2
+3// Creates a new `ServerSentEventGenerator` instance.
+4$sse = new ServerSentEventGenerator();
+5
+6// Patches elements into the DOM.
+7$sse->patchElements(
+8    '<div id="question">What do you put in a toaster?</div>'
+9);
+10
+11// Patches signals.
+12$sse->patchSignals(['response' => '', 'answer' => 'bread']);
+```
+
+--------------------------------
+
+### Implement SSE Stream with Rust
+
+Source: https://data-star.dev/docs
+
+This Rust code snippet demonstrates how to create a Server-Sent Events (SSE) stream using the `async_stream` crate. It yields patch signals at intervals, simulating real-time updates.
+
+```rust
+use async_stream::stream;
+use datastar::prelude::*;
+use std::thread;
+use std::time::Duration;
+
+Sse(stream! {
+    // Patches signals.
+    yield PatchSignals::new("{hal: 'Affirmative, Dave. I read you.'}").into();
+
+    thread::sleep(Duration::from_secs(1));
+    
+    yield PatchSignals::new("{hal: '...'} ").into();
+})
+```
+
+--------------------------------
+
+### Kotlin SSE Event Handling with Datastar
+
+Source: https://data-star.dev/docs
+
+This Kotlin snippet shows how to instantiate and use the `ServerSentEventGenerator` to patch elements and signals. It provides a concise way to handle SSE responses in Kotlin applications.
+
+```kotlin
+1val generator = ServerSentEventGenerator(response)
+2
+generator.patchElements(
+3    elements = """<div id=\"question\">What do you put in a toaster?</div>""",
+4)
+5
+generator.patchSignals(
+6    signals = "{"response": "", "answer": "bread"}",
+7)
+```
+
+--------------------------------
+
+### data-json-signals for Reactive JSON Output
+
+Source: https://data-star.dev/docs
+
+Shows how `data-json-signals` can be used to display a reactive, JSON stringified version of signals within an element's text content, primarily for debugging purposes.
+
+```html
+<!-- Display all signals -->
+<pre data-json-signals></pre>
+```
+
+```html
+<!-- Only show signals that include "user" in their path -->
+<pre data-json-signals="{include: /user/}"></pre>
+
+<!-- Show all signals except those ending with "temp" -->
+<pre data-json-signals="{exclude: /temp$/}"></pre>
+
+<!-- Combine include and exclude filters -->
+<pre data-json-signals="{include: /^app/, exclude: /password/}"></pre>
+```
+
+--------------------------------
+
+### Generate SSE for Patching Elements (Clojure)
+
+Source: https://data-star.dev/guide/getting_started
+
+This Clojure snippet shows how to generate Server-Sent Events (SSE) to patch elements into the DOM using Datastar's SDK. It demonstrates sending an initial response with a message and then updating it after a short delay. This is typically used within a Ring handler.
+
+```clojure
+;; Import the SDK's api and your adapter
+(require
+ '[starfederation.datastar.clojure.api :as d*]
+ '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
+
+;; in a ring handler
+(defn handler [request]
+ ;; Create an SSE response
+ (->sse-response request
+                 {on-open
+                  (fn [sse]
+                    ;; Patches elements into the DOM
+                    (d*/patch-elements! sse
+                                        "<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
+                    (Thread/sleep 1000)
+
+                    (d*/patch-elements! sse
+                                        "<div id=\"hal\">Waiting for an order...</div>"))})
+```
+
+--------------------------------
+
+### GET /redirect (Go)
 
 Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
 
-This Ruby snippet illustrates performing a backend redirect using DataStar. It utilizes a stream to first patch an indicator element and then issue a redirect command after a 3-second delay.
+Handles a GET request to initiate a redirect after patching elements and executing a script using Server-Sent Events.
+
+```APIDOC
+## GET /redirect
+
+### Description
+Handles a redirect request by first patching elements on the client-side to show a "Redirecting..." message. After a 3-second delay, it executes a JavaScript script to navigate the user to the "/guide" page.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```go
+sse := datastar.NewSSE(w, r)
+sse.PatchElements(`
+    <div id="indicator">Redirecting in 3 seconds...</div>
+`)
+time.Sleep(3 * time.Second)
+sse.ExecuteScript(`
+    setTimeout(() => window.location = "/guide")
+`)
+```
+
+### Response
+#### Success Response (200)
+A successful response initiates the SSE stream for UI updates and redirection.
+
+#### Response Example
+(No specific JSON response, SSE stream is used)
+```
+
+--------------------------------
+
+### Go SSE Event Handling with Datastar
+
+Source: https://data-star.dev/docs
+
+This Go code snippet shows how to create a `ServerSentEventGenerator` instance and use it to patch elements and signals into the DOM. It's designed for handling SSE requests within a Go web server.
+
+```go
+1import ("github.com/starfederation/datastar-go/datastar")
+2
+3// Creates a new `ServerSentEventGenerator` instance.
+4sse := datastar.NewSSE(w,r)
+5
+6// Patches elements into the DOM.
+7sse.PatchElements(
+8    `<div id="question">What do you put in a toaster?</div>`
+9)
+10
+11// Patches signals.
+12sse.PatchSignals([]byte(`{response: '', answer: 'bread'}`))
+```
+
+--------------------------------
+
+### SSE Event: datastar-patch-elements
+
+Source: https://data-star.dev/docs
+
+Handles patching of DOM elements using Server-Sent Events. It supports various morphing modes and options for selecting and updating elements.
+
+```APIDOC
+## SSE Event: datastar-patch-elements
+
+### Description
+Patches one or more elements in the DOM. By default, Datastar morphs elements by matching top-level elements based on their ID. IDs should be placed on top-level elements for morphing and on elements within them to preserve state.
+
+### Event Type
+`datastar-patch-elements`
+
+### Data Directives
+- **`mode <mode>`**: Specifies how to morph elements. Supported modes include `outer` (default), `inner`, `replace`, `prepend`, `append`, `before`, `after`, `remove`.
+- **`selector <css_selector>`**: Selects the target element(s) for patching using a CSS selector. Not required for `outer` or `replace` modes.
+- **`useViewTransition <boolean>`**: Enables view transitions during patching. Defaults to `false`.
+- **`elements <html_content>`**: The HTML content to patch into the DOM.
+
+### Request Example (Patching Element)
+```
+event: datastar-patch-elements
+data: elements <div id="foo">Hello world!</div>
+```
+
+### Request Example (Removing Element)
+```
+event: datastar-patch-elements
+data: mode remove
+data: selector #foo
+```
+
+### Request Example (Multi-line Elements with Options)
+```
+event: datastar-patch-elements
+data: mode inner
+data: selector #foo
+data: useViewTransition true
+data: elements <div>
+data: elements        Hello world!
+data: elements </div>
+```
+
+### Response
+N/A (This is a client-side event triggered by the server).
+```
+
+--------------------------------
+
+### Java SSE Event Handling with Datastar
+
+Source: https://data-star.dev/docs
+
+This Java code illustrates how to use Datastar's `ServerSentEventGenerator` to send SSE events, specifically patching DOM elements and signals. It utilizes an `HttpServletResponseAdapter` for integration with Java Servlets.
+
+```java
+1import starfederation.datastar.utils.ServerSentEventGenerator;
+2
+3// Creates a new `ServerSentEventGenerator` instance.
+4AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
+5ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
+6
+7// Patches elements into the DOM.
+8generator.send(PatchElements.builder()
+9    .data("<div id=\"question\">What do you put in a toaster?</div>")
+10    .build()
+11);
+12
+13// Patches signals.
+14generator.send(PatchSignals.builder()
+15    .data("{\"response\": \"\", \"answer\": \"\"}")
+16    .build()
+17);
+```
+
+--------------------------------
+
+### GET /redirect (Kotlin with Redirect Helper)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Handles a GET request to redirect the client after updating the UI with a message using a redirect helper.
+
+```APIDOC
+## GET /redirect
+
+### Description
+This endpoint handles a redirect by first updating the client's view with an indicator message, pausing execution for 3 seconds, and then calling a `redirect` method to navigate the user to the \"/guide\" page.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```kotlin
+val generator = ServerSentEventGenerator(response)
+
+generator.patchElements(
+    elements = """
+        <div id="indicator">Redirecting in 3 seconds...</div>
+        """.trimIndent(),
+)
+
+Thread.sleep(3 * ONE_SECOND)
+
+generator.redirect("/guide")
+```
+
+### Response
+#### Success Response (200)
+Upon successful execution, the client UI is updated, and a redirection is initiated.
+
+#### Response Example
+(No JSON response body; client-side actions are performed)
+```
+
+--------------------------------
+
+### Clojure SSE Event Handling with Datastar
+
+Source: https://data-star.dev/docs
+
+This Clojure code snippet demonstrates how to create a Server-Sent Events (SSE) response using Datastar's http-kit adapter. It shows how to set up a Ring handler that sends SSE events, including patching DOM elements and signals.
+
+```clojure
+1;; Import the SDK's api and your adapter
+2(require
+3 '[starfederation.datastar.clojure.api :as d*]
+4 '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
+5
+6;; in a ring handler
+7(defn handler [request]
+8  ;; Create an SSE response
+9  (->sse-response request
+10                  {
+11                   (fn [sse] 
+12                     ;; Patches elements into the DOM
+13                     (d*/patch-elements! sse
+14                                         "<div id=\"question\">What do you put in a toaster?</div>")
+15
+16                     ;; Patches signals
+17                     (d*/patch-signals! sse "{response: '', answer: 'bread'}"))}))
+```
+
+--------------------------------
+
+### GET /redirect (Kotlin)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Handles a GET request to redirect the client after updating the UI with a message and executing a script.
+
+```APIDOC
+## GET /redirect
+
+### Description
+This endpoint handles a redirect by first updating the client's view with an indicator message, pausing execution for 3 seconds, and then executing a JavaScript script to redirect the user to the \"/guide\" page.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```kotlin
+val generator = ServerSentEventGenerator(response)
+
+generator.patchElements(
+    elements = """
+        <div id="indicator">Redirecting in 3 seconds...</div>
+        """.trimIndent(),
+)
+
+Thread.sleep(3 * ONE_SECOND)
+
+generator.executeScript(
+    script = "setTimeout(() => window.location = '/guide')",
+)
+```
+
+### Response
+#### Success Response (200)
+Upon successful execution, the client UI is updated, and a redirection script is sent.
+
+#### Response Example
+(No JSON response body; client-side actions are performed)
+```
+
+--------------------------------
+
+### GET /redirect (Ruby)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Handles a GET request to initiate a redirect after patching elements and executing a script via Server-Sent Events.
+
+```APIDOC
+## GET /redirect
+
+### Description
+Handles a redirect request by sending Server-Sent Events. It first updates the client's UI with a message indicating redirection. After a 3-second delay, it executes a JavaScript command to navigate the client to the \"/guide\" path.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```ruby
+datastar = Datastar.new(request:, response:)
+
+datastar.stream do |sse|
+  sse.patch_elements '<div id="indicator">Redirecting in 3 seconds...</div>'
+
+  sleep 3
+
+  sse.execute_script <<~JS
+    setTimeout(() => {
+      window.location = '/guide'
+    })
+  JS
+end
+```
+
+### Response
+#### Success Response (200)
+Successful execution sends SSE events to the client for UI update and redirection.
+
+#### Response Example
+(No specific JSON response; SSE stream is used)
+```
+
+--------------------------------
+
+### Generic SDK: Backend Redirect with Stream
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+This example demonstrates a backend redirect using a generic Datastar SDK, employing a streaming approach to patch elements and then initiate a redirect. It assumes a Datastar object is initialized with request and response objects.
 
 ```ruby
 datastar = Datastar.new(request:, response:)
@@ -1569,137 +2401,941 @@ end
 
 --------------------------------
 
-### Ruby Redirect with Datastar Stream
+### Set All Signals with @setAll()
 
-Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+Source: https://data-star.dev/docs
 
-Demonstrates redirect functionality in Ruby using the Datastar library. It streams Server-Sent Events (SSE) to patch elements, pauses, and then executes a JavaScript redirect.
+Sets the value of all matching signals using a regular expression filter. Supports including and excluding patterns. Useful for bulk updates to signal values.
 
-```ruby
-datastar = Datastar.new(request:, response:)
+```html
+<div data-signals:foo="false">
+    <button data-on:click="@setAll(true, {include: /^foo$/})"></button>
+</div>
 
-datastar.stream do |sse|
-  sse.patch_elements '<div id="indicator">Redirecting in 3 seconds...</div>'
+<div data-signals="{user: {name: '', nickname: ''}}">
+    <button data-on:click="@setAll('johnny', {include: /^user\./})"></button>
+</div>
 
-  sleep 3
-
-  sse.execute_script <<~JS
-    setTimeout(() => {
-      window.location = '/guide'
-    })
-  JS
-end
-
+<div data-signals="{data: '', data_temp: '', info: '', info_temp: ''}">
+    <button data-on:click="@setAll('reset', {include: /.*/, exclude: /_temp$/})"></button>
+</div>
 ```
 
 --------------------------------
 
-### Backend Redirect with PHP Server-Sent Events
+### Reading Nested Signals in C# (ASP.NET Core)
+
+Source: https://data-star.dev/docs
+
+Shows how to read nested signals from an incoming request in C# using Datastar's `IDatastarService`. It defines a `Signals` record with nested properties and retrieves the 'bar' signal.
+
+```csharp
+ 1using StarFederation.Datastar.DependencyInjection;
+ 2
+ 3// Adds Datastar as a service
+ 4builder.Services.AddDatastar();
+ 5
+ 6public record Signals
+ 7{
+ 8    [JsonPropertyName("foo")] [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+ 9    public FooSignals? Foo { get; set; } = null;
+10
+11    public record FooSignals
+12    {
+13        [JsonPropertyName("bar")] [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+14        public string? Bar { get; set; }
+15    }
+16}
+17
+18app.MapGet("/read-signals", async (IDatastarService datastarService) =>
+19{
+20    Signals? mySignals = await datastarService.ReadSignalsAsync<Signals>();
+21    var bar = mySignals?.Foo?.Bar;
+22});
+```
+
+--------------------------------
+
+### HTML for Templ Counter Interface
+
+Source: https://data-star.dev/examples/templ_counter
+
+This HTML code sets up the user interface for the templ counter. It includes two buttons, one for a global counter and another for a user-specific counter, with styles for display and click event handling.
+
+```html
+<div
+    style="display: flex; gap: var(--size-6)"
+    data-init="@get('/examples/templ_counter/updates')"
+>
+    <!-- Global Counter -->
+    <button
+        id="global"
+        class="info"
+        data-on:click="@patch('/examples/templ_counter/global')"
+    >
+        Global Clicks: 0
+    </button>
+
+    <!-- User Counter -->
+    <button
+        id="user"
+        class="success"
+        data-on:click="@patch('/examples/templ_counter/user')"
+    >
+        User Clicks: 0
+    </button>
+</div>
+```
+
+--------------------------------
+
+### GET /redirect (PHP)
 
 Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
 
-This PHP snippet demonstrates how to use ServerSentEventGenerator to create a redirect. It first patches an indicator element into the DOM and then issues a location redirect after a delay.
+Handles a GET request to redirect the client after updating the UI with a message and executing a script.
 
+```APIDOC
+## GET /redirect
+
+### Description
+Handles a redirect request by sending server-sent events. It first updates the client's HTML with an indicator, waits for 3 seconds, and then executes a JavaScript command to redirect the user to the \"/guide\" page.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
 ```php
 $sse = new ServerSentEventGenerator();
 $sse->patchElements(`
     <div id="indicator">Redirecting in 3 seconds...</div>
 `);
 sleep(3);
-$sse->location('/guide');
+$sse->executeScript(`
+    setTimeout(() => window.location = "/guide")
+`);
+```
+
+### Response
+#### Success Response (200)
+Returns a successful response, and the client will receive SSE updates for redirection.
+
+#### Response Example
+(No JSON response body; SSE stream is used)
 ```
 
 --------------------------------
 
-### SSE Event for Patching Signals
+### data-indicator with Casing Modifiers
 
-Source: https://data-star.dev/guide/reactive_signals
+Source: https://data-star.dev/docs
 
-This example shows a Server-Sent Event (SSE) with the 'datastar-patch-signals' event type. This allows for more complex, real-time updates to frontend signals, enabling scenarios like sequential updates or delayed signal changes.
-
-```sse
-1event: datastar-patch-signals
-2data: signals {hal: 'Affirmative, Dave. I read you.'}
-```
-
---------------------------------
-
-### HTML Lazy Tabs Structure with Datastar
-
-Source: https://data-star.dev/examples/lazy_tabs
-
-This HTML snippet defines the structure for a set of lazy tabs using Datastar. It includes buttons for each tab with 'data-on-click' attributes that trigger Datastar GET requests to fetch tab content. The 'aria-selected' attribute indicates the active tab. Dependencies include the Datastar framework. Inputs are tab button clicks, and outputs are fetched HTML content for the selected tab panel.
+Shows how the `__case` modifier can be applied to the `data-indicator` attribute to control the casing of the generated indicator signal name, supporting camel, kebab, snake, and pascal cases.
 
 ```html
-<div id="demo">
-    <div role="tablist">
+<button data-on:click="@get('/endpoint')"
+        data-indicator:fetching
+></button>
+```
+
+--------------------------------
+
+### Datastar Default Request Cancellation
+
+Source: https://data-star.dev/docs
+
+Illustrates the default behavior of Datastar where clicking a button multiple times will cancel previous requests on the same element. This is useful for preventing conflicting states when the backend action is slow.
+
+```html
+<!-- Clicking this button multiple times will cancel previous requests (default behavior) -->
+<button data-on:click="@get('/slow-endpoint')">Load Data</button>
+```
+
+--------------------------------
+
+### GET /redirect (Python)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Handles a GET request to redirect the client after updating the UI and executing a script using Server-Sent Events.
+
+```APIDOC
+## GET /redirect
+
+### Description
+Handles a redirect after a delay. It first sends a Server-Sent Event to update the client's UI with a redirect indicator. After a 3-second pause, it sends another event to execute a JavaScript snippet that redirects the user to the \"/guide\" page.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```python
+@app.get("/redirect")
+@datastar_response
+async def redirect_from_backend():
+    yield SSE.patch_elements('<div id="indicator">Redirecting in 3 seconds...</div>')
+    await asyncio.sleep(3)
+    yield SSE.execute_script('setTimeout(() => window.location = "/guide")')
+```
+
+### Response
+#### Success Response (200)
+The client receives SSE events to update its UI and trigger a redirection.
+
+#### Response Example
+(No JSON response; SSE events are sent to the client)
+```
+
+--------------------------------
+
+### Datastar Expression: Using JavaScript Operators
+
+Source: https://data-star.dev/docs
+
+This HTML demonstrates using JavaScript operators like the ternary operator `?:`, logical OR `||`, and logical AND `&&` within Datastar expressions for conditional rendering and actions.
+
+```html
+<!-- Output one of two values, depending on the truthiness of a signal -->
+<div data-text="$landingGearRetracted ? 'Ready' : 'Waiting'"></div>
+
+<!-- Show a countdown if the signal is truthy or the time remaining is less than 10 seconds -->
+<div data-show="$landingGearRetracted || $timeRemaining < 10">
+    Countdown
+</div>
+
+<!-- Only send a request if the signal is truthy -->
+<button data-on:click="$landingGearRetracted && @post('/launch')">
+    Launch
+</button>
+```
+
+--------------------------------
+
+### JavaScript for Synchronous Function in External Script
+
+Source: https://data-star.dev/docs
+
+A simple synchronous JavaScript function that takes data as an argument and returns a formatted string. This function can be called from Datastar HTML using data attributes.
+
+```javascript
+function myfunction(data) {
+    return `You entered: ${data}`;
+}
+```
+
+--------------------------------
+
+### File Uploads with data-bind
+
+Source: https://data-star.dev/docs
+
+Handles file uploads using input fields of type 'file' with the `data-bind` attribute. File contents are automatically base64 encoded, eliminating the need for a form. The resulting signal format is an array of objects containing name, contents, and mime type. For server uploads, use a traditional form with `multipart/form-data`.
+
+```html
+<input type="file" data-bind:files multiple />
+```
+
+--------------------------------
+
+### Datastar Expression: Signal Property Access
+
+Source: https://data-star.dev/docs
+
+This HTML snippet illustrates accessing a property of a signal (e.g., 'length' for a string signal) using Datastar expressions within a `data-text` attribute.
+
+```html
+<div data-text="$foo.length"></div>
+```
+
+--------------------------------
+
+### Clojure - Redirect with Datastar API
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Provides a Clojure example for handling redirects using Datastar's API. It patches elements, pauses, and then redirects the client to a new URL.
+
+```clojure
+(require
+  '[starfederation.datastar.clojure.api :as d*]
+  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]]
+  '[some.hiccup.library :refer [html]])
+
+
+(defn handler [ring-request]
+  (->sse-response ring-request
+    {on-open
+      (fn [sse]
+        (d*/patch-elements! sse
+          (html [:div#indicator "Redirecting in 3 seconds..."]))
+        (Thread/sleep 3000)
+        (d*/redirect! sse "/guide")
+        (d*/close-sse! sse))}))
+
+```
+
+--------------------------------
+
+### CQRS Pattern for Resilient SSE Updates
+
+Source: https://data-star.dev/how_tos/prevent_sse_connections_closing
+
+This example illustrates a CQRS (Command Query Responsibility Segregation) approach for managing SSE updates. It shows how to initialize a main content area with a GET request and suggests sending the complete state with each update to ensure resilience against connection interruptions.
+
+```html
+<div data-init="@get('/cqrs_endpoint')"></div>
+<div id="main">
+    ...
+</div>
+```
+
+--------------------------------
+
+### Clojure: Generating SSE Events for Datastar Patching
+
+Source: https://data-star.dev/docs
+
+This Clojure code snippet shows how to generate Server-Sent Events (SSE) for patching elements into the DOM using Datastar's SDK. It demonstrates sending an initial message and then updating it after a short delay.
+
+```clojure
+1;; Import the SDK's api and your adapter
+2(require
+3 '[starfederation.datastar.clojure.api :as d*]
+4 '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
+5
+6;; in a ring handler
+7(defn handler [request]
+8  ;; Create an SSE response
+9  (->sse-response request
+10                  {on-open
+11                   (fn [sse] 
+12                     ;; Patches elements into the DOM
+13                     (d*/patch-elements! sse
+14                                         "<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
+15                     (Thread/sleep 1000)
+16                     (d*/patch-elements! sse
+17                                         "<div id=\"hal\">Waiting for an order...</div>"))}))
+
+```
+
+--------------------------------
+
+### Filter Signals for data-on-signal-patch with DataStar
+
+Source: https://data-star.dev/docs
+
+The `data-on-signal-patch-filter` attribute refines which signals trigger the `data-on-signal-patch` handler. It accepts an object with `include` and/or `exclude` properties, which are regular expressions. This allows for precise control over signal reactivity.
+
+```html
+<!-- Only react to counter signal changes -->
+<div data-on-signal-patch-filter="{include: /^counter$/}"></div>
+```
+
+```html
+<!-- React to all changes except those ending with "changes" -->
+<div data-on-signal-patch-filter="{exclude: /changes$/}"></div>
+```
+
+```html
+<!-- Combine include and exclude filters -->
+<div data-on-signal-patch-filter="{include: /user/, exclude: /password/}"></div>
+```
+
+--------------------------------
+
+### Go: Generating SSE Events for Datastar DOM Patching
+
+Source: https://data-star.dev/docs
+
+This Go code snippet shows how to create a Server-Sent Event (SSE) generator using Datastar's Go SDK. It then uses the `PatchElements` method to send HTML content to update the DOM, including a timed update.
+
+```go
+1import (
+2    "github.com/starfederation/datastar-go/datastar"
+3    time
+4)
+5
+6// Creates a new `ServerSentEventGenerator` instance.
+7sse := datastar.NewSSE(w,r)
+8
+9// Patches elements into the DOM.
+10sse.PatchElements(
+11    `<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>`
+12)
+13
+14time.Sleep(1 * time.Second)
+15
+16sse.PatchElements(
+17    `<div id="hal">Waiting for an order...</div>`
+18)
+
+```
+
+--------------------------------
+
+### Kotlin: Generating SSE Events for Datastar DOM Patching
+
+Source: https://data-star.dev/docs
+
+This Kotlin code snippet illustrates generating Server-Sent Events (SSE) for Datastar's DOM patching functionality. It shows sending an initial HTML update to the DOM and then a subsequent update after a one-second delay.
+
+```kotlin
+1val generator = ServerSentEventGenerator(response)
+2
+3generator.patchElements(
+4    elements = """<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>""",
+5)
+6
+7Thread.sleep(ONE_SECOND)
+8
+
+```
+
+--------------------------------
+
+### Basic Repeated Datastar Action
+
+Source: https://data-star.dev/how_tos/keep_datastar_code_dry
+
+This snippet shows a basic example of repeating a Datastar backend action (`@get('/endpoint')`) across multiple buttons. It highlights the problem of repetition that the following solutions aim to address.
+
+```html
+<button data-on:click="@get('/endpoint')">Click me</button>
+<button data-on:click="@get('/endpoint')">No, click me!</button>
+<button data-on:click="@get('/endpoint')">Click us all!</button>
+```
+
+--------------------------------
+
+### GET /redirect (Rust)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Handles a GET request to redirect the client after updating UI elements and executing a script using Server-Sent Events.
+
+```APIDOC
+## GET /redirect
+
+### Description
+Handles a GET request to perform a client-side redirect. It first sends a Server-Sent Event to update the HTML content, then waits for 3 seconds, and finally sends another event to execute JavaScript that redirects the user to the \"/guide\" page.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```rust
+use datastar::prelude::*;
+use async_stream::stream;
+use core::time::Duration;
+
+Sse(stream! {
+    yield PatchElements::new("<div id='indicator'>Redirecting in 3 seconds...</div>").into();
+    tokio::time::sleep(core::time::Duration::from_secs(3)).await;
+    yield ExecuteScript::new("setTimeout(() => window.location = '/guide')").into();
+});
+```
+
+### Response
+#### Success Response (200)
+Returns a successful response, initiating an SSE stream that updates the client and redirects it.
+
+#### Response Example
+(No JSON response; SSE stream is utilized)
+```
+
+--------------------------------
+
+### Datastar Expression: Multi-line Statements
+
+Source: https://data-star.dev/docs
+
+This HTML snippet illustrates how Datastar expressions can span multiple lines. A semicolon is required to separate statements, as line breaks alone are not sufficient.
+
+```html
+<div data-signals:foo="1">
+    <button data-on:click="
+        $landingGearRetracted = true; 
+        @post('/launch')
+    ">
+        Force launch
+    </button>
+</div>
+```
+
+--------------------------------
+
+### Conditional Element Visibility with data-show
+
+Source: https://data-star.dev/docs
+
+The `data-show` attribute controls element visibility based on an expression's truthiness. An optional `style='display: none;'` can prevent content flash during initial rendering.
+
+```html
+<input data-bind:foo />
+<button data-show="$foo != ''">Save</button>
+```
+
+```html
+<input data-bind:foo />
+<button data-show="$foo != ''" style="display: none;">
+    Save
+</button>
+```
+
+--------------------------------
+
+### Datastar Click Event to Backend Endpoint
+
+Source: https://data-star.dev/index
+
+This code snippet demonstrates how to attach a click event listener to a button. When clicked, it triggers a GET request to the `/endpoint` using Datastar's `@get()` helper, allowing backend interaction with minimal user-side JavaScript.
+
+```html
+<button data-on:click="@get('/endpoint')">
+    Open the pod bay doors, HAL.
+</button>
+
+<div id="hal">Waiting for an order...</div>
+```
+
+--------------------------------
+
+### Compact JSON Output with `__terse` Modifier
+
+Source: https://data-star.dev/docs
+
+The `__terse` modifier for `data-json-signals` outputs JSON in a compact format without extra whitespace. This is useful for displaying filtered data inline efficiently.
+
+```html
+<pre data-json-signals__terse="{include: /counter/}"></pre>
+```
+
+--------------------------------
+
+### Patch Signals with Datastar SSE
+
+Source: https://data-star.dev/docs
+
+Patches signals into existing signals on a page using the `datastar-patch-signals` SSE event. It allows updating signals with new values, optionally only if they don't exist (`onlyIfMissing`). Signals can be removed by setting their values to `null`. The `signals` line must contain a valid `data-signals` attribute.
+
+```html
+event: datastar-patch-signals
+data: signals {foo: 1, bar: 2}
+
+
+```
+
+```html
+event: datastar-patch-signals
+data: signals {foo: null, bar: null}
+
+
+```
+
+```html
+event: datastar-patch-signals
+data: onlyIfMissing true
+data: signals {foo: 1, bar: 2}
+
+
+```
+
+--------------------------------
+
+### HTML Table for Bulk Update
+
+Source: https://data-star.dev/examples/bulk_update
+
+This HTML structure sets up a table with selectable rows for bulk operations. It includes checkboxes for individual row selection and a master checkbox for selecting all rows. Buttons for 'Activate' and 'Deactivate' trigger `PUT` requests to the server, with visual feedback for ongoing operations.
+
+```html
+<div
+    id="demo"
+    data-signals__ifmissing="{_fetching: false, selections: Array(4).fill(false)}"
+>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <input
+                        type="checkbox"
+                        data-bind:_all
+                        data-on:change="$selections = Array(4).fill($_all)"
+                        data-effect="$selections; $_all = $selections.every(Boolean)"
+                        data-attr:disabled="$_fetching"
+                    />
+                </th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input
+                        type="checkbox"
+                        data-bind:selections
+                        data-attr:disabled="$_fetching"
+                    />
+                </td>
+                <td>Joe Smith</td>
+                <td>joe@smith.org</td>
+                <td>Active</td>
+            </tr>
+            <!-- More rows... -->
+        </tbody>
+    </table>
+    <div role="group">
         <button
-            role="tab"
-            aria-selected="true"
-            data-on-click="@get('/examples/lazy_tabs/0')"
+            class="success"
+            data-on:click="@put('/examples/bulk_update/activate')"
+            data-indicator:_fetching
+            data-attr:disabled="$_fetching"
         >
-            Tab 0
+            <i class="pixelarticons:user-plus"></i>
+            Activate
         </button>
         <button
-            role="tab"
-            aria-selected="false"
-            data-on-click="@get('/examples/lazy_tabs/1')"
+            class="error"
+            data-on:click="@put('/examples/bulk_update/deactivate')"
+            data-indicator:_fetching
+            data-attr:disabled="$_fetching"
         >
-            Tab 1
+            <i class="pixelarticons:user-x"></i>
+            Deactivate
         </button>
-        <button
-            role="tab"
-            aria-selected="false"
-            data-on-click="@get('/examples/lazy_tabs/2')"
-        >
-            Tab 2
-        </button>
-        <!-- More tabs... -->
-    </div>
-    <div role="tabpanel">
-        <p>Lorem ipsum dolor sit amet...</p>
-        <p>Consectetur adipiscing elit...</p>
-        <!-- Tab content -->
     </div>
 </div>
 ```
 
 --------------------------------
 
-### Datastar Runtime Error Example
+### Implement Click-to-Load Button
 
-Source: https://data-star.dev/reference/attributes
+Source: https://data-star.dev/examples/click_to_load
 
-Provides an example of a Datastar runtime error log. It shows the format of error messages, including a 'More info' link for detailed explanations and context-aware error pages.
+This HTML snippet defines a button that, when clicked, triggers the loading of more data. It utilizes data attributes for state management (fetching status) and event handling for the click action. The button dynamically updates its ARIA attribute based on the fetching state. It relies on a server endpoint '/examples/click_to_load/more' to provide the next set of data.
 
-```json
-Uncaught datastar runtime error: textKeyNotAllowed
-More info: https://data-star.dev/errors/runtime/text_key_not_allowed?metadata=%7B%22plugin%22%3A%7B%22name%22%3A%22text%22%2C%22type%22%3A%22attribute%22%7D%2C%22element%22%3A%7B%22id%22%3A%22%22%2C%22tag%22%3A%22DIV%22%7D%2C%22expression%22%3A%7B%22rawKey%22%3A%22textFoo%22%2C%22key%22%3A%22foo%22%2C%22value%22%3A%22%22%2C%22fnContent%22%3A%22%22%7D%7D
-Context: {
-    "plugin": {
-        "name": "text",
-        "type": "attribute"
-    },
-    "element": {
-        "id": "",
-        "tag": "DIV"
-    },
-    "expression": {
-        "rawKey": "textFoo",
-        "key": "foo",
-        "value": "",
-        "fnContent": ""
-    }
+```html
+<button
+    class="info wide"
+    data-indicator:_fetching
+    data-attr:aria-disabled="`${$_fetching}`"
+    data-on:click="!$_fetching && @get('/examples/click_to_load/more')"
+>
+    Load More
+</button>
+```
+
+--------------------------------
+
+### Toggle All Signals with @toggleAll()
+
+Source: https://data-star.dev/docs
+
+Toggles the boolean value of all matching signals using a regular expression filter. Supports including and excluding patterns. Ideal for managing boolean states across multiple signals.
+
+```html
+<div data-signals:foo="false">
+    <button data-on:click="@toggleAll({include: /^foo$/})"></button>
+</div>
+
+<div data-signals="{isOpen: false, isActive: true, isEnabled: false}">
+    <button data-on:click="@toggleAll({include: /^is/})"></button>
+</div>
+
+<div data-signals="{settings: {darkMode: false, autoSave: true}}">
+    <button data-on:click="@toggleAll({include: /^settings\./})"></button>
+</div>
+```
+
+--------------------------------
+
+### Integrate data-signals and data-on for Reactivity
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This example demonstrates frontend reactivity by combining `data-signals` for initial state, `data-on` for user interaction, and `data-text` to display signal values. It includes a button to update a signal and a div to show its current value.
+
+```html
+<div data-signals:hal="'...' '>
+    <button data-on:click="$hal = 'Affirmative, Dave. I read you.'">
+        HAL, do you read me?
+    </button>
+    <div data-text="$hal"></div>
+</div>
+```
+
+--------------------------------
+
+### Datastar Expression: Display Signal Value
+
+Source: https://data-star.dev/docs
+
+This HTML snippet demonstrates how to display the value of a Datastar signal named 'foo' using a `data-text` attribute. The signal's initial value is set to '1'.
+
+```html
+<div data-signals:foo="1">
+    <div data-text="$foo"></div>
+</div>
+```
+
+--------------------------------
+
+### Datastar Expression: Access Element ID
+
+Source: https://data-star.dev/docs
+
+This HTML snippet shows how to access the `id` attribute of the current element using the `el` variable within a Datastar expression in a `data-text` attribute.
+
+```html
+<div id="foo" data-text="el.id"></div>
+```
+
+--------------------------------
+
+### JavaScript for Asynchronous Function in External Script
+
+Source: https://data-star.dev/docs
+
+An asynchronous JavaScript function that simulates a delay using `setTimeout` and then dispatches a custom event containing the result. This is the pattern to use when dealing with promises or other non-blocking operations in Datastar external scripts.
+
+```javascript
+async function myfunction(element, data) {
+    const value = await new Promise((resolve) => {
+        setTimeout(() => resolve(`You entered: ${data}`), 1000);
+    });
+    element.dispatchEvent(
+        new CustomEvent('mycustomevent', {detail: {value}})
+    );
 }
 ```
 
 --------------------------------
 
-### Python (Sanic) Backend for Real-time Time Updates
+### JavaScript (Node.js) Backend Redirect with DataStar
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+A Node.js example using DataStar's Server-Sent Events to manage redirects from the backend. It patches elements for a visual cue and then executes a script to navigate the user.
+
+```javascript
+import { createServer } from "node:http";
+import { ServerSentEventGenerator } from "../npm/esm/node/serverSentEventGenerator.js";
+
+const server = createServer(async (req, res) => {
+
+  ServerSentEventGenerator.stream(req, res, async (sse) => {
+    sse.patchElements(`
+      <div id="indicator">Redirecting in 3 seconds...</div>
+    `);
+
+    setTimeout(() => {
+      sse.executeScript(`window.location = "/guide"`);
+    }, 3000);
+  });
+});
+```
+
+--------------------------------
+
+### Submit Form Data on Submit Event with contentType: form
+
+Source: https://data-star.dev/examples/form_data
+
+This example illustrates submitting form data directly when the form's submit event is triggered. The '@get()' action is configured within the 'data-on:submit' attribute, ensuring that form data is automatically collected and sent upon submission. This is useful for forms that should submit their data without needing a separate submit button.
+
+```html
+<form data-on:submit="@get('/endpoint', {contentType: 'form'})">
+    foo: <input type="text" name="foo" required />
+    <button>
+        Submit form
+    </button>
+</form>
+```
+
+--------------------------------
+
+### GET /redirect (Node.js)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Handles a GET request to redirect the client after updating UI elements and executing a script using Server-Sent Events.
+
+```APIDOC
+## GET /redirect
+
+### Description
+Handles a redirect request by sending Server-Sent Events. It updates the client's HTML to show a redirect indicator, then uses `setTimeout` to wait for 3 seconds before executing a script that redirects the user to the \"/guide\" page.
+
+### Method
+GET
+
+### Endpoint
+/redirect
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```javascript
+const server = createServer(async (req, res) => {
+
+  ServerSentEventGenerator.stream(req, res, async (sse) => {
+    sse.patchElements(`
+      <div id="indicator">Redirecting in 3 seconds...</div>
+    `);
+
+    setTimeout(() => {
+      sse.executeScript(`setTimeout(() => window.location = "/guide")`);
+    }, 3000);
+  });
+});
+```
+
+### Response
+#### Success Response (200)
+Returns a successful response, initiating an SSE stream that updates the client and redirects it.
+
+#### Response Example
+(No JSON response; SSE stream is utilized)
+```
+
+--------------------------------
+
+### Run Expressions on Animation Frames with data-on-raf
+
+Source: https://data-star.dev/docs
+
+The Pro attribute `data-on-raf` executes a given expression on every `requestAnimationFrame` event. This is useful for animations or continuously updating elements synchronized with the browser's rendering cycle. Changes to signals used within the expression will trigger re-execution.
+
+```html
+<div data-on-raf="$count++"></div>
+```
+
+--------------------------------
+
+### Go: Reading Nested Signals from Incoming Requests
+
+Source: https://data-star.dev/guide/backend_requests
+
+Provides a Go example for reading nested signals from incoming HTTP requests using the DataStar Go SDK. It shows how to define the signal structure and use the `ReadSignals` helper function.
+
+```go
+import ("github.com/starfederation/datastar-go/datastar")
+
+type Signals struct {
+    Foo struct {
+        Bar string `json:"bar"`
+    } `json:"foo"`
+}
+
+signals := &Signals{}
+if err := datastar.ReadSignals(request, signals); err != nil {
+    http.Error(w, err.Error(), http.StatusBadRequest)
+    return
+}
+```
+
+--------------------------------
+
+### Web Server SSE: Stream Events with Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+This JavaScript code snippet shows a basic server-side setup for streaming Server-Sent Events (SSE) using Datastar. It initializes a `ServerSentEventGenerator` with the request and response objects, which also handles sending the necessary headers. This is a foundational example for server-side SSE handling.
+
+```javascript
+1// Creates a new `ServerSentEventGenerator` instance (this also sends required headers)
+2ServerSentEventGenerator.stream(req, res, (stream) => {
+3
+4});
+
+```
+
+--------------------------------
+
+### Datastar HTML for Synchronous Function Call in External Script
+
+Source: https://data-star.dev/docs
+
+This HTML snippet demonstrates how to bind an input's 'input' event to a local JavaScript function ('myfunction') using Datastar's data attributes. The function's return value is then displayed in a span. It requires a 'myfunction' defined in the same scope.
+
+```html
+<div data-signals:result>
+    <input data-bind:foo 
+        data-on:input="$result = myfunction($foo)"
+    >
+    <span data-text="$result"></span>
+</div>
+```
+
+--------------------------------
+
+### Set HTML Attribute Value using data-attr
+
+Source: https://data-star.dev/docs
+
+This demonstrates how to dynamically set an HTML attribute's value using Datastar's `data-attr` directive. It allows binding an attribute to a Datastar expression, keeping it synchronized with the expression's value.
+
+```html
+<div data-attr:title="$foo"></div>
+```
+
+--------------------------------
+
+### Python (Sanic): `DatastarResponse` with SSE Patching
 
 Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-A Python example using the Sanic web framework and DataStar library (`datastar_py`) to create an endpoint that patches elements with the current time via SSE.
+This Python example, using the Sanic web framework, demonstrates sending Server-Sent Events to patch client-side elements. It formats the current time and returns it within a `DatastarResponse`.
 
 ```python
 from datastar_py import ServerSentEventGenerator as SSE
@@ -1714,70 +3350,583 @@ async def endpoint():
             {current_time:%Y-%m-%d %H:%M:%S}
         </div>
     """))
+
 ```
 
 --------------------------------
 
-### Send GET Request with @get() Action (HTML)
+### Python: Backend Redirect with Datastar Response
 
-Source: https://data-star.dev/guide/getting_started
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
 
-This snippet demonstrates how to use the `@get()` Datastar action to send a GET request to a specified URL. The response, if it's HTML, will be used to patch elements in the DOM based on their IDs. Ensure the target element (e.g., 'hal') exists in the DOM for morphing to work.
+This Python example utilizes datastar_py to patch elements and perform a redirect. It requires the ServerSentEventGenerator and datastar_response from datastar_py, along with asyncio for the sleep functionality.
+
+```python
+from datastar_py import ServerSentEventGenerator as SSE
+from datastar_py.sanic import datastar_response
+import asyncio
+
+@app.get("/redirect")
+@datastar_response
+async def redirect_from_backend():
+    yield SSE.patch_elements('<div id="indicator">Redirecting in 3 seconds...</div>')
+    await asyncio.sleep(3)
+    yield SSE.redirect("/guide")
+```
+
+--------------------------------
+
+### CSS Color Throb Animation Example
+
+Source: https://data-star.dev/examples/animations
+
+This example demonstrates a simple color throb animation by maintaining a stable element ID across content swaps. Datastar facilitates CSS transitions by preserving the element's ID, allowing for smooth visual changes between old and new versions. This snippet shows a div with initial styles.
 
 ```html
-<button data-on-click="@get('/endpoint')">
-    Open the pod bay doors, HAL.
-</button>
-<div id="hal"></div>
+<div
+    id="color-throb"
+    style="color: var(--blue-8); background-color: var(--orange-5);"
+>
+    blue on orange
+</div>
 ```
 
 --------------------------------
 
-### Copy Text to Clipboard with DataStar Pro
+### PHP Backend Redirect with DataStar
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+A PHP example utilizing DataStar's Server-Sent Events to achieve a backend redirect. It displays a temporary message and then executes a JavaScript redirect after a 3-second delay.
+
+```php
+use starfederation\datastar\ServerSentEventGenerator;
+
+$sse = new ServerSentEventGenerator();
+$sse->patchElements(`
+    <div id="indicator">Redirecting in 3 seconds...</div>
+`);
+sleep(3);
+$sse->executeScript(`
+    window.location = "/guide"
+`);
+```
+
+--------------------------------
+
+### Signal Casing Modifiers with data-bind and data-class
 
 Source: https://data-star.dev/docs
 
-This snippet illustrates the use of the `@clipboard()` DataStar Pro action to copy text to the user's clipboard. It shows examples for copying plain text and Base64 encoded text, which is decoded before being copied. This is useful for handling special characters or complex data safely.
+Applies casing modifiers (__case) to signal names or class names when used with data-bind or data-class attributes. Supports camelCase, kebab-case, snake_case, and PascalCase. This allows for flexible naming conventions in templating languages.
 
 ```html
-1<!-- Copy plain text -->
-2<button data-on-click="@clipboard('Hello, world!')"></button>
-3
-4<!-- Copy base64 encoded text (will decode before copying) -->
-5<button data-on-click="@clipboard('SGVsbG8sIHdvcmxkIQ==', true)"></button>
+<input data-bind:my-signal__case.kebab />
+```
+
+```html
+<div data-class:my-class__case.camel="$foo"></div>
 ```
 
 --------------------------------
 
-### HTML Structure for Dynamic List Loading
+### Python SDK for SSE Patch Signals (Sanic)
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This Python example uses the DataStar SDK with the Sanic web framework to demonstrate patching signals asynchronously via SSE, including a sleep interval.
+
+```python
+1from datastar_py import ServerSentEventGenerator as SSE
+2from datastar_py.sanic import datastar_response
+3
+4@app.get('/do-you-read-me')
+5@datastar_response
+6async def open_doors(request):
+7    yield SSE.patch_signals({"hal": "Affirmative, Dave. I read you."})
+8    await asyncio.sleep(1)
+9    yield SSE.patch_signals({"hal": "..."})
+```
+
+--------------------------------
+
+### Ruby: Reading Signals with DataStar Gem
+
+Source: https://data-star.dev/guide/backend_requests
+
+Provides a Ruby example for reading signals using the DataStar gem. It initializes DataStar with the request and response objects and accesses signals via a dedicated attribute.
+
+```ruby
+# Setup with request
+datastar = Datastar.new(request:, response:)
+
+# Read signals
+some_signal = datastar.signals[:some_signal]
+```
+
+--------------------------------
+
+### HTML File Upload Form with Fetch
+
+Source: https://data-star.dev/examples/file_upload
+
+This HTML snippet defines a file upload interface. It utilizes custom attributes like 'data-bind:files' for file input and 'data-on:click' for form submission via fetch to a specified URL. Files are automatically base64 encoded, and a size limit is enforced, with console feedback for errors.
+
+```html
+<label>
+    <p>Pick anything less than 1MB</p>
+    <input type="file" data-bind:files multiple/>
+</label>
+<button
+    class="warning"
+    data-on:click="$files.length && @post('/examples/file_upload')"
+    data-attr:aria-disabled="`${!$files.length}`">
+    Submit
+</button>
+```
+
+--------------------------------
+
+### Datastar Starfield Component Attributes
+
+Source: https://data-star.dev/index
+
+This example shows how to configure a Datastar web component (`ds-starfield`) using reactive signals for its attributes (`center-x`, `center-y`, `speed`). The attributes are bound to backend variables using the `data-attr:*` syntax.
+
+```html
+<ds-starfield
+    data-attr:center-x="$x"
+    data-attr:center-y="$y"
+    data-attr:speed="$speed"
+></ds-starfield>
+```
+
+--------------------------------
+
+### Create Element References with DataStar data-ref
+
+Source: https://data-star.dev/docs
+
+The `data-ref` attribute generates a signal that references the element it's attached to. The signal name can be defined in the attribute's key or value. Modifiers like `__case` can alter the signal name's casing.
+
+```html
+<div data-ref:foo></div>
+```
+
+```html
+<div data-ref="foo"></div>
+```
+
+```html
+$foo is a reference to a <span data-text="$foo.tagName"></span> element
+```
+
+```html
+<div data-ref:my-signal__case.kebab></div>
+```
+
+--------------------------------
+
+### Datastar Backend DOM Patching with SSE
+
+Source: https://data-star.dev/index
+
+This example illustrates how to update the DOM from the backend using Datastar's Server-Sent Events (SSE) capabilities. It patches a specific element (`#hal`) with new content and then reverts it after a short delay, showcasing real-time UI manipulation.
+
+```go
+sse.PatchElements(`
+    <div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>
+`)
+time.Sleep(1 * time.Second)
+sse.PatchElements(`<div id="hal">Waiting for an order...</div>`)
+```
+
+--------------------------------
+
+### HTML with DataStar and SortableJS Integration
+
+Source: https://data-star.dev/examples/sortable
+
+This HTML structure sets up a sortable list using SortableJS and integrates with DataStar for reactive updates. It binds a signal '$orderInfo' to display the current order and uses 'data-on:reordered' to listen for sorting completion, updating the signal with event details.
+
+```html
+<div data-signals:order-info="'Initial order'" data-text="$orderInfo"></div>
+<div id="sortContainer" data-on:reordered="$orderInfo = event.detail.orderInfo">
+    <button>Item 1</button>
+    <button>Item 2</button>
+    <button>Item 3</button>
+    <button>Item 4</button>
+    <button>Item 5</button>
+</div>
+```
+
+--------------------------------
+
+### GET Request
+
+Source: https://data-star.dev/reference/actions
+
+Sends a GET request to the specified URI. Supports various options for controlling request behavior, including signal handling, background tab behavior, and content type.
+
+```APIDOC
+## GET /endpoint
+
+### Description
+Sends a `GET` request to the backend using the Fetch API. The URI can be any valid endpoint and the response must contain zero or more Datastar SSE events.
+By default, requests are sent with a `Datastar-Request: true` header, and a `{datastar: *}` object containing all existing signals, except those beginning with an underscore. This behavior can be changed using the `filterSignals` option, which allows you to include or exclude specific signals using regular expressions.
+When using a `get` request, the signals are sent as a query parameter, otherwise they are sent as a JSON body.
+When a page is hidden (in a background tab, for example), the default behavior is for the SSE connection to be closed, and reopened when the page becomes visible again. To keep the connection open when the page is hidden, set the `openWhenHidden` option to `true`.
+It’s possible to send form encoded requests by setting the `contentType` option to `form`. This sends requests using `application/x-www-form-urlencoded` encoding.
+It’s also possible to send requests using `multipart/form-data` encoding by specifying it in the `form` element’s `enctype` attribute. This should be used when uploading files.
+
+### Method
+GET
+
+### Endpoint
+`/endpoint`
+
+### Parameters
+#### Query Parameters
+- **uri** (string) - Required - The endpoint URI.
+- **options** (object) - Optional - Configuration options for the request.
+  - **openWhenHidden** (boolean) - Optional - Keep the SSE connection open when the page is hidden. Defaults to `false`.
+  - **contentType** (string) - Optional - Set the content type of the request. Can be 'form' for `application/x-www-form-urlencoded`.
+  - **filterSignals** (object) - Optional - RegExp object to filter signals.
+
+### Request Example
+```html
+<button data-on:click="@get('/endpoint')"></button>
+<button data-on:click="@get('/endpoint', {openWhenHidden: true})"></button>
+<button data-on:click="@get('/endpoint', {contentType: 'form'})</button>
+```
+
+### Response
+#### Success Response (200)
+- **Datastar SSE events** - The response contains zero or more Datastar SSE events.
+```
+
+--------------------------------
+
+### Patch DOM Elements with Datastar SSE
+
+Source: https://data-star.dev/docs
+
+Patches one or more elements in the DOM using the `datastar-patch-elements` SSE event. It supports various morphing modes like 'outer', 'inner', 'replace', 'prepend', 'append', 'before', and 'after'. Elements can be targeted using CSS selectors, and view transitions can be enabled. IDs on top-level elements are recommended for proper morphing.
+
+```html
+event: datastar-patch-elements
+data: elements <div id="foo">Hello world!</div>
+
+
+```
+
+```html
+event: datastar-patch-elements
+data: mode remove
+data: selector #foo
+
+
+```
+
+```html
+event: datastar-patch-elements
+data: mode inner
+data: selector #foo
+data: useViewTransition true
+data: elements <div>
+data: elements        Hello world!
+data: elements </div>
+
+
+```
+
+--------------------------------
+
+### Event Handling with `data-on` Attribute
+
+Source: https://data-star.dev/docs
+
+The `data-on` attribute attaches event listeners to elements, executing expressions when events are triggered. An `evt` variable representing the event object is available within the expression. It supports custom events and the `data-on:submit` event listener prevents default form submission behavior.
+
+```html
+<button data-on:click="$foo = ''">Reset</button>
+```
+
+```html
+<div data-on:myevent="$foo = evt.detail"></div>
+```
+
+--------------------------------
+
+### `data-on` Event Modifiers for Event Handling
+
+Source: https://data-star.dev/docs
+
+This snippet demonstrates various modifiers for the `data-on` attribute, controlling event listener behavior. Modifiers include `__once`, `__passive`, `__capture`, `__case` (with sub-options like `.camel`, `.kebab`), `__delay`, `__debounce` (with options like `.leading`, `.notrailing`), `__throttle` (with options like `.noleading`, `.trailing`), `__viewtransition`, `__window`, `__outside`, `__prevent`, and `__stop`.
+
+```html
+<button data-on:click__window__debounce.500ms.leading="$foo = ''"></button>
+```
+
+```html
+<div data-on:my-event__case.camel="$foo = ''"></div>
+```
+
+--------------------------------
+
+### HTML: Practical Use-Case of Nested Signals for Menu State
+
+Source: https://data-star.dev/guide/backend_requests
+
+Illustrates a practical scenario of nested signals to manage the open/closed state of multiple menus (desktop and mobile) and a function to toggle them all. This example highlights efficient state management.
+
+```html
+<div data-signals="{menu: {isOpen: {desktop: false, mobile: false}}}">
+    <button data-on:click="@toggleAll({include: /^menu\.isOpen\./})">
+        Open/close menu
+    </button>
+</div>
+```
+
+--------------------------------
+
+### HTML Button for DataStar Redirect
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+An HTML button with a `data-on:click` attribute that triggers a GET request to a specified endpoint. It also includes a `div` for displaying a redirect indicator.
+
+```html
+<button data-on:click="@get('/endpoint')">
+    Click to be redirected from the backend
+</button>
+<div id="indicator"></div>
+```
+
+--------------------------------
+
+### Datastar HTML for Asynchronous Function Call in External Script
+
+Source: https://data-star.dev/docs
+
+This HTML snippet shows how to handle asynchronous functions in Datastar. The input event triggers an async function ('myfunction'), which dispatches a custom event ('mycustomevent') with the result. The component listens for this event to update the UI. Datastar does not await async calls directly within expressions.
+
+```html
+<div data-signals:result>
+    <input data-bind:foo 
+           data-on:input="myfunction(el, $foo)"
+           data-on:mycustomevent__window="$result = evt.detail.value"
+    >
+    <span data-text="$result"></span>
+</div>
+```
+
+--------------------------------
+
+### Patch DOM Elements with Server-Sent Events (SSE)
+
+Source: https://data-star.dev/docs
+
+This functionality allows updating specific HTML elements in the browser using Server-Sent Events. It is implemented in PHP, Python (with Sanic), Ruby, Rust, and JavaScript. The core idea is to send an SSE event that targets an element by its ID and provides new HTML content.
+
+```php
+use starfederation\datastar\ServerSentEventGenerator;
+
+// Creates a new `ServerSentEventGenerator` instance.
+$sse = new ServerSentEventGenerator();
+
+// Patches elements into the DOM.
+$sse->patchElements(
+    '<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>'
+);
+
+sleep(1);
+
+$sse->patchElements(
+    '<div id="hal">Waiting for an order...</div>'
+);
+```
+
+```python
+from datastar_py import ServerSentEventGenerator as SSE
+from datastar_py.sanic import datastar_response
+import asyncio
+
+@app.get('/open-the-bay-doors')
+@datastar_response
+async def open_doors(request):
+    yield SSE.patch_elements('<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>')
+    await asyncio.sleep(1)
+    yield SSE.patch_elements('<div id="hal">Waiting for an order...</div>')
+```
+
+```ruby
+require 'datastar'
+
+# Create a Datastar::Dispatcher instance
+datastar = Datastar.new(request:, response:)
+
+# Start a streaming response
+datastar.stream do |sse|
+  # Patches elements into the DOM.
+  sse.patch_elements %(<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>)
+
+  sleep 1
+  
+  sse.patch_elements %(<div id="hal">Waiting for an order...</div>)
+end
+```
+
+```rust
+use async_stream::stream;
+use datastar::prelude::*;
+use std::thread;
+use std::time::Duration;
+
+Sse(stream! {
+    // Patches elements into the DOM.
+    yield PatchElements::new("<div id='hal'>I’m sorry, Dave. I’m afraid I can’t do that.</div>").into();
+
+    thread::sleep(Duration::from_secs(1));
+    
+    yield PatchElements::new("<div id='hal'>Waiting for an order...</div>").into();
+})
+```
+
+```javascript
+// Creates a new `ServerSentEventGenerator` instance (this also sends required headers)
+ServerSentEventGenerator.stream(req, res, (stream) => {
+    // Patches elements into the DOM.
+    stream.patchElements(`<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>`);
+
+    setTimeout(() => {
+        stream.patchElements(`<div id="hal">Waiting for an order...</div>`);
+    }, 1000);
+});
+```
+
+--------------------------------
+
+### Datastar Backend Actions
+
+Source: https://data-star.dev/reference/actions
+
+Provides backend actions for common HTTP requests like GET, POST, PUT, PATCH, and DELETE. These actions are designed to interact with server-side APIs.
+
+```APIDOC
+## Backend Actions
+
+### Description
+These actions facilitate making HTTP requests to backend services.
+
+### Methods
+- `@get()`
+- `@post()`
+- `@put()`
+- `@patch()`
+- `@delete()`
+
+### Endpoint
+N/A (Used within Datastar expressions to trigger backend requests)
+
+### Parameters
+(Specific parameters depend on the chosen HTTP method, typically including URL, data, and options.)
+
+### Request Example
+```html
+<!-- Example using @get() -->
+<button data-on:click="@get('/api/users')">Fetch Users</button>
+
+<!-- Example using @post() -->
+<button data-on:click="@post('/api/users', { name: 'John Doe' })">Create User</button>
+```
+
+### Response
+(Responses will vary based on the backend API endpoint being called.)
+
+#### Success Response (200)
+(Details of the successful response payload from the backend.)
+
+#### Response Example
+```json
+{
+  "message": "Success"
+}
+```
+```
+
+--------------------------------
+
+### Go: Backend Logic for Loading More
 
 Source: https://data-star.dev/how_tos/load_more_list_items
 
-This HTML snippet sets up a list container with the ID 'list' and a 'load-more' button. The button uses 'data-signals-offset' to track the current offset and 'data-on-click' to trigger a GET request to the backend when clicked.
+This Go implementation demonstrates handling Datastar requests to load more items. It reads signals, constructs new elements, and sends `PatchElements`, `PatchSignals`, or `RemoveElements` events via Server-Sent Events.
 
-```html
-1<div id="list">
-2<div>Item 1</div>
-3</div>
-4<button id="load-more" 
-5        data-signals-offset="1" 
-6        data-on-click="@get('/how_tos/load_more/data')">
-7Click to load another item
-8</button>
+```go
+1import (
+2    "fmt"
+3    "net/http"
+4
+5    "github.com/go-chi/chi/v5"
+6    "github.com/starfederation/datastar-go/datastar"
+7)
+8
+9type OffsetSignals struct {
+10    Offset int `json:"offset"`
+11}
+12
+13signals := &OffsetSignals{}
+14if err := datastar.ReadSignals(r, signals); err != nil {
+15    http.Error(w, err.Error(), http.StatusBadRequest)
+16}
+17
+18max := 5
+19limit := 1
+20offset := signals.Offset
+21
+22sse := datastar.NewSSE(w, r)
+23
+24if offset < max {
+25    newOffset := offset + limit
+26    sse.PatchElements(fmt.Sprintf(`<div>Item %d</div>`, newOffset),
+27        datastar.WithSelectorID("list"),
+28        datastar.WithModeAppend(),
+29    )
+30    if newOffset < max {
+31        sse.PatchSignals([]byte(fmt.Sprintf(`{offset: %d}`, newOffset)))
+32    } else {
+33        sse.RemoveElements(`#load-more`)
+34    }
+35}
 ```
 
 --------------------------------
 
-### HTML Progress Bar with SSE Updates
+### Set Element Text Content with `data-text` Attribute
+
+Source: https://data-star.dev/docs
+
+The `data-text` attribute binds the text content of an HTML element to the value of a Datastar signal. It can also evaluate Datastar expressions, allowing for dynamic text manipulation like calling JavaScript methods on the signal.
+
+```html
+<input data-bind:foo />
+<div data-text="$foo"></div>
+<div data-text="$foo.toUpperCase()"></div>
+```
+
+--------------------------------
+
+### HTML for Progress Bar and Completion Button
 
 Source: https://data-star.dev/examples/progress_bar
 
-This HTML structure defines a progress bar using SVG and includes a button that appears upon completion. It utilizes Datastar's data attributes for server-sent events (SSE) to dynamically update the progress and handle restart actions. The `data-on-load` attribute initiates the SSE connection, and `data-on-click` handles the restart functionality.
+This HTML code defines a progress bar using SVG and a completion button. The progress bar visually indicates completion percentage, and the button appears once the progress is 100%, allowing the user to restart the process. It utilizes custom data attributes for Datastar integration, including SSE event handling.
 
 ```html
 <div
     id="progress-bar"
-    data-on-load="@get('/examples/progress_bar/updates', {openWhenHidden: true})"
+    data-init="@get('/examples/progress_bar/updates', {openWhenHidden: true})"
 >
     <!-- When progress is less than 100% -->
     <svg
@@ -1819,9 +3968,9 @@ This HTML structure defines a progress bar using SVG and includes a button that 
     
     <!-- When progress is 100% -->
     <button
-        data-indicator-_fetching
-        data-attr-aria-disabled="`${$_fetching}`"
-        data-on-click="
+        data-indicator:_fetching
+        data-attr:aria-disabled="`${$_fetching}`"
+        data-on:click="
             !$_fetching && @get('/examples/progress_bar/updates', {openWhenHidden: true})
         "
     >
@@ -1833,178 +3982,129 @@ This HTML structure defines a progress bar using SVG and includes a button that 
 
 --------------------------------
 
-### HTML: Displaying a Read-Only Table Row
+### Backend Response: `datastar-patch-elements` Event
 
-Source: https://data-star.dev/examples/edit_row
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-This code snippet displays a single row in a table with contact information (Name, Email) and an 'Edit' button. The 'Edit' button is configured to trigger a GET request to a specific URL when clicked, initiating the editing process.
+This example shows the structure of a backend response using a `datastar-patch-elements` event. The event data contains the updated HTML for the element, allowing the frontend to dynamically refresh content.
 
-```html
-<tr>
-    <td>Joe Smith</td>
-    <td>joe@smith.org</td>
-    <td>
-        <button data-on-click="@get('/examples/edit_row/0')">
-            Edit
-        </button>
-    </td>
-</tr>
+```http
+event: datastar-patch-elements
+data: elements <div id="time" data-on-interval__duration.5s="@get('/endpoint')">
+data: elements     {{ now }}
+data: elements </div>
+
+
 ```
 
 --------------------------------
 
-### Stream SSE Events in Go
+### Linearly Interpolate Values
 
 Source: https://data-star.dev/docs
 
-This Go code snippet demonstrates how to stream Server-Sent Events (SSE) using the DataStar Go SDK. It shows the creation of a `ServerSentEventGenerator` and how to use its methods to patch elements and signals.
-
-```go
-import ("github.com/starfederation/datastar-go/datastar")
-
-// Creates a new `ServerSentEventGenerator` instance.
-sse := datastar.NewSSE(w,r)
-
-// Patches elements into the DOM.
-sse.PatchElements(
-    `<div id="question">What do you put in a toaster?</div>`
-)
-
-// Patches signals.
-sse.PatchSignals([]byte(`{response: '', answer: 'bread'}`))
-```
-
---------------------------------
-
-### GET Request API
-
-Source: https://data-star.dev/reference/actions
-
-Sends a GET request to the backend. By default, it sends signals as query parameters and includes a 'Datastar-Request: true' header. The SSE connection can be managed when the page is hidden.
-
-```APIDOC
-## GET /endpoint
-
-### Description
-Sends a `GET` request to the specified URI. This action is suitable for retrieving data and can handle Server-Sent Events (SSE).
-
-### Method
-GET
-
-### Endpoint
-`/endpoint`
-
-### Parameters
-#### Query Parameters
-- **uri** (string) - Required - The endpoint to send the GET request to.
-- **options** (object) - Optional - Configuration for the request.
-  - **contentType** (string) - Optional - Sets the content type for the request. Can be 'json' (default) or 'form'.
-  - **filterSignals** (object) - Optional - Filters which signals are sent with the request. Contains `include` (RegExp) and `exclude` (RegExp) properties.
-  - **selector** (string) - Optional - Specifies a form element to use when `contentType` is 'form'. Defaults to the closest form.
-  - **headers** (object) - Optional - An object of headers to include with the request.
-  - **openWhenHidden** (boolean) - Optional - If true, keeps the SSE connection open when the page is hidden. Defaults to `false`.
-  - **retryInterval** (number) - Optional - The interval in milliseconds for retrying requests. Defaults to `1000`.
-  - **retryScaler** (number) - Optional - The multiplier for scaling retry wait times. Defaults to `2`.
-  - **retryMaxWaitMs** (number) - Optional - The maximum wait time in milliseconds between retries. Defaults to `30000`.
-  - **retryMaxCount** (number) - Optional - The maximum number of retry attempts. Defaults to `10`.
-  - **requestCancellation** (string | AbortController) - Optional - Controls request cancellation behavior. Defaults to `'auto'`.
-
-### Request Example
-```html
-<button data-on-click="@get('/endpoint', { openWhenHidden: true })"></button>
-<button data-on-click="@get('/endpoint', { contentType: 'form' })"></button>
-<form enctype="multipart/form-data">
-    <input type="file" name="file" />
-    <button data-on-click="@get('/endpoint', { contentType: 'form' })"></button>
-</form>
-<button data-on-click="@get('/endpoint', {
-    filterSignals: {include: /^foo\./},
-    headers: {
-        'X-Csrf-Token': 'JImikTbsoCYQ9oGOcvugov0Awc5LbqFsZW6ObRCxuq',
-    },
-    openWhenHidden: true,
-    requestCancellation: 'disabled',
-})></button>
-```
-
-### Response
-#### Success Response (200)
-- **Datastar SSE events** - Zero or more Datastar Server-Sent Events.
-
-#### Response Example
-```json
-{
-  "event": "update",
-  "data": {
-    "message": "Hello, world!"
-  }
-}
-```
-```
-
---------------------------------
-
-### Linearly Interpolate Values with DataStar Pro's @fit()
-
-Source: https://data-star.dev/docs
-
-The `@fit()` DataStar Pro function linearly interpolates a value from a source range (oldMin, oldMax) to a target range (newMin, newMax). The optional `shouldClamp` parameter restricts the output to the target range, and `shouldRound` rounds the result to the nearest integer. Examples include converting slider values to RGB, Celsius to Fahrenheit, and mapping mouse position to opacity.
+Uses the `@fit()` action to linearly interpolate a value from one range to another. This is useful for scaling values, such as mapping a slider input to an RGB color component or converting temperature units. Optional parameters allow clamping the output to the new range and rounding to the nearest integer.
 
 ```html
- 1<!-- Convert a 0-100 slider to 0-255 RGB value -->
- 2<div>
- 3    <input type="range" min="0" max="100" value="50" data-bind-slider-value>
- 4    <div data-computed-rgb-value="@fit($sliderValue, 0, 100, 0, 255)">
- 5        RGB Value: <span data-text="$rgbValue"></span>
- 6    </div>
- 7</div>
- 8
- 9<!-- Convert Celsius to Fahrenheit -->
-10<div>
-11    <input type="number" data-bind-celsius value="20" />
-12    <div data-computed-fahrenheit="@fit($celsius, 0, 100, 32, 212)">
-13        <span data-text="$celsius"></span>°C = <span data-text="$fahrenheit.toFixed(1)"></span>°F
-14    </div>
-15</div>
-16
-17<!-- Map mouse position to element opacity (clamped) -->
-18<div
-19    data-signals-mouse-x="0"
-20    data-computed-opacity="@fit($mouseX, 0, window.innerWidth, 0, 1, true)"
-21    data-on-mousemove__window="$mouseX = evt.clientX"
-22    data-attr-style="'opacity: ' + $opacity"
-23>
-24    Move your mouse horizontally to change opacity
-25</div>
+<!-- Convert a 0-100 slider to 0-255 RGB value -->
+<div>
+    <input type="range" min="0" max="100" value="50" data-bind:slider-value>
+    <div data-computed:rgb-value="@fit($sliderValue, 0, 100, 0, 255)">
+        RGB Value: <span data-text="$rgbValue"></span>
+    </div>
+</div>
+
+<!-- Convert Celsius to Fahrenheit -->
+<div>
+    <input type="number" data-bind:celsius value="20" />
+    <div data-computed:fahrenheit="@fit($celsius, 0, 100, 32, 212)">
+        <span data-text="$celsius"></span>°C = <span data-text="$fahrenheit.toFixed(1)"></span>°F
+    </div>
+</div>
+
+<!-- Map mouse position to element opacity (clamped) -->
+<div
+    data-signals:mouse-x="0"
+    data-computed:opacity="@fit($mouseX, 0, window.innerWidth, 0, 1, true)"
+    data-on:mousemove__window="$mouseX = evt.clientX"
+    data-attr:style="'opacity: ' + $opacity"
+>
+    Move your mouse horizontally to change opacity
+</div>
 ```
 
 --------------------------------
 
-### Kotlin SDK Example for Dynamic List Loading
+### C# SDK for HTTP Patch Signals
 
-Source: https://data-star.dev/how_tos/load_more_list_items
+Source: https://data-star.dev/guide/reactive_signals
 
-This Kotlin code snippet shows how to read offset signals and initiate server-sent events for dynamic list loading using DataStar. It defines a data class for signals and uses ServerSentEventGenerator to patch elements, update signals, or remove elements based on the offset.
+This C# code demonstrates how to use the DataStar SDK within an ASP.NET Core application to patch signals asynchronously over HTTP GET requests, including delays.
 
-```kotlin
- 1@Serializable
- 2data class OffsetSignals(
- 3    val offset: Int,
- 4)
+```csharp
+ 1using StarFederation.Datastar.DependencyInjection;
+ 2
+ 3// Adds Datastar as a service
+ 4builder.Services.AddDatastar();
  5
- 6val signals = 
- 7    readSignals(
- 8        request,
- 9        { json: String -> Json.decodeFromString<OffsetSignals>(json) },
-10    )
-11
-12val max = 5
-13val limit = 1
-14val offset = signals.offset
-15
-16val generator = ServerSentEventGenerator(response)
-17
-18if (offset < max) {
+ 6app.MapGet("/hal", async (IDatastarService datastarService) =>
+ 7{
+ 8    // Patches signals.
+ 9    await datastarService.PatchSignalsAsync(new { hal = "Affirmative, Dave. I read you" });
+10
+11    await Task.Delay(TimeSpan.FromSeconds(3));
+12
+13    await datastarService.PatchSignalsAsync(new { hal = "..." });
+14});
+```
+
+--------------------------------
+
+### Datastar HTML for Bad Apple Benchmark
+
+Source: https://data-star.dev/examples/bad_apple
+
+HTML structure using Datastar signals to display the Bad Apple video benchmark. It includes a label to manage animation state and percentage, and a pre tag to display the video frames. The animation state is initialized via a GET request.
+
+```html
+<label
+    data-signals="{_percentage: 0, _contents: 'bad apple frames go here'}"
+    data-init="@get('/examples/bad_apple/updates')"
+>
+    <span data-text="`Percentage: ${$_percentage.toFixed(2)}%`"></span>
+    <input
+        type="range"
+        min="0"
+        max="100"
+        step="0.01"
+        disabled
+        style="cursor: default"
+        data-attr:value="$_percentage"
+    />
+</label>
+<pre style="line-height: 100%" data-text="$_contents"></pre>
+```
+
+--------------------------------
+
+### C#: `IDatastarService.PatchElementsAsync` Example
+
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+
+This C# snippet shows how to use the `IDatastarService` to asynchronously patch elements on the client. It fetches the current time and sends an updated HTML div to the client at a 5-second interval.
+
+```csharp
+using StarFederation.Datastar.DependencyInjection;
+
+app.MapGet("/endpoint", async (IDatastarService datastarService) =>
+{
+    var currentTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+    await datastarService.PatchElementsAsync($"\
+        <div id=\"time\" data-on-interval__duration.5s=\"@get('/endpoint')\">\
+            {currentTime}\
+        </div>
+    ");
+});
 
 ```
 
@@ -2014,33 +4114,156 @@ This Kotlin code snippet shows how to read offset signals and initiate server-se
 
 Source: https://data-star.dev/reference/actions
 
-The `@get()` action sends a GET request to a specified URI. It supports options for customizing request headers, filtering signals, controlling connection behavior when the page is hidden, and setting content types like 'form' or 'multipart/form-data'. Signals are sent as query parameters by default.
+Sends a GET request to a specified URI using the Fetch API. Supports options for controlling signal filtering, background tab behavior, and content type. Signals are sent as query parameters by default.
 
 ```html
-<button data-on-click="@get('/endpoint')"></button>
-<button data-on-click="@get('/endpoint', {openWhenHidden: true})"></button>
-<button data-on-click="@get('/endpoint', {contentType: 'form'})></button>
+<button data-on:click="@get('/endpoint')"></button>
+```
+
+```html
+<button data-on:click="@get('/endpoint', {openWhenHidden: true})"></button>
+```
+
+```html
+<button data-on:click="@get('/endpoint', {contentType: 'form'})></button>
+```
+
+```html
 <form enctype="multipart/form-data">
     <input type="file" name="file" />
-    <button data-on-click="@get('/endpoint', {contentType: 'form'})></button>
+    <button data-on:click="@get('/endpoint', {contentType: 'form'})></button>
 </form>
-<button data-on-click="@get('/endpoint', {
-    filterSignals: {include: /^foo\./},
-    headers: {
-        'X-Csrf-Token': 'JImikTbsoCYQ9oGOcvugov0Awc5LbqFsZW6ObRCxuq',
-    },
-    openWhenHidden: true,
-    requestCancellation: 'disabled',
-})"></button>
 ```
 
 --------------------------------
 
-### Rust Backend for Real-time Time Updates
+### DataStar Interval: Immediate Execution with `.leading`
 
 Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-A Rust example using `datastar` crate to generate SSEs for patching elements with the current time. It leverages `chrono` for time formatting and `async_stream` for stream handling.
+This example shows how to modify the interval attribute to execute the expression immediately upon page load in addition to the regular interval. This is achieved by appending the `.leading` modifier.
+
+```html
+<div id="time"
+     data-on-interval__duration.5s.leading="@get('/endpoint')"
+></div>
+```
+
+--------------------------------
+
+### Log all signal patches on change (HTML)
+
+Source: https://data-star.dev/reference
+
+The `data-on-signal-patch` attribute allows you to run an expression whenever any signals are patched. This example logs the details of the signal patch to the console using the available `patch` variable.
+
+```html
+<div data-on-signal-patch="console.log('A signal changed!')"></div>
+```
+
+```html
+<div data-on-signal-patch="console.log('Signal patch:', patch)"></div>
+```
+
+--------------------------------
+
+### Send GET Request with Datastar
+
+Source: https://data-star.dev/guide
+
+This snippet demonstrates how to send a GET request to a specified URL using Datastar's `@get()` action. It's useful for fetching data from the backend and updating the DOM based on the response. Ensure the backend returns HTML content for morphing.
+
+```html
+1<button data-on:click="@get('/endpoint')">
+2    Open the pod bay doors, HAL.
+3</button>
+4<div id="hal"></div>
+```
+
+--------------------------------
+
+### Replicating Datastar Pro Attributes with Free Version (HTML)
+
+Source: https://data-star.dev/essays/greedy_developer
+
+These HTML snippets demonstrate how to achieve functionality similar to Datastar Pro's convenience plugins using the free version. The first snippet replaces the current URL on load and when the '$page' variable changes, while the second scrolls an element into view.
+
+```html
+1<!-- Replaces the current URL on load and whenever $page changes. -->
+<div data-effect="window.history.replaceState({}, '', '/page/' + $page)"></div>
+
+<!-- Scrolls the element into view. -->
+<div data-init="el.scrollIntoView()"></div>
+```
+
+--------------------------------
+
+### Predefined Signal Types with data-bind
+
+Source: https://data-star.dev/docs
+
+Demonstrates how predefined signal types (e.g., number, array) are preserved during two-way data binding. When an element's value changes, it's automatically converted to match the original signal type. This is useful for maintaining data integrity, especially with form inputs like select options and checkboxes.
+
+```html
+<div data-signals:foo="0">
+    <select data-bind:foo>
+        <option value="10">10</option>
+    </select>
+</div>
+```
+
+```html
+<div data-signals:foo="[]">
+    <input data-bind:foo type="checkbox" value="bar" />
+    <input data-bind:foo type="checkbox" value="baz" />
+</div>
+```
+
+--------------------------------
+
+### Kotlin: Stream SSE Events with Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+This Kotlin code example demonstrates using the Datastar SDK to stream Server-Sent Events (SSE). It shows the initialization of a `ServerSentEventGenerator` and calls to `patchElements` and `patchSignals` methods. This snippet is concise and leverages Kotlin's syntax for building SSE responses.
+
+```kotlin
+1val generator = ServerSentEventGenerator(response)
+2
+generator.patchElements(
+3    elements = """<div id=\"question\">What do you put in a toaster?</div>""",
+4)
+5
+generator.patchSignals(
+6    signals = "{"response": "", "answer": "bread"}",
+7)
+
+```
+
+--------------------------------
+
+### Implement Alert Action Plugin
+
+Source: https://data-star.dev/examples/custom_plugin
+
+This JavaScript code defines a custom action plugin named 'alert'. It takes a context and a value, and applies the value by triggering a browser alert. This allows for custom event handling that displays messages to the user.
+
+```javascript
+1action({
+    name: 'alert',
+    apply(ctx, value) {
+        alert(value)
+    }
+})
+```
+
+--------------------------------
+
+### Rust: SSE with `PatchElements` using `async-stream`
+
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+
+This Rust example demonstrates creating Server-Sent Events to patch client elements. It uses `chrono` for time formatting and `async-stream` to generate the SSE stream containing updated HTML.
 
 ```rust
 use datastar::prelude::*;
@@ -2057,110 +4280,132 @@ Sse(stream! {
         )
     ).into();
 })
+
 ```
 
 --------------------------------
 
-### Clojure Backend for Real-time Time Updates
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-Provides a Clojure example using `starfederation.datastar.clojure.api` to patch elements with the current time at a set interval. It sets up a Server-Sent Events (SSE) response.
-
-```clojure
-(require
-  '[starfederation.datastar.clojure.api :as d*]
-  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
-  '[some.hiccup.library :refer [html]])
-
-(import
-  'java.time.format.DateTimeFormatter
-  'java.time.LocalDateTime)
-
-(def formatter (DateTimeFormatter/ofPattern "YYYY-MM-DD HH:mm:ss"))
-
-(defn handle [ring-request]
-   (->sse-response ring-request
-     {on-open
-      (fn [sse]
-        (d*/patch-elements! sse
-          (html [:div#time {:data-on-interval__duration.5s (d*/sse-get "/endpoint")} 
-                  (LocalDateTime/.format (LocalDateTime/now) formatter)])))}))
-
-        (d*/close-sse! sse)))
-```
-
---------------------------------
-
-### Patch Elements using Datastar C# SDK
-
-Source: https://data-star.dev/docs
-
-This C# code demonstrates how to add Datastar as a service using dependency injection and then use the IDatastarService to patch elements into the DOM. It shows updating content with a delay.
-
-```csharp
-1using StarFederation.Datastar.DependencyInjection;
-2
-3// Adds Datastar as a service
-4builder.Services.AddDatastar();
-5
-6app.MapGet("/", async (IDatastarService datastarService) =>
-7{
-8    // Patches elements into the DOM.
-9    await datastarService.PatchElementsAsync(@"<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>");
-10
-11    await Task.Delay(TimeSpan.FromSeconds(1));
-12
-13    await datastarService.PatchElementsAsync(@"<div id=\"hal\">Waiting for an order...</div>");
-14});
-```
-
---------------------------------
-
-### Practical Use Case: Toggling Nested Menu Signals in HTML
+### Send Multiple SSE Events in PHP using Datastar
 
 Source: https://data-star.dev/guide/backend_requests
 
-A practical example of using nested signals to manage the open/closed state of menus and a `toggleAll` action to control them, with HTML structure provided.
+Demonstrates sending SSE events, including patching elements and signals, using PHP with the Datastar library. This example is for PHP backend implementations.
 
-```html
-<div data-signals="{menu: {isOpen: {desktop: false, mobile: false}}}">
-    <button data-on-click="@toggleAll({include: /^menu\.isOpen\./})">
-        Open/close menu
-    </button>
-</div>
+```php
+$sse->patchElements('<div id="question">...</div>');
+$sse->patchElements('<div id="instructions">...</div>');
+$sse->patchSignals(['answer' => '...', 'prize' => '...']);
 ```
 
 --------------------------------
 
-### Using External Scripts with Arguments and Return Values (JavaScript)
+### Patch Signals with data-signals Attribute
 
 Source: https://data-star.dev/docs
 
-This snippet demonstrates how to pass data into a function via arguments and return a result. It uses `data-*` attributes for binding and event handling, enabling reactivity. The function `myfunction` takes an argument and returns a formatted string.
+The data-signals attribute allows patching (adding, updating, or removing) signals. Values defined later in the DOM override earlier ones. Nested signals use dot-notation, and multiple signals can be patched using key-value pairs in JavaScript or JSON format. Setting a signal to null or undefined removes it. Keys are converted to camel case.
 
 ```html
-<div data-signals-result>
-    <input data-bind-foo 
-        data-on-input="$result = myfunction($foo)"
-    >
-    <span data-text="$result"></span>
-</div>
-```
-
-```javascript
-function myfunction(data) {
-    return `You entered: ${data}`;
-}
+<div data-signals:foo="1"></div>
+<div data-signals:foo.bar="1"></div>
+<div data-signals="{foo: {bar: 1, baz: 2}}"></div>
+<div data-signals="{foo: null}"></div>
+<div data-signals:my-signal="1"></div>
+<div data-signals="{mySignal: 1}"></div>
 ```
 
 --------------------------------
 
-### Kotlin Backend for Real-time Time Updates
+### Combine include and exclude filters for signal patches (HTML)
+
+Source: https://data-star.dev/reference
+
+This example shows how to use both `include` and `exclude` properties within `data-on-signal-patch-filter` to create a more specific filter. It will react to signals containing 'user' but exclude those containing 'password'.
+
+```html
+<!-- Combine include and exclude filters -->
+<div data-on-signal-patch-filter="{include: /user/, exclude: /password/}"></div>
+```
+
+--------------------------------
+
+### Two-Way Data Binding with data-bind Attribute
+
+Source: https://data-star.dev/docs
+
+Establishes two-way data binding between an HTML element's value and a signal. Updates occur in both directions: element changes update the signal, and signal changes update the element. Supports input, select, textarea, and web components, listening for 'change' and 'input' events. Signal names can be specified in the attribute key or value.
+
+```html
+<input data-bind:foo />
+```
+
+```html
+<input data-bind="foo" />
+```
+
+```html
+<input data-bind:foo value="bar" />
+```
+
+```html
+<div data-signals:foo="baz">
+    <input data-bind:foo value="bar" />
+</div>
+```
+
+--------------------------------
+
+### HTML Structure for Web Component Binding
+
+Source: https://data-star.dev/examples/web_component
+
+This HTML snippet sets up the structure for a web component, including input fields and display areas. It utilizes custom attributes (`data-bind`, `data-signals`, `data-text`, `data-on`, `data-attr`) for data binding and event handling, commonly found in declarative UI frameworks.
+
+```html
+<label>
+    Reversed
+    <input type="text" value="Your Name" data-bind:_name/>
+</label>
+<span data-signals:_reversed data-text="$ _reversed"></span>
+<reverse-component
+    data-on:reverse="$_reversed = evt.detail.value"
+    data-attr:name="$_name">
+</reverse-component>
+```
+
+--------------------------------
+
+### Submit Form Data via GET/POST with contentType: form
+
+Source: https://data-star.dev/examples/form_data
+
+This snippet shows how to submit form data using both GET and POST requests with the 'contentType' option set to 'form'. It demonstrates submitting data from within the form and from an external button, leveraging automatic form selection and validation. The 'selector' option can be used to target specific forms.
+
+```html
+<form id="myform">
+    foo:<input type="checkbox" name="checkboxes" value="foo" />
+    bar:<input type="checkbox" name="checkboxes" value="bar" />
+    baz:<input type="checkbox" name="checkboxes" value="baz" />
+    <button data-on:click="@get('/endpoint', {contentType: 'form'})">
+        Submit GET request
+    </button>
+    <button data-on:click="@post('/endpoint', {contentType: 'form'})">
+        Submit POST request
+    </button>
+</form>
+
+<button data-on:click="@get('/endpoint', {contentType: 'form', selector: '#myform'})">
+    Submit GET request from outside the form
+</button>
+```
+
+--------------------------------
+
+### Kotlin: `ServerSentEventGenerator` for Patching Elements
 
 Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-A Kotlin example demonstrating how to use `ServerSentEventGenerator` to patch elements with the current time at specified intervals. This snippet focuses on the backend generation of the SSE.
+This Kotlin example utilizes `ServerSentEventGenerator` to patch elements on the client. It formats the current time and includes it in an HTML `div` with a specified 5-second update interval.
 
 ```kotlin
 val now: LocalDateTime = currentTime()
@@ -2168,659 +4413,145 @@ val now: LocalDateTime = currentTime()
 val generator = ServerSentEventGenerator(response)
 
 generator.patchElements(
-    elements = 
+    elements =
         """
         <div id="time" data-on-interval__duration.5s="@get('/endpoint')">
             $now
         </div>
         """.trimIndent()
 )
+
 ```
 
 --------------------------------
 
-### Set JavaScript Response Headers with DataStar
+### C# Backend Redirect with DataStar
 
-Source: https://data-star.dev/docs
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
 
-When serving JavaScript (`text/javascript`), you can set custom response headers like `datastar-script-attributes` to include JSON-encoded attributes for the script element. This allows for dynamic configuration of scripts served from the server. The example demonstrates setting the Content-Type and script attributes, along with a simple JavaScript response body.
-
-```javascript
-1response.headers.set('Content-Type', 'text/javascript')
-2response.headers.set('datastar-script-attributes', JSON.stringify({ type: 'module' }))
-3response.body = 'console.log("Hello from server!");'
-```
-
---------------------------------
-
-### Stream SSE Events in Ruby
-
-Source: https://data-star.dev/docs
-
-This Ruby snippet shows how to stream Server-Sent Events (SSE) using the `datastar` gem. It demonstrates instantiating `Datastar` and using the `stream` method with a block to send patch events for elements and signals.
-
-```ruby
-require 'datastar'
-
-# Create a Datastar::Dispatcher instance
-
-datastar = Datastar.new(request:, response:)
-
-# In a Rack handler, you can instantiate from the Rack env
-# datastar = Datastar.from_rack_env(env)
-
-# Start a streaming response
-datastar.stream do |sse|
-  # Patches elements into the DOM
-  sse.patch_elements %(<div id="question">What do you put in a toaster?</div>)
-
-  # Patches signals
-  sse.patch_signals(response: '', answer: 'bread')
-end
-```
-
---------------------------------
-
-### Attach Event Listeners with data-on Attribute
-
-Source: https://data-star.dev/guide/reactive_signals
-
-The `data-on` attribute attaches event listeners to elements, executing specified expressions when the event occurs. It supports standard and custom event names, enabling interactive UI elements. For example, `data-on-click` can reset a signal's value.
-
-```html
-<input data-bind-foo />
-<button data-on-click="$foo = ''">
-    Reset
-</button>
-```
-
---------------------------------
-
-### Stream SSE Events in Clojure
-
-Source: https://data-star.dev/docs
-
-This snippet demonstrates how to set up a backend controller action in Clojure to stream Server-Sent Events (SSE) using the DataStar SDK. It shows how to create an SSE response and send patches for DOM elements and signals.
-
-```clojure
-(require '[starfederation.datastar.clojure.api :as d*])
-(require '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
-
-;; in a ring handler
-(defn handler [request]
-  ;; Create an SSE response
-  (->sse-response request
-                  {on-open
-                   (fn [sse]
-                     ;; Patches elements into the DOM
-                     (d*/patch-elements! sse
-                                         "<div id=\"question\">What do you put in a toaster?</div>")
-
-                     ;; Patches signals
-                     (d*/patch-signals! sse "{response: '', answer: 'bread'}"))})
-```
-
---------------------------------
-
-### data-indicator Attribute Usage Examples
-
-Source: https://data-star.dev/errors/runtime/indicator_key_or_value_required
-
-Examples demonstrating the correct usage of the data-indicator attribute. The attribute requires either a key or a value to represent a signal's name. This signal is set to true when an SSE request is in progress and false otherwise.
-
-```html
-<div data-indicator-foo></div>
-```
-
-```html
-<div data-indicator="foo"></div>
-```
-
---------------------------------
-
-### POST Request API
-
-Source: https://data-star.dev/reference/actions
-
-Sends a POST request to the backend. Similar to GET, but used for submitting data.
-
-```APIDOC
-## POST /endpoint
-
-### Description
-Sends a `POST` request to the specified URI. This action is used for creating or submitting data to the server.
-
-### Method
-POST
-
-### Endpoint
-`/endpoint`
-
-### Parameters
-#### Query Parameters
-- **uri** (string) - Required - The endpoint to send the POST request to.
-- **options** (object) - Optional - Configuration for the request. See GET request options for details.
-
-### Request Example
-```html
-<button data-on-click="@post('/endpoint')"></button>
-```
-
-### Response
-#### Success Response (200)
-- **Response Body** - The server's response to the POST request.
-
-#### Response Example
-```json
-{
-  "status": "success",
-  "id": "123e4567-e89b-12d3-a456-426614174000"
-}
-```
-```
-
---------------------------------
-
-### Patch Elements using Datastar Go SDK
-
-Source: https://data-star.dev/docs
-
-This Go code snippet illustrates how to create a ServerSentEventGenerator and use its PatchElements method to update the DOM. It includes sending an initial HTML fragment and then a subsequent update after a short delay.
-
-```go
-1import (
-2    "github.com/starfederation/datastar-go/datastar"
-3    time
-4)
-5
-6// Creates a new `ServerSentEventGenerator` instance.
-7sse := datastar.NewSSE(w,r)
-8
-9// Patches elements into the DOM.
-10sse.PatchElements(
-11    `<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>`
-12)
-13
-14time.Sleep(1 * time.Second)
-15
-16sse.PatchElements(
-17    `<div id="hal">Waiting for an order...</div>`
-18)
-```
-
---------------------------------
-
-### Generating SSE ExecuteScript Event with Go SDK (Go)
-
-Source: https://data-star.dev/docs
-
-This Go code snippet demonstrates using the DataStar SDK to generate a Server-Sent Event (SSE) that executes a JavaScript script on the frontend. The `ExecuteScript` helper function simplifies the process.
-
-```go
-sse := datastar.NewSSE(writer, request)
-sse.ExecuteScript(`alert('This mission is too important for me to allow you to jeopardize it.')`)
-```
-
---------------------------------
-
-### HTML Structure for Web Component Interaction
-
-Source: https://data-star.dev/examples/web_component
-
-This HTML snippet sets up the user interface for the web component. It includes a label with an input field bound to the '_name' signal, a span to display the reversed text bound to the '_reversed' signal, and the custom 'reverse-component' itself, configured with event listeners and attribute bindings.
-
-```html
-<label>
-    Reversed
-    <input type="text" value="Your Name" data-bind-_name/>
-</label>
-<span data-signals-_reversed data-text="$_reversed"></span>
-<reverse-component
-    data-on-reverse="$_reversed = evt.detail.value"
-    data-attr-name="$_name">
-</reverse-component>
-```
-
---------------------------------
-
-### Patch Elements using Datastar Clojure SDK
-
-Source: https://data-star.dev/docs
-
-This Clojure code snippet shows how to use the Datastar SDK to create an SSE response and patch elements into the DOM. It includes sending an initial message and then updating it after a delay.
-
-```clojure
-1;; Import the SDK's api and your adapter
-2(require
-3 '[starfederation.datastar.clojure.api :as d*]
-4 '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
-5
-6;; in a ring handler
-7(defn handler [request]
-8  ;; Create an SSE response
-9  (->sse-response request
-10                  {on-open
-11                   (fn [sse]
-12                     ;; Patches elements into the DOM
-13                     (d*/patch-elements! sse
-14                                         "<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
-15                     (Thread/sleep 1000)
-16                     (d*/patch-elements! sse
-17                                         "<div id=\"hal\">Waiting for an order...</div>"))})
-```
-
---------------------------------
-
-### PHP Backend for Real-time Time Updates
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-Shows a PHP implementation using `ServerSentEventGenerator` to update an element with the current time. This example highlights the server-side generation of SSE for dynamic content.
-
-```php
-use starfederation\datastar\ServerSentEventGenerator;
-
-$currentTime = date('Y-m-d H:i:s');
-
-$sse = new ServerSentEventGenerator();
-$sse->patchElements(`
-    <div id="time"
-         data-on-interval__duration.5s="@get('/endpoint')"
-    >
-        $currentTime
-    </div>
-`);
-```
-
---------------------------------
-
-### HTML Structure for DataStar Signals
-
-Source: https://data-star.dev/guide/reactive_signals
-
-This HTML snippet demonstrates how to set up elements to receive and display data-driven signals from the backend using DataStar attributes like 'data-signals-hal' and 'data-on-click'. It shows a button that triggers an API call and a div to display the 'hal' signal.
-
-```html
-1<div data-signals-hal="'...'" >
-2    <button data-on-click="@get('/endpoint')">
-3        HAL, do you read me?
-4    </button>
-5    <div data-text="$hal"></div>
-6</div>
-```
-
---------------------------------
-
-### Example HTTP Response with Error Code
-
-Source: https://data-star.dev/essays/im_a_teapot
-
-This snippet demonstrates an HTTP response that includes an H1 tag displaying an error message. It's presented as an example within a discussion about HTTP status codes, highlighting a scenario where an error code might be embedded in an HTML response.
-
-```http
-HTTP/1.1 200 OK
-Content-Type: text/html
-<H1>Error 404</H1>
-```
-
---------------------------------
-
-### JavaScript Function: Synchronous Example
-
-Source: https://data-star.dev/guide/datastar_expressions
-
-Provides a simple synchronous JavaScript function `myfunction` that takes data as an argument and returns a formatted string. This function can be called from Datastar expressions.
-
-```javascript
-1function myfunction(data) {
-2    return `You entered: ${data}`;
-3}
-```
-
---------------------------------
-
-### Patch Elements using Datastar Service in C#
-
-Source: https://data-star.dev/guide/getting_started
-
-This C# example shows how to integrate Datastar into an ASP.NET Core application by adding it as a service. It then uses `IDatastarService.PatchElementsAsync` to send HTML content to patch elements in the DOM, including a delay between updates.
+Demonstrates a backend redirect using C# with the DataStar library. It patches elements to show a redirect message, waits for 3 seconds, and then executes a script to navigate the user.
 
 ```csharp
 using StarFederation.Datastar.DependencyInjection;
 
-// Adds Datastar as a service
-builder.Services.AddDatastar();
-
-app.MapGet("/", async (IDatastarService datastarService) =>
+app.MapGet("/redirect", async (IDatastarService datastarService) =>
 {
-    // Patches elements into the DOM.
-    await datastarService.PatchElementsAsync(@"<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>");
-
-    await Task.Delay(TimeSpan.FromSeconds(1));
-
-    await datastarService.PatchElementsAsync(@"<div id=\"hal\">Waiting for an order...</div>");
+    await datastarService.PatchElementsAsync("<div id=\"indicator\">Redirecting in 3 seconds...</div>");
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    await datastarService.ExecuteScriptAsync("window.location = \"/guide\";");
 });
 ```
 
 --------------------------------
 
-### Datastar: GET Request to Patch Elements with HTML Response
+### SSE Event for Patching Signals
 
-Source: https://data-star.dev/guide
+Source: https://data-star.dev/guide/reactive_signals
 
-Demonstrates how to use the '@get()' action in Datastar to send a GET request to a backend endpoint. If the response content type is 'text/html', the response's HTML elements are morphed into the DOM, replacing existing elements with matching IDs. This requires a corresponding element in the DOM with the specified ID for morphing to occur.
+This example shows how to format a Server-Sent Event (SSE) to trigger the 'datastar-patch-signals' event, updating frontend signals with new data.
 
-```html
-<button data-on-click="@get('/endpoint')">
-    Open the pod bay doors, HAL.
-</button>
-<div id="hal"></div>
+```sse
+1event: datastar-patch-signals
+2data: signals {hal: 'Affirmative, Dave. I read you.'}
+3
+
 ```
 
+--------------------------------
+
+### Display Contact Details and Edit/Reset Buttons (HTML)
+
+Source: https://data-star.dev/examples/click_to_edit
+
+This HTML snippet displays contact information (First Name, Last Name, Email) and provides 'Edit' and 'Reset' buttons. The 'Edit' button triggers a GET request to '/examples/click_to_edit/edit', while the 'Reset' button triggers a PATCH request to '/examples/click_to_edit/reset'. It utilizes custom attributes for data binding and event handling.
+
 ```html
-<div id="hal">
-    I’m sorry, Dave. I’m afraid I can’t do that.
+<div id="demo">
+    <p>First Name: John</p>
+    <p>Last Name: Doe</p>
+    <p>Email: joe@blow.com</p>
+    <div role="group">
+        <button
+            class="info"
+            data-indicator:_fetching
+            data-attr:disabled="$_fetching"
+            data-on:click="@get('/examples/click_to_edit/edit')"
+        >
+            Edit
+        </button>
+        <button
+            class="warning"
+            data-indicator:_fetching
+            data-attr:disabled="$_fetching"
+            data-on:click="@patch('/examples/click_to_edit/reset')"
+        >
+            Reset
+        </button>
+    </div>
 </div>
 ```
 
 --------------------------------
 
-### Submit Form Data via GET/POST with ContentType 'form'
+### JavaScript for SortableJS Initialization and Event Handling
 
-Source: https://data-star.dev/examples/form_data
+Source: https://data-star.dev/examples/sortable
 
-This snippet demonstrates how to submit form data using both GET and POST requests with the contentType option set to 'form'. This option automatically serializes form elements and sends them to the backend. A selector can be used to target a specific form.
+This JavaScript code initializes the SortableJS library on the 'sortContainer' element. It configures the Sortable instance to dispatch a custom 'reordered' event upon completion of a drag-and-drop operation, passing the old and new indices of the moved item.
 
-```html
-<form id="myform">
-    foo:<input type="checkbox" name="checkboxes" value="foo" />
-    bar:<input type="checkbox" name="checkboxes" value="bar" />
-    baz:<input type="checkbox" name="checkboxes" value="baz" />
-    <button data-on-click="@get('/endpoint', {contentType: 'form'})">
-        Submit GET request
-    </button>
-    <button data-on-click="@post('/endpoint', {contentType: 'form'})">
-        Submit POST request
-    </button>
-</form>
-
-<button data-on-click="@get('/endpoint', {contentType: 'form', selector: '#myform'})">
-    Submit GET request from outside the form
-</button>
-```
-
---------------------------------
-
-### Go: Patching Signals with SSE
-
-Source: https://data-star.dev/docs
-
-This Go code snippet shows how to patch signals using Server-Sent Events (SSE) with the DataStar Go SDK. It initializes an `ServerSentEventGenerator` and uses its `PatchSignals` method to send signal updates, including a time delay between them.
-
-```go
- 1import (
- 2    "github.com/starfederation/datastar-go/datastar"
- 3)
- 4
- 5// Creates a new `ServerSentEventGenerator` instance.
- 6sse := datastar.NewSSE(w, r)
- 7
- 8// Patches signals
- 9sse.PatchSignals([]byte(`{hal: 'Affirmative, Dave. I read you.'}`))
-10
-11time.Sleep(1 * time.Second)
-12
-13sse.PatchSignals([]byte(`{hal: '...'}`))
-14
-```
-
---------------------------------
-
-### Alpine.js data-on-load Basic Usage (JavaScript)
-
-Source: https://data-star.dev/docs
-
-This snippet demonstrates the 'data-on-load' directive, which executes an expression when the element is loaded into the DOM. Here, it initializes a count variable to 1.
-
-```html
-<div data-on-load="$count = 1"></div>
-
-```
-
---------------------------------
-
-### Implement Server-Sent Events with Rust
-
-Source: https://data-star.dev/docs
-
-This snippet demonstrates how to generate Server-Sent Events (SSE) using Rust and the `async_stream` crate. It involves yielding `PatchSignals` within a stream, with a delay between events.
-
-```rust
-use async_stream::stream;
-use datastar::prelude::*;
-use std::thread;
-use std::time::Duration;
-
-Sse(stream! {
-    // Patches signals.
-    yield PatchSignals::new("{hal: 'Affirmative, Dave. I read you.'}").into();
-
-    thread::sleep(Duration::from_secs(1));
-    
-    yield PatchSignals::new("{hal: '...'}").into();
+```javascript
+import Sortable from 'https://cdn.jsdelivr.net/npm/sortablejs/+esm'
+new Sortable(sortContainer, {
+    animation: 150,
+    ghostClass: 'opacity-25',
+    onEnd: (evt) => {
+        sortContainer.dispatchEvent(
+            new CustomEvent('reordered', {detail: {
+                orderInfo: `Moved from position ${evt.oldIndex + 1} to ${evt.newIndex + 1}`
+            }})
+        )
+    }
 })
 ```
 
 --------------------------------
 
-### Read Datastar Signals in Python (FastAPI)
-
-Source: https://data-star.dev/docs
-
-Illustrates reading signals within a FastAPI endpoint in Python. It uses the `@datastar_response` decorator and the `read_signals` utility function to retrieve the frontend state as a dictionary.
-
-```python
-from datastar_py.fastapi import datastar_response, read_signals
-
-@app.get("/updates")
-@datastar_response
-async def updates(request: Request):
-    # Retrieve a dictionary with the current state of the signals from the frontend
-    signals = await read_signals(request)
-
-```
-
---------------------------------
-
-### Datastar Expressions: Multiple Statements with Semicolon
-
-Source: https://data-star.dev/docs
-
-Shows how to execute multiple statements within a single Datastar expression by separating them with a semicolon. This allows for sequential operations.
-
-```html
-<div data-signals-foo="1">
-    <button data-on-click="$landingGearRetracted = true; @post('/launch')">
-        Force launch
-    </button>
-</div>
-```
-
---------------------------------
-
-### Send SSE Events with Datastar in C#
+### Send Multiple SSE Events in Ruby using Datastar
 
 Source: https://data-star.dev/guide/backend_requests
 
-This C# example shows how to configure Datastar as a service and handle SSE events within a MapGet endpoint. It demonstrates patching elements and signals asynchronously. Requires the Datastar .NET SDK.
+Provides an example of sending SSE events, patching elements, and signals using Ruby with the Datastar framework. This is useful for Ruby on Rails or other Ruby backend projects.
 
-```csharp
-1using StarFederation.Datastar.DependencyInjection;
-2
-3// Adds Datastar as a service
-4builder.Services.AddDatastar();
-5
-6app.MapGet("/", async (IDatastarService datastarService) =>
-7{
-8    // Patches elements into the DOM.
-9    await datastarService.PatchElementsAsync(@"<div id=\"question\">What do you put in a toaster?</div>");
-10
-11    // Patches signals.
-12    await datastarService.PatchSignalsAsync(new { response = "", answer = "bread" });
-13});
+```ruby
+return DatastarResponse([
+    SSE.patch_elements('<div id="question">...</div>'),
+    SSE.patch_elements('<div id="instructions">...</div>'),
+    SSE.patch_signals({"answer": "...", "prize": "..."})
+])
 ```
 
 --------------------------------
 
-### Patch Elements using Datastar Java SDK
-
-Source: https://data-star.dev/docs
-
-This Java code demonstrates using the ServerSentEventGenerator with an HttpServletResponseAdapter to patch elements into the DOM. It shows sending an initial HTML update and then a follow-up update after a one-second delay.
-
-```java
-1import starfederation.datastar.utils.ServerSentEventGenerator;
-2
-3// Creates a new `ServerSentEventGenerator` instance.
-4AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
-5ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
-6
-7// Patches elements into the DOM.
-8generator.send(PatchElements.builder()
-9    .data("<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
-10    .build()
-11);
-12
-13Thread.sleep(1000);
-14
-15generator.send(PatchElements.builder()
-16    .data("<div id=\"hal\">Waiting for an order...</div>")
-17    .build()
-18);
-```
-
---------------------------------
-
-### Datastar Expressions: Multi-line Statements
-
-Source: https://data-star.dev/docs
-
-Demonstrates how Datastar expressions can span multiple lines. A semicolon is required to separate statements, as line breaks alone are not sufficient.
-
-```html
-<div data-signals-foo="1">
-    <button data-on-click="
-        $landingGearRetracted = true; 
-        @post('/launch')
-    ">
-        Force launch
-    </button>
-</div>
-```
-
---------------------------------
-
-### Set Multiple HTML Attributes with Datastar data-attr
-
-Source: https://data-star.dev/docs
-
-Demonstrates using the `data-attr` attribute in Datastar to set multiple HTML attributes on an element simultaneously using a key-value pair object.
-
-```html
-<div data-attr="{title: $foo, disabled: $bar}"></div>
-```
-
---------------------------------
-
-### Datastar Expression: Accessing Signal Properties
-
-Source: https://data-star.dev/guide/datastar_expressions
-
-Illustrates how to access properties of a signal within a Datastar expression. This example displays the length of the string signal `$foo`.
-
-```html
-1<div data-text="$foo.length"></div>
-```
-
---------------------------------
-
-### Read Datastar Signals in C#
-
-Source: https://data-star.dev/docs
-
-Shows how to set up Datastar as a service and read nested signals from an incoming request using `IDatastarService` in a C# .NET environment. It defines a `Signals` record to represent the expected JSON structure.
-
-```csharp
-using StarFederation.Datastar.DependencyInjection;
-
-// Adds Datastar as a service
-builder.Services.AddDatastar();
-
-public record Signals
-{
-    [JsonPropertyName("foo")] [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public FooSignals? Foo { get; set; } = null;
-
-    public record FooSignals
-    {
-        [JsonPropertyName("bar")] [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? Bar { get; set; }
-    }
-}
-
-app.MapGet("/read-signals", async (IDatastarService datastarService) =>
-{
-    Signals? mySignals = await datastarService.ReadSignalsAsync<Signals>();
-    var bar = mySignals?.Foo?.Bar;
-});
-
-```
-
---------------------------------
-
-### Send DELETE Request with Datastar
+### Setting HTML Response Headers for Datastar DOM Patching
 
 Source: https://data-star.dev/reference/actions
 
-The `@delete()` action facilitates sending DELETE requests to a specified URI. It offers the same configuration options as the `@get()` action.
+This example shows how to set response headers to control how HTML content is patched into the DOM using Datastar. It specifies the content type, the target selector, and the patching mode, allowing for dynamic updates of specific page elements.
 
-```html
-<button data-on-click="@delete('/endpoint')"></button>
+```javascript
+response.headers.set('Content-Type', 'text/html')
+response.headers.set('datastar-selector', '#my-element')
+response.headers.set('datastar-mode', 'inner')
+response.body = '<p>New content</p>'
 ```
 
 --------------------------------
 
-### Send PATCH Request with Datastar
-
-Source: https://data-star.dev/reference/actions
-
-The `@patch()` action is designed for sending PATCH requests to a given URI. It shares the same set of options and behavior as the `@get()` action.
-
-```html
-<button data-on-click="@patch('/endpoint')"></button>
-```
-
---------------------------------
-
-### Interval Execution with `data-on-interval`
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-Demonstrates how to use the `data-on-interval` attribute to run an expression, such as a GET request, at a specified interval. The `__duration` modifier sets the interval time.
-
-```html
-<div id="time"
-     data-on-interval__duration.5s="@get('/endpoint')"
-></div>
-```
-
---------------------------------
-
-### Send SSE Events with Datastar in Ruby
+### Ruby: Stream SSE Events with Datastar
 
 Source: https://data-star.dev/guide/backend_requests
 
-This Ruby example demonstrates initiating a streaming SSE response using the Datastar gem. It shows how to patch elements and signals within a block passed to the `stream` method.
+This Ruby code snippet shows how to implement Server-Sent Events (SSE) using the Datastar gem within a Rack application. It demonstrates initializing a `Datastar` dispatcher and using the `stream` block to send patched elements and signals. This example highlights Datastar's integration with the Ruby Rack ecosystem.
 
 ```ruby
 1require 'datastar'
@@ -2840,293 +4571,33 @@ datastar = Datastar.new(request:, response:)
 14  # Patches signals
 15  sse.patch_signals(response: '', answer: 'bread')
 16end
+
 ```
 
 --------------------------------
 
-### Send PUT Request with Datastar
+### Data-Star Attributes for Interactive Elements
 
-Source: https://data-star.dev/reference/actions
+Source: https://data-star.dev/guide/backend_requests
 
-The `@put()` action allows for sending PUT requests to a specified URI. It mirrors the functionality and options available with the `@get()` action.
-
-```html
-<button data-on-click="@put('/endpoint')"></button>
-```
-
---------------------------------
-
-### Value Interpolation with @fit()
-
-Source: https://data-star.dev/reference/actions
-
-Demonstrates the `@fit()` directive for linear interpolation between two value ranges. Examples include converting a slider value to an RGB component, Celsius to Fahrenheit, and mapping mouse position to element opacity, with options for clamping and rounding.
-
-```html
-<!-- Convert a 0-100 slider to 0-255 RGB value -->
-<div>
-    <input type="range" min="0" max="100" value="50" data-bind-slider-value />
-    <div data-computed-rgb-value="@fit($sliderValue, 0, 100, 0, 255)">
-        RGB Value: <span data-text="$rgbValue"></span>
-    </div>
-</div>
-
-<!-- Convert Celsius to Fahrenheit -->
-<div>
-    <input type="number" data-bind-celsius value="20" />
-    <div data-computed-fahrenheit="@fit($celsius, 0, 100, 32, 212)">
-        <span data-text="$celsius"></span>°C = <span data-text="$fahrenheit.toFixed(1)"></span>°F
-    </div>
-</div>
-
-<!-- Map mouse position to element opacity (clamped) -->
-<div
-    data-signals-mouse-x="0"
-    data-computed-opacity="@fit($mouseX, 0, window.innerWidth, 0, 1, true)"
-    data-on-mousemove__window="$mouseX = evt.clientX"
-    data-attr-style="'opacity: ' + $opacity"
->
-    Move your mouse horizontally to change opacity
-</div>
-```
-
---------------------------------
-
-### Clojure: Patching Signals with SSE
-
-Source: https://data-star.dev/docs
-
-This Clojure code snippet illustrates how to generate Server-Sent Events (SSE) to patch signals using the DataStar SDK. It sets up a Ring handler that creates an SSE response and uses `d*/patch-signals!` to send signal updates with a delay between them.
-
-```clojure
- 1;; Import the SDK's api and your adapter
- 2(require
- 3  '[starfederation.datastar.clojure.api :as d*]
- 4  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
- 5
- 6;; in a ring handler
- 7(defn handler [request]
- 8  ;; Create an SSE response
- 9  (->sse-response request
-10                  {on-open
-11                   (fn [sse]
-12                     ;; Patches signal.
-13                     (d*/patch-signals! sse "{hal: 'Affirmative, Dave. I read you.'}")
-14                     (Thread/sleep 1000)
-15                     (d*/patch-signals! sse "{hal: '...'}"))}))
-```
-
---------------------------------
-
-### Stream SSE Events in Kotlin
-
-Source: https://data-star.dev/docs
-
-This Kotlin snippet demonstrates how to stream Server-Sent Events (SSE) using the DataStar library. It shows the usage of `ServerSentEventGenerator` to patch elements and signals directly within a response context.
-
-```kotlin
-val generator = ServerSentEventGenerator(response)
-
-generator.patchElements(
-    elements = "<div id=\"question\">What do you put in a toaster?</div>",
-)
-
-generator.patchSignals(
-    signals = "{\"response\": \"\", \"answer\": \"bread\"}",
-)
-```
-
---------------------------------
-
-### Global Keydown Listener with data-on
-
-Source: https://data-star.dev/how_tos/bind_keydown_events_to_specific_keys
-
-Listens for any keydown event globally on the window and executes a simple JavaScript expression. This serves as a basic example to show event capture.
-
-```html
-<div data-on-keydown__window="alert('Key pressed')"></div>
-```
-
---------------------------------
-
-### Datastar Expression: Access Signal Property Length
-
-Source: https://data-star.dev/docs
-
-Illustrates accessing a property of a signal and using JavaScript's `.length` method within a Datastar expression to display it.
-
-```html
-<div data-text="$foo.length"></div>
-```
-
---------------------------------
-
-### Color Throb Animation using HTML
-
-Source: https://data-star.dev/examples/animations
-
-This example demonstrates a simple color throb animation by maintaining a stable element ID across content swaps. Datastar swaps elements while preserving their IDs, enabling CSS transitions between old and new element states. The provided HTML sets initial colors and text for the element.
+This snippet shows how to use Data-Star attributes to create interactive elements. `data-on:click` triggers a GET request to a server endpoint. `data-signals` initializes signals, `data-computed` creates computed properties, `data-show` conditionally displays elements, and `data-text` sets element text content.
 
 ```html
 <div
-    id="color-throb"
-    style="color: var(--blue-8); background-color: var(--orange-5);"
->
-    blue on orange
-</div>
-```
-
---------------------------------
-
-### HTML Table with Bulk Update Functionality
-
-Source: https://data-star.dev/examples/bulk_update
-
-This HTML snippet defines a table with checkboxes for row selection and buttons for bulk activation and deactivation. It uses custom data attributes for handling user interactions and binding data. The checkboxes in the header and rows manage selection states, and the buttons trigger PUT requests to specified endpoints. The table rows are dynamically updated by the server after the bulk operation.
-
-```html
-<div
-    id="demo"
-    data-signals__ifmissing="{_fetching: false, selections: Array(4).fill(false)}"
->
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    <input
-                        type="checkbox"
-                        data-bind-_all
-                        data-on-change="$selections = Array(4).fill($_all)"
-                        data-effect="$selections; $_all = $selections.every(Boolean)"
-                        data-attr-disabled="$_fetching"
-                    />
-                </th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <input
-                        type="checkbox"
-                        data-bind-selections
-                        data-attr-disabled="$_fetching"
-                    />
-                </td>
-                <td>Joe Smith</td>
-                <td>joe@smith.org</td>
-                <td>Active</td>
-            </tr>
-            <!-- More rows... -->
-        </tbody>
-    </table>
-    <div role="group">
-        <button
-            class="success"
-            data-on-click="@put('/examples/bulk_update/activate')"
-            data-indicator-_fetching
-            data-attr-disabled="$_fetching"
-        >
-            <i class="pixelarticons:user-plus"></i>
-            Activate
-        </button>
-        <button
-            class="error"
-            data-on-click="@put('/examples/bulk_update/deactivate')"
-            data-indicator-_fetching
-            data-attr-disabled="$_fetching"
-        >
-            <i class="pixelarticons:user-x"></i>
-            Deactivate
-        </button>
-    </div>
-</div>
-```
-
---------------------------------
-
-### Attribute Order Example in HTML
-
-Source: https://data-star.dev/reference/attributes
-
-Demonstrates the order of attribute processing in Datastar. Attributes are evaluated in DOM depth-first order, and within an element, in the order they appear. This is crucial for dependencies, like ensuring an indicator is set up before a fetch request.
-
-```html
-<div data-indicator-fetching data-on-load="@get('/endpoint')"></div>
-```
-
---------------------------------
-
-### Send POST Request with Datastar
-
-Source: https://data-star.dev/reference/actions
-
-The `@post()` action is used to send a POST request to a specified URI. It functions similarly to `@get()` in terms of available options for request customization.
-
-```html
-<button data-on-click="@post('/endpoint')"></button>
-```
-
---------------------------------
-
-### Datastar Patch Elements Example
-
-Source: https://data-star.dev/reference/sse_events
-
-This code demonstrates how to use the `datastar-patch-elements` SSE event to update the DOM. It shows basic patching, removing elements, and using non-default morphing modes like 'inner' and specifying selectors. It also illustrates handling multi-line element data and using view transitions.
-
-```text
-event: datastar-patch-elements
-data: elements <div id="foo">Hello world!</div>
-```
-
-```text
-event: datastar-patch-elements
-data: mode remove
-data: selector #foo
-```
-
-```text
-event: datastar-patch-elements
-data: mode remove
-data: elements <div id="foo"></div>
-```
-
-```text
-event: datastar-patch-elements
-data: mode inner
-data: selector #foo
-data: useViewTransition true
-data: elements <div>
-data:        Hello world!
-data: </div>
-```
-
---------------------------------
-
-### Interactive Quiz with data-computed and data-show
-
-Source: https://data-star.dev/guide/reactive_signals
-
-This snippet creates an interactive quiz element. It uses `data-signals` to initialize response and answer signals, `data-computed` to determine correctness, `data-on-click` for user input via prompt, and `data-show` to conditionally display feedback based on the computed result.
-
-```html
-<div
-    data-signals="{response: '', answer: 'bread'}"
-    data-computed-correct="$response.toLowerCase() == $answer"
->
-    <div id="question">What do you put in a toaster?</div>
-    <button data-on-click="$response = prompt('Answer:') ?? ''">BUZZ</button>
+    data-signals="{response: '', answer: ''}"
+    data-computed:correct="$response.toLowerCase() == $answer">
+    <div id="question"></div>
+    <button data-on:click="@get('/actions/quiz')">Fetch a question</button>
+    <button
+        data-show="$answer != ''"
+        data-on:click="$response = prompt('Answer:') ?? ''">
+        BUZZ
+    </button>
     <div data-show="$response != ''">
         You answered “<span data-text="$response"></span>”.
         <span data-show="$correct">That is correct ✅</span>
         <span data-show="!$correct">
-        The correct answer is “
-        <span data-text="$answer"></span>
-        ” 🤷
+        The correct answer is “<span data-text="$answer"></span>” 🤷
         </span>
     </div>
 </div>
@@ -3134,34 +4605,81 @@ This snippet creates an interactive quiz element. It uses `data-signals` to init
 
 --------------------------------
 
-### Datastar Expressions: Ternary and Logical Operators
+### Node.js: `ServerSentEventGenerator` for Streaming Updates
 
-Source: https://data-star.dev/docs
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-Demonstrates the use of JavaScript operators like the ternary operator (`?:`), logical OR (`||`), and logical AND (`&&`) within Datastar expressions for conditional rendering and actions.
+This Node.js example uses the `ServerSentEventGenerator` to stream updates to the client. It captures the current time and sends it within an HTML structure, configured for a 5-second interval update.
 
-```html
-// Output one of two values, depending on the truthiness of a signal
-<div data-text="$landingGearRetracted ? 'Ready' : 'Waiting'"></div>
+```javascript
+import { createServer } from "node:http";
+import { ServerSentEventGenerator } from "../npm/esm/node/serverSentEventGenerator.js";
 
-// Show a countdown if the signal is truthy or the time remaining is less than 10 seconds
-<div data-show="$landingGearRetracted || $timeRemaining < 10">
-    Countdown
-</div>
+const server = createServer(async (req, res) => {
+  const currentTime = new Date().toISOString();
+  
+  ServerSentEventGenerator.stream(req, res, (sse) => {
+    sse.patchElements(`
+       <div id="time"
+          data-on-interval__duration.5s="@get('/endpoint')"
+       >
+         ${currentTime}
+       </div>
+    `);
+  });
+});
 
-// Only send a request if the signal is truthy
-<button data-on-click="$landingGearRetracted && @post('/launch')">
-    Launch
-</button>
 ```
 
 --------------------------------
 
-### Read Datastar Signals in Kotlin
+### Datastar Expressions: Multiple Statements with Semicolon
 
-Source: https://data-star.dev/docs
+Source: https://data-star.dev/guide/datastar_expressions
 
-Demonstrates reading signals in Kotlin using `kotlinx.serialization`. It defines a `Signals` data class and a `JsonUnmarshaller` to deserialize the JSON request body, then uses a `readSignals` helper function.
+Illustrates how multiple statements can be executed within a single Datastar expression by separating them with a semicolon. This example shows updating a signal and then triggering an action.
+
+```html
+1<div data-signals:foo="1">
+2    <button data-on:click="$landingGearRetracted = true; @post('/launch')">
+3        Force launch
+4    </button>
+5</div>
+```
+
+--------------------------------
+
+### Send PATCH Request with Datastar
+
+Source: https://data-star.dev/reference/actions
+
+Sends a PATCH request to a specified URI. Operates identically to `@get()` but employs the PATCH HTTP method. It accepts configuration options for the request.
+
+```html
+<button data-on:click="@patch('/endpoint')"></button>
+```
+
+--------------------------------
+
+### Handle DataStar Fetch Events
+
+Source: https://data-star.dev/reference/actions
+
+Listens for 'datastar-fetch' events on a DOM element to react to different stages of a fetch request. The event detail includes the type of event (e.g., 'started', 'finished', 'error').
+
+```html
+<div data-on:datastar-fetch="
+    evt.detail.type === 'error' && console.log('Fetch error encountered')
+"></div>
+```
+
+--------------------------------
+
+### Kotlin: Reading Signals with JSON Unmarshaller
+
+Source: https://data-star.dev/guide/backend_requests
+
+Illustrates reading signals in Kotlin using a JSON unmarshaller. This example defines a `Signals` data class and uses `Json.decodeFromString` to parse incoming JSON request bodies.
 
 ```kotlin
 @Serializable
@@ -3182,371 +4700,379 @@ val request: Request =
     )
 
 val signals = readSignals(request, jsonUnmarshaller)
-
 ```
 
 --------------------------------
 
-### Web Components with Attributes and Custom Events (JavaScript)
+### Send Multiple SSE Events in Java using Datastar
 
-Source: https://data-star.dev/docs
+Source: https://data-star.dev/guide/backend_requests
 
-This snippet illustrates creating and using a reusable web component. Data is passed via attributes (`data-attr-src`), and custom events (`mycustomevent`) are used for communication. The `MyComponent` class extends `HTMLElement` and dispatches events when its 'src' attribute changes.
+Provides an example of sending SSE events, including patching elements and signals, using Java with the Datastar library. This is intended for Java-based backend applications.
+
+```java
+generator.send(PatchElements.builder()
+    .data("<div id=\"question\">...</div>")
+    .build()
+);
+generator.send(PatchElements.builder()
+    .data("<div id=\"instructions\">...</div>")
+    .build()
+);
+generator.send(PatchSignals.builder()
+    .data("{\"answer\": \"...\", \"prize\": \"...\"}")
+    .build()
+);
+```
+
+--------------------------------
+
+### POST Request
+
+Source: https://data-star.dev/reference/actions
+
+Sends a POST request to the specified URI. Similar to the GET request, it supports options for controlling request behavior, but signals are sent as a JSON body by default.
+
+```APIDOC
+## POST /endpoint
+
+### Description
+Sends a `POST` request to the backend using the Fetch API. Works the same as `@get()` but sends a `POST` request to the backend.
+
+### Method
+POST
+
+### Endpoint
+`/endpoint`
+
+### Parameters
+#### Query Parameters
+- **uri** (string) - Required - The endpoint URI.
+- **options** (object) - Optional - Configuration options for the request.
+  - **openWhenHidden** (boolean) - Optional - Keep the SSE connection open when the page is hidden. Defaults to `false`.
+  - **contentType** (string) - Optional - Set the content type of the request. Can be 'form' for `application/x-www-form-urlencoded`.
+  - **filterSignals** (object) - Optional - RegExp object to filter signals.
+
+### Request Example
+```html
+<button data-on:click="@post('/endpoint')"></button>
+```
+
+### Response
+#### Success Response (200)
+- **Response body** - The response from the POST request.
+```
+
+--------------------------------
+
+### PATCH Request
+
+Source: https://data-star.dev/reference/actions
+
+Sends a PATCH request to the specified URI. Operates similarly to the GET request, with signals transmitted as a JSON body by default.
+
+```APIDOC
+## PATCH /endpoint
+
+### Description
+Sends a `PATCH` request to the backend using the Fetch API. Works the same as `@get()` but sends a `PATCH` request to the backend.
+
+### Method
+PATCH
+
+### Endpoint
+`/endpoint`
+
+### Parameters
+#### Query Parameters
+- **uri** (string) - Required - The endpoint URI.
+- **options** (object) - Optional - Configuration options for the request.
+  - **openWhenHidden** (boolean) - Optional - Keep the SSE connection open when the page is hidden. Defaults to `false`.
+  - **contentType** (string) - Optional - Set the content type of the request. Can be 'form' for `application/x-www-form-urlencoded`.
+  - **filterSignals** (object) - Optional - RegExp object to filter signals.
+
+### Request Example
+```html
+<button data-on:click="@patch('/endpoint')"></button>
+```
+
+### Response
+#### Success Response (200)
+- **Response body** - The response from the PATCH request.
+```
+
+--------------------------------
+
+### Send POST Request with Datastar
+
+Source: https://data-star.dev/reference/actions
+
+Sends a POST request to a specified URI. This function behaves similarly to `@get()` but utilizes the POST HTTP method. Options for request configuration are supported.
 
 ```html
-<div data-signals-result="''">
-    <input data-bind-foo />
-    <my-component
-        data-attr-src="$foo"
-        data-on-mycustomevent="$result = evt.detail.value"
-    ></my-component>
-    <span data-text="$result"></span>
+<button data-on:click="@post('/endpoint')"></button>
+```
+
+--------------------------------
+
+### PUT Request
+
+Source: https://data-star.dev/reference/actions
+
+Sends a PUT request to the specified URI. Functionality mirrors the GET request, with signals sent as a JSON body by default.
+
+```APIDOC
+## PUT /endpoint
+
+### Description
+Sends a `PUT` request to the backend using the Fetch API. Works the same as `@get()` but sends a `PUT` request to the backend.
+
+### Method
+PUT
+
+### Endpoint
+`/endpoint`
+
+### Parameters
+#### Query Parameters
+- **uri** (string) - Required - The endpoint URI.
+- **options** (object) - Optional - Configuration options for the request.
+  - **openWhenHidden** (boolean) - Optional - Keep the SSE connection open when the page is hidden. Defaults to `false`.
+  - **contentType** (string) - Optional - Set the content type of the request. Can be 'form' for `application/x-www-form-urlencoded`.
+  - **filterSignals** (object) - Optional - RegExp object to filter signals.
+
+### Request Example
+```html
+<button data-on:click="@put('/endpoint')"></button>
+```
+
+### Response
+#### Success Response (200)
+- **Response body** - The response from the PUT request.
+```
+
+--------------------------------
+
+### Send Multiple SSE Events in Crystal using Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+Shows how to send SSE events for patching elements and signals using Crystal and the Datastar library. This example is suitable for Crystal-based backend applications.
+
+```crystal
+yield PatchElements::new("<div id='question'>...</div>").into()
+yield PatchElements::new("<div id='instructions'>...</div>").into()
+yield PatchSignals::new("{answer: '...', prize: '...'}").into()
+```
+
+--------------------------------
+
+### Editable Contact Form (HTML)
+
+Source: https://data-star.dev/examples/click_to_edit
+
+This HTML snippet presents an editable form for contact details, including input fields for First Name, Last Name, and Email. It also includes 'Save' and 'Cancel' buttons. The 'Save' button triggers a PUT request to '/examples/click_to_edit', and the 'Cancel' button triggers a GET request to '/examples/click_to_edit/cancel'. Input fields are bound to signals, and buttons manage fetching states.
+
+```html
+<div id="demo">
+    <label>
+        First Name
+        <input
+            type="text"
+            data-bind:first-name
+            data-attr:disabled="$_fetching"
+        >
+    </label>
+    <label>
+        Last Name
+        <input
+            type="text"
+            data-bind:last-name
+            data-attr:disabled="$_fetching"
+        >
+    </label>
+    <label>
+        Email
+        <input
+            type="email"
+            data-bind:email
+            data-attr:disabled="$_fetching"
+        >
+    </label>
+    <div role="group">
+        <button
+            class="success"
+            data-indicator:_fetching
+            data-attr:disabled="$_fetching"
+            data-on:click="@put('/examples/click_to_edit')"
+        >
+            Save
+        </button>
+        <button
+            class="error"
+            data-indicator:_fetching
+            data-attr:disabled="$_fetching"
+            data-on:click="@get('/examples/click_to_edit/cancel')"
+        >
+            Cancel
+        </button>
+    </div>
 </div>
 ```
 
-```javascript
-class MyComponent extends HTMLElement {
-    static get observedAttributes() {
-        return ['src'];
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        const value = `You entered: ${newValue}`;
-        this.dispatchEvent(
-            new CustomEvent('mycustomevent', {detail: {value}})
-        );
-    }
-}
-
-customElements.define('my-component', MyComponent);
-```
-
 --------------------------------
 
-### JavaScript SSE Stream with Datastar
+### HTML: Read-only Row Structure
 
-Source: https://data-star.dev/guide/reactive_signals
+Source: https://data-star.dev/examples/edit_row
 
-This JavaScript code snippet demonstrates creating a Server-Sent Event stream using Datastar. It initializes a `ServerSentEventGenerator` and uses `setTimeout` to send patch signals with a delay, simulating real-time updates. The input is a request and response object, and the output is a stream of patch signals.
-
-```javascript
-// Creates a new `ServerSentEventGenerator` instance (this also sends required headers)
-ServerSentEventGenerator.stream(req, res, (stream) => {
-    // Patches signals.
-    stream.patchSignals({'hal': 'Affirmative, Dave. I read you.'});
-
-    setTimeout(() => {
-        stream.patchSignals({'hal': '...'});
-    }, 1000);
-});
-```
-
---------------------------------
-
-### Datastar Button Click Event Handling
-
-Source: https://data-star.dev/index
-
-This HTML snippet demonstrates how to attach a click event listener to a button using Datastar. The `data-on-click` attribute specifies an HTTP GET request to '/endpoint' that will be triggered when the button is clicked. The result of the request is typically rendered into the `#hal` div.
+This snippet shows the HTML structure of a table row before editing. It includes table data cells for Name and Email, and an 'Edit' button.
 
 ```html
-<button data-on-click="@get('/endpoint')">
-    Open the pod bay doors, HAL.
-</button>
-
-<div id="hal">Waiting for an order...</div>
+<tr>
+    <td>Joe Smith</td>
+    <td>joe@smith.org</td>
+    <td>
+        <button data-on:click="@get('/examples/edit_row/0')">
+            Edit
+        </button>
+    </td>
+</tr>
 ```
 
 --------------------------------
 
-### Kotlin: Patching Elements with Datastar SSE Generator
+### Use Alert Action in HTML
 
-Source: https://data-star.dev/guide
+Source: https://data-star.dev/examples/custom_plugin
 
-Shows how to patch elements into the DOM in Kotlin using Datastar's ServerSentEventGenerator. This example initializes the generator and then calls the `patchElements` method to send updates to an HTML element, incorporating a one-second delay between the two update operations.
-
-```kotlin
-val generator = ServerSentEventGenerator(response)
-
-generator.patchElements(
-    elements = """<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>""",
-)
-
-Thread.sleep(ONE_SECOND)
-
-generator.patchElements(
-    elements = """<div id=\"hal\">Waiting for an order...</div>"""
-)
-```
-
---------------------------------
-
-### Alpine.js data-on-my-event with Case Conversion (JavaScript)
-
-Source: https://data-star.dev/docs
-
-Illustrates the use of 'data-on-my-event' with the '__case.camel' modifier to convert event casing to camelCase. This is useful for custom events where consistent casing is important.
+This HTML snippet demonstrates how to use the custom 'alert' action plugin. The `@alert` syntax is used within a `data-on:click` attribute to execute the alert action with a provided string message when the button is clicked.
 
 ```html
-<div data-on-my-event__case.camel="$foo = ''"></div>
+1<button data-on:click="@alert('Hello from an action')">
+2    Alert using an action
+3</button>
+```
+
+--------------------------------
+
+### Debounce event listener for signal patches (HTML)
+
+Source: https://data-star.dev/reference
+
+This example uses `data-on-signal-patch` with the `__debounce` modifier and a `.500ms` timing to delay the execution of the `doSomething()` function. This ensures the function is only called after a period of inactivity, preventing rapid, repeated calls.
+
+```html
+<div data-on-signal-patch__debounce.500ms="doSomething()"></div>
+```
+
+--------------------------------
+
+### Python Litestar: Stream SSE Events with Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+This Python code snippet demonstrates streaming Server-Sent Events (SSE) within a Litestar application using the `datastar-py` library. It shows how to create a `DatastarResponse` that includes both patched elements and signals, directly within an async endpoint function. This example leverages the library's integration with modern Python web frameworks.
+
+```python
+1from datastar_py import ServerSentEventGenerator as SSE
+2from datastar_py.litestar import DatastarResponse
+3
+4async def endpoint():
+5    return DatastarResponse([
+6        SSE.patch_elements('<div id="question">What do you put in a toaster?</div>'),
+7        SSE.patch_signals({"response": "", "answer": "bread"})
+8    ])
 
 ```
 
 --------------------------------
 
-### Ruby Backend for Real-time Time Updates
+### DELETE Request
 
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+Source: https://data-star.dev/reference/actions
 
-Provides a Ruby example utilizing DataStar to generate Server-Sent Events (SSE) that update an element with the current time. It uses string interpolation for embedding the time.
+Sends a DELETE request to the specified URI. Functionality is consistent with the GET request, with signals sent as a JSON body by default.
 
-```ruby
-datastar = Datastar.new(request:, response:)
+```APIDOC
+## DELETE /endpoint
 
-current_time = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+### Description
+Sends a `DELETE` request to the backend using the Fetch API. Works the same as `@get()` but sends a `DELETE` request to the backend.
 
-datastar.patch_elements <<~FRAGMENT
-    <div id="time"
-         data-on-interval__duration.5s="@get('/endpoint')"
-    >
-        #{current_time}
+### Method
+DELETE
+
+### Endpoint
+`/endpoint`
+
+### Parameters
+#### Query Parameters
+- **uri** (string) - Required - The endpoint URI.
+- **options** (object) - Optional - Configuration options for the request.
+  - **openWhenHidden** (boolean) - Optional - Keep the SSE connection open when the page is hidden. Defaults to `false`.
+  - **contentType** (string) - Optional - Set the content type of the request. Can be 'form' for `application/x-www-form-urlencoded`.
+  - **filterSignals** (object) - Optional - RegExp object to filter signals.
+
+### Request Example
+```html
+<button data-on:click="@delete('/endpoint')"></button>
+```
+
+### Response
+#### Success Response (200)
+- **Response body** - The response from the DELETE request.
+```
+
+--------------------------------
+
+### HTML Structure for Lazy Tabs
+
+Source: https://data-star.dev/examples/lazy_tabs
+
+This HTML structure defines a set of tabs using ARIA roles for accessibility. Each tab button has a `data-on:click` attribute to trigger Datastar's event handling, which fetches tab content. The selected tab is indicated by `aria-selected='true'`, and tab content is displayed within a `role='tabpanel'` element.
+
+```html
+<div id="demo">
+    <div role="tablist">
+        <button
+            role="tab"
+            aria-selected="true"
+            data-on:click="@get('/examples/lazy_tabs/0')"
+        >
+            Tab 0
+        </button>
+        <button
+            role="tab"
+            aria-selected="false"
+            data-on:click="@get('/examples/lazy_tabs/1')"
+        >
+            Tab 1
+        </button>
+        <button
+            role="tab"
+            aria-selected="false"
+            data-on:click="@get('/examples/lazy_tabs/2')"
+        >
+            Tab 2
+        </button>
+        <!-- More tabs... -->
     </div>
-FRAGMENT
+    <div role="tabpanel">
+        <p>Lorem ipsum dolor sit amet...</p>
+        <p>Consectetur adipiscing elit...</p>
+        <!-- Tab content -->
+    </div>
+</div>
 ```
 
 --------------------------------
 
-### Send SSE Events with Datastar in PHP
-
-Source: https://data-star.dev/guide/backend_requests
-
-This PHP example utilizes the ServerSentEventGenerator to dispatch SSE events, including patching HTML elements and signals. It shows how to instantiate the generator and send data.
-
-```php
-1use starfederation\datastar\ServerSentEventGenerator;
-2
-3// Creates a new `ServerSentEventGenerator` instance.
-4$sse = new ServerSentEventGenerator();
-5
-6// Patches elements into the DOM.
-7$sse->patchElements(
-8    '<div id="question">What do you put in a toaster?</div>'
-9);
-10
-11// Patches signals.
-12$sse->patchSignals(['response' => '', 'answer' => 'bread']);
-```
-
---------------------------------
-
-### Alpine.js data-on-intersect Basic Usage (JavaScript)
-
-Source: https://data-star.dev/docs
-
-Shows the basic implementation of the 'data-on-intersect' directive. When the target div becomes visible in the viewport, the expression '$intersected = true' is evaluated.
-
-```html
-<div data-on-intersect="$intersected = true"></div>
-
-```
-
---------------------------------
-
-### HTML Structure for DBMon Demo
-
-Source: https://data-star.dev/examples/dbmon
-
-This HTML snippet defines the user interface for the DBMon demo. It includes elements for displaying render times, mutation rates, FPS, and a table for database cluster statistics. It uses DataStar attributes for dynamic behavior and event handling.
-
-```html
-1 <div
-2     id="demo"
-3     data-on-load="@get('/examples/dbmon/updates')"
-4     data-signals-_editing__ifmissing="false"
-5 >
-6     <p>
-7         Average render time for entire page: { renderTime }
-8     </p>
-9     <div role="group">
-10        <label>
-11            Mutation Rate %
-12            <input
-13                type="number"
-14                min="0"
-15                max="100"
-16                value="20"
-17                data-on-focus="$_editing = true"
-18                data-on-blur="@put('/examples/dbmon/inputs'); $_editing = false"
-19                data-attr-data-bind-mutation-rate="$_editing"
-20                data-attr-data-bind-_mutation-rate="!$_editing"
-21            />
-22        </label>
-23        <label>
-24            FPS
-25            <input
-26                type="number"
-27                min="1"
-28                max="144"
-29                value="60"
-30                data-on-focus="$_editing = true"
-31                data-on-blur="@put('/examples/dbmon/inputs'); $_editing = false"
-32                data-attr-data-bind-fps="$_editing"
-33                data-attr-data-bind-_fps="!$_editing"
-34            />
-35        </label>
-36    </div>
-37    <table style="table-layout: fixed; width: 100%; word-break: break-all">
-38        <tbody>
-39            <!-- Dynamic rows generated by server -->
-40            <tr>
-41                <td>cluster1</td>
-42                <td style="background-color: var(--_active-color)" class="success">
-43                    8
-44                </td>
-45                <td aria-description="SELECT blah from something">
-46                    12ms
-47                </td>
-48                <!-- More query cells... -->
-49            </tr>
-50            <!-- More database rows... -->
-51        </tbody>
-52    </table>
-53</div>
-```
-
---------------------------------
-
-### Handle DataStar Fetch Events in HTML
-
-Source: https://data-star.dev/docs
-
-This snippet shows how to use the `data-on-datastar-fetch` attribute in HTML to listen for various stages of a `datastar-fetch` request lifecycle. It demonstrates logging a message to the console when a fetch request encounters an error, using event delegation within a `div` element.
-
-```html
-1<div data-on-datastar-fetch="
-2    evt.detail.type === 'error' && console.log('Fetch error encountered')
-3"></div>
-```
-
---------------------------------
-
-### Executing Inline JavaScript from Backend Response (JavaScript)
-
-Source: https://data-star.dev/docs
-
-This snippet shows a simple JavaScript alert executed directly from a backend response. If the response `content-type` is `text/javascript`, the browser will execute the provided script.
-
-```javascript
-alert('This mission is too important for me to allow you to jeopardize it.')
-```
-
---------------------------------
-
-### Datastar Patch Signals Example
-
-Source: https://data-star.dev/reference/sse_events
-
-This code illustrates the `datastar-patch-signals` SSE event for updating signals on the page. It covers basic signal patching, removing signals by setting values to null, and using the `onlyIfMissing` option to conditionally update signals.
-
-```text
-event: datastar-patch-signals
-data: signals {foo: 1, bar: 2}
-```
-
-```text
-event: datastar-patch-signals
-data: signals {foo: null, bar: null}
-```
-
-```text
-event: datastar-patch-signals
-data: onlyIfMissing true
-data: signals {foo: 1, bar: 2}
-```
-
---------------------------------
-
-### Send SSE Events with Datastar in Java
-
-Source: https://data-star.dev/guide/backend_requests
-
-This Java example uses the ServerSentEventGenerator to send SSE events, including patching elements and signals. It requires adapting the response to an AbstractResponseAdapter. Assumes HttpServletResponse is available.
-
-```java
-1import starfederation.datastar.utils.ServerSentEventGenerator;
-2
-3// Creates a new `ServerSentEventGenerator` instance.
-4AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
-5ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
-6
-7// Patches elements into the DOM.
-8generator.send(PatchElements.builder()
-9    .data("<div id=\"question\">What do you put in a toaster?</div>")
-10    .build()
-11);
-12
-13// Patches signals.
-14generator.send(PatchSignals.builder()
-15    .data("{\"response\": \"\", \"answer\": \"\"}")
-16    .build()
-17);
-```
-
---------------------------------
-
-### Go: Patch Signals via SSE
-
-Source: https://data-star.dev/guide/reactive_signals
-
-This Go code snippet illustrates how to patch signals using Server-Sent Events (SSE) with the DataStar Go SDK. It shows creating an `ServerSentEventGenerator` and using its `PatchSignals` method to send updates.
-
-```go
- 1import (
- 2    "github.com/starfederation/datastar-go/datastar"
- 3)
- 4
- 5// Creates a new `ServerSentEventGenerator` instance.
- 6sse := datastar.NewSSE(w, r)
- 7
- 8// Patches signals
- 9sse.PatchSignals([]byte(`{hal: 'Affirmative, Dave. I read you.'}`))
-10
-11time.Sleep(1 * time.Second)
-12
-13sse.PatchSignals([]byte(`{hal: '...'}`))
-```
-
---------------------------------
-
-### Rust SSE Stream with Datastar
-
-Source: https://data-star.dev/guide/reactive_signals
-
-This Rust code snippet demonstrates how to create a Server-Sent Event stream using Datastar's `async_stream` macro. It yields patch signals at intervals, simulating real-time updates. Dependencies include `async_stream`, `datastar`, and `std::thread` for sleeping.
-
-```rust
-use async_stream::stream;
-use datastar::prelude::*;
-use std::thread;
-use std::time::Duration;
-
-Sse(stream! {
-    // Patches signals.
-    yield PatchSignals::new("{hal: 'Affirmative, Dave. I read you.'}").into();
-
-    thread::sleep(Duration::from_secs(1));
-    
-    yield PatchSignals::new("{hal: '...'} ").into();
-})
-```
-
---------------------------------
-
-### HTML Table Row Deletion with Confirmation
+### HTML Table with Delete Button
 
 Source: https://data-star.dev/examples/delete_row
 
-This snippet displays an HTML table structure with a 'Delete' button in each row. The button is configured with a `data-on-click` attribute that first prompts the user with a confirmation dialog and then executes a delete function if confirmed. It also includes attributes for visual feedback during the delete process.
+This snippet displays an HTML table with rows containing data and an 'Actions' column. Each row includes a 'Delete' button that triggers a confirmation dialog and initiates a delete request upon confirmation. It utilizes custom data attributes for click handling and disabling the button during the fetching state.
 
 ```html
 <table>
@@ -3564,9 +5090,9 @@ This snippet displays an HTML table structure with a 'Delete' button in each row
             <td>
                 <button
                     class="error"
-                    data-on-click="confirm('Are you sure?') && @delete('/examples/delete_row/0')"
-                    data-indicator-_fetching
-                    data-attr-disabled="$_fetching"
+                    data-on:click="confirm('Are you sure?') && @delete('/examples/delete_row/0')"
+                    data-indicator:_fetching
+                    data-attr:disabled="$_fetching"
                 >
                     Delete
                 </button>
@@ -3578,233 +5104,107 @@ This snippet displays an HTML table structure with a 'Delete' button in each row
 
 --------------------------------
 
-### HTML File Upload Form
+### Receive Multiple Patch Elements SSE Events
 
-Source: https://data-star.dev/examples/file_upload
+Source: https://data-star.dev/guide
 
-This HTML snippet defines a file upload form. It includes a label with a file input and a submit button. The input uses 'data-bind-files' for automatic file binding, and the button's click event is conditionally enabled based on the presence of selected files. Files are automatically encoded as base64 when submitted.
+This example demonstrates receiving multiple `datastar-patch-elements` Server-Sent Events (SSE) in sequence. The client receives an initial update for the 'hal' div, waits for a few seconds, and then receives a subsequent update to reset the text. This pattern allows for timed or sequenced DOM manipulations.
 
 ```html
-<label>
-    <p>Pick anything less than 1MB</p>
-    <input type="file" data-bind-files multiple/>
-</label>
-<button
-    class="warning"
-    data-on-click="$files.length && @post('/examples/file_upload')"
-    data-attr-aria-disabled="`${!$files.length}`">
-    Submit
+1event: datastar-patch-elements
+2data: elements <div id="hal">
+3data: elements     I’m sorry, Dave. I’m afraid I can’t do that.
+4data: elements </div>
+5
+6event: datastar-patch-elements
+7data: elements <div id="hal">
+8data: elements     Waiting for an order...
+9data: elements </div>
+10
+
+```
+
+--------------------------------
+
+### Go Backend Redirect with DataStar
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+A Go implementation for backend-initiated redirects using DataStar's SSE. It first patches elements to display a message, then waits, and finally executes a script to redirect the page.
+
+```go
+import (
+	"time"
+	"github.com/starfederation/datastar-go/datastar"
+)
+
+sse := datastar.NewSSE(w, r)
+sse.PatchElements(`
+    <div id="indicator">Redirecting in 3 seconds...</div>
+`)
+time.Sleep(3 * time.Second)
+sse.ExecuteScript(`
+    window.location = "/guide"
+`)
+```
+
+--------------------------------
+
+### DataStar Button Triggering Backend Action
+
+Source: https://data-star.dev/guide/datastar_expressions
+
+An HTML button element configured with DataStar's 'data-on:click' attribute to trigger a GET request to '/endpoint' upon being clicked. This demonstrates initiating backend actions directly from user interactions.
+
+```html
+<button data-on:click="@get('/endpoint')">
+    What are you talking about, HAL?
 </button>
 ```
 
 --------------------------------
 
-### Datastar Expression: Multiple Statements with Semicolon
+### Transform to Random SVG Shape with Datastar
 
-Source: https://data-star.dev/guide/datastar_expressions
+Source: https://data-star.dev/examples/svg_morphing
 
-Explains how to use multiple statements within a single Datastar expression by separating them with a semicolon. This example updates a signal and then triggers a post request.
+Demonstrates morphing to different SVG shape types dynamically. This Go example uses Datastar SSE to replace the content of 'shape-demo' with a randomly selected SVG shape.
 
-```html
-1<div data-signals-foo="1">
-2    <button data-on-click="$landingGearRetracted = true; @post('/launch')">
-3        Force launch
-4    </button>
-5</div>
-```
-
---------------------------------
-
-### Datastar Expression: Access Element ID
-
-Source: https://data-star.dev/docs
-
-Shows how to use the `el` variable within a Datastar expression to access the current element's properties, specifically its `id` attribute.
-
-```html
-<div id="foo" data-text="el.id"></div>
-```
-
---------------------------------
-
-### JavaScript Integration: Synchronous Function Call
-
-Source: https://data-star.dev/guide/datastar_expressions
-
-Demonstrates integrating external synchronous JavaScript functions into Datastar expressions. The example uses `data-on-input` to call `myfunction` with the signal value `$foo` and binds the result to `$result`.
-
-```html
-1<div data-signals-result>
-2    <input data-bind-foo 
-3        data-on-input="$result = myfunction($foo)"
-4    >
-5    <span data-text="$result"></span>
-6</div>
-```
-
---------------------------------
-
-### Set HTML Attribute with Datastar data-attr
-
-Source: https://data-star.dev/docs
-
-Shows how to use the `data-attr` attribute in Datastar to set a single HTML attribute to the value of a Datastar expression, keeping it in sync with the expression's value.
-
-```html
-<div data-attr-title="$foo"></div>
-```
-
---------------------------------
-
-### Handle Click Events with data-on
-
-Source: https://data-star.dev/guide/getting_started
-
-Attach an event listener to an HTML element using the `data-on` attribute. This example shows how to trigger a JavaScript alert when a button is clicked. The attribute's value is a Datastar expression.
-
-```html
-<button data-on-click="alert('I’m sorry, Dave. I’m afraid I can’t do that.')">
-    Open the pod bay doors, HAL.
-</button>
-```
-
---------------------------------
-
-### Kotlin: Patching Signals with SSE
-
-Source: https://data-star.dev/docs
-
-This Kotlin code snippet demonstrates patching signals using Server-Sent Events (SSE) with the DataStar SDK. It initializes a `ServerSentEventGenerator` and uses the `patchSignals` function to send signal updates, including a pause between updates.
-
-```kotlin
- 1val generator = ServerSentEventGenerator(response)
- 2
- 3generator.patchSignals(
- 4    signals = """{"hal": "Affirmative, Dave. I read you."} """,
- 5)
- 6
- 7Thread.sleep(ONE_SECOND)
- 8
- 9generator.patchSignals(
-10    signals = """{"hal": "..."} """,
-11)
-12
-```
-
---------------------------------
-
-### Generate SSE Events to Patch DOM Elements (Rust)
-
-Source: https://data-star.dev/guide/getting_started
-
-This Rust example uses the datastar crate to generate SSE events. It employs the async_stream macro to create a stream that yields PatchElements, including a one-second sleep between events.
-
-```rust
-use async_stream::stream;
-use datastar::prelude::*;
-use std::thread;
-use std::time::Duration;
-
-Sse(stream! { 
-    // Patches elements into the DOM.
-    yield PatchElements::new("<div id='hal'>I’m sorry, Dave. I’m afraid I can’t do that.</div>").into();
-
-    thread::sleep(Duration::from_secs(1));
-    
-    yield PatchElements::new("<div id='hal'>Waiting for an order...</div>").into();
+```go
+svgMorphingRouter.Get("/shape_transform", func(w http.ResponseWriter, r *http.Request) {
+    sse := datastar.NewSSE(w, r)
+    shape := svgShapes[rand.N(len(svgShapes))]
+    sse.PatchElements(fmt.Sprintf(`<svg id="shape-demo">%s</svg>`, shape))
 })
 ```
 
 --------------------------------
 
-### Direct JavaScript Execution via DataStar SSE
+### Data-Star `data-indicator` for Loading States
 
-Source: https://data-star.dev/guide/datastar_expressions
+Source: https://data-star.dev/guide/backend_requests
 
-Shows how to execute arbitrary JavaScript directly in the browser using Server-Sent Events (SSE) with DataStar. This example demonstrates embedding a script within a 'datastar-patch-elements' event to display an alert.
-
-```html
-event: datastar-patch-elements
-data: elements <div id="hal">
-data: elements     <script>alert('This mission is too important for me to allow you to jeopardize it.')</script>
-data: elements </div>
-```
-
---------------------------------
-
-### JavaScript Function: Asynchronous Example with Custom Event Dispatch
-
-Source: https://data-star.dev/guide/datastar_expressions
-
-Presents an asynchronous JavaScript function `myfunction` that simulates an async operation using `setTimeout` and `Promise`. Upon completion, it dispatches a `CustomEvent` named `mycustomevent` to pass the result back to the Datastar expression.
-
-```javascript
-1async function myfunction(element, data) {
-2    const value = await new Promise((resolve) => {
-3        setTimeout(() => resolve(`You entered: ${data}`), 1000);
-4    });
-5    element.dispatchEvent(
-6        new CustomEvent('mycustomevent', {detail: {value}})
-7    );
-8}
-```
-
---------------------------------
-
-### Python (Sanic): Patching Signals with SSE
-
-Source: https://data-star.dev/docs
-
-This Python snippet demonstrates patching signals using Server-Sent Events (SSE) within the Sanic web framework with the DataStar SDK. It uses `datastar_response` decorator and yields SSE objects to send signal updates asynchronously with a delay.
-
-```python
-1from datastar_py import ServerSentEventGenerator as SSE
-2from datastar_py.sanic import datastar_response
-3
-4@app.get('/do-you-read-me')
-5@datastar_response
-6async def open_doors(request):
-7    yield SSE.patch_signals({"hal": "Affirmative, Dave. I read you."})
-8    await asyncio.sleep(1)
-9    yield SSE.patch_signals({"hal": "..."})
-10
-```
-
---------------------------------
-
-### Generate SSE Events to Patch DOM Elements (Python)
-
-Source: https://data-star.dev/guide/getting_started
-
-This Python example utilizes the datastar_py library to generate SSE events for patching DOM elements. It defines an asynchronous Sanic endpoint that yields SSE patch elements after a short delay.
-
-```python
-from datastar_py import ServerSentEventGenerator as SSE
-from datastar_py.sanic import datastar_response
-import asyncio
-
-@app.get('/open-the-bay-doors')
-@datastar_response
-async def open_doors(request):
-    yield SSE.patch_elements('<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>')
-    await asyncio.sleep(1)
-    yield SSE.patch_elements('<div id="hal">Waiting for an order...</div>')
-```
-
---------------------------------
-
-### Preserve Attributes During DOM Morphing with DataStar
-
-Source: https://data-star.dev/docs
-
-The `data-preserve-attr` attribute ensures that specified attribute values are maintained when DataStar morphs DOM elements. Multiple attributes can be preserved by separating their names with a space.
+This snippet illustrates the use of the `data-indicator` attribute in Data-Star to manage loading states. When a request is in flight (triggered by `data-on:click` and `@get`), the specified signal (e.g., `fetching`) is set to `true`. This can be used to visually indicate loading with attributes like `data-class:loading`.
 
 ```html
-<details open data-preserve-attr="open">
-    <summary>Title</summary>
-    Content
-</details>
+<div id="question"></div>
+<button
+    data-on:click="@get('/actions/quiz')"
+    data-indicator:fetching>
+    Fetch a question
+</button>
+<div data-class:loading="$fetching" class="indicator"></div>
+```
 
+--------------------------------
+
+### Preserve multiple attributes during DOM morphing (HTML)
+
+Source: https://data-star.dev/reference
+
+You can preserve multiple attributes by listing them separated by spaces in the `data-preserve-attr` value. This example preserves both the `open` and `class` attributes on a `<details>` element.
+
+```html
 <details open class="foo" data-preserve-attr="open class">
     <summary>Title</summary>
     Content
@@ -3813,271 +5213,537 @@ The `data-preserve-attr` attribute ensures that specified attribute values are m
 
 --------------------------------
 
-### Replicate Datastar Pro URL History and Scroll Effects with Free Version
+### Send PUT Request with Datastar
+
+Source: https://data-star.dev/reference/actions
+
+Sends a PUT request to a specified URI. This function mirrors the functionality of `@get()` but exclusively uses the PUT HTTP method. Request configuration options are available.
+
+```html
+<button data-on:click="@put('/endpoint')"></button>
+```
+
+--------------------------------
+
+### HTML: Editable Row Structure
+
+Source: https://data-star.dev/examples/edit_row
+
+This snippet shows the HTML structure of a table row when it is in an editable state. It replaces data cells with input fields and changes action buttons to 'Cancel' and 'Save'.
+
+```html
+<tr>
+    <td>
+        <input type="text" data-bind:name>
+    </td>
+    <td>
+        <input type="text" data-bind:email>
+    </td>
+    <td>
+        <button data-on:click="@get('/examples/edit_row/cancel')">
+            Cancel
+        </button>
+        <button data-on:click="@patch('/examples/edit_row/0')">
+            Save
+        </button>
+    </td>
+</tr>
+```
+
+--------------------------------
+
+### Set custom interval duration with data-on-interval (HTML)
+
+Source: https://data-star.dev/reference
+
+This example demonstrates how to use the `__duration` modifier with `data-on-interval` to set a custom interval, in this case, 500 milliseconds. This allows for more fine-grained control over the frequency of expression execution.
+
+```html
+<div data-on-interval__duration.500ms="$count++"></div>
+```
+
+--------------------------------
+
+### C# ASP.NET Core: Stream SSE Events with Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+This C# code snippet illustrates how to integrate Datastar into an ASP.NET Core application to stream Server-Sent Events (SSE). It shows how to add Datastar as a service and then use the `IDatastarService` to patch elements and signals asynchronously. This example is suitable for minimal API endpoints in ASP.NET Core.
+
+```csharp
+1using StarFederation.Datastar.DependencyInjection;
+2
+3// Adds Datastar as a service
+4builder.Services.AddDatastar();
+5
+6app.MapGet("/", async (IDatastarService datastarService) =>
+7{
+8    // Patches elements into the DOM.
+9    await datastarService.PatchElementsAsync(@"<div id=\"question\">What do you put in a toaster?</div>");
+10
+11    // Patches signals.
+12    await datastarService.PatchSignalsAsync(new { response = "", answer = "bread" });
+13});
+
+```
+
+--------------------------------
+
+### Kotlin: Dynamic SSE Interval Duration
+
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+
+This Kotlin snippet shows how to generate server-sent events with a dynamic interval duration. It uses `LocalDateTime` to get the current time and determines the duration based on the seconds.
+
+```kotlin
+1val now: LocalDateTime = currentTime()
+ 2val currentSeconds = now.second
+ 3val duration = if (currentSeconds < 50) 5 else 1
+ 4
+ 5val generator = ServerSentEventGenerator(response)
+ 6
+ 7generator.patchElements(
+ 8    elements =
+ 9        """
+10        <div id="time" data-on-interval__duration.${duration}s="@get('/endpoint')">
+11            $now
+12        </div>
+13        ".trimIndent()
+14)
+```
+
+--------------------------------
+
+### Rust: Stream SSE Events with Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+This Rust code snippet demonstrates how to stream Server-Sent Events (SSE) using the `datastar` crate. It utilizes the `async_stream` crate to yield `PatchElements` and `PatchSignals` events within an `Sse` stream. This example is suitable for asynchronous Rust applications.
+
+```rust
+1use datastar::prelude::*;
+2use async_stream::stream;
+3
+4Sse(stream! {
+5    // Patches elements into the DOM.
+6    yield PatchElements::new("<div id='question'>What do you put in a toaster?</div>").into();
+7
+8    // Patches signals.
+9    yield PatchSignals::new("{response: '', answer: 'bread'}").into();
+10})
+
+```
+
+--------------------------------
+
+### Animated SVG Morph Sequence with Datastar
+
+Source: https://data-star.dev/examples/svg_morphing
+
+An example of creating a smooth animation sequence by performing multiple SVG morphs in succession using Datastar SSE. This Go code updates a circle's properties with delays, creating a visual effect.
+
+```go
+svgMorphingRouter.Get("/animated_morph", func(w http.ResponseWriter, r *http.Request) {
+    sse := datastar.NewSSE(w, r)
+    
+    // First morph
+    sse.PatchElements(`<svg id="animated-demo"><circle cx="50" cy="50" r="30" fill="red" /></svg>`)
+    time.Sleep(500 * time.Millisecond)
+    
+    // Second morph
+    sse.PatchElements(`<svg id="animated-demo"><circle cx="50" cy="50" r="45" fill="orange" /></svg>`)
+    time.Sleep(500 * time.Millisecond)
+    
+    // Third morph
+    sse.PatchElements(`<svg id="animated-demo"><circle cx="50" cy="50" r="60" fill="yellow" /></svg>`)
+    time.Sleep(500 * time.Millisecond)
+    
+    // Reset
+    sse.PatchElements(`<svg id="animated-demo"><circle cx="50" cy="50" r="20" fill="green" /></svg>`)
+})
+```
+
+--------------------------------
+
+### Send DELETE Request with Datastar
+
+Source: https://data-star.dev/reference/actions
+
+Sends a DELETE request to a specified URI. This function is analogous to `@get()` but exclusively uses the DELETE HTTP method. It supports various request configuration options.
+
+```html
+<button data-on:click="@delete('/endpoint')"></button>
+```
+
+--------------------------------
+
+### DRY Datastar Action with Templating Variable
+
+Source: https://data-star.dev/how_tos/keep_datastar_code_dry
+
+This example demonstrates how to make Datastar code DRY using a templating language's variable assignment. By defining the action once and referencing the variable, repetition is eliminated.
+
+```html
+{% set action = "@get('/endpoint')" %}
+<button data-on:click="{{ action }}">Click me</button>
+<button data-on:click="{{ action }}">No, click me!</button>
+<button data-on:click="{{ action }}">Click us all!</button>
+```
+
+--------------------------------
+
+### Load More Button and HTML Structure
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+Demonstrates the HTML structure for a 'load more' button and a list container, utilizing `data-signals` for initial offset and `data-on:click` for triggering a backend request.
+
+```APIDOC
+## HTML Structure
+
+### Description
+This HTML sets up a list container (`#list`) and a button (`#load-more`). The button uses `data-signals:offset="1"` to initialize the offset and `data-on:click="@get('/how_tos/load_more/data')"` to trigger a GET request to the backend when clicked.
+
+### Method
+N/A (HTML)
+
+### Endpoint
+N/A (HTML)
+
+### Request Example
+```html
+<div id="list">
+  <div>Item 1</div>
+</div>
+<button id="load-more" 
+        data-signals:offset="1" 
+        data-on:click="@get('/how_tos/load_more/data')">
+Click to load another item
+</button>
+```
+
+### Response
+N/A (HTML)
+```
+
+--------------------------------
+
+### Replicating Datastar Pro Attributes with Free Datastar
 
 Source: https://data-star.dev/essays
 
-These HTML snippets demonstrate how to replicate two Datastar Pro features using the free version. The first replaces the current URL on load and when a variable changes, while the second scrolls an element into view. Standard HTML attributes and JavaScript expressions are utilized.
+These HTML snippets demonstrate how to replicate two specific Datastar Pro attributes using the free version. The first replaces the current URL on load and when a '$page' variable changes, while the second scrolls an element into view.
 
 ```html
-1<!-- Replaces the current URL on load and whenever $page changes. -->
+<!-- Replaces the current URL on load and whenever $page changes. -->
 <div data-effect="window.history.replaceState({}, '', '/page/' + $page)"></div>
 
 <!-- Scrolls the element into view. -->
-<div data-on-load="el.scrollIntoView()"></div>
+<div data-init="el.scrollIntoView()"></div>
 ```
 
 --------------------------------
 
-### Ruby: Patch Signals via SSE
+### Use Alert Attribute in HTML
 
-Source: https://data-star.dev/guide/reactive_signals
+Source: https://data-star.dev/examples/custom_plugin
 
-This Ruby code demonstrates how to patch signals using Server-Sent Events (SSE) within a Rack handler using the DataStar gem. It shows creating a `Datastar::Dispatcher` and using its `stream` method with `sse.patch_signals`.
-
-```ruby
- 1require 'datastar'
- 2
- 3# Create a Datastar::Dispatcher instance
- 4
- 5datastar = Datastar.new(request:, response:)
- 6
- 7# In a Rack handler, you can instantiate from the Rack env
- 8# datastar = Datastar.from_rack_env(env)
- 9
-10# Start a streaming response
-11datastar.stream do |sse|
-12  # Patches signals
-13  sse.patch_signals(hal: 'Affirmative, Dave. I read you.')
-14
-15  sleep 1
-16  
-17  sse.patch_signals(hal: '...')
-18end
-```
-
---------------------------------
-
-### Example: Using a Selector with contentType 'form'
-
-Source: https://data-star.dev/errors/runtime/fetch_closest_form_not_found
-
-This code snippet illustrates how to resolve the FetchClosestFormNotFound error by providing a 'selector' option when setting contentType to 'form'. This is useful when the button is not directly wrapped by its target form.
+This HTML snippet shows how to utilize the custom 'alert' attribute plugin. The `data-alert` attribute is applied to a button, and it expects a string value that will be displayed when the button is clicked. This provides a declarative way to add alert functionality.
 
 ```html
-<button data-on-click="@post('/endpoint', {contentType: 'form', selector: '#myform'})></button>
+1<button data-alert="'Hello from an attribute'">
+2    Alert using an attribute
+3</button>
 ```
 
 --------------------------------
 
-### Datastar Expression: Display Signal Value
+### HTML Input for Active Search with Debounce
 
-Source: https://data-star.dev/docs
+Source: https://data-star.dev/examples/active_search
 
-Demonstrates a basic Datastar expression to display the value of a signal named 'foo'. The `data-text` attribute binds the element's text content to the signal's value.
+This HTML input element is configured to trigger an active search. The `data-bind:search` attribute suggests data binding for the input's value, while `data-on:input__debounce.200ms` specifies that an event listener should be attached to the 'input' event. This listener will execute a GET request to '/examples/active_search/search' after a 200ms delay of user inactivity, using the input's value as a search parameter.
 
 ```html
-<div data-signals-foo="1">
-    <div data-text="$foo"></div>
+<input
+    type="text"
+    placeholder="Search..."
+    data-bind:search
+    data-on:input__debounce.200ms="@get('/examples/active_search/search')"
+/>
+```
+
+--------------------------------
+
+### PHP: Stream SSE Events with Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+This PHP code snippet shows how to generate Server-Sent Events (SSE) using the Datastar PHP library. It initializes a `ServerSentEventGenerator` and then uses its `patchElements` and `patchSignals` methods to send data. This example is suitable for PHP backend implementations requiring SSE capabilities.
+
+```php
+1use starfederation\datastar\ServerSentEventGenerator;
+2
+3// Creates a new `ServerSentEventGenerator` instance.
+4$sse = new ServerSentEventGenerator();
+5
+6// Patches elements into the DOM.
+7$sse->patchElements(
+8    '<div id="question">What do you put in a toaster?</div>'
+9);
+10
+11// Patches signals.
+12$sse->patchSignals(['response' => '', 'answer' => 'bread']);
+
+```
+
+--------------------------------
+
+### Datastar Event Bubbling with Dynamic IDs
+
+Source: https://data-star.dev/how_tos/keep_datastar_code_dry
+
+This advanced snippet demonstrates event bubbling in Datastar, similar to the previous example, but also includes capturing a `data-id` attribute from the clicked button. This allows for sending specific identifiers with the backend action.
+
+```html
+<div data-on:click="evt.target.tagName == 'BUTTON' 
+    && ($id = evt.target.dataset.id)
+    && @get('/endpoint')
+">
+    <button data-id="1">Click me</button>
+    <button data-id="2">No, click me!</button>
+    <button data-id="3">Click us all!</button>
 </div>
 ```
 
 --------------------------------
 
-### Replicate Datastar Pro Features with Free Version (HTML)
+### Python (Sanic) - Redirect with SSE
 
-Source: https://data-star.dev/essays/greedy_developer
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
 
-These HTML snippets demonstrate how to replicate two Datastar Pro features using the free version. The first snippet replaces the current URL on load and when a variable changes, while the second scrolls an element into view.
+Demonstrates implementing a redirect in Python using the Sanic framework and Datastar's SSE. It yields SSE events to patch elements, waits, and then executes a script for redirection.
 
-```HTML
-1<!-- Replaces the current URL on load and whenever $page changes. -->
-2<div data-effect="window.history.replaceState({}, '', '/page/' + $page)"></div>
+```python
+from datastar_py import ServerSentEventGenerator as SSE
+from datastar_py.sanic import datastar_response
+import asyncio
 
-3<!-- Scrolls the element into view. -->
-4<div data-on-load="el.scrollIntoView()"></div>
+@app.get("/redirect")
+@datastar_response
+async def redirect_from_backend():
+    yield SSE.patch_elements('<div id="indicator">Redirecting in 3 seconds...</div>')
+    await asyncio.sleep(3)
+    yield SSE.execute_script('setTimeout(() => window.location = "/guide")')
+
 ```
 
 --------------------------------
 
-### Debounce Event Listener with data-on-resize and Modifiers
+### Implement Alert Attribute Plugin
 
-Source: https://data-star.dev/reference/attributes
+Source: https://data-star.dev/examples/custom_plugin
 
-The `data-on-resize` attribute can be combined with the `__debounce` modifier to delay the execution of an expression until after a certain period of inactivity. This example debounces the resize event listener to 10 milliseconds.
+This JavaScript code defines a custom attribute plugin named 'alert'. It's configured to require a value and return a value, and its `apply` method adds a click event listener to the element. This listener triggers an alert with the value returned by an expression when the element is clicked.
 
-```html
-<div data-on-resize__debounce.10ms="$count++"></div>
+```javascript
+1attribute({
+    name: 'alert',
+    requirement: {
+        key: 'denied',
+        value: 'must',
+    },
+    returnsValue: true,
+    apply({ el, rx }) {
+        const callback = () => alert(rx())
+        el.addEventListener('click', callback)
+        return () => el.removeEventListener('click', callback)
+    }
+})
 ```
 
 --------------------------------
 
-### Clojure: Patch Signals via SSE
+### Clojure Backend Redirect with DataStar
 
-Source: https://data-star.dev/guide/reactive_signals
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
 
-This Clojure code snippet demonstrates how to generate Server-Sent Events (SSE) to patch signals using the DataStar SDK. It shows setting up a Ring handler that sends an 'affirmative' signal, waits, and then sends a reset signal.
+Implements a backend redirect using Clojure and DataStar. It sends SSE events to update an indicator, pauses for 3 seconds, and then executes a script to redirect the user.
 
 ```clojure
- 1;; Import the SDK's api and your adapter
- 2(require
- 3  '[starfederation.datastar.clojure.api :as d*]
- 4  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
- 5
- 6;; in a ring handler
- 7(defn handler [request]
- 8  ;; Create an SSE response
- 9  (->sse-response request
-10                  {on-open
-11                   (fn [sse] 
-12                     ;; Patches signal.
-13                     (d*/patch-signals! sse "{hal: 'Affirmative, Dave. I read you.'}")
-14                     (Thread/sleep 1000)
-15                     (d*/patch-signals! sse "{hal: '...'}"))}))
+(require
+  '[starfederation.datastar.clojure.api :as d*]
+  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]]
+  '[some.hiccup.library :refer [html]])
+
+
+(defn handle [ring-request]
+  (->sse-response ring-request
+    {on-open
+      (fn [sse]
+        (d*/patch-elements! sse
+          (html [:div#indicator "Redirecting in 3 seconds..."]))
+        (Thread/sleep 3000)
+        (d*/execute-script! sse "window.location = \"/guide\"")
+        (d*/close-sse! sse)}))
 ```
 
 --------------------------------
 
-### Create Signals with data-signals Attribute
+### Preserve a single attribute during DOM morphing (HTML)
 
-Source: https://data-star.dev/guide/reactive_signals
+Source: https://data-star.dev/reference
 
-The `data-signals` attribute is used to initialize signals directly on HTML elements. If a signal is accessed before creation, it defaults to an empty string. This attribute can also patch existing signals with new values or expressions.
+The `data-preserve-attr` attribute ensures that specified attributes on an element are not overwritten during DOM updates. This example preserves the `open` attribute on a `<details>` element, maintaining its expanded state.
 
 ```html
-<div data-signals-foo="1"></div>
-<div data-signals-form.foo="2"></div>
-<div data-signals="{foo: 1, form: {foo: 2}}"></div>
+<details open data-preserve-attr="open">
+    <summary>Title</summary>
+    Content
+</details>
 ```
 
 --------------------------------
 
-### Signal and Class Name Casing with __case Modifier
+### HTML Structure for DBMon
 
-Source: https://data-star.dev/docs
+Source: https://data-star.dev/examples/dbmon
 
-The `__case` modifier can be applied to `data-bind`, `data-class`, and `data-computed` attributes to automatically convert signal or class names to different casing conventions like camelCase, kebab-case, snake_case, or PascalCase.
+This HTML snippet defines the main container for the DBMon demo, including elements for displaying render time, input fields for mutation rate and FPS, and a table for database cluster information. It utilizes DataStar's custom attributes for dynamic updates and event handling.
 
 ```html
-<input data-bind-my-signal__case.kebab />
-<div data-class-my-class__case.camel="$foo"></div>
-<div data-computed-my-signal__case.kebab="$bar + $baz"></div>
+<div
+    id="demo"
+    data-init="@get('/examples/dbmon/updates')"
+    data-signals:_editing__ifmissing="false"
+>
+    <p>
+        Average render time for entire page: { renderTime }
+    </p>
+    <div role="group">
+        <label>
+            Mutation Rate %
+            <input
+                type="number"
+                min="0"
+                max="100"
+                value="20"
+                data-on:focus="$_editing = true"
+                data-on:blur="@put('/examples/dbmon/inputs'); $_editing = false"
+                data-attr:data-bind:mutation-rate="$_editing"
+                data-attr:data-bind:_mutation-rate="!$_editing"
+            />
+        </label>
+        <label>
+            FPS
+            <input
+                type="number"
+                min="1"
+                max="144"
+                value="60"
+                data-on:focus="$_editing = true"
+                data-on:blur="@put('/examples/dbmon/inputs'); $_editing = false"
+                data-attr:data-bind:fps="$_editing"
+                data-attr:data-bind:_fps="!$_editing"
+            />
+        </label>
+    </div>
+    <table style="table-layout: fixed; width: 100%; word-break: break-all">
+        <tbody>
+            <!-- Dynamic rows generated by server -->
+            <tr>
+                <td>cluster1</td>
+                <td style="background-color: var(--_active-color)" class="success">
+                    8
+                </td>
+                <td aria-description="SELECT blah from something">
+                    12ms
+                </td>
+                <!-- More query cells... -->
+            </tr>
+            <!-- More database rows... -->
+        </tbody>
+    </table>
+</div>
 ```
 
 --------------------------------
 
-### Filter Signals with DataStar
+### Filter signal patches by name using include regex (HTML)
 
-Source: https://data-star.dev/docs
+Source: https://data-star.dev/reference
 
-The `data-on-signal-patch-filter` attribute refines which signals trigger the `data-on-signal-patch` attribute. It accepts an object with `include` and/or `exclude` properties for regular expression filtering, allowing precise control over observed signal changes.
+The `data-on-signal-patch-filter` attribute with the `include` property allows you to specify a regular expression to only watch for changes in signals whose names match the pattern. This example specifically targets signals named 'counter'.
 
 ```html
 <!-- Only react to counter signal changes -->
 <div data-on-signal-patch-filter="{include: /^counter$/}"></div>
-
-<!-- React to all changes except those ending with "changes" -->
-<div data-on-signal-patch-filter="{exclude: /changes$/}"></div>
-
-<!-- Combine include and exclude filters -->
-<div data-on-signal-patch-filter="{include: /user/, exclude: /password/}"></div>
 ```
 
 --------------------------------
 
-### Computed Signals with data-computed
+### Receive Patch Elements SSE Event
 
-Source: https://data-star.dev/docs
+Source: https://data-star.dev/guide
 
-The `data-computed` attribute creates a read-only signal whose value is derived from an expression involving other signals. The computed signal automatically updates when its dependencies change. Expressions should not perform side effects.
+This example shows how a client-side application can receive and process `datastar-patch-elements` Server-Sent Events (SSE). When such an event is received, the provided HTML data is used to morph elements in the DOM, enabling dynamic updates driven by the server. This is a fundamental part of Datastar's frontend interaction model.
 
 ```html
-<div data-computed-foo="$bar + $baz"></div>
-<div data-computed-foo="$bar + $baz"></div>
-<div data-text="$foo"></div>
+1event: datastar-patch-elements
+2data: elements <div id="hal">
+3data: elements     I’m sorry, Dave. I’m afraid I can’t do that.
+4data: elements </div>
+5
+
 ```
 
 --------------------------------
 
-### Ruby (Rack): Patching Signals with SSE
+### C#: Backend Logic for Loading More
 
-Source: https://data-star.dev/docs
+Source: https://data-star.dev/how_tos/load_more_list_items
 
-This Ruby code snippet shows how to patch signals using Server-Sent Events (SSE) within a Rack application using the DataStar gem. It instantiates a `Datastar::Dispatcher` and uses its `stream` method to send signal updates with a `sleep` for delay.
+Provides a C# implementation for the 'load more' functionality using Datastar's SDK. It configures the web application, handles incoming requests, and uses `IDatastarService` to send patch and remove events.
 
-```ruby
- 1require 'datastar'
- 2
- 3# Create a Datastar::Dispatcher instance
- 4
- 5datastar = Datastar.new(request:, response:)
- 6
- 7# In a Rack handler, you can instantiate from the Rack env
- 8# datastar = Datastar.from_rack_env(env)
- 9
-10# Start a streaming response
-11datastar.stream do |sse|
-12  # Patches signals
-13  sse.patch_signals(hal: 'Affirmative, Dave. I read you.')
+```csharp
+1using System.Text.Json;
+2using StarFederation.Datastar;
+3using StarFederation.Datastar.DependencyInjection;
+4
+5public class Program
+6{
+7    public record OffsetSignals(int offset);
+8
+9    public static void Main(string[] args)
+10    {
+11        var builder = WebApplication.CreateBuilder(args);
+12        builder.Services.AddDatastar();
+13        var app = builder.Build();
 14
-15  sleep 1
-16  
-17  sse.patch_signals(hal: '...')
-18end
-19
-```
-
---------------------------------
-
-### Datastar Expression: Using the 'el' Variable
-
-Source: https://data-star.dev/guide/datastar_expressions
-
-Shows how to use the `el` variable, which represents the element the `data-*` attribute is attached to, within a Datastar expression. This example dynamically sets the text content to the element's ID.
-
-```html
-1<div id="foo" data-text="el.id"></div>
-```
-
---------------------------------
-
-### Run Expression on Signal Patch with DataStar
-
-Source: https://data-star.dev/docs
-
-The `data-on-signal-patch` attribute executes an expression when a signal is patched. The `patch` variable is available for signal patch details. It can be filtered using `data-on-signal-patch-filter` and modified with timing modifiers like `__delay`, `__debounce`, and `__throttle`.
-
-```html
-<div data-on-signal-patch="console.log('A signal changed!')"></div>
-<div data-on-signal-patch="console.log('Signal patch:', patch)"></div>
-<div data-on-signal-patch__debounce.500ms="doSomething()"></div>
-```
-
---------------------------------
-
-### Example: Using a Wrapping Form with contentType 'form'
-
-Source: https://data-star.dev/errors/runtime/fetch_closest_form_not_found
-
-This code snippet demonstrates how to resolve the FetchClosestFormNotFound error by using a wrapping form element when setting the contentType option to 'form'. The button within the form will correctly associate with it.
-
-```html
-<form>
-    <button data-on-click="@post('/endpoint', {contentType: 'form'} )></button>
-</form>
-```
-
---------------------------------
-
-### Persist Signals in Session Storage with data-persist-__session
-
-Source: https://data-star.dev/reference/attributes
-
-The `__session` modifier for `data-persist` changes the storage mechanism from local storage to session storage. This example uses a custom key 'mykey' and stores data in session storage.
-
-```html
-<!-- Persists signals using a custom key `mykey` in session storage -->
-<div data-persist-mykey__session></div>
+15        app.MapGet("/more", async (IDatastarService datastarService) =>
+16        {
+17            var max = 5;
+18            var limit = 1;
+19            var signals = await datastarService.ReadSignalsAsync<OffsetSignals>();
+20            var offset = signals.offset;
+21            if (offset < max)
+22            {
+23                var newOffset = offset + limit;
+24                await datastarService.PatchElementsAsync($"<div>Item {newOffset}</div>", new()
+25                {
+26                    Selector = "#list",
+27                    PatchMode = PatchElementsMode.Append,
+28                });
+29                if (newOffset < max)
+30                    await datastarService.PatchSignalsAsync(new OffsetSignals(newOffset));
+31                else
+32                    await datastarService.RemoveElementAsync("#load-more");
+33            }
+34        });
+35
+36        app.Run();
+37    }
+38}
 ```
 
 --------------------------------
@@ -4086,7 +5752,7 @@ The `__session` modifier for `data-persist` changes the storage mechanism from l
 
 Source: https://data-star.dev/examples/web_component
 
-This JavaScript code defines a custom web component named 'ReverseComponent'. It observes the 'name' attribute, and upon changes, it reverses the string provided in the 'newValue' and dispatches a custom 'reverse' event with the reversed string in its detail.
+This JavaScript code defines a custom HTML element `ReverseComponent` that observes changes to its 'name' attribute. Upon detection of a change, it reverses the attribute's value and dispatches a 'reverse' custom event with the reversed string in its details.
 
 ```javascript
 class ReverseComponent extends HTMLElement {
@@ -4111,129 +5777,422 @@ customElements.define("reverse-component", ReverseComponent);
 
 --------------------------------
 
-### HTML: Displaying an Editable Table Row
+### Change Circle Color with Datastar
 
-Source: https://data-star.dev/examples/edit_row
+Source: https://data-star.dev/examples/svg_morphing
 
-This code snippet shows a table row in its editable state. It replaces the display text with input fields for 'Name' and 'Email', and updates the action buttons to 'Cancel' and 'Save'. The 'Cancel' button reverts the row to read-only, while the 'Save' button submits changes via a PATCH request.
+An example using Datastar's SSE to morph an SVG circle's color dynamically. It selects a random color from a predefined list and applies it to the SVG element identified by 'circle-demo'.
+
+```go
+svgMorphingRouter.Get("/circle_color", func(w http.ResponseWriter, r *http.Request) {
+    sse := datastar.NewSSE(w, r)
+    color := svgColors[rand.N(len(svgColors))]
+    sse.PatchElements(fmt.Sprintf(`<svg id="circle-demo"><circle cx="50" cy="50" r="40" fill="%s" /></svg>`, color))
+})
+```
+
+--------------------------------
+
+### Datastar Event Bubbling for Single Listener
+
+Source: https://data-star.dev/how_tos/keep_datastar_code_dry
+
+This example utilizes event bubbling in Datastar to attach a single event listener to a parent element. It checks if the target is a button before executing the backend action, reducing the number of listeners.
 
 ```html
-<tr>
-    <td>
-        <input type="text" data-bind-name>
-    </td>
-    <td>
-        <input type="text" data-bind-email>
-    </td>
-    <td>
-        <button data-on-click="@get('/examples/edit_row/cancel')">
-            Cancel
-        </button>
-        <button data-on-click="@patch('/examples/edit_row/0')">
-            Save
-        </button>
-    </td>
-</tr>
+<div data-on:click="evt.target.tagName == 'BUTTON' 
+    && @get('/endpoint')
+">
+    <button>Click me</button>
+    <button>No, click me!</button>
+    <button>Click us all!</button>
+</div>
 ```
 
 --------------------------------
 
-### Persist Signals in Local Storage with data-persist
+### Keep SSE Connection Open When Page is Hidden
 
-Source: https://data-star.dev/docs
+Source: https://data-star.dev/how_tos/prevent_sse_connections_closing
 
-The `data-persist` attribute stores signals in local storage, preserving values across page loads. It supports filtering signals using `include` and `exclude` regular expressions, and custom storage keys can be defined using `data-persist-`.
+This example demonstrates how to configure an SSE connection to remain open even when the browser tab is inactive. It utilizes a custom attribute `data-on:click` to trigger an API call with the `openWhenHidden: true` option.
 
 ```html
-<div data-persist></div>
+<button data-on:click="@get('/endpoint', {openWhenHidden: true})"></button>
 ```
+
+--------------------------------
+
+### Go - Redirect with Server-Sent Events
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Demonstrates performing a redirect using Datastar's SSE in Go. It involves patching HTML elements, pausing for a duration, and then executing a JavaScript script to redirect.
+
+```go
+import (
+    "time"
+    "github.com/starfederation/datastar-go/datastar"
+)
+
+sse := datastar.NewSSE(w, r)
+sse.PatchElements(`
+    <div id="indicator">Redirecting in 3 seconds...</div>
+`)
+time.Sleep(3 * time.Second)
+sse.ExecuteScript(`
+    setTimeout(() => window.location = "/guide")
+`)
+
+```
+
+```go
+import (
+    "time"
+    "github.com/starfederation/datastar-go/datastar"
+)
+
+sse := datastar.NewSSE(w, r)
+sse.PatchElements(`
+    <div id="indicator">Redirecting in 3 seconds...</div>
+`)
+time.Sleep(3 * time.Second)
+sse.Redirect("/guide")
+
+```
+
+--------------------------------
+
+### Filter signal patches by name using exclude regex (HTML)
+
+Source: https://data-star.dev/reference
+
+Using `data-on-signal-patch-filter` with the `exclude` property, you can prevent the event listener from triggering for signals matching a given regular expression. This example excludes changes to signals ending with 'changes'.
 
 ```html
-<div data-persist="{include: /foo/, exclude: /bar/}"></div>
+<!-- React to all changes except those ending with "changes" -->
+<div data-on-signal-patch-filter="{exclude: /changes$/}"></div>
 ```
+
+--------------------------------
+
+### Trigger Alert on 'Ctrl + L' Keydown (HTML)
+
+Source: https://data-star.dev/how_tos/bind_keydown_events_to_specific_keys
+
+This example demonstrates triggering an alert when the 'Ctrl' and 'L' keys are pressed simultaneously. It checks both `evt.ctrlKey` and `evt.key` properties within the `data-on:keydown__window` attribute to identify the specific key combination. The `evt` object is crucial for accessing these event details.
 
 ```html
-<div data-persist-mykey></div>
+<div data-on:keydown__window="evt.ctrlKey && evt.key === 'l' && alert('Key pressed')"></div>
 ```
 
 --------------------------------
 
-### Patch Elements using SSE Generator in Java (Spring)
+### HTML: Load More Button and List Container
 
-Source: https://data-star.dev/guide/getting_started
+Source: https://data-star.dev/how_tos/load_more_list_items
 
-This Java example shows how to use the Datastar SDK with a Spring `HttpServletResponseAdapter` to generate Server-Sent Events (SSE) for patching HTML elements. It utilizes `ServerSentEventGenerator` and `PatchElements.builder()` to construct and send the DOM update events, including a delay.
+Sets up the initial HTML structure with a list container and a 'load more' button. The button uses data attributes to manage the offset and trigger a backend request on click.
 
-```java
-import starfederation.datastar.utils.ServerSentEventGenerator;
-
-// Creates a new `ServerSentEventGenerator` instance.
-AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
-ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
-
-// Patches elements into the DOM.
-generator.send(PatchElements.builder()
-    .data("<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
-    .build()
-);
-
-Thread.sleep(1000);
-
-generator.send(PatchElements.builder()
-    .data("<div id=\"hal\">Waiting for an order...</div>")
-    .build()
-);
+```html
+1<div id="list">
+2<div>Item 1</div>
+3</div>
+4<button id="load-more" 
+5        data-signals:offset="1" 
+6        data-on:click="@get('/how_tos/load_more/data')">
+7Click to load another item
+8</button>
 ```
 
 --------------------------------
 
-### Python (Sanic): Patch Signals via SSE
+### POST /websites/data-star_dev
 
-Source: https://data-star.dev/guide/reactive_signals
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
 
-This Python snippet showcases how to patch signals using Server-Sent Events (SSE) within a Sanic web application using the DataStar Python library. It uses an async generator with `SSE.patch_signals` to send updates.
+This endpoint handles server-sent events, including patching HTML elements, executing scripts, and closing the SSE connection.
 
-```python
-1from datastar_py import ServerSentEventGenerator as SSE
-2from datastar_py.sanic import datastar_response
-3
-4@app.get('/do-you-read-me')
-5@datastar_response
-6async def open_doors(request):
-7    yield SSE.patch_signals({"hal": "Affirmative, Dave. I read you."})
-8    await asyncio.sleep(1)
-9    yield SSE.patch_signals({"hal": "..."})
+```APIDOC
+## POST /websites/data-star_dev
+
+### Description
+Handles server-sent events to update the client. This includes patching HTML elements, executing scripts, and closing the SSE connection.
+
+### Method
+POST
+
+### Endpoint
+/websites/data-star_dev
+
+### Parameters
+#### Request Body
+- **sse** (object) - Required - An object representing the server-sent event stream.
+
+### Request Example
+```clojure
+(d*/patch-elements! sse
+  (html [:div#indicator "Redirecting in 3 seconds..."]))
+(Thread/sleep 3000)
+(d*/execute-script! sse
+  "setTimeout(() => window.location = \"/guide\""
+(d*/close-sse! sse))
+```
+
+### Response
+#### Success Response (200)
+An SSE stream is initiated and maintained.
+
+#### Response Example
+(No specific JSON response body, as it's an SSE stream)
 ```
 
 --------------------------------
 
-### Kotlin: Patch Signals via SSE
+### HTML: Nesting Signals using Dot Notation and Object Syntax
 
-Source: https://data-star.dev/guide/reactive_signals
+Source: https://data-star.dev/guide/backend_requests
 
-This Kotlin code snippet shows how to patch signals using Server-Sent Events (SSE) with the DataStar SDK. It utilizes the `ServerSentEventGenerator` and its `patchSignals` function to send signal data.
+Demonstrates how to nest signals in HTML using both dot notation and object syntax for granular targeting. Useful for managing complex state.
 
-```kotlin
- 1val generator = ServerSentEventGenerator(response)
- 2
- 3generator.patchSignals(
- 4    signals = """{"hal": "Affirmative, Dave. I read you."} """,
- 5)
- 6
- 7Thread.sleep(ONE_SECOND)
- 8
- 9generator.patchSignals(
-10    signals = """{"hal": "..."} """,
-11)
+```html
+<div data-signals:foo.bar="1"></div>
+<div data-signals="{foo: {bar: 1}}"></div>
 ```
 
 --------------------------------
 
-### Go Backend for Real-time Time Updates
+### Ruby Backend Redirect with DataStar
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+A Ruby implementation for backend-initiated redirects using DataStar. It streams SSE events to patch elements, pauses, and then executes a script for redirection.
+
+```ruby
+datastar = Datastar.new(request:, response:)
+
+datastar.stream do |sse|
+  sse.patch_elements '<div id="indicator">Redirecting in 3 seconds...</div>'
+  sleep 3
+  sse.execute_script 'window.location = "/guide"'
+end
+```
+
+--------------------------------
+
+### Import Datastar using npm, Deno, or Bun
+
+Source: https://data-star.dev/guide
+
+Import Datastar directly into your project using a package manager. This is suitable for projects managed with npm, Deno, or Bun.
+
+```javascript
+// @ts-expect-error (only required for TypeScript projects)
+import 'https://cdn.jsdelivr.net/gh/starfederation/datastar@1.0.0-RC.6/bundles/datastar.js'
+```
+
+--------------------------------
+
+### HTML structure for Event Bubbling Demo
+
+Source: https://data-star.dev/examples/event_bubbling
+
+This HTML sets up a div with a container for buttons. It includes a span to display the key pressed and a parent div with a `data-on:click` attribute to handle button clicks. The `pointer-events: none;` style is applied to the button container.
+
+```html
+<div id="demo">
+    Key pressed: <span data-text="$key"></span>
+    <div id="button-container" data-on:click="$key = evt.target.dataset.id">
+        <button data-id="KEY ELSE" class="gray">KEY<br/>ELSE</button>
+        <button data-id="CM">CM</button>
+        <button data-id="OM">OM</button>
+        <button data-id="FETCH">FETCH</button>
+        <button data-id="SET">SET</button>
+        <button data-id="EXEC">EXEC</button>
+        <button data-id="TEST ALARM" class="gray">TEST<br/>ALARM</button>
+        <button data-id="3">3</button>
+        <button data-id="2">2</button>
+        <button data-id="1">1</button>
+        <button data-id="ENTER">ENTER</button>
+        <button data-id="CLEAR">CLEAR</button>
+    </div>
+</div>
+
+<style>
+    #button-container {
+        pointer-events: none;
+    }
+</style>
+```
+
+--------------------------------
+
+### DataStar Interval: Run Expression Every 5 Seconds
 
 Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-Illustrates a Go implementation using `github.com/starfederation/datastar-go/datastar` to send Server-Sent Events (SSE) that update an element with the current time.
+This snippet demonstrates setting up an interval to run an expression every 5 seconds using the `data-on-interval__duration.5s` attribute. It shows a basic implementation without immediate execution.
+
+```html
+<div id="time"
+     data-on-interval__duration.5s="@get('/endpoint')"
+></div>
+```
+
+--------------------------------
+
+### Rust - Redirect with SSE and Tokio
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Implements a redirect in Rust using Datastar's SSE and the Tokio runtime for asynchronous operations. It yields events to patch elements, sleeps, and then executes a redirect script.
+
+```rust
+use datastar::prelude::*;
+use async_stream::stream;
+use core::time::Duration;
+
+Sse(stream! {
+    yield PatchElements::new("<div id='indicator'>Redirecting in 3 seconds...</div>").into();
+    tokio::time::sleep(core::time::Duration::from_secs(3)).await;
+    yield ExecuteScript::new("setTimeout(() => window.location = '/guide')").into();
+});
+
+```
+
+--------------------------------
+
+### Python Backend Redirect with DataStar (Sanic)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+This Python snippet demonstrates a backend redirect using DataStar with the Sanic framework. It yields SSE events to update the UI and then execute a redirect script.
+
+```python
+from datastar_py import ServerSentEventGenerator as SSE
+from datastar_py.sanic import datastar_response
+
+@app.get("/redirect")
+@datastar_response
+async def redirect_from_backend():
+    yield SSE.patch_elements('<div id="indicator">Redirecting in 3 seconds...</div>')
+    await asyncio.sleep(3)
+    yield SSE.execute_script('window.location = "/guide"')
+```
+
+--------------------------------
+
+### Kotlin Backend Redirect with DataStar
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+This Kotlin code snippet shows how to perform a backend redirect using DataStar. It updates the DOM with an indicator, pauses execution, and then runs a script to change the window location.
+
+```kotlin
+val generator = ServerSentEventGenerator(response)
+
+generator.patchElements(
+    elements =
+        """
+        <div id="indicator">Redirecting in 3 seconds...</div>
+        """.trimIndent(),
+)
+
+Thread.sleep(3 * ONE_SECOND)
+
+generator.executeScript(
+    script = "window.location.href = '/success'",
+)
+```
+
+--------------------------------
+
+### Capture All Signal Changes with Signal Patch
+
+Source: https://data-star.dev/examples/on_signal_patch
+
+This HTML section demonstrates capturing all signal patches, excluding those specifically related to 'allChanges' and 'counterChanges' themselves, using `data-on-signal-patch` and a filter. The captured changes are displayed in a preformatted tag.
+
+```html
+<div
+    data-on-signal-patch="$allChanges.push(patch)"
+    data-on-signal-patch-filter="{exclude: /allChanges|counterChanges/}"
+>
+    <h3>All Signal Changes</h3>
+    <pre data-json-signals__terse="{include: /^allChanges/}"></pre>
+</div>
+```
+
+--------------------------------
+
+### Kotlin - Redirect with ServerSentEventGenerator
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Shows how to implement a redirect in Kotlin using the ServerSentEventGenerator. It patches elements, pauses, and then redirects.
+
+```kotlin
+val generator = ServerSentEventGenerator(response)
+
+generator.patchElements(
+    elements = """
+        <div id="indicator">Redirecting in 3 seconds...</div>
+        """.trimIndent(),
+)
+
+Thread.sleep(3 * ONE_SECOND)
+
+generator.executeScript(
+    script = "setTimeout(() => window.location = '/guide')",
+)
+
+```
+
+```kotlin
+val generator = ServerSentEventGenerator(response)
+
+generator.patchElements(
+    elements =
+        """
+        <div id="indicator">Redirecting in 3 seconds...</div>
+        """.trimIndent(),
+)
+
+Thread.sleep(3 * ONE_SECOND)
+
+generator.redirect("/guide")
+
+```
+
+--------------------------------
+
+### PHP - Redirect with ServerSentEventGenerator
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Illustrates redirecting using the ServerSentEventGenerator in PHP. It involves patching elements, pausing, and then executing a script for redirection.
+
+```php
+use starfederation\datastar\ServerSentEventGenerator;
+
+$sse = new ServerSentEventGenerator();
+$sse->patchElements(`
+    <div id="indicator">Redirecting in 3 seconds...</div>
+`);
+sleep(3);
+$sse->executeScript(`
+    setTimeout(() => window.location = "/guide")
+`);
+
+```
+
+--------------------------------
+
+### Go: SSE `PatchElements` Implementation
+
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+
+This Go code demonstrates sending Server-Sent Events to patch elements. It generates the current time and embeds it within an HTML `div` that is configured for a 5-second update interval.
 
 ```go
 import (
@@ -4249,53 +6208,335 @@ sse.PatchElements(fmt.Sprintf(`
         %s
     </div>
 `, currentTime))
+
 ```
 
 --------------------------------
 
-### Using Selector with contentType: 'form'
-
-Source: https://data-star.dev/errors/runtime/sse_closest_form_not_found
-
-This example shows how to fix the SseClosestFormNotFound error by providing a `selector` option to the `@post` action, targeting an existing form in the DOM when `contentType: 'form'` is used. This is useful when a direct wrapping form is not feasible.
-
-```html
-<button data-on-click="@post('/endpoint', {contentType: 'form', selector: '#myform'}) "></button>
-```
-
---------------------------------
-
-### Using Wrapping Form with contentType: 'form'
-
-Source: https://data-star.dev/errors/runtime/sse_closest_form_not_found
-
-This example demonstrates how to resolve the SseClosestFormNotFound error by placing the button within a wrapping HTML form when using `contentType: 'form'` with the `@post` action. This ensures a form element is available for the action to reference.
-
-```html
-<form>
-    <button data-on-click="@post('/endpoint', {contentType: 'form'}) "></button>
-</form>
-```
-
---------------------------------
-
-### Throttle Event Listener with data-on-raf
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-on-raf` attribute triggers an expression on the next animation frame. Modifiers like `__throttle` can be applied to limit the rate at which the event listener is invoked. This example throttles the listener to 10 milliseconds.
-
-```html
-<div data-on-raf__throttle.10ms="$count++"></div>
-```
-
---------------------------------
-
-### Python: Load More Data with SSE
+### Kotlin: Server-Side Logic for Loading More
 
 Source: https://data-star.dev/how_tos/load_more_list_items
 
-This Python snippet, using FastAPI and DataStar, implements a 'load more' functionality. It yields Server-Sent Events to patch elements, append new items, update the offset signal, or remove the 'load more' button when the maximum number of items is reached. It utilizes `ServerSentEventGenerator` and `ElementPatchMode` from the `datastar_py` library.
+A Kotlin snippet demonstrating the server-side handling of Datastar signals for a 'load more' feature. It deserializes signals, determines the next offset, and uses `ServerSentEventGenerator` to send UI update events.
+
+```kotlin
+1@Serializable
+2data class OffsetSignals(
+3    val offset: Int,
+4)
+5
+6val signals =
+7    readSignals(
+8        request,
+9        { json: String -> Json.decodeFromString<OffsetSignals>(json) },
+10    )
+11
+12val max = 5
+13val limit = 1
+14val offset = signals.offset
+15
+16val generator = ServerSentEventGenerator(response)
+17
+18if (offset < max) {
+
+```
+
+--------------------------------
+
+### C#: Reading Nested Signals with DataStar Service
+
+Source: https://data-star.dev/guide/backend_requests
+
+Demonstrates how to read nested signals like 'foo.bar' on the backend using C# and the DataStar service. It includes setting up DataStar as a service and deserializing signals from requests.
+
+```csharp
+using StarFederation.Datastar.DependencyInjection;
+
+// Adds Datastar as a service
+builder.Services.AddDatastar();
+
+public record Signals
+{
+    [JsonPropertyName("foo")] [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public FooSignals? Foo { get; set; } = null;
+
+    public record FooSignals
+    {
+        [JsonPropertyName("bar")] [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Bar { get; set; }
+    }
+}
+
+app.MapGet("/read-signals", async (IDatastarService datastarService) =>
+{
+    Signals? mySignals = await datastarService.ReadSignalsAsync<Signals>();
+    var bar = mySignals?.Foo?.Bar;
+});
+```
+
+--------------------------------
+
+### Clojure: Server-Side Logic for Loading More
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+Implements the backend logic in Clojure using Datastar's API. It handles incoming signals, generates new list items, and sends events to append elements or remove the load more button.
+
+```clojure
+1(require
+2  '[starfederation.datastar.clojure.api :as d*]
+3  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]]
+4  '[some.hiccup.library :refer [html]]
+5  '[some.json.library :refer [read-json-str write-json-str]]))
+6
+7
+8(def max-offset 5)
+9
+10(defn handler [ring-request]
+11  (->sse-response ring-request
+12    {on-open
+13     (fn [sse]
+14       (let [d*-signals (-> ring-request d*/get-signals read-json-str)
+15             offset (get d*-signals "offset")
+16             limit 1
+17             new-offset (+ offset limit)]
+18
+19         (d*/patch-elements! sse
+20                             (html [:div "Item " new-offset])
+21                             {d*/selector   "#list"
+22                              d*/merge-mode d*/mm-append})
+23
+24         (if (< new-offset max-offset)
+25           (d*/patch-signals! sse (write-json-str {"offset" new-offset}))
+26           (d*/remove-fragment! sse "#load-more"))
+27
+28         (d*/close-sse! sse)))})
+
+```
+
+--------------------------------
+
+### Ruby - Redirect with Datastar Stream
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Shows how to perform a redirect in Ruby using Datastar's stream functionality. It patches elements, sleeps, and then executes a JavaScript redirect script.
+
+```ruby
+datastar = Datastar.new(request:, response:)
+
+datastar.stream do |sse|
+  sse.patch_elements '<div id="indicator">Redirecting in 3 seconds...</div>'
+
+  sleep 3
+
+  sse.execute_script <<~JS
+    setTimeout(() => {
+      window.location = '/guide'
+    })
+  JS
+end
+
+```
+
+--------------------------------
+
+### Backend SSE Events for Redirect (Conceptual)
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Conceptual representation of backend Server-Sent Events (SSE) to first update a visible indicator and then append a script tag to redirect the page after a delay.
+
+```sse
+event: datastar-patch-elements
+data: elements <div id="indicator">Redirecting in 3 seconds...</div>
+
+// Wait 3 seconds
+
+event: datastar-patch-elements
+data: selector body
+data: mode append
+data: elements <script>window.location.href = "/guide"</script>
+
+
+```
+
+--------------------------------
+
+### Patch HTML Elements via SSE in Go
+
+Source: https://data-star.dev/guide
+
+This Go code snippet illustrates how to patch HTML elements into the DOM using Datastar's Server-Sent Events (SSE) functionality. It initializes an `SSE` generator and uses the `PatchElements` method to send updates, including a one-second delay between them. This is useful for real-time web updates.
+
+```go
+1import (
+2    "github.com/starfederation/datastar-go/datastar"
+3    time
+4)
+5
+6// Creates a new `ServerSentEventGenerator` instance.
+7sse := datastar.NewSSE(w,r)
+8
+9// Patches elements into the DOM.
+10sse.PatchElements(
+11    `<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>`
+12)
+13
+14time.Sleep(1 * time.Second)
+15
+16sse.PatchElements(
+17    `<div id="hal">Waiting for an order...</div>`
+18)
+```
+
+--------------------------------
+
+### Response Handling
+
+Source: https://data-star.dev/reference/actions
+
+Details how Datastar automatically handles different response content types and specific headers for `text/html` responses.
+
+```APIDOC
+## Response Handling
+
+Datastar automatically handles the following response content types:
+
+*   **`text/event-stream`**: Standard SSE events.
+*   **`text/html`**: HTML elements to patch into the DOM.
+*   **`application/json`**: JSON encoded signals for patching.
+*   **`text/javascript`**: JavaScript code for browser execution.
+
+### `text/html` Response Headers:
+
+When returning `text/html`, the server can include these optional response headers:
+
+*   **`datastar-selector`** (string): A CSS selector for the target DOM elements.
+*   **`datastar-mode`** (string): Specifies the patching method (`outer`, `inner`, `remove`, `replace`, `prepend`, `append`, `before`, `after`). Defaults to `outer`.
+*   **`datastar-use-view-transition`** (boolean): Enables the View Transition API for patching.
+
+### Example Server-Side `text/html` Response:
+```javascript
+response.headers.set('Content-Type', 'text/html');
+response.headers.set('datastar-selector', '#my-element');
+response.headers.set('datastar-mode', 'inner');
+response.body = '<p>New content</p>';
+```
+```
+
+--------------------------------
+
+### PHP: Reading Signals using ServerSentEventGenerator
+
+Source: https://data-star.dev/guide/backend_requests
+
+Demonstrates how to read all signals from an incoming request in PHP using the `ServerSentEventGenerator` class. This is a straightforward method for accessing frontend signal data.
+
+```php
+use starfederation\datastar\ServerSentEventGenerator;
+
+// Reads all signals from the request.
+$signals = ServerSentEventGenerator::readSignals();
+```
+
+--------------------------------
+
+### Clojure: Stream SSE Events with Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+This Clojure code snippet demonstrates how to create a Server-Sent Events (SSE) response within a Ring handler using the Datastar Clojure SDK. It shows how to set up an SSE response and then patch elements and signals into the DOM. This approach simplifies SSE implementation by using the provided SDK to handle headers and event formatting.
+
+```clojure
+1;; Import the SDK's api and your adapter
+2(require
+3 '[starfederation.datastar.clojure.api :as d*]
+4 '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
+5
+6;; in a ring handler
+7(defn handler [request]
+8  ;; Create an SSE response
+9  (->sse-response request
+10                  {
+11                   on-open
+12                   (fn [sse]
+13                     ;; Patches elements into the DOM
+14                     (d*/patch-elements! sse
+15                                         "<div id=\"question\">What do you put in a toaster?</div>")
+16
+17                     ;; Patches signals
+18                     (d*/patch-signals! sse "{response: '', answer: 'bread'}"))}))
+
+```
+
+--------------------------------
+
+### C# - Redirect with Datastar Service
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Implements a redirect using Datastar's IDatastarService in C#. It patches HTML elements, delays execution, and then redirects the user to a new page.
+
+```csharp
+using StarFederation.Datastar.DependencyInjection;
+
+app.MapGet("/redirect", async (IDatastarService datastarService) =>
+{
+    await datastarService.PatchElementsAsync("<div id=\"indicator\">Redirecting in 3 seconds...</div>");
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    await datastarService.ExecuteScriptAsync("setTimeout(() => window.location = \"/guide\")");
+});
+
+```
+
+```csharp
+using StarFederation.Datastar.DependencyInjection;
+using StarFederation.Datastar.Scripts;
+
+app.MapGet("/redirect", async (IDatastarService datastarService) =>
+{
+    await datastarService.PatchElementsAsync("<div id=\"indicator\">Redirecting in 3 seconds...</div>");
+    await Task.Delay(TimeSpan.FromSeconds(3));
+    await datastarService.Redirect("/guide");
+});
+
+```
+
+--------------------------------
+
+### Node.js - Redirect with ServerSentEventGenerator
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+Demonstrates implementing a redirect in Node.js using the http module and Datastar's ServerSentEventGenerator. It streams SSE events to patch elements and trigger a redirect after a delay.
+
+```javascript
+import { createServer } from "node:http";
+import { ServerSentEventGenerator } from "../npm/esm/node/serverSentEventGenerator.js";
+
+const server = createServer(async (req, res) => {
+
+  ServerSentEventGenerator.stream(req, res, async (sse) => {
+    sse.patchElements(`
+      <div id="indicator">Redirecting in 3 seconds...</div>
+    `);
+
+    setTimeout(() => {
+      sse.executeScript(`setTimeout(() => window.location = "/guide")`);
+    }, 3000);
+  });
+});
+
+```
+
+--------------------------------
+
+### Load More Data with Append and Signal Patching in Python (FastAPI)
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+This Python snippet, designed for a FastAPI application, demonstrates how to implement a 'load more' functionality using Data Star. It yields Server-Sent Events to append new items, update the offset signal, and remove the load more button when all items are displayed.
 
 ```python
 from datastar_py import ServerSentEventGenerator as SSE
@@ -4322,680 +6563,11 @@ async def load_data(signals: ReadSignals):
 
 --------------------------------
 
-### JSON Payload for Patching Signals
-
-Source: https://data-star.dev/guide/reactive_signals
-
-This JSON object represents a typical payload used to patch frontend signals. When received with a 'content-type' of 'application/json', DataStar merges these values into the existing frontend signals, updating the UI dynamically.
-
-```json
-1{"hal": "Affirmative, Dave. I read you."}
-```
-
---------------------------------
-
-### Create Element References with DataStar Data-Ref
-
-Source: https://data-star.dev/docs
-
-The `data-ref` attribute creates a new signal that references the element it's attached to. The signal name can be defined in the attribute key or value. Modifiers like `__case` with options `.camel`, `.kebab`, `.snake`, and `.pascal` can alter the signal name's casing.
-
-```html
-<div data-ref-foo></div>
-<div data-ref="foo"></div>
-
-$foo is a reference to a <span data-text="$foo.tagName"></span> element
-
-<div data-ref-my-signal__case.kebab></div>
-```
-
---------------------------------
-
-### Patch HTML Elements via SSE Event (HTML)
-
-Source: https://data-star.dev/guide/getting_started
-
-This example shows how to send a 'datastar-patch-elements' SSE event to update HTML elements in the DOM. The server sends HTML content prefixed with 'elements', and Datastar's morphing strategy updates the DOM based on element IDs.
-
-```html
-event: datastar-patch-elements
-data: elements <div id="hal">
-    I’m sorry, Dave. I’m afraid I can’t do that.
-</div>
-```
-
---------------------------------
-
-### Reading Nested Signals in C#
-
-Source: https://data-star.dev/guide/backend_requests
-
-Demonstrates how to set up DataStar services and read nested signals from an incoming request using C# with ASP.NET Core.
-
-```csharp
-using StarFederation.Datastar.DependencyInjection;
-
-// Adds Datastar as a service
-builder.Services.AddDatastar();
-
-public record Signals
-{
-    [JsonPropertyName("foo")] [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public FooSignals? Foo { get; set; } = null;
-
-    public record FooSignals
-    {
-        [JsonPropertyName("bar")] [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? Bar { get; set; }
-    }
-}
-
-app.MapGet("/read-signals", async (IDatastarService datastarService) =>
-{
-    Signals? mySignals = await datastarService.ReadSignalsAsync<Signals>();
-    var bar = mySignals?.Foo?.Bar;
-});
-```
-
---------------------------------
-
-### Content Security Policy for Datastar
-
-Source: https://data-star.dev/docs
-
-This snippet demonstrates how to configure a Content Security Policy (CSP) to allow Datastar's expression evaluation, which requires 'unsafe-eval'. This is crucial for preventing security vulnerabilities like Cross-Site Scripting (XSS) attacks when using Datastar expressions that execute JavaScript.
-
-```html
-<meta http-equiv="Content-Security-Policy"
-    content="script-src 'self' 'unsafe-eval';"
->
-```
-
---------------------------------
-
-### Golang: Morph Multiple Random SVG Elements
-
-Source: https://data-star.dev/examples/svg_morphing
-
-This Go example shows how to update multiple SVG elements simultaneously using Datastar's SSE. It morphs three circles, each with a random radius and fill color, updating the SVG element with the ID 'multi-demo'.
-
-```go
-1svgMorphingRouter.Get("/multiple_elements", func(w http.ResponseWriter, r *http.Request) {
-2    sse := datastar.NewSSE(w, r)
-3    color1 := svgColors[rand.N(len(svgColors))]
-4    color2 := svgColors[rand.N(len(svgColors))]
-5    color3 := svgColors[rand.N(len(svgColors))]
-6    r1 := 10 + rand.N(20) // radius 10-30
-7    r2 := 10 + rand.N(20)
-8    r3 := 10 + rand.N(20)
-9    sse.PatchElements(fmt.Sprintf(`<svg id="multi-demo">
-10        <circle cx="30" cy="30" r="%d" fill="%s" />
-11        <circle cx="70" cy="30" r="%d" fill="%s" />
-12        <circle cx="50" cy="70" r="%d" fill="%s" />
-13    </svg>`, r1, color1, r2, color2, r3, color3))
-14})
-```
-
---------------------------------
-
-### Patch Signals with data-signals Attribute
-
-Source: https://data-star.dev/reference
-
-The `data-signals` attribute allows for patching (adding, updating, or removing) signals. Values can be set directly, nested using dot-notation, or as multiple key-value pairs. Setting a signal to `null` removes it. Keys are converted to camel case. Signals starting with an underscore are not sent to the backend by default.
-
-```html
-<div data-signals-foo="1"></div>
-```
-
-```html
-<div data-signals-foo.bar="1"></div>
-```
-
-```html
-<div data-signals="{foo: {bar: 1, baz: 2}}"></div>
-```
-
-```html
-<div data-signals="{foo: null}"></div>
-```
-
---------------------------------
-
-### Nesting Signals with Object Syntax in HTML
-
-Source: https://data-star.dev/guide/backend_requests
-
-Illustrates nesting signals using JavaScript object syntax within an HTML element's `data-signals` attribute.
-
-```html
-<div data-signals="{foo: {bar: 1}}"></div>
-```
-
---------------------------------
-
-### Patch Elements using SSE Generator in Go
-
-Source: https://data-star.dev/guide/getting_started
-
-This Go code demonstrates using the Datastar SDK to generate Server-Sent Events (SSE) for patching HTML elements into the DOM. It creates an `SSE` instance and uses `PatchElements` to send the HTML content, including a one-second delay between updates.
-
-```go
-import (
-    "github.com/starfederation/datastar-go/datastar"
-    time
-)
-
-// Creates a new `ServerSentEventGenerator` instance.
-sse := datastar.NewSSE(w,r)
-
-// Patches elements into the DOM.
-sse.PatchElements(
-    `<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>`
-)
-
-time.Sleep(1 * time.Second)
-
-sse.PatchElements(
-    `<div id="hal">Waiting for an order...</div>`
-)
-```
-
---------------------------------
-
-### HTML Structure for Templ Counter
-
-Source: https://data-star.dev/examples/templ_counter
-
-This HTML snippet defines the structure for the Templ Counter demo. It includes two buttons, one for a global counter and another for a user-specific counter. The elements are styled using flexbox and CSS variables. Data attributes are used to specify event handlers for loading and clicking, which trigger server-side updates.
-
-```html
-<div
-    style="display: flex; gap: var(--size-6)"
-    data-on-load="@get('/examples/templ_counter/updates')"
->
-    <!-- Global Counter -->
-    <button
-        id="global"
-        class="info"
-        data-on-click="@patch('/examples/templ_counter/global')"
-    >
-        Global Clicks: 0
-    </button>
-
-    <!-- User Counter -->
-    <button
-        id="user"
-        class="success"
-        data-on-click="@patch('/examples/templ_counter/user')"
-    >
-        User Clicks: 0
-    </button>
-</div>
-```
-
---------------------------------
-
-### Datastar SSE PatchElements for DOM Updates
-
-Source: https://data-star.dev/index
-
-This Go snippet illustrates how to use Datastar's Server-Sent Events (SSE) to dynamically update the DOM. The `sse.PatchElements` function is used to replace the content of the `#hal` div with new HTML. A short delay is introduced before patching again.
-
-```go
-sse.PatchElements(`
-    <div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>
-`)
-time.Sleep(1 * time.Second)
-sse.PatchElements(`<div id="hal">Waiting for an order...</div>`)
-```
-
---------------------------------
-
-### Using data-custom-validity for Input Validation
-
-Source: https://data-star.dev/errors/runtime/custom_validity_key_not_allowed
-
-This example demonstrates how to use the `data-custom-validity` attribute for input validation. It ensures that the values of two input fields ('foo' and 'bar') are identical. If they are not, a custom error message is displayed. The attribute expects a string expression that evaluates to the validity message.
-
-```html
-<form>
-    <input data-bind-foo name="foo" />
-    <input data-bind-bar name="bar" 
-        data-custom-validity="$foo === $bar ? '' : 'Field values must be the same.'" 
-    />
-    <button>
-        Submit form
-    </button>
-</form>
-```
-
---------------------------------
-
-### Datastar: Patch Elements using Server-Sent Events (SSE)
-
-Source: https://data-star.dev/guide
-
-Illustrates how to send 'datastar-patch-elements' SSE events to update the DOM. This method allows for multiple element patches within a single stream and is suitable for long-lived connections. The example shows updating an element with ID 'hal' first with one message and then with another after a delay.
-
-```sse
-event: datastar-patch-elements
-data: elements <div id="hal">
-data:     I’m sorry, Dave. I’m afraid I can’t do that.
-data: </div>
-```
-
-```sse
-event: datastar-patch-elements
-data: elements <div id="hal">
-data:     Waiting for an order...
-data: </div>
-```
-
---------------------------------
-
-### Attach Event Listeners with data-on
-
-Source: https://data-star.dev/docs
-
-The `data-on` attribute attaches an event listener to an element, executing a specified expression when the event is triggered. An `evt` variable, representing the event object, is available within the expression. This attribute supports standard browser events and custom events, with `data-on-submit` specifically preventing default form submission behavior.
-
-```html
-<button data-on-click="$foo = ''">Reset</button>
-```
-
-```html
-<div data-on-myevent="$foo = evt.detail"></div>
-```
-
---------------------------------
-
-### HTML data-bind Attribute for Two-Way Data Binding
-
-Source: https://data-star.dev/guide/reactive_signals
-
-The `data-bind` attribute in Datastar enables two-way data binding for input elements. It automatically creates and manages a signal, synchronizing its value with the element's value. Changes in either the signal or the element's value are reflected in the other. This attribute supports direct signal assignment or assigning the signal name as a string value.
-
-```html
-<input data-bind-foo />
-```
-
-```html
-<input data-bind="foo" />
-```
-
---------------------------------
-
-### HTML data-attr Attribute for Dynamic Attribute Binding
-
-Source: https://data-star.dev/guide/reactive_signals
-
-The `data-attr` attribute allows binding the value of any HTML attribute to a Datastar expression. This enables dynamic modification of attributes like `disabled` or `title` based on frontend state. Similar to `data-class`, it supports setting multiple attributes at once using an object literal, where keys are attribute names and values are their corresponding expressions.
-
-```html
-<input data-bind-foo />
-<button data-attr-disabled="$foo == ''">
-    Save
-</button>
-```
-
-```html
-<button data-attr="{disabled: $foo == '', title: $foo}">Save</button>
-```
-
---------------------------------
-
-### HTML data-class Attribute for Dynamic Class Management
-
-Source: https://data-star.dev/guide/reactive_signals
-
-The `data-class` attribute enables conditional addition or removal of CSS classes to an HTML element based on a Datastar expression. A single class can be toggled by providing the class name and a boolean expression. Multiple classes can be managed simultaneously using an object literal where keys are class names and values are their corresponding boolean expressions.
-
-```html
-<input data-bind-foo />
-<button data-class-success="$foo != ''">
-    Save
-</button>
-```
-
-```html
-<button data-class="{success: $foo != '', 'font-bold': $foo == 'bar'}">
-    Save
-</button>
-```
-
---------------------------------
-
-### HTML data-text Attribute for Displaying Signal Values
-
-Source: https://data-star.dev/guide/reactive_signals
-
-The `data-text` attribute dynamically sets the text content of an HTML element to the value of a Datastar signal. It requires the signal name to be prefixed with a `$`. This attribute also supports Datastar expressions, allowing JavaScript functions like `toUpperCase()` to be applied to the signal value before displaying it.
-
-```html
-<input data-bind-foo />
-<div data-text="$foo"></div>
-```
-
-```html
-<input data-bind-foo />
-<div data-text="$foo.toUpperCase()"></div>
-```
-
---------------------------------
-
-### Node.js Backend for Real-time Time Updates
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-Illustrates a Node.js implementation using the `node:http` module and `ServerSentEventGenerator` to stream updates containing the current time to the client.
-
-```javascript
-import { createServer } from "node:http";
-import { ServerSentEventGenerator } from "../npm/esm/node/serverSentEventGenerator.js";
-
-const server = createServer(async (req, res) => {
-  const currentTime = new Date().toISOString();
-  
-  ServerSentEventGenerator.stream(req, res, (sse) => {
-    sse.patchElements(`
-       <div id="time"
-          data-on-interval__duration.5s="@get('/endpoint')"
-       >
-         ${currentTime}
-       </div>
-    `);
-  });
-});
-```
-
---------------------------------
-
-### HTML data-show Attribute for Conditional Element Visibility
-
-Source: https://data-star.dev/guide/reactive_signals
-
-The `data-show` attribute controls the visibility of an HTML element based on the boolean evaluation of a Datastar expression. If the expression evaluates to `true`, the element is shown; otherwise, it is hidden. For preventing content flash, it's recommended to initially style the element with `display: none;`.
-
-```html
-<input data-bind-foo />
-<button data-show="$foo != ''">
-    Save
-</button>
-```
-
-```html
-<input data-bind-foo />
-<button data-show="$foo != ''" style="display: none;">
-    Save
-</button>
-```
-
---------------------------------
-
-### Immediate Execution with `.leading` Modifier
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-Shows how to combine the `data-on-interval` attribute with the `.leading` modifier to execute the expression immediately upon page load, in addition to the regular interval.
-
-```html
-<div id="time"
-     data-on-interval__duration.5s.leading="@get('/endpoint')"
-></div>
-```
-
---------------------------------
-
-### Dispatch and Listen to Custom Event with HTML and JavaScript
-
-Source: https://data-star.dev/examples/custom_event
-
-This snippet shows an HTML paragraph with data attributes and a JavaScript script. The script dispatches a custom event 'myevent' every second, and the HTML's data attributes listen to this event to update its text content with the event's details. It utilizes `CustomEvent` for dispatching and `data-on-myevent` for listening.
-
-```html
-<p
-    id="foo"
-    data-signals-_event-details
-    data-on-myevent="$_eventDetails = evt.detail"
-    data-text="`Last Event Details: ${$_eventDetails}`"
-></p>
-<script>
-    const foo = document.getElementById("foo");
-    setInterval(() => {
-        foo.dispatchEvent(
-            new CustomEvent("myevent", {
-                detail: JSON.stringify({
-                    eventTime: new Date().toLocaleTimeString(),
-                }),
-            })
-        );
-    }, 1000);
-</script>
-```
-
---------------------------------
-
-### HTML data-computed Attribute for Derived Signals
-
-Source: https://data-star.dev/guide/reactive_signals
-
-The `data-computed` attribute allows the creation of a new, read-only signal whose value is derived from a Datastar expression involving other signals. This computed signal automatically updates whenever any of its dependent signals change. It's useful for memoizing complex expressions and managing derived state efficiently.
-
-```html
-<input data-bind-foo />
-<div data-computed-repeated="$foo.repeat(2)" data-text="$repeated"></div>
-```
-
---------------------------------
-
-### Datastar HTML with Embedded Bad Apple Video Benchmark
-
-Source: https://data-star.dev/examples/bad_apple
-
-This HTML snippet utilizes Datastar's data-signals attribute to manage the state of the Bad Apple video benchmark, including percentage and content. The data-on-load attribute triggers the frame streaming from a specified endpoint. The `pre` tag is dynamically updated with video frames, and a range input visually represents the playback progress.
-
-```html
-<label
-    data-signals="{_percentage: 0, _contents: 'bad apple frames go here'}"
-    data-on-load="@get('/examples/bad_apple/updates')"
->
-    <span data-text="`Percentage: ${$_percentage.toFixed(2)}%`"></span>
-    <input
-        type="range"
-        min="0"
-        max="100"
-        step="0.01"
-        disabled
-        style="cursor: default"
-        data-attr-value="$_percentage"
-    />
-</label>
-<pre style="line-height: 100%" data-text="$_contents"></pre>
-```
-
---------------------------------
-
-### Send SSE Events with Datastar in Clojure
-
-Source: https://data-star.dev/guide/backend_requests
-
-This snippet demonstrates how to set up a backend controller action in Clojure using Datastar's SDK to stream SSE events. It includes patching elements and signals into the DOM. Requires the `starfederation.datastar.clojure` SDK.
-
-```clojure
-1;; Import the SDK's api and your adapter
-2(require
-3 '[starfederation.datastar.clojure.api :as d*]
-4 '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
-5
-6;; in a ring handler
-7(defn handler [request]
-8  ;; Create an SSE response
-9  (->sse-response request
-10                  {
-11                   :on-open
-12                   (fn [sse] 
-13                     ;; Patches elements into the DOM
-14                     (d*/patch-elements! sse
-15                                         "<div id=\"question\">What do you put in a toaster?</div>")
-16
-17                     ;; Patches signals
-18                     (d*/patch-signals! sse "{response: '', answer: 'bread'}"))}))
-```
-
---------------------------------
-
-### Nesting Signals with Dot Notation in HTML
-
-Source: https://data-star.dev/guide/backend_requests
-
-Demonstrates how to nest signals using dot notation within an HTML element's `data-signals` attribute.
-
-```html
-<div data-signals-foo.bar="1"></div>
-```
-
---------------------------------
-
-### Datastar TodoMVC HTML Structure
-
-Source: https://data-star.dev/examples/todomvc
-
-This HTML code defines the user interface for the TodoMVC application. It includes input fields for new todos, checkboxes for marking completion, buttons for filtering and resetting the list, and a container for dynamically rendered todo items. Datastar-specific attributes like 'data-on-load', 'data-on-click', and 'data-signals-input' are used to bind UI elements to application logic and server-side operations.
-
-```html
-<section
-    id="todomvc"
-    data-on-load="@get('/examples/todomvc/updates')"
->
-    <header id="todo-header">
-        <input
-            type="checkbox"
-            data-on-click__prevent="@post('/examples/todomvc/-1/toggle')"
-            data-on-load="el.checked = false"
-        />
-        <input
-            id="new-todo"
-            type="text"
-            placeholder="What needs to be done?"
-            data-signals-input
-            data-bind-input
-            data-on-keydown="
-                evt.key === 'Enter' && $input.trim() && @patch('/examples/todomvc/-1') && ($input = '');
-            "
-        />
-    </header>
-    <ul id="todo-list">
-        <!-- Todo items are dynamically rendered here -->
-    </ul>
-    <div id="todo-actions">
-        <span>
-            <strong>0</strong> items pending
-        </span>
-        <button class="small info" data-on-click="@put('/examples/todomvc/mode/0')">
-            All
-        </button>
-        <button class="small" data-on-click="@put('/examples/todomvc/mode/1')">
-            Pending
-        </button>
-        <button class="small" data-on-click="@put('/examples/todomvc/mode/2')">
-            Completed
-        </button>
-        <button class="error small" aria-disabled="true">
-            Delete
-        </button>
-        <button class="warning small" data-on-click="@put('/examples/todomvc/reset')">
-            Reset
-        </button>
-    </div>
-</section>
-```
-
---------------------------------
-
-### Send SSE Events with Datastar (JavaScript - Server-side)
-
-Source: https://data-star.dev/guide/backend_requests
-
-This JavaScript snippet demonstrates initiating an SSE stream from the server-side using Datastar. It sets up the necessary headers and provides a callback for sending events.
-
-```javascript
-1// Creates a new `ServerSentEventGenerator` instance (this also sends required headers)
-2ServerSentEventGenerator.stream(req, res, (stream) => {
-3});
-```
-
---------------------------------
-
-### Stream DOM Patching with SSE in Ruby
-
-Source: https://data-star.dev/guide
-
-Demonstrates streaming Server-Sent Events (SSE) in Ruby using the Datastar gem to patch elements into the DOM. It initializes a Datastar::Dispatcher and uses a stream block to send patch commands with a delay.
-
-```ruby
-require 'datastar'
-
-# Create a Datastar::Dispatcher instance
-
-datastar = Datastar.new(request:, response:)
-
-# In a Rack handler, you can instantiate from the Rack env
-# datastar = Datastar.from_rack_env(env)
-
-# Start a streaming response
-datastar.stream do |sse|
-  # Patches elements into the DOM.
-  sse.patch_elements %(<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>)
-
-  sleep 1
-  
-  sse.patch_elements %(<div id="hal">Waiting for an order...</div>)
-end
-```
-
---------------------------------
-
-### Rendering Current Time with Backend Templating
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-Illustrates rendering dynamic content, like the current time, within an element that also uses `data-on-interval`. The backend is expected to provide the `now` variable.
-
-```html
-<div id="time"
-     data-on-interval__duration.5s="@get('/endpoint')"
->
-     {{ now }}
-</div>
-```
-
---------------------------------
-
-### DataStar HTML with Web Component Integration
-
-Source: https://data-star.dev/guide/datastar_expressions
-
-Demonstrates how to use a custom web component ('my-component') within HTML, passing data via attributes and listening for custom events. It utilizes 'data-bind' for input binding and 'data-attr-src'/'data-on-mycustomevent' for component interaction, driving reactivity with 'data-*' attributes.
-
-```html
-<div data-signals-result="''">
-    <input data-bind-foo />
-    <my-component
-        data-attr-src="$foo"
-        data-on-mycustomevent="$result = evt.detail.value"
-    ></my-component>
-    <span data-text="$result"></span>
-</div>
-```
-
---------------------------------
-
-### JSON Output for Signal Changes
+### JSON Output for Signal Patch Data
 
 Source: https://data-star.dev/examples/on_signal_patch
 
-These JSON snippets represent the initial state or filtered output for signal changes. The first shows an empty array for `counterChanges`, indicating no counter modifications yet. The second shows an empty array for `allChanges`, signifying no general signal modifications.
+These JSON snippets represent the expected structure for displaying signal changes. The first shows an empty array for `counterChanges`, and the second shows an empty array for `allChanges`, typically seen before any patching occurs or after a clear operation.
 
 ```json
 {"counterChanges":[]}
@@ -5007,197 +6579,11 @@ These JSON snippets represent the initial state or filtered output for signal ch
 
 --------------------------------
 
-### PHP: Append Item and Update Offset Signal
-
-Source: https://data-star.dev/how_tos/load_more_list_items
-
-This PHP snippet shows how to append a new item to a list and update the offset signal using the ServerSentEventGenerator. It reads signals, defines limits, and conditionally patches elements or signals based on the current offset. The `patchElements` method is used for DOM updates, and `patchSignals` for signal synchronization.
-
-```php
-$signals = ServerSentEventGenerator::readSignals();
-
-$max = 5;
-$limit = 1;
-$offset = $signals['offset'] ?? 1;
-
-$sse = new ServerSentEventGenerator();
-
-if ($offset < $max) {
-    $newOffset = $offset + $limit;
-    $sse->patchElements("<div>Item $newOffset</div>", [
-        'selector' => '#list',
-        'mode' => ElementPatchMode::Append,
-    ]);
-    if (newOffset < $max) {
-        $sse->patchSignals(['offset' => $newOffset]);
-    } else {
-        $sse->removeElements('#load-more');
-    }
-}
-```
-
---------------------------------
-
-### Generate SSE Events to Patch DOM Elements (Ruby)
-
-Source: https://data-star.dev/guide/getting_started
-
-This Ruby snippet demonstrates using the Datastar gem to stream SSE events. It shows how to instantiate Datastar and use the stream method to send patch elements, including a one-second delay between updates.
-
-```ruby
-require 'datastar'
-
-# Create a Datastar::Dispatcher instance
-datastar = Datastar.new(request:, response:)
-
-# Start a streaming response
-datastar.stream do |sse|
-  # Patches elements into the DOM.
-  sse.patch_elements %(<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>)
-
-  sleep 1
-  
-  sse.patch_elements %(<div id="hal">Waiting for an order...</div>)
-end
-```
-
---------------------------------
-
-### Display Contact Details for Click to Edit
-
-Source: https://data-star.dev/examples/click_to_edit
-
-This HTML snippet displays contact information (First Name, Last Name, Email) and includes 'Edit' and 'Reset' buttons. The 'Edit' button fetches the editing UI from '/examples/click_to_edit/edit', and the 'Reset' button triggers a reset action at '/examples/click_to_edit/reset'. It utilizes data attributes for dynamic behavior and indicators.
-
-```html
-<div id="demo">
-    <p>First Name: John</p>
-    <p>Last Name: Doe</p>
-    <p>Email: joe@blow.com</p>
-    <div role="group">
-        <button
-            class="info"
-            data-indicator-_fetching
-            data-attr-disabled="$_fetching"
-            data-on-click="@get('/examples/click_to_edit/edit')"
-        >
-            Edit
-        </button>
-        <button
-            class="warning"
-            data-indicator-_fetching
-            data-attr-disabled="$_fetching"
-            data-on-click="@patch('/examples/click_to_edit/reset')"
-        >
-            Reset
-        </button>
-    </div>
-</div>
-```
-
---------------------------------
-
-### Reading Signals in Python (FastAPI)
-
-Source: https://data-star.dev/guide/backend_requests
-
-Illustrates reading signals within a FastAPI application in Python, using `read_signals` helper function.
-
-```python
-from datastar_py.fastapi import datastar_response, read_signals
-
-@app.get("/updates")
-@datastar_response
-async def updates(request: Request):
-    # Retrieve a dictionary with the current state of the signals from the frontend
-    signals = await read_signals(request)
-```
-
---------------------------------
-
-### Editable Form for Contact Details
-
-Source: https://data-star.dev/examples/click_to_edit
-
-This HTML snippet renders an editable form for contact details, including input fields for First Name, Last Name, and Email. It features 'Save' and 'Cancel' buttons. The 'Save' button sends an update to '/examples/click_to_edit' using a PUT request, while 'Cancel' reverts changes by fetching from '/examples/click_to_edit/cancel'. Input fields are data-bound and disabled during fetching.
-
-```html
-<div id="demo">
-    <label>
-        First Name
-        <input
-            type="text"
-            data-bind-first-name
-            data-attr-disabled="$_fetching"
-        >
-    </label>
-    <label>
-        Last Name
-        <input
-            type="text"
-            data-bind-last-name
-            data-attr-disabled="$_fetching"
-        >
-    </label>
-    <label>
-        Email
-        <input
-            type="email"
-            data-bind-email
-            data-attr-disabled="$_fetching"
-        >
-    </label>
-    <div role="group">
-        <button
-            class="success"
-            data-indicator-_fetching
-            data-attr-disabled="$_fetching"
-            data-on-click="@put('/examples/click_to_edit')"
-        >
-            Save
-        </button>
-        <button
-            class="error"
-            data-indicator-_fetching
-            data-attr-disabled="$_fetching"
-            data-on-click="@get('/examples/click_to_edit/cancel')"
-        >
-            Cancel
-        </button>
-    </div>
-</div>
-```
-
---------------------------------
-
-### Send SSE Events with Datastar in Go
-
-Source: https://data-star.dev/guide/backend_requests
-
-This Go snippet illustrates creating a ServerSentEventGenerator instance to send SSE events. It shows how to patch HTML elements and JSON signals using the datastar-go library.
-
-```go
-1import ("github.com/starfederation/datastar-go/datastar")
-2
-3// Creates a new `ServerSentEventGenerator` instance.
-4sse := datastar.NewSSE(w,r)
-5
-6// Patches elements into the DOM.
-7sse.PatchElements(
-8    `<div id="question">What do you put in a toaster?</div>`
-9)
-10
-11// Patches signals.
-12sse.PatchSignals([]byte(`{response: '', answer: 'bread'}`))
-```
-
---------------------------------
-
-### Implement Dynamic Polling Interval in Go
+### Go: Dynamic SSE Interval Duration
 
 Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-This Go snippet shows how to set dynamic polling intervals for Server-Sent Events using the Datastar Go library. It calculates the duration based on the current second, switching to 5-second intervals normally and 1-second intervals for the last 10 seconds of a minute. It uses `datastar.NewSSE` to create an SSE instance.
+This Go snippet demonstrates how to create server-sent events with a dynamic interval duration using the `datastar-go` library. It formats the current time and calculates the duration based on the current seconds.
 
 ```go
 1import (
@@ -5222,175 +6608,537 @@ This Go snippet shows how to set dynamic polling intervals for Server-Sent Event
 
 --------------------------------
 
-### Copy Text to Clipboard using @clipboard()
+### Go SDK for SSE Patch Signals
 
-Source: https://data-star.dev/reference/actions
+Source: https://data-star.dev/guide/reactive_signals
 
-This snippet shows how to use the `@clipboard()` directive to copy text to the user's clipboard. It supports copying plain text directly and also handles Base64 encoded text by decoding it before copying, which is useful for special characters or complex data.
+This Go code snippet shows how to use the DataStar Go SDK to create a Server-Sent Events (SSE) generator and patch signals with a delay between updates.
 
-```html
-<!-- Copy plain text -->
-<button data-on-click="@clipboard('Hello, world!')"></button>
-
-<!-- Copy base64 encoded text (will decode before copying) -->
-<button data-on-click="@clipboard('SGVsbG8sIHdvcmxkIQ==', true)"></button>
+```go
+ 1import (
+ 2    "github.com/starfederation/datastar-go/datastar"
+ 3)
+ 4
+ 5// Creates a new `ServerSentEventGenerator` instance.
+ 6sse := datastar.NewSSE(w, r)
+ 7
+ 8// Patches signals
+ 9sse.PatchSignals([]byte(`{hal: 'Affirmative, Dave. I read you.'}`))
+10
+11time.Sleep(1 * time.Second)
+12
+13sse.PatchSignals([]byte(`{hal: '...'}`))
 ```
 
 --------------------------------
 
-### Backend Event Handling for DataStar List Updates
+### Backend Event Handling for Appending Data
 
 Source: https://data-star.dev/how_tos/load_more_list_items
 
-These snippets illustrate backend events used by DataStar to update the UI. 'datastar-patch-elements' is used to append new items to the '#list' container, and 'datastar-patch-signals' updates the offset. The 'remove' mode is used to hide the button when all items are loaded.
+Explains how the backend should respond with `datastar-patch-elements` to append new items to the list and `datastar-patch-signals` to update the offset. It also covers removing the button when all items are loaded.
 
-```text
-1event: datastar-patch-elements
-2data: selector #list
-3data: mode append
-4data: elements <div>Item 2</div>
+```APIDOC
+## Backend Response for Loading More Items
+
+### Description
+When the backend receives a request to load more items, it should send `datastar-patch-elements` with `mode: append` to add the new element to the `#list` container. It then sends `datastar-patch-signals` to update the offset. If the maximum number of items is reached, the `#load-more` button is removed.
+
+### Method
+N/A (Backend Events)
+
+### Endpoint
+N/A (Backend Events)
+
+### Response
+#### Success Response (200)
+- **`event: datastar-patch-elements`**
+  - **`data: selector #list`**: Specifies the container to patch.
+  - **`data: mode append`**: Indicates that new elements should be appended.
+  - **`data: elements <div>Item 2</div>`**: The HTML for the new item.
+- **`event: datastar-patch-signals`**
+  - **`data: signals {offset: 2}`**: Updates the client-side signal for the offset.
+- **`event: datastar-patch-elements`**
+  - **`data: selector #load-more`**: Specifies the element to remove.
+  - **`data: mode remove`**: Indicates that the element should be removed.
+
+### Response Example
 ```
+event: datastar-patch-elements
+data: selector #list
+data: mode append
+data: elements <div>Item 2</div>
 
-```text
-1event: datastar-patch-signals
-2data: signals {offset: 2}
+event: datastar-patch-signals
+data: signals {offset: 2}
+
+
+# (Or if max items reached)
+event: datastar-patch-elements
+data: selector #load-more
+data: mode remove
 ```
-
-```text
-1event: datastar-patch-elements
-2data: selector #load-more
-3data: mode remove
 ```
 
 --------------------------------
 
-### Datastar Starfield Web Component Attributes
+### Go: Stream SSE Events with Datastar
 
-Source: https://data-star.dev/index
+Source: https://data-star.dev/guide/backend_requests
 
-This snippet shows how to configure a Datastar web component (`ds-starfield`) using reactive signals. The attributes `data-attr-center-x`, `data-attr-center-y`, and `data-attr-speed` are bound to JavaScript variables ($x, $y, $speed) for dynamic updates.
+This Go code demonstrates how to generate Server-Sent Events (SSE) using the Datastar Go SDK. It shows the creation of a `ServerSentEventGenerator` instance and its usage for patching elements and signals. This method is useful for directly handling HTTP requests and responses to stream SSE.
+
+```go
+1import ("github.com/starfederation/datastar-go/datastar")
+2
+3// Creates a new `ServerSentEventGenerator` instance.
+4sse := datastar.NewSSE(w,r)
+5
+6// Patches elements into the DOM.
+7sse.PatchElements(
+8    `<div id="question">What do you put in a toaster?</div>`
+9)
+10
+11// Patches signals.
+12sse.PatchSignals([]byte(`{response: '', answer: 'bread'}`))
+
+```
+
+--------------------------------
+
+### Patch HTML Elements via SSE in C#
+
+Source: https://data-star.dev/guide
+
+This C# code demonstrates patching HTML elements into the DOM using Datastar's `IDatastarService`. It shows how to register Datastar as a service and then use `PatchElementsAsync` to send updates, including a delay between them. This is suitable for ASP.NET Core applications.
+
+```csharp
+1using StarFederation.Datastar.DependencyInjection;
+2
+3// Adds Datastar as a service
+4builder.Services.AddDatastar();
+5
+6app.MapGet("/", async (IDatastarService datastarService) =>
+7{
+8    // Patches elements into the DOM.
+9    await datastarService.PatchElementsAsync(@"<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>");
+10
+11    await Task.Delay(TimeSpan.FromSeconds(1));
+12
+13    await datastarService.PatchElementsAsync(@"<div id=\"hal\">Waiting for an order...</div>");
+14});
+```
+
+--------------------------------
+
+### Datastar Patch Elements: Advanced Options
+
+Source: https://data-star.dev/reference/sse_events
+
+Illustrates advanced options for patching elements, including 'inner' morphing, using CSS selectors, enabling view transitions, and handling multi-line element content. This allows for more granular control over DOM updates.
 
 ```html
-<ds-starfield
-    data-attr-center-x="$x"
-    data-attr-center-y="$y"
-    data-attr-speed="$speed"
-></ds-starfield>
+event: datastar-patch-elements
+data: mode inner
+data: selector #foo
+data: useViewTransition true
+data: elements <div>
+data: elements        Hello world!
+data: elements </div>
+
+
 ```
 
 --------------------------------
 
-### DataStar Backend Action for Script Execution
+### Rust Backend Redirect with DataStar
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+This Rust code uses DataStar to perform a backend redirect. It generates SSE events to update the page content and execute a JavaScript redirect after a specified delay.
+
+```rust
+use datastar::prelude::*;
+use async_stream::stream;
+use core::time::Duration;
+
+Sse(stream! { //
+    yield PatchElements::new("<div id='indicator'>Redirecting in 3 seconds...</div>").into();
+    tokio::time::sleep(core::time::Duration::from_secs(3)).await;
+    yield ExecuteScript::new("window.location = '/guide'").into();
+});
+```
+
+--------------------------------
+
+### Python (FastAPI): Reading Signals with DataStar
+
+Source: https://data-star.dev/guide/backend_requests
+
+Shows how to read signals from a FastAPI request in Python using the DataStar library. The `@datastar_response` decorator and `read_signals` function simplify signal retrieval.
+
+```python
+from datastar_py.fastapi import datastar_response, read_signals
+
+@app.get("/updates")
+@datastar_response
+async def updates(request: Request):
+    # Retrieve a dictionary with the current state of the signals from the frontend
+    signals = await read_signals(request)
+```
+
+--------------------------------
+
+### Datastar Expression: Basic Signal Evaluation
 
 Source: https://data-star.dev/guide/datastar_expressions
 
-Illustrates how a button click can trigger a backend action that returns JavaScript to be executed on the frontend. The 'data-on-click' attribute is used to specify the endpoint, and if the response has a 'text/javascript' content type, the script is run in the browser.
+Demonstrates a basic Datastar expression where a signal '$foo' with an initial value of '1' is displayed in a `data-text` attribute. This shows how Datastar directly evaluates signal values.
 
 ```html
-<button data-on-click="@get('/endpoint')">
-    What are you talking about, HAL?
-</button>
-```
-
---------------------------------
-
-### Datastar Expression: Basic Signal Usage
-
-Source: https://data-star.dev/guide/datastar_expressions
-
-Demonstrates the basic usage of Datastar expressions by referencing a signal `$foo` within a `data-text` attribute. The output reflects the current value of the signal.
-
-```html
-1<div data-signals-foo="1">
+1<div data-signals:foo="1">
 2    <div data-text="$foo"></div>
 3</div>
 ```
 
 --------------------------------
 
-### Send Multiple HTML Patches via SSE Events (HTML)
-
-Source: https://data-star.dev/guide/getting_started
-
-This snippet illustrates sending a sequence of 'datastar-patch-elements' SSE events to update the DOM over time. It first sets a response and then, after a delay, updates the same element with new content, demonstrating dynamic content changes.
-
-```html
-event: datastar-patch-elements
-data: elements <div id="hal">
-    I’m sorry, Dave. I’m afraid I can’t do that.
-</div>
-
-event: datastar-patch-elements
-data: elements <div id="hal">
-    Waiting for an order...
-</div>
-```
-
---------------------------------
-
-### Configure Content Security Policy for Datastar
-
-Source: https://data-star.dev/reference/security
-
-This snippet demonstrates how to configure a Content Security Policy (CSP) to allow Datastar expressions to be evaluated. The `script-src` directive must include `'unsafe-eval'` to permit the use of the `Function()` constructor, which Datastar relies on for expression evaluation. Ensure this is used cautiously and only when necessary.
-
-```html
-<meta http-equiv="Content-Security-Policy" 
-    content="script-src 'self' 'unsafe-eval';">
-
-```
-
---------------------------------
-
-### Backend Response with `datastar-patch-elements` Event
+### Ruby: `Datastar` for Patching Elements
 
 Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-Details the structure of a `datastar-patch-elements` event response from the backend, which contains updated HTML for the specified element, including dynamic content.
+This Ruby snippet shows how to use the `Datastar` library to send element patches via Server-Sent Events. It formats the current time and injects it into an HTML structure for dynamic updates.
 
-```http
-event: datastar-patch-elements
-data: elements <div id="time" data-on-interval__duration.5s="@get('/endpoint')">
-data: elements     {{ now }}
-data: elements </div>
+```ruby
+datastar = Datastar.new(request:, response:)
+
+current_time = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+
+datastar.patch_elements <<~FRAGMENT
+    <div id="time"
+         data-on-interval__duration.5s="@get('/endpoint')"
+    >
+        #{current_time}
+    </div>
+FRAGMENT
+
 ```
 
 --------------------------------
 
-### Clojure: Generating SSE for Patching Elements with Datastar
+### Datastar JS Options
+
+Source: https://data-star.dev/reference/actions
+
+Details the available options for Datastar JS actions, including contentType, filterSignals, selector, headers, openWhenHidden, and retry configurations.
+
+```APIDOC
+## Datastar JS Options
+
+All Datastar actions accept an `options` argument for customization.
+
+### Options Available:
+
+*   **`contentType`** (string) - Specifies the type of content to send. Accepts `json` (default) or `form`. If `form`, it validates and sends form elements of the closest form.
+*   **`filterSignals`** (object) - Filters signals. Accepts an `include` property (RegExp, defaults to `/.*/`) and an optional `exclude` property (RegExp, defaults to `/(^_|._).*/`).
+*   **`selector`** (string|null) - Specifies a form to send when `contentType` is `form`. Defaults to `null` (uses the closest form).
+*   **`headers`** (object) - An object containing custom headers for the request.
+*   **`openWhenHidden`** (boolean) - Keeps the connection open when the page is hidden. Defaults to `false`.
+*   **`retry`** (string) - Determines retry behavior. Options: `'auto'` (default), `'error'`, `'always'`, `'never'`.
+*   **`retryInterval`** (number) - The retry interval in milliseconds. Defaults to `1000`.
+*   **`retryScaler`** (number) - Multiplier for scaling retry wait times. Defaults to `2`.
+*   **`retryMaxWaitMs`** (number) - Maximum wait time between retries in milliseconds. Defaults to `30000`.
+*   **`retryMaxCount`** (number) - Maximum number of retry attempts. Defaults to `10`.
+*   **`requestCancellation`** (string|object) - Controls request cancellation. Options: `'auto'` (default), `'disabled'`, or an `AbortController` instance.
+
+### Request Example (GET with options):
+```html
+<button data-on:click="@get('/endpoint', {
+    filterSignals: {include: /^foo\./},
+    headers: {
+        'X-Csrf-Token': 'JImikTbsoCYQ9oGOcvugov0Awc5LbqFsZW6ObRCxuq',
+    },
+    openWhenHidden: true,
+    requestCancellation: 'disabled',
+})"></button>
+```
+```
+
+--------------------------------
+
+### Clojure: Server-Sent Events with `patch-elements!`
+
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+
+This Clojure code demonstrates how to generate Server-Sent Events (SSE) to patch elements on the client side. It uses `datastar.clojure.api` to send an updated time within an HTML `div` at a 5-second interval.
+
+```clojure
+(require
+  '[starfederation.datastar.clojure.api :as d*]
+  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
+  '[some.hiccup.library :refer [html]])
+
+(import
+  'java.time.format.DateTimeFormatter
+  'java.time.LocalDateTime)
+
+(def formatter (DateTimeFormatter/ofPattern "YYYY-MM-DD HH:mm:ss"))
+
+(defn handle [ring-request]
+   (->sse-response ring-request
+     {on-open
+      (fn [sse]
+        (d*/patch-elements! sse
+          (html [:div#time {:data-on-interval__duration.5s (d*/sse-get "/endpoint")} 
+                  (LocalDateTime/.format (LocalDateTime/now) formatter)])))
+        (d*/close-sse! sse)}))
+
+```
+
+--------------------------------
+
+### Copy Text to Clipboard with DataStar
+
+Source: https://data-star.dev/reference/actions
+
+Utilizes the `@clipboard()` Pro Action to copy text to the system clipboard. It supports plain text and Base64 encoded text, which is decoded before copying.
+
+```html
+<!-- Copy plain text -->
+<button data-on:click="@clipboard('Hello, world!')"></button>
+
+<!-- Copy base64 encoded text (will decode before copying) -->
+<button data-on:click="@clipboard('SGVsbG8sIHdvcmxkIQ==', true)"></button>
+```
+
+--------------------------------
+
+### HTML Structure for DataStar Signals
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This HTML snippet demonstrates how to set up elements to receive and display patched signals from the backend using DataStar's custom attributes.
+
+```html
+1<div data-signals:hal="'...'" >
+2    <button data-on:click="@get('/endpoint')">
+3        HAL, do you read me?
+4    </button>
+5    <div data-text="$hal"></div>
+6</div>
+```
+
+--------------------------------
+
+### Patch HTML Elements via SSE in Java
 
 Source: https://data-star.dev/guide
 
-Shows how to generate Server-Sent Events (SSE) in Clojure using the Datastar SDK to patch elements into the DOM. It demonstrates creating an SSE response and asynchronously sending patch commands to update an HTML element with a specific ID. A delay is included between patches.
+This Java code demonstrates patching HTML elements into the DOM using Datastar's `ServerSentEventGenerator`. It sets up the generator with an `HttpServletResponseAdapter` and uses the `PatchElements.builder()` to send updates, including a one-second delay between them. This is typically used within a Java web application context.
 
-```clojure
-;; Import the SDK's api and your adapter
-(require
- '[starfederation.datastar.clojure.api :as d*]
- '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
-
-;; in a ring handler
-(defn handler [request]
- ;; Create an SSE response
- (->sse-response request
-                  {on-open
-                   (fn [sse]
-                     ;; Patches elements into the DOM
-                     (d*/patch-elements! sse
-                                         "<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
-                     (Thread/sleep 1000)
-
-                     (d*/patch-elements! sse
-                                         "<div id=\"hal\">Waiting for an order...</div>"))})
+```java
+1import starfederation.datastar.utils.ServerSentEventGenerator;
+2
+3// Creates a new `ServerSentEventGenerator` instance.
+4AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
+5ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
+6
+7// Patches elements into the DOM.
+8generator.send(PatchElements.builder()
+9    .data("<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
+10    .build()
+11);
+12
+13Thread.sleep(1000);
+14
+15generator.send(PatchElements.builder()
+16    .data("<div id=\"hal\">Waiting for an order...</div>")
+17    .build()
+18);
 ```
 
 --------------------------------
 
-### Go SDK for Executing Scripts via SSE
+### Datastar Pro Actions
+
+Source: https://data-star.dev/reference/actions
+
+Additional actions available in Datastar Pro, offering extended functionality.
+
+```APIDOC
+## Pro Actions
+
+### Description
+Datastar Pro extends functionality with additional helpful actions.
+
+### Methods
+- `@clipboard()`
+- `@fit()`
+
+### Endpoint
+N/A (Used within Datastar expressions)
+
+### Parameters
+(Specific parameters depend on the action. Refer to Datastar Pro documentation for details.)
+
+### Request Example
+```html
+<!-- Example using @clipboard() -->
+<button data-on:click="@clipboard('Copy this text')">Copy</button>
+```
+
+### Response
+(Responses will vary based on the action.)
+```
+
+--------------------------------
+
+### Generate SSE Stream in Rust with Datastar
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This Rust code snippet demonstrates how to create a Server-Sent Event (SSE) stream using the `async_stream` crate and Datastar. It yields `PatchSignals` at intervals, simulating real-time updates. Dependencies include `async_stream`, `datastar`, and `std::thread` for pausing execution.
+
+```rust
+use async_stream::stream;
+use datastar::prelude::*;
+use std::thread;
+use std::time::Duration;
+
+Sse(stream! {
+    // Patches signals.
+    yield PatchSignals::new("{hal: 'Affirmative, Dave. I read you.'}").into();
+
+    thread::sleep(Duration::from_secs(1));
+    
+    yield PatchSignals::new("{hal: '...'});
+})
+```
+
+--------------------------------
+
+### Create Loading Indicators with data-indicator
+
+Source: https://data-star.dev/reference/attributes
+
+The `data-indicator` attribute creates a signal that is `true` when a fetch request is in flight and `false` otherwise. This signal can be used to display loading states, disable elements, etc.
+
+```html
+<button data-on:click="@get('/endpoint')"
+        data-indicator:fetching
+></button>
+```
+
+```html
+<button data-on:click="@get('/endpoint')"
+        data-indicator:fetching
+        data-attr:disabled="$fetching"
+></button>
+<div data-show="$fetching">Loading...</div>
+```
+
+```html
+<button data-indicator="fetching"></button>
+```
+
+```html
+<div data-indicator:fetching data-init="@get('/endpoint')"></div>
+```
+
+--------------------------------
+
+### Datastar Patch Signals: Basic Update
+
+Source: https://data-star.dev/reference/sse_events
+
+Demonstrates the basic usage of 'datastar-patch-signals' to update signal values. A 'signals' line provides a JSON object mapping signal names to their new values.
+
+```html
+event: datastar-patch-signals
+data: signals {foo: 1, bar: 2}
+
+
+```
+
+--------------------------------
+
+### Send Multiple SSE Events in Python using Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+Shows how to send SSE events, such as patching HTML elements and sending signal data, using Python with the Datastar framework. This is applicable for Python backend development.
+
+```python
+generator.patchElements(
+    elements = """<div id=\"question\">...</div>""",
+)
+generator.patchElements(
+    elements = """<div id=\"instructions\">...</div>""",
+)
+generator.patchSignals(
+    signals = "{\"answer\": \"...\", \"prize\": \"...\"}",
+)
+```
+
+--------------------------------
+
+### Send Multiple SSE Events in Ruby (Streaming) using Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+Illustrates sending SSE events, including patching elements and signals, using Ruby's streaming capabilities with Datastar. This approach is efficient for real-time updates.
+
+```ruby
+datastar.stream do |sse|
+  sse.patch_elements('<div id="question">...</div>')
+  sse.patch_elements('<div id="instructions">...</div>')
+  sse.patch_signals(answer: '...', prize: '...')
+end
+```
+
+--------------------------------
+
+### PHP: Backend Redirect with Server-Sent Events
+
+Source: https://data-star.dev/how_tos/redirect_the_page_from_the_backend
+
+This snippet shows how to use ServerSentEventGenerator in PHP to patch an element and then redirect the user after a delay. It relies on the ServerSentEventGenerator class.
+
+```php
+$sse = new ServerSentEventGenerator();
+$sse->patchElements('
+    <div id="indicator">Redirecting in 3 seconds...</div>
+');
+sleep(3);
+$sse->location('/guide');
+```
+
+--------------------------------
+
+### DataStar HTML with Web Component Integration
 
 Source: https://data-star.dev/guide/datastar_expressions
 
-Provides a Go code snippet using the DataStar SDK to generate a Server-Sent Event (SSE) that executes a JavaScript alert. This function simplifies the process of sending script execution commands from the backend to the frontend.
+An HTML structure demonstrating DataStar's declarative approach to integrating a custom web component. It shows how to bind input values to component attributes and capture custom events dispatched by the component to update a signal.
+
+```html
+<div data-signals:result="''">
+    <input data-bind:foo />
+    <my-component
+        data-attr:src="$foo"
+        data-on:mycustomevent="$result = evt.detail.value"
+    ></my-component>
+    <span data-text="$result"></span>
+</div>
+```
+
+--------------------------------
+
+### Go SDK for Generating SSE Script Execution Event
+
+Source: https://data-star.dev/guide/datastar_expressions
+
+A Go code snippet utilizing the DataStar SDK to programmatically generate a Server-Sent Event (SSE) that executes a JavaScript script on the client-side. This demonstrates server-side control over frontend script execution.
 
 ```go
 sse := datastar.NewSSE(writer, request)
@@ -5399,264 +7147,446 @@ sse.ExecuteScript(`alert('This mission is too important for me to allow you to j
 
 --------------------------------
 
-### Generate SSE Events to Patch DOM Elements (PHP)
+### Ruby: Dynamic SSE Interval Duration
 
-Source: https://data-star.dev/guide/getting_started
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-This snippet shows how to create a ServerSentEventGenerator instance in PHP and use it to patch elements into the DOM. It demonstrates sending an initial message, pausing for a second, and then sending an updated message.
+This Ruby snippet demonstrates creating server-sent events with a dynamic interval duration using the `Datastar` library. It calculates the duration based on the current seconds and formats the current time.
 
-```php
-use starfederation\datastar\ServerSentEventGenerator;
-
-// Creates a new `ServerSentEventGenerator` instance.
-$sse = new ServerSentEventGenerator();
-
-// Patches elements into the DOM.
-$sse->patchElements(
-    '<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>'
-);
-
-sleep(1)
-
-$sse->patchElements(
-    '<div id="hal">Waiting for an order...</div>'
-);
+```ruby
+1datastar = Datastar.new(request:, response:)
+ 2
+ 3now = Time.now
+ 4current_time = now.strftime('%Y-%m-%d %H:%M:%S')
+ 5current_seconds = now.strftime('%S').to_i
+ 6duration = current_seconds < 50 ? 5 : 1
+ 7
+ 8datastar.patch_elements <<~FRAGMENT
+ 9    <div id="time"
+10         data-on-interval__duration.#{duration}s="@get('/endpoint')"
+11    >
+12        #{current_time}
+13</div>
+14FRAGMENT
 ```
 
 --------------------------------
 
-### Send Multiple SSE Events using Python (DatastarResponse)
+### Patch DOM Elements with Server-Sent Events (Rust)
+
+Source: https://data-star.dev/guide
+
+Demonstrates patching DOM elements using Server-Sent Events in Rust. It utilizes the `datastar` crate and `async_stream` to yield `PatchElements` commands, including a one-second sleep between them.
+
+```rust
+use async_stream::stream;
+use datastar::prelude::*;
+use std::thread;
+use std::time::Duration;
+
+Sse(stream! {
+    // Patches elements into the DOM.
+    yield PatchElements::new("<div id='hal'>I’m sorry, Dave. I’m afraid I can’t do that.</div>").into();
+
+    thread::sleep(Duration::from_secs(1));
+    
+    yield PatchElements::new("<div id='hal'>Waiting for an order...</div>").into();
+})
+```
+
+--------------------------------
+
+### HTML: Two-Way Binding for Nested Signals
 
 Source: https://data-star.dev/guide/backend_requests
 
-This Python snippet shows how to construct a DatastarResponse that includes multiple Server-Sent Events (SSE). It uses the `SSE` helper class to create `patch_elements` and `patch_signals` events, returning them within a list. This is a common pattern for returning SSE responses in Python.
+Shows how to use two-way binding with nested signals in HTML. This allows for direct synchronization of input elements with nested signal states.
 
-```python
-return DatastarResponse([
-    SSE.patch_elements('<div id="question">...</div>'),
-    SSE.patch_elements('<div id="instructions">...</div>'),
-    SSE.patch_signals({"answer": "...", "prize": "..."})
-])
+```html
+<input data-bind:foo.bar />
 ```
 
 --------------------------------
 
-### HTML with SortableJS and DataStar Event Binding
+### PHP SDK for SSE Patch Signals
 
-Source: https://data-star.dev/examples/sortable
+Source: https://data-star.dev/guide/reactive_signals
 
-This HTML snippet sets up a sortable list using SortableJS and binds a custom event handler using DataStar's `data-on-*` attribute. The `data-signals-order-info` attribute is used to display signal data, and the `data-on-reordered` attribute listens for the 'reordered' event to update the `$orderInfo` signal.
+This PHP code illustrates using the DataStar SDK's `ServerSentEventGenerator` to send SSE events for patching signals, with a one-second sleep between updates.
+
+```php
+ 1use starfederation\datastar\ServerSentEventGenerator;
+ 2
+ 3// Creates a new `ServerSentEventGenerator` instance.
+ 4$sse = new ServerSentEventGenerator();
+ 5
+ 6// Patches signals.
+ 7$sse->patchSignals(['hal' => 'Affirmative, Dave. I read you.']);
+ 8
+ 9sleep(1);
+10
+11$sse->patchSignals(['hal' => '...']);
+```
+
+--------------------------------
+
+### SSE Stream for Sequential Signal Updates
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This SSE stream demonstrates sending multiple 'datastar-patch-signals' events sequentially, including a delay, to update and then reset a signal on the frontend.
+
+```sse
+1event: datastar-patch-signals
+2data: signals {hal: 'Affirmative, Dave. I read you.'}
+3
+4// Wait 1 second
+5
+6event: datastar-patch-signals
+7data: signals {hal: '...'}
+8
+
+```
+
+--------------------------------
+
+### Datastar TodoMVC HTML Structure
+
+Source: https://data-star.dev/examples/todomvc
+
+The HTML structure for the TodoMVC application implemented with Datastar. It includes elements for adding new todos, displaying the todo list, and managing todo status (All, Pending, Completed). This structure utilizes Datastar's custom attributes for event handling and data binding.
 
 ```html
-<div data-signals-order-info="'Initial order'" data-text="$orderInfo"></div>
-<div id="sortContainer" data-on-reordered="$orderInfo = event.detail.orderInfo">
-    <button>Item 1</button>
-    <button>Item 2</button>
-    <button>Item 3</button>
-    <button>Item 4</button>
-    <button>Item 5</button>
+<section
+    id="todomvc"
+    data-init="@get('/examples/todomvc/updates')"
+>
+    <header id="todo-header">
+        <input
+            type="checkbox"
+            data-on:click__prevent="@post('/examples/todomvc/-1/toggle')"
+            data-init="el.checked = false"
+        />
+        <input
+            id="new-todo"
+            type="text"
+            placeholder="What needs to be done?"
+            data-signals:input
+            data-bind:input
+            data-on:keydown="
+                evt.key === 'Enter' && $input.trim() && @patch('/examples/todomvc/-1') && ($input = '');
+            "
+        />
+    </header>
+    <ul id="todo-list">
+        <!-- Todo items are dynamically rendered here -->
+    </ul>
+    <div id="todo-actions">
+        <span>
+            <strong>0</strong> items pending
+        </span>
+        <button class="small info" data-on:click="@put('/examples/todomvc/mode/0')">
+            All
+        </button>
+        <button class="small" data-on:click="@put('/examples/todomvc/mode/1')">
+            Pending
+        </button>
+        <button class="small" data-on:click="@put('/examples/todomvc/mode/2')">
+            Completed
+        </button>
+        <button class="error small" aria-disabled="true">
+            Delete
+        </button>
+        <button class="warning small" data-on:click="@put('/examples/todomvc/reset')">
+            Reset
+        </button>
+    </div>
+</section>
+```
+
+--------------------------------
+
+### Datastar Events: Patching Signals
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+Demonstrates the `datastar-patch-signals` event used to update client-side signals. This event carries new signal values, such as the incremented offset, to maintain the application's state.
+
+```text
+1event: datastar-patch-signals
+2data: signals {offset: 2}
+3
+
+```
+
+--------------------------------
+
+### Dispatch and Listen to Custom Events (HTML & JavaScript)
+
+Source: https://data-star.dev/examples/custom_event
+
+This snippet shows how to dispatch a custom event named 'myevent' every second from a paragraph element. It also demonstrates how to listen to this custom event using the `data-on` attribute and update the paragraph's text content with the event details. The `evt.detail` is accessible within the event handler.
+
+```html
+<p
+    id="foo"
+    data-signals:_event-details
+    data-on:myevent="$_eventDetails = evt.detail"
+    data-text="`Last Event Details: ${$_eventDetails}`"
+></p>
+<script>
+    const foo = document.getElementById("foo");
+    setInterval(() => {
+        foo.dispatchEvent(
+            new CustomEvent("myevent", {
+                detail: JSON.stringify({
+                    eventTime: new Date().toLocaleTimeString(),
+                }),
+            })
+        );
+    }, 1000);
+</script>
+```
+
+--------------------------------
+
+### Datastar Expression: Evaluating Signal Properties
+
+Source: https://data-star.dev/guide/datastar_expressions
+
+Shows how Datastar expressions can evaluate properties of signals, like `.length` for a string signal, by first converting the signal to its value and then evaluating the expression in a sandboxed context.
+
+```html
+1<div data-text="$foo.length"></div>
+```
+
+--------------------------------
+
+### Send Multiple SSE Events in Python (Stream) using Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+Demonstrates sending SSE events, including patching elements and signals, using Python's streaming API with Datastar. This is efficient for real-time data pushes.
+
+```python
+stream.patchElements('<div id="question">...</div>');
+stream.patchElements('<div id="instructions">...</div>');
+stream.patchSignals({'answer': '...', 'prize': '...'});
+```
+
+--------------------------------
+
+### Java Servlet: Stream SSE Events with Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+This Java code snippet shows how to implement Server-Sent Events (SSE) using the Datastar Java SDK within a Servlet environment. It demonstrates creating a `ServerSentEventGenerator` and using its `send` method with `PatchElements` and `PatchSignals` builders. This approach allows for fine-grained control over SSE generation in Java web applications.
+
+```java
+1import starfederation.datastar.utils.ServerSentEventGenerator;
+2
+3// Creates a new `ServerSentEventGenerator` instance.
+4AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
+5ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
+6
+7// Patches elements into the DOM.
+8generator.send(PatchElements.builder()
+9    .data("<div id=\"question\">What do you put in a toaster?</div>")
+10    .build()
+11);
+12
+13// Patches signals.
+14generator.send(PatchSignals.builder()
+15    .data("{\"response\": \"\", \"answer\": \"\"}")
+16    .build()
+17);
+
+```
+
+--------------------------------
+
+### Listen for Global Keydown Events (HTML)
+
+Source: https://data-star.dev/how_tos/bind_keydown_events_to_specific_keys
+
+This snippet demonstrates how to listen for any keydown event globally using the `data-on:keydown__window` attribute. The `__window` modifier ensures the event listener is attached to the `window` object. It triggers an alert when any key is pressed.
+
+```html
+<div data-on:keydown__window="alert('Key pressed')"></div>
+```
+
+--------------------------------
+
+### HTML Structure for Progressive Load
+
+Source: https://data-star.dev/examples/progressive_load
+
+The HTML structure defines a button to trigger content loading and a main content area divided into sections. It uses custom data attributes for Datastar's directives to manage load states and progressive rendering. No external JS dependencies are explicitly mentioned for this HTML structure.
+
+```html
+<div>
+    <div class="actions">
+        <button
+            id="load-button"
+            data-signals:load-disabled="false"
+            data-on:click="$loadDisabled=true; @get('/examples/progressive_load/updates')"
+            data-attr:disabled="$loadDisabled"
+            data-indicator:progressive-Load
+        >
+            Load
+        </button>
+        <!-- Indicator element -->
+    </div>
+    <p>
+        Each part is loaded randomly and progressively.
+    </p>
+</div>
+<div id="Load">
+    <header id="header">Welcome to my blog</header>
+    <section id="article">
+        <h4>This is my article</h4>
+        <section id="articleBody">
+            <p>
+                Lorem ipsum dolor sit amet...
+            </p>
+        </section>
+    </section>
+    <section id="comments">
+        <h5>Comments</h5>
+        <p>
+            This is the comments section. It will also be progressively loaded as you scroll down.
+        </p>
+        <ul id="comments-list">
+            <li id="1">
+                <img src="https://avatar.iran.liara.run/username?username=example" alt="Avatar" class="avatar"/>
+                This is a comment...
+            </li>
+            <!-- More comments loaded progressively -->
+        </ul>
+    </section>
+    <div id="footer">Hope you like it</div>
 </div>
 ```
 
 --------------------------------
 
-### Send POST Request using Datastar Backend Action
+### Java SDK for SSE Patch Signals
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This Java code demonstrates using the DataStar SDK's `ServerSentEventGenerator` to send SSE events for patching signals, including a pause between updates.
+
+```java
+ 1import starfederation.datastar.utils.ServerSentEventGenerator;
+ 2
+ 3// Creates a new `ServerSentEventGenerator` instance.
+ 4AbstractResponseAdapter responseAdapter = new HttpServletResponseAdapter(response);
+5ServerSentEventGenerator generator = new ServerSentEventGenerator(responseAdapter);
+ 6
+ 7// Patches signals.
+ 8generator.send(PatchSignals.builder()
+ 9    .data("{\"hal\": \"Affirmative, Dave. I read you.\"}")
+10    .build()
+11);
+12
+13Thread.sleep(1000);
+14
+15generator.send(PatchSignals.builder()
+16    .data("{\"hal\": \"...\"}")
+17    .build()
+18);
+```
+
+--------------------------------
+
+### Patch DOM Elements and Signals using Data-Star
 
 Source: https://data-star.dev/guide/backend_requests
 
-This snippet shows how to trigger a POST request to '/actions/quiz' when a button is clicked, utilizing Datastar's `@post()` backend action. It requires a button element with the `data-on-click` attribute.
-
-```html
-<button data-on-click="@post('/actions/quiz')">
-    Submit answer
-</button>
-```
-
---------------------------------
-
-### HTML Form for File Upload with Progress
-
-Source: https://data-star.dev/reference/actions
-
-This HTML form demonstrates how to enable file upload progress monitoring with Datastar Pro. It utilizes `enctype='multipart/form-data'` and `data-on-submit__prevent` to trigger a POST request. The `data-on-datastar-fetch` attribute listens for 'upload-progress' events to update the UI with the upload status.
-
-```html
-<form enctype="multipart/form-data"
-    data-signals="{progress: 0, uploading: false}"
-    data-on-submit__prevent="@post('https://example.com/upload', {contentType: 'form'})"
-    data-on-datastar-fetch="
-        if (evt.detail.type !== 'upload-progress') return;
-
-        const {progress, loaded, total} = evt.detail.argsRaw;
-        $uploading = true;
-        $progress = Number(progress);
-
-        if ($progress >= 100) {
-            $uploading = false;
-        }
-    "
->
-    <input type="file" name="files" multiple />
-    <button type="submit">Upload</button>
-    <progress data-show="$uploading" data-attr-value="$progress" max="100"></progress>
-</form>
-```
-
---------------------------------
-
-### Reading Nested Signals in Kotlin
-
-Source: https://data-star.dev/guide/backend_requests
-
-Shows how to define a data class for signals and read them from a request using Kotlin, leveraging JSON decoding.
-
-```kotlin
-@Serializable
-data class Signals(
-    val foo: String,
-)
-
-val jsonUnmarshaller: JsonUnmarshaller<Signals> = { json -> Json.decodeFromString(json) }
-
-val request: Request =
-    postRequest(
-        body =
-            """
-            {
-                "foo": "bar"
-            }
-            """.trimIndent(),
-    )
-
-val signals = readSignals(request, jsonUnmarshaller)
-```
-
---------------------------------
-
-### Server-Sent HTML Response Handling in Data-Star
-
-Source: https://data-star.dev/reference/actions
-
-Illustrates how to configure a server response to send HTML content back to the client. It includes setting the 'Content-Type' to 'text/html' and specifies Data-Star's 'datastar-selector' and 'datastar-mode' headers for targeted DOM patching.
+This snippet demonstrates patching HTML elements and frontend signals into the DOM using the Data-Star library. It requires an existing DOM element with the ID 'question' to patch into. The function updates the DOM and frontend signals based on the provided data.
 
 ```javascript
-response.headers.set('Content-Type', 'text/html')
-response.headers.set('datastar-selector', '#my-element')
-response.headers.set('datastar-mode', 'inner')
-response.body = '<p>New content</p>'
+stream.patchElements(`<div id="question">What do you put in a toaster?</div>`);
+stream.patchSignals({'response':  '', 'answer': 'bread'});
 ```
 
 --------------------------------
 
-### Kotlin: Append Item and Update Offset Signal
+### Initialize Element on DOM Load/Modification (`data-init`)
 
-Source: https://data-star.dev/how_tos/load_more_list_items
+Source: https://data-star.dev/reference
 
-This Kotlin snippet demonstrates appending a new item to a list and updating the offset signal. It checks if the new offset is less than the maximum limit to decide whether to continue signaling or remove a 'load more' button. It uses `generator.patchElements` for DOM manipulation and `generator.patchSignals` for signal updates.
-
-```kotlin
-val newOffset = offset + limit
-
-generator.patchElements(
-    elements = "<div>Item $newOffset</div>",
-    options = 
-        PatchElementsOptions(
-            selector = "#list",
-            mode = ElementPatchMode.Append,
-        ),
-)
-
-if (newOffset < max) {
-    generator.patchSignals(
-        signals = "{\"offset\": $newOffset}",
-    )
-} else {
-    generator.patchElements(
-        options = 
-            PatchElementsOptions(
-                selector = "#load-more",
-                mode = ElementPatchMode.Remove,
-            ),
-    )
-}
-```
-
---------------------------------
-
-### Implement Dynamic Polling Interval in Python
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-This Python snippet demonstrates dynamic polling intervals for Server-Sent Events using StarFederation Datastar. It calculates the duration based on the current second, applying a 1-second interval during the last 10 seconds of each minute. It uses `DatastarResponse` and `SSE.patch_elements` for sending SSE updates.
-
-```python
-1from datastar_py import ServerSentEventGenerator as SSE
- 2from datastar_py.sanic import DatastarResponse
- 3
- 4@app.get("/endpoint")
- 5async def endpoint():
- 6    current_time = datetime.now()
- 7    duration = 5 if current_time.seconds < 50 else 1
- 8
- 9    return DatastarResponse(SSE.patch_elements(f"""
-10        <div id="time" data-on-interval__duration.{duration}s="@get('/endpoint')">
-11            {current_time:%Y-%m-%d %H:%M:%S}
-12        </div>
-13    """))
-```
-
---------------------------------
-
-### Two-Way Binding for Nested Signals in HTML
-
-Source: https://data-star.dev/guide/backend_requests
-
-Shows how to achieve two-way binding for nested signals using the `data-bind` attribute in HTML.
+The `data-init` attribute executes an expression when the element is initialized in the DOM. This occurs on page load, DOM patching, or attribute changes. Modifiers like `__delay` and `__viewtransition` can alter the execution timing and behavior.
 
 ```html
-<input data-bind-foo.bar />
+<div data-init="$count = 1"></div>
+<div data-init__delay.500ms="$count = 1"></div>
 ```
 
 --------------------------------
 
-### Send Multiple SSE Events using Ruby (Yield)
+### Send Multiple SSE Events in JavaScript using Datastar
 
 Source: https://data-star.dev/guide/backend_requests
 
-This Ruby snippet shows an alternative way to send Server-Sent Events (SSE) using `yield` with `PatchElements` and `PatchSignals` classes. This pattern is useful in specific DSL contexts or when building event streams programmatically. It requires explicit creation of event objects.
+Demonstrates sending SSE events for patching elements and signals using JavaScript and Datastar's SSE helper. This is suitable for frontend or backend JavaScript environments.
 
-```ruby
-yield PatchElements::new("<div id='question'>...</div>").into()
-yield PatchElements::new("<div id='instructions'>...</div>").into()
-yield PatchSignals::new("{answer: '...', prize: '...'}").into()
+```javascript
+sse.PatchElements(`<div id="question">...</div>`)
+sse.PatchElements(`<div id="instructions">...</div>`)
+sse.PatchSignals([]byte(`{answer: '...', prize: '...'}`))
 ```
 
 --------------------------------
 
-### HTML Structure with Data Attributes
+### Send Multiple SSE Events in C# using Datastar
 
 Source: https://data-star.dev/guide/backend_requests
 
-This HTML snippet demonstrates the use of data attributes for frontend interactivity. `data-signals` initializes signals, `data-computed-correct` defines a computed property, `data-on-click` triggers actions on click events, and `data-show` conditionally displays elements. It also shows how backend events can update the DOM and signals.
+Shows how to send SSE events, including patching elements and signals, using C# with the Datastar library. This is useful for backend integrations where C# is the primary language.
+
+```csharp
+datastarService.PatchElementsAsync(@"<div id=\"question\">...</div>");
+datastarService.PatchElementsAsync(@"<div id=\"instructions\">...</div>");
+datastarService.PatchSignalsAsync(new { answer = "...", prize = "..." } );
+```
+
+--------------------------------
+
+### Integrating External JavaScript: Basic Function Definition
+
+Source: https://data-star.dev/guide/datastar_expressions
+
+Provides the definition for a simple, synchronous JavaScript function (`myfunction`) that takes data as input and returns a formatted string. This function is intended to be called from Datastar expressions.
+
+```javascript
+1function myfunction(data) {
+2    return `You entered: ${data}`;
+3}
+```
+
+--------------------------------
+
+### Interactive Quiz using Datastar Attributes
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This snippet implements an interactive quiz using `data-signals` for managing the user's response and the correct answer, `data-computed` to determine correctness, and `data-on` to handle user input via a prompt. `data-show` conditionally displays feedback.
 
 ```html
 <div
-    data-signals="{response: '', answer: ''}"
-    data-computed-correct="$response.toLowerCase() == $answer"
+    data-signals="{response: '', answer: 'bread'}"
+    data-computed:correct="$response.toLowerCase() == $answer"
 >
-    <div id="question"></div>
-    <button data-on-click="@get('/actions/quiz')">Fetch a question</button>
-    <button
-        data-show="$answer != ''"
-        data-on-click="$response = prompt('Answer:') ?? ''"
-    >
-        BUZZ
-    </button>
+    <div id="question">What do you put in a toaster?</div>
+    <button data-on:click="$response = prompt('Answer:') ?? ''">BUZZ</button>
     <div data-show="$response != ''">
         You answered “<span data-text="$response"></span>”.
         <span data-show="$correct">That is correct ✅</span>
         <span data-show="!$correct">
-        The correct answer is “<span data-text="$answer"></span>” 🤷
+        The correct answer is “
+        <span data-text="$answer"></span>
+        ” 🤷
         </span>
     </div>
 </div>
@@ -5664,14 +7594,525 @@ This HTML snippet demonstrates the use of data attributes for frontend interacti
 
 --------------------------------
 
-### Implement Dynamic Polling Interval in Rust
+### Datastar Actions - @setAll()
+
+Source: https://data-star.dev/reference/actions
+
+The `@setAll()` action sets the value of all matching signals to a specified value. It supports filtering signals by regular expressions to include or exclude specific patterns.
+
+```APIDOC
+## @setAll()
+
+### Description
+Sets the value of all matching signals (or all signals if no filter is used) to the expression provided in the first argument. The second argument is an optional filter object with an `include` property that accepts a regular expression to match signal paths. You can optionally provide an `exclude` property to exclude specific patterns.
+
+### Method
+Expression
+
+### Endpoint
+N/A (Used within Datastar expressions)
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```html
+<!-- Sets the `foo` signal only -->
+<div data-signals:foo="false">
+    <button data-on:click="@setAll(true, {include: /^foo$/})"></button>
+</div>
+
+<!-- Sets all signals starting with `user.` -->
+<div data-signals="{user: {name: '', nickname: ''}}">
+    <button data-on:click="@setAll('johnny', {include: /^user\./})"></button>
+</div>
+
+<!-- Sets all signals except those ending with `_temp` -->
+<div data-signals="{data: '', data_temp: '', info: '', info_temp: ''}">
+    <button data-on:click="@setAll('reset', {include: /.*/, exclude: /_temp$/})"></button>
+</div>
+```
+
+### Response
+#### Success Response (200)
+N/A (Modifies signal values directly)
+
+#### Response Example
+N/A
+```
+
+--------------------------------
+
+### Linearly Interpolate Value with @fit()
+
+Source: https://data-star.dev/reference/actions
+
+Employs the `@fit()` Pro Action for linear interpolation between two ranges. It can optionally clamp the output to the new range and round to the nearest integer, useful for scaling and unit conversions.
+
+```html
+<!-- Convert a 0-100 slider to 0-255 RGB value -->
+<div>
+    <input type="range" min="0" max="100" value="50" data-bind:slider-value>
+    <div data-computed:rgb-value="@fit($sliderValue, 0, 100, 0, 255)">
+        RGB Value: <span data-text="$rgbValue"></span>
+    </div>
+</div>
+
+<!-- Convert Celsius to Fahrenheit -->
+<div>
+    <input type="number" data-bind:celsius value="20" />
+    <div data-computed:fahrenheit="@fit($celsius, 0, 100, 32, 212)">
+        <span data-text="$celsius"></span>°C = <span data-text="$fahrenheit.toFixed(1)"></span>°F
+    </div>
+</div>
+
+<!-- Map mouse position to element opacity (clamped) -->
+<div
+    data-signals:mouse-x="0"
+    data-computed:opacity="@fit($mouseX, 0, window.innerWidth, 0, 1, true)"
+    data-on:mousemove__window="$mouseX = evt.clientX"
+    data-attr:style="'opacity: ' + $opacity">
+    Move your mouse horizontally to change opacity
+</div>
+```
+
+--------------------------------
+
+### DataStar Interval: Rendering Current Time with Backend Data
 
 Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-This Rust snippet demonstrates dynamic polling intervals for Server-Sent Events using the Datastar Rust crate. It calculates the interval duration based on the current second, applying a 1-second interval during the last 10 seconds of each minute. It uses `async_stream::stream` and `PatchElements::new` to construct the SSE data.
+This snippet illustrates how to combine the interval attribute with backend templating to display dynamic content, such as the current time, which is updated periodically.
+
+```html
+<div id="time"
+     data-on-interval__duration.5s="@get('/endpoint')"
+>
+    {{ now }}
+</div>
+```
+
+--------------------------------
+
+### Kotlin SDK for SSE Patch Signals
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This Kotlin code snippet shows how to use the `ServerSentEventGenerator` to patch signals via SSE, including a one-second delay between the signal updates.
+
+```kotlin
+ 1val generator = ServerSentEventGenerator(response)
+ 2
+ 3generator.patchSignals(
+ 4    signals = """{"hal": "Affirmative, Dave. I read you."} """,
+ 5)
+ 6
+ 7Thread.sleep(ONE_SECOND)
+ 8
+ 9generator.patchSignals(
+10    signals = """{"hal": "..."} """,
+11)
+```
+
+--------------------------------
+
+### Handle SSE Stream in JavaScript with Datastar
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This JavaScript code snippet shows how to create and manage a Server-Sent Event (SSE) stream using Datastar's client-side SDK. It initializes an `ServerSentEventGenerator`, sends patch signals, and uses `setTimeout` to introduce delays between events. The `stream.patchSignals` method is used to send data.
+
+```javascript
+// Creates a new `ServerSentEventGenerator` instance (this also sends required headers)
+ServerSentEventGenerator.stream(req, res, (stream) => {
+    // Patches signals.
+    stream.patchSignals({'hal': 'Affirmative, Dave. I read you.'});
+
+    setTimeout(() => {
+        stream.patchSignals({'hal': '...'});
+    }, 1000);
+});
+```
+
+--------------------------------
+
+### Datastar Expressions: Ternary, Logical OR, and AND Operators
+
+Source: https://data-star.dev/guide/datastar_expressions
+
+Demonstrates the use of JavaScript operators within Datastar expressions, including the ternary operator for conditional output, logical OR for combining conditions, and logical AND for conditional actions like sending a request.
+
+```html
+1// Output one of two values, depending on the truthiness of a signal
+2<div data-text="$landingGearRetracted ? 'Ready' : 'Waiting'"></div>
+3
+4// Show a countdown if the signal is truthy or the time remaining is less than 10 seconds
+5<div data-show="$landingGearRetracted || $timeRemaining < 10">
+6    Countdown
+7</div>
+8
+9// Only send a request if the signal is truthy
+10<button data-on:click="$landingGearRetracted && @post('/launch')">
+11    Launch
+12</button>
+```
+
+--------------------------------
+
+### Clojure: Dynamic SSE Interval Duration
+
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+
+This Clojure snippet configures server-sent events to dynamically adjust the interval duration based on the current second of the minute. It uses `starfederation.datastar.clojure.api` and `http-kit` for SSE handling.
+
+```clojure
+1(require
+ 2  '[starfederation.datastar.clojure.api :as d*]
+ 3  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
+ 4  '[some.hiccup.library :refer [html]])
+ 5
+ 6(import
+ 7  'java.time.format.DateTimeFormatter
+ 8  'java.time.LocalDateTime)
+ 9
+10(def date-time-formatter (DateTimeFormatter/ofPattern "YYYY-MM-DD HH:mm:ss"))
+11(def seconds-formatter (DateTimeFormatter/ofPattern "ss"))
+12
+13(defn handle [ring-request]
+14  (->sse-response ring-request
+15    {on-open
+16     (fn [sse]
+17       (let [now (LocalDateTime/now)
+18             current-time (LocalDateTime/.format now date-time-formatter)
+19             seconds (LocalDateTime/.format now seconds-formatter)
+20             duration (if (neg? (compare seconds "50"))
+21                         "5"
+22                         "1")]
+23         (d*/patch-elements! sse
+24           (html [:div#time {(str "data-on-interval__duration." duration "s")
+25                             (d*/sse-get "/endpoint")}
+26                   current-time]))))}))
+27
+28         (d*/close-sse! sse))}))
+```
+
+--------------------------------
+
+### PHP: `ServerSentEventGenerator` Usage
+
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+
+This PHP code shows how to use `ServerSentEventGenerator` to send Server-Sent Events for element patching. It captures the current date and time and embeds it within an HTML structure for periodic updates.
+
+```php
+use starfederation\datastar\ServerSentEventGenerator;
+
+$currentTime = date('Y-m-d H:i:s');
+
+$sse = new ServerSentEventGenerator();
+$sse->patchElements(`
+    <div id="time"
+         data-on-interval__duration.5s="@get('/endpoint')"
+    >
+        $currentTime
+    </div>
+`);
+
+```
+
+--------------------------------
+
+### Ruby SDK for SSE Patch Signals (Rack)
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This Ruby code shows how to use the DataStar gem within a Rack application to stream SSE events for patching signals, including a sleep duration between updates.
+
+```ruby
+ 1require 'datastar'
+ 2
+ 3# Create a Datastar::Dispatcher instance
+ 4
+ 5datastar = Datastar.new(request:, response:)
+ 6
+ 7# In a Rack handler, you can instantiate from the Rack env
+ 8# datastar = Datastar.from_rack_env(env)
+ 9
+10# Start a streaming response
+11datastar.stream do |sse|
+12  # Patches signals
+13  sse.patch_signals(hal: 'Affirmative, Dave. I read you.')
+14
+15  sleep 1
+16  
+17  sse.patch_signals(hal: '...')
+18end
+```
+
+--------------------------------
+
+### Send Data via POST Request using Datastar
+
+Source: https://data-star.dev/guide/backend_requests
+
+This snippet demonstrates how to trigger a POST request to a specified backend endpoint when a button is clicked, using Datastar's `@post()` directive. It's a simple way to send data for server-side processing.
+
+```html
+<button data-on:click="@post('/actions/quiz')">
+    Submit answer
+</button>
+```
+
+--------------------------------
+
+### Clojure SDK for SSE Patch Signals
+
+Source: https://data-star.dev/guide/reactive_signals
+
+This Clojure code snippet utilizes the DataStar SDK to generate Server-Sent Events (SSE) for patching signals, including a timed delay between updates.
+
+```clojure
+ 1;; Import the SDK's api and your adapter
+ 2(require
+ 3  '[starfederation.datastar.clojure.api :as d*]
+ 4  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
+ 5
+ 6;; in a ring handler
+ 7(defn handler [request]
+ 8  ;; Create an SSE response
+ 9  (->sse-response request
+10                  {on-open
+11                   (fn [sse]
+12                     ;; Patches signal.
+13                     (d*/patch-signals! sse "{hal: 'Affirmative, Dave. I read you.'}")
+14                     (Thread/sleep 1000)
+15                     (d*/patch-signals! sse "{hal: '...'}"))}))
+```
+
+--------------------------------
+
+### Request Cancellation
+
+Source: https://data-star.dev/reference/actions
+
+Explains Datastar's default request cancellation behavior and how to customize it using the `requestCancellation` option.
+
+```APIDOC
+## Request Cancellation
+
+By default, Datastar automatically cancels any ongoing request on the same element when a new one is initiated. This prevents conflicts from rapid user interactions.
+
+### Default Behavior Example:
+```html
+<!-- Clicking multiple times cancels previous requests -->
+<button data-on:click="@get('/slow-endpoint')">Load Data</button>
+```
+
+This behavior is element-specific; requests on different elements run concurrently.
+
+### Customizing Request Cancellation:
+
+Use the `requestCancellation` option to control this behavior:
+
+*   **`'disabled'`**: Allows concurrent requests on the same element.
+*   **`AbortController` instance**: Provides custom control over cancellation.
+
+### Examples:
+
+*   **Allowing concurrent requests:**
+    ```html
+    <!-- Allow multiple concurrent requests -->
+    <button data-on:click="@get('/endpoint', {requestCancellation: 'disabled'})">Allow Multiple</button>
+    ```
+
+*   **Using a custom `AbortController`:**
+    ```html
+    <div data-signals:controller="new AbortController()">
+        <button data-on:click="@get('/endpoint', {requestCancellation: $controller})">Start Request</button>
+        <button data-on:click="$controller.abort()">Cancel Request</button>
+    </div>
+    ```
+```
+
+--------------------------------
+
+### Capture Counter Changes with Signal Patch
+
+Source: https://data-star.dev/examples/on_signal_patch
+
+This HTML fragment utilizes the `data-on-signal-patch` attribute to push detected changes to the 'counter' signal into the `counterChanges` array. It includes a filter `data-on-signal-patch-filter` to specifically target changes related to the 'counter' signal.
+
+```html
+<div
+    data-on-signal-patch="$counterChanges.push(patch)"
+    data-on-signal-patch-filter="{include: /^counter$/}"
+>
+    <h3>Counter Changes Only</h3>
+    <pre data-json-signals__terse="{include: /^counterChanges/}"></pre>
+</div>
+```
+
+--------------------------------
+
+### Set JavaScript Response Headers
+
+Source: https://data-star.dev/reference/actions
+
+Sets the Content-Type to text/javascript and optionally includes 'datastar-script-attributes' for customizing script element attributes. This allows for server-side configuration of client-side scripts.
+
+```javascript
+response.headers.set('Content-Type', 'text/javascript')
+response.headers.set('datastar-script-attributes', JSON.stringify({ type: 'module' }))
+response.body = 'console.log("Hello from server!");'
+```
+
+--------------------------------
+
+### Datastar Actions - @peek()
+
+Source: https://data-star.dev/reference/actions
+
+The `@peek()` action allows accessing signals without subscribing to their changes in expressions. This is useful for reading signal values in contexts where you don't want to trigger re-evaluations on signal updates.
+
+```APIDOC
+## @peek()
+
+### Description
+Allows accessing signals without subscribing to their changes in expressions.
+
+### Method
+Expression
+
+### Endpoint
+N/A (Used within Datastar expressions)
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```html
+<div data-text="$foo + @peek(() => $bar)"></div>
+```
+
+### Response
+#### Success Response (200)
+N/A (Returns the evaluated value of the signal within the expression)
+
+#### Response Example
+N/A
+```
+
+--------------------------------
+
+### Integrating External JavaScript: Basic Function Call
+
+Source: https://data-star.dev/guide/datastar_expressions
+
+Demonstrates how to call an external JavaScript function from a Datastar expression, passing data via arguments and capturing the return value to update a signal. This promotes code encapsulation.
+
+```html
+1<div data-signals:result>
+2    <input data-bind:foo 
+3        data-on:input="$result = myfunction($foo)"
+4    >
+5    <span data-text="$result"></span>
+6</div>
+```
+
+--------------------------------
+
+### Patch HTML Elements via SSE in Kotlin
+
+Source: https://data-star.dev/guide
+
+This Kotlin code snippet shows how to patch HTML elements into the DOM using Datastar's `ServerSentEventGenerator`. It demonstrates sending updates to a specific div with a delay, utilizing Kotlin's concise syntax for multiline strings and function calls. This is applicable in Kotlin-based web applications.
+
+```kotlin
+1val generator = ServerSentEventGenerator(response)
+2
+3generator.patchElements(
+4    elements = """<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>""",
+5)
+6
+7Thread.sleep(ONE_SECOND)
+8
+9generator.patchElements(
+10    elements = """<div id=\"hal\">Waiting for an order...</div>""",
+11)
+```
+
+--------------------------------
+
+### Append Element and Update Signals in PHP
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+This PHP snippet illustrates appending new items to an HTML list and updating signals using the ServerSentEventGenerator. It dynamically calculates the new offset and conditionally removes a 'load more' button based on the current offset and maximum items.
+
+```php
+use starfederation\datastar\enums\ElementPatchMode;
+use starfederation\datastar\ServerSentEventGenerator;
+
+$signals = ServerSentEventGenerator::readSignals();
+
+$max = 5;
+$limit = 1;
+$offset = $signals['offset'] ?? 1;
+
+$sse = new ServerSentEventGenerator();
+
+if ($offset < $max) {
+    $newOffset = $offset + $limit;
+    $sse->patchElements("<div>Item $newOffset</div>", [
+        'selector' => '#list',
+        'mode' => ElementPatchMode::Append,
+    ]);
+    if (newOffset < $max) {
+        $sse->patchSignals(['offset' => $newOffset]);
+    } else {
+        $sse->removeElements('#load-more');
+    }
+}
+```
+
+--------------------------------
+
+### Handle click events with data-on
+
+Source: https://data-star.dev/guide
+
+Use the `data-on` attribute to attach an event listener to an HTML element. When the specified event occurs, the associated Datastar expression is executed.
+
+```html
+<button data-on:click="alert('I’m sorry, Dave. I’m afraid I can’t do that.')">
+    Open the pod bay doors, HAL.
+</button>
+```
+
+--------------------------------
+
+### Rust Actix: Dynamic SSE Interval Duration
+
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+
+This Rust snippet using Actix demonstrates sending server-sent events with a dynamically adjusted interval duration. It leverages the `chrono` crate for time and `async_stream` for stream processing.
 
 ```rust
-1use datastar::prelude::*;
+1use datastar::prelude::*
  2use chrono::Local;
  3use async_stream::stream;
  4
@@ -5696,214 +8137,276 @@ This Rust snippet demonstrates dynamic polling intervals for Server-Sent Events 
 
 --------------------------------
 
-### Generate SSE Events to Patch DOM Elements (JavaScript)
-
-Source: https://data-star.dev/guide/getting_started
-
-This JavaScript snippet illustrates generating SSE events for patching DOM elements using the ServerSentEventGenerator. It sets up a stream that sends an initial message, waits for 1000 milliseconds, and then sends an updated message.
-
-```javascript
-// Creates a new `ServerSentEventGenerator` instance (this also sends required headers)
-ServerSentEventGenerator.stream(req, res, (stream) => {
-    // Patches elements into the DOM.
-    stream.patchElements(`<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>`);
-
-    setTimeout(() => {
-        stream.patchElements(`<div id="hal">Waiting for an order...</div>`);
-    }, 1000);
-});
-```
-
---------------------------------
-
-### Send SSE Events with Datastar in Rust
+### Send Multiple SSE Events (Patch Elements and Signals)
 
 Source: https://data-star.dev/guide/backend_requests
 
-This Rust snippet shows how to create an SSE stream using the datastar crate and `async_stream`. It yields `PatchElements` and `PatchSignals` to the stream.
+Illustrates sending multiple Server-Sent Events (SSE) in a single response. This includes patching HTML elements and sending signal data, showcasing SSE's capability to update the UI and application state efficiently.
 
-```rust
-1use datastar::prelude::*;
-2use async_stream::stream;
-3
-4Sse(stream! {
-5    // Patches elements into the DOM.
-6    yield PatchElements::new("<div id='question'>What do you put in a toaster?</div>").into();
-7
-8    // Patches signals.
-9    yield PatchSignals::new("{response: '', answer: 'bread'}").into();
-10})
+```datastar-dsl
+(d*/patch-elements! sse "<div id=\"question\">...</div>")
+(d*/patch-elements! sse "<div id=\"instructions\">...</div>")
+(d*/patch-signals! sse "{answer: '...', prize: '...'}")
 ```
 
 --------------------------------
 
-### Send Multiple SSE Events using Java
+### data-on-interval: Execute expressions at regular intervals
 
-Source: https://data-star.dev/guide/backend_requests
+Source: https://data-star.dev/reference/attributes
 
-This Java code demonstrates sending multiple Server-Sent Events (SSE) using Datastar's builder pattern. It involves creating `PatchElements` and `PatchSignals` objects and sending them via a generator. This approach provides a structured way to build and dispatch SSE events.
-
-```java
-generator.send(PatchElements.builder()
-    .data("<div id=\"question\">...</div>")
-    .build()
-);
-generator.send(PatchElements.builder()
-    .data("<div id=\"instructions\">...</div>")
-    .build()
-);
-generator.send(PatchSignals.builder()
-    .data("{\"answer\": \"...\", \"prize\": \"...\"}")
-    .build()
-);
-```
-
---------------------------------
-
-### Generate SSE Patch Elements in Clojure
-
-Source: https://data-star.dev/guide/getting_started
-
-This Clojure code demonstrates how to generate Server-Sent Events (SSE) to patch elements into the DOM using the Datastar SDK. It utilizes `->sse-response` and `d*/patch-elements!` to send HTML content that updates specific DOM elements, with a delay between updates.
-
-```clojure
-;; Import the SDK's api and your adapter
-(require
- '[starfederation.datastar.clojure.api :as d*]
- '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
-
-;; in a ring handler
-(defn handler [request]
- ;; Create an SSE response
- (->sse-response request
-                 {on-open
-                  (fn [sse]
-                    ;; Patches elements into the DOM
-                    (d*/patch-elements! sse
-                                        "<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
-                    (Thread/sleep 1000)
-
-                    (d*/patch-elements! sse
-                                        "<div id=\"hal\">Waiting for an order...</div>"))})
-```
-
---------------------------------
-
-### JavaScript for SortableJS Initialization and Event Dispatching
-
-Source: https://data-star.dev/examples/sortable
-
-This JavaScript code initializes SortableJS on the 'sortContainer' element. It configures the `animation` and `ghostClass` options and defines an `onEnd` callback. Within `onEnd`, a custom 'reordered' event is dispatched with the old and new index details, which is then caught by DataStar's `data-on-reordered` attribute.
-
-```javascript
-import Sortable from 'https://cdn.jsdelivr.net/npm/sortablejs/+esm'
-new Sortable(sortContainer, {
-    animation: 150,
-    ghostClass: 'opacity-25',
-    onEnd: (evt) => {
-        sortContainer.dispatchEvent(
-            new CustomEvent('reordered', {detail: {
-                orderInfo: `Moved from position ${evt.oldIndex + 1} to ${evt.newIndex + 1}`
-            }})
-        )
-    }
-})
-```
-
---------------------------------
-
-### HTML for Infinite Scroll Trigger
-
-Source: https://data-star.dev/examples/infinite_scroll
-
-This HTML snippet demonstrates the core of the infinite scroll pattern. A div with the `data-on-intersect` attribute is used as a trigger. When this element scrolls into the viewport, the specified URL (`/examples/infinite_scroll/more`) is requested, and the response is appended to the page. This attribute is a custom directive for triggering actions based on element visibility.
+The `data-on-interval` attribute allows expressions to be executed at a set interval, defaulting to one second. The `__duration` modifier can change this interval, and `.leading` can execute the first interval immediately. View transitions can also be integrated.
 
 ```html
-<div data-on-intersect="@get('/examples/infinite_scroll/more')">
-    Loading...
+<div data-on-interval="$count++"></div>
+<div data-on-interval__duration.500ms="$count++"></div>
+```
+
+--------------------------------
+
+### Datastar: Two-Way Data Binding with data-bind
+
+Source: https://data-star.dev/guide/reactive_signals
+
+Sets up two-way data binding for input elements. It creates a signal that is bound to the element's value, updating automatically when either changes. Can use attribute shorthand or value assignment.
+
+```html
+<input data-bind:foo />
+```
+
+```html
+<input data-bind="foo" />
+```
+
+--------------------------------
+
+### Trigger Alert on 'Enter' or 'Ctrl + L' (HTML)
+
+Source: https://data-star.dev/how_tos/bind_keydown_events_to_specific_keys
+
+This snippet combines conditions to trigger an alert for either the 'Enter' key press or the 'Ctrl + L' key combination. It uses logical OR (`||`) to check multiple conditions within the `data-on:keydown__window` attribute, leveraging `evt.key` and `evt.ctrlKey`.
+
+```html
+<div data-on:keydown__window="(evt.key === 'Enter' || (evt.ctrlKey && evt.key === 'l')) && alert('Key pressed')"></div>
+```
+
+--------------------------------
+
+### Datastar: Binding HTML Attributes with data-attr
+
+Source: https://data-star.dev/guide/reactive_signals
+
+Binds the value of any HTML attribute to an expression. Can set multiple attributes using key-value pairs.
+
+```html
+<input data-bind:foo />
+<button data-attr:disabled="$foo == ''">
+    Save
+</button>
+```
+
+```html
+<button data-attr="{disabled: $foo == '', title: $foo}">Save</button>
+```
+
+--------------------------------
+
+### SVG Structure for Namespacing
+
+Source: https://data-star.dev/examples/svg_morphing
+
+Demonstrates the required SVG structure for morphing, ensuring inner SVG elements are correctly namespaced by wrapping them in an outer <svg> tag. This is crucial for Datastar's SVG handling.
+
+```html
+<svg>
+    <svg id="target">
+        <circle cx="50" cy="100" r="50" fill="red" />
+    </svg>
+    <circle cx="150" cy="100" r="50" fill="red" />
+</svg>
+```
+
+--------------------------------
+
+### Datastar Events: Appending and Removing Elements
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+Defines the Datastar server-sent events used to update the UI. `datastar-patch-elements` with `append` mode adds new items to the list, and `remove` mode hides the load more button when all items are shown.
+
+```text
+1event: datastar-patch-elements
+2data: selector #list
+3data: mode append
+4data: elements <div>Item 2</div>
+5
+
+```
+
+```text
+1event: datastar-patch-elements
+2data: selector #load-more
+3data: mode remove
+4
+
+```
+
+--------------------------------
+
+### Set JSON Response Headers
+
+Source: https://data-star.dev/reference/actions
+
+Sets the Content-Type to application/json and optionally includes the 'datastar-only-if-missing' header for patching signals. This is useful for controlling how updates are applied to existing data.
+
+```javascript
+response.headers.set('Content-Type', 'application/json')
+response.headers.set('datastar-only-if-missing', 'true')
+response.body = JSON.stringify({ foo: 'bar' })
+```
+
+--------------------------------
+
+### HTML Element for Real-time Data Display
+
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+
+This HTML snippet defines a div element with specific data attributes used for controlling interval-based data fetching and displaying dynamic content. The `data-on-interval__duration` attribute likely configures the polling frequency, and the `${currentTime.toISOString()}` placeholder indicates where the updated data will be rendered.
+
+```html
+<div id="time"
+     data-on-interval__duration.${duration}s="@get('/endpoint]')"
+  >
+    ${currentTime.toISOString()}
 </div>
 ```
 
 --------------------------------
 
-### Datastar Expressions: Ternary and Logical Operators
+### Set Multiple Signals with @setAll() in DataStar
+
+Source: https://data-star.dev/reference/actions
+
+The @setAll() action sets the value of multiple signals, optionally filtered by a regular expression. It accepts a value and an optional filter object with 'include' and 'exclude' RegExp properties to target specific signals. This is useful for batch updates.
+
+```html
+<!-- Sets the `foo` signal only -->
+<div data-signals:foo="false">
+    <button data-on:click="@setAll(true, {include: /^foo$/})"></button>
+</div>
+
+<!-- Sets all signals starting with `user.` -->
+<div data-signals="{user: {name: '', nickname: ''}}">
+    <button data-on:click="@setAll('johnny', {include: /^user\./})"></button>
+</div>
+
+<!-- Sets all signals except those ending with `_temp` -->
+<div data-signals="{data: '', data_temp: '', info: '', info_temp: ''}">
+    <button data-on:click="@setAll('reset', {include: /.*/, exclude: /_temp$/})"></button>
+</div>
+```
+
+--------------------------------
+
+### Datastar Actions - @toggleAll()
+
+Source: https://data-star.dev/reference/actions
+
+The `@toggleAll()` action toggles the boolean value of all matching signals. It also supports filtering signals using regular expressions for inclusion and exclusion.
+
+```APIDOC
+## @toggleAll()
+
+### Description
+Toggles the boolean value of all matching signals (or all signals if no filter is used). The argument is an optional filter object with an `include` property that accepts a regular expression to match signal paths. You can optionally provide an `exclude` property to exclude specific patterns.
+
+### Method
+Expression
+
+### Endpoint
+N/A (Used within Datastar expressions)
+
+### Parameters
+#### Path Parameters
+None
+
+#### Query Parameters
+None
+
+#### Request Body
+None
+
+### Request Example
+```html
+<!-- Toggles the `foo` signal only -->
+<div data-signals:foo="false">
+    <button data-on:click="@toggleAll({include: /^foo$/})"></button>
+</div>
+
+<!-- Toggles all signals starting with `is` -->
+<div data-signals="{isOpen: false, isActive: true, isEnabled: false}">
+    <button data-on:click="@toggleAll({include: /^is/})"></button>
+</div>
+
+<!-- Toggles signals starting with `settings.` -->
+<div data-signals="{settings: {darkMode: false, autoSave: true}}">
+    <button data-on:click="@toggleAll({include: /^settings\./})"></button>
+</div>
+```
+
+### Response
+#### Success Response (200)
+N/A (Modifies signal values directly)
+
+#### Response Example
+N/A
+```
+
+--------------------------------
+
+### Datastar Expressions: Multi-line Statements
 
 Source: https://data-star.dev/guide/datastar_expressions
 
-Demonstrates the use of JavaScript operators within Datastar expressions, including the ternary operator for conditional output, logical OR for showing content based on multiple conditions, and logical AND for conditional actions like sending a request.
+Shows how Datastar expressions can span multiple lines, requiring semicolons to separate statements. This is useful for organizing complex logic within `data-*` attributes.
 
 ```html
- 1// Output one of two values, depending on the truthiness of a signal
- 2<div data-text="$landingGearRetracted ? 'Ready' : 'Waiting'"></div>
- 3
- 4// Show a countdown if the signal is truthy or the time remaining is less than 10 seconds
- 5<div data-show="$landingGearRetracted || $timeRemaining < 10">
- 6    Countdown
- 7</div>
- 8
- 9// Only send a request if the signal is truthy
-10<button data-on-click="$landingGearRetracted && @post('/launch')">
-11    Launch
-12</button>
+1<div data-signals:foo="1">
+2    <button data-on:click="
+3        $landingGearRetracted = true; 
+4        @post('/launch')
+5    ">
+6        Force launch
+7    </button>
+8</div>
 ```
 
 --------------------------------
 
-### Patch Elements using SSE Generator in Kotlin
+### Patch HTML Elements via SSE in Clojure
 
-Source: https://data-star.dev/guide/getting_started
+Source: https://data-star.dev/guide
 
-This Kotlin snippet demonstrates using the Datastar SDK's `ServerSentEventGenerator` to patch HTML elements into the DOM. It sends an initial HTML patch, waits for a second, and then sends another patch to update the content dynamically.
+This Clojure code snippet shows how to generate Server-Sent Events (SSE) to patch HTML elements into the DOM. It uses `datastar-patch-elements` events to update a div with ID 'hal' and demonstrates sending multiple updates with a delay. Requires Datastar SDK and an http-kit adapter.
 
-```kotlin
-val generator = ServerSentEventGenerator(response)
-
-generator.patchElements(
-    elements = """<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>""",
-)
-
-Thread.sleep(ONE_SECOND)
-
-generator.patchElements(
-    elements = """<div id="hal">Waiting for an order...</div>"""
-)
-```
-
---------------------------------
-
-### Implement Dynamic Polling Interval in Ruby
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-This Ruby snippet shows how to dynamically set polling intervals for Server-Sent Events. It calculates the duration based on the current second, switching to 1-second polling for the last 10 seconds of each minute. It uses the Datastar library to patch elements with the updated interval duration.
-
-```ruby
-1datastar = Datastar.new(request:, response:)
- 2
- 3now = Time.now
- 4current_time = now.strftime('%Y-%m-%d %H:%M:%S')
- 5current_seconds = now.strftime('%S').to_i
- 6duration = current_seconds < 50 ? 5 : 1
- 7
- 8datastar.patch_elements <<~FRAGMENT
- 9    <div id="time"
-10         data-on-interval__duration.#{duration}s="@get('/endpoint')"
-11    >
-12        #{current_time}
-13</div>
-14FRAGMENT
-```
-
---------------------------------
-
-### Custom Storage Key for Persistence with data-persist-
-
-Source: https://data-star.dev/reference/attributes
-
-A custom storage key for `data-persist` can be defined by appending it after `data-persist-`. This allows for distinct storage of different sets of signals.
-
-```html
-<div data-persist-mykey></div>
+```clojure
+1;; Import the SDK's api and your adapter
+2(require
+3 '[starfederation.datastar.clojure.api :as d*]
+4 '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
+5
+6;; in a ring handler
+7(defn handler [request]
+8  ;; Create an SSE response
+9  (->sse-response request
+10                  {:on-open
+11                   (fn [sse] 
+12                     ;; Patches elements into the DOM
+13                     (d*/patch-elements! sse
+14                                         "<div id=\"hal\">I’m sorry, Dave. I’m afraid I can’t do that.</div>")
+15                     (Thread/sleep 1000)
+16                     (d*/patch-elements! sse
+17                                         "<div id=\"hal\">Waiting for an order...</div>"))}))
 ```
 
 --------------------------------
@@ -5912,7 +8415,7 @@ A custom storage key for `data-persist` can be defined by appending it after `da
 
 Source: https://data-star.dev/examples/inline_validation
 
-This HTML snippet defines a form with input fields for email, first name, and last name. The email input is configured for inline validation, triggering a POST request on keydown. It also includes a paragraph for displaying validation messages.
+This HTML code defines a form with input fields for Email Address, First Name, and Last Name. The email input is configured for inline validation, triggering a server-side POST request on keydown events with a debounce of 500ms. Validation results are displayed to the user.
 
 ```html
 <div id="demo">
@@ -5923,8 +8426,8 @@ This HTML snippet defines a form with input fields for email, first name, and la
             required
             aria-live="polite"
             aria-describedby="email-info"
-            data-bind-email
-            data-on-keydown__debounce.500ms="@post('/examples/inline_validation/validate')"
+            data-bind:email
+            data-on:keydown__debounce.500ms="@post('/examples/inline_validation/validate')"
         />
     </label>
     <p id="email-info" class="info">The only valid email address is "test@test.com".</p>
@@ -5934,8 +8437,8 @@ This HTML snippet defines a form with input fields for email, first name, and la
             type="text"
             required
             aria-live="polite"
-            data-bind-first-name
-            data-on-keydown__debounce.500ms="@post('/examples/inline_validation/validate')"
+            data-bind:first-name
+            data-on:keydown__debounce.500ms="@post('/examples/inline_validation/validate')"
         />
     </label>
     <label>
@@ -5944,13 +8447,13 @@ This HTML snippet defines a form with input fields for email, first name, and la
             type="text"
             required
             aria-live="polite"
-            data-bind-last-name
-            data-on-keydown__debounce.500ms="@post('/examples/inline_validation/validate')"
+            data-bind:last-name
+            data-on:keydown__debounce.500ms="@post('/examples/inline_validation/validate')"
         />
     </label>
     <button
         class="success"
-        data-on-click="@post('/examples/inline_validation')"
+        data-on:click="@post('/examples/inline_validation')"
     >
         <i class="material-symbols:person-add"></i>
         Sign Up
@@ -5960,558 +8463,35 @@ This HTML snippet defines a form with input fields for email, first name, and la
 
 --------------------------------
 
-### Sync Query String Params with data-query-string
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-query-string` attribute synchronizes query string parameters with signal values on page load and updates the query string when signals change. This enables bookmarkable states.
-
-```html
-<div data-query-string></div>
-```
-
---------------------------------
-
-### Send Multiple SSE Events using Ruby
-
-Source: https://data-star.dev/guide/backend_requests
-
-This Ruby code demonstrates sending multiple Server-Sent Events (SSE) within a `datastar.stream` block. It uses the `sse` object to call `patch_elements` and `patch_signals`. This provides a clear and idiomatic way to handle SSE streams in Ruby.
-
-```ruby
-datastar.stream do |sse|
-  sse.patch_elements('<div id="question">...</div>')
-  sse.patch_elements('<div id="instructions">...</div>')
-  sse.patch_signals(answer: '...', prize: '...')
-end
-```
-
---------------------------------
-
-### Controlling Request Cancellation with Data-Star Options
-
-Source: https://data-star.dev/reference/actions
-
-Shows how to manage Data-Star's request cancellation behavior. 'disabled' prevents automatic cancellation, allowing concurrent requests. A custom AbortController provides fine-grained manual control over request cancellation.
-
-```html
-<!-- Allow concurrent requests (no automatic cancellation) -->
-<button data-on-click="@get('/endpoint', {requestCancellation: 'disabled'})">Allow Multiple</button>
-
-<!-- Custom abort controller for fine-grained control -->
-<div data-signals-controller="new AbortController()">
-    <button data-on-click="@get('/endpoint', {requestCancellation: $controller})">Start Request</button>
-    <button data-on-click="$controller.abort()">Cancel Request</button>
-</div>
-```
-
---------------------------------
-
-### Send Multiple SSE Events using C# (Stream)
-
-Source: https://data-star.dev/guide/backend_requests
-
-This C# code snippet shows how to send multiple Server-Sent Events (SSE) using the `sse` object, likely within a streaming context. It includes `PatchElements` and `PatchSignals` methods for updating UI elements and sending data. Note the byte array conversion for signals.
-
-```csharp
-sse.PatchElements(`<div id="question">...</div>`)
-sse.PatchElements(`<div id="instructions">...</div>`)
-sse.PatchSignals([]byte(`{answer: '...', prize: '...'}`))
-```
-
---------------------------------
-
-### Server-Sent JSON Response Handling in Data-Star
-
-Source: https://data-star.dev/reference/actions
-
-Demonstrates sending JSON data from the server with Data-Star. It sets the 'Content-Type' to 'application/json' and utilizes the 'datastar-only-if-missing' header to conditionally patch signals that do not already exist in the client's state.
-
-```javascript
-response.headers.set('Content-Type', 'application/json')
-response.headers.set('datastar-only-if-missing', 'true')
-response.body = JSON.stringify({ foo: 'bar' })
-```
-
---------------------------------
-
-### Send Multiple SSE Events using JavaScript
-
-Source: https://data-star.dev/guide/backend_requests
-
-This JavaScript code snippet demonstrates sending multiple Server-Sent Events (SSE) using a `stream` object. It calls `patchElements` and `patchSignals` methods, passing HTML strings and an object for signals. This is typical for client-side or Node.js backend implementations using Datastar.
-
-```javascript
-stream.patchElements('<div id="question">...</div>');
-stream.patchElements('<div id="instructions">...</div>');
-stream.patchSignals({'answer': '...', 'prize': '...'});
-```
-
---------------------------------
-
-### Wrap Expression in View Transition API with data-on-load modifier
-
-Source: https://data-star.dev/reference
-
-Wraps the expression in `document.startViewTransition()` when the View Transition API is available. This modifier, `__viewtransition`, allows for smooth visual transitions between DOM states triggered by the event listener.
-
-```html
-<div data-on-load__viewtransition="doSomethingAnimated()"></div>
-```
-
---------------------------------
-
-### Create Loading Indicators with DataStar
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-indicator` attribute creates a signal that is true while a fetch request is in flight and false otherwise, useful for loading indicators. The signal name can be specified in the key or value. It can control attributes like `disabled` or show/hide elements.
-
-```html
-<button data-on-click="@get('/endpoint')"
-        data-indicator-fetching
-></button>
-```
-
-```html
-<button data-on-click="@get('/endpoint')"
-        data-indicator-fetching
-        data-attr-disabled="$fetching"
-></button>
-<div data-show="$fetching">Loading...</div>
-```
-
-```html
-<button data-indicator="fetching"></button>
-```
-
-```html
-<div data-indicator-fetching data-on-load="@get('/endpoint')"></div>
-```
-
---------------------------------
-
-### Implement Dynamic Polling Interval in Kotlin
+### Python Sanic: Dynamic SSE Interval Duration
 
 Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-This Kotlin snippet demonstrates dynamic polling intervals for Server-Sent Events. It calculates the interval duration based on the current second, applying a 1-second interval during the last 10 seconds of each minute. It utilizes `ServerSentEventGenerator` for creating SSE responses.
-
-```kotlin
-1val now: LocalDateTime = currentTime()
- 2val currentSeconds = now.second
- 3val duration = if (currentSeconds < 50) 5 else 1
- 4
- 5val generator = ServerSentEventGenerator(response)
- 6
- 7generator.patchElements(
- 8    elements =
- 9        """
-10        <div id="time" data-on-interval__duration.${duration}s="@get('/endpoint')">
-11            $now
-12        </div>
-13        ".trimIndent()
-14)
-```
-
---------------------------------
-
-### Datastar Attribute Casing for Signals and Events
-
-Source: https://data-star.dev/reference
-
-Explains how Datastar handles casing for data attributes. Keys for signal-defining attributes (e.g., `data-signals-*`) are converted to camelCase, while other attribute keys default to kebab-case. The `__case` modifier allows explicit conversion between casing styles.
-
-```html
-<div data-signals-my-signal></div>
-<div data-class-text-blue-700></div>
-<div data-on-widget-loaded__case.camel></div>
-```
-
---------------------------------
-
-### Enable History Support with data-query-string__history
-
-Source: https://data-star.dev/reference/attributes
-
-The `__history` modifier for `data-query-string` enables browser history support, adding a new history entry each time a matching signal changes. This allows users to navigate back and forth through application states using browser navigation.
-
-```html
-<div data-query-string__filter__history></div>
-```
-
---------------------------------
-
-### HTML with DataStar Event Bubbling
-
-Source: https://data-star.dev/examples/event_bubbling
-
-This HTML structure sets up a demo for event bubbling using DataStar. A parent div with `data-on-click` listens for click events, and child buttons have `data-id` attributes. The clicked button's ID updates a span element. The `pointer-events: none;` style on the button container is crucial.
-
-```html
-1<div id="demo">
- 2    Key pressed: <span data-text="$key"></span>
- 3    <div id="button-container" data-on-click="$key = evt.target.dataset.id">
- 4        <button data-id="KEY ELSE" class="gray">KEY<br/>ELSE</button>
- 5        <button data-id="CM">CM</button>
- 6        <button data-id="OM">OM</button>
- 7        <button data-id="FETCH">FETCH</button>
- 8        <button data-id="SET">SET</button>
- 9        <button data-id="EXEC">EXEC</button>
-10        <button data-id="TEST ALARM" class="gray">TEST<br/>ALARM</button>
-11        <button data-id="3">3</button>
-12        <button data-id="2">2</button>
-13        <button data-id="1">1</button>
-14        <button data-id="ENTER">ENTER</button>
-15        <button data-id="CLEAR">CLEAR</button>
-16    </div>
-17</div>
-18
-19<style>
-20    #button-container {
-21        pointer-events: none;
-22    }
-23</style>
-```
-
---------------------------------
-
-### Implement Dynamic Polling Interval in Clojure
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-This Clojure snippet demonstrates how to dynamically set the polling interval for Server-Sent Events. It calculates the duration based on the current second of the minute, defaulting to 5 seconds but switching to 1 second for the last 10 seconds. It requires the starfederation.datastar.clojure.api and http-kit libraries.
-
-```clojure
-1(require
- 2  '[starfederation.datastar.clojure.api :as d*]
- 3  '[starfederation.datastar.clojure.adapter.http-kit :refer [->sse-response on-open]])
- 4  '[some.hiccup.library :refer [html]])
- 5
- 6(import
- 7  'java.time.format.DateTimeFormatter
- 8  'java.time.LocalDateTime)
- 9
-10(def date-time-formatter (DateTimeFormatter/ofPattern "YYYY-MM-DD HH:mm:ss"))
-11(def seconds-formatter (DateTimeFormatter/ofPattern "ss"))
-12
-13(defn handle [ring-request]
-14  (->sse-response ring-request
-15    {on-open
-16     (fn [sse] 
-17       (let [now (LocalDateTime/now)
-18             current-time (LocalDateTime/.format now date-time-formatter)
-19             seconds (LocalDateTime/.format now seconds-formatter)
-20             duration (if (neg? (compare seconds "50"))
-21                         "5"
-22                         "1")]
-23         (d*/patch-elements! sse
-24           (html [:div#time {(str "data-on-interval__duration." duration "s")
-25                             (d*/sse-get "/endpoint")}
-26                   current-time]))))
-27
-28         (d*/close-sse! sse))}))
-```
-
---------------------------------
-
-### Send Multiple SSE Events (Patch Elements and Signals)
-
-Source: https://data-star.dev/guide/backend_requests
-
-Demonstrates sending multiple Server-Sent Events (SSE) in a single response. This includes patching HTML elements and sending signal data, showcased in a concise DSL format. It's useful for updating multiple parts of the UI or sending complex state changes.
-
-```dsl
-(d*/patch-elements! sse "<div id=\"question\">...</div>")
-(d*/patch-elements! sse "<div id=\"instructions\">...</div>")
-(d*/patch-signals! sse "{answer: '...', prize: '...'}")
-```
-
---------------------------------
-
-### data-on Keydown Listener for Enter or Ctrl+L
-
-Source: https://data-star.dev/how_tos/bind_keydown_events_to_specific_keys
-
-Combines conditions to create a global keydown listener that triggers an alert for either the 'Enter' key press or the 'Ctrl+L' key combination. This demonstrates logical OR operations within event expressions.
-
-```html
-<div data-on-keydown__window="(evt.key === 'Enter' || (evt.ctrlKey && evt.key === 'l')) && alert('Key pressed')"></div>
-```
-
---------------------------------
-
-### Default Request Cancellation in Data-Star
-
-Source: https://data-star.dev/reference/actions
-
-Demonstrates Data-Star's default behavior where initiating a new fetch request on an element automatically cancels any existing request on the same element. This is useful for preventing race conditions when an element triggers multiple rapid requests.
-
-```html
-<button data-on-click="@get('/slow-endpoint')">Load Data</button>
-```
-
---------------------------------
-
-### Send Multiple SSE Events using C#
-
-Source: https://data-star.dev/guide/backend_requests
-
-This C# code snippet illustrates how to send multiple Server-Sent Events (SSE) using the Datastar service. It includes calls to `PatchElementsAsync` for updating HTML elements and `PatchSignalsAsync` for sending structured data. This is part of Datastar's .NET integration.
-
-```csharp
-datastarService.PatchElementsAsync(@"<div id=\"question\">...</div>");
-datastarService.PatchElementsAsync(@"<div id=\"instructions\">...</div>");
-datastarService.PatchSignalsAsync(new { answer = "...", prize = "..." } );
-```
-
---------------------------------
-
-### Send Multiple SSE Events using PHP
-
-Source: https://data-star.dev/guide/backend_requests
-
-This PHP code snippet demonstrates sending multiple Server-Sent Events (SSE) using the `$sse` object. It includes calls to `patchElements` and `patchSignals` methods. The `patchSignals` method accepts an associative array, which is then serialized.
-
-```php
-$sse->patchElements('<div id="question">...</div>');
-$sse->patchElements('<div id="instructions">...</div>');
-$sse->patchSignals(['answer' => '...', 'prize' => '...']);
-```
-
---------------------------------
-
-### Send Multiple SSE Events using Python
-
-Source: https://data-star.dev/guide/backend_requests
-
-This Python code snippet shows how to send multiple Server-Sent Events (SSE) using Datastar's `generator`. It utilizes `patchElements` and `patchSignals` methods with multiline strings for HTML and JSON data. This is a clean way to manage SSE updates in Python applications.
-
-```python
-generator.patchElements(
-    elements = """<div id=\"question\">...</div>""",
-)
-generator.patchElements(
-    elements = """<div id=\"instructions\">...</div>""",
-)
-generator.patchSignals(
-    signals = """{"answer": "...", "prize": "..."}""",
-)
-```
-
---------------------------------
-
-### Send SSE Events with Datastar in Kotlin
-
-Source: https://data-star.dev/guide/backend_requests
-
-This Kotlin snippet demonstrates using the ServerSentEventGenerator to patch elements and signals. It assumes a `response` object is available and utilizes string interpolation for data.
-
-```kotlin
-1val generator = ServerSentEventGenerator(response)
-2
-generator.patchElements(
-3    elements = """<div id=\"question\">What do you put in a toaster?</div>""",
-4)
-5
-generator.patchSignals(
-6    signals = "{\"response\": \"\", \"answer\": \"bread\"}",
-7)
-```
-
---------------------------------
-
-### Datastar Aliased Script Inclusion
-
-Source: https://data-star.dev/reference/attributes
-
-Shows how to include the Datastar aliased version using a script tag. This is useful for avoiding conflicts with legacy libraries when custom aliases are needed.
-
-```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@1.0.0-RC.5/bundles/datastar-aliased.js"></script>
-```
-
---------------------------------
-
-### Set All Signals with @setAll()
-
-Source: https://data-star.dev/reference/actions
-
-The @setAll() action sets the value of multiple signals to a specified value. It can optionally filter signals using a regular expression for inclusion and exclusion. This is useful for bulk updates or resetting signal states.
-
-```html
-<!-- Sets the `foo` signal only -->
-<div data-signals-foo="false">
-    <button data-on-click="@setAll(true, {include: /^foo$/})"></button>
-</div>
-
-<!-- Sets all signals starting with `user.` -->
-<div data-signals="{user: {name: '', nickname: ''}}">
-    <button data-on-click="@setAll('johnny', {include: /^user\./})"></button>
-</div>
-
-<!-- Sets all signals except those ending with `_temp` -->
-<div data-signals="{data: '', data_temp: '', info: '', info_temp: ''}">
-    <button data-on-click="@setAll('reset', {include: /.*/, exclude: /_temp$/})"></button>
-</div>
-```
-
---------------------------------
-
-### Implement Dynamic Polling Interval in C#
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-This C# code snippet implements dynamic polling intervals for Server-Sent Events using StarFederation Datastar. It determines the interval duration based on the current second, switching to 1-second polling in the last 10 seconds of a minute. It utilizes `IDatastarService` for patching elements.
-
-```csharp
-1using StarFederation.Datastar.DependencyInjection;
- 2
- 3app.MapGet("/endpoint", async (IDatastarService datastarService) =>
- 4{
- 5    var currentTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
- 6    var currentSeconds = DateTime.Now.Second;
- 7    var duration = currentSeconds < 50 ? 5 : 1;
- 8    await datastarService.PatchElementsAsync($"""
- 9        <div id="time" data-on-interval__duration.{duration}s="@get('/endpoint')">
-10            {currentTime}
-11        </div>
-12    """);
-13});
-```
-
---------------------------------
-
-### Custom Web Component Implementation in JavaScript
-
-Source: https://data-star.dev/guide/datastar_expressions
-
-Defines a custom HTML element 'my-component' that extends HTMLElement. It observes the 'src' attribute and dispatches a 'mycustomevent' with the processed value whenever the attribute changes. This showcases the basic structure for creating reusable web components.
-
-```javascript
-class MyComponent extends HTMLElement {
-    static get observedAttributes() {
-        return ['src'];
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        const value = `You entered: ${newValue}`;
-        this.dispatchEvent(
-            new CustomEvent('mycustomevent', {detail: {value}})
-        );
-    }
-}
-
-customElements.define('my-component', MyComponent);
-```
-
---------------------------------
-
-### Server-Sent JavaScript Execution in Data-Star
-
-Source: https://data-star.dev/reference/actions
-
-Shows how to send JavaScript code from the server to be executed in the browser using Data-Star. The 'Content-Type' is set to 'text/javascript', and the 'datastar-script-attributes' header allows for setting arbitrary attributes on the dynamically created script tag, such as 'type="module"'.
-
-```javascript
-response.headers.set('Content-Type', 'text/javascript')
-response.headers.set('datastar-script-attributes', JSON.stringify({ type: 'module' }))
-response.body = 'console.log("Hello from server!");'
-```
-
---------------------------------
-
-### Send SSE Events with Datastar in Python (Litestar)
-
-Source: https://data-star.dev/guide/backend_requests
-
-This Python snippet shows how to generate SSE events using Datastar within a Litestar application. It returns a DatastarResponse containing both patched elements and signals.
+This Python snippet for the Sanic web framework uses `datastar_py` to send server-sent events with a dynamic interval duration. It determines the duration based on the current seconds of the minute.
 
 ```python
 1from datastar_py import ServerSentEventGenerator as SSE
-2from datastar_py.litestar import DatastarResponse
-3
-4async def endpoint():
-5    return DatastarResponse([
-6        SSE.patch_elements('<div id="question">What do you put in a toaster?</div>'),
-7        SSE.patch_signals({"response": "", "answer": "bread"})
-8    ])
+ 2from datastar_py.sanic import DatastarResponse
+ 3
+ 4@app.get("/endpoint")
+ 5async def endpoint():
+ 6    current_time = datetime.now()
+ 7    duration = 5 if current_time.seconds < 50 else 1
+ 8
+ 9    return DatastarResponse(SSE.patch_elements(f"""
+10        <div id="time" data-on-interval__duration.{duration}s="@get('/endpoint')">
+11            {current_time:%Y-%m-%d %H:%M:%S}
+12        </div>
+13    """))
 ```
 
 --------------------------------
 
-### PATCH Request API
-
-Source: https://data-star.dev/reference/actions
-
-Sends a PATCH request to the backend. Used for applying partial modifications to a resource.
-
-```APIDOC
-## PATCH /endpoint
-
-### Description
-Sends a `PATCH` request to the specified URI. This action is used for applying partial modifications to a resource on the server.
-
-### Method
-PATCH
-
-### Endpoint
-`/endpoint`
-
-### Parameters
-#### Query Parameters
-- **uri** (string) - Required - The endpoint to send the PATCH request to.
-- **options** (object) - Optional - Configuration for the request. See GET request options for details.
-
-### Request Example
-```html
-<button data-on-click="@patch('/endpoint')"></button>
-```
-
-### Response
-#### Success Response (200)
-- **Response Body** - The server's response to the PATCH request.
-
-#### Response Example
-```json
-{
-  "status": "partially updated",
-  "id": "123e4567-e89b-12d3-a456-426614174000"
-}
-```
-```
-
---------------------------------
-
-### Patch DOM Elements with SSE in Rust
-
-Source: https://data-star.dev/guide
-
-Implements Server-Sent Events (SSE) for patching DOM elements in Rust using the `datastar` crate. It utilizes the `stream!` macro and `PatchElements` to send updates with a one-second sleep.
-
-```rust
-use async_stream::stream;
-use datastar::prelude::*;
-use std::thread;
-use std::time::Duration;
-
-Sse(stream! {
-    // Patches elements into the DOM.
-    yield PatchElements::new("<div id='hal'>I’m sorry, Dave. I’m afraid I can’t do that.</div>").into();
-
-    thread::sleep(Duration::from_secs(1));
-    
-    yield PatchElements::new("<div id='hal'>Waiting for an order...</div>").into();
-})
-```
-
---------------------------------
-
-### Implement Dynamic Polling Interval in PHP
+### PHP: Dynamic SSE Interval Duration
 
 Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-This PHP snippet shows how to dynamically set polling intervals for Server-Sent Events using the StarFederation Datastar library. It determines the interval duration based on the current second, switching to 1-second polling for the last 10 seconds of each minute. It uses `ServerSentEventGenerator` to patch elements.
+This PHP snippet generates server-sent events with a dynamic interval duration using the `ServerSentEventGenerator` class. It calculates the duration based on the current seconds of the minute.
 
 ```php
 1use starfederation\datastar\ServerSentEventGenerator;
@@ -6532,66 +8512,499 @@ This PHP snippet shows how to dynamically set polling intervals for Server-Sent 
 
 --------------------------------
 
-### PUT Request API
+### Run expression at regular intervals (HTML)
 
-Source: https://data-star.dev/reference/actions
+Source: https://data-star.dev/reference
 
-Sends a PUT request to the backend. Typically used for updating existing resources.
+The `data-on-interval` attribute executes a given expression at a set interval, defaulting to one second. This is ideal for periodic updates or counters. The interval duration can be modified using the `__duration` modifier.
+
+```html
+<div data-on-interval="$count++"></div>
+```
+
+--------------------------------
+
+### Infinite Scroll Trigger with data-on-intersect
+
+Source: https://data-star.dev/examples/infinite_scroll
+
+This HTML snippet shows how to implement infinite scroll. The `data-on-intersect` attribute on the last element triggers a request to a specified URL when that element scrolls into view. The response is then appended to the DOM. This method is useful for progressively loading large datasets without overwhelming the user or the initial page load.
+
+```html
+<div data-on-intersect="@get('/examples/infinite_scroll/more')">
+    Loading...
+</div>
+```
+
+--------------------------------
+
+### Patch DOM Elements with Server-Sent Events (Python)
+
+Source: https://data-star.dev/guide
+
+Employs the ServerSentEventGenerator (aliased as SSE) in Python within a Sanic web framework context. It yields SSE patch_elements calls to update a DOM element, with an asynchronous delay between updates.
+
+```python
+from datastar_py import ServerSentEventGenerator as SSE
+from datastar_py.sanic import datastar_response
+
+@app.get('/open-the-bay-doors')
+@datastar_response
+async def open_doors(request):
+    yield SSE.patch_elements('<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>')
+    await asyncio.sleep(1)
+    yield SSE.patch_elements('<div id="hal">Waiting for an order...</div>')
+```
+
+--------------------------------
+
+### datastar-patch-signals SSE Event
+
+Source: https://data-star.dev/reference/sse_events
+
+Handles patching of signals. It allows updating existing signals or adding new ones, with an option to only update if a signal is missing.
 
 ```APIDOC
-## PUT /endpoint
+## datastar-patch-signals SSE Event
 
 ### Description
-Sends a `PUT` request to the specified URI. This action is used for updating an existing resource on the server.
+
+This SSE event type is used to patch signals into the existing signals on the page. It allows updating signal values and provides an option to only update a signal if it does not already exist.
 
 ### Method
-PUT
+
+Server-Sent Events (SSE)
 
 ### Endpoint
-`/endpoint`
+
+N/A (SSE stream endpoint)
 
 ### Parameters
-#### Query Parameters
-- **uri** (string) - Required - The endpoint to send the PUT request to.
-- **options** (object) - Optional - Configuration for the request. See GET request options for details.
+
+#### Event Data (`data` lines)
+
+- **`onlyIfMissing [true|false]`** - Optional - Determines whether to update each signal with the new value only if a signal with that name does not yet exist. Defaults to `false`.
+- **`signals {<signal_name>: <value>}`** - Required - A valid `data-signals` attribute string representing the signals to patch. Signal values can be set to `null` to remove them.
 
 ### Request Example
-```html
-<button data-on-click="@put('/endpoint')"></button>
+
+```
+event: datastar-patch-signals
+data: signals {foo: 1, bar: 2}
+```
+
+```
+event: datastar-patch-signals
+data: signals {foo: null, bar: null}
+```
+
+```
+event: datastar-patch-signals
+data: onlyIfMissing true
+data: signals {foo: 1, bar: 2}
 ```
 
 ### Response
-#### Success Response (200)
-- **Response Body** - The server's response to the PUT request.
+
+#### Success Response (200 OK)
+
+SSE stream containing `datastar-patch-signals` events.
 
 #### Response Example
-```json
-{
-  "status": "updated",
-  "id": "123e4567-e89b-12d3-a456-426614174000"
-}
+
+```
+event: datastar-patch-signals
+data: signals {foo: 1, bar: 2}
 ```
 ```
 
 --------------------------------
 
-### Delay Event Listener with data-on-load
+### Two-Way Data Binding with data-bind
 
 Source: https://data-star.dev/reference/attributes
 
-The `data-on-load__delay` attribute delays the execution of an event listener. It accepts time values in milliseconds (e.g., `.500ms`) or seconds (e.g., `.1s`). This is useful for staggering UI updates or animations.
+The `data-bind` attribute creates a two-way data binding between an element's value and a signal. It supports various input types, predefined signal types (like numbers and arrays), and file uploads, automatically encoding files in base64. Modifiers like `__case` can alter signal naming conventions.
 
 ```html
-<div data-on-load__delay.500ms="$count = 1"></div>
+<input data-bind:foo />
+```
+
+```html
+<input data-bind="foo" />
+```
+
+```html
+<input data-bind:foo value="bar" />
+```
+
+```html
+<div data-signals:foo="baz">
+    <input data-bind:foo value="bar" />
+</div>
+```
+
+```html
+<div data-signals:foo="0">
+    <select data-bind:foo>
+        <option value="10">10</option>
+    </select>
+</div>
+```
+
+```html
+<div data-signals:foo="[]">
+    <input data-bind:foo type="checkbox" value="bar" />
+    <input data-bind:foo type="checkbox" value="baz" />
+</div>
+```
+
+```html
+<input type="file" data-bind:files multiple />
+```
+
+```html
+<input data-bind:my-signal__case.kebab />
+```
+
+--------------------------------
+
+### Direct JavaScript Execution Response
+
+Source: https://data-star.dev/guide/datastar_expressions
+
+A simple JavaScript alert message. This code snippet represents a response from a backend action with a 'text/javascript' content-type, intended to be executed directly in the browser.
+
+```javascript
+alert('This mission is too important for me to allow you to jeopardize it.')
+```
+
+--------------------------------
+
+### Manage Conditional and Default Styles with data-style
+
+Source: https://data-star.dev/reference/attributes
+
+data-style handles conditional styling effectively. Setting a style value to falsy (empty string, null, undefined, false) restores the original inline style or removes the property. This preserves existing styles and manages dynamic changes.
+
+```html
+<!-- When $x is false, color remains red from inline style -->
+<div style="color: red;" data-style:color="$x && 'green'"></div>
+
+<!-- When $hiding is true, display becomes none; when false, reverts to flex from inline style -->
+<div style="display: flex;" data-style:display="$hiding && 'none'"></div>
+```
+
+--------------------------------
+
+### Patch DOM Elements with Server-Sent Events (PHP)
+
+Source: https://data-star.dev/guide
+
+Uses the ServerSentEventGenerator class in PHP to patch HTML content into a DOM element. It sends an initial message, waits for one second, and then sends a second message to the same element.
+
+```php
+require 'datastar'
+
+# Create a Datastar::Dispatcher instance
+
+datastar = Datastar.new(request:, response:)
+
+# In a Rack handler, you can instantiate from the Rack env
+# datastar = Datastar.from_rack_env(env)
+
+# Start a streaming response
+datastar.stream do |sse|
+  # Patches elements into the DOM.
+  sse.patch_elements %(<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>)
+
+  sleep 1
+  
+  sse.patch_elements %(<div id="hal">Waiting for an order...</div>)
+end
+```
+
+--------------------------------
+
+### Datastar: Setting Text Content with data-text
+
+Source: https://data-star.dev/guide/reactive_signals
+
+Sets the text content of an element to the value of a signal or a Datastar expression. Requires the '$' prefix for signals and allows JavaScript expressions for dynamic content.
+
+```html
+<input data-bind:foo />
+<div data-text="$foo"></div>
+```
+
+```html
+<input data-bind:foo />
+<div data-text="$foo.toUpperCase()"></div>
+```
+
+--------------------------------
+
+### Prevent Default on 'Enter' Keydown and Alert (HTML)
+
+Source: https://data-star.dev/how_tos/bind_keydown_events_to_specific_keys
+
+This code illustrates how to prevent the default action of a keydown event, such as form submission, while also showing an alert. It uses `evt.preventDefault()` within the `data-on:keydown__window` expression, executed conditionally for the 'Enter' key. The `evt` object provides the `preventDefault` method.
+
+```html
+<div data-on:keydown__window="evt.key === 'Enter' && (evt.preventDefault(), alert('Key pressed'))"></div>
+```
+
+--------------------------------
+
+### Datastar Patch Elements: Default Morphing
+
+Source: https://data-star.dev/reference/sse_events
+
+Demonstrates the default 'outer' morphing mode for patching elements in the DOM. Elements are matched by ID and their outer HTML is replaced. Ensure top-level elements have IDs for correct matching.
+
+```html
+event: datastar-patch-elements
+data: elements <div id="foo">Hello world!</div>
+
+
+```
+
+--------------------------------
+
+### Append Element and Update Signals in Kotlin
+
+Source: https://data-star.dev/how_tos/load_more_list_items
+
+This snippet demonstrates how to append new items to a list and update pagination signals using Data Star's generator in Kotlin. It includes logic to remove a 'load more' button when the maximum number of items is reached.
+
+```kotlin
+fun updateList(generator: ServerSentEventGenerator, offset: Int, limit: Int, max: Int) {
+    val newOffset = offset + limit
+
+    generator.patchElements(
+        elements = "<div>Item $newOffset</div>",
+        options =
+            PatchElementsOptions(
+                selector = "#list",
+                mode = ElementPatchMode.Append,
+            ),
+    )
+
+    if (newOffset < max) {
+        generator.patchSignals(
+            signals = "{\"offset\": $newOffset}"",
+        )
+    } else {
+        generator.patchElements(
+            options =
+                PatchElementsOptions(
+                    selector = "#load-more",
+                    mode = ElementPatchMode.Remove,
+                ),
+        )
+    }
+}
+```
+
+--------------------------------
+
+### Integrating External JavaScript: Asynchronous Function Definition
+
+Source: https://data-star.dev/guide/datastar_expressions
+
+Defines an asynchronous JavaScript function (`myfunction`) that simulates an async operation using `setTimeout` and `Promise`. Upon completion, it dispatches a custom event containing the result, allowing Datastar expressions to capture it.
+
+```javascript
+1async function myfunction(element, data) {
+2    const value = await new Promise((resolve) => {
+3        setTimeout(() => resolve(`You entered: ${data}`), 1000);
+4    });
+5    element.dispatchEvent(
+6        new CustomEvent('mycustomevent', {detail: {value}})
+7    );
+8}
+```
+
+--------------------------------
+
+### Datastar Request Cancellation Behaviors
+
+Source: https://data-star.dev/reference/actions
+
+This snippet illustrates Datastar's request cancellation. The default behavior automatically cancels previous requests on the same element when a new one is initiated, preventing conflicts. The 'disabled' option allows concurrent requests, and an AbortController provides custom control.
+
+```html
+<!-- Clicking this button multiple times will cancel previous requests (default behavior) -->
+<button data-on:click="@get('/slow-endpoint')">Load Data</button>
+```
+
+```html
+<!-- Allow concurrent requests (no automatic cancellation) -->
+<button data-on:click="@get('/endpoint', {requestCancellation: 'disabled'})">Allow Multiple</button>
+
+<!-- Custom abort controller for fine-grained control -->
+<div data-signals:controller="new AbortController()">
+    <button data-on:click="@get('/endpoint', {requestCancellation: $controller})">Start Request</button>
+    <button data-on:click="$controller.abort()">Cancel Request</button>
+</div>
+```
+
+--------------------------------
+
+### Toggle Boolean Signals with @toggleAll() in DataStar
+
+Source: https://data-star.dev/reference/actions
+
+The @toggleAll() action toggles the boolean value of multiple signals, with optional filtering using regular expressions. It accepts a filter object with 'include' and 'exclude' RegExp properties to specify which signals to toggle. This simplifies managing boolean states across signals.
+
+```html
+<!-- Toggles the `foo` signal only -->
+<div data-signals:foo="false">
+    <button data-on:click="@toggleAll({include: /^foo$/})"></button>
+</div>
+
+<!-- Toggles all signals starting with `is` -->
+<div data-signals="{isOpen: false, isActive: true, isEnabled: false}">
+    <button data-on:click="@toggleAll({include: /^is/})"></button>
+</div>
+
+<!-- Toggles signals starting with `settings.` -->
+<div data-signals="{settings: {darkMode: false, autoSave: true}}">
+    <button data-on:click="@toggleAll({include: /^settings\./})"></button>
+</div>
+```
+
+--------------------------------
+
+### Create and Patch Signals using data-signals Attribute
+
+Source: https://data-star.dev/guide/reactive_signals
+
+The `data-signals` attribute is used to create, update, or remove signals. It can be applied directly with a value, use dot-notation for nested signals, or accept a JSON object for patching multiple signals simultaneously.
+
+```html
+<div data-signals:foo="1"></div>
+<div data-signals:form.foo="2"></div>
+<div data-signals="{foo: 1, form: {foo: 2}}"></div>
+```
+
+--------------------------------
+
+### Trigger Alert on 'Enter' Keydown (HTML)
+
+Source: https://data-star.dev/how_tos/bind_keydown_events_to_specific_keys
+
+This code snippet shows how to trigger an alert specifically when the 'Enter' key is pressed. It utilizes the `evt.key` property within the `data-on:keydown__window` expression to check the pressed key. The `evt` variable provides access to the event object's properties.
+
+```html
+<div data-on:keydown__window="evt.key === 'Enter' && alert('Key pressed')"></div>
+```
+
+--------------------------------
+
+### DRY Datastar Action with Templating Loop
+
+Source: https://data-star.dev/how_tos/keep_datastar_code_dry
+
+This snippet shows another way to achieve DRY code in Datastar using a templating language's loop. It iterates over a list of labels to generate buttons, each performing the same backend action.
+
+```html
+{% set labels = ['Click me', 'No, click me!', 'Click us all!'] %}
+{% for label in labels %}
+    <button data-on:click="@get('/endpoint')">{{ label }}</button>
+{% endfor %}
+```
+
+--------------------------------
+
+### Apply Dynamic CSS Styles with data-style
+
+Source: https://data-star.dev/reference/attributes
+
+The data-style directive sets inline CSS styles based on expressions, keeping them synchronized with your application's state. It supports individual style properties and multiple properties defined in an object.
+
+```html
+<div data-style:background-color="$usingRed ? 'red' : 'blue'"></div>
+<div data-style:display="$hiding && 'none'"></div>
+<div data-style="{
+    display: $hiding ? 'none' : 'flex',
+    flexDirection: 'column',
+    color: $usingRed ? 'red' : 'green'
+}"></div>
+```
+
+--------------------------------
+
+### Custom Web Component with DataStar Event Dispatch
+
+Source: https://data-star.dev/guide/datastar_expressions
+
+A JavaScript class defining a custom HTML element 'my-component' that extends HTMLElement. It observes the 'src' attribute and dispatches a 'mycustomevent' with the new value when the attribute changes, enabling communication back to DataStar bindings.
+
+```javascript
+class MyComponent extends HTMLElement {
+    static get observedAttributes() {
+        return ['src'];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        const value = `You entered: ${newValue}`;
+        this.dispatchEvent(
+            new CustomEvent('mycustomevent', {detail: {value}})
+        );
+    }
+}
+
+customElements.define('my-component', MyComponent);
+```
+
+--------------------------------
+
+### Apply Casing to Class Names with data-class Modifier
+
+Source: https://data-star.dev/reference/attributes
+
+The `__case` modifier for `data-class` allows you to convert the casing of the class name. Supported cases include camel, kebab (default), snake, and pascal.
+
+```html
+<div data-class:my-class__case.camel="$foo"></div>
+```
+
+--------------------------------
+
+### Create Element Reference with data-ref
+
+Source: https://data-star.dev/reference/attributes
+
+The data-ref directive creates a signal that references an HTML element. The signal name can be specified either as the attribute key or value. This is useful for obtaining a direct reference to an element for manipulation.
+
+```html
+<div data-ref:foo></div>
+<div data-ref="foo"></div>
+$foo is a reference to a <span data-text="$foo.tagName"></span> element
+```
+
+--------------------------------
+
+### data-on-signal-patch: React to signal changes
+
+Source: https://data-star.dev/reference/attributes
+
+This attribute executes an expression whenever signals are patched, useful for tracking data changes. The `patch` variable provides details. Modifiers support delaying, debouncing, and throttling the listener, with options for leading/trailing edges and view transitions.
+
+```html
+<div data-on-signal-patch="console.log('A signal changed!')"></div>
+<div data-on-signal-patch="console.log('Signal patch:', patch)"></div>
+<div data-on-signal-patch__debounce.500ms="doSomething()"></div>
 ```
 
 --------------------------------
 
 ### Sync Query String Params with data-query-string
 
-Source: https://data-star.dev/reference
+Source: https://data-star.dev/reference/attributes
 
-The `data-query-string` attribute synchronizes query string parameters with signal values. On page load, it updates signals from the URL, and on signal change, it updates the URL. Filtering can be applied using `include` and `exclude` regular expressions.
+The `data-query-string` attribute synchronizes URL query parameters with Datastar signal values. It updates signals on load and query params on change. This Pro feature supports filtering and history management via `__filter` and `__history` modifiers.
 
 ```html
 <div data-query-string></div>
@@ -6601,69 +9014,121 @@ The `data-query-string` attribute synchronizes query string parameters with sign
 <div data-query-string="{include: /foo/, exclude: /bar/}"></div>
 ```
 
+```html
+<div data-query-string__filter__history></div>
+```
+
 --------------------------------
 
-### data-on-interval: Execute Code at Intervals
+### Run Expressions on Element Resize with data-on-resize
 
 Source: https://data-star.dev/reference/attributes
 
-The `data-on-interval` directive executes an expression at a regular interval, with a default duration of one second. The `__duration` modifier can be used to set custom intervals, and other modifiers like `__leading` can control initial execution.
+The `data-on-resize` attribute triggers a Datastar expression when an element's dimensions change. This Pro feature is useful for responsive UIs. It supports `__debounce` and `__throttle` modifiers for controlling event firing.
 
 ```html
-<div data-on-interval="$count++"></div>
-<div data-on-interval__duration.500ms="$count++"></div>
+<div data-on-resize="$count++"></div>
+```
+
+```html
+<div data-on-resize__debounce.10ms="$count++"></div>
 ```
 
 --------------------------------
 
-### Datastar Expression with Signal and Element Variable
+### data-on-signal-patch-filter: Filter signals for patching
 
 Source: https://data-star.dev/reference/attributes
 
-Illustrates a Datastar expression used in a data attribute. It shows how to reference signals (prefixed with '$') and the element itself (available as the 'el' variable).
+The `data-on-signal-patch-filter` attribute allows filtering which signals trigger the `data-on-signal-patch` attribute. It accepts an object with `include` and/or `exclude` properties, which are regular expressions to match signal names.
 
 ```html
-<div id="bar" data-text="$foo + el.id"></div>
+<!-- Only react to counter signal changes -->
+<div data-on-signal-patch-filter="{include: /^counter$/}"></div>
+
+<!-- React to all changes except those ending with "changes" -->
+<div data-on-signal-patch-filter="{exclude: /changes$/}"></div>
+
+<!-- Combine include and exclude filters -->
+<div data-on-signal-patch-filter="{include: /user/, exclude: /password/}"></div>
 ```
 
 --------------------------------
 
-### Datastar Expression: Multi-line Statements
+### Datastar: Conditional Visibility with data-show
 
-Source: https://data-star.dev/guide/datastar_expressions
+Source: https://data-star.dev/guide/reactive_signals
 
-Shows how Datastar expressions can span multiple lines, emphasizing the requirement of using a semicolon to separate statements, unlike standard JavaScript where line breaks suffice.
+Shows or hides an element based on a boolean expression. Recommended to set initial `display: none;` to prevent flash of unwanted content.
 
 ```html
-1<div data-signals-foo="1">
-2    <button data-on-click="
-3        $landingGearRetracted = true; 
-4        @post('/launch')
-5    ">
-6        Force launch
-7    </button>
-8</div>
+<input data-bind:foo />
+<button data-show="$foo != ''">
+    Save
+</button>
+```
+
+```html
+<input data-bind:foo />
+<button data-show="$foo != ''" style="display: none;">
+    Save
+</button>
 ```
 
 --------------------------------
 
-### data-on Keydown Listener for Enter Key
+### Attach Event Listeners (`data-on`)
 
-Source: https://data-star.dev/how_tos/bind_keydown_events_to_specific_keys
+Source: https://data-star.dev/reference
 
-Attaches a global keydown event listener to the window that triggers an alert only when the 'Enter' key is pressed. It utilizes the `evt.key` property for condition checking.
+The `data-on` attribute attaches an event listener to an element, executing an expression when the event fires. The `evt` object is available in the expression. It supports custom events, default prevention for form submissions, and numerous modifiers for advanced control over event handling, including timing, casing, and target.
 
 ```html
-<div data-on-keydown__window="evt.key === 'Enter' && alert('Key pressed')"></div>
+<button data-on:click="$foo = ''">Reset</button>
+<div data-on:myevent="$foo = evt.detail"></div>
+<button data-on:click__window__debounce.500ms.leading="$foo = ''"></button>
+<div data-on:my-event__case.camel="$foo = ''"></div>
 ```
 
 --------------------------------
 
-### Implement Dynamic Polling Interval in Node.js
+### Datastar Patch Elements: Remove Mode
+
+Source: https://data-star.dev/reference/sse_events
+
+Shows how to remove elements from the DOM using the 'remove' mode and a CSS selector. This is useful for dynamically clearing specific parts of the page.
+
+```html
+event: datastar-patch-elements
+data: mode remove
+data: selector #foo
+
+
+```
+
+--------------------------------
+
+### Run Expressions on requestAnimationFrame with data-on-raf
+
+Source: https://data-star.dev/reference/attributes
+
+The `data-on-raf` attribute executes a Datastar expression on each `requestAnimationFrame` event. This Pro feature is ideal for animations and performance-sensitive updates. It supports `__throttle` modifiers for controlling execution frequency.
+
+```html
+<div data-on-raf="$count++"></div>
+```
+
+```html
+<div data-on-raf__throttle.10ms="$count++"></div>
+```
+
+--------------------------------
+
+### Node.js: Dynamic SSE Interval Duration
 
 Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
 
-This Node.js snippet shows how to dynamically set polling intervals for Server-Sent Events. It calculates the duration based on the current second, switching to 1-second polling for the last 10 seconds of each minute. It utilizes `ServerSentEventGenerator` to stream SSE data.
+This Node.js snippet uses the built-in `http` module and a custom `ServerSentEventGenerator` to create server-sent events with a dynamic interval duration. It calculates the duration based on the current seconds.
 
 ```javascript
 1import { createServer } from "node:http";
@@ -6679,212 +9144,174 @@ This Node.js snippet shows how to dynamically set polling intervals for Server-S
 
 --------------------------------
 
-### Control Signal Casing with data-ref Modifiers
+### Datastar Patch Signals: Conditional Update
 
-Source: https://data-star.dev/reference/attributes
+Source: https://data-star.dev/reference/sse_events
 
-Modifiers for `data-ref` allow control over the casing of the generated signal name. Options include `.camel` (default), `.kebab`, `.snake`, and `.pascal`. This helps in maintaining consistent naming conventions.
+Illustrates using the 'onlyIfMissing' option to update signals only if they do not already exist on the page. This prevents overwriting existing signal values with default ones.
 
 ```html
-<div data-ref-my-signal__case.kebab></div>
+event: datastar-patch-signals
+data: onlyIfMissing true
+data: signals {foo: 1, bar: 2}
+
+
 ```
 
 --------------------------------
 
-### Persist Signals with Custom Key and Session Storage
+### Apply Casing to Indicator Signal Name with data-indicator Modifier
 
 Source: https://data-star.dev/reference
 
-The `data-persist` attribute supports custom storage keys by appending them after `data-persist-`. The `__session` modifier changes the storage target from local storage to session storage.
+Similar to other attributes, the `__case` modifier for `data-indicator` allows you to specify the casing for the indicator signal name, with options for camel, kebab, snake, and pascal.
 
 ```html
-<div data-persist-mykey></div>
-```
-
-```html
-<!-- Persists signals using a custom key `mykey` in session storage -->
-<div data-persist-mykey__session></div>
+<button data-on:click="@get('/endpoint')"
+        data-indicator:fetching__case.pascal
+></button>
 ```
 
 --------------------------------
 
-### Execute Expressions on Animation Frames with data-on-raf
+### Patch Signals with data-signals
 
 Source: https://data-star.dev/reference/attributes
 
-The `data-on-raf` Pro attribute executes a given expression on every `requestAnimationFrame` event. This is useful for animations or continuous updates that need to synchronize with the browser's rendering cycle.
+The data-signals directive allows you to add, update, or remove signals directly from your HTML. It supports single signal updates, nested signals using dot notation, and multiple signal patches using JavaScript/JSON object notation.
 
 ```html
-<div data-on-raf="$count++"></div>
-```
-
---------------------------------
-
-### Patch Signals with data-signals Attribute
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-signals` attribute allows for patching (adding, updating, or removing) signals. It supports direct signal assignment, nested signals using dot notation, and patching multiple signals using JavaScript object notation or JSON. Setting a signal to null removes it. Signal names are camel-cased in attributes and can include modifiers like `__case` for casing conversion and `__ifmissing` to set defaults.
-
-```html
-<div data-signals-foo="1"></div>
-<div data-signals-foo.bar="1"></div>
+<div data-signals:foo="1"></div>
+<div data-signals:foo.bar="1"></div>
 <div data-signals="{foo: {bar: 1, baz: 2}}"></div>
 <div data-signals="{foo: null}"></div>
-<div data-signals-my-signal__case.kebab="1"
-     data-signals-foo__ifmissing="1"
-></div>
 ```
 
 --------------------------------
 
-### Create Element Reference Signal with data-ref
+### datastar-patch-elements SSE Event
 
-Source: https://data-star.dev/reference/attributes
+Source: https://data-star.dev/reference/sse_events
 
-The `data-ref` attribute creates a new signal that references the element it is placed on. The signal name can be specified in the attribute key or value. The signal can then be used to access element properties like `tagName`.
+Handles patching of DOM elements. It morphs elements based on their IDs or CSS selectors and supports various morphing modes.
 
-```html
-<div data-ref-foo></div>
+```APIDOC
+## datastar-patch-elements SSE Event
+
+### Description
+
+This SSE event type is used to patch one or more elements in the DOM. Datastar, by default, morphs elements by matching top-level elements based on their ID. Special handling is required for SVG morphing due to XML namespaces.
+
+### Method
+
+Server-Sent Events (SSE)
+
+### Endpoint
+
+N/A (SSE stream endpoint)
+
+### Parameters
+
+#### Event Data (`data` lines)
+
+- **`elements <HTML>`** - Required - The HTML elements to patch. Can span multiple lines.
+- **`mode [outer|inner|replace|prepend|append|before|after|remove]`** - Optional - Specifies how to morph the elements. Defaults to `outer`.
+  - `outer`: Morphs the outer HTML of the elements.
+  - `inner`: Morphs the inner HTML of the elements.
+  - `replace`: Replaces the outer HTML of the elements.
+  - `prepend`: Prepends the elements to the target’s children.
+  - `append`: Appends the elements to the target’s children.
+  - `before`: Inserts the elements before the target as siblings.
+  - `after`: Inserts the elements after the target as siblings.
+  - `remove`: Removes the target elements from the DOM.
+- **`selector <CSS Selector>`** - Optional - Selects the target element of the patch using a CSS selector. Not required when using `outer` or `replace` modes.
+- **`useViewTransition [true|false]`** - Optional - Whether to use view transitions when patching elements. Defaults to `false`.
+
+### Request Example
+
+```
+event: datastar-patch-elements
+data: elements <div id="foo">Hello world!</div>
 ```
 
-```html
-<div data-ref="foo"></div>
+```
+event: datastar-patch-elements
+data: mode remove
+data: selector #foo
 ```
 
-```html
-$foo is a reference to a <span data-text="$foo.tagName"></span> element
+```
+event: datastar-patch-elements
+data: mode inner
+data: selector #foo
+data: useViewTransition true
+data: elements <div>
+  data: elements        Hello world!
+  data: elements </div>
 ```
 
---------------------------------
+### Response
 
-### data-on: Attach Event Listeners
+#### Success Response (200 OK)
 
-Source: https://data-star.dev/reference/attributes
+SSE stream containing `datastar-patch-elements` events.
 
-The `data-on` directive attaches an event listener to an element. The specified expression executes when the event is triggered. An `evt` variable representing the event object is available. It supports custom events and modifiers for behavior customization.
+#### Response Example
 
-```html
-<button data-on-click="$foo = ''">Reset</button>
-<div data-on-myevent="$foo = evt.detail"></div>
-<button data-on-click__window__debounce.500ms.leading="$foo = ''"></button>
-<div data-on-my-event__case.camel="$foo = ''"></div>
 ```
-
---------------------------------
-
-### Filter Signals with data-on-signal-patch-filter
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-on-signal-patch-filter` attribute filters which signals trigger `data-on-signal-patch`. It accepts an object with `include` and/or `exclude` properties that are regular expressions. This allows for precise control over which signal changes are reacted to.
-
-```html
-<!-- Only react to counter signal changes -->
-<div data-on-signal-patch-filter="{include: /^counter$/}"></div>
+event: datastar-patch-elements
+data: elements <div id="foo">Hello world!</div>
 ```
-
-```html
-<!-- React to all changes except those ending with "changes" -->
-<div data-on-signal-patch-filter="{exclude: /changes$/}"></div>
-```
-
-```html
-<!-- Combine include and exclude filters -->
-<div data-on-signal-patch-filter="{include: /user/, exclude: /password/}"></div>
-```
-
---------------------------------
-
-### data-on-load: Execute Code on Element Load
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-on-load` directive executes an expression when the element is loaded into the DOM. This can occur during page load, when an element is patched, or when the attribute itself is modified. It's useful for initializing component state or performing actions upon element readiness.
-
-```html
-<div data-on-load="$count = 1"></div>
-```
-
---------------------------------
-
-### Golang: Animated SVG Morph Sequence
-
-Source: https://data-star.dev/examples/svg_morphing
-
-This Go code implements an automatic sequence of SVG morphs to create an animation effect. It uses Datastar's SSE to update a single SVG circle's properties (radius and color) over time with short delays between each change, culminating in a reset.
-
-```go
-1svgMorphingRouter.Get("/animated_morph", func(w http.ResponseWriter, r *http.Request) {
-2    sse := datastar.NewSSE(w, r)
-3    
-4    // First morph
-5    sse.PatchElements(`<svg id="animated-demo"><circle cx="50" cy="50" r="30" fill="red" /></svg>`)
-6    time.Sleep(500 * time.Millisecond)
-7    
-8    // Second morph
-9    sse.PatchElements(`<svg id="animated-demo"><circle cx="50" cy="50" r="45" fill="orange" /></svg>`)
-10    time.Sleep(500 * time.Millisecond)
-11    
-12    // Third morph
-13    sse.PatchElements(`<svg id="animated-demo"><circle cx="50" cy="50" r="60" fill="yellow" /></svg>`)
-14    time.Sleep(500 * time.Millisecond)
-15    
-16    // Reset
-17    sse.PatchElements(`<svg id="animated-demo"><circle cx="50" cy="50" r="20" fill="green" /></svg>`)
-18})
 ```
 
 --------------------------------
 
-### data-on Keydown Listener for Ctrl+L Combination
+### Patch DOM Elements with Server-Sent Events (JavaScript)
 
-Source: https://data-star.dev/how_tos/bind_keydown_events_to_specific_keys
+Source: https://data-star.dev/guide
 
-Implements a global keydown event listener to detect when the 'Ctrl' key is held down along with the 'L' key, triggering an alert. It checks both `evt.ctrlKey` and `evt.key` properties.
-
-```html
-<div data-on-keydown__window="evt.ctrlKey && evt.key === 'l' && alert('Key pressed')"></div>
-```
-
---------------------------------
-
-### Patch DOM Elements and Signals in JavaScript
-
-Source: https://data-star.dev/guide/backend_requests
-
-This JavaScript code uses the `stream.patchElements` and `stream.patchSignals` functions to update the DOM and frontend signals. `patchElements` replaces an existing DOM element, while `patchSignals` updates signal values. Ensure the target element exists in the DOM before patching.
+Shows how to patch DOM elements using Server-Sent Events in JavaScript. The ServerSentEventGenerator streams updates to the DOM, with a one-second timeout separating the two updates.
 
 ```javascript
-stream.patchElements(`<div id="question">What do you put in a toaster?</div>`);
-stream.patchSignals({'response':  '', 'answer': 'bread'});
+// Creates a new `ServerSentEventGenerator` instance (this also sends required headers)
+ServerSentEventGenerator.stream(req, res, (stream) => {
+    // Patches elements into the DOM.
+    stream.patchElements(`<div id="hal">I’m sorry, Dave. I’m afraid I can’t do that.</div>`);
+
+    setTimeout(() => {
+        stream.patchElements(`<div id="hal">Waiting for an order...</div>`);
+    }, 1000);
+});
 ```
 
 --------------------------------
 
-### Debounce Event Listener with data-on-signal-patch
+### Datastar Patch Signals: Remove Signals
 
-Source: https://data-star.dev/reference/attributes
+Source: https://data-star.dev/reference/sse_events
 
-The `data-on-signal-patch__debounce` attribute debounces an event listener. It accepts time values like `.500ms` or `.1s`, and can be configured with `.leading` or `.notrail` options to control execution timing. This prevents rapid, repeated function calls.
+Shows how to remove signals by setting their values to null within the 'signals' data line. This is useful for clearing specific state on the page.
 
 ```html
-<div data-on-signal-patch__debounce.500ms="doSomething()"></div>
+event: datastar-patch-signals
+data: signals {foo: null, bar: null}
+
+
 ```
 
 --------------------------------
 
-### JavaScript Integration: Asynchronous Function with Custom Event
+### Integrating External JavaScript: Asynchronous Function with Custom Event
 
 Source: https://data-star.dev/guide/datastar_expressions
 
-Illustrates how to handle asynchronous JavaScript functions within Datastar expressions. Since Datastar does not await asynchronous calls, the function dispatches a custom event (`mycustomevent`) with the result in `evt.detail.value` to update the `$result` signal.
+Shows how to handle asynchronous JavaScript functions within Datastar expressions. Since Datastar doesn't await async code, the function dispatches a custom event with the result, which is then captured by another `data-*` attribute.
 
 ```html
-1<div data-signals-result>
-2    <input data-bind-foo 
-3           data-on-input="myfunction(el, $foo)"
-4           data-on-mycustomevent__window="$result = evt.detail.value"
+1<div data-signals:result>
+2    <input data-bind:foo 
+3           data-on:input="myfunction(el, $foo)"
+4           data-on:mycustomevent__window="$result = evt.detail.value"
 5    >
 6    <span data-text="$result"></span>
 7</div>
@@ -6892,258 +9319,75 @@ Illustrates how to handle asynchronous JavaScript functions within Datastar expr
 
 --------------------------------
 
-### Set View Transition Name with data-view-transition
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-view-transition` attribute explicitly sets the `view-transition-name` CSS style for an element, enabling it to participate in smooth page transitions. Page-level transitions are handled automatically if the View Transition API is supported.
-
-```html
-<div data-view-transition="$foo"></div>
-```
-
---------------------------------
-
-### Throttle Event Listener with data-on-signal-patch
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-on-signal-patch__throttle` attribute throttles an event listener. Similar to debounce, it accepts time values and can be configured with `.noleading` or `.trail` options. Throttling ensures a function is called at most once within a specified time interval.
-
-```html
-<div data-on-signal-patch__throttle.500ms="doSomething()"></div>
-```
-
---------------------------------
-
-### Access Signals Without Subscription with @peek()
-
-Source: https://data-star.dev/reference/actions
-
-The @peek() action allows accessing signal values within DataStar expressions without subscribing to their changes. This prevents re-evaluation of the expression when the peeked signal changes, optimizing performance. It takes a callable function as an argument that returns the signal value.
-
-```html
-<div data-text="$foo + @peek(() => $bar)"></div>
-```
-
---------------------------------
-
-### DELETE Request API
-
-Source: https://data-star.dev/reference/actions
-
-Sends a DELETE request to the backend. Used for removing a resource.
-
-```APIDOC
-## DELETE /endpoint
-
-### Description
-Sends a `DELETE` request to the specified URI. This action is used for removing a resource from the server.
-
-### Method
-DELETE
-
-### Endpoint
-`/endpoint`
-
-### Parameters
-#### Query Parameters
-- **uri** (string) - Required - The endpoint to send the DELETE request to.
-- **options** (object) - Optional - Configuration for the request. See GET request options for details.
-
-### Request Example
-```html
-<button data-on-click="@delete('/endpoint')"></button>
-```
-
-### Response
-#### Success Response (200)
-- **Response Body** - The server's response to the DELETE request.
-
-#### Response Example
-```json
-{
-  "status": "deleted",
-  "id": "123e4567-e89b-12d3-a456-426614174000"
-}
-```
-```
-
---------------------------------
-
-### DataStar SSE for Script Execution with Append Mode
-
-Source: https://data-star.dev/guide/datastar_expressions
-
-Demonstrates a DataStar Server-Sent Event (SSE) that appends a script tag to the body of the HTML document. This method is useful for executing scripts that need to be injected into a specific location, such as the document body.
-
-```html
-event: datastar-patch-elements
-data: mode append
-data: selector body
-data: elements <script>alert('This mission is too important for me to allow you to jeopardize it.')</script>
-```
-
---------------------------------
-
-### Filter Query String Sync with data-query-string
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-query-string` attribute can filter signals to be synced using `include` and `exclude` regular expressions. This allows control over which parameters are reflected in the URL.
-
-```html
-<div data-query-string="{include: /foo/, exclude: /bar/}"></div>
-```
-
---------------------------------
-
-### React to Signal Patches with data-on-signal-patch
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-on-signal-patch` attribute triggers an expression when one or more signals are patched. The `patch` variable, containing signal patch details, is available within the expression. This is useful for tracking data changes and updating computed values.
-
-```html
-<div data-on-signal-patch="console.log('A signal changed!')"></div>
-```
-
-```html
-<div data-on-signal-patch="console.log('Signal patch:', patch)"></div>
-```
-
---------------------------------
-
-### Frontend Interval Polling with Data Attributes
-
-Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
-
-This snippet demonstrates using HTML data attributes to configure client-side polling. The `data-on-interval__duration` attribute specifies the polling interval in seconds and the endpoint to fetch data from. The content within the div is updated with the current time, likely to indicate the last poll time or trigger updates.
-
-```html
-<div id="time"
-     data-on-interval__duration.${duration}s="@get('/endpoint)')"
->
-  ${currentTime.toISOString()}
-</div>
-```
-
---------------------------------
-
-### Golang: Random SVG Shape Transformation
+### Morph Multiple SVG Elements with Datastar
 
 Source: https://data-star.dev/examples/svg_morphing
 
-This Go code utilizes Datastar's SSE to morph an SVG element into a different shape. Each time the endpoint is hit, it selects a random shape from a predefined list (`svgShapes`) and updates the SVG element with the ID 'shape-demo'.
+Shows how to update multiple SVG elements simultaneously using Datastar SSE. This Go code morphs three circles, each with a random color and radius, identified by the 'multi-demo' SVG.
 
 ```go
-1svgMorphingRouter.Get("/shape_transform", func(w http.ResponseWriter, r *http.Request) {
-2    sse := datastar.NewSSE(w, r)
-3    shape := svgShapes[rand.N(len(svgShapes))]
-4    sse.PatchElements(fmt.Sprintf(`<svg id="shape-demo">%s</svg>`, shape))
-5})
+svgMorphingRouter.Get("/multiple_elements", func(w http.ResponseWriter, r *http.Request) {
+    sse := datastar.NewSSE(w, r)
+    color1 := svgColors[rand.N(len(svgColors))]
+    color2 := svgColors[rand.N(len(svgColors))]
+    color3 := svgColors[rand.N(len(svgColors))]
+    r1 := 10 + rand.N(20) // radius 10-30
+    r2 := 10 + rand.N(20)
+    r3 := 10 + rand.N(20)
+    sse.PatchElements(fmt.Sprintf(`<svg id="multi-demo">
+        <circle cx="30" cy="30" r="%d" fill="%s" />
+        <circle cx="70" cy="30" r="%d" fill="%s" />
+        <circle cx="50" cy="70" r="%d" fill="%s" />
+    </svg>`, r1, color1, r2, color2, r3, color3))
+})
 ```
 
 --------------------------------
 
-### Two-Way Data Binding with data-bind
+### Attach Event Listeners with data-on Attribute
 
-Source: https://data-star.dev/reference
+Source: https://data-star.dev/guide/reactive_signals
 
-The `data-bind` attribute creates or uses an existing signal for two-way data binding with an element's value. It supports various input elements and preserves signal types, including arrays for multiple selections. Modifiers like `__case` can alter signal name casing.
-
-```html
-<input data-bind-foo />
-```
+The `data-on` attribute allows attaching event listeners to DOM elements. When an event is triggered, an associated expression is evaluated, enabling dynamic updates to signals or other reactive states.
 
 ```html
-<input data-bind="foo" />
-```
-
-```html
-<input data-bind-foo value="bar" />
-```
-
-```html
-<div data-signals-foo="baz">
-    <input data-bind-foo value="bar" />
-</div>
-```
-
-```html
-<div data-signals-foo="0">
-    <select data-bind-foo>
-        <option value="10">10</option>
-    </select>
-</div>
-```
-
-```html
-<div data-signals-foo="[]">
-    <input data-bind-foo type="checkbox" value="bar" />
-    <input data-bind-foo type="checkbox" value="baz" />
-</div>
-```
-
-```html
-<input data-bind-my-signal__case.kebab />
+<input data-bind:foo />
+<button data-on:click="$foo = ''">
+    Reset
+</button>
 ```
 
 --------------------------------
 
-### Animated Scrolling with data-scroll-into-view__smooth
+### C# ASP.NET Core: Dynamic SSE Interval Duration
+
+Source: https://data-star.dev/how_tos/poll_the_backend_at_regular_intervals
+
+This C# snippet for ASP.NET Core uses `IDatastarService` to send server-sent events with a dynamically adjusted interval duration. It formats the current time and determines the duration based on the current second.
+
+```csharp
+1using StarFederation.Datastar.DependencyInjection;
+ 2
+ 3app.MapGet("/endpoint", async (IDatastarService datastarService) =>
+ 4{
+ 5    var currentTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+ 6    var currentSeconds = DateTime.Now.Second;
+ 7    var duration = currentSeconds < 50 ? 5 : 1;
+ 8    await datastarService.PatchElementsAsync($"""
+ 9        <div id="time" data-on-interval__duration.{duration}s="@get('/endpoint')">
+10            {currentTime}
+11        </div>
+12    """);
+13});
+```
+
+--------------------------------
+
+### Persist Signals in Storage with data-persist
 
 Source: https://data-star.dev/reference/attributes
 
-The `__smooth` modifier for `data-scroll-into-view` enables animated scrolling to the element, providing a smoother user experience compared to an instant jump.
-
-```html
-<div data-scroll-into-view__smooth></div>
-```
-
---------------------------------
-
-### Trigger Expression on Element Resize with data-on-resize
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-on-resize` attribute executes an expression whenever an element's dimensions change. This is useful for responsive designs or when an element's size is dynamically altered.
-
-```html
-<div data-on-resize="$count++"></div>
-```
-
---------------------------------
-
-### Execute Effects with DataStar
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-effect` attribute executes an expression on page load and whenever any signals within that expression change. This is ideal for performing side effects like updating other signals, making backend requests, or manipulating the DOM.
-
-```html
-<div data-effect="$foo = $bar + $baz"></div>
-```
-
---------------------------------
-
-### data-on Keydown Listener with PreventDefault
-
-Source: https://data-star.dev/how_tos/bind_keydown_events_to_specific_keys
-
-Shows how to prevent the default behavior of a keydown event, such as form submission on 'Enter' press, while still executing custom JavaScript. It uses `evt.preventDefault()` within the expression.
-
-```html
-<div data-on-keydown__window="evt.key === 'Enter' && (evt.preventDefault(), alert('Key pressed'))"></div>
-```
-
---------------------------------
-
-### Persist Signals in Local Storage with data-persist
-
-Source: https://data-star.dev/reference
-
-The `data-persist` attribute saves signal values to local storage, preserving them across page loads. It can be configured with `include` and `exclude` regular expressions to filter which signals are persisted.
+The `data-persist` attribute stores Datastar signals in local storage, preserving values across page loads. This Pro feature can be configured with include/exclude regex filters and custom storage keys. It supports `__session` modifier for using session storage.
 
 ```html
 <div data-persist></div>
@@ -7153,104 +9397,153 @@ The `data-persist` attribute saves signal values to local storage, preserving th
 <div data-persist="{include: /foo/, exclude: /bar/}"></div>
 ```
 
+```html
+<div data-persist:mykey></div>
+```
+
+```html
+<!-- Persists signals using a custom key `mykey` in session storage -->
+<div data-persist:mykey__session></div>
+```
+
 --------------------------------
 
-### Persist Signals in Local Storage with data-persist
+### Display Reactive JSON Signals (`data-json-signals`)
+
+Source: https://data-star.dev/reference
+
+The `data-json-signals` attribute displays a reactive, JSON-stringified version of signals in an element's text content. It's useful for debugging. Optional filters (`include`, `exclude`) can specify which signals to display, and the `__terse` modifier can compact the output.
+
+```html
+<!-- Display all signals -->
+<pre data-json-signals></pre>
+
+<!-- Only show signals that include "user" in their path -->
+<pre data-json-signals="{include: /user/}"></pre>
+
+<!-- Show all signals except those ending with "temp" -->
+<pre data-json-signals="{exclude: /temp$/}"></pre>
+
+<!-- Combine include and exclude filters -->
+<pre data-json-signals="{include: /^app/, exclude: /password/}"></pre>
+
+<!-- Display filtered signals in a compact format -->
+<pre data-json-signals__terse="{include: /counter/}"></pre>
+```
+
+--------------------------------
+
+### Run Expression on Viewport Intersection (`data-on-intersect`)
+
+Source: https://data-star.dev/reference
+
+The `data-on-intersect` attribute runs an expression when the element intersects with the viewport. This is useful for triggering actions or animations when an element becomes visible.
+
+```html
+<div data-on-intersect="$intersected = true"></div>
+```
+
+--------------------------------
+
+### Datastar: Conditional Class Addition with data-class
+
+Source: https://data-star.dev/guide/reactive_signals
+
+Adds or removes an element's class based on an expression. Can manage multiple classes using key-value pairs.
+
+```html
+<input data-bind:foo />
+<button data-class:success="$foo != ''">
+    Save
+</button>
+```
+
+```html
+<button data-class="{success: $foo != '', 'font-bold': $foo == 'bar'}">
+    Save
+</button>
+```
+
+--------------------------------
+
+### Execute Side Effects with data-effect
 
 Source: https://data-star.dev/reference/attributes
 
-The `data-persist` attribute saves signal values to local storage, preserving them across page loads. By default, signals are stored under the key 'datastar'.
+The `data-effect` attribute executes an expression on page load and whenever signals within the expression change. This is ideal for side effects like updating other signals, making API requests, or DOM manipulation.
 
 ```html
-<div data-persist></div>
+<div data-effect="$foo = $bar + $baz"></div>
 ```
 
 --------------------------------
 
-### Set Inline CSS Styles with data-style Attribute
+### DataStar SSE for Appending Script to Body
 
-Source: https://data-star.dev/reference
+Source: https://data-star.dev/guide/datastar_expressions
 
-The `data-style` attribute dynamically sets inline CSS styles based on expressions. It supports single style properties or multiple properties defined as key-value pairs. Style properties can be in camelCase or kebab-case. Falsy values (empty string, null, undefined, false) restore original inline styles or remove the property.
+A Server-Sent Event (SSE) instructing DataStar to append a script tag directly to the document's body. This is a method for executing JavaScript without necessarily patching existing DOM elements.
 
-```html
-<div data-style-background-color="$usingRed ? 'red' : 'blue'"></div>
-<div data-style-display="$hiding && 'none'"></div>
-```
+```sse
+event: datastar-patch-elements
+data: mode append
+data: selector body
+data: elements <script>alert('This mission is too important for me to allow you to jeopardize it.')</script>
 
-```html
-<div data-style="{
-   display: $hiding ? 'none' : 'flex',
-   flexDirection: 'column',
-   color: $usingRed ? 'red' : 'green'
-}"></div>
-```
 
-```html
-<!-- When $x is false, color remains red from inline style -->
-<div style="color: red;" data-style-color="$x && 'green'"></div>
-
-<!-- When $hiding is true, display becomes none; when false, reverts to flex from inline style -->
-<div style="display: flex;" data-style-display="$hiding && 'none'"></div>
 ```
 
 --------------------------------
 
-### Apply Modifiers with data-signals Attribute
-
-Source: https://data-star.dev/reference
-
-Modifiers can be used with the `data-signals` attribute to alter signal patching behavior. `__case` converts signal name casing, and `__ifmissing` only patches if the signal key doesn't exist, useful for setting defaults.
-
-```html
-<div data-signals-my-signal__case.kebab="1"
-     data-signals-foo__ifmissing="1"
-></div>
-```
-
---------------------------------
-
-### Toggle Boolean Signals with @toggleAll()
+### Access Signals Safely with @peek() in DataStar
 
 Source: https://data-star.dev/reference/actions
 
-The @toggleAll() action toggles the boolean value of matching signals. Similar to @setAll(), it supports filtering signals by regular expressions for inclusion and exclusion. This is ideal for toggling states like 'active', 'enabled', or 'visible'.
+The @peek() action allows accessing signal values within DataStar expressions without subscribing to their changes. This prevents the expression from re-evaluating when the peeked signal updates. It takes a callable function as an argument that returns the signal value.
 
 ```html
-<!-- Toggles the `foo` signal only -->
-<div data-signals-foo="false">
-    <button data-on-click="@toggleAll({include: /^foo$/})"></button>
-</div>
-
-<!-- Toggles all signals starting with `is` -->
-<div data-signals="{isOpen: false, isActive: true, isEnabled: false}">
-    <button data-on-click="@toggleAll({include: /^is/})"></button>
-</div>
-
-<!-- Toggles signals starting with `settings.` -->
-<div data-signals="{settings: {darkMode: false, autoSave: true}}">
-    <button data-on-click="@toggleAll({include: /^settings\./})"></button>
-</div>
+<div data-text="$foo + @peek(() => $bar)"></div>
 ```
 
 --------------------------------
 
-### Animate Attributes with data-animate
+### Datastar Expression: Using the 'el' Variable
 
-Source: https://data-star.dev/reference/attributes
+Source: https://data-star.dev/guide/datastar_expressions
 
-The `data-animate` Pro attribute enables animation of element attributes over time. These animations are reactive, meaning they update automatically whenever the signals used within the animation expression change.
+Illustrates how the 'el' variable, available in every Datastar expression, can be used to access properties of the element the attribute is attached to, such as its ID.
+
+```html
+1<div id="foo" data-text="el.id"></div>
+```
 
 --------------------------------
 
-### Set HTML Attribute with DataStar data-attr
+### DataStar SSE for Script Execution within Elements
+
+Source: https://data-star.dev/guide/datastar_expressions
+
+A Server-Sent Event (SSE) formatted response from DataStar. This specific event, 'datastar-patch-elements', includes instructions to replace or update elements, embedding a script tag that will execute JavaScript in the browser.
+
+```sse
+event: datastar-patch-elements
+data: elements <div id="hal">
+data: elements     <script>alert('This mission is too important for me to allow you to jeopardize it.')</script>
+data: elements </div>
+
+
+```
+
+--------------------------------
+
+### Set HTML Attribute with data-attr
 
 Source: https://data-star.dev/reference/attributes
 
-The `data-attr` attribute in DataStar allows you to dynamically set and maintain the value of any HTML attribute. It can target a single attribute or multiple attributes using an object literal for key-value pairs.
+The `data-attr` attribute sets the value of any HTML attribute to an expression and keeps it in sync. It can be used to set a single attribute or multiple attributes using a key-value pair object.
 
 ```html
-<div data-attr-title="$foo"></div>
+<div data-attr:title="$foo"></div>
 ```
 
 ```html
@@ -7259,321 +9552,27 @@ The `data-attr` attribute in DataStar allows you to dynamically set and maintain
 
 --------------------------------
 
-### Modify Computed Signal Naming with DataStar Modifiers
-
-Source: https://data-star.dev/reference
-
-Modifiers like `__case` can be applied to `data-computed` to change the casing of the computed signal name. Supported cases include `.camel` (default), `.kebab`, `.snake`, and `.pascal`. This allows for flexible naming conventions based on project requirements.
-
-```html
-<div data-computed-my-signal__case.kebab="$bar + $baz"></div>
-```
-
---------------------------------
-
-### HTML Structure for Namespaced SVG
+### Change Circle Radius with Datastar
 
 Source: https://data-star.dev/examples/svg_morphing
 
-This HTML structure demonstrates how to properly wrap an inner SVG element within an outer `<svg>` tag. This is crucial for ensuring the inner SVG elements are created under the correct namespace, which is necessary for SVG morphing in Datastar.
-
-```html
-1<svg>
-2    <svg id="target">
-3        <circle cx="50" cy="100" r="50" fill="red" />
-4    </svg>
-5    <circle cx="150" cy="100" r="50" fill="red" />
-6</svg>
-```
-
---------------------------------
-
-### Compact JSON Output with DataStar Data-Json-Signals Modifiers
-
-Source: https://data-star.dev/reference
-
-The `__terse` modifier for `data-json-signals` outputs JSON in a compact format without extra whitespace. This is beneficial for displaying filtered data inline or when space is limited. It enhances readability for concise data representations.
-
-```html
-<!-- Display filtered signals in a compact format -->
-<pre data-json-signals__terse="{include: /counter/}"></pre>
-```
-
---------------------------------
-
-### Display Reactive JSON Signals with DataStar
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-json-signals` attribute sets an element's text content to a reactive, JSON stringified version of signals, useful for debugging. Optional filters can include or exclude signals using regular expressions. The `__terse` modifier outputs compact JSON.
-
-```html
-<!-- Display all signals -->
-<pre data-json-signals></pre>
-```
-
-```html
-<!-- Only show signals that include "user" in their path -->
-<pre data-json-signals="{include: /user/}"></pre>
-
-<!-- Show all signals except those ending with "temp" -->
-<pre data-json-signals="{exclude: /temp$/}"></pre>
-
-<!-- Combine include and exclude filters -->
-<pre data-json-signals="{include: /^app/, exclude: /password/}"></pre>
-```
-
-```html
-<!-- Display filtered signals in a compact format -->
-<pre data-json-signals__terse="{include: /counter/}"></pre>
-```
-
---------------------------------
-
-### Set Inline CSS Styles with data-style Attribute
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-style` attribute dynamically sets inline CSS styles on an element based on expressions. It supports setting individual style properties (e.g., `background-color`) or multiple properties using a JavaScript object. Style property names can be camelCase or kebab-case. Falsy values (empty string, null, undefined, false) can be used to remove or revert styles, allowing for conditional styling with the logical AND operator.
-
-```html
-<div data-style-background-color="$usingRed ? 'red' : 'blue'"></div>
-<div data-style-display="$hiding && 'none'"></div>
-<div data-style="{
-   display: $hiding ? 'none' : 'flex',
-   flexDirection: 'column',
-   color: $usingRed ? 'red' : 'green'
-}"></div>
-<!-- When $x is false, color remains red from inline style -->
-<div style="color: red;" data-style-color="$x && 'green'"></div>
-<!-- When $hiding is true, display becomes none; when false, reverts to flex from inline style -->
-<div style="display: flex;" data-style-display="$hiding && 'none'"></div>
-```
-
---------------------------------
-
-### Two-Way Data Binding with DataStar data-bind
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-bind` attribute facilitates two-way data binding between an HTML element's value and a DataStar signal. It supports various input elements and automatically updates the signal when the element changes, and vice-versa. Signal type preservation and array binding for checkboxes are supported.
-
-```html
-<input data-bind-foo />
-```
-
-```html
-<input data-bind="foo" />
-```
-
-```html
-<input data-bind-foo value="bar" />
-```
-
-```html
-<div data-signals-foo="baz">
-    <input data-bind-foo value="bar" />
-</div>
-```
-
-```html
-<div data-signals-foo="0">
-    <select data-bind-foo>
-        <option value="10">10</option>
-    </select>
-</div>
-```
-
-```html
-<div data-signals-foo="[]">
-    <input data-bind-foo type="checkbox" value="bar" />
-    <input data-bind-foo type="checkbox" value="baz" />
-</div>
-```
-
---------------------------------
-
-### Golang: Change SVG Circle Color
-
-Source: https://data-star.dev/examples/svg_morphing
-
-This Go code snippet shows how to change the fill color of an SVG circle using Datastar's SSE (Server-Sent Events) for real-time updates. It selects a random color from a predefined list and applies it to the SVG element with the ID 'circle-demo'.
+This Go code snippet illustrates morphing an SVG circle's radius using Datastar. It generates a random radius and updates the 'size-demo' SVG element, changing the circle's size.
 
 ```go
-1svgMorphingRouter.Get("/circle_color", func(w http.ResponseWriter, r *http.Request) {
-2    sse := datastar.NewSSE(w, r)
-3    color := svgColors[rand.N(len(svgColors))]
-4    sse.PatchElements(fmt.Sprintf(`<svg id="circle-demo"><circle cx="50" cy="50" r="40" fill="%s" /></svg>`, color))
-5})
+svgMorphingRouter.Get("/circle_size", func(w http.ResponseWriter, r *http.Request) {
+    sse := datastar.NewSSE(w, r)
+    radius := 15 + rand.N(45) // Random radius between 15-60
+    sse.PatchElements(fmt.Sprintf(`<svg id="size-demo"><circle cx="50" cy="50" r="%d" fill="green" /></svg>`, radius))
+})
 ```
 
 --------------------------------
 
-### Display Reactive JSON Signals with DataStar Data-Json-Signals
-
-Source: https://data-star.dev/reference
-
-The `data-json-signals` attribute displays a reactive, JSON stringified version of signals within an element's text content. It's useful for debugging and troubleshooting. Optional filter objects can be provided to include or exclude specific signals using regular expressions.
-
-```html
-<!-- Display all signals -->
-<pre data-json-signals></pre>
-
-<!-- Only show signals that include "user" in their path -->
-<pre data-json-signals="{include: /user/}"></pre>
-
-<!-- Show all signals except those ending with "temp" -->
-<pre data-json-signals="{exclude: /temp$/}"></pre>
-
-<!-- Combine include and exclude filters -->
-<pre data-json-signals="{include: /^app/, exclude: /password/}"></pre>
-```
-
---------------------------------
-
-### DataStar data-bind Case Modifier
+### Scroll Element into View with data-scroll-into-view
 
 Source: https://data-star.dev/reference/attributes
 
-The `__case` modifier for `data-bind` allows you to control the casing of the signal name during data binding. Supported formats include camel, kebab, snake, and pascal case.
-
-```html
-<input data-bind-my-signal__case.kebab />
-```
-
---------------------------------
-
-### Conditionally Show/Hide Element with data-show
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-show` attribute conditionally shows or hides an element based on a boolean expression. For elements that should be hidden initially before Datastar processes them, a `display: none` style can be applied to prevent flickering.
-
-```html
-<div data-show="$foo"></div>
-```
-
-```html
-<div data-show="$foo" style="display: none"></div>
-```
-
---------------------------------
-
-### Replace URL Without Reloading with data-replace-url
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-replace-url` attribute updates the browser's URL without causing a page reload. The attribute's value, which can be an evaluated expression, specifies the new URL.
-
-```html
-<div data-replace-url="`/page${page}`"></div>
-```
-
---------------------------------
-
-### Filter Persisted Signals with data-persist
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-persist` attribute can filter which signals are persisted using `include` and `exclude` regular expressions within its value. This allows for selective storage of signal data.
-
-```html
-<div data-persist="{include: /foo/, exclude: /bar/}"></div>
-```
-
---------------------------------
-
-### data-on-intersect: Trigger on Viewport Intersection
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-on-intersect` directive runs an expression when an element intersects with the viewport. It supports various modifiers to control the intersection threshold, timing, and behavior, such as triggering only once or when a certain percentage is visible.
-
-```html
-<div data-on-intersect="$intersected = true"></div>
-<div data-on-intersect__once__full="$fullyIntersected = true"></div>
-```
-
---------------------------------
-
-### DataStar data-class Case Modifier
-
-Source: https://data-star.dev/reference/attributes
-
-The `__case` modifier for `data-class` enables you to specify the casing for the CSS class name. Options include camel, kebab, snake, and pascal case.
-
-```html
-<div data-class-my-class__case.camel="$foo"></div>
-```
-
---------------------------------
-
-### Golang: Change SVG Circle Radius
-
-Source: https://data-star.dev/examples/svg_morphing
-
-This Go code demonstrates morphing the radius of an SVG circle using Datastar. When triggered, it generates a random radius between 15 and 60 and updates the SVG element with the ID 'size-demo', effectively changing the circle's size.
-
-```go
-1svgMorphingRouter.Get("/circle_size", func(w http.ResponseWriter, r *http.Request) {
-2    sse := datastar.NewSSE(w, r)
-3    radius := 15 + rand.N(45) // Random radius between 15-60
-4    sse.PatchElements(fmt.Sprintf(`<svg id="size-demo"><circle cx="50" cy="50" r="%d" fill="green" /></svg>`, radius))
-5})
-```
-
---------------------------------
-
-### Bind Element Text Content with data-text Attribute
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-text` attribute binds the text content of an element to the evaluation of a given expression. This is useful for displaying dynamic text values within your HTML.
-
-```html
-<div data-text="$foo"></div>
-```
-
---------------------------------
-
-### Create Computed Signals with DataStar
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-computed` attribute creates a read-only signal whose value is automatically updated when its dependencies change. It's useful for memoizing expressions and can be used in other expressions. Computed signals should not perform actions.
-
-```html
-<div data-computed-foo="$bar + $baz"></div>
-<div data-text="$foo"></div>
-```
-
-```html
-<div data-computed-my-signal__case.kebab="$bar + $baz"></div>
-```
-
---------------------------------
-
-### Conditional Class Toggling with DataStar data-class
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-class` attribute dynamically adds or removes CSS classes from an element based on the evaluation of an expression. It supports toggling single classes or multiple classes simultaneously using an object literal.
-
-```html
-<div data-class-hidden="$foo"></div>
-```
-
-```html
-<div data-class="{hidden: $foo, 'font-bold': $bar}"></div>
-```
-
---------------------------------
-
-### Scroll Element Into View with data-scroll-into-view
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-scroll-into-view` attribute automatically scrolls the element into the viewport. This is particularly useful when dynamically adding content to the DOM and needing to focus the user's attention on it.
+The `data-scroll-into-view` attribute automatically scrolls the associated element into the viewport. This Pro feature is particularly useful when dynamically adding content via backend requests, ensuring the new content is visible to the user.
 
 ```html
 <div data-scroll-into-view></div>
@@ -7581,29 +9580,11 @@ The `data-scroll-into-view` attribute automatically scrolls the element into the
 
 --------------------------------
 
-### Custom Input Validation with data-custom-validity
+### Skip Morphing Elements with data-ignore-morph
 
 Source: https://data-star.dev/reference/attributes
 
-The `data-custom-validity` Pro attribute allows for custom validation logic on form elements. An expression is evaluated, and if it returns a non-empty string, the input is considered invalid with that string as the validation message. An empty string signifies a valid input.
-
-```html
-<form>
-    <input data-bind-foo name="foo" />
-    <input data-bind-bar name="bar"
-           data-custom-validity="$foo === $bar ? '' : 'Values must be the same.'"
-    />
-    <button>Submit form</button>
-</form>
-```
-
---------------------------------
-
-### Ignore Morphing with DataStar
-
-Source: https://data-star.dev/reference/attributes
-
-The `data-ignore-morph` attribute tells the `PatchElements` watcher to skip processing an element and its children during element morphing. To remove this attribute, patch the element with the attribute absent.
+The `data-ignore-morph` attribute instructs the `PatchElements` watcher to skip morphing a specific element and its children. To remove it, re-patch the element without the attribute.
 
 ```html
 <div data-ignore-morph>
@@ -7613,73 +9594,117 @@ The `data-ignore-morph` attribute tells the `PatchElements` watcher to skip proc
 
 --------------------------------
 
-### Conditional Class Toggling with data-class
+### Bind Element Text Content with data-text
 
-Source: https://data-star.dev/reference
+Source: https://data-star.dev/reference/attributes
 
-The `data-class` attribute adds or removes CSS classes from an element based on an expression's truthiness. It supports toggling single classes or multiple classes using an object of class names and their corresponding expressions. The `__case` modifier can adjust class name casing.
-
-```html
-<div data-class-hidden="$foo"></div>
-```
+The `data-text` attribute binds the text content of an HTML element to a Datastar expression. This allows for dynamic updates of an element's text based on signal changes. No specific dependencies are required beyond the Datastar framework itself.
 
 ```html
-<div data-class="{hidden: $foo, 'font-bold': $bar}"></div>
-```
-
-```html
-<div data-class-my-class__case.camel="$foo"></div>
-```
-
---------------------------------
-
-### Create Computed Signals with DataStar
-
-Source: https://data-star.dev/reference
-
-The `data-computed` attribute creates a read-only signal computed from an expression involving other signals. Its value updates automatically when dependent signals change. Useful for memoizing expressions and their values can be used in other expressions. Avoid using computed signals for performing actions.
-
-```html
-<div data-computed-foo="$bar + $baz"></div>
 <div data-text="$foo"></div>
 ```
 
 --------------------------------
 
-### HTML Form with data-custom-validity for Validation
+### JSON Payload for Patch Signals
 
-Source: https://data-star.dev/errors/runtime/custom_validity_invalid_expression
+Source: https://data-star.dev/guide/reactive_signals
 
-This HTML snippet demonstrates the correct usage of the `data-custom-validity` attribute. It binds two input fields and uses an expression to compare their values. If the values differ, a custom error message is displayed; otherwise, the input is considered valid.
+This JSON object represents the payload used to patch signals. It follows the JSON Merge Patch RFC 7396 standard and can contain multiple signal updates.
 
-```html
-<form>
-    <input data-bind-foo name="foo" />
-    <input data-bind-bar name="bar" 
-        data-custom-validity="$foo === $bar ? '' : 'Field values must be the same.'"
-    />
-    <button>
-        Submit form
-    </button>
-</form>
+```json
+1{"hal": "Affirmative, Dave. I read you."}
 ```
 
 --------------------------------
 
-### Preserve Attribute Value with data-preserve-attr
+### Replace URL without Reloading with data-replace-url
 
 Source: https://data-star.dev/reference/attributes
 
-The `data-preserve-attr` attribute preserves the value of specified attributes when morphing DOM elements. Multiple attributes can be preserved by separating them with a space. This is useful for maintaining state on elements like `open` for `<details>` tags.
+The `data-replace-url` attribute replaces the browser's current URL without triggering a page reload. The value of the attribute is an evaluated Datastar expression that resolves to the new URL. This Pro feature allows for dynamic, client-side navigation.
+
+```html
+<div data-replace-url="`/page${page}`"></div>
+```
+
+--------------------------------
+
+### data-on-intersect: Trigger once or when element is half/fully visible
+
+Source: https://data-star.dev/reference/attributes
+
+The `data-on-intersect` attribute triggers an expression when an element intersects with the viewport. Modifiers like `__once`, `__half`, and `__full` control the trigger conditions. It also supports debouncing, throttling, and delaying the event listener, along with view transition integration.
+
+```html
+<div data-on-intersect__once__full="$fullyIntersected = true"></div>
+```
+
+--------------------------------
+
+### Modify data-signals Naming and Behavior with Modifiers
+
+Source: https://data-star.dev/reference/attributes
+
+data-signals supports the __case modifier for signal name casing (camel, kebab, snake, pascal) and __ifmissing to conditionally patch signals only if they don't already exist, useful for setting defaults.
+
+```html
+<div data-signals:my-signal__case.kebab="1"
+     data-signals:foo__ifmissing="1"
+></div>
+```
+
+--------------------------------
+
+### Modify data-ref Signal Naming with __case
+
+Source: https://data-star.dev/reference/attributes
+
+The __case modifier for data-ref allows you to control the casing of the signal name. Supported cases include camel, kebab, snake, and pascal, ensuring signal names match your preferred convention.
+
+```html
+<div data-ref:my-signal__case.kebab></div>
+```
+
+--------------------------------
+
+### Conditionally Show/Hide Elements with data-show
+
+Source: https://data-star.dev/reference/attributes
+
+The data-show directive controls the visibility of an element based on a boolean expression. To prevent flickering, it's recommended to initially hide the element using 'display: none'.
+
+```html
+<div data-show="$foo"></div>
+<div data-show="$foo" style="display: none"></div>
+```
+
+--------------------------------
+
+### Datastar: Derived Signals with data-computed
+
+Source: https://data-star.dev/guide/reactive_signals
+
+Creates a read-only signal derived from a reactive expression. Its value updates automatically when signals within the expression change. Useful for memoizing expressions.
+
+```html
+<input data-bind:foo />
+<div data-computed:repeated="$foo.repeat(2)" data-text="$repeated"></div>
+```
+
+--------------------------------
+
+### data-preserve-attr: Maintain attribute values during DOM morphing
+
+Source: https://data-star.dev/reference/attributes
+
+The `data-preserve-attr` attribute ensures that specified attribute values are maintained when DOM elements are morphed. Multiple attributes can be preserved by separating their names with a space.
 
 ```html
 <details open data-preserve-attr="open">
     <summary>Title</summary>
     Content
 </details>
-```
-
-```html
 <details open class="foo" data-preserve-attr="open class">
     <summary>Title</summary>
     Content
@@ -7688,11 +9713,11 @@ The `data-preserve-attr` attribute preserves the value of specified attributes w
 
 --------------------------------
 
-### Ignore Elements with DataStar
+### Ignore Elements and Descendants with data-ignore
 
 Source: https://data-star.dev/reference/attributes
 
-The `data-ignore` attribute prevents DataStar from processing an element and its descendants. This is useful for avoiding conflicts with third-party libraries or unescaped user input. The `__self` modifier can be used to ignore only the element itself.
+The `data-ignore` attribute prevents Datastar from processing an element and its descendants. This is useful for third-party libraries or to avoid conflicts with user-generated content.
 
 ```html
 <div data-ignore data-show-thirdpartylib="">
@@ -7701,3 +9726,80 @@ The `data-ignore` attribute prevents DataStar from processing an element and its
     </div>
 </div>
 ```
+
+--------------------------------
+
+### Create Computed Signals with data-computed
+
+Source: https://data-star.dev/reference/attributes
+
+The `data-computed` attribute creates a read-only signal computed from an expression. Its value updates automatically when signals in the expression change. It can also define computed signals using key-value pairs with callables.
+
+```html
+<div data-computed:foo="$bar + $baz"></div>
+```
+
+```html
+<div data-computed:foo="$bar + $baz"></div>
+<div data-text="$foo"></div>
+```
+
+```html
+<div data-computed="{foo: () => $bar + $baz}"></div>
+```
+
+--------------------------------
+
+### Conditional Class Addition with data-class
+
+Source: https://data-star.dev/reference/attributes
+
+The `data-class` attribute adds or removes a class from an element based on an expression's evaluation. It can manage single classes or multiple classes simultaneously using an object of class names and their corresponding expressions.
+
+```html
+<div data-class:hidden="$foo"></div>
+```
+
+```html
+<div data-class="{hidden: $foo, 'font-bold': $bar}"></div>
+```
+
+--------------------------------
+
+### Modify Computed Signal Name Casing with data-computed Modifier
+
+Source: https://data-star.dev/reference/attributes
+
+The `__case` modifier for `data-computed` allows you to convert the casing of the computed signal name. Supported cases include camel (default), kebab, snake, and pascal.
+
+```html
+<div data-computed:my-signal__case.kebab="$bar + $baz"></div>
+```
+
+--------------------------------
+
+### Add Custom Input Validation with data-custom-validity
+
+Source: https://data-star.dev/reference/attributes
+
+The `data-custom-validity` attribute allows for custom validation logic on form elements using a Datastar expression. The expression must evaluate to a string: an empty string means valid, a non-empty string is the validation error message. This Pro feature requires the Datastar Pro license.
+
+```html
+<form>
+    <input data-bind:foo name="foo" />
+    <input data-bind:bar name="bar"
+           data-custom-validity="$foo === $bar ? '' : 'Values must be the same.'"
+    />
+    <button>Submit form</button>
+</form>
+```
+
+--------------------------------
+
+### Ignore Only Self with data-ignore__self Modifier
+
+Source: https://data-star.dev/reference/attributes
+
+The `__self` modifier for `data-ignore` specifies that only the element itself should be ignored, allowing its descendants to be processed by Datastar.
+
+=== COMPLETE CONTENT === This response contains all available snippets from this library. No additional content exists. Do not make further requests.
