@@ -151,23 +151,27 @@ templ ConnectionCard(conn Connection) {
 			</div>
 			<div class="flex gap-2 mt-2">
 				<button
+					type="button"
 					class="btn btn-sm btn-outline flex-1"
-					data-on:click={ datastar.PostSSE("/api/admin/connections/test", fmt.Sprintf(`{"id":%d}`, conn.ID)) }
+					data-connection-id={ fmt.Sprintf("%d", conn.ID) }
+					onclick="fetch(`/api/admin/connections/${this.dataset.connectionId}/test`, {method: 'POST'}).then(r => r.json()).then(d => console.log(d.message))"
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
 					</svg>
 					Test
 				</button>
-				<button class="btn btn-sm btn-outline flex-1">
+				<button type="button" class="btn btn-sm btn-outline flex-1">
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
 					</svg>
 					Edit
 				</button>
 				<button
+					type="button"
 					class="btn btn-sm btn-outline btn-error"
-					data-on:click={ datastar.PostSSE("/api/admin/connections/delete", fmt.Sprintf(`{"id":%d}`, conn.ID)) }
+					data-connection-id={ fmt.Sprintf("%d", conn.ID) }
+					onclick="fetch(`/api/admin/connections/${this.dataset.connectionId}`, {method: 'DELETE'})"
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
@@ -217,7 +221,10 @@ templ AddConnectionModal() {
 				<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 			</form>
 			<h3 class="font-bold text-lg mb-4">Add Database Connection</h3>
-			<form class="space-y-4" data-on:submit={ datastar.PostSSE("/api/admin/connections/create") }>
+			<form 
+				class="space-y-4" 
+				onsubmit="event.preventDefault(); const fd = new FormData(event.target); const data = Object.fromEntries(fd); data.port = parseInt(data.port); fetch('/api/admin/connections', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)}).then(r => r.ok && add_connection_modal.close())"
+			>
 				// Basic Information Section
 				<div class="form-control">
 					<label class="label">

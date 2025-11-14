@@ -92,109 +92,91 @@ func (h *Handlers) AdminConnectionsSSE(w http.ResponseWriter, r *http.Request) {
 
 // CreateConnectionSSE creates a new connection via SSE
 
-// TestConnectionSSE tests an existing connection via SSE
-func (h *Handlers) TestConnectionSSE(w http.ResponseWriter, r *http.Request) {
+// TestConnection tests an existing connection
+func (h *Handlers) TestConnection(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	sse := datastar.NewSSE(w, r)
+	idStr := chi.URLParam(r, "id")
 
-	// Read the connection ID from signals
-	var signals struct {
-		ID int64 `json:"id"`
-	}
-
-	if err := datastar.ReadSignals(r, &signals); err != nil {
-		slog.Error("Failed to read signals", "error", err)
-		sse.ConsoleError(fmt.Errorf("invalid request data: %w", err))
+	id, err := strconv.ParseInt(idStr, 10, 64)
+	if err != nil {
+		http.Error(w, "Invalid connection ID", http.StatusBadRequest)
 		return
 	}
 
 	// Test the connection
-	if err := h.connectionService.TestConnection(ctx, signals.ID); err != nil {
-		slog.Error("Connection test failed", "id", signals.ID, "error", err)
-		sse.ConsoleError(fmt.Errorf("connection test failed: %w", err))
+	if err := h.connectionService.TestConnection(ctx, id); err != nil {
+		slog.Error("Connection test failed", "id", id, "error", err)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]any{
+			"success": false,
+			"message": fmt.Sprintf("Connection test failed: %v", err),
+		})
 		return
 	}
 
-	// Show success message
-	if err := sse.ConsoleLog("Connection test successful!"); err != nil {
-		slog.Error("Failed to send console log", "error", err)
-	}
+	// Send success response
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]any{
+		"success": true,
+		"message": "Connection test successful!",
+	})
 }
 
-// DeleteConnectionSSE deletes a connection via SSE
-func (h *Handlers) DeleteConnectionSSE(w http.ResponseWriter, r *http.Request) {
+// DeleteConnection deletes a connection
+func (h *Handlers) DeleteConnection(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	sse := datastar.NewSSE(w, r)
+	idStr := chi.URLParam(r, "id")
 
-	// Read the connection ID from signals
-	var signals struct {
-		ID int64 `json:"id"`
-	}
-
-	if err := datastar.ReadSignals(r, &signals); err != nil {
-		slog.Error("Failed to read signals", "error", err)
-		sse.ConsoleError(fmt.Errorf("invalid request data: %w", err))
+	id, err := strconv.ParseInt(idStr, 10, 64)
+	if err != nil {
+		http.Error(w, "Invalid connection ID", http.StatusBadRequest)
 		return
 	}
 
 	// Delete the connection
-	if err := h.connectionService.DeleteConnection(ctx, signals.ID); err != nil {
-		slog.Error("Failed to delete connection", "id", signals.ID, "error", err)
-		sse.ConsoleError(fmt.Errorf("failed to delete connection: %w", err))
+	if err := h.connectionService.DeleteConnection(ctx, id); err != nil {
+		slog.Error("Failed to delete connection", "id", id, "error", err)
+		http.Error(w, fmt.Sprintf("Failed to delete connection: %v", err), http.StatusInternalServerError)
 		return
 	}
 
 	// Notify all subscribers
 	h.publishConnectionUpdate()
+
+	w.WriteHeader(http.StatusNoContent)
 }
 
-func (h *Handlers) CreateConnectionSSE(w http.ResponseWriter, r *http.Request) {
+func (h *Handlers) CreateConnection(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	sse := datastar.NewSSE(w, r)
 
-	// Read form signals
-	var signals struct {
-		Name        string `json:"name"`
-		Host        string `json:"host"`
-		Port        int64  `json:"port"`
-		Database    string `json:"database"`
-		Username    string `json:"username"`
-		Password    string `json:"password"`
-		SSLMode     string `json:"ssl_mode"`
-		Environment string `json:"environment"`
-	}
-
-	if err := datastar.ReadSignals(r, &signals); err != nil {
-		slog.Error("Failed to read signals", "error", err)
-		sse.ConsoleError(fmt.Errorf("invalid form data: %w", err))
+	var input services.CreateConnectionInput
+	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
+		http.Error(w, "Invalid request body", http.StatusBadRequest)
 		return
 	}
 
-	// Create connection input
-	input := services.CreateConnectionInput{
-		Name:     signals.Name,
-		Host:     signals.Host,
-		Port:     signals.Port,
-		Database: signals.Database,
-		Username: signals.Username,
-		Password: signals.Password,
-		SSLMode:  signals.SSLMode,
+	// Validate required fields
+	if input.Name == "" || input.Host == "" || input.Port == 0 || input.Database == "" || input.Username == "" {
+		http.Error(w, "Missing required fields", http.StatusBadRequest)
+		return
 	}
 
 	// Create the connection
-	_, err := h.connectionService.CreateConnection(ctx, input)
+	connection, err := h.connectionService.CreateConnection(ctx, input)
 	if err != nil {
 		slog.Error("Failed to create connection", "error", err)
-		sse.ConsoleError(fmt.Errorf("failed to create connection: %w", err))
+		http.Error(w, fmt.Sprintf("Failed to create connection: %v", err), http.StatusInternalServerError)
 		return
 	}
 
 	// Notify all subscribers
 	h.publishConnectionUpdate()
 
-	// Close the modal
-	if err := sse.ExecuteScript("add_connection_modal.close()"); err != nil {
-		slog.Error("Failed to close modal", "error", err)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	if err := json.NewEncoder(w).Encode(connection); err != nil {
+		slog.Error("Failed to encode connection", "error", err)
 	}
 }
 
@@ -241,36 +223,6 @@ func (h *Handlers) GetConnection(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// CreateConnection creates a new database connection
-func (h *Handlers) CreateConnection(w http.ResponseWriter, r *http.Request) {
-	ctx := r.Context()
-
-	var input services.CreateConnectionInput
-	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
-		http.Error(w, "Invalid request body", http.StatusBadRequest)
-		return
-	}
-
-	// Validate required fields
-	if input.Name == "" || input.Host == "" || input.Port == 0 || input.Database == "" || input.Username == "" {
-		http.Error(w, "Missing required fields", http.StatusBadRequest)
-		return
-	}
-
-	connection, err := h.connectionService.CreateConnection(ctx, input)
-	if err != nil {
-		slog.Error("Failed to create connection", "error", err)
-		http.Error(w, fmt.Sprintf("Failed to create connection: %v", err), http.StatusInternalServerError)
-		return
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
-	if err := json.NewEncoder(w).Encode(connection); err != nil {
-		slog.Error("Failed to encode connection", "error", err)
-	}
-}
-
 // UpdateConnection updates an existing connection
 func (h *Handlers) UpdateConnection(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
@@ -304,26 +256,6 @@ func (h *Handlers) UpdateConnection(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// DeleteConnection deletes a connection
-func (h *Handlers) DeleteConnection(w http.ResponseWriter, r *http.Request) {
-	ctx := r.Context()
-	idStr := chi.URLParam(r, "id")
-
-	id, err := strconv.ParseInt(idStr, 10, 64)
-	if err != nil {
-		http.Error(w, "Invalid connection ID", http.StatusBadRequest)
-		return
-	}
-
-	if err := h.connectionService.DeleteConnection(ctx, id); err != nil {
-		slog.Error("Failed to delete connection", "id", id, "error", err)
-		http.Error(w, fmt.Sprintf("Failed to delete connection: %v", err), http.StatusInternalServerError)
-		return
-	}
-
-	w.WriteHeader(http.StatusNoContent)
-}
-
 // TestConnectionHandler tests a connection and returns JSON result
 func (h *Handlers) TestConnectionHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
@@ -336,36 +268,6 @@ func (h *Handlers) TestConnectionHandler(w http.ResponseWriter, r *http.Request)
 
 	// Test the connection using TestConnectionDirect
 	if err := h.connectionService.TestConnectionDirect(ctx, input); err != nil {
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(map[string]any{
-			"success": false,
-			"message": fmt.Sprintf("Connection test failed: %v", err),
-		})
-		return
-	}
-
-	// Send success response
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]any{
-		"success": true,
-		"message": "Connection successful!",
-	})
-}
-
-// TestConnectionByID tests an existing saved connection
-func (h *Handlers) TestConnectionByID(w http.ResponseWriter, r *http.Request) {
-	ctx := r.Context()
-	idStr := chi.URLParam(r, "id")
-
-	id, err := strconv.ParseInt(idStr, 10, 64)
-	if err != nil {
-		http.Error(w, "Invalid connection ID", http.StatusBadRequest)
-		return
-	}
-
-	// Test the connection
-	if err := h.connectionService.TestConnection(ctx, id); err != nil {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(map[string]any{

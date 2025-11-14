@@ -25,12 +25,18 @@ func SetupRoutes(router chi.Router, q *store.Queries, nc *nats.Conn) error {
 	// Page routes
 	router.Get("/admin", handlers.AdminPage)
 
-	// SSE API routes for Datastar
+	// API routes
 	router.Route("/api/admin", func(adminrouter chi.Router) {
-		adminrouter.Get("/connections", handlers.AdminConnectionsSSE)
-		adminrouter.Post("/connections/create", handlers.CreateConnectionSSE)
-		adminrouter.Post("/connections/test", handlers.TestConnectionSSE)
-		adminrouter.Post("/connections/delete", handlers.DeleteConnectionSSE)
+		adminrouter.Route("/connections", func(connectionsRouter chi.Router) {
+			// SSE endpoint for real-time updates
+			connectionsRouter.Get("/", handlers.AdminConnectionsSSE)
+			// RESTful CRUD endpoints
+			connectionsRouter.Post("/", handlers.CreateConnection)
+			connectionsRouter.Route("/{id}", func(connectionRouter chi.Router) {
+				connectionRouter.Post("/test", handlers.TestConnection)
+				connectionRouter.Delete("/", handlers.DeleteConnection)
+			})
+		})
 	})
 
 	return nil
