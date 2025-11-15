@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"log/slog"
@@ -49,13 +50,19 @@ func (h *Handlers) AdminConnectionsSSE(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	sse := datastar.NewSSE(w, r)
 
+	slog.Info("SSE connection established for admin connections")
+
 	// Helper function to fetch and render connections
-	renderConnections := func() error {
-		connections, err := h.connectionService.ListConnections(ctx)
+	// Takes a context parameter to allow using different contexts (request ctx vs background ctx)
+	renderConnections := func(queryCtx context.Context) error {
+		slog.Debug("renderConnections called")
+		connections, err := h.connectionService.ListConnections(queryCtx)
 		if err != nil {
-			slog.Error("Failed to list connections", "error", err)
+			slog.Error("Failed to list connections in renderConnections", "error", err)
 			return err
 		}
+
+		slog.Debug("Retrieved connections", "count", len(connections))
 
 		// Convert to component connections
 		componentConns := make([]components.Connection, len(connections))
@@ -64,19 +71,30 @@ func (h *Handlers) AdminConnectionsSSE(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Render the connections tab content (includes modal)
-		return sse.PatchElementTempl(components.ConnectionsTabContent(componentConns), datastar.WithSelector("#connections-tab-panel"))
+		if err := sse.PatchElementTempl(components.ConnectionsTabContent(componentConns)); err != nil {
+			slog.Error("Failed to patch element in renderConnections", "error", err)
+			return err
+		}
+
+		slog.Debug("Successfully patched connections UI")
+		return nil
 	}
 
-	// Render initial state
-	if err := renderConnections(); err != nil {
+	// Render initial state using request context
+	if err := renderConnections(ctx); err != nil {
 		sse.ConsoleError(fmt.Errorf("failed to load initial connections: %w", err))
 		return
 	}
 
 	// Subscribe to NATS updates
 	sub, err := h.nc.Subscribe("admin.connections.update", func(msg *nats.Msg) {
-		if err := renderConnections(); err != nil {
+		slog.Info("NATS callback triggered - connection update received")
+		// Use background context for async DB queries, not the request context
+		if err := renderConnections(context.Background()); err != nil {
+			slog.Error("Failed to render connections in NATS callback", "error", err)
 			sse.ConsoleError(fmt.Errorf("failed to update connections: %w", err))
+		} else {
+			slog.Info("Successfully updated connections via NATS callback")
 		}
 	})
 	if err != nil {
@@ -86,8 +104,11 @@ func (h *Handlers) AdminConnectionsSSE(w http.ResponseWriter, r *http.Request) {
 	}
 	defer sub.Unsubscribe()
 
+	slog.Info("Subscribed to NATS topic: admin.connections.update")
+
 	// Keep connection alive until client disconnects
 	<-ctx.Done()
+	slog.Info("SSE connection closed for admin connections")
 }
 
 // CreateConnectionSSE creates a new connection via SSE
@@ -289,10 +310,13 @@ func (h *Handlers) TestConnectionHandler(w http.ResponseWriter, r *http.Request)
 
 // publishConnectionUpdate notifies all subscribers that connections have changed
 func (h *Handlers) publishConnectionUpdate() {
+	slog.Info("Publishing connection update to NATS", "topic", "admin.connections.update")
 	// NATS is required for app startup - no nil check needed
 	if err := h.nc.Publish("admin.connections.update", []byte("{}")); err != nil {
 		slog.Error("Failed to publish connection update", "error", err)
 		// Best-effort notification - don't fail the HTTP request
+	} else {
+		slog.Info("Successfully published connection update to NATS")
 	}
 }
 

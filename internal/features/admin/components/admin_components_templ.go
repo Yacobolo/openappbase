@@ -65,20 +65,20 @@ func AdminTabs() templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"card bg-base-100 shadow-xl\"><div class=\"card-body p-0\"><div role=\"tablist\" class=\"tabs tabs-bordered\"><input type=\"radio\" name=\"admin_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Connections\" checked><div role=\"tabpanel\" class=\"tab-content p-6\" id=\"connections-tab-panel\" data-init=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"card bg-base-100 shadow-xl\"><div class=\"card-body p-0\"><div role=\"tablist\" class=\"tabs tabs-bordered\"><input type=\"radio\" name=\"admin_tabs\" role=\"tab\" class=\"tab\" aria-label=\"Connections\" checked><div role=\"tabpanel\" class=\"tab-content p-6\" id=\"connections-tab-panel\"><div id=\"connections-tab-content\" data-init=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(datastar.GetSSE("/api/admin/connections"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 28, Col: 58}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 31, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\"></div></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\"></div></div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -108,7 +108,7 @@ func ConnectionsTabContent(connections []Connection) templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div id=\"connections-content\"><div class=\"flex justify-between items-center mb-6\"><div><h2 class=\"text-2xl font-bold\">Database Connections</h2><p class=\"text-base-content/60 text-sm mt-1\">Manage your PostgreSQL database connections</p></div><button class=\"btn btn-primary\" onclick=\"add_connection_modal.showModal()\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5 mr-2\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z\" clip-rule=\"evenodd\"></path></svg> Add Connection</button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div id=\"connections-tab-content\"><div class=\"flex justify-between items-center mb-6\"><div><h2 class=\"text-2xl font-bold\">Database Connections</h2><p class=\"text-base-content/60 text-sm mt-1\">Manage your PostgreSQL database connections</p></div><button class=\"btn btn-primary\" onclick=\"add_connection_modal.showModal()\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5 mr-2\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z\" clip-rule=\"evenodd\"></path></svg> Add Connection</button></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -236,7 +236,7 @@ func ConnectionCard(conn Connection) templ.Component {
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(conn.Name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 114, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 116, Col: 47}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
@@ -265,7 +265,7 @@ func ConnectionCard(conn Connection) templ.Component {
 		var templ_7745c5c3_Var10 string
 		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(conn.Host)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 126, Col: 40}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 128, Col: 40}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
@@ -278,7 +278,7 @@ func ConnectionCard(conn Connection) templ.Component {
 		var templ_7745c5c3_Var11 string
 		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(templ.EscapeString(formatPort(conn.Port)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 126, Col: 86}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 128, Col: 86}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 		if templ_7745c5c3_Err != nil {
@@ -291,7 +291,7 @@ func ConnectionCard(conn Connection) templ.Component {
 		var templ_7745c5c3_Var12 string
 		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(conn.Database)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 132, Col: 44}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 134, Col: 44}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 		if templ_7745c5c3_Err != nil {
@@ -304,7 +304,7 @@ func ConnectionCard(conn Connection) templ.Component {
 		var templ_7745c5c3_Var13 string
 		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(conn.Username)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 138, Col: 26}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 140, Col: 26}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 		if templ_7745c5c3_Err != nil {
@@ -317,7 +317,7 @@ func ConnectionCard(conn Connection) templ.Component {
 		var templ_7745c5c3_Var14 string
 		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(conn.SSLMode)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 144, Col: 30}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 146, Col: 30}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
@@ -330,7 +330,7 @@ func ConnectionCard(conn Connection) templ.Component {
 		var templ_7745c5c3_Var15 string
 		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(conn.UpdatedAt)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 150, Col: 71}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 152, Col: 71}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 		if templ_7745c5c3_Err != nil {
@@ -343,7 +343,7 @@ func ConnectionCard(conn Connection) templ.Component {
 		var templ_7745c5c3_Var16 string
 		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", conn.ID))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 156, Col: 52}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 158, Col: 52}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 		if templ_7745c5c3_Err != nil {
@@ -356,7 +356,7 @@ func ConnectionCard(conn Connection) templ.Component {
 		var templ_7745c5c3_Var17 string
 		templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", conn.ID))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 173, Col: 52}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 175, Col: 52}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 		if templ_7745c5c3_Err != nil {
@@ -458,7 +458,7 @@ func EnvironmentBadge(env string) templ.Component {
 			var templ_7745c5c3_Var20 string
 			templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(env)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 212, Col: 50}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/features/admin/components/admin_components.templ`, Line: 214, Col: 50}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 			if templ_7745c5c3_Err != nil {

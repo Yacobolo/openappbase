@@ -21,13 +21,15 @@ templ AdminTabs() {
 		<div class="card-body p-0">
 			<div role="tablist" class="tabs tabs-bordered">
 				<input type="radio" name="admin_tabs" role="tab" class="tab" aria-label="Connections" checked/>
-				<div 
-					role="tabpanel" 
+				<div
+					role="tabpanel"
 					class="tab-content p-6"
 					id="connections-tab-panel"
-					data-init={ datastar.GetSSE("/api/admin/connections") }
 				>
-					// Initially empty - will be populated by SSE
+					<div
+						id="connections-tab-content"
+						data-init={ datastar.GetSSE("/api/admin/connections") }
+					></div>
 				</div>
 				// Future tabs can be added here
 				// <input type="radio" name="admin_tabs" role="tab" class="tab" aria-label="Users"/>
@@ -39,7 +41,7 @@ templ AdminTabs() {
 
 // ConnectionsTabContent displays the connections management interface
 templ ConnectionsTabContent(connections []Connection) {
-	<div id="connections-content">
+	<div id="connections-tab-content">
 		<div class="flex justify-between items-center mb-6">
 			<div>
 				<h2 class="text-2xl font-bold">Database Connections</h2>
@@ -221,8 +223,8 @@ templ AddConnectionModal() {
 				<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 			</form>
 			<h3 class="font-bold text-lg mb-4">Add Database Connection</h3>
-			<form 
-				class="space-y-4" 
+			<form
+				class="space-y-4"
 				onsubmit="event.preventDefault(); const fd = new FormData(event.target); const data = Object.fromEntries(fd); data.port = parseInt(data.port); fetch('/api/admin/connections', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)}).then(r => r.ok && add_connection_modal.close())"
 			>
 				// Basic Information Section
