@@ -27,6 +27,7 @@ templ Base(title string) {
 				<div data-init="@get('/reload', {retryMaxCount: 1000, retryInterval:20, retryMaxWaitMs:200})"></div>
 			}
 			{ children... }
+			<div id="toast-container" class="toast"></div>
 		</body>
 	</html>
 }
