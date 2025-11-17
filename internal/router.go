@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"net/http"
 	"sync"
-	"time"
 
 	"northstar/config"
 	"northstar/internal/features/admin"
@@ -28,16 +27,6 @@ func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.
 	}
 
 	router.Handle("/static/*", resources.Handler())
-
-	// Create NATS KV bucket for editor sessions
-	_, err = js.CreateKeyValue(ctx, jetstream.KeyValueConfig{
-		Bucket:  "editor_sessions",
-		TTL:     24 * time.Hour,
-		Storage: jetstream.MemoryStorage,
-	})
-	if err != nil && err != jetstream.ErrBucketExists {
-		return fmt.Errorf("error creating editor_sessions KV bucket: %w", err)
-	}
 
 	if err := errors.Join(
 		// explorer.SetupRoutes(router, sessionStore, js, q),
