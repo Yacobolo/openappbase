@@ -12,6 +12,7 @@ import (
 	"northstar/internal/features/admin/components"
 	"northstar/internal/features/admin/pages"
 	"northstar/internal/features/admin/services"
+	commoncomponents "northstar/internal/features/common/components"
 	"northstar/internal/store"
 
 	"github.com/go-chi/chi/v5"
@@ -124,24 +125,28 @@ func (h *Handlers) TestConnection(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Test the connection
+	sse := datastar.NewSSE(w, r)
+
 	if err := h.connectionService.TestConnection(ctx, id); err != nil {
-		slog.Error("Connection test failed", "id", id, "error", err)
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(map[string]any{
-			"success": false,
-			"message": fmt.Sprintf("Connection test failed: %v", err),
-		})
+		msg := fmt.Sprintf("Connection test failed: %v", err)
+		slog.Error(msg, "id", id)
+		sse.ConsoleLog(msg)
+
+		sse.PatchElementTempl(
+			commoncomponents.Toast(msg, commoncomponents.ToastError),
+			datastar.WithSelectorID("toast-container"),
+			datastar.WithModeAppend(),
+		)
 		return
 	}
 
-	// Send success response
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]any{
-		"success": true,
-		"message": "Connection test successful!",
-	})
+	msg := "Connection test successful!"
+	slog.Info(msg, "id", id)
+	sse.PatchElementTempl(
+		commoncomponents.Toast(msg, commoncomponents.ToastSuccess),
+		datastar.WithSelectorID("toast-container"),
+		datastar.WithModeAppend(),
+	)
 }
 
 // DeleteConnection deletes a connection
