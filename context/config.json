@@ -2,45 +2,39 @@
   "libraries": [
     {
       "name": "daisyui",
-      "context7_id": "websites/daisyui",
+      "url": "https://daisyui.com/llms.txt",
       "output_dir": "context/daisyui",
-      "output_file": "daisyui.md",
-      "tokens": 1000000
-    },
-    {
-      "name": "datastar",
-      "context7_id": "websites/data-star_dev",
-      "output_dir": "context/datastar",
-      "output_file": "datastar.md",
-      "tokens": 1000000
+      "output_file": "daisyui.md"
     },
     {
       "name": "nats",
-      "context7_id": "websites/nats_io",
+      "url": "https://context7.com/api/v1/websites/nats_io?type=txt&tokens=1000000",
       "output_dir": "context/nats",
-      "output_file": "nats.md",
-      "tokens": 1000000
+      "output_file": "nats.md"
     },
     {
       "name": "sqlc",
-      "context7_id": "websites/sqlc_dev_en",
+      "url": "https://context7.com/api/v1/websites/sqlc_dev_en?type=txt&tokens=1000000",
       "output_dir": "context/sqlc",
-      "output_file": "sqlc.md",
-      "tokens": 1000000
+      "output_file": "sqlc.md"
     },
     {
       "name": "templ",
-      "context7_id": "websites/templ_guide",
+      "url": "https://templ.guide/llms.md",
       "output_dir": "context/templ",
-      "output_file": "templ.md",
-      "tokens": 1000000
+      "output_file": "templ.md"
     },
     {
       "name": "tailwindcss",
-      "context7_id": "websites/tailwindcss",
+      "url": "https://context7.com/api/v1/websites/tailwindcss?type=txt&tokens=1000000",
       "output_dir": "context/tailwindcss",
-      "output_file": "tailwindcss.md",
-      "tokens": 1000000
+      "output_file": "tailwindcss.md"
+    },
+    {
+      "name": "opencode",
+      "url": "https://context7.com/api/v1/websites/opencode_ai?type=txt&tokens=1000000",
+      "output_dir": "context/opencode",
+      "output_file": "opencode.md"
     }
   ]
 }

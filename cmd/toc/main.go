@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"log/slog"
 	"os"
@@ -10,6 +11,14 @@ import (
 )
 
 func main() {
+	maxDepth := flag.Int("depth", 3, "Maximum header depth to include (1-6)")
+	flag.Parse()
+
+	if *maxDepth < 1 || *maxDepth > 6 {
+		slog.Error("Invalid depth", "depth", *maxDepth)
+		os.Exit(1)
+	}
+
 	contextDir := "context"
 
 	// Get all subdirectories in context/
@@ -38,12 +47,12 @@ func main() {
 				continue
 			}
 
-			if err := generateTOC(mdFile); err != nil {
+			if err := generateTOC(mdFile, *maxDepth); err != nil {
 				slog.Error("Failed to generate TOC", "file", mdFile, "error", err)
 				continue
 			}
 			processedCount++
-			slog.Info("Generated TOC", "file", mdFile)
+			slog.Info("Generated TOC", "file", mdFile, "depth", *maxDepth)
 		}
 	}
 
@@ -54,8 +63,8 @@ func main() {
 	}
 }
 
-func generateTOC(mdFilePath string) error {
-	// Read the markdown file to count total lines and extract headers
+func generateTOC(mdFilePath string, maxDepth int) error {
+	// Read the markdown file to extract headers
 	file, err := os.Open(mdFilePath)
 	if err != nil {
 		return fmt.Errorf("failed to open file: %w", err)
@@ -64,25 +73,33 @@ func generateTOC(mdFilePath string) error {
 
 	var headers []struct {
 		lineNum int
+		level   int
 		text    string
 	}
 
 	scanner := bufio.NewScanner(file)
 	lineNum := 0
-	totalLines := 0
 	for scanner.Scan() {
 		lineNum++
-		totalLines = lineNum
 		line := scanner.Text()
 
 		// Check if line starts with #
 		if strings.HasPrefix(line, "#") {
+			// Count the number of # characters (header level)
+			level := len(line) - len(strings.TrimLeft(line, "#"))
+
+			// Skip if deeper than max depth
+			if level > maxDepth {
+				continue
+			}
+
 			// Extract the header text (remove leading # and whitespace)
 			text := strings.TrimSpace(strings.TrimLeft(line, "#"))
 			headers = append(headers, struct {
 				lineNum int
+				level   int
 				text    string
-			}{lineNum, text})
+			}{lineNum, level, text})
 		}
 	}
 
@@ -102,36 +119,16 @@ func generateTOC(mdFilePath string) error {
 
 	// Write header
 	baseName := filepath.Base(mdFilePath)
-	fmt.Fprintf(writer, "# Table of Contents for %s\n\n", baseName)
-	fmt.Fprintf(writer, "This file is auto-generated. Run `task context:toc` to regenerate.\n\n")
+	fmt.Fprintf(writer, "# File Map: %s\n\n", baseName)
 
-	// Write TOC entries with line ranges
-	fmt.Fprintln(writer, "## Contents\n")
-	for i, h := range headers {
-		startLine := h.lineNum
-		var endLine int
+	// Write TOC entries with hierarchy
+	for _, h := range headers {
+		// Indent based on level (level 1 = no indent, level 2 = 2 spaces, etc.)
+		indent := strings.Repeat("  ", h.level-1)
 
-		// Calculate end line based on next header or EOF
-		if i < len(headers)-1 {
-			endLine = headers[i+1].lineNum - 1
-		} else {
-			endLine = totalLines
-		}
-
-		// Format: L0001-L0017 | Header Text
-		fmt.Fprintf(writer, "L%04d-L%04d | %s\n", startLine, endLine, h.text)
+		// Format: - [L0001] Header Text
+		fmt.Fprintf(writer, "%s- [L%04d] %s\n", indent, h.lineNum, h.text)
 	}
-
-	// Write usage examples
-	fmt.Fprintln(writer, "\n## Usage Examples\n")
-	fmt.Fprintln(writer, "```bash")
-	fmt.Fprintf(writer, "# Read a specific section by line range\n")
-	fmt.Fprintf(writer, "sed -n '54,102p' %s\n\n", mdFilePath)
-	fmt.Fprintf(writer, "# Search for specific topics\n")
-	fmt.Fprintf(writer, "grep -n -i 'install' %s\n\n", mdFilePath)
-	fmt.Fprintf(writer, "# Show context around a match (5 lines before and after)\n")
-	fmt.Fprintf(writer, "grep -n -C 5 'example' %s\n", mdFilePath)
-	fmt.Fprintln(writer, "```")
 
 	if err := writer.Flush(); err != nil {
 		return fmt.Errorf("failed to write TOC file: %w", err)

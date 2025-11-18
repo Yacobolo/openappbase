@@ -1,0 +1,21 @@
+# File Map: tailwindcss.md
+
+- [L0001] Tailwind CSS Documentation
+  - [L0007] Installation with Vite
+- [L0012] Create a new Vite project
+- [L0016] Install Tailwind CSS and Vite plugin
+  - [L0053] Utility Classes with Variants
+  - [L0079] Custom Theme Configuration
+  - [L0118] Arbitrary Values
+  - [L0156] Color System
+  - [L0194] Dark Mode
+  - [L0244] State Variants
+  - [L0293] Responsive Design
+  - [L0327] Custom Utilities
+  - [L0395] Custom Variants
+  - [L0442] Applying Variants in CSS
+  - [L0481] Layer Organization
+  - [L0545] Functions and Directives
+  - [L0584] Pseudo-elements
+  - [L0620] Media Queries
+  - [L0671] Summary

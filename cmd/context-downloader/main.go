@@ -12,13 +12,12 @@ import (
 	"sync"
 )
 
-// Library represents a Context7 library to download
+// Library represents a documentation source to download
 type Library struct {
 	Name       string `json:"name"`
-	Context7ID string `json:"context7_id"`
+	URL        string `json:"url"`
 	OutputDir  string `json:"output_dir"`
 	OutputFile string `json:"output_file"`
-	Tokens     int    `json:"tokens"`
 }
 
 // Config represents the configuration file structure
@@ -26,11 +25,7 @@ type Config struct {
 	Libraries []Library `json:"libraries"`
 }
 
-const (
-	context7APIURL = "https://context7.com/api/v1"
-	configPath     = "context/config.json"
-	apiKeyEnv      = "CONTEXT7_API_KEY"
-)
+const configPath = "context/config.json"
 
 func main() {
 	if err := run(); err != nil {
@@ -40,21 +35,13 @@ func main() {
 }
 
 func run() error {
-	// Load API key from environment (optional)
-	apiKey := os.Getenv(apiKeyEnv)
-	if apiKey == "" {
-		slog.Warn("CONTEXT7_API_KEY not set - using unauthenticated API (limited documentation)")
-	} else {
-		slog.Info("Using authenticated Context7 API")
-	}
-
 	// Load configuration
 	config, err := loadConfig(configPath)
 	if err != nil {
 		return fmt.Errorf("failed to load config: %w", err)
 	}
 
-	slog.Info("Starting Context7 documentation download", "libraries", len(config.Libraries))
+	slog.Info("Starting documentation download", "libraries", len(config.Libraries))
 
 	// Ensure output directories exist
 	if err := createOutputDirectories(config.Libraries); err != nil {
@@ -62,11 +49,11 @@ func run() error {
 	}
 
 	// Download all libraries concurrently
-	if err := downloadLibraries(config.Libraries, apiKey); err != nil {
+	if err := downloadLibraries(config.Libraries); err != nil {
 		return fmt.Errorf("failed to download libraries: %w", err)
 	}
 
-	slog.Info("Successfully downloaded all Context7 documentation")
+	slog.Info("Successfully downloaded all documentation")
 	return nil
 }
 
@@ -122,7 +109,7 @@ func createOutputDirectories(libraries []Library) error {
 	return nil
 }
 
-func downloadLibraries(libraries []Library, apiKey string) error {
+func downloadLibraries(libraries []Library) error {
 	var wg sync.WaitGroup
 	errCh := make(chan error, len(libraries))
 
@@ -131,9 +118,9 @@ func downloadLibraries(libraries []Library, apiKey string) error {
 		go func(l Library) {
 			defer wg.Done()
 
-			slog.Info("downloading...", "library", l.Name, "context7_id", l.Context7ID)
+			slog.Info("downloading...", "library", l.Name, "url", l.URL)
 
-			if err := downloadLibrary(l, apiKey); err != nil {
+			if err := downloadLibrary(l); err != nil {
 				errCh <- fmt.Errorf("failed to download [%s]: %w", l.Name, err)
 			} else {
 				slog.Info("finished", "library", l.Name, "output", filepath.Join(l.OutputDir, l.OutputFile))
@@ -156,35 +143,16 @@ func downloadLibraries(libraries []Library, apiKey string) error {
 	return nil
 }
 
-func downloadLibrary(lib Library, apiKey string) error {
-	// Build Context7 API v1 URL
-	url := fmt.Sprintf("%s/%s?type=txt&tokens=%d", context7APIURL, lib.Context7ID, lib.Tokens)
-
-	// Create HTTP request
-	req, err := http.NewRequest("GET", url, nil)
+func downloadLibrary(lib Library) error {
+	// Fetch from URL
+	resp, err := http.Get(lib.URL)
 	if err != nil {
-		return fmt.Errorf("failed to create request: %w", err)
-	}
-
-	// Add authorization header if API key is provided
-	if apiKey != "" {
-		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", apiKey))
-	}
-
-	// Execute request
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		return fmt.Errorf("failed to fetch from Context7 API: %w", err)
+		return fmt.Errorf("failed to fetch from URL: %w", err)
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode == http.StatusUnauthorized {
-		return fmt.Errorf("Context7 API authentication failed - check your CONTEXT7_API_KEY")
-	}
-
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("Context7 API returned non-OK status: %s (url: %s)", resp.Status, url)
+		return fmt.Errorf("HTTP request returned non-OK status: %s (url: %s)", resp.Status, lib.URL)
 	}
 
 	// Prepare output file path
