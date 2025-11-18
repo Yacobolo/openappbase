@@ -17,7 +17,8 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/nats-io/nats-server/v2 v2.11.9
 	github.com/nats-io/nats.go v1.45.0
-	github.com/starfederation/datastar-go v1.0.2
+	github.com/starfederation/datastar-go v1.0.3
+	modernc.org/sqlite v1.38.2
 )
 
 require (
@@ -132,7 +133,6 @@ require (
 	modernc.org/libc v1.66.8 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
-	modernc.org/sqlite v1.38.2 // indirect
 	mvdan.cc/sh/v3 v3.11.0 // indirect
 	zombiezen.com/go/sqlite v1.4.2 // indirect
 )

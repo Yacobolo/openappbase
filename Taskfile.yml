@@ -122,6 +122,17 @@ tasks:
         fi
       - task: db:migrate:up
 
+  # Context documentation tasks
+  context:toc:
+    desc: "Generate Table of Contents for all markdown files in context/ subdirectories"
+    cmds:
+      - go run cmd/toc/main.go
+
+  context:godoc:
+    desc: "Generate Go package documentation for context/go-packages/"
+    cmds:
+      - go run cmd/godoc/main.go
+
   default:
     cmds:
       - task: live

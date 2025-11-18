@@ -1,0 +1,572 @@
+package datastar // import "github.com/starfederation/datastar-go/datastar"
+
+
+CONSTANTS
+
+const (
+	DatastarKey = "datastar"
+	// The default duration for retrying SSE on connection reset. This is part of the underlying retry mechanism of SSE.
+	DefaultSseRetryDuration          = 1000 * time.Millisecond
+	SelectorDatalineLiteral          = "selector "
+	ModeDatalineLiteral              = "mode "
+	ElementsDatalineLiteral          = "elements "
+	UseViewTransitionDatalineLiteral = "useViewTransition "
+	SignalsDatalineLiteral           = "signals "
+	OnlyIfMissingDatalineLiteral     = "onlyIfMissing "
+)
+const (
+	NewLine       = "\n"
+	DoubleNewLine = "\n\n"
+)
+
+VARIABLES
+
+var (
+	// Should elements be patched using the ViewTransition API?
+	DefaultElementsUseViewTransitions = false
+	// Should a given set of signals patch if they are missing?
+	DefaultPatchSignalsOnlyIfMissing = false
+)
+var ValidElementPatchModes = []ElementPatchMode{
+	ElementPatchModeOuter,
+	ElementPatchModeInner,
+	ElementPatchModeRemove,
+	ElementPatchModePrepend,
+	ElementPatchModeAppend,
+	ElementPatchModeBefore,
+	ElementPatchModeAfter,
+	ElementPatchModeReplace,
+}
+    ValidElementPatchModes is a list of valid element patch modes.
+
+
+FUNCTIONS
+
+func DeleteSSE(urlFormat string, args ...any) string
+    DeleteSSE is a convenience method for generating Datastar backend delete
+    action attribute.
+
+[delete]: https://data-star.dev/reference/action_plugins#delete
+
+func GetSSE(urlFormat string, args ...any) string
+    GetSSE is a convenience method for generating Datastar backend get action
+    attribute.
+
+[get]: https://data-star.dev/reference/action_plugins#get
+
+func PatchSSE(urlFormat string, args ...any) string
+    PatchSSE is a convenience method for generating Datastar backend patch
+    action attribute.
+
+[patch]: https://data-star.dev/reference/action_plugins#patch
+
+func PostSSE(urlFormat string, args ...any) string
+    PostSSE is a convenience method for generating Datastar backend post action
+    attribute.
+
+[post]: https://data-star.dev/reference/action_plugins#post
+
+func PutSSE(urlFormat string, args ...any) string
+    PutSSE is a convenience method for generating Datastar backend put action
+    attribute.
+
+[put]: https://data-star.dev/reference/action_plugins#put
+
+func ReadSignals(r *http.Request, signals any) error
+    ReadSignals extracts Datastar signals from an HTTP request and unmarshals
+    them into the signals target, which should be a pointer to a struct.
+
+    Expects signals in [URL.Query] for http.MethodGet requests. Expects
+    JSON-encoded signals in [Request.Body] for other request methods.
+
+
+TYPES
+
+type BrotliOption func(*brotli.Options)
+    BrotliOption configures the Brotli compression algorithm.
+
+func WithBrotliLGWin(lgwin int) BrotliOption
+    WithBrotliLGWin the sliding window size for Brotli compression algorithm.
+    Select a value between 10 and 24. Defaults to 0, indicating automatic window
+    size selection based on compression quality.
+
+func WithBrotliLevel(level int) BrotliOption
+    WithBrotliLevel determines the algorithm's compression level. Higher
+    values result in smaller output at the cost of higher CPU usage. Fastest
+    compression level is 0. Best compression level is 11. Defaults to 6.
+
+type CompressionOption func(*compressionOptions)
+    CompressionOption configures server-sent events message compression.
+
+func WithBrotli(opts ...BrotliOption) CompressionOption
+    WithBrotli appends a Brotli compressor to the list of compressors.
+
+[Brotli]: https://en.wikipedia.org/wiki/Brotli
+
+func WithClientPriority() CompressionOption
+    WithClientPriority sets the compression strategy to ClientPriority.
+    The compression algorithm will be selected based on the client's preference
+    from the list of included compressors.
+
+func WithDeflate(opts ...DeflateOption) CompressionOption
+    WithDeflate appends a Deflate compressor to the list of compressors.
+
+[Deflate]: https://en.wikipedia.org/wiki/Deflate
+
+func WithForced() CompressionOption
+    WithForced sets the compression strategy to Forced. The first compression
+    algorithm will be selected from the list of included compressors.
+
+func WithGzip(opts ...GzipOption) CompressionOption
+    WithGzip appends a Gzip compressor to the list of compressors.
+
+[Gzip]: https://en.wikipedia.org/wiki/Gzip
+
+func WithServerPriority() CompressionOption
+    WithServerPriority sets the compression strategy to ServerPriority.
+    The compression algorithm will be selected based on the server's preference
+    from the list of included compressors.
+
+func WithZstd(opts ...zstd_opts.EOption) CompressionOption
+    WithZstd appends a Zstd compressor to the list of compressors.
+
+[Zstd]: https://en.wikipedia.org/wiki/Zstd
+
+type CompressionStrategy string
+    CompressionStrategy indicates the strategy for selecting the compression
+    algorithm.
+
+const (
+	// ClientPriority indicates that the client's preferred compression algorithm
+	//  should be used if possible.
+	ClientPriority CompressionStrategy = "client_priority"
+
+	// ServerPriority indicates that the server's preferred compression algorithm
+	//  should be used.
+	ServerPriority CompressionStrategy = "server_priority"
+
+	// Forced indicates that the first provided compression
+	// algorithm must be used regardless of client or server preferences.
+	Forced CompressionStrategy = "forced"
+)
+type Compressor struct {
+	Encoding   string
+	Compressor httpcompression.CompressorProvider
+}
+    Compressor pairs a httpcompression.CompressorProvider with an encoding HTTP
+    content type.
+
+type DeflateOption func(*zlib.Options)
+    DeflateOption configures the Deflate compression algorithm.
+
+func WithDeflateDictionary(dict []byte) DeflateOption
+    WithDeflateDictionary sets the dictionary used by the algorithm. This can
+    improve compression ratio for repeated data.
+
+func WithDeflateLevel(level int) DeflateOption
+    WithDeflateLevel determines the algorithm's compression level. Higher values
+    result in smaller output at the cost of higher CPU usage.
+
+    Choose one of the following levels:
+      - zlib.NoCompression
+      - zlib.BestSpeed
+      - zlib.BestCompression
+      - zlib.DefaultCompression
+      - zlib.HuffmanOnly
+
+type DispatchCustomEventOption func(*dispatchCustomEventOptions)
+    DispatchCustomEventOption configures one custom server-sent event.
+
+func WithDispatchCustomEventBubbles(bubbles bool) DispatchCustomEventOption
+    WithDispatchCustomEventBubbles overrides the default custom event bubbling
+    `true` value. Setting bubbling to `false` is equivalent to calling
+    `event.stopPropagation()` Javascript command on the client side for the
+    dispatched event. This prevents the event from triggering event handlers of
+    its parent elements.
+
+[event bubbling]: https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling
+
+func WithDispatchCustomEventCancelable(cancelable bool) DispatchCustomEventOption
+    WithDispatchCustomEventCancelable overrides the default custom event
+    cancelability `true` value. Setting cancelability to `false` is blocks
+    `event.preventDefault()` Javascript command on the client side for the
+    dispatched event.
+
+[event cancelability]: https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable
+
+func WithDispatchCustomEventComposed(composed bool) DispatchCustomEventOption
+    WithDispatchCustomEventComposed overrides the default custom event composed
+    `true` value. It indicates whether or not the event will propagate across
+    the shadow HTML DOM boundary into the document DOM tree. When `false`,
+    the shadow root will be the last node to be offered the event.
+
+[event composed]: https://developer.mozilla.org/en-US/docs/Web/API/Event/composed
+
+func WithDispatchCustomEventEventID(id string) DispatchCustomEventOption
+    WithDispatchCustomEventEventID configures an optional event ID for the
+    custom event. The client message field lastEventId will be set to this
+    value. If the next event does not have an event ID, the last used event ID
+    will remain.
+
+[lastEventId]: https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/lastEventId
+
+func WithDispatchCustomEventRetryDuration(retryDuration time.Duration) DispatchCustomEventOption
+    WithDispatchCustomEventRetryDuration overrides the DefaultSseRetryDuration
+    for one custom event.
+
+func WithDispatchCustomEventSelector(selector string) DispatchCustomEventOption
+    WithDispatchCustomEventSelector replaces the default custom event target
+    `document` with a CSS selector. If the selector matches multiple HTML
+    elements, the event will be dispatched from each one. For example,
+    if the selector is `#my-element`, the event will be dispatched from the
+    element with the ID `my-element`. If the selector is `main > section`,
+    the event will be dispatched from each `<section>` element which is a direct
+    child of the `<main>` element.
+
+[CSS selector]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors
+
+type ElementPatchMode string
+    The mode in which an element is patched into the DOM.
+
+const (
+	// Default value for ElementPatchMode
+	// Morphs the element into the existing element.
+	DefaultElementPatchMode = ElementPatchModeOuter
+
+	// Morphs the element into the existing element.
+	ElementPatchModeOuter ElementPatchMode = "outer"
+	// Replaces the inner HTML of the existing element.
+	ElementPatchModeInner ElementPatchMode = "inner"
+	// Removes the existing element.
+	ElementPatchModeRemove ElementPatchMode = "remove"
+	// Replaces the existing element with the new element.
+	ElementPatchModeReplace ElementPatchMode = "replace"
+	// Prepends the element inside to the existing element.
+	ElementPatchModePrepend ElementPatchMode = "prepend"
+	// Appends the element inside the existing element.
+	ElementPatchModeAppend ElementPatchMode = "append"
+	// Inserts the element before the existing element.
+	ElementPatchModeBefore ElementPatchMode = "before"
+	// Inserts the element after the existing element.
+	ElementPatchModeAfter ElementPatchMode = "after"
+)
+func ElementPatchModeFromString(s string) (ElementPatchMode, error)
+    ElementPatchModeFromString converts a string to a ElementPatchMode.
+
+type EventType string
+    The type protocol on top of SSE which allows for core pushed based
+    communication between the server and the client.
+
+const (
+	// An event for patching HTML elements into the DOM.
+	EventTypePatchElements EventType = "datastar-patch-elements"
+	// An event for patching signals.
+	EventTypePatchSignals EventType = "datastar-patch-signals"
+)
+type ExecuteScriptOption func(*executeScriptOptions)
+    ExecuteScriptOption configures script execution event that will be sent to
+    the client.
+
+func WithExecuteScriptAttributeKVs(kvs ...string) ExecuteScriptOption
+    WithExecuteScriptAttributeKVs is an alternative option for
+    WithExecuteScriptAttributes. Even parameters are keys, odd parameters are
+    their values.
+
+func WithExecuteScriptAttributes(attributes ...string) ExecuteScriptOption
+    WithExecuteScriptAttributes sets the script element attributes. Each
+    attribute should be a complete key="value" pair (e.g., `type="module"`).
+
+func WithExecuteScriptAutoRemove(autoremove bool) ExecuteScriptOption
+    WithExecuteScriptAutoRemove requires the client to eliminate the script
+    element after its execution.
+
+func WithExecuteScriptEventID(id string) ExecuteScriptOption
+    WithExecuteScriptEventID configures an optional event ID for the script
+    execution event. The client message field lastEventId will be set to this
+    value. If the next event does not have an event ID, the last used event ID
+    will remain.
+
+[lastEventId]: https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/lastEventId
+
+func WithExecuteScriptRetryDuration(retryDuration time.Duration) ExecuteScriptOption
+    WithExecuteScriptRetryDuration overrides the DefaultSseRetryDuration for
+    this script execution only.
+
+type GoStarElementRenderer interface {
+	Render(w io.Writer) error
+}
+    GoStarElementRenderer satisfies the component rendering interface for HTML
+    template engine GoStar. This separate type ensures compatibility with GoStar
+    without imposing a dependency requirement on those who prefer to use a
+    different template engine.
+
+[GoStar]: https://github.com/delaneyj/gostar
+
+type GzipOption func(*gzip.Options)
+    GzipOption configures the Gzip compression algorithm.
+
+func WithGzipLevel(level int) GzipOption
+    WithGzipLevel determines the algorithm's compression level. Higher values
+    result in smaller output at the cost of higher CPU usage.
+
+    Choose one of the following levels:
+      - gzip.NoCompression
+      - gzip.BestSpeed
+      - gzip.BestCompression
+      - gzip.DefaultCompression
+      - gzip.HuffmanOnly
+
+type PatchElementOption func(*patchElementOptions)
+    PatchElementOption configures the [sse.PatchElements] event initialization.
+
+func WithMode(merge ElementPatchMode) PatchElementOption
+    WithMode overrides the DefaultElementPatchMode for the element. Choose a
+    valid ElementPatchMode.
+
+func WithModeAfter() PatchElementOption
+    WithModeAfter creates a PatchElementOption that merges elements using the
+    after mode.
+
+func WithModeAppend() PatchElementOption
+    WithModeAppend creates a PatchElementOption that merges elements using the
+    append mode.
+
+func WithModeBefore() PatchElementOption
+    WithModeBefore creates a PatchElementOption that merges elements using the
+    before mode.
+
+func WithModeInner() PatchElementOption
+    WithModeInner creates a PatchElementOption that merges elements using the
+    inner mode.
+
+func WithModeOuter() PatchElementOption
+    WithModeOuter creates a PatchElementOption that merges elements using the
+    outer mode.
+
+func WithModePrepend() PatchElementOption
+    WithModePrepend creates a PatchElementOption that merges elements using the
+    prepend mode.
+
+func WithModeRemove() PatchElementOption
+    WithModeRemove creates a PatchElementOption that removes elements from the
+    DOM.
+
+func WithModeReplace() PatchElementOption
+    WithModeReplace creates a PatchElementOption that replaces elements without
+    morphing. This mode does not use morphing and will completely replace the
+    element, resetting any related state.
+
+func WithPatchElementsEventID(id string) PatchElementOption
+    WithPatchElementsEventID configures an optional event ID for the elements
+    patch event. The client message field lastEventId will be set to this value.
+    If the next event does not have an event ID, the last used event ID will
+    remain.
+
+[lastEventId]: https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/lastEventId
+
+func WithRetryDuration(retryDuration time.Duration) PatchElementOption
+    WithRetryDuration overrides the DefaultSseRetryDuration for the element
+    patch event.
+
+func WithSelector(selector string) PatchElementOption
+    WithSelector specifies the CSS selector for HTML elements that an element
+    will be merged over or merged next to, depending on the merge mode.
+
+[CSS selector]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
+
+func WithSelectorID(id string) PatchElementOption
+    WithSelectorID is a convenience wrapper for WithSelector option equivalent
+    to calling `WithSelector("#"+id)`.
+
+func WithSelectorf(selectorFormat string, args ...any) PatchElementOption
+    WithSelectorf is a convenience wrapper for WithSelector option that formats
+    the selector string using the provided format and arguments similar to
+    fmt.Sprintf.
+
+func WithUseViewTransitions(useViewTransition bool) PatchElementOption
+    WithUseViewTransitions specifies whether to use view transitions when
+    merging elements.
+
+[view transitions]: https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API
+
+func WithViewTransitions() PatchElementOption
+    WithViewTransitions enables the use of view transitions when merging
+    elements.
+
+func WithoutViewTransitions() PatchElementOption
+    WithoutViewTransitions disables the use of view transitions when merging
+    elements.
+
+type PatchSignalsOption func(*patchSignalsOptions)
+    PatchSignalsOption configures one EventTypePatchSignals event.
+
+func WithOnlyIfMissing(onlyIfMissing bool) PatchSignalsOption
+    WithOnlyIfMissing instructs the client to only patch signals if they are
+    missing.
+
+func WithPatchSignalsEventID(id string) PatchSignalsOption
+    WithPatchSignalsEventID configures an optional event ID for the signals
+    patch event. The client message field lastEventId will be set to this value.
+    If the next event does not have an event ID, the last used event ID will
+    remain.
+
+[lastEventId]: https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/lastEventId
+
+func WithPatchSignalsRetryDuration(retryDuration time.Duration) PatchSignalsOption
+    WithPatchSignalsRetryDuration overrides the DefaultSseRetryDuration for
+    signal patching.
+
+type SSEEventOption func(*serverSentEventData)
+    SSEEventOption modifies one server-sent event.
+
+func WithSSEEventId(id string) SSEEventOption
+    WithSSEEventId configures an optional event ID for one server-sent event.
+    The client message field lastEventId will be set to this value. If the next
+    event does not have an event ID, the last used event ID will remain.
+
+[lastEventId]: https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/lastEventId
+
+func WithSSERetryDuration(retryDuration time.Duration) SSEEventOption
+    WithSSERetryDuration overrides the DefaultSseRetryDuration for one
+    server-sent event.
+
+type SSEOption func(*ServerSentEventGenerator)
+    SSEOption configures the initialization of an HTTP Server-Sent Event stream.
+
+func WithCompression(opts ...CompressionOption) SSEOption
+    WithCompression adds compression to server-sent event stream.
+
+func WithContext(ctx context.Context) SSEOption
+    Allows setting a new, more specific context Must always be a context derived
+    from the request context (not enforced) Useful for setting values to be read
+    by templ components
+
+type ServerSentEventGenerator struct {
+	// Has unexported fields.
+}
+    ServerSentEventGenerator streams events into an http.ResponseWriter.
+    Each event is flushed immediately.
+
+func NewSSE(w http.ResponseWriter, r *http.Request, opts ...SSEOption) *ServerSentEventGenerator
+    NewSSE upgrades an http.ResponseWriter to an HTTP Server-Sent Event stream.
+    The connection is kept alive until the context is canceled or the response
+    is closed by returning from the handler. Run an event loop for persistent
+    streaming.
+
+func (sse *ServerSentEventGenerator) ConsoleError(err error, opts ...ExecuteScriptOption) error
+    ConsoleError is a convenience method for [see.ExecuteScript]. It is
+    equivalent to calling [see.ExecuteScript] with [see.WithScript] option set
+    to `console.error(msg)`.
+
+func (sse *ServerSentEventGenerator) ConsoleLog(msg string, opts ...ExecuteScriptOption) error
+    ConsoleLog is a convenience method for [see.ExecuteScript]. It is equivalent
+    to calling [see.ExecuteScript] with [see.WithScript] option set to
+    `console.log(msg)`.
+
+func (sse *ServerSentEventGenerator) ConsoleLogf(format string, args ...any) error
+    ConsoleLogf is a convenience method for [see.ExecuteScript]. It is
+    equivalent to calling [see.ExecuteScript] with [see.WithScript] option set
+    to `console.log(fmt.Sprintf(format, args...))`.
+
+func (sse *ServerSentEventGenerator) Context() context.Context
+    Context returns the context associated with the upgraded connection.
+    It is equivalent to calling [request.Context].
+
+func (sse *ServerSentEventGenerator) DispatchCustomEvent(eventName string, detail any, opts ...DispatchCustomEventOption) error
+    DispatchCustomEvent is a convenience method for dispatching a custom event
+    by executing a client side script via [sse.ExecuteScript] call. The detail
+    struct is marshaled to JSON and passed as a parameter to the event.
+
+func (sse *ServerSentEventGenerator) ExecuteScript(scriptContents string, opts ...ExecuteScriptOption) error
+    ExecuteScript runs a script in the client browser by using PatchElements to
+    send a <script> element.
+
+func (sse *ServerSentEventGenerator) IsClosed() bool
+    IsClosed returns true if the context has been cancelled or the connection
+    is closed. This is useful for checking if the SSE connection is still active
+    before performing expensive operations.
+
+func (sse *ServerSentEventGenerator) MarshalAndPatchSignals(signals any, opts ...PatchSignalsOption) error
+    MarshalAndPatchSignals is a convenience method for [see.PatchSignals]. It
+    marshals a given signals struct into JSON and emits a EventTypePatchSignals
+    event.
+
+func (sse *ServerSentEventGenerator) MarshalAndPatchSignalsIfMissing(signals any, opts ...PatchSignalsOption) error
+    MarshalAndPatchSignalsIfMissing is a convenience method for
+    [see.MarshalAndPatchSignals]. It is equivalent to calling
+    [see.MarshalAndPatchSignals] with [see.WithOnlyIfMissing(true)] option.
+
+func (sse *ServerSentEventGenerator) PatchElementGostar(child GoStarElementRenderer, opts ...PatchElementOption) error
+    PatchElementGostar is a convenience adaptor of [sse.PatchElements] for
+    GoStarElementRenderer.
+
+func (sse *ServerSentEventGenerator) PatchElementTempl(c TemplComponent, opts ...PatchElementOption) error
+    PatchElementTempl is a convenience adaptor of [sse.PatchElements] for
+    TemplComponent.
+
+func (sse *ServerSentEventGenerator) PatchElementf(format string, args ...any) error
+    PatchElementf is a convenience wrapper for [PatchElements] option equivalent
+    to calling `PatchElements(fmt.Sprintf(format, args...))`.
+
+func (sse *ServerSentEventGenerator) PatchElements(elements string, opts ...PatchElementOption) error
+    PatchElements sends HTML elements to the client to update the DOM tree with.
+
+func (sse *ServerSentEventGenerator) PatchSignals(signalsContents []byte, opts ...PatchSignalsOption) error
+    PatchSignals sends a EventTypePatchSignals to the client. Requires a
+    JSON-encoded payload.
+
+func (sse *ServerSentEventGenerator) PatchSignalsIfMissingRaw(signalsJSON string) error
+    PatchSignalsIfMissingRaw is a convenience method for [see.PatchSignals].
+    It is equivalent to calling [see.PatchSignals] with
+    [see.WithOnlyIfMissing(true)] option.
+
+func (sse *ServerSentEventGenerator) Prefetch(urls ...string) error
+    Prefetch is a convenience wrapper for [sse.ExecuteScript] that prefetches
+    the provided links. It follows the Javascript speculation rules API prefetch
+    specification.
+
+[speculation rules API]: https://developer.mozilla.org/en-US/docs/Web/API/Speculation_Rules_API
+
+func (sse *ServerSentEventGenerator) Redirect(url string, opts ...ExecuteScriptOption) error
+    Redirect is a convenience method for [see.ExecuteScript]. It sends a
+    redirect event to the client .
+
+func (sse *ServerSentEventGenerator) Redirectf(format string, args ...any) error
+    Redirectf is a convenience method for [see.ExecuteScript]. It sends a
+    redirect event to the client formatted using fmt.Sprintf.
+
+func (sse *ServerSentEventGenerator) RemoveElement(selector string, opts ...PatchElementOption) error
+    RemoveElement is a convenience method for removing elements from the DOM.
+    It uses PatchElements with the remove mode and the specified selector.
+
+func (sse *ServerSentEventGenerator) RemoveElementByID(id string) error
+    RemoveElementByID is a convenience wrapper for RemoveElement that removes an
+    element by its ID. Equivalent to calling RemoveElement("#"+id).
+
+func (sse *ServerSentEventGenerator) RemoveElementf(selectorFormat string, args ...any) error
+    RemoveElementf is a convenience wrapper for RemoveElement that formats
+    the selector string using the provided format and arguments similar to
+    fmt.Sprintf.
+
+func (sse *ServerSentEventGenerator) ReplaceURL(u url.URL, opts ...ExecuteScriptOption) error
+    ReplaceURL replaces the current URL in the browser's history.
+
+func (sse *ServerSentEventGenerator) ReplaceURLQuerystring(r *http.Request, values url.Values, opts ...ExecuteScriptOption) error
+    ReplaceURLQuerystring is a convenience wrapper for [sse.ReplaceURL] that
+    replaces the query string of the current URL request with new a new query
+    built from the provided values.
+
+func (sse *ServerSentEventGenerator) Send(eventType EventType, dataLines []string, opts ...SSEEventOption) error
+    Send emits a server-sent event to the client. Method is safe for concurrent
+    use.
+
+type TemplComponent interface {
+	Render(ctx context.Context, w io.Writer) error
+}
+    TemplComponent satisfies the component rendering interface for HTML template
+    engine Templ. This separate type ensures compatibility with Templ without
+    imposing a dependency requirement on those who prefer to use a different
+    template engine.
+
+[Templ]: https://templ.guide/
+

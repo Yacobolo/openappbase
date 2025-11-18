@@ -44,6 +44,19 @@ This directory contains up-to-date reference documentation for the key technolog
   - Live reload configuration
   - **`toc.md`** - Table of contents with line numbers for quick navigation
 
+### Go Package API Reference
+
+- **`go-packages/datastar-go/`** - Datastar Go SDK API reference (SSE helpers, signal reading, compression)
+- **`go-packages/chi/`** - Chi router API reference (routing, middleware, context)
+- **`go-packages/pgx/`** - PostgreSQL driver API reference (connection pooling, query execution, types)
+- **`go-packages/nats-go/`** - NATS messaging client API reference (publish/subscribe, JetStream, key-value)
+- **`go-packages/gorilla-sessions/`** - Session management API reference (store interface, session handling)
+
+**To regenerate Go package documentation:**
+```bash
+task context:godoc
+```
+
 ## How to Use These Files
 
 ### Table of Contents (TOC) Files
@@ -78,20 +91,24 @@ For comprehensive understanding, read the entire file using the Read tool. Each 
 
 ### When to Reference These Files
 
-- **Before implementing SSE handlers** → Read `context/datastar/toc.md` then `datastar.md` and `context/nats/nats.md`
-- **Before writing database queries** → Read `context/sqlc/toc.md` then `sqlc.md` for proper annotation syntax
+- **Before implementing SSE handlers** → Read `context/datastar/toc.md` then `datastar.md` and `context/go-packages/datastar-go/`
+- **Before writing database queries** → Read `context/sqlc/toc.md` then `sqlc.md` and `context/go-packages/pgx/` for proper annotation syntax
 - **Before creating UI components** → Read `context/templ/toc.md` then `templ.md` and `context/daisyui/daisyui.md`
-- **When debugging real-time features** → Reference `context/datastar/toc.md` and `context/nats/toc.md`
-- **When adding new database operations** → Reference `context/sqlc/toc.md` for query patterns
+- **When debugging real-time features** → Reference `context/datastar/toc.md`, `context/nats/toc.md`, and `context/go-packages/nats-go/`
+- **When adding new database operations** → Reference `context/sqlc/toc.md` and `context/go-packages/pgx/` for query patterns
+- **When working with routing** → Reference `context/go-packages/chi/` for router API details
+- **When implementing sessions** → Reference `context/go-packages/gorilla-sessions/` for session management
 
 ## Integration in This Project
 
 These technologies work together in Northstar:
 
 1. **Templ** renders HTML components on the server
-2. **Datastar** establishes SSE connections for real-time updates
-3. **NATS** broadcasts change events between services
-4. **sqlc** provides type-safe database queries for both SQLite (app state) and PostgreSQL (target databases)
+2. **Datastar** (frontend + `datastar-go` backend SDK) establishes SSE connections for real-time updates
+3. **NATS** (`nats-go` client) broadcasts change events between services
+4. **sqlc** provides type-safe database queries using **pgx** for both SQLite (app state) and PostgreSQL (target databases)
+5. **Chi** router handles HTTP routing and middleware
+6. **Gorilla Sessions** manages user session state
 
 ## Searching Tips for Agents
 
