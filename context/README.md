@@ -6,38 +6,66 @@ This directory contains up-to-date reference documentation for the key technolog
 
 ### Core Technologies
 
-- **`datastar.md`** - Datastar framework for reactive SSE (Server-Sent Events) and real-time UI updates
+- **`datastar/`** - Datastar framework for reactive SSE (Server-Sent Events) and real-time UI updates
 
   - SSE event handling patterns
   - Client-side reactive bindings (`data-on:*`, `data-bind`)
   - Signal filtering and request configuration
   - Server-side SSE generation in Go
+  - **`toc.md`** - Table of contents with line numbers for quick navigation
 
-- **`nats.md`** - NATS messaging system for pub/sub real-time updates
+- **`daisyui/`** - DaisyUI component library and Tailwind CSS integration
+
+  - Component examples and patterns
+  - Installation and configuration
+  - Semantic tokens and theming
+  - **`toc.md`** - Table of contents with line numbers for quick navigation
+
+- **`nats/`** - NATS messaging system for pub/sub real-time updates
 
   - Client installation and connection
   - Publishing and subscribing patterns
   - Request/reply patterns
   - Fanout and service mesh examples
+  - **`toc.md`** - Table of contents with line numbers for quick navigation
 
-- **`sqlc.md`** - Type-safe SQL query generator
+- **`sqlc/`** - Type-safe SQL query generator
 
   - Configuration and setup
   - Writing SQL queries with annotations
   - Generated Go code patterns
   - Database driver integration (PostgreSQL, SQLite, MySQL)
+  - **`toc.md`** - Table of contents with line numbers for quick navigation
 
-- **`templ.md`** - Go template engine for HTML generation
+- **`templ/`** - Go template engine for HTML generation
   - Template syntax and components
   - Installation and tooling setup
   - Integration with Go handlers
   - Live reload configuration
+  - **`toc.md`** - Table of contents with line numbers for quick navigation
 
 ## How to Use These Files
 
+### Table of Contents (TOC) Files
+
+Each subdirectory contains a `toc.md` file with:
+- **Line numbers** (e.g., `L0001`, `L0042`) for precise navigation
+- **Header hierarchy** showing document structure
+- **Grep examples** for searching specific sections
+
+**To regenerate all TOC files** after updating documentation:
+```bash
+task context:toc
+```
+
 ### Quick Search with Grep Tool
 
-When you need to find specific information quickly, use the grep tool to search across all documentation
+When you need to find specific information quickly, use the grep tool to search across all documentation. First check the `toc.md` file to get line numbers, then read specific sections.
+
+**Example workflow:**
+1. Read `context/datastar/toc.md` to find relevant sections
+2. Use line numbers to read specific sections from `context/datastar/datastar.md`
+3. Use grep to search for keywords across all files
 
 ### Reading Full Documentation
 
@@ -50,11 +78,11 @@ For comprehensive understanding, read the entire file using the Read tool. Each 
 
 ### When to Reference These Files
 
-- **Before implementing SSE handlers** → Read `datastar.md` and `nats.md`
-- **Before writing database queries** → Read `sqlc.md` for proper annotation syntax
-- **Before creating UI components** → Read `templ.md` for template syntax
-- **When debugging real-time features** → Reference `datastar.md` and `nats.md`
-- **When adding new database operations** → Reference `sqlc.md` for query patterns
+- **Before implementing SSE handlers** → Read `context/datastar/toc.md` then `datastar.md` and `context/nats/nats.md`
+- **Before writing database queries** → Read `context/sqlc/toc.md` then `sqlc.md` for proper annotation syntax
+- **Before creating UI components** → Read `context/templ/toc.md` then `templ.md` and `context/daisyui/daisyui.md`
+- **When debugging real-time features** → Reference `context/datastar/toc.md` and `context/nats/toc.md`
+- **When adding new database operations** → Reference `context/sqlc/toc.md` for query patterns
 
 ## Integration in This Project
 
@@ -67,7 +95,27 @@ These technologies work together in Northstar:
 
 ## Searching Tips for Agents
 
+### Step 1: Check TOC Files First
+Always start by reading the relevant `toc.md` file to get an overview of available sections and their line numbers. This helps you:
+- Understand the document structure
+- Find relevant sections quickly
+- Use precise line numbers for targeted reading
+
+### Step 2: Targeted Search
 - Use **specific keywords** related to your task (e.g., "INSERT", "Subscribe", "component", "SSE")
 - Search for **error messages** if debugging (e.g., "failed to", "error")
 - Look for **code patterns** you want to replicate (e.g., "example", "tutorial")
 - Find **configuration** details (e.g., "config", "setup", "install")
+
+### Example Workflow
+```bash
+# 1. Check TOC to find SSE-related sections
+Read: context/datastar/toc.md
+
+# 2. Found "L0043 ### JavaScript SSE Event Handling Setup"
+# Now read that specific section
+Read: context/datastar/datastar.md (lines 43-80)
+
+# 3. Search for more SSE examples
+Grep: pattern="SSE" path="context/datastar"
+```
