@@ -1,1760 +1,810 @@
-### daisyUI 5 CDN Installation Example
+### Install Dependencies and Run Development Server with npm
 
-Source: https://context7_llms
+Source: https://daisyui.com/blog/daisyui-astro-tailwind-documentation-template
 
-This HTML snippet demonstrates how to include daisyUI 5 and Tailwind CSS browser version directly from CDNs. It's a quick way to get started without a local installation, suitable for quick prototypes or simple projects.
-
-```html
-<link
-  href="https://cdn.jsdelivr.net/npm/daisyui@5"
-  rel="stylesheet"
-  type="text/css"
-/>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-```
-
----
-
-### Basic daisyUI CSS Plugin Setup
-
-Source: https://context7_llms
-
-This CSS snippet shows the most basic way to include the daisyUI plugin without any custom configuration. It assumes daisyUI is installed as a CSS plugin.
-
-```css
-@plugin "daisyui";
-```
-
----
-
-### Install daisyUI with Bun
-
-Source: https://daisyui.com/docs/install
-
-Installs the latest version of daisyUI as a development dependency using Bun.
+Install project dependencies and start the development server for the daisyUI Documentation Template. Execute these commands in sequence from the project directory to set up the local development environment.
 
 ```bash
-bun add -D daisyui@latest
-```
-
----
-
-### Install daisyUI with Deno
-
-Source: https://daisyui.com/docs/install
-
-Installs the latest version of daisyUI using Deno's package management.
-
-```bash
-deno i -D npm:daisyui@latest
-```
-
----
-
-### daisyUI Dock Component HTML Examples
-
-Source: https://daisyui.com/components/dock
-
-Demonstrates the basic structure and usage of the daisyUI Dock component. Includes examples for default, active states, and different size variations (extra small to extra large).
-
-```html
-<div class="dock">
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M3 12l9-9 9 9M5 10v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-      />
-    </svg>
-    Home
-  </button>
-  <button class="dock-tab dock-active">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 1a3 3 0 00-3 3v13a3 3 0 103 3h0v-13z"
-      />
-    </svg>
-    Inbox
-  </button>
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 8c-0.657 0-1.275-.344-1.658-.874-0.383-.53-.594-1.197-.594-1.879v0c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v0c0 0.682-.211 1.349-.594 1.879-.383.531-.999.874-1.658.874h0z"
-      />
-    </svg>
-    Settings
-  </button>
-</div>
-```
-
-```html
-<div class="dock dock-xs">
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M3 12l9-9 9 9M5 10v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-      />
-    </svg>
-    Home
-  </button>
-  <button class="dock-tab dock-active">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 1a3 3 0 00-3 3v13a3 3 0 103 3h0v-13z"
-      />
-    </svg>
-    Inbox
-  </button>
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 8c-0.657 0-1.275-.344-1.658-.874-0.383-.53-.594-1.197-.594-1.879v0c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v0c0 0.682-.211 1.349-.594 1.879-.383.531-.999.874-1.658.874h0z"
-      />
-    </svg>
-    Settings
-  </button>
-</div>
-```
-
-```html
-<div class="dock dock-sm">
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M3 12l9-9 9 9M5 10v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-      />
-    </svg>
-    Home
-  </button>
-  <button class="dock-tab dock-active">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 1a3 3 0 00-3 3v13a3 3 0 103 3h0v-13z"
-      />
-    </svg>
-    Inbox
-  </button>
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 8c-0.657 0-1.275-.344-1.658-.874-0.383-.53-.594-1.197-.594-1.879v0c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v0c0 0.682-.211 1.349-.594 1.879-.383.531-.999.874-1.658.874h0z"
-      />
-    </svg>
-    Settings
-  </button>
-</div>
-```
-
-```html
-<div class="dock dock-md">
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M3 12l9-9 9 9M5 10v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-      />
-    </svg>
-    Home
-  </button>
-  <button class="dock-tab dock-active">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 1a3 3 0 00-3 3v13a3 3 0 103 3h0v-13z"
-      />
-    </svg>
-    Inbox
-  </button>
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 8c-0.657 0-1.275-.344-1.658-.874-0.383-.53-.594-1.197-.594-1.879v0c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v0c0 0.682-.211 1.349-.594 1.879-.383.531-.999.874-1.658.874h0z"
-      />
-    </svg>
-    Settings
-  </button>
-</div>
-```
-
-```html
-<div class="dock dock-lg">
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M3 12l9-9 9 9M5 10v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-      />
-    </svg>
-    Home
-  </button>
-  <button class="dock-tab dock-active">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 1a3 3 0 00-3 3v13a3 3 0 103 3h0v-13z"
-      />
-    </svg>
-    Inbox
-  </button>
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 8c-0.657 0-1.275-.344-1.658-.874-0.383-.53-.594-1.197-.594-1.879v0c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v0c0 0.682-.211 1.349-.594 1.879-.383.531-.999.874-1.658.874h0z"
-      />
-    </svg>
-    Settings
-  </button>
-</div>
-```
-
-```html
-<div class="dock dock-xl">
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M3 12l9-9 9 9M5 10v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-      />
-    </svg>
-    Home
-  </button>
-  <button class="dock-tab dock-active">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 1a3 3 0 00-3 3v13a3 3 0 103 3h0v-13z"
-      />
-    </svg>
-    Inbox
-  </button>
-  <button class="dock-tab">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 8c-0.657 0-1.275-.344-1.658-.874-0.383-.53-.594-1.197-.594-1.879v0c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v0c0 0.682-.211 1.349-.594 1.879-.383.531-.999.874-1.658.874h0z"
-      />
-    </svg>
-    Settings
-  </button>
-</div>
-```
-
----
-
-### Install daisyUI with Yarn
-
-Source: https://daisyui.com/docs/install
-
-Installs the latest version of daisyUI as a development dependency using Yarn.
-
-```bash
-yarn add -D daisyui@latest
-```
-
----
-
-### Cally Calendar Web Component Examples
-
-Source: https://daisyui.com/components/calendar
-
-Demonstrates how to integrate the Cally web component calendar with DaisyUI styles, including basic examples and a date picker with a dropdown. Cally works everywhere and can be imported from a CDN or installed via npm.
-
-```html
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/cally/dist/cally.css"
-/>
-<script type="module" src="https://cdn.jsdelivr.net/npm/cally"></script>
-
-<cally></cally>
-```
-
-```html
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/cally/dist/cally.css"
-/>
-<script type="module" src="https://cdn.jsdelivr.net/npm/cally"></script>
-
-<div class="dropdown">
-  <label tabindex="0" class="btn m-1">Pick a date</label>
-  <div
-    tabindex="0"
-    class="dropdown-content card card-compact p-2 shadow bg-base-100"
-  >
-    <cally></cally>
-  </div>
-</div>
-```
-
-```html
-// Import Cally web component from CDN // Or install as a dependency: npm i
-cally // and import it in JS import "cally"; // Example usage in HTML: //
-<cally></cally>
-```
-
-```html
-// Import Cally web component from CDN // Or install as a dependency: npm i
-cally // and import it in JS import "cally"; // Example usage in HTML for a
-dropdown: //
-<div class="dropdown">
-  // <label tabindex="0" class="btn m-1">Pick a date</label> //
-  <div
-    tabindex="0"
-    class="dropdown-content card card-compact p-2 shadow bg-base-100"
-  >
-    // <cally></cally> //
-  </div>
-  //
-</div>
-```
-
----
-
-### DaisyUI Kbd Component Examples
-
-Source: https://daisyui.com/components/kbd
-
-This section showcases various ways to use the DaisyUI Kbd component. It includes examples for displaying single keys, different sizes of keys, keys within text, key combinations, function keys, a full keyboard layout, and arrow keys.
-
-```html
-<kbd>K</kbd>
-```
-
-```html
-<kbd class="kbd-xs">Xsmall</kbd>
-<kbd class="kbd-sm">Small</kbd>
-<kbd class="kbd-md">Medium</kbd>
-<kbd class="kbd-lg">Large</kbd>
-<kbd class="kbd-xl">Xlarge</kbd>
-```
-
-```html
-Press <kbd>F</kbd> to pay respects.
-```
-
-```html
-<kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>del</kbd>
-```
-
-```html
-<kbd>⌘</kbd>
-<kbd>⌥</kbd>
-<kbd>⇧</kbd>
-<kbd>⌃</kbd>
-```
-
-```html
-<kbd>q</kbd> <kbd>w</kbd> <kbd>e</kbd> <kbd>r</kbd> <kbd>t</kbd> <kbd>y</kbd>
-<kbd>u</kbd> <kbd>i</kbd> <kbd>o</kbd> <kbd>p</kbd> <kbd>a</kbd> <kbd>s</kbd>
-<kbd>d</kbd> <kbd>f</kbd> <kbd>g</kbd> <kbd>h</kbd> <kbd>j</kbd> <kbd>k</kbd>
-<kbd>l</kbd> <kbd>z</kbd> <kbd>x</kbd> <kbd>c</kbd> <kbd>v</kbd> <kbd>b</kbd>
-<kbd>n</kbd> <kbd>m</kbd> <kbd>/</kbd>
-```
-
-```html
-<kbd>▲</kbd>
-
-<kbd>◀︎</kbd> <kbd>▶︎</kbd>
-
-<kbd>▼</kbd>
-```
-
----
-
-### DaisyUI Modal Component Examples (HTML)
-
-Source: https://context7_llms
-
-Shows different methods for implementing DaisyUI modals. Examples include using the HTML dialog element, a checkbox for toggling (legacy), and anchor links (legacy). Modals can be positioned using placement classes.
-
-```html
-<button onclick="my_modal.showModal()">Open modal</button>
-<dialog id="my_modal" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-  </div>
-  <form method="dialog" class="modal-backdrop">
-    <button>close</button>
-  </form>
-</dialog>
-```
-
-```html
-<label for="my-modal" class="btn">Open modal</label>
-<input type="checkbox" id="my-modal" class="modal-toggle" />
-<div class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">You can wimdow content here!</p>
-  </div>
-  <label class="modal-backdrop" for="my-modal">Close</label>
-</div>
-```
-
-```html
-<a href="#my-modal" class="btn">Open modal</a>
-<div class="modal" id="my-modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">You can wimdow content here!</p>
-  </div>
-</div>
-```
-
----
-
-### Pikaday Svelte Component Example
-
-Source: https://daisyui.com/components/calendar
-
-Provides an example of integrating Pikaday within a Svelte component. It includes installation instructions and shows how to manage the Pikaday instance lifecycle using Svelte's effect hook.
-
-```bash
-npm i pikaday
-```
-
-```svelte
-<script lang="ts">
-import { onMount, onDestroy } from 'svelte';
-import Pikaday from 'pikaday';
-
-let myDatepicker;
-let pickerInstance;
-
-onMount(() => {
-  if (myDatepicker) {
-    pickerInstance = new Pikaday({ field: myDatepicker });
-  }
-});
-
-onDestroy(() => {
-  if (pickerInstance) {
-    pickerInstance.destroy();
-  }
-});
-</script>
-
-<input type="text" bind:this={myDatepicker} />
-```
-
----
-
-### Install DaisyUI using Package Managers
-
-Source: https://daisyui.com/
-
-Instructions for installing DaisyUI as a development dependency using popular Node.js package managers (npm, pnpm, yarn, bun) and Deno. Ensures the latest version is used.
-
-```bash
-npm i -D daisyui@latest
+npm install
 ```
 
 ```bash
-pnpm add -D daisyui@latest
+npm run dev
 ```
-
-```bash
-yarn add -D daisyui@latest
-```
-
-```bash
-bun add -D daisyui@latest
-```
-
-```bash
-deno i -D npm:daisyui@latest
-```
-
----
-
-### Install daisyUI with PNPM
-
-Source: https://daisyui.com/docs/install
-
-Installs the latest version of daisyUI as a development dependency using PNPM.
-
-```bash
-pnpm add -D daisyui@latest
-```
-
----
-
-### Code Block Example - HTML
-
-Source: https://daisyui.com/components/mockup-browser
-
-Illustrates the basic structure for displaying code snippets using daisyUI's code component. This is essential for any documentation that includes code examples.
-
-```html
-
-```
-
-// Your code here
-
-```
-
-```
-
----
-
-### React Day Picker Component Example
-
-Source: https://daisyui.com/components/calendar
-
-Demonstrates the usage of the React Day Picker component for creating date pickers in React applications. It includes installation instructions and a basic example using `useState` to manage the selected date.
-
-```bash
-npm i react-day-picker
-```
-
-```typescript
-import { useState } from "react";
-import { DayPicker, DateRange } from "react-day-picker";
-import "react-day-picker/dist/style.css";
-
-export default function App() {
-  const [date, setDate] = useState<DateRange | undefined>();
-
-  return (
-    <DayPicker
-      mode="single"
-      selected={date}
-      onSelect={setDate}
-    />
-    {date ? date.toLocaleDateString() : "Pick a date"}
-  );
-}
-```
-
----
-
-### Install daisyUI with npm
-
-Source: https://daisyui.com/
-
-This command installs daisyUI as a development dependency in your project using npm. Ensure you have Node.js and npm installed.
-
-```bash
-npm i -D daisyui@latest
-```
-
----
-
-### DaisyUI Badge Component Examples (HTML)
-
-Source: https://daisyui.com/components/badge
-
-Demonstrates the basic structure and usage of DaisyUI badges, including different styles and sizes. These examples show how to apply classes to create various badge appearances.
-
-```html
-<!-- Default Badge -->
-<div class="badge">Badge</div>
-
-<!-- Outline Badge -->
-<div class="badge badge-outline">Badge</div>
-
-<!-- Dash Outline Badge -->
-<div class="badge badge-dash">Badge</div>
-
-<!-- Soft Badge -->
-<div class="badge badge-soft">Badge</div>
-
-<!-- Ghost Badge -->
-<div class="badge badge-ghost">Badge</div>
-
-<!-- Extra Small Badge -->
-<div class="badge badge-xs">Badge</div>
-
-<!-- Small Badge -->
-<div class="badge badge-sm">Badge</div>
-
-<!-- Medium Badge (default) -->
-<div class="badge badge-md">Badge</div>
-
-<!-- Large Badge -->
-<div class="badge badge-lg">Badge</div>
-
-<!-- Extra Large Badge -->
-<div class="badge badge-xl">Badge</div>
-```
-
----
-
-### Pikaday Vue Component Example
-
-Source: https://daisyui.com/components/calendar
-
-Illustrates how to use Pikaday within a Vue.js application. It covers installation and demonstrates initializing the datepicker in the `mounted` lifecycle hook, referencing the input field via a ref.
-
-```bash
-npm i pikaday
-```
-
-```vue
-<template>
-  <input type="text" ref="myDatepicker" />
-</template>
-
-<script>
-import Pikaday from "pikaday";
-
-export default {
-  mounted: function () {
-    const picker = new Pikaday({ field: this.$refs.myDatepicker });
-  },
-  beforeDestroy: function () {
-    // Ensure picker is destroyed to prevent memory leaks
-    if (this.picker) {
-      this.picker.destroy();
-    }
-  },
-};
-</script>
-```
-
----
-
-### Update Card component classes
-
-Source: https://daisyui.com/docs/upgrade
-
-This example demonstrates the renaming of the `card-bordered` class to `card-border` and the replacement of `card-compact` with `card-sm` for styling card elements.
-
-```html
--
-<div class="card card-bordered">
-  -
-  <div class="card-body">...</div>
-  -
-</div>
-+
-<div class="card card-border">
-  +
-  <div class="card-body">...</div>
-  +
-</div>
-```
-
-```html
--
-<div class="card card-compact">
-  -
-  <div class="card-body">...</div>
-  -
-</div>
-+
-<div class="card card-sm">
-  +
-  <div class="card-body">...</div>
-  +
-</div>
-```
-
----
-
-### DaisyUI Badge as Indicator Examples (HTML)
-
-Source: https://daisyui.com/components/indicator
-
-Shows how to use badges as indicators on various elements. This includes examples for displaying notification counts on buttons, messages, and requests.
-
-```html
-<div class="indicator">
-  <span class="indicator-item badge">12 inbox</span>
-  <button class="btn">Inbox</button>
-</div>
-```
-
-```html
-<div class="indicator">
-  <span class="indicator-item badge">8</span>
-  <button class="btn btn-primary">Messages</button>
-</div>
-<div class="indicator">
-  <span class="indicator-item badge">8</span>
-  <button class="btn btn-accent">Notifications</button>
-</div>
-<div class="indicator">
-  <span class="indicator-item badge">8</span>
-  <button class="btn btn-secondary">Requests</button>
-</div>
-```
-
----
-
-### Clock Countdown Example (HTML)
-
-Source: https://daisyui.com/components/countdown
-
-Illustrates how to implement a clock-style countdown using the DaisyUI Countdown component. This example shows the structure for displaying hours, minutes, and seconds.
-
-```html
-<div class="countdown">
-  <span style="--value:10"></span>h <span style="--value:24"></span>m
-  <span style="--value:59"></span>s
-</div>
-```
-
----
-
-### Example daisyUI CSS Plugin Configuration
-
-Source: https://context7_llms
-
-This is an example of a comprehensive daisyUI CSS configuration. It enables all built-in themes, sets 'bumblebee' as the default and 'synthwave' as the prefers-dark theme. It also excludes 'rootscrollgutter' and 'checkbox', uses a 'daisy-' prefix for classes, and disables console logging.
-
-```css
-@plugin "daisyui" {
-  themes: light, dark, cupcake, bumblebee --default, emerald, corporate, synthwave
-      --prefersdark, retro, cyberpunk, valentine, halloween, garden, forest,
-    aqua, lofi, pastel, fantasy, wireframe, black, luxury, dracula, cmyk,
-    autumn, business, acid, lemonade, night, coffee, winter, dim, nord, sunset,
-    caramellatte, abyss, silk;
-  root: ":root";
-  include: ;
-  exclude: rootscrollgutter, checkbox;
-  prefix: daisy-;
-  logs: false;
-}
-```
-
----
-
-### DaisyUI Indicator Placement: Middle-Start (HTML)
-
-Source: https://daisyui.com/components/indicator
-
-Demonstrates using `indicator-middle` and `indicator-start` to position an indicator vertically in the middle and horizontally at the start of a container.
-
-```html
-<div class="indicator indicator-middle indicator-start">
-  <span class="indicator-item badge badge-secondary">New</span>
-  <div class="grid w-32 h-32 bg-base-300 place-items-center">Content</div>
-</div>
-```
-
----
-
-### DaisyUI Menu Component Examples (HTML)
-
-Source: https://context7_llms
-
-Demonstrates the structure and variations of the DaisyUI menu component. It includes examples for vertical menus, horizontal menus, and dropdown menus. Modifiers for disabled, active, and focus states are also applicable.
-
-```html
-<ul class="menu">
-  <li><button>Item</button></li>
-</ul>
-```
-
-```html
-<ul class="menu menu-horizontal">
-  <li><button>Item</button></li>
-</ul>
-```
-
-```html
-<details class="menu-dropdown">
-  <summary class="menu-dropdown-toggle">Item</summary>
-  <ul class="menu-dropdown-content">
-    <li><a>SubItem 1</a></li>
-    <li><a>SubItem 2</a></li>
-  </ul>
-</details>
-```
-
----
-
-### Basic DaisyUI Alert Example
-
-Source: https://daisyui.com/components/alert
-
-Demonstrates a basic DaisyUI alert component. This is the foundational structure for displaying notifications.
-
-```html
-<div class="alert">12 unread messages. Tap to see.</div>
-```
-
----
-
-### Calendar Integration Examples (HTML)
-
-Source: https://context7_llms
-
-Provides HTML snippets for integrating DaisyUI styles with different calendar libraries like Cally, Pikaday, and React Day Picker.
-
-```html
-<!-- For Cally web component -->
-<calendar-date class="cally">Content</calendar-date>
-
-<!-- For Pikaday calendar input -->
-<input type="text" class="input pika-single" />
-
-<!-- For React Day Picker component -->
-<DayPicker className="react-day-picker"></DayPicker>
-```
-
----
-
-### DaisyUI Image with Overlay Indicator Example (HTML)
-
-Source: https://daisyui.com/components/indicator
-
-Provides an example of placing an indicator, like a text label, in the center of an image. This is useful for displaying status or promotional messages.
-
-```html
-<div class="indicator">
-  <span class="indicator-item">Only available for Pro users</span>
-  <img
-    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-    class="w-full rounded-xl"
-  />
-</div>
-```
-
----
-
-### DaisyUI Avatar with Indicator Example (HTML)
-
-Source: https://daisyui.com/components/indicator
-
-Illustrates how to place an indicator on a user avatar. This is useful for showing online status or other badges.
-
-```html
-<div class="indicator">
-  <span
-    class="indicator-item badge indicator-bottom indicator-end badge-primary"
-  ></span>
-  <div class="avatar online">
-    <div class="w-16 rounded-full">
-      <img
-        src="https://img.daisyui.com/images/profile/demo/batperson@192.webp"
-      />
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Card with Button Indicator Example (HTML)
-
-Source: https://daisyui.com/components/indicator
-
-Shows how to use an indicator, specifically a button, to highlight an action on a card. This can be used for call-to-action elements.
-
-```html
-<div class="indicator">
-  <span class="indicator-item"
-    ><button class="btn btn-primary">Apply</button></span
-  >
-  <div class="card w-96 bg-base-100 shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title">Job Title</h2>
-      <p>Rerum reiciendis beatae tenetur excepturi</p>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Chat Bubble Examples (HTML)
-
-Source: https://context7_llms
-
-Illustrates how to create chat bubbles for displaying conversations using DaisyUI. This includes different placements and colors for chat bubbles.
-
-```html
-<div class="chat chat-start">
-  <div class="chat-image avatar">
-    <div class="w-10 rounded-full">
-      <img src="/images/stock/photo-1534528741761-a67e41c11709.jpg" />
-    </div>
-  </div>
-  <div class="chat-header">
-    Automated
-    <time class="text-xs opacity-50">12:46</time>
-  </div>
-  <div class="chat-bubble">It's over there, let's go.</div>
-</div>
-
-<div class="chat chat-end">
-  <div class="chat-image avatar">
-    <div class="w-10 rounded-full">
-      <img src="/images/stock/photo-1534528741761-a67e41c11709.jpg" />
-    </div>
-  </div>
-  <div class="chat-header">
-    You
-    <time class="text-xs opacity-50">12:42</time>
-  </div>
-  <div class="chat-bubble chat-bubble-primary">That's good. Very good.</div>
-</div>
-```
-
----
-
-### Update Artboard classes for responsive dimensions
-
-Source: https://daisyui.com/docs/upgrade
-
-This example shows the replacement of daisyUI's `artboard` and `phone-*` classes with Tailwind CSS's `w-*` and `h-*` classes for setting dimensions.
-
-```html
--
-<div class="artboard phone-1"></div>
-+
-<div class="w-[320px] h-[568px]"></div>
-```
-
-```html
--
-<div class="artboard phone-2"></div>
-+
-<div class="w-[375px] h-[667px]"></div>
-```
-
-```html
--
-<div class="artboard phone-3"></div>
-+
-<div class="w-[414px] h-[736px]"></div>
-```
-
-```html
--
-<div class="artboard phone-4"></div>
-+
-<div class="w-[375px] h-[812px]"></div>
-```
-
-```html
--
-<div class="artboard phone-5"></div>
-+
-<div class="w-[414px] h-[896px]"></div>
-```
-
-```html
--
-<div class="artboard phone-6"></div>
-+
-<div class="w-[320px] h-[1024px]"></div>
-```
-
-```html
--
-<div class="artboard artboard-horizontal phone-1"></div>
-+
-<div class="w-[568px] h-[320px]"></div>
-```
-
-```html
--
-<div class="artboard artboard-horizontal phone-2"></div>
-+
-<div class="w-[667px] h-[375px]"></div>
-```
-
-```html
--
-<div class="artboard artboard-horizontal phone-3"></div>
-+
-<div class="w-[736px] h-[414px]"></div>
-```
-
-```html
--
-<div class="artboard artboard-horizontal phone-4"></div>
-+
-<div class="w-[812px] h-[375px]"></div>
-```
-
-```html
--
-<div class="artboard artboard-horizontal phone-5"></div>
-+
-<div class="w-[896px] h-[414px]"></div>
-```
-
-```html
--
-<div class="artboard artboard-horizontal phone-6"></div>
-+
-<div class="w-[1024px] h-[320px]"></div>
-```
-
----
-
-### Button Component Examples (HTML)
-
-Source: https://context7_llms
-
-Illustrates various button styles, colors, sizes, and modifiers available in DaisyUI. Buttons are used to trigger actions by the user.
-
-```html
-<button class="btn">Button</button>
-<button class="btn btn-primary">Primary Button</button>
-<button class="btn btn-outline btn-secondary">Outline Secondary</button>
-<button class="btn btn-error btn-lg">Large Error Button</button>
-<button class="btn btn-disabled">Disabled Button</button>
-<button class="btn btn-circle">?</button>
-```
-
----
-
-### DaisyUI Steps: Horizontal Layout Example
-
-Source: https://daisyui.com/components/steps
-
-Demonstrates the basic horizontal layout for the DaisyUI Steps component. This is suitable for standard sequential processes where space is not a major constraint.
-
-```html
-<ul class="steps">
-  <li class="step step-neutral">Register</li>
-  <li class="step step-neutral">Choose plan</li>
-  <li class="step step-neutral">Purchase</li>
-  <li class="step step-neutral">Receive Product</li>
-</ul>
-```
-
----
-
-### Update Avatar component classes
-
-Source: https://daisyui.com/docs/upgrade
-
-This example shows the renaming of avatar status classes from generic names to more specific `avatar-*` prefixed classes.
-
-```html
--
-<div class="avatar online"></div>
-+
-<div class="avatar-online"></div>
-```
-
-```html
--
-<div class="avatar offline"></div>
-+
-<div class="avatar-offline"></div>
-```
-
-```html
--
-<div class="avatar placeholder"></div>
-+
-<div class="avatar-placeholder"></div>
-```
-
----
-
-### Pikaday CDN Integration Example
-
-Source: https://daisyui.com/components/calendar
-
-Shows how to use the Pikaday JavaScript datepicker library with a CDN link. This example initializes a Pikaday instance associated with an HTML element.
-
-```html
-<input type="text" id="myDatepicker" />
-<script src="https://cdn.jsdelivr.net/npm/pikaday/dist/pikaday.js"></script>
-<script>
-  var picker = new Pikaday({ field: document.getElementById("myDatepicker") });
-</script>
-```
-
----
-
-### DaisyUI Input with Indicator Example (HTML)
-
-Source: https://daisyui.com/components/indicator
-
-Demonstrates how to add a required indicator to an input field. This visually signals that the input is mandatory.
-
-```html
-<div class="indicator">
-  <span class="indicator-item badge">Required</span>
-  <input type="text" placeholder="Type here" class="input input-bordered" />
-</div>
-```
-
----
-
-### Theme Controller: Swap Toggle Example
-
-Source: https://daisyui.com/components/theme-controller
-
-Showcases a theme controller using a 'swap' toggle, typically for switching between light and dark modes. This example includes hidden checkboxes and SVG icons for sun and moon, providing a visual indicator of the current theme state.
-
-```html
-<label class="swap swap-sunny swap-lg">
-  <input type="checkbox" class="theme-controller" value="synthwave" />
-  <svg
-    class="swap-on fill-current w-10 h-10"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-  >
-    <path d="M5.64,17l-.71.71a1,1,0,0,0,1.41,1.41l.71-.71A1,1,0,0,0,5.64,17Z" />
-    <path d="M3,13H1a1,1,0,0,0,0,2H3a1,1,0,0,0,0-2Z" />
-    <path
-      d="M17.54,5.64l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71a1,1,0,0,0-1.41-1.41Z"
-    />
-    <path d="M13,1H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path
-      d="M11.71,11.29a1,1,0,0,0-1.41,0l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71A1,1,0,0,0,11.71,11.29Z"
-    />
-    <path d="M21,13H19a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path
-      d="M17.54,18.36a1,1,0,0,0-1.41,0l-.71.71a1,1,0,0,0,1.41,1.41l.71-.71A1,1,0,0,0,17.54,18.36Z"
-    />
-    <path d="M21,11H19a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path
-      d="M11.71,16.71a1,1,0,0,0-1.41,0l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71A1,1,0,0,0,11.71,16.71Z"
-    />
-    <path d="M13,23H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path d="M1,13H3a1,1,0,0,0,0-2H1a1,1,0,0,0,0,2Z" />
-    <path
-      d="M5.64,5.64a1,1,0,0,0-1.41,0l-.71-.71a1,1,0,1,0,1.41-1.41l.71.71A1,1,0,0,0,5.64,5.64Z"
-    />
-    <path d="M13,1H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-  <svg
-    class="swap-off fill-current w-10 h-10"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-  >
-    <path
-      d="M21.64,13a1,1,0,0,0-1.05-.14,1,1,0,0,0-.5.53,1,1,0,0,0,.33.81l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71A1,1,0,0,0,21.64,13Zm-9.42,10.26a1,1,0,0,0,.33.81l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71a1,1,0,0,0-.81-.33h0a1,1,0,0,0-.5.53,1,1,0,0,0,.14,1.05Z"
-    />
-    <path
-      d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"
-    />
-    <path
-      d="M19.4,12.25a1,1,0,0,0-.14.53,1,1,0,0,0,.33.81l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71A1,1,0,0,0,19.4,12.25Z"
-    />
-    <path
-      d="M5.64,12.25a1,1,0,0,0,.14.53,1,1,0,0,0,.5.33l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71a1,1,0,0,0-.64-.27,1,1,0,0,0-.14.53Z"
-    />
-    <path d="M12,1H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path d="M12,23H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path d="M23,13H21a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path d="M1,13H3a1,1,0,0,0,0-2H1a1,1,0,0,0,0,2Z" />
-    <path
-      d="M19.4,7.25a1,1,0,0,0,.14.53,1,1,0,0,0,.5.33l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71a1,1,0,0,0-.64-.27,1,1,0,0,0-.14.53Z"
-    />
-    <path
-      d="M5.64,7.25a1,1,0,0,0,.14.53,1,1,0,0,0,.5.33l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71a1,1,0,0,0-.64-.27,1,1,0,0,0-.14.53Z"
-    />
-    <path d="M12,11H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-  </svg>
-</label>
-
-<label class="swap swap-sunny swap-lg">
-  <input type="checkbox" class="theme-controller" value="dark" />
-  <svg
-    class="swap-on fill-current w-10 h-10"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-  >
-    <path d="M5.64,17l-.71.71a1,1,0,0,0,1.41,1.41l.71-.71A1,1,0,0,0,5.64,17Z" />
-    <path d="M3,13H1a1,1,0,0,0,0,2H3a1,1,0,0,0,0-2Z" />
-    <path
-      d="M17.54,5.64l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71a1,1,0,0,0-1.41-1.41Z"
-    />
-    <path d="M13,1H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path
-      d="M11.71,11.29a1,1,0,0,0-1.41,0l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71A1,1,0,0,0,11.71,11.29Z"
-    />
-    <path d="M21,13H19a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path
-      d="M17.54,18.36a1,1,0,0,0-1.41,0l-.71.71a1,1,0,0,0,1.41,1.41l.71-.71A1,1,0,0,0,17.54,18.36Z"
-    />
-    <path d="M21,11H19a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path
-      d="M11.71,16.71a1,1,0,0,0-1.41,0l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71A1,1,0,0,0,11.71,16.71Z"
-    />
-    <path d="M13,23H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path d="M1,13H3a1,1,0,0,0,0-2H1a1,1,0,0,0,0,2Z" />
-    <path
-      d="M5.64,5.64a1,1,0,0,0-1.41,0l-.71-.71a1,1,0,1,0,1.41-1.41l.71.71A1,1,0,0,0,5.64,5.64Z"
-    />
-    <path d="M13,1H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-  <svg
-    class="swap-off fill-current w-10 h-10"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-  >
-    <path
-      d="M21.64,13a1,1,0,0,0-1.05-.14,1,1,0,0,0-.5.53,1,1,0,0,0,.33.81l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71A1,1,0,0,0,21.64,13Zm-9.42,10.26a1,1,0,0,0,.33.81l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71a1,1,0,0,0-.81-.33h0a1,1,0,0,0-.5.53,1,1,0,0,0,.14,1.05Z"
-    />
-    <path
-      d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"
-    />
-    <path
-      d="M19.4,12.25a1,1,0,0,0-.14.53,1,1,0,0,0,.33.81l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71A1,1,0,0,0,19.4,12.25Z"
-    />
-    <path
-      d="M5.64,12.25a1,1,0,0,0,.14.53,1,1,0,0,0,.5.33l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71a1,1,0,0,0-.64-.27,1,1,0,0,0-.14.53Z"
-    />
-    <path d="M12,1H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path d="M12,23H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path d="M23,13H21a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-    <path d="M1,13H3a1,1,0,0,0,0-2H1a1,1,0,0,0,0,2Z" />
-    <path
-      d="M19.4,7.25a1,1,0,0,0,.14.53,1,1,0,0,0,.5.33l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71a1,1,0,0,0-.64-.27,1,1,0,0,0-.14.53Z"
-    />
-    <path
-      d="M5.64,7.25a1,1,0,0,0,.14.53,1,1,0,0,0,.5.33l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71a1,1,0,0,0-.64-.27,1,1,0,0,0-.14.53Z"
-    />
-    <path d="M12,11H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
-  </svg>
-</label>
-```
-
----
-
-### Badge Component Examples (HTML)
-
-Source: https://context7_llms
-
-Demonstrates how to create badges with different styles, colors, and sizes using DaisyUI's badge component. Badges are used to inform users about the status of specific data.
-
-```html
-<span class="badge">Badge</span>
-<span class="badge badge-outline">Badge</span>
-<span class="badge badge-primary">Primary</span>
-<span class="badge badge-secondary badge-lg">Large Secondary</span>
-<span class="badge badge-error badge-xl">Extra Large Error</span>
-```
-
----
-
-### DaisyUI Steps: Responsive Layout Example
-
-Source: https://daisyui.com/components/steps
-
-Shows a responsive steps layout that defaults to vertical on small screens and transitions to horizontal on larger screens, optimizing the user experience across devices.
-
-```html
-<ul class="steps lg:steps-horizontal">
-  <li class="step">Register</li>
-  <li class="step">Choose plan</li>
-  <li class="step">Purchase</li>
-  <li class="step">Receive Product</li>
-</ul>
-```
-
----
-
-### Pikaday React Component Example
-
-Source: https://daisyui.com/components/calendar
-
-Shows how to integrate Pikaday into a React application using functional components and hooks. It utilizes `useRef` to get a reference to the input element and `useEffect` to manage the Pikaday instance lifecycle.
-
-```bash
-npm i pikaday
-```
-
-```typescript
-import { useEffect, useRef } from "react";
-import Pikaday from "pikaday";
-
-export default function App() {
-  const myDatepicker = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const picker = new Pikaday({
-      field: myDatepicker.current as HTMLInputElement | null,
-    });
-    return () => {
-      picker.destroy();
-    };
-  }, []);
-
-  return <input type="text" ref={myDatepicker} />;
-}
-```
-
----
-
-### Theme Controller: Dropdown Example
-
-Source: https://daisyui.com/components/theme-controller
-
-Presents a theme controller implemented using a dropdown menu. This approach conserves space and provides a clean way to present multiple theme options, allowing users to select their preferred theme from a list.
-
-```html
-<div class="dropdown">
-  <div tabindex="0" class="btn m-1">Theme</div>
-  <ul
-    tabindex="0"
-    class="dropdown-menu -mt-1 w-52 border border-base-content/10"
-  >
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Retro"
-        class="theme-controller "
-        value="retro"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Cyberpunk"
-        class="theme-controller "
-        value="cyberpunk"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Valentine"
-        class="theme-controller "
-        value="valentine"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Aqua"
-        class="theme-controller "
-        value="aqua"
-      />
-    </li>
-  </ul>
-</div>
-<div class="dropdown">
-  <div tabindex="0" class="btn m-1">Theme</div>
-  <ul
-    tabindex="0"
-    class="dropdown-menu -mt-1 w-52 border border-base-content/10"
-  >
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Retro"
-        class="theme-controller "
-        value="retro"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Cyberpunk"
-        class="theme-controller "
-        value="cyberpunk"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Valentine"
-        class="theme-controller "
-        value="valentine"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Aqua"
-        class="theme-controller "
-        value="aqua"
-      />
-    </li>
-  </ul>
-</div>
-<div class="dropdown">
-  <div tabindex="0" class="btn m-1">Theme</div>
-  <ul
-    tabindex="0"
-    class="dropdown-menu -mt-1 w-52 border border-base-content/10"
-  >
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Retro"
-        class="theme-controller "
-        value="retro"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Cyberpunk"
-        class="theme-controller "
-        value="cyberpunk"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Valentine"
-        class="theme-controller "
-        value="valentine"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Aqua"
-        class="theme-controller "
-        value="aqua"
-      />
-    </li>
-  </ul>
-</div>
-<div class="dropdown">
-  <div tabindex="0" class="btn m-1">Theme</div>
-  <ul
-    tabindex="0"
-    class="dropdown-menu -mt-1 w-52 border border-base-content/10"
-  >
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Retro"
-        class="theme-controller "
-        value="retro"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Cyberpunk"
-        class="theme-controller "
-        value="cyberpunk"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Valentine"
-        class="theme-controller "
-        value="valentine"
-      />
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="theme-controller"
-        aria-label="Aqua"
-        class="theme-controller "
-        value="aqua"
-      />
-    </li>
-  </ul>
-</div>
-```
-
----
-
-### Theme Controller: Toggle with Text Example
-
-Source: https://daisyui.com/components/theme-controller
-
-Demonstrates a theme controller using a toggle that displays text, such as 'Default' and 'Current'. This provides clear visual feedback to the user about the selected theme.
-
-```html
-<label class="swap swap-sunny">
-  <input type="checkbox" class="theme-controller" value="synthwave" />
-  <span class="swap-on">Synthwave</span>
-  <span class="swap-off">Default</span>
-</label>
-<label class="swap swap-sunny">
-  <input type="checkbox" class="theme-controller" value="retro" />
-  <span class="swap-on">Retro</span>
-  <span class="swap-off">Default</span>
-</label>
-<label class="swap swap-sunny">
-  <input type="checkbox" class="theme-controller" value="cyberpunk" />
-  <span class="swap-on">Cyberpunk</span>
-  <span class="swap-off">Default</span>
-</label>
-<label class="swap swap-sunny">
-  <input type="checkbox" class="theme-controller" value="valentine" />
-  <span class="swap-on">Valentine</span>
-  <span class="swap-off">Default</span>
-</label>
-<label class="swap swap-sunny">
-  <input type="checkbox" class="theme-controller" value="aqua" />
-  <span class="swap-on">Aqua</span>
-  <span class="swap-off">Default</span>
-</label>
-```
-
----
-
-### DaisyUI Warning Color Alert Example
-
-Source: https://daisyui.com/components/alert
-
-Provides an example of the 'alert-warning' class for warnings or potential issues. Use this to alert users to non-critical problems.
-
-```html
-<div class="alert alert-warning">Warning: Invalid email address!</div>
-```
-
----
-
-### DaisyUI Info Color Alert Example
-
-Source: https://daisyui.com/components/alert
-
-Shows how to use the 'alert-info' class to create an informational alert. This style is typically used for non-critical updates or suggestions.
-
-```html
-<div class="alert alert-info">New software update available.</div>
-```
-
----
-
-### DaisyUI Steps: Vertical Layout Example
-
-Source: https://daisyui.com/components/steps
-
-Illustrates the vertical layout for the DaisyUI Steps component, ideal for narrower screens or when emphasizing a top-to-bottom progression.
-
-```html
-<ul class="steps steps-vertical">
-  <li class="step">Register</li>
-  <li class="step">Choose plan</li>
-  <li class="step">Purchase</li>
-  <li class="step">Receive Product</li>
-</ul>
-```
-
----
-
-### DaisyUI Text Input: Email with Icon and Validator
-
-Source: https://daisyui.com/components/input
-
-Demonstrates an email input field styled with an icon and validation message using DaisyUI. This example guides users to enter a correctly formatted email address.
-
-````html
-```html
-<label class="input input-bordered flex items-center gap-2">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 16 16"
-    fill="currentColor"
-    class="w-4 h-4 opacity-70"
-  >
-    <path
-      d="M2.5 3A1.5 1.5 0 0 0 1 4.5v5.086a1.5 1.5 0 0 0 .437.971l3.147 3.147a1.5 1.5 0 0 0 2.072.012l3.147-3.147a1.5 1.5 0 0 0 .437-.971V4.5A1.5 1.5 0 0 0 11.5 3H2.5Z"
-    />
-    <path
-      d="M1.75 5.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 .75.75v3.086a.75.75 0 0 1-.22.547l-3.147 3.147a.75.75 0 0 1-1.06.012l-3.147-3.147a.75.75 0 0 1-.22-.547V5.75Z"
-    />
-  </svg>
-  <input type="email" class="grow" placeholder="Email" />
-</label>
-<label class="label">
-  <span class="label-text-alt">Enter valid email address</span>
-</label>
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Indicator Placement: Top-Start (HTML)
+### Create Solid Start Project using npm
 
-Source: https://daisyui.com/components/indicator
+Source: https://daisyui.com/docs/install/solid-start
 
-Demonstrates the `indicator-top` and `indicator-start` classes to position an indicator at the top-left corner of a container element.
+Initializes a new Solid Start project in the current directory using npm. This command requires Node.js and npm to be installed.
+
+```bash
+npm init solid@latest ./
+
+```
+
+--------------------------------
+
+### Install Dependencies and Run Development Server
+
+Source: https://daisyui.com/stackblitz
+
+This command sequence first installs all necessary project dependencies defined in 'package.json' using npm. Following successful installation, it starts the development server using the 'dev' script, which is configured to run Vite.
+
+```bash
+npm install && npm run dev
+```
+
+--------------------------------
+
+### Navigate and Run SvelteKit Development Server
+
+Source: https://daisyui.com/blog/how-to-install-sveltekit-and-daisyui
+
+After creating the SvelteKit project, these commands navigate into the project directory, install its dependencies, and start the development server. The server opens automatically in the default browser.
+
+```bash
+cd my-app
+npm install
+npm run dev -- --open
+```
+
+--------------------------------
+
+### daisyUI CDN Setup with Tailwind CSS
+
+Source: https://daisyui.com/pages/ui-library-for-hackaton
+
+Demonstrates the minimal setup required to start using daisyUI for rapid prototyping. Includes HTML5 boilerplate with daisyUI and Tailwind CSS loaded via CDN links, enabling immediate development without build tools, package managers, or configuration files. Includes a simple button component example.
 
 ```html
-<div class="indicator indicator-top indicator-start">
-  <span class="indicator-item badge badge-secondary">New</span>
-  <div class="grid w-32 h-32 bg-base-300 place-items-center">Content</div>
-</div>
-````
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Hackathon Project</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+  <button class="btn btn-primary">Let's build!</button>
+</body>
+</html>
+```
 
+--------------------------------
+
+### Build CSS and Run Project (Terminal)
+
+Source: https://daisyui.com/docs/install/electron
+
+Commands to first build the project's CSS using the configured Tailwind and daisyUI setup, and then start the Electron application. These commands rely on the scripts defined in `package.json`.
+
+```bash
+npm run build:css
+npm start
+```
+
+--------------------------------
+
+### Create a New SvelteKit Project
+
+Source: https://daisyui.com/blog/how-to-install-sveltekit-and-daisyui
+
+This command initializes a new SvelteKit project using npm. It prompts the user to select a project template, with 'Skeleton project' being recommended for a barebones setup.
+
+```bash
+npm create svelte@latest my-app
+```
+
+--------------------------------
+
+### Install daisyUI with npm
+
+Source: https://daisyui.com/blog/npm-init-daisyui
+
+Use this command to initiate the daisyUI installation and setup process. It guides you through options for integrating Tailwind CSS and daisyUI.
+
+```bash
+npm init daisyui
+```
+
+--------------------------------
+
+### Run Dioxus development server
+
+Source: https://daisyui.com/docs/install/dioxus
+
+Starts the Dioxus development server, typically used for live previewing and hot-reloading of the Dioxus application.
+
+```bash
+dx serve
+```
+
+--------------------------------
+
+### Example Prompt with daisyUI GitMCP Server
+
+Source: https://daisyui.com/docs/editor/cursor
+
+An example prompt for using the daisyUI GitMCP server. When this server is configured, simply asking for DaisyUI components or themes will leverage this server for responses, without needing an explicit 'use' command.
+
+```plaintext
+give me a light daisyUI 5 theme with tropical color palette
+```
+
+--------------------------------
+
+### Run Deno Fresh Development Server
+
+Source: https://daisyui.com/docs/install/fresh
+
+Starts the development server for the Deno Fresh project. This command enables hot-reloading and allows you to view daisyUI components in real-time during development.
+
+```bash
+deno task dev
+```
+
+--------------------------------
+
+### Example Prompt with Context7 MCP
+
+Source: https://daisyui.com/docs/editor/cursor
+
+An example prompt showing how to activate the 'Context7' MCP server within Cursor's 'Agent Mode'. Appending 'use context7' to your prompt directs the AI to use this specific server for DaisyUI-related tasks.
+
+```plaintext
+give me a light daisyUI 5 theme with tropical color palette. use context7
+```
+
+--------------------------------
+
+### Run Yew Development Server
+
+Source: https://daisyui.com/docs/install/yew
+
+Starts the Trunk development server, enabling live reloading, and automatically opens the Yew application in the default web browser.
+
+```bash
+trunk serve --open
+
+```
+
+--------------------------------
+
+### Create New Content Page Structure (MDX)
+
+Source: https://daisyui.com/blog/daisyui-astro-tailwind-documentation-template
+
+This example demonstrates how to create a new content page using MDX format. It includes frontmatter for title and description, and basic Markdown content with an overview of features. This structure is used for adding new documentation sections.
+
+```mdx
+---
+title: Getting Started
+description: "Quasi sapiente voluptates aut minima non doloribus similique quisquam. In quo expedita ipsum nostrum corrupti incidunt. Et aut eligendi ea perferendis."
 ---
 
-### DaisyUI Drawer Sidebar Menu
+<script>
+  import Translate from "$components/Translate.svelte"
+</script>
 
-Source: https://context7_llms
+## Overview
 
-An example of a typical sidebar menu structure within a DaisyUI Drawer. This menu is a list (`<ul>`) with list items (`<li>`) and links (`<a>`). The `menu` class applies styling, and `p-4`, `w-80`, `min-h-full`, `bg-base-100`, and `text-base-content` are example utility classes for padding, width, height, background, and text color.
+Authentication is a crucial aspect of any web application, ensuring that users are who they claim to be before granting access to resources or sensitive information. Access Shield simplifies the process of user authentication, offering features such as:
+
+- **User Registration and Login**: Allow users to create accounts and securely log in to your application.
+- **Password Hashing and Encryption**: Safeguard user passwords by securely hashing and encrypting them before storage.
+- **Session Management**: Manage user sessions to maintain authentication state across requests.
+- **OAuth Integration**: Simplify user authentication by integrating with popular OAuth providers.
+- **Two-Factor Authentication (2FA)**: Enhance security by requiring an additional authentication factor.
+- **Role-Based Access Control (RBAC)**: Define roles and permissions to control access to resources.
+```
+
+--------------------------------
+
+### Example Prompt with daisyUI Blueprint MCP
+
+Source: https://daisyui.com/docs/editor/cursor
+
+An example prompt demonstrating how to utilize the configured 'daisyui-blueprint' MCP server. By appending 'use Blueprint MCP' to your prompt, you instruct Cursor to leverage this server for generating DaisyUI code.
+
+```plaintext
+give me a light daisyUI 5 theme with tropical color palette. use Blueprint MCP
+```
+
+--------------------------------
+
+### Install daisyUI with Bun
+
+Source: https://daisyui.com/blog/npm-init-daisyui
+
+Utilize this command for a swift setup of Tailwind CSS and daisyUI when working with the Bun package manager.
+
+```bash
+bun create daisyui
+```
+
+--------------------------------
+
+### Alternative npm command for daisyUI
+
+Source: https://daisyui.com/blog/npm-init-daisyui
+
+This command serves as an alias for `npm init daisyui`, offering an alternative syntax for initiating the daisyUI installation and Tailwind CSS setup.
+
+```bash
+npm create daisyui
+```
+
+--------------------------------
+
+### Start Rails Server
+
+Source: https://daisyui.com/docs/install/rails
+
+Command to start the Rails development server.
+
+```bash
+./bin/dev
+```
+
+--------------------------------
+
+### Install daisyUI 5 Alpha using npm
+
+Source: https://daisyui.com/blog/daisyui-5-alpha
+
+Installs the alpha version of daisyUI as a development dependency. This is the initial step to start using the new alpha features.
+
+```bash
+npm i -D daisyui@alpha
+```
+
+--------------------------------
+
+### Install daisyUI with Yarn
+
+Source: https://daisyui.com/blog/npm-init-daisyui
+
+This command is the equivalent of `npm init daisyui` when using Yarn for package management. It streamlines the setup of Tailwind CSS and daisyUI.
+
+```bash
+yarn create daisyui
+```
+
+--------------------------------
+
+### Create Elysia Project with Bun
+
+Source: https://daisyui.com/docs/install/elysia
+
+Initializes a new Elysia project using Bun and navigates into the project directory. Requires Bun to be installed.
+
+```bash
+bun create elysia myapp
+cd myapp
+```
+
+--------------------------------
+
+### Installing Mary UI on a New Laravel Project
+
+Source: https://daisyui.com/blog/mary-ui
+
+Provides the composer command to install the Mary UI package and the artisan command to complete the setup for a new Laravel project. It also includes a command to start the development server.
+
+```bash
+composer require robsontenorio/mary
+php artisan mary:install
+yarn dev
+```
+
+--------------------------------
+
+### Initialize Node.js Project and Set Scripts (Terminal)
+
+Source: https://daisyui.com/docs/install/electron
+
+Initializes a new Node.js project using `npm init` and sets custom scripts for starting the Electron application and building CSS using Tailwind. Ensures the entry point is `main.js`.
+
+```bash
+mkdir myapp
+cd myapp
+npm init
+npm pkg set scripts.start="electron ."
+npm pkg set scripts.build:css="tailwindcss -i src/input.css -o public/output.css"
+```
+
+--------------------------------
+
+### Create New Elixir Phoenix Project
+
+Source: https://daisyui.com/docs/install/phoenix
+
+Command to create a new Elixir Phoenix project in the current directory. The `--no-ecto` flag is used here to skip database setup for demonstration.
+
+```bash
+mix phx.new ./ --no-ecto
+```
+
+--------------------------------
+
+### Create SvelteKit Project
+
+Source: https://daisyui.com/docs/install/sveltekit
+
+Initializes a new SvelteKit project in the current directory using the 'sv create' command. This is the first step before installing Tailwind CSS and daisyUI.
+
+```bash
+npx sv create ./
+```
+
+--------------------------------
+
+### Install Project Dependencies (npm)
+
+Source: https://daisyui.com/blog/daisyui-nextjs-online-store-template
+
+Installs the necessary packages for the project using npm. This is a prerequisite for running the development server and building the project.
+
+```bash
+npm install
+```
+
+--------------------------------
+
+### Configure Tailwind CSS in Vite for Solid Start
+
+Source: https://daisyui.com/docs/install/solid-start
+
+Adds the Tailwind CSS plugin to the Vite configuration for a Solid Start project. This ensures Tailwind CSS is processed correctly during the build and development phases.
+
+```typescript
+import { defineConfig } from "@solidjs/start/config";
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  vite: {
+    plugins: [tailwindcss()],
+  },
+});
+
+```
+
+--------------------------------
+
+### Project-Level Setup: Saving daisyUI Docs for Copilot
+
+Source: https://daisyui.com/docs/editor/vscode
+
+This command saves the daisyUI documentation text file to a specified location within your project, enabling Copilot to use it as a default reference for code generation. Ensure you have `curl` installed to execute this command.
+
+```shell
+curl -L https://daisyui.com/llms.txt --create-dirs -o .github/instructions/daisyui.instructions.md
+```
+
+--------------------------------
+
+### Create and Navigate Laravel Project
+
+Source: https://daisyui.com/docs/install/laravel
+
+This snippet demonstrates the commands to create a new Laravel project and navigate into its directory using the Laravel installer and terminal.
+
+```shell
+laravel new my-app
+cd my-app
+```
+
+--------------------------------
+
+### Run Zola Development Server
+
+Source: https://daisyui.com/docs/install/zola
+
+Starts the Zola development server, allowing you to preview your static site locally. This command should be run in a separate terminal tab.
+
+```bash
+zola serve
+```
+
+--------------------------------
+
+### Create New Qwik Project
+
+Source: https://daisyui.com/docs/install/qwik
+
+Command to generate a new, empty Qwik project in the current directory. This is the initial step for setting up a Qwik application.
+
+```bash
+npm create qwik@latest empty ./
+```
+
+--------------------------------
+
+### Start Development Server (npm)
+
+Source: https://daisyui.com/blog/daisyui-nextjs-online-store-template
+
+Launches the development server, allowing you to preview your online store in real-time at http://localhost:3000. This command is essential for iterative development and testing.
+
+```bash
+npm run dev
+```
+
+--------------------------------
+
+### Initialize Node.js Project and Scripts
+
+Source: https://daisyui.com/docs/install/11ty
+
+Initializes a new Node.js project and sets up 'dev' and 'build' scripts for Eleventy. These scripts are essential for running and building the static site.
+
+```bash
+npm init -y
+npm pkg set scripts.dev="eleventy --serve"
+npm pkg set scripts.build="eleventy"
+```
+
+--------------------------------
+
+### Run Angular Development Server
+
+Source: https://daisyui.com/docs/install/angular
+
+Starts the Angular development server, which builds and serves your Angular application. This command allows you to see your changes live during development and test the integration of daisyUI.
+
+```bash
+ng serve
+```
+
+--------------------------------
+
+### Install daisyUI using NPM, PNPM, Yarn, Bun, or Deno
+
+Source: https://daisyui.com/alternative/heroui
+
+These commands demonstrate how to install the latest version of daisyUI as a development dependency using various package managers. Ensure you have the respective package manager installed on your system.
+
+```bash
+npm i -D daisyui@latest
+```
+
+```bash
+pnpm add -D daisyui@latest
+```
+
+```bash
+yarn add -D daisyui@latest
+```
+
+```bash
+bun add -D daisyui@latest
+```
+
+```bash
+deno i -D npm:daisyui@latest
+```
+
+--------------------------------
+
+### Run Elixir Phoenix Project
+
+Source: https://daisyui.com/docs/install/phoenix
+
+Command to start the Elixir Phoenix project server. After running this, daisyUI class names can be used within the project.
+
+```bash
+mix phx.server
+```
+
+--------------------------------
+
+### Install daisyUI using Bun
+
+Source: https://daisyui.com/alternative/tailwindui
+
+Installs the latest version of daisyUI as a development dependency using bun.
+
+```bash
+bun add -D daisyui@latest
+```
+
+--------------------------------
+
+### Fast Install Tailwind CSS and daisyUI (Linux/macOS)
+
+Source: https://daisyui.com/docs/install/django
+
+Installs Tailwind CSS and daisyUI quickly on Linux or macOS by downloading executables and creating an input.css file. This command automates the setup process in the static CSS directory.
+
+```shell
+cd myapp/static/css && curl -sL daisyui.com/fast | bash
+```
+
+--------------------------------
+
+### Configure input.css for daisyUI and Tailwind
+
+Source: https://daisyui.com/docs/install/standalone
+
+An example `input.css` file demonstrating how to import Tailwind CSS, specify source files, and include daisyUI plugins and custom themes.
+
+```css
+@import "tailwindcss";
+
+@source not "./tailwindcss";
+@source not "./daisyui{,*}.mjs";
+
+@plugin "./daisyui.mjs";
+
+/* Optional for custom themes – Docs: https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme */
+@plugin "./daisyui-theme.mjs"{
+  /* custom theme here */
+}
+```
+
+--------------------------------
+
+### Configure daisyUI GitMCP server in Windsurf
+
+Source: https://daisyui.com/docs/editor/windsurf
+
+Setup daisyUI GitMCP server for Windsurf integration using Git MCP protocol. Connects directly to the daisyUI GitHub repository for real-time component documentation and code generation without local installation.
+
+```json
+{
+  "mcpServers": {
+    "daisyui-github": {
+      "serverUrl": "https://gitmcp.io/saadeghi/daisyui"
+    }
+  }
+}
+```
+
+--------------------------------
+
+### Fetch daisyUI LLM Documentation in Zed Chat
+
+Source: https://daisyui.com/docs/editor/zed
+
+Quick method to fetch daisyUI documentation directly in Zed's thread chat. This command imports the compact llms.txt file from daisyui.com to provide context for AI code generation without requiring MCP server setup.
+
+```text
+@fetch https://daisyui.com/llms.txt
+```
+
+--------------------------------
+
+### Create Next.js Project
+
+Source: https://daisyui.com/docs/install/nextjs
+
+Command to initialize a new Next.js project in the current directory. This sets up the basic structure for a Next.js application.
+
+```bash
+npm create next-app@latest ./
+```
+
+--------------------------------
+
+### DaisyUI Steps Component Example
+
+Source: https://daisyui.com/codepen
+
+Demonstrates the 'steps' component in DaisyUI, used for visualizing a process or a sequence of stages. This example shows steps with primary styling and subsequent steps without specific styling.
+
+```html
+<ul class="steps my-4 w-full">
+  <li class="step step-primary">Register</li>
+  <li class="step step-primary">Choose plan</li>
+  <li class="step">Purchase</li>
+  <li class="step">Receive Product</li>
+</ul>
+```
+
+--------------------------------
+
+### Quick Setup with CDN using HTML
+
+Source: https://daisyui.com/pages/css-framework-for-school-project
+
+This snippet demonstrates the quickest way to set up daisyUI and Tailwind CSS using CDNs directly in an HTML file. It requires no build tools and allows immediate use of daisyUI components and Tailwind utility classes. The output is a simple button styled by daisyUI.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My School Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="p-8">
+    <button class="btn">Hello, world!</button>
+  </body>
+</html>
+```
+
+--------------------------------
+
+### DaisyUI Kbd Component: HTML Example
+
+Source: https://daisyui.com/llms
+
+Provides the syntax for the DaisyUI kbd component, used to style keyboard shortcuts. Apply the 'kbd' class to the element, and optionally use size modifiers like `kbd-xs`, `kbd-sm`, `kbd-md`, `kbd-lg`, `kbd-xl`.
+
+```html
+<kbd class="kbd {MODIFIER}">K</kbd>
+```
+
+--------------------------------
+
+### Stacked Cards (Start Direction) HTML Example
+
+Source: https://daisyui.com/components/stack
+
+Demonstrates how to stack cards from the start of the container using DaisyUI's 'stack-start' class. This arrangement is useful for creating layered visual effects where elements appear to build from the beginning.
+
+```html
+<div class="stack stack-start size-28">
+  <div class="border-base-content card bg-base-100 border text-center">
+    <div class="card-body">A</div>
+  </div>
+  <div class="border-base-content card bg-base-100 border text-center">
+    <div class="card-body">B</div>
+  </div>
+  <div class="border-base-content card bg-base-100 border text-center">
+    <div class="card-body">C</div>
+  </div>
+</div>
+```
+
+```jsx
+<div className="stack stack-start size-28">
+  <div className="border-base-content card bg-base-100 border text-center">
+    <div className="card-body">A</div>
+  </div>
+  <div className="border-base-content card bg-base-100 border text-center">
+    <div className="card-body">B</div>
+  </div>
+  <div className="border-base-content card bg-base-100 border text-center">
+    <div className="card-body">C</div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Install daisyUI using Deno
+
+Source: https://daisyui.com/alternative/tailwindui
+
+Installs the latest version of daisyUI as a development dependency using Deno.
+
+```bash
+deno i -D npm:daisyui@latest
+```
+
+--------------------------------
+
+### Run Elysia Development Server
+
+Source: https://daisyui.com/docs/install/elysia
+
+Starts the Elysia development server using the `dev` script defined in `package.json`. This command compiles the TypeScript code and runs the server.
+
+```bash
+bun run dev
+```
+
+--------------------------------
+
+### Add daisyUI Button Component to SvelteKit Page
+
+Source: https://daisyui.com/blog/how-to-install-sveltekit-and-daisyui
+
+This example demonstrates how to add a daisyUI primary button to the `src/routes/+page.svelte` file. Simply include the `btn btn-primary` classes to any button element to apply daisyUI's styling.
+
+```svelte
+<h1>Welcome to SvelteKit</h1>
+<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<button class="btn btn-primary">Hello daisyUI</button>
+
+```
+
+--------------------------------
+
+### Run Tailwind CSS CLI watcher
+
+Source: https://daisyui.com/docs/install/dioxus
+
+Starts the Tailwind CSS CLI in watch mode. It takes `tailwind.css` as input and outputs the processed CSS to `assets/main.css`, recompiling automatically on changes.
+
+```bash
+npx @tailwindcss/cli -i ./tailwind.css -o ./assets/main.css --watch
+```
+
+--------------------------------
+
+### Create Nuxt Project
+
+Source: https://daisyui.com/docs/install/nuxt
+
+Command to initialize a new Nuxt project in the current directory. This sets up the basic structure for a Nuxt application.
+
+```bash
+npx nuxi@latest init ./
+```
+
+--------------------------------
+
+### daisyUI Example Card Component
+
+Source: https://daisyui.com/pages/install-tailwind-css-vite
+
+An HTML structure for a card component styled using daisyUI component classes. This version is more concise than the pure Tailwind CSS version.
+
+```html
+<div class="card w-96">
+  <figure><img src="https://placehold.co/400x200" alt="Card image" /></figure>
+  <div class="card-body">
+    <h2 class="card-title">daisyUI Card</h2>
+    <p>This card uses daisyUI component classes.</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Read more</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Create and Navigate Waku Project using npm
+
+Source: https://daisyui.com/docs/install/waku
+
+This command initializes a new Waku project named 'myapp' and then navigates the user into the newly created project directory. It requires Node.js and npm to be installed.
+
+```bash
+npm create waku@latest -- --project-name=myapp
+cd myapp
+```
+
+--------------------------------
+
+### Create Rsbuild Project
+
+Source: https://daisyui.com/docs/install/rsbuild
+
+This command initializes a new Rsbuild project in the current directory.
+
+```bash
+npm create rsbuild -d ./
+
+```
+
+--------------------------------
+
+### Drawer Component Syntax and Usage (HTML)
+
+Source: https://daisyui.com/llms
+
+Defines the basic structure of a DaisyUI drawer, including the toggle input, content area, and sidebar. It also shows how to use a label to control the drawer's visibility and provides examples for responsive sidebars.
+
+```html
+<div class="drawer {MODIFIER}">
+  <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">{CONTENT}</div>
+  <div class="drawer-side">{SIDEBAR}</div>
+</div>
+
+<label for="my-drawer" class="btn drawer-button">Open/close drawer</label>
+```
 
 ```html
 <ul class="menu p-4 w-80 min-h-full bg-base-100 text-base-content">
@@ -1762,144 +812,6 @@ An example of a typical sidebar menu structure within a DaisyUI Drawer. This men
   <li><a>Item 2</a></li>
 </ul>
 ```
-
----
-
-### DaisyUI Navbar: Icon at Start and End
-
-Source: https://daisyui.com/components/navbar
-
-Illustrates a DaisyUI Navbar configuration with icons placed at both the start and end of the navigation bar, offering more interactive elements.
-
-```html
-<div class="navbar bg-base-100">
-  <div class="flex-none">
-    <button class="btn btn-square btn-ghost">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h7"
-        />
-      </svg>
-    </button>
-  </div>
-  <div class="flex-1">
-    <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
-  </div>
-  <div class="flex-none">
-    <button class="btn btn-square btn-ghost">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-      </svg>
-    </button>
-  </div>
-</div>
-```
-
----
-
-### Theme Controller: Toggle with Icons Example
-
-Source: https://daisyui.com/components/theme-controller
-
-Illustrates a theme controller using a toggle with icons, typically sun and moon. This visual approach enhances user experience by providing an intuitive way to switch between themes.
-
-```html
-<label class="swap swap-sunny swap-lg">
-  <input type="checkbox" class="theme-controller" value="synthwave" />
-  <svg class="swap-on fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.64,17l-.71.71a1,1,0,0,0,1.41,1.41l.71-.71A1,1,0,0,0,5.64,17Z"/><path d="M3,13H1a1,1,0,0,0,0,2H3a1,1,0,0,0,0-2Z"/><path d="M17.54,5.64l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71a1,1,0,0,0-1.41-1.41Z"/><path d="M13,1H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"/><path d="M11.71,11.29a1,1,0,0,0-1.41,0l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71A1,1,0,0,0,11.71,11.29Z"/><path d="M21,13H19a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"/><path d="M17.54,18.36a1,1,0,0,0-1.41,0l-.71.71a1,1,0,0,0,1.41,1.41l.71-.71A1,1,0,0,0,17.54,18.36Z"/><path d="M21,11H19a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"/><path d="M11.71,16.71a1,1,0,0,0-1.41,0l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71A1,1,0,0,0,11.71,16.71Z"/><path d="M13,23H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"/><path d="M1,13H3a1,1,0,0,0,0-2H1a1,1,0,0,0,0,2Z"/><path d="M5.64,5.64a1,1,0,0,0-1.41,0l-.71-.71a1,1,0,1,0,1.41-1.41l.71.71A1,1,0,0,0,5.64,5.64Z"/><path d="M13,1H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z"/><circle cx="12" cy="12" r="3"/></svg>
-  <svg class="swap-off fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,1,1,0,0,0-.5.53,1,1,0,0,0,.33.81l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71A1,1,0,0,0,21.64,13Zm-9.42,10.26a1,1,0,0,0,.33.81l.71.71a1,1,0,1,0,1.41-1.41l-.71-.71a1,1,0,0,0-.81-.
-```
-
----
-
-### DaisyUI Drawer Collapsible Sidebar Example
-
-Source: https://context7_llms
-
-This example shows a DaisyUI Drawer with a sidebar that can collapse to show only icons and expand to show icons with text. It uses custom utility classes like `is-drawer-close:overflow-visible`, `is-drawer-close:w-14`, `is-drawer-open:w-64`, and `is-drawer-close:hidden` for conditional styling based on the drawer's state.
-
-```html
-<div class="drawer lg:drawer-open">
-  <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content">
-    <!-- Page content here -->
-  </div>
-  <div class="drawer-side is-drawer-close:overflow-visible">
-    <label
-      for="my-drawer-4"
-      aria-label="close sidebar"
-      class="drawer-overlay"
-    ></label>
-    <div
-      class="is-drawer-close:w-14 is-drawer-open:w-64 bg-base-200 flex flex-col items-start min-h-full"
-    >
-      <!-- Sidebar content here -->
-      <ul class="menu w-full grow">
-        <!-- list item -->
-        <li>
-          <button
-            class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-            data-tip="Homepage"
-          >
-            🏠
-            <span class="is-drawer-close:hidden">Homepage</span>
-          </button>
-        </li>
-        <!-- list item -->
-        <li>
-          <button
-            class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-            data-tip="Settings"
-          >
-            ⚙️
-            <span class="is-drawer-close:hidden">Settings</span>
-          </button>
-        </li>
-      </ul>
-      <!-- button to open/close drawer -->
-      <div
-        class="m-2 is-drawer-close:tooltip is-drawer-close:tooltip-right"
-        data-tip="Open"
-      >
-        <label
-          for="my-drawer-4"
-          class="btn btn-ghost btn-circle drawer-button is-drawer-open:rotate-y-180"
-        >
-          ↔️
-        </label>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Drawer Always Visible Sidebar Example
-
-Source: https://context7_llms
-
-An example demonstrating a DaisyUI Drawer where the sidebar is always visible on large screens (`lg:drawer-open`) but can be toggled on smaller screens. It includes a page content section and a sidebar section. A label with `lg:hidden` is used to toggle the drawer on small screens.
 
 ```html
 <div class="drawer lg:drawer-open">
@@ -1911,11 +823,7 @@ An example demonstrating a DaisyUI Drawer where the sidebar is always visible on
     </label>
   </div>
   <div class="drawer-side">
-    <label
-      for="my-drawer-3"
-      aria-label="close sidebar"
-      class="drawer-overlay"
-    ></label>
+    <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
     <ul class="menu bg-base-200 min-h-full w-80 p-4">
       <!-- Sidebar content here -->
       <li><button>Sidebar Item 1</button></li>
@@ -1925,4395 +833,1418 @@ An example demonstrating a DaisyUI Drawer where the sidebar is always visible on
 </div>
 ```
 
----
-
-### DaisyUI Soft Style Alert Example
-
-Source: https://daisyui.com/components/alert
-
-Shows how to apply the 'alert-soft' style for a subtler alert appearance. This is useful for less intrusive notifications.
-
 ```html
-<div class="alert alert-soft">12 unread messages. Tap to see.</div>
-<div class="alert alert-info alert-soft">Your purchase has been confirmed!</div>
-<div class="alert alert-warning alert-soft">
-  Warning: Invalid email address!
+<div class="drawer lg:drawer-open">
+  <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <!-- Page content here -->
+  </div>
+  <div class="drawer-side is-drawer-close:overflow-visible">
+    <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+    <div class="is-drawer-close:w-14 is-drawer-open:w-64 bg-base-200 flex flex-col items-start min-h-full">
+      <!-- Sidebar content here -->
+      <ul class="menu w-full grow">
+        <!-- list item -->
+        <li>
+          <button class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+            🏠
+            <span class="is-drawer-close:hidden">Homepage</span>
+          </button>
+        </li>
+        <!-- list item -->
+        <li>
+          <button class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
+            ⚙️
+            <span class="is-drawer-close:hidden">Settings</span>
+          </button>
+        </li>
+      </ul>
+      <!-- button to open/close drawer -->
+      <div class="m-2 is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Open">
+        <label for="my-drawer-4" class="btn btn-ghost btn-circle drawer-button is-drawer-open:rotate-y-180">
+          ↔️
+        </label>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="alert alert-error alert-soft">Error! Task failed successfully.</div>
 ```
 
+--------------------------------
+
+### Configure Context7 MCP Server in Claude Desktop
+
+Source: https://daisyui.com/docs/editor/claude
+
+This JSON configuration integrates the Context7 MCP server into Claude desktop. It uses npx to install and run the Context7 MCP package. Users can then include 'use context7' in their prompts for daisyUI code generation.
+
+```json
+{
+  "mcpServers": {
+    "Context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    }
+  }
+}
+```
+
+--------------------------------
+
+### Initialize Zola Project and Navigate
+
+Source: https://daisyui.com/docs/install/zola
+
+Initializes a new Zola project and changes the directory into the newly created project folder. This is the first step in setting up the Zola environment.
+
+```bash
+zola init myblog
+cd myblog
+```
+
+--------------------------------
+
+### Install UnoCSS, daisyUI, and Preset
+
+Source: https://daisyui.com/docs/install/unocss
+
+Installs necessary npm packages: UnoCSS for utility-first CSS, daisyUI for component styling, and the UnoCSS preset for daisyUI.
+
+```bash
+npm install unocss daisyui @ameinhardt/unocss-preset-daisy
+```
+
+--------------------------------
+
+### Create New Vike Project
+
+Source: https://daisyui.com/docs/install/vike
+
+Initializes a new Vike project in the current directory using npm. This command sets up the basic structure for a Vike application.
+
+```bash
+npm create vike ./
+```
+
+--------------------------------
+
+### Create Solid.js Project
+
+Source: https://daisyui.com/docs/install/solid
+
+Command to generate a new Solid.js project using the degit template. This initializes the project structure in the current directory.
+
+```shell
+npx degit solidjs/templates/js
+```
+
+--------------------------------
+
+### Electron Main Process (`main.js`)
+
+Source: https://daisyui.com/docs/install/electron
+
+Defines the main process for an Electron application. It sets up the application's main window and loads the `index.html` file from the `src` directory upon successful app startup.
+
+```javascript
+const { app, BrowserWindow } = require('electron')
+
+const createWindow = () => {
+  const win = new BrowserWindow()
+  win.loadFile('src/index.html')
+}
+
+app.whenReady().then(() => {
+  createWindow()
+})
+```
+
+--------------------------------
+
+### Create New Blog Post with Markdown Front Matter
+
+Source: https://daisyui.com/blog/how-to-make-a-blog-quickly-using-astro-and-daisyUI
+
+Create a new blog post by adding an .mdx file to src/content/posts directory with YAML front matter metadata and Markdown content. The front matter includes title, description, date, author, and category information.
+
+```markdown
+---
+title: Boosting Sales with Effective Search Engine Optimization (SEO)
+description: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic eos odit sequi minima iure natus, odio tempora sit Lorem ipsum dolor sit.
+date: 2024/01/12
+image: ./images/post-1.jpg
+author: antonio
+authorImage: /images/about.jpeg
+category: seo
 ---
 
-### Theme Controller: Checkbox Example
+<script>
+  import Translate from "$components/Translate.svelte"
+</script>
 
-Source: https://daisyui.com/components/theme-controller
+## **Introduction**
 
-Demonstrates how to implement a theme controller using a checkbox input. This pattern is suitable for toggling between two themes, often light and dark. The provided HTML structure includes hidden inputs and labels for icons, allowing for a visually appealing toggle.
+In the digital age, a strong online presence is crucial for businesses looking to thrive. One of the key components of a successful online strategy is Search Engine Optimization (SEO). By optimizing your website for search engines, you can significantly improve your visibility, attract more potential customers, and ultimately boost your sales. In this article, we'll explore some essential SEO strategies to help you achieve these goals.
+```
+
+--------------------------------
+
+### Install daisyUI using PNPM
+
+Source: https://daisyui.com/alternative/tailwindui
+
+Installs the latest version of daisyUI as a development dependency using pnpm.
+
+```bash
+pnpm add -D daisyui@latest
+```
+
+--------------------------------
+
+### Eleventy Markdown Homepage
+
+Source: https://daisyui.com/docs/install/11ty
+
+A sample markdown file for an Eleventy homepage. It uses the default layout and includes markdown headings and a div with a daisyUI button, demonstrating component usage.
+
+```markdown
+---
+layout: layouts/default.njk
+---
+
+# Markdown heading 1
+
+## Markdown heading 2
+
+### Markdown heading 3
+
+<div class="not-prose">
+  <button class="btn">daisyUI Button</button>
+</div>
+```
+
+--------------------------------
+
+### Configure Homepage Layout with Astro Components
+
+Source: https://daisyui.com/blog/how-to-make-a-blog-quickly-using-astro-and-daisyUI
+
+Structure the homepage using Astro by importing and composing multiple components including Hero, TopArticles, LatestBlogs, and others. This demonstrates component-based architecture for organizing blog page sections.
+
+```astro
+---
+import Hero from "../components/Hero.astro";
+import TopArticles from "../components/TopArticles.astro";
+import LatestBlogs from "../components/RecentBlogs.astro";
+import NewsletterCard from "../components/NewsletterCard.astro";
+import FeaturedPost from "../components/FeaturedPost.astro";
+import HomeLayout from "../layouts/HomeLayout.astro";
+---
+
+<script>
+  import Translate from "$components/Translate.svelte"
+</script>
+
+<HomeLayout title="Home" description="Welcome to my blog">
+  <div class="w-full">
+    <Hero />
+    <div class="px-5 xl:px-10">
+      <LatestBlogs />
+      <FeaturedPost />
+      <TopArticles />
+      <NewsletterCard />
+    </div>
+  </div>
+</HomeLayout>
+```
+
+--------------------------------
+
+### Create new Dioxus project
+
+Source: https://daisyui.com/docs/install/dioxus
+
+Creates a new Dioxus project in the current directory. Requires Rust and Dioxus CLI to be installed.
+
+```bash
+dx new ./
+```
+
+--------------------------------
+
+### Tailwind CSS Example Card Component
+
+Source: https://daisyui.com/pages/install-tailwind-css-vite
+
+An HTML structure for a card component styled using Tailwind CSS utility classes. It includes responsive design and dark mode support.
 
 ```html
-<input type="checkbox" class="theme-controller" value="synthwave" />
-<input type="checkbox" class="theme-controller" value="dark" />
-<input type="checkbox" class="theme-controller" value="cupcake" />
-<input type="checkbox" class="theme-controller" value="bumblebee" />
-<input type="checkbox" class="theme-controller" value="emerald" />
-<input type="checkbox" class="theme-controller" value="corporate" />
-<input type="checkbox" class="theme-controller" value="synthwave" />
-<input type="checkbox" class="theme-controller" value="retro" />
-<input type="checkbox" class="theme-controller" value="cyberpunk" />
-<input type="checkbox" class="theme-controller" value="valentine" />
-<input type="checkbox" class="theme-controller" value="halloween" />
-<input type="checkbox" class="theme-controller" value="garden" />
-<input type="checkbox" class="theme-controller" value="forest" />
-<input type="checkbox" class="theme-controller" value="aqua" />
-<input type="checkbox" class="theme-controller" value="lofi" />
-<input type="checkbox" class="theme-controller" value="pastel" />
-<input type="checkbox" class="theme-controller" value="fantasy" />
-<input type="checkbox" class="theme-controller" value="wireframe" />
-<input type="checkbox" class="theme-controller" value="black" />
-<input type="checkbox" class="theme-controller" value="luxury" />
-<input type="checkbox" class="theme-controller" value="dracula" />
-<input type="checkbox" class="theme-controller" value="cmyk" />
-<input type="checkbox" class="theme-controller" value="autumn" />
-<input type="checkbox" class="theme-controller" value="business" />
-<input type="checkbox" class="theme-controller" value="acid" />
-<input type="checkbox" class="theme-controller" value="lemonade" />
-<input type="checkbox" class="theme-controller" value="night" />
-<input type="checkbox" class="theme-controller" value="coffee" />
-<input type="checkbox" class="theme-controller" value="winter" />
-<input type="checkbox" class="theme-controller" value="dim" />
-<input type="checkbox" class="theme-controller" value="nord" />
-<input type="checkbox" class="theme-controller" value="sunset" />
-<input type="checkbox" class="theme-controller" value="caramellatte" />
-<input type="checkbox" class="theme-controller" value="abyss" />
-<input type="checkbox" class="theme-controller" value="silk" />
+<div class="max-w-sm rounded-lg bg-white shadow-md transition-colors dark:bg-gray-800">
+  <img class="h-auto w-full rounded-t-lg object-cover" src="https://placehold.co/400x200" alt="Card image" />
+  <div class="px-4 py-2">
+    <h2 class="mb-2 text-xl leading-tight font-semibold tracking-tight 
+      text-gray-900 dark:text-white">Tailwind Card</h2>
+    <p class="mb-3 leading-relaxed font-normal text-sm text-gray-700 
+      dark:text-gray-400">This card uses Tailwind utility classes.</p>
+    <div class="flex justify-end">
+      <a href="#" class="inline-flex items-center justify-center rounded-lg 
+        bg-blue-700 px-4 py-2.5 text-center text-sm font-medium text-white 
+        transition-transform duration-200 ease-in-out hover:bg-blue-800 
+        focus-visible:ring-4 focus-visible:ring-blue-300 focus-visible:outline-none 
+        active:translate-y-0.25 dark:bg-blue-600 dark:hover:bg-blue-700 
+        dark:focus-visible:ring-blue-800"> Read more </a>
+    </div>
+  </div>
+</div>
 ```
 
----
+--------------------------------
 
-### Import daisyUI in CSS file
+### Install Tailwind CSS and daisyUI with npm
 
-Source: https://daisyui.com/docs/upgrade
+Source: https://daisyui.com/docs/install/dioxus
 
-This snippet demonstrates how to import daisyUI into the main CSS file, either as a general plugin or with specific themes enabled.
+Initializes a new Node.js project and installs the latest versions of Tailwind CSS CLI and daisyUI. Assumes Node.js is installed.
+
+```bash
+npm init -y
+npm install tailwindcss@latest @tailwindcss/cli@latest daisyui@latest
+```
+
+--------------------------------
+
+### Create Vite Preact Project
+
+Source: https://daisyui.com/docs/install/preact
+
+Initialize a new Preact project using Vite with the preact template. This command sets up the basic project structure and dependencies required for a Preact application.
+
+```bash
+npm create vite@latest ./ -- --template preact
+```
+
+--------------------------------
+
+### Include Toggle Component CSS from CDN
+
+Source: https://daisyui.com/docs/v5
+
+For projects without a build step, you can include specific daisyUI components via tiny CSS files hosted on a CDN. This example shows how to include only the 'toggle' component's styles.
+
+```html
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5/components/toggle.css" rel="stylesheet" type="text/css" />
+```
+
+--------------------------------
+
+### Install daisyUI using Package Managers
+
+Source: https://daisyui.com/compare/daisyui-vs-mui
+
+This section provides installation instructions for daisyUI using various package managers, including NPM, PNPM, Yarn, Bun, and Deno. It also shows how to add daisyUI to your main CSS file.
+
+```bash
+npm i -D daisyui@latest
+
+```
+
+```bash
+pnpm add -D daisyui@latest
+
+```
+
+```bash
+yarn add -D daisyui@latest
+
+```
+
+```bash
+bun add -D daisyui@latest
+
+```
+
+```bash
+deno i -D npm:daisyui@latest
+
+```
 
 ```css
 @import "tailwindcss";
 @plugin "daisyui";
+
 ```
-
-```css
-@import "tailwindcss";
-@plugin "daisyui" {
-  themes: light --default, dark --prefersdark, cupcake;
-}
-```
-
----
-
-### File Input with Fieldset and Label - daisyUI
-
-Source: https://daisyui.com/components/file-input
-
-Shows how to group a file input with a fieldset and label, enhancing accessibility and user guidance. This example includes descriptive text like 'Pick a file' and size constraints.
-
-```html
-<div class="form-control w-full max-w-xs">
-  <label class="label">
-    <span class="label-text">What's your profile picture?</span>
-    <span class="label-text-alt">Max size 2MB</span>
-  </label>
-  <input type="file" class="file-input w-full max-w-xs" />
-</div>
-```
-
----
-
-### Status Component with Bounce Animation (HTML)
-
-Source: https://daisyui.com/components/status
-
-Provides an example of applying a bounce animation to the Status component, often used for attention-grabbing notifications or new items. The example illustrates unread messages.
-
-````html
-```html
-<div class="status status-info" style="--status-color: inherit;">
-  Unread messages
-</div>
-<span
-  class="status status-info animate-bounce"
-  style="--status-color: inherit;"
-></span>
-<span class="status status-info" style="--status-color: inherit;"></span>
-
-<div class="status status-warning" style="--status-color: inherit;">
-  New notifications
-</div>
-<span
-  class="status status-warning animate-bounce"
-  style="--status-color: inherit;"
-></span>
-<span class="status status-warning" style="--status-color: inherit;"></span>
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Browser Mockup Syntax (HTML)
+### Install Eleventy, Tailwind CSS, and daisyUI
 
-Source: https://context7_llms
+Source: https://daisyui.com/docs/install/11ty
 
-Shows how to create a browser mockup using DaisyUI. It includes the basic structure with a toolbar and content area. A URL can be set in the toolbar by using an input element.
+Installs the required npm packages for an Eleventy project, including Eleventy itself, PostCSS, Tailwind CSS, the Tailwind Typography plugin, and daisyUI. Ensures the latest versions are installed.
 
-```html
-<div class="mockup-browser">
-  <div class="mockup-browser-toolbar">
-    <div class="input"><input type="text" value="daisyui.com" /></div>
-  </div>
-  <div class="mockup-browser-window">
-    Content of the browser window
-  </div>
-</div>
-````
-
----
-
-### Theme Controller: Radio Input Example
-
-Source: https://daisyui.com/components/theme-controller
-
-Illustrates using radio inputs for the theme controller, allowing users to select one theme from a predefined list. This is useful for scenarios where a specific selection is required, such as choosing a primary theme for the application.
-
-```html
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="retro"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="cyberpunk"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="valentine"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="aqua"
-/>
-
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="retro"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="cyberpunk"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="valentine"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="aqua"
-/>
-
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="retro"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="cyberpunk"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="valentine"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="aqua"
-/>
-
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="retro"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="cyberpunk"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="valentine"
-/>
-<input
-  type="radio"
-  name="theme-controller"
-  class="theme-controller"
-  value="aqua"
-/>
+```bash
+npm install @11ty/eleventy postcss tailwindcss@latest @tailwindcss/postcss@latest @tailwindcss/typography@latest daisyui@latest
 ```
-
----
-
-### Stat with Download Data (HTML)
-
-Source: https://daisyui.com/components/stat
-
-This snippet illustrates a Stat component displaying download-related data, including volume and date range. It also shows examples with increase/decrease indicators for new users and registers.
-
-```html
-<div class="stats">
-  <div class="stat">
-    <div class="stat-title">Downloads</div>
-    <div class="stat-value">31K</div>
-    <div class="stat-desc">Jan 1st - Feb 1st</div>
-  </div>
-  <div class="stat">
-    <div class="stat-title">New Users</div>
-    <div class="stat-value">4,200</div>
-    <div class="stat-desc">↗︎ 400 (22%)</div>
-  </div>
-  <div class="stat">
-    <div class="stat-title">New Registers</div>
-    <div class="stat-value">1,200</div>
-    <div class="stat-desc">↘︎ 90 (14%)</div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Code Mockup Syntax (HTML)
-
-Source: https://context7_llms
-
-Illustrates the DaisyUI code mockup component for displaying code snippets. It supports prefixes for lines and can be configured for line highlighting.
-
-```html
-<div class="mockup-code">
-  <pre data-prefix="$"><code>npm i daisyui</code></pre>
-  <pre data-prefix=">" data-line><code>console.log('Hello world!')</code></pre>
-</div>
-```
-
----
-
-### DaisyUI Stack Component: Stacked Cards (Start Direction)
-
-Source: https://daisyui.com/components/stack
-
-Illustrates stacking card elements vertically using the 'stack-start' modifier, aligning them to the start (left) side of the stack. This is useful for left-aligned stacked content.
-
-```html
-<div class="stack stack-start">
-  <div>A</div>
-  <div>B</div>
-  <div>C</div>
-</div>
-```
-
----
-
-### Basic Code Mockup with daisyUI
-
-Source: https://daisyui.com/components/mockup-code
-
-Demonstrates the fundamental usage of the 'mockup-code' class to display a simple code block. This is useful for showing commands or basic code snippets.
-
-```html
-<div class="mockup-code">
-  <pre data-prefix="$"><code>npm i daisyui</code></pre>
-</div>
-```
-
----
-
-### Basic DaisyUI Timeline with Text and Icons (HTML)
-
-Source: https://daisyui.com/components/timeline
-
-Demonstrates a basic DaisyUI timeline structure with events displayed chronologically. This example utilizes the default vertical layout and includes event titles and descriptions.
-
-```html
-<ul class="timeline">
-  <li>
-    <div class="timeline-start">
-      1984
-      <span class="text-lg">First Macintosh computer</span>
-    </div>
-    <div class="timeline-middle">
-      <div class="w-40"></div>
-    </div>
-    <div class="timeline-end">
-      <time>1984</time>
-      First Macintosh computer
-    </div>
-  </li>
-  <li>
-    <div class="timeline-start">
-      1998
-      <span class="text-lg">iMac</span>
-    </div>
-    <div class="timeline-middle">
-      <div class="w-40"></div>
-    </div>
-    <div class="timeline-end">
-      <time>1998</time>
-      iMac
-    </div>
-  </li>
-  <li>
-    <div class="timeline-start">
-      2001
-      <span class="text-lg">iPod</span>
-    </div>
-    <div class="timeline-middle">
-      <div class="w-40"></div>
-    </div>
-    <div class="timeline-end">
-      <time>2001</time>
-      iPod
-    </div>
-  </li>
-  <li>
-    <div class="timeline-start">
-      2007
-      <span class="text-lg">iPhone</span>
-    </div>
-    <div class="timeline-middle">
-      <div class="w-40"></div>
-    </div>
-    <div class="timeline-end">
-      <time>2007</time>
-      iPhone
-    </div>
-  </li>
-  <li>
-    <div class="timeline-start">
-      2015
-      <span class="text-lg">Apple Watch</span>
-    </div>
-    <div class="timeline-middle">
-      <div class="w-40"></div>
-    </div>
-    <div class="timeline-end">
-      <time>2015</time>
-      Apple Watch
-    </div>
-  </li>
-</ul>
-```
-
----
-
-### DaisyUI Outline Style Alert Example
-
-Source: https://daisyui.com/components/alert
-
-Illustrates the 'alert-outline' class for alerts with a distinct outline. This style provides a clear visual separation.
-
-```html
-<div class="alert alert-outline">12 unread messages. Tap to see.</div>
-<div class="alert alert-info alert-outline">
-  Your purchase has been confirmed!
-</div>
-<div class="alert alert-warning alert-outline">
-  Warning: Invalid email address!
-</div>
-<div class="alert alert-error alert-outline">
-  Error! Task failed successfully.
-</div>
-```
-
----
-
-### DaisyUI Toast Placement: Top-Start
-
-Source: https://daisyui.com/components/toast
-
-Shows how to position the DaisyUI Toast component at the top-start (top-left) corner of the page. This example uses the 'toast-top' and 'toast-start' classes for precise placement.
-
-```html
-<div class="toast toast-top toast-start">
-  <div class="alert alert-info">
-    <div>
-      <span>New mail arrived.</span>
-      <span>Message sent successfully.</span>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Dash Style Alert Example
-
-Source: https://daisyui.com/components/alert
-
-Demonstrates the 'alert-dash' style for alerts with a dashed border. This offers a different visual emphasis compared to solid or outline styles.
-
-```html
-<div class="alert alert-dash">12 unread messages. Tap to see.</div>
-<div class="alert alert-info alert-dash">Your purchase has been confirmed!</div>
-<div class="alert alert-warning alert-dash">
-  Warning: Invalid email address!
-</div>
-<div class="alert alert-error alert-dash">Error! Task failed successfully.</div>
-```
-
----
-
-### DaisyUI Indicator Placement: Top-Center (HTML)
-
-Source: https://daisyui.com/components/indicator
-
-Shows how to use `indicator-top` and `indicator-center` to place an indicator at the top-center of a container.
-
-```html
-<div class="indicator indicator-top indicator-center">
-  <span class="indicator-item badge badge-secondary">New</span>
-  <div class="grid w-32 h-32 bg-base-300 place-items-center">Content</div>
-</div>
-```
-
----
-
-### Replace Bottom Navigation component with Dock
-
-Source: https://daisyui.com/docs/upgrade
-
-This snippet illustrates the migration from the deprecated `bottom-nav` component and its associated classes to the new `dock` component and its corresponding classes.
-
-```html
--
-<div class="btm-nav">
-  - <button>Legal</button> - <button class="btm-nav-active">Favorites</button> -
-  <button>Settings</button> -
-</div>
-+
-<div class="dock">
-  + <button>🏠</button> + <button class="dock-active">🍿</button> +
-  <button>⚙️</button> +
-</div>
-```
-
----
-
-### Radial Progress with Background and Border (HTML)
-
-Source: https://daisyui.com/components/radial-progress
-
-Demonstrates how to add a background color and border to the radial-progress component. This example shows a 70% progress with a distinct background and border for better visibility.
-
-```html
-<div
-  class="radial-progress bg-base-200 border border-base-300"
-  style="--value:70"
-  role="progressbar"
->
-  70%
-</div>
-```
-
----
-
-### DaisyUI Radio Button Examples
-
-Source: https://daisyui.com/components/radio
-
-Demonstrates the basic structure and usage of DaisyUI radio buttons. Radio buttons allow users to select a single option from a set. Ensure each radio button group has unique 'name' attributes.
-
-```html
-<!-- Basic Radio -->
-<div class="form-control">
-  <label class="label cursor-pointer">
-    <span class="label-text">Remember me</span>
-    <input type="radio" name="radio-10" class="radio checked:bg-blue-500" />
-  </label>
-</div>
-
-<!-- Radio with different colors -->
-<input type="radio" name="radio-10" class="radio radio-primary" checked />
-<input type="radio" name="radio-10" class="radio radio-secondary" />
-<input type="radio" name="radio-10" class="radio radio-accent" />
-<input type="radio" name="radio-10" class="radio radio-ghost" />
-```
-
----
-
-### DaisyUI Window Mockup Syntax (HTML)
-
-Source: https://context7_llms
-
-Demonstrates the basic DaisyUI window mockup component. It consists of a container div where the window content can be placed.
-
-```html
-<div class="mockup-window">
-  <div>
-    <!-- Content inside the window -->
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Indicator Placement: Top-End (Default) (HTML)
-
-Source: https://daisyui.com/components/indicator
-
-Illustrates the default top-end placement using `indicator-top` and `indicator-end` (where `indicator-end` is the default horizontal alignment).
-
-```html
-<div class="indicator indicator-top indicator-end">
-  <span class="indicator-item badge badge-secondary">New</span>
-  <div class="grid w-32 h-32 bg-base-300 place-items-center">Content</div>
-</div>
-```
-
----
-
-### DaisyUI Success Color Alert Example
-
-Source: https://daisyui.com/components/alert
-
-Illustrates the 'alert-success' class for displaying successful actions or confirmations. This is commonly used for positive feedback.
-
-```html
-<div class="alert alert-success">Your purchase has been confirmed!</div>
-```
-
----
-
-### Indicator Component Placement Example in HTML
-
-Source: https://context7_llms
-
-The indicator component places an element, such as a badge or icon, on the corner of another element. It uses 'indicator' and 'indicator-item' classes, with optional placement classes for positioning.
-
-```html
-<div class="indicator">
-  <span class="indicator-item badge badge-secondary">!</span>
-  <div class="grid w-32 h-32 bg-base-300 place-items-center">Content</div>
-</div>
-```
-
----
-
-### Radial Progress with Background and Border (Vue)
-
-Source: https://daisyui.com/components/radial-progress
-
-This Vue.js example shows how to style the radial-progress component with a background color and border, enhancing its visual presentation.
-
-```vue
-<template>
-  <div
-    class="radial-progress bg-base-200 border border-base-300"
-    :style="{ '--value': 70 }"
-    role="progressbar"
-  >
-    70%
-  </div>
-</template>
-
-<script setup lang="ts">
-// No script needed for basic example
-</script>
-
-<style>
-/* DaisyUI styles are assumed to be globally imported */
-</style>
-```
-
----
-
-### DaisyUI Error Color Alert Example
-
-Source: https://daisyui.com/components/alert
-
-Demonstrates the 'alert-error' class for critical errors or failures. This style should be used for significant problems that require user attention.
-
-```html
-<div class="alert alert-error">Error! Task failed successfully.</div>
-```
-
----
-
-### Accordion with Radio Inputs Example (HTML)
-
-Source: https://daisyui.com/components/accordion
-
-Demonstrates how to create an accordion component using HTML radio inputs. This method ensures that only one accordion item can be open at a time within a group sharing the same 'name' attribute. It's suitable for FAQs or sequential content presentation.
-
-```html
-<div>
-  <div class="collapse collapse-arrow bg-base-200">
-    <input type="radio" name="my-accordion-2" checked="checked" />
-    <div class="collapse-title text-xl font-medium">
-      Click to open this one and close others
-    </div>
-    <div class="collapse-content">
-      <p>hello</p>
-    </div>
-  </div>
-  <div class="collapse collapse-arrow bg-base-200">
-    <input type="radio" name="my-accordion-2" />
-    <div class="collapse-title text-xl font-medium">
-      Click to open this one and close others
-    </div>
-    <div class="collapse-content">
-      <p>hello</p>
-    </div>
-  </div>
-  <div class="collapse collapse-arrow bg-base-200">
-    <input type="radio" name="my-accordion-2" />
-    <div class="collapse-title text-xl font-medium">
-      Click to open this one and close others
-    </div>
-    <div class="collapse-content">
-      <p>hello</p>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Fieldset with Background and Border
-
-Source: https://daisyui.com/components/fieldset
-
-Shows how to apply background and border styles to a DaisyUI fieldset, enhancing its visual separation and grouping capabilities. This example builds upon the basic fieldset structure.
-
-```html
-<!-- Fieldset with background and border -->
-<div class="form-control bg-base-200 p-4 rounded-lg border border-base-300">
-  <label class="label">
-    <span class="label-text">Page title</span>
-  </label>
-  <input type="text" placeholder="Type here" class="input input-bordered" />
-</div>
-```
-
----
-
-### DaisyUI Toast Placement: Top-End
-
-Source: https://daisyui.com/components/toast
-
-Demonstrates how to align the DaisyUI Toast component to the top-end (top-right) of the viewport. This example employs the 'toast-top' and 'toast-end' classes.
-
-```html
-<div class="toast toast-top toast-end">
-  <div class="alert alert-info">
-    <div>
-      <span>New mail arrived.</span>
-      <span>Message sent successfully.</span>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Join Component: Radio Inputs
-
-Source: https://daisyui.com/components/join
-
-Shows an example of using the DaisyUI 'join' component with radio inputs styled as buttons. Each radio input is a 'join-item' within the 'join' container, allowing for visually grouped radio selections.
-
-```html
-<div class="join">
-  <input
-    type="radio"
-    name="options"
-    class="join-item btn"
-    checked
-    aria-label="rdo1"
-  />
-  <input type="radio" name="options" class="join-item btn" aria-label="rdo2" />
-</div>
-<div class="join">
-  <input
-    type="radio"
-    name="options"
-    class="join-item btn"
-    checked
-    aria-label="rdo1"
-  />
-  <input type="radio" name="options" class="join-item btn" aria-label="rdo2" />
-</div>
-<div class="join">
-  <input
-    type="radio"
-    name="options"
-    class="join-item btn"
-    checked
-    aria-label="rdo1"
-  />
-  <input type="radio" name="options" class="join-item btn" aria-label="rdo2" />
-</div>
-<div class="join">
-  <input
-    type="radio"
-    name="options"
-    class="join-item btn"
-    checked
-    aria-label="rdo1"
-  />
-  <input type="radio" name="options" class="join-item btn" aria-label="rdo2" />
-</div>
-```
-
----
-
-### DaisyUI Badge with Icon (HTML)
-
-Source: https://daisyui.com/components/badge
-
-Provides examples of how to include icons within DaisyUI badges. This enhances the visual communication of the badge's status or meaning.
-
-```html
-<!-- Example using a hypothetical SVG icon -->
-<!-- Info Badge with Icon -->
-<div class="badge badge-info gap-x-2">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    class="w-4 h-4 stroke-current"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M13 16h-1v2h-1V9h1m4 4h-1v6h-1M7 12a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm9 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-    ></path>
-  </svg>
-  <span>Info</span>
-</div>
-
-<!-- Success Badge with Icon -->
-<div class="badge badge-success gap-x-2">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    class="w-4 h-4 stroke-current"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M5 13l4 4L19 7"
-    ></path>
-  </svg>
-  <span>Success</span>
-</div>
-
-<!-- Warning Badge with Icon -->
-<div class="badge badge-warning gap-x-2">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    class="w-4 h-4 stroke-current"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.543 0 2.872-1.258 2.872-2.815V7.015c0-1.557-1.329-2.815-2.872-2.815H5.062C3.519 4.2 2.19 5.458 2.19 7.015v9.97c0 1.557 1.329 2.815 2.872 2.815z"
-    ></path>
-  </svg>
-  <span>Warning</span>
-</div>
-
-<!-- Error Badge with Icon -->
-<div class="badge badge-error gap-x-2">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    class="w-4 h-4 stroke-current"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M6 18L18 6M6 6l12 12"
-    ></path>
-  </svg>
-  <span>Error</span>
-</div>
-```
-
----
-
-### DaisyUI Navbar: Basic Title Only
-
-Source: https://daisyui.com/components/navbar
-
-This snippet shows the fundamental structure of a DaisyUI Navbar containing only a title. It serves as the most basic navigation bar setup.
-
-```html
-<div class="navbar bg-base-100">
-  <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
-</div>
-```
-
----
-
-### DaisyUI Box Tabs with HTML
-
-Source: https://daisyui.com/components/tab
-
-Demonstrates the 'tabs-box' style for DaisyUI tabs, which presents the tabs within a box container. This example applies the 'tabs-box' class to the tab list.
-
-````html
-### tabs-box Tab 1 Tab 2 Tab 3 ``` html
-<div role="tablist" class="tabs tabs-box">
-  <a role="tab" class="tab">Tab 1</a>
-  <a role="tab" class="tab">Tab 2</a>
-  <a role="tab" class="tab">Tab 3</a>
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 1
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 2
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 3
-</div>
-````
-
-````
 
 --------------------------------
 
-### daisyUI Dock Custom Colors HTML Example
+### Install daisyUI using NPM
 
-Source: https://daisyui.com/components/dock
+Source: https://daisyui.com/alternative/tailwindui
 
-Illustrates how to apply custom colors to the daisyUI Dock component using Tailwind CSS color classes. This allows for flexible theming and branding.
+Installs the latest version of daisyUI as a development dependency using npm.
 
-```html
-<div class="dock bg-primary">
-  <button class="dock-tab text-primary-content">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M5 10v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>
-    Home
-  </button>
-  <button class="dock-tab dock-active text-primary-content bg-primary-focus">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1a3 3 0 00-3 3v13a3 3 0 103 3h0v-13z" /></svg>
-    Inbox
-  </button>
-  <button class="dock-tab text-primary-content">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-0.657 0-1.275-.344-1.658-.874-0.383-.53-.594-1.197-.594-1.879v0c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v0c0 0.682-.211 1.349-.594 1.879-.383.531-.999.874-1.658.874h0z" /></svg>
-    Settings
-  </button>
-</div>
-````
-
----
-
-### Centered Stat Items (HTML)
-
-Source: https://daisyui.com/components/stat
-
-This example demonstrates how to center the items within the Stat component. It's useful for creating a more compact and visually balanced display of statistics.
-
-```html
-<div class="stats">
-  <div class="stat place-items-center">
-    <div class="stat-title">Downloads</div>
-    <div class="stat-value">31K</div>
-    <div class="stat-desc">From January 1st to February 1st</div>
-  </div>
-  <div class="stat place-items-center">
-    <div class="stat-title">Users</div>
-    <div class="stat-value">4,200</div>
-    <div class="stat-desc">↗︎ 40 (2%)</div>
-  </div>
-  <div class="stat place-items-center">
-    <div class="stat-title">New Registers</div>
-    <div class="stat-value">1,200</div>
-    <div class="stat-desc">↘︎ 90 (14%)</div>
-  </div>
-</div>
+```bash
+npm i -D daisyui@latest
 ```
-
----
-
-### Clock Countdown with Colons (HTML)
-
-Source: https://daisyui.com/components/countdown
-
-Provides an example of a clock countdown formatted with colons separating hours, minutes, and seconds. This layout is useful for time displays.
-
-```html
-<div class="countdown">
-  <span style="--value:10"></span>: <span style="--value:24"></span>:
-  <span style="--value:59"></span>
-</div>
-```
-
----
-
-### Skeleton with Circle and Content - daisyUI
-
-Source: https://daisyui.com/components/skeleton
-
-This example shows how to implement a circular Skeleton component that can display content once loaded. It's useful for avatar placeholders or other circular elements. Ensure daisyUI is included in your project.
-
-```html
-<div class="skeleton circle"></div>
-```
-
----
-
-### DaisyUI Text Input: Basic and With Label
-
-Source: https://daisyui.com/components/input
-
-Demonstrates the basic DaisyUI text input field and how to incorporate a text label within the input container. This is a foundational example for creating user input elements.
-
-````html
-```html
-<input
-  type="text"
-  placeholder="Text Input"
-  class="input input-bordered w-full max-w-xs"
-/>
-````
-
-```html
-<div class="form-control w-full max-w-xs">
-  <label class="label">
-    <span class="label-text">What is your name?</span>
-  </label>
-  <input
-    type="text"
-    placeholder="Type here"
-    class="input input-bordered w-full max-w-xs"
-  />
-</div>
-```
-
-````
 
 --------------------------------
 
-### Checkbox Requirement Validator (HTML)
-
-Source: https://daisyui.com/components/validator
-
-Provides an example of validating a checkbox using DaisyUI. The 'validator' class is applied, and the 'validator-hint' indicates that the checkbox is required.
-
-```html
-<input type="checkbox" class="checkbox validator">
-<p class="validator-hint">Required</p>
-````
-
----
-
-### DaisyUI Toast Placement: Bottom-End (Default)
-
-Source: https://daisyui.com/components/toast
-
-Demonstrates the default bottom-end (bottom-right) placement for the DaisyUI Toast component. This example relies on the default 'toast-bottom' and 'toast-end' behavior.
-
-```html
-<div class="toast toast-end toast-bottom">
-  <div class="alert alert-info">
-    <div>
-      <span>New mail arrived.</span>
-      <span>Message sent successfully.</span>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Radial Progress with Custom Size and Thickness (HTML)
-
-Source: https://daisyui.com/components/radial-progress
-
-Explains how to customize the size and thickness of the radial-progress component using the '--size' and '--thickness' CSS variables. The example shows a 70% progress with specified dimensions.
-
-```html
-<div
-  class="radial-progress"
-  style="--value:70; --size: 10rem; --thickness: 1rem;"
-  role="progressbar"
->
-  70%
-</div>
-```
-
----
-
-### Basic Drawer Sidebar Implementation (HTML)
-
-Source: https://daisyui.com/components/drawer
-
-An example of a functional drawer sidebar. It includes a toggle button (represented by a label linked to a hidden checkbox) and content areas for the page and the sidebar. Clicking the toggle or sidebar items will manage the drawer's state.
-
-```html
-<div class="drawer">
-  <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content">
-    {/* Page content here */}
-    <label for="my-drawer" class="btn btn-primary drawer-button"
-      >Open drawer</label
-    >
-  </div>
-  <div class="drawer-side">
-    <label
-      for="my-drawer"
-      aria-label="close sidebar"
-      class="drawer-overlay"
-    ></label>
-    <ul class="menu p-4 w-80 bg-base-200 text-base-content">
-      {/* Sidebar content here */}
-      <li><a>Sidebar Item 1</a></li>
-      <li><a>Sidebar Item 2</a></li>
-    </ul>
-  </div>
-</div>
-```
-
----
-
-### Import daisyUI as a Plugin in Tailwind CSS (JS Config)
+### Apply Dash Style to a Badge
 
 Source: https://daisyui.com/docs/v5
 
-Shows the previous method of including daisyUI as a plugin within the `tailwind.config.js` file. This configuration is for older versions or specific setups.
+This example demonstrates applying the 'dash' style to a badge component, which adds a dashed border. This style is available for buttons, badges, and alerts.
+
+```html
+<div class="badge badge-dash">Dashed Badge</div>
+```
+
+--------------------------------
+
+### Configure Context7 MCP Server in VSCode Workspace
+
+Source: https://daisyui.com/docs/editor/vscode
+
+This JSON configuration sets up the 'context7' MCP server for your current VSCode workspace. It defines the server type, the command to execute, and necessary arguments for installing the '@upstash/context7-mcp' package.
+
+```json
+{
+  "servers": {
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
+    }
+  }
+}
+```
+
+--------------------------------
+
+### Install daisyUI using Yarn
+
+Source: https://daisyui.com/alternative/tailwindui
+
+Installs the latest version of daisyUI as a development dependency using yarn.
+
+```bash
+yarn add -D daisyui@latest
+```
+
+--------------------------------
+
+### Install daisyUI with npm
+
+Source: https://daisyui.com/theme-generator
+
+This snippet shows how to install daisyUI using npm, a popular JavaScript package manager. It includes the command to install the package and the expected output upon successful installation.
+
+```bash
+npm i daisyui
+
+installing...
+
+Done!
+```
+
+--------------------------------
+
+### Create Astro Project
+
+Source: https://daisyui.com/docs/install/astro
+
+This command initiates the creation of a new Astro project in the current directory.
+
+```bash
+npm create astro@latest ./
+
+```
+
+--------------------------------
+
+### React Hero Component Example
+
+Source: https://daisyui.com/components/hero
+
+This example demonstrates the 'Hello there' hero component implemented in React using JSX. It utilizes the same daisyUI classes as the HTML version but adapts the `style` attribute for React's synthetic event system. Ensure React and daisyUI are correctly set up in your project.
+
+```jsx
+<div
+  className="hero min-h-screen"
+  style={{
+    backgroundImage:
+      "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+  }}
+>
+  <div className="hero-overlay"></div>
+  <div className="hero-content text-neutral-content text-center">
+    <div className="max-w-md">
+      <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+      <p className="mb-5">
+        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+        quasi. In deleniti eaque aut repudiandae et a id nisi.
+      </p>
+      <button className="btn btn-primary">Get Started</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Project Dependencies for Vite with DaisyUI
+
+Source: https://daisyui.com/stackblitz
+
+This JSON configuration defines the project's name, version, and essential dependencies. It includes Vite for the build tool, DaisyUI and Tailwind CSS for styling, and a Vite plugin for Tailwind CSS. The scripts section outlines commands for development, building, and previewing the application.
+
+```json
+{
+  "name": "vite-daisyui-5",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "6.3.0"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "4.1.4",
+    "daisyui": "5.0.22",
+    "tailwindcss": "4.1.4"
+  }
+}
+```
+
+--------------------------------
+
+### Create Vite Project with Lit Template
+
+Source: https://daisyui.com/docs/install/lit
+
+Initializes a new Vite project using the Lit template in the current directory. This command sets up the basic structure for a Lit-based web application.
+
+```bash
+npm create vite@latest ./ -- --template lit
+```
+
+--------------------------------
+
+### Customize Landing Page with Astro Components
+
+Source: https://daisyui.com/blog/daisyui-astro-tailwind-documentation-template
+
+Configure the landing page layout by modifying the index.astro file. This template imports and displays Hero, Features, CodeBlock, Integration, Contributors, and Testimonial components that can be customized to fit your branding and content requirements.
+
+```astro
+---
+import CodeBlock from "../components/home/CodeBlock.astro";
+import Features from "../components/home/Features.astro";
+import Hero from "../components/home/Hero.astro";
+import Integration from "../components/home/Integration.astro";
+import Contributors from "../components/home/Contributors.astro";
+import Testimonial from "../components/home/Testimonial.astro";
+---
+
+<script>
+  import Translate from "$components/Translate.svelte"
+</script>
+
+<div>
+  <Hero />
+  <Features />
+  <CodeBlock />
+  <Integration />
+  <Contributors />
+  <Testimonial />
+</div>
+```
+
+--------------------------------
+
+### Download daisyUI Bundle (Manual Install)
+
+Source: https://daisyui.com/docs/install/standalone
+
+Commands to download the latest daisyUI bundle files (`daisyui.mjs` and `daisyui-theme.mjs`) for manual integration with Tailwind CSS.
+
+```shell
+curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.mjs
+curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.mjs
+```
+
+--------------------------------
+
+### Quick Use of DaisyUI llms.txt in Cursor
+
+Source: https://daisyui.com/docs/editor/cursor
+
+This prompt allows for quick integration of DaisyUI's documentation into Cursor for immediate code generation assistance. It directly references the online `llms.txt` file.
+
+```markdown
+```
+@web https://daisyui.com/llms.txt
+```
+```
+
+--------------------------------
+
+### Install Tailwind CSS, PostCSS, Autoprefixer, and daisyUI
+
+Source: https://daisyui.com/blog/how-to-install-sveltekit-and-daisyui
+
+This command installs the necessary development dependencies for Tailwind CSS and daisyUI. It also generates the `tailwind.config.js` and `postcss.config.js` configuration files.
+
+```bash
+npm install -D tailwindcss postcss autoprefixer daisyui
+npx tailwindcss init -p
+```
+
+--------------------------------
+
+### Create New Rails Project
+
+Source: https://daisyui.com/docs/install/rails
+
+Commands to create a new Ruby on Rails project and navigate into its directory.
+
+```bash
+rails new my-app
+cd my-app
+```
+
+--------------------------------
+
+### Install Headless UI for Vue or React
+
+Source: https://daisyui.com/blog/how-to-use-headless-ui-and-daisyui
+
+Installs the Headless UI library for either Vue or React projects using npm. This is the first step to using its accessible components.
+
+```bash
+npm install @headlessui/vue
+```
+
+```bash
+npm install @headlessui/react
+```
+
+--------------------------------
+
+### Quick Setup for daisyUI Docs in VSCode Chat
+
+Source: https://daisyui.com/docs/editor/vscode
+
+This prompt allows you to quickly utilize the daisyUI documentation text file within the VSCode chat interface to generate code. It ensures that the AI has access to the official daisyUI documentation for accurate responses.
+
+```shell
+#fetch https://daisyui.com/llms.txt
+```
+
+--------------------------------
+
+### Create Django Project and Navigate
+
+Source: https://daisyui.com/docs/install/django
+
+Creates a new Django project named 'myapp' and changes the current directory into the newly created project folder. This sets up the basic structure for a Django application.
+
+```shell
+django-admin startproject myapp
+cd myapp
+```
+
+--------------------------------
+
+### Stack Component for Layered Elements
+
+Source: https://daisyui.com/llms
+
+Component that visually stacks elements on top of each other with optional positioning modifiers (top, bottom, start, end). Supports w-* and h-* utility classes to set uniform sizes for all items.
+
+```html
+<div class="stack {MODIFIER}">{CONTENT}</div>
+```
+
+--------------------------------
+
+### Previous daisyUI Installation Method (Tailwind CSS 3 and earlier)
+
+Source: https://daisyui.com/docs/v5
+
+Illustrates the older method of installing daisyUI as a plugin in the `tailwind.config.js` file, which was used in Tailwind CSS versions prior to v4.
 
 ```javascript
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.{js,ts,mjs,cjs}
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   plugins: [
     require('daisyui');
   ],
 }
+
 ```
-
----
-
-### Responsive Horizontal Divider
-
-Source: https://daisyui.com/components/divider
-
-Demonstrates how to apply a responsive horizontal divider using daisyUI's responsive prefixes. This example shows the divider behaving horizontally on larger screens.
-
-```html
-<div>content</div>
-
-<div class="lg:divider-horizontal">OR</div>
-
-<div>content</div>
-
-<div class="lg:divider-horizontal"></div>
-
-<div>content</div>
-
-<div class="lg:divider-horizontal">OR</div>
-
-<div>content</div>
-```
-
-```html
-<div>content</div>
-
-<div class="lg:divider-horizontal">OR</div>
-
-<div>content</div>
-
-<div class="lg:divider-horizontal"></div>
-
-<div>content</div>
-
-<div class="lg:divider-horizontal">OR</div>
-
-<div>content</div>
-```
-
-```html
-<div>content</div>
-
-<div class="lg:divider-horizontal">OR</div>
-
-<div>content</div>
-
-<div class="lg:divider-horizontal"></div>
-
-<div>content</div>
-
-<div class="lg:divider-horizontal">OR</div>
-
-<div>content</div>
-```
-
----
-
-### Basic Skeleton Component - daisyUI
-
-Source: https://daisyui.com/components/skeleton
-
-This code snippet demonstrates the basic usage of the Skeleton component in daisyUI. It renders a simple placeholder div with a loading animation. No external dependencies are required beyond daisyUI.
-
-```html
-<div class="skeleton"></div>
-```
-
----
-
-### DaisyUI Button Default and Sizes
-
-Source: https://daisyui.com/components/button
-
-Demonstrates the default button appearance and how to apply different size modifiers (btn-xs, btn-sm, btn-md, btn-lg, btn-xl) to control button dimensions. These examples show basic button creation and size adjustments.
-
-```html
-<button class="btn">Default</button>
-<button class="btn btn-xs">Xsmall</button>
-<button class="btn btn-sm">Small</button>
-<button class="btn btn-md">Medium</button>
-<button class="btn btn-lg">Large</button>
-<button class="btn btn-xl">Xlarge</button>
-```
-
----
-
-### Number Input Requirement Validator (HTML)
-
-Source: https://daisyui.com/components/validator
-
-Illustrates number input validation using DaisyUI. This example enforces that the number must be between 1 and 10.
-
-```html
-<input
-  type="number"
-  class="input input-bordered validator"
-  placeholder="number"
-/>
-<p class="validator-hint">Must be between be 1 to 10</p>
-```
-
----
-
-### DaisyUI Rating with Warning Color
-
-Source: https://daisyui.com/components/rating
-
-This example shows a rating component using the 'mask-star-2' icon and applying a warning color. This is useful for highlighting negative feedback or alerts.
-
-```html
-<div class="rating">
-  <input type="radio" name="rating-warning" class="mask mask-star-2" />
-  <input type="radio" name="rating-warning" class="mask mask-star-2" checked />
-  <input type="radio" name="rating-warning" class="mask mask-star-2" />
-  <input type="radio" name="rating-warning" class="mask mask-star-2" />
-  <input type="radio" name="rating-warning" class="mask mask-star-2" />
-</div>
-<div class="rating">
-  <input
-    type="radio"
-    name="rating-warning-half"
-    class="bg-warning mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-warning-half"
-    class="bg-warning mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-warning-half"
-    class="bg-warning mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-warning-half"
-    class="bg-warning mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-warning-half"
-    class="bg-warning mask mask-star-2"
-    checked
-  />
-</div>
-```
-
----
-
-### Status Component with Ping Animation (HTML)
-
-Source: https://daisyui.com/components/status
-
-Demonstrates how to add a ping animation to the Status component, commonly used to indicate real-time updates or active states. The example shows a server status.
-
-````html
-```html
-<div class="status status-error" style="--status-color: inherit;">
-  Server is down
-</div>
-<span
-  class="status status-error animate-ping"
-  style="--status-color: inherit;"
-></span>
-<span class="status status-error" style="--status-color: inherit;"></span>
-
-<div class="status status-success" style="--status-color: inherit;">
-  Server is up
-</div>
-<span
-  class="status status-success animate-ping"
-  style="--status-color: inherit;"
-></span>
-<span class="status status-success" style="--status-color: inherit;"></span>
-````
-
-````
 
 --------------------------------
 
-### Accordion with Details Element Example (HTML)
+### HTML Button: Beginner and Intermediate daisyUI Usage
 
-Source: https://daisyui.com/components/accordion
+Source: https://daisyui.com/pages/best-component-library-for-beginners
 
-Illustrates creating an accordion using the HTML details element. This approach provides a native browser mechanism for collapsible content and can be made searchable by browsers. It's ideal for content where semantic structure is important and browser searchability is desired.
-
-```html
-<div class="collapse collapse-arrow bg-base-200">
-  <input type="checkbox" />
-  <div class="collapse-title text-xl font-medium">
-    Accordion Content
-  </div>
-  <div class="collapse-content">
-    <p>Accordion content</p>
-  </div>
-</div>
-````
-
----
-
-### DaisyUI Navbar: Dropdown, Center Logo, and Icons
-
-Source: https://daisyui.com/components/navbar
-
-This example showcases a DaisyUI Navbar with a dropdown menu, a centered logo, and icons, suitable for a balanced layout with branding and navigation.
+Presents two examples of using daisyUI buttons: a basic component usage for beginners and a customized version for intermediate users who combine daisyUI with additional Tailwind CSS classes for finer control.
 
 ```html
-<div class="navbar bg-base-100 rounded-box">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <label tabindex="0" class="btn btn-ghost lg:hidden">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h8m-8 6h8"
-          />
-        </svg>
-      </label>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        <li><a>Homepage</a></li>
-        <li>
-          <a>Parent</a>
-          <ul class="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </li>
-        <li><a>About</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      <li><a>Homepage</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul class="p-2 bg-base-100 rounded-t-none">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a>About</a></li>
-    </ul>
-  </div>
-  <div class="navbar-end">
-    <a class="btn btn-ghost btn-circle">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-      </svg>
-    </a>
-  </div>
-</div>
+<!-- Beginner: using components as they come -->
+<button class="btn">Button</button>
 ```
 
----
-
-### DaisyUI Radio Tabs with Lift and Content (HTML)
-
-Source: https://daisyui.com/components/tab
-
-Illustrates using radio inputs for tab switching with the 'tabs-lift' style. This setup ensures that the correct tab content is displayed when a radio button is selected.
-
-````html
-### radio tabs-lift + tab content Tab content 1 Tab content 2 Tab content 3 ```
-html
-<div class="flex w-full flex-col gap-3">
-  <div role="tablist" class="tabs tabs-lift">
-    <input
-      type="radio"
-      name="my_tab_group_4"
-      role="tab"
-      class="tab"
-      aria-label="Tab 1"
-      checked
-    />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">
-      Tab content 1
-    </div>
-
-    <input
-      type="radio"
-      name="my_tab_group_4"
-      role="tab"
-      class="tab"
-      aria-label="Tab 2"
-    />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">
-      Tab content 2
-    </div>
-
-    <input
-      type="radio"
-      name="my_tab_group_4"
-      role="tab"
-      class="tab"
-      aria-label="Tab 3"
-    />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">
-      Tab content 3
-    </div>
-  </div>
-</div>
-````
-
-````
+```html
+<!-- Intermediate: customizing with additional Tailwind classes -->
+<button class="btn rounded-full px-6">Custom Button</button>
+```
 
 --------------------------------
 
-### DaisyUI Footer with Form
-
-Source: https://daisyui.com/components/footer
-
-Presents a DaisyUI footer that includes a newsletter signup form. This example demonstrates how to embed input fields and a submit button within the footer structure for user engagement.
-
-```html
-<footer class="footer p-10 bg-base-200 text-base-content">
-  <div>
-    <span class="footer-title">Services</span>
-    <a class="link link-hover">Branding</a>
-    <a class="link link-hover">Design</a>
-    <a class="link link-hover">Marketing</a>
-    <a class="link link-hover">Advertisement</a>
-  </div>
-  <div>
-    <span class="footer-title">Company</span>
-    <a class="link link-hover">About us</a>
-    <a class="link link-hover">Contact</a>
-    <a class="link link-hover">Jobs</a>
-    <a class="link link-hover">Press kit</a>
-  </div>
-  <div>
-    <span class="footer-title">Legal</span>
-    <a class="link link-hover">Terms of use</a>
-    <a class="link link-hover">Privacy policy</a>
-    <a class="link link-hover">Cookie policy</a>
-  </div>
-  <div>
-    <span class="footer-title">Newsletter</span>
-    <div class="form-control w-80">
-      <label class="label">
-        <span class="label-text">Enter your email address</span>
-      </label>
-      <div class="relative">
-        <input type="text" placeholder="username@site.com" class="input input-bordered w-full pr-16" />
-        <button class="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
-      </div>
-    </div>
-  </div>
-</footer>
-````
-
----
-
-### Multi-line Code Mockup with daisyUI
-
-Source: https://daisyui.com/components/mockup-code
-
-Illustrates how to display multi-line code within the 'mockup-code' component. This is suitable for showing script content or complex commands with multiple lines.
-
-```html
-<div class="mockup-code">
-  <pre data-prefix="$"><code>npm i daisyui
-installing...
-Done!</code></pre>
-</div>
-```
-
----
-
-### DaisyUI Toast Placement: Bottom-Center
-
-Source: https://daisyui.com/components/toast
-
-Illustrates the DaisyUI Toast component positioned at the bottom-center. This example uses 'toast-bottom' and 'toast-center', with 'toast-bottom' as the default vertical placement.
-
-```html
-<div class="toast toast-center toast-bottom">
-  <div class="alert alert-info">
-    <div>
-      <span>New mail arrived.</span>
-      <span>Message sent successfully.</span>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Lifted Tabs with HTML
-
-Source: https://daisyui.com/components/tab
-
-Shows the 'tabs-lift' style for DaisyUI tabs, which gives the tabs a lifted appearance. This example includes the 'tabs-lift' class applied to the tab list container.
-
-````html
-### tabs-lift Tab 1 Tab 2 Tab 3 ``` html
-<div role="tablist" class="tabs tabs-lift">
-  <a role="tab" class="tab">Tab 1</a>
-  <a role="tab" class="tab">Tab 2</a>
-  <a role="tab" class="tab">Tab 3</a>
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 1
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 2
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 3
-</div>
-````
-
-````
-
---------------------------------
-
-### DaisyUI Stack Component: Stacked Notifications
-
-Source: https://daisyui.com/components/stack
-
-Provides an example of using the DaisyUI stack component to layer notification-like elements vertically. This showcases a practical application for presenting sequential messages or alerts.
-
-```html
-<div class="stack">
-  <div>
-    ## Notification 1
-    You have 3 unread messages. Tap here to see.
-  </div>
-  <div>
-    ## Notification 2
-    You have 3 unread messages. Tap here to see.
-  </div>
-  <div>
-    ## Notification 3
-    You have 3 unread messages. Tap here to see.
-  </div>
-</div>
-````
-
----
-
-### Styling a button with Tailwind CSS and daisyUI
-
-Source: https://daisyui.com/
-
-This example demonstrates how to style a button using daisyUI's semantic class names in conjunction with Tailwind CSS utility classes. The 'Tailwind Button' comment indicates the expected output, showcasing a styled button.
-
-````html
-```html // Styling a simple button <button class="btn">Tailwind Button</button>
-````
-
-````
-
---------------------------------
-
-### DaisyUI Icon-Only Menu Component
-
-Source: https://daisyui.com/components/menu
-
-Presents a menu where items are represented by icons only, suitable for toolbars or compact interfaces. Includes examples for both vertical and horizontal layouts.
-
-```html
-<ul class="menu menu-vertical w-12">
-  <li>
-    <a>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18" /></svg>
-    </a>
-  </li>
-  <li>
-    <a>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18" /></svg>
-    </a>
-  </li>
-  <li>
-    <a>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18" /></svg>
-    </a>
-  </li>
-</ul>
-````
-
-```html
-<ul class="menu menu-horizontal rounded-box">
-  <li>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 12h18M3 6h18M3 18h18"
-        />
-      </svg>
-    </a>
-  </li>
-  <li>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 12h18M3 6h18M3 18h18"
-        />
-      </svg>
-    </a>
-  </li>
-  <li>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 12h18M3 6h18M3 18h18"
-        />
-      </svg>
-    </a>
-  </li>
-</ul>
-```
-
----
-
-### Window Mockup Component (HTML)
-
-Source: https://daisyui.com/components/mockup-window
-
-Provides HTML structure for creating a window mockup with optional border and background color using daisyUI classes. This can be used for UI demonstrations or documentation.
-
-```html
-<div class="mockup-window border border-base-300">
-  <div class="flex justify-center px-4 py-6 bg-base-200">Hello!</div>
-</div>
-
-<div class="mockup-window border bg-primary">
-  <div class="flex justify-center px-4 py-6 bg-base-200">Hello!</div>
-</div>
-```
-
----
-
-### Hover Gallery Component Example in HTML
-
-Source: https://context7_llms
-
-The hover-gallery component displays multiple images that become visible on horizontal hover. It's suitable for e-commerce or portfolios and can contain up to 10 images. A max-width is required for proper display.
-
-```html
-<figure class="hover-gallery max-w-60">
-  <img src="https://img.daisyui.com/images/stock/daisyui-hat-1.webp" />
-  <img src="https://img.daisyui.com/images/stock/daisyui-hat-2.webp" />
-  <img src="https://img.daisyui.com/images/stock/daisyui-hat-3.webp" />
-  <img src="https://img.daisyui.com/images/stock/daisyui-hat-4.webp" />
-</figure>
-```
-
----
-
-### Stat with Icons or Image (HTML)
-
-Source: https://daisyui.com/components/stat
-
-This example shows how to integrate icons or images within the daisyUI Stat component. It includes a 'stat-figure' element for visual elements alongside numerical data and descriptive text.
-
-```html
-<div class="stats">
-  <div class="stat">
-    <div class="stat-figure text-secondary">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        class="inline-block w-8 h-8 stroke-current"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2v-10m-6 4a2 2 0 11-4 0 2 2 0 014 0z"
-        ></path>
-      </svg>
-    </div>
-    <div class="stat-title">Total Likes</div>
-    <div class="stat-value">25.6K</div>
-    <div class="stat-desc">21% more than last month</div>
-  </div>
-  <div class="stat">
-    <div class="stat-figure text-secondary">
-      <img
-        src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp"
-        alt="Tailwind CSS stat example component"
-      />
-    </div>
-    <div class="stat-title">Page Views</div>
-    <div class="stat-value">2.6M</div>
-    <div class="stat-desc">21% more than last month</div>
-  </div>
-  <div class="stat">
-    <div class="stat-figure text-secondary">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        class="inline-block w-8 h-8 stroke-current"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 10h18M7 10h10M9 14h6M11 18h0"
-        ></path>
-      </svg>
-    </div>
-    <div class="stat-title">Tasks done</div>
-    <div class="stat-value">86%</div>
-    <div class="stat-desc text-secondary">31 tasks remaining</div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Pagination with Different Sizes
-
-Source: https://daisyui.com/components/pagination
-
-Shows how to apply different sizes to DaisyUI pagination components. This allows for responsive design adjustments based on the available space or user preference.
-
-```html
-<div class="join">
-  <button class="join-item btn btn-xs">1</button>
-  <button class="join-item btn btn-xs btn-active">2</button>
-  <button class="join-item btn btn-xs">3</button>
-  <button class="join-item btn btn-xs">4</button>
-</div>
-<div class="join">
-  <button class="join-item btn btn-sm">1</button>
-  <button class="join-item btn btn-sm btn-active">2</button>
-  <button class="join-item btn btn-sm">3</button>
-  <button class="join-item btn btn-sm">4</button>
-</div>
-<div class="join">
-  <button class="join-item btn btn-md">1</button>
-  <button class="join-item btn btn-md btn-active">2</button>
-  <button class="join-item btn btn-md">3</button>
-  <button class="join-item btn btn-md">4</button>
-</div>
-<div class="join">
-  <button class="join-item btn btn-lg">1</button>
-  <button class="join-item btn btn-lg btn-active">2</button>
-  <button class="join-item btn btn-lg">3</button>
-  <button class="join-item btn btn-lg">4</button>
-</div>
-```
-
----
-
-### File Input Sizes - daisyUI
-
-Source: https://daisyui.com/components/file-input
-
-Provides examples of different size variants for the file input component, including extra-small (xs), small (sm), medium (md), large (lg), and extra-large (xl). This allows for flexible UI design based on content area and importance.
-
-```html
-<div>
-  <input type="file" class="file-input file-input-xs" />
-  <input type="file" class="file-input file-input-sm" />
-  <input type="file" class="file-input file-input-md" />
-  <input type="file" class="file-input file-input-lg" />
-  <input type="file" class="file-input file-input-xl" />
-</div>
-```
-
----
-
-### DaisyUI Stack Component: Stacked Cards
-
-Source: https://daisyui.com/components/stack
-
-Shows how to stack card elements vertically using the DaisyUI 'stack' component. This example demonstrates basic stacking without any specific alignment modifiers.
-
-```html
-<div class="stack">
-  <div>A</div>
-  <div>B</div>
-  <div>C</div>
-</div>
-```
-
----
-
-### Divider with No Text
-
-Source: https://daisyui.com/components/divider
-
-Shows how to implement a divider that appears as a simple line without any text, suitable for basic content separation. Provides examples for different visual styles.
-
-```html
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-```
-
-```html
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-```
-
-```html
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-```
-
----
-
-### DaisyUI Toast Placement: Middle-End
-
-Source: https://daisyui.com/components/toast
-
-Demonstrates positioning the DaisyUI Toast component to the middle-end (vertically centered, horizontally right). This example applies 'toast-middle' and 'toast-end' classes.
-
-```html
-<div class="toast toast-end toast-middle">
-  <div class="alert alert-info">
-    <div>
-      <span>New mail arrived.</span>
-      <span>Message sent successfully.</span>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Text Input: Date, Time, and Datetime-Local
-
-Source: https://daisyui.com/components/input
-
-Provides examples of using DaisyUI styling for native HTML date, time, and datetime-local input types. These are essential for collecting specific temporal data.
-
-````html
-```html
-<input type="date" class="input input-bordered w-full max-w-xs" />
-<input type="time" class="input input-bordered w-full max-w-xs" />
-<input type="datetime-local" class="input input-bordered w-full max-w-xs" />
-````
-
-````
-
---------------------------------
-
-### DaisyUI Indicator Component: Basic Usage (HTML)
-
-Source: https://daisyui.com/components/indicator
-
-Demonstrates the fundamental structure for using DaisyUI indicators. The `indicator` class acts as a container, and `indicator-item` is the element placed on the corner. Placement classes like `indicator-start`, `indicator-end`, `indicator-top`, `indicator-middle`, and `indicator-bottom` control the exact position.
-
-```html
-<div class="indicator">
-  <span class="indicator-item badge">+1</span>
-  <div class="grid w-32 h-32 bg-base-300 place-items-center">Content</div>
-</div>
-````
-
----
-
-### Loading Component Animations with DaisyUI
-
-Source: https://context7_llms
-
-Demonstrates the DaisyUI 'loading' component for displaying animations. Various styles like 'loading-dots', 'loading-spinner', and sizes from 'loading-xs' to 'loading-xl' are available.
-
-```html
-<span class="loading loading-spinner loading-lg"></span>
-```
-
----
-
-### URL Input Requirement Validator (HTML)
-
-Source: https://daisyui.com/components/validator
-
-Demonstrates how to validate URL inputs using DaisyUI's 'validator' and 'validator-hint' classes. This example ensures the entered text is a valid URL format.
-
-```html
-<input type="url" class="input input-bordered validator" placeholder="url" />
-<p class="validator-hint">Must be valid URL</p>
-```
-
----
-
-### Divider Text Placement (Start, Default, End)
-
-Source: https://daisyui.com/components/divider
-
-Illustrates how to control the placement of text within a divider using classes like 'divider-start', 'divider-end', and the default centered alignment.
-
-```html
-<div>Start</div>
-
-<div class="divider divider-start">Default</div>
-
-<div>End</div>
-
-<div class="divider"></div>
-
-<div>Start</div>
-
-<div class="divider divider-start">Default</div>
-
-<div>End</div>
-
-<div class="divider"></div>
-
-<div>Start</div>
-
-<div class="divider divider-start">Default</div>
-
-<div>End</div>
-```
-
-```html
-<div>Start</div>
-
-<div class="divider divider-start">Default</div>
-
-<div>End</div>
-
-<div class="divider"></div>
-
-<div>Start</div>
-
-<div class="divider divider-start">Default</div>
-
-<div>End</div>
-
-<div class="divider"></div>
-
-<div>Start</div>
-
-<div class="divider divider-start">Default</div>
-
-<div>End</div>
-```
-
-```html
-<div>Start</div>
-
-<div class="divider divider-start">Default</div>
-
-<div>End</div>
-
-<div class="divider"></div>
-
-<div>Start</div>
-
-<div class="divider divider-start">Default</div>
-
-<div>End</div>
-
-<div class="divider"></div>
-
-<div>Start</div>
-
-<div class="divider divider-start">Default</div>
-
-<div>End</div>
-```
-
----
-
-### DaisyUI Steps: With Scrollable Wrapper
-
-Source: https://daisyui.com/components/steps
-
-Demonstrates how to implement a scrollable wrapper for the steps component, which is useful when dealing with a large number of steps on a constrained screen.
-
-```html
-<div class="scroll-wrapper">
-  <ul class="steps lg:steps-horizontal overflow-x-auto pb-4">
-    <li class="step">start</li>
-    <li class="step">2</li>
-    <li class="step">3</li>
-    <li class="step">4</li>
-    <li class="step">5</li>
-    <li class="step">6</li>
-    <li class="step">7</li>
-    <li class="step">8</li>
-    <li class="step">9</li>
-    <li class="step">10</li>
-    <li class="step">11</li>
-    <li class="step">12</li>
-    <li class="step">13</li>
-    <li class="step">14</li>
-    <li class="step">15</li>
-    <li class="step">16</li>
-    <li class="step">17</li>
-    <li class="step">18</li>
-    <li class="step">19</li>
-    <li class="step">20</li>
-    <li class="step">21</li>
-    <li class="step">22</li>
-    <li class="step">23</li>
-    <li class="step">end</li>
-  </ul>
-</div>
-```
-
----
-
-### DaisyUI Simple Hero Section (HTML)
-
-Source: https://daisyui.com/components/hero
-
-This code snippet presents a basic hero section with a heading and a call-to-action button. It's designed for highlighting key messages or guiding users to an important page. The structure is simple and easily customizable with DaisyUI's utility classes.
-
-```html
-### Hero with overlay image ### Hello there Provident cupiditate voluptatem et
-in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti
-eaque aut repudiandae et a id nisi. Get Started
-```
-
----
-
-### HTML structure comparison: Tailwind CSS vs. daisyUI
-
-Source: https://daisyui.com/
-
-This comparison illustrates the difference in HTML structure and class usage between standard Tailwind CSS and daisyUI. The daisyUI example shows significantly fewer class names for styling a similar element, emphasizing its efficiency.
-
-````html
-```html Click
-<button class="btn">Tailwind only</button>
-
-Tailwind + daisyUI
-<button class="btn">Save</button>
-````
-
-````
-
---------------------------------
-
-### DaisyUI Radio Tabs with Icons and Content (HTML)
-
-Source: https://daisyui.com/components/tab
-
-Shows an advanced usage of radio input tabs, incorporating icons within the tab labels. This example demonstrates how to visually enrich the tabs with icons alongside text.
-
-```html
-### radio tabs-lift with icons + tab content
-Live Tab content 1
-Laugh Tab content 2
-Love Tab content 3
-``` html
-<div class="flex w-full flex-col gap-3">
-  <div role="tablist" class="tabs tabs-lift">
-    <input type="radio" name="my_tab_group_5" role="tab" class="tab" aria-label="Live" checked />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">Tab content 1</div>
-
-    <input type="radio" name="my_tab_group_5" role="tab" class="tab" aria-label="Laugh" />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">Tab content 2</div>
-
-    <input type="radio" name="my_tab_group_5" role="tab" class="tab" aria-label="Love" />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">Tab content 3</div>
-  </div>
-</div>
-````
-
-````
-
---------------------------------
-
-### Phone Number Requirement Validator (HTML)
-
-Source: https://daisyui.com/components/validator
-
-Provides an example of validating phone numbers with DaisyUI. This implementation checks if the input consists of exactly 10 digits.
-
-```html
-<input type="tel" class="input input-bordered validator" placeholder="phone number">
-<p class="validator-hint">Must be 10 digits</p>
-````
-
----
-
-### Dividers with Color Classes
-
-Source: https://daisyui.com/components/divider
-
-Presents examples of daisyUI dividers utilizing various color utility classes such as neutral, primary, secondary, accent, success, warning, info, and error.
-
-```html
-<div>Default</div>
-
-<div class="divider"></div>
-
-<div>Neutral</div>
-
-<div class="divider divider-neutral"></div>
-
-<div>Primary</div>
-
-<div class="divider divider-primary"></div>
-
-<div>Secondary</div>
-
-<div class="divider divider-secondary"></div>
-
-<div>Accent</div>
-
-<div class="divider divider-accent"></div>
-
-<div>Success</div>
-
-<div class="divider divider-success"></div>
-
-<div>Warning</div>
-
-<div class="divider divider-warning"></div>
-
-<div>Info</div>
-
-<div class="divider divider-info"></div>
-
-<div>Error</div>
-
-<div class="divider divider-error"></div>
-```
-
-```html
-<div>Default</div>
-
-<div class="divider"></div>
-
-<div>Neutral</div>
-
-<div class="divider divider-neutral"></div>
-
-<div>Primary</div>
-
-<div class="divider divider-primary"></div>
-
-<div>Secondary</div>
-
-<div class="divider divider-secondary"></div>
-
-<div>Accent</div>
-
-<div class="divider divider-accent"></div>
-
-<div>Success</div>
-
-<div class="divider divider-success"></div>
-
-<div>Warning</div>
-
-<div class="divider divider-warning"></div>
-
-<div>Info</div>
-
-<div class="divider divider-info"></div>
-
-<div>Error</div>
-
-<div class="divider divider-error"></div>
-```
-
-```html
-<div>Default</div>
-
-<div class="divider"></div>
-
-<div>Neutral</div>
-
-<div class="divider divider-neutral"></div>
-
-<div>Primary</div>
-
-<div class="divider divider-primary"></div>
-
-<div>Secondary</div>
-
-<div class="divider divider-secondary"></div>
-
-<div>Accent</div>
-
-<div class="divider divider-accent"></div>
-
-<div>Success</div>
-
-<div class="divider divider-success"></div>
-
-<div>Warning</div>
-
-<div class="divider divider-warning"></div>
-
-<div>Info</div>
-
-<div class="divider divider-info"></div>
-
-<div>Error</div>
-
-<div class="divider divider-error"></div>
-```
-
-```html
-<div>Default</div>
-
-<div class="divider"></div>
-
-<div>Neutral</div>
-
-<div class="divider divider-neutral"></div>
-
-<div>Primary</div>
-
-<div class="divider divider-primary"></div>
-
-<div>Secondary</div>
-
-<div class="divider divider-secondary"></div>
-
-<div>Accent</div>
-
-<div class="divider divider-accent"></div>
-
-<div>Success</div>
-
-<div class="divider divider-success"></div>
-
-<div>Warning</div>
-
-<div class="divider divider-warning"></div>
-
-<div>Info</div>
-
-<div class="divider divider-info"></div>
-
-<div>Error</div>
-
-<div class="divider divider-error"></div>
-```
-
----
-
-### DaisyUI Phone Mockup Syntax (HTML)
-
-Source: https://context7_llms
-
-Provides the HTML structure for a phone mockup using DaisyUI. It includes separate divs for the camera and the display area, where content can be placed.
-
-```html
-<div class="mockup-phone">
-  <div class="mockup-phone-camera"></div>
-  <div class="mockup-phone-display">
-    <!-- Content inside the phone display -->
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Radio Tabs with Border and Content (HTML)
-
-Source: https://daisyui.com/components/tab
-
-Combines radio input-based tab functionality with the 'tabs-border' style. This example shows how to manage tab content visibility based on the selected radio input.
-
-````html
-### radio tabs-border + tab content Tab content 1 Tab content 2 Tab content 3
-``` html
-<div class="flex w-full flex-col gap-3">
-  <div role="tablist" class="tabs tabs-border">
-    <input
-      type="radio"
-      name="my_tab_group_3"
-      role="tab"
-      class="tab"
-      aria-label="Tab 1"
-      checked
-    />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">
-      Tab content 1
-    </div>
-
-    <input
-      type="radio"
-      name="my_tab_group_3"
-      role="tab"
-      class="tab"
-      aria-label="Tab 2"
-    />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">
-      Tab content 2
-    </div>
-
-    <input
-      type="radio"
-      name="my_tab_group_3"
-      role="tab"
-      class="tab"
-      aria-label="Tab 3"
-    />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">
-      Tab content 3
-    </div>
-  </div>
-</div>
-````
-
-````
-
---------------------------------
-
-### Ghost Textarea Style - daisyUI
-
-Source: https://daisyui.com/components/textarea
-
-Illustrates the 'ghost' style for the Textarea component in daisyUI, which typically removes the background for a more minimalist appearance. Multiple examples showcase this style.
-
-```html
-```html
-<textarea class="textarea textarea-ghost" placeholder="Bio"></textarea>
-````
-
-````
-
---------------------------------
-
-### DaisyUI Outline Button Styles
-
-Source: https://daisyui.com/components/button
-
-Presents the 'outline' button style, characterized by a border and transparent background. This style is achieved with the 'btn-outline' class, and examples include different color variations.
-
-```html
-<button class="btn btn-outline">Default</button>
-<button class="btn btn-outline btn-primary">Primary</button>
-<button class="btn btn-outline btn-secondary">Secondary</button>
-<button class="btn btn-outline btn-accent">Accent</button>
-<button class="btn btn-outline btn-info">Info</button>
-<button class="btn btn-outline btn-success">Success</button>
-<button class="btn btn-outline btn-warning">Warning</button>
-<button class="btn btn-outline btn-error">Error</button>
-````
-
----
-
-### Textarea with Form Control and Labels - daisyUI
-
-Source: https://daisyui.com/components/textarea
-
-Shows how to integrate the Textarea component within a form, including associated labels and optional indicators. This example demonstrates accessibility and usability best practices.
-
-````html
-```html
-<div class="form-control w-full max-w-xs">
-  <label class="label">
-    <span class="label-text">Your bio</span>
-    <span class="label-text-alt">Optional</span>
-  </label>
-  <textarea
-    class="textarea textarea-bordered w-full max-w-xs"
-    placeholder="Bio"
-  ></textarea>
-  <label class="label">
-    <span class="label-text-alt">Alt</span>
-    <span class="label-text-alt">Optional</span>
-  </label>
-</div>
-````
-
-````
-
---------------------------------
-
-### DaisyUI Swap Component: Activate Using Class Name (HTML)
-
-Source: https://daisyui.com/components/swap
-
-Explains and demonstrates how to activate the DaisyUI Swap component using a class name (`swap-active`) instead of a checkbox. This method allows for JavaScript-driven state changes, useful for dynamic UI interactions. Examples show toggling between different emojis.
-
-```html
-<div class="swap">
-  <div class="swap-active">🥵</div>
-  <div class="swap-inactive">🥶</div>
-</div>
-
-<div class="swap swap-active">
-  <div class="swap-on">🥳</div>
-  <div class="swap-off">😭</div>
-</div>
-````
-
----
-
-### Username Requirement Validator (HTML)
-
-Source: https://daisyui.com/components/validator
-
-Illustrates the implementation of username validation rules using DaisyUI. This example enforces a length between 3 to 30 characters and allows only letters, numbers, or dashes.
-
-```html
-<input
-  type="text"
-  class="input input-bordered validator"
-  placeholder="username"
-/>
-<p class="validator-hint">
-  Must be 3 to 30 characters<br />
-  containing only letters, numbers or dash
-</p>
-```
-
----
-
-### Radial Progress with Custom Color (HTML)
-
-Source: https://daisyui.com/components/radial-progress
-
-Illustrates how to apply a custom color to the radial-progress component by setting the `--progress-color` CSS variable. The example shows a 70% progress with a custom color.
-
-```html
-<div
-  class="radial-progress"
-  style="--value:70; --progress-color:oklch(var(--p))"
-  role="progressbar"
->
-  70%
-</div>
-```
-
----
-
-### Radial Progress with Background and Border (React TSX)
-
-Source: https://daisyui.com/components/radial-progress
-
-A React (TSX) example for styling the radial-progress component with a background color and border. This enhances the visual appearance of the progress indicator.
-
-```tsx
-function RadialProgressBackgroundBorderTsx() {
-  return (
-    <div
-      className="radial-progress bg-base-200 border border-base-300"
-      style={{ "--value": 70 } as React.CSSProperties}
-      role="progressbar"
-    >
-      70%
-    </div>
-  );
-}
-```
-
----
-
-### DaisyUI Join Component: With Extra Elements
-
-Source: https://daisyui.com/components/join
-
-Demonstrates that the 'join-item' styling in DaisyUI applies even when the item is not a direct child of the 'join' container. This example shows grouping inputs and buttons with text.
-
-```html
-<div class="join">
-  <input class="join-item input input-bordered" placeholder="Filter" />
-  <button class="join-item btn">Search</button>
-</div>
-<div class="join">
-  <input class="join-item input input-bordered" placeholder="Filter" />
-  <button class="join-item btn">Search</button>
-</div>
-<div class="join">
-  <input class="join-item input input-bordered" placeholder="Filter" />
-  <button class="join-item btn">Search</button>
-</div>
-<div class="join">
-  <input class="join-item input input-bordered" placeholder="Filter" />
-  <button class="join-item btn">Search</button>
-</div>
-```
-
----
-
-### DaisyUI Pagination Syntax (HTML)
-
-Source: https://context7_llms
-
-Shows the DaisyUI pagination component structure. Each item within the pagination should have the `join-item` class. This component is built using the `join` class.
-
-```html
-<div class="join">
-  <button class="join-item btn btn-active">1</button>
-  <button class="join-item btn">2</button>
-  <button class="join-item btn">3</button>
-  <button class="join-item btn">4</button>
-</div>
-```
-
----
-
-### Code Mockup Without Prefix in daisyUI
-
-Source: https://daisyui.com/components/mockup-code
-
-Illustrates the 'mockup-code' component without a line prefix. This is useful for displaying code snippets where a command prompt or path is not relevant.
-
-```html
-<div class="mockup-code">
-  <code>without prefix</code>
-</div>
-```
-
----
-
-### Horizontal Divider with Text
-
-Source: https://daisyui.com/components/divider
-
-Illustrates how to use the horizontal divider with text content, showing different ways to position the text within the divider line. Includes examples with 'OR' separators.
-
-```html
-<div>content</div>
-
-<div class="divider">OR</div>
-
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-
-<div class="divider">OR</div>
-
-<div>content</div>
-```
-
-```html
-<div>content</div>
-
-<div class="divider">OR</div>
-
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-
-<div class="divider">OR</div>
-
-<div>content</div>
-```
-
-```html
-<div>content</div>
-
-<div class="divider">OR</div>
-
-<div>content</div>
-
-<div class="divider"></div>
-
-<div>content</div>
-
-<div class="divider">OR</div>
-
-<div>content</div>
-```
-
----
-
-### Date Input Requirement Validator (HTML)
-
-Source: https://daisyui.com/components/validator
-
-Shows an example of date input validation with DaisyUI, specifically checking if the input matches the year 2025. This can be adapted for other date-related validation rules.
-
-```html
-<input type="text" class="input input-bordered validator" placeholder="date" />
-<p class="validator-hint">Must be 2025</p>
-```
-
----
-
-### Browser Mockup with Background Color - HTML
-
-Source: https://daisyui.com/components/mockup-browser
-
-Shows how to implement a browser mockup with a specified background color using daisyUI. This allows for more design flexibility when presenting web interfaces.
-
-```html
-<div class="mockup-browser bg-primary">
-  <div class="mockup-browser-toolbar">
-    <input
-      class="input input-bordered input-primary"
-      value="https://daisyui.com"
-    />
-  </div>
-  <div class="flex justify-center px-4 py-16 bg-base-200">Hello!</div>
-</div>
-```
-
----
-
-### DaisyUI Card with Centered Content
-
-Source: https://daisyui.com/components/card
-
-This example illustrates a DaisyUI card with its content centered and includes padding. It features an image at the top, a title, descriptive text, and a call-to-action button. This card is suitable for promotional content or featured items.
-
-```html
-<div class="card w-96 image-full shadow-xl">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes"
-    />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">Card Title</h2>
-    <p>
-      A card component has a figure, a body part, and inside body there are
-      title and actions parts
-    </p>
-    <div class="card-actions justify-center">
-      <button class="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Basic DaisyUI Table Structure
-
-Source: https://daisyui.com/components/table
-
-Demonstrates the fundamental structure for creating a table using DaisyUI classes. This includes the main table element and header/row definitions. No external dependencies are required beyond DaisyUI.
-
-```html
-<div class="overflow-x-auto">
-  <table class="table">
-    <!-- head -->
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- row 1 -->
-      <tr>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      <!-- row 2 -->
-      <tr>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      <!-- row 3 -->
-      <tr>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-```
-
----
-
-### DaisyUI Text Input: Username with Icon and Validator
-
-Source: https://daisyui.com/components/input
-
-Illustrates a username input field with an accompanying icon and validation message using DaisyUI classes. This example enforces specific character and length constraints for usernames.
-
-````html
-```html
-<label class="input input-bordered flex items-center gap-2">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 16 16"
-    fill="currentColor"
-    class="w-4 h-4 opacity-70"
-  >
-    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-    <path
-      fill-rule="evenodd"
-      d="M13.682 2.318A9.887 9.887 0 0 0 8 1c-2.87 0-5.432 1.772-6.735 4.464a9.887 9.887 0 0 0 2.034 1.964C3.787 7.712 5.474 9 8 9c2.526 0 4.213-1.288 5.307-2.722a9.887 9.887 0 0 0 2.034-1.964A9.875 9.875 0 0 0 13.682 2.318Z"
-      clip-rule="evenodd"
-    />
-  </svg>
-  <input type="text" class="grow" placeholder="Username" />
-</label>
-<label class="label">
-  <span class="label-text-alt"
-    >Must be 3 to 30 characters containing only letters, numbers or dash</span
-  >
-</label>
-````
-
-````
-
---------------------------------
-
-### DaisyUI Sticky Rows and Columns Table
-
-Source: https://daisyui.com/components/table
-
-Demonstrates how to create tables with sticky rows and columns using `table-pin-rows` and `table-pin-cols` modifiers. This is useful for large tables where headers or specific columns need to remain visible during scrolling. Requires basic HTML table setup.
-
-```html
-<div class="overflow-x-auto">
-  <table class="table table-pin-rows table-pin-cols">
-    <!-- head -->
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- row 1 -->
-      <tr>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      <!-- row 2 -->
-      <tr>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      <!-- row 3 -->
-      <tr>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-````
-
----
-
-### Colored Code Mockup with daisyUI
-
-Source: https://daisyui.com/components/mockup-code
-
-Shows how to apply custom colors to the 'mockup-code' component. This allows for visual customization to match theme requirements or highlight specific code blocks.
-
-```html
-<div class="mockup-code" data-theme="emerald">
-  <code>can be any color!</code>
-</div>
-```
-
----
-
-### DaisyUI Rating with Hidden Input
-
-Source: https://daisyui.com/components/rating
-
-This example shows how to use the 'rating-hidden' modifier. A hidden radio input at the beginning allows the user to clear their selection, providing a 'no rating' option.
-
-```html
-<div class="rating rating-hidden ">
-  <input type="radio" name="rating-hidden" class="mask mask-star-2" />
-  <input type="radio" name="rating-hidden" class="mask mask-star-2" checked />
-  <input type="radio" name="rating-hidden" class="mask mask-star-2" />
-  <input type="radio" name="rating-hidden" class="mask mask-star-2" />
-  <input type="radio" name="rating-hidden" class="mask mask-star-2" />
-</div>
-```
-
----
-
-### Radial Progress with Different Values (Vue)
-
-Source: https://daisyui.com/components/radial-progress
-
-This Vue.js example displays the radial-progress component at different percentage values, showing how to dynamically set the '--value' CSS variable for various progress states.
-
-```vue
-<template>
-  <div class="radial-progress" :style="{ '--value': 0 }" role="progressbar">
-    0%
-  </div>
-  <div class="radial-progress" :style="{ '--value': 20 }" role="progressbar">
-    20%
-  </div>
-  <div class="radial-progress" :style="{ '--value': 60 }" role="progressbar">
-    60%
-  </div>
-  <div class="radial-progress" :style="{ '--value': 80 }" role="progressbar">
-    80%
-  </div>
-  <div class="radial-progress" :style="{ '--value': 100 }" role="progressbar">
-    100%
-  </div>
-</template>
-
-<script setup lang="ts">
-// No script needed for basic example
-</script>
-
-<style>
-/* DaisyUI styles are assumed to be globally imported */
-</style>
-```
-
----
-
-### Password Requirement Validator (HTML)
-
-Source: https://daisyui.com/components/validator
-
-Shows how to implement password validation requirements using DaisyUI's 'validator' and 'validator-hint' classes. The example includes checks for length, numbers, lowercase, and uppercase letters.
-
-```html
-<input
-  type="password"
-  class="input input-bordered validator"
-  placeholder="password"
-/>
-<p class="validator-hint">
-  Must be more than 8 characters, including<br />
-  At least one number<br />
-  At least one lowercase letter<br />
-  At least one uppercase letter
-</p>
-```
-
----
-
-### Basic Radial Progress (HTML)
-
-Source: https://daisyui.com/components/radial-progress
-
-Demonstrates the basic usage of the radial-progress component using HTML and CSS variables. It requires the '--value' CSS variable to function and can be styled further with '--size' and '--thickness'.
-
-```html
-<div class="radial-progress" style="--value:70" role="progressbar">70%</div>
-```
-
----
-
-### Select Requirement Validator (HTML)
-
-Source: https://daisyui.com/components/validator
-
-Demonstrates validating a select dropdown using DaisyUI. The example includes instructions to click the button before picking an option to see the error color, indicating a required field.
-
-```html
-<select class="select select-bordered validator">
-  <option disabled selected>Choose:</option>
-  <option>Tabs</option>
-  <option>Spaces</option>
-</select>
-<p class="validator-hint">Required</p>
-```
-
----
-
-### DaisyUI Soft Button Styles
-
-Source: https://daisyui.com/components/button
-
-Demonstrates the 'soft' button style, which provides a lighter, less prominent appearance compared to default buttons. This style is applied using the 'btn-soft' class, with examples shown for various color options.
-
-```html
-<button class="btn btn-soft">Default</button>
-<button class="btn btn-soft btn-primary">Primary</button>
-<button class="btn btn-soft btn-secondary">Secondary</button>
-<button class="btn btn-soft btn-accent">Accent</button>
-<button class="btn btn-soft btn-info">Info</button>
-<button class="btn btn-soft btn-success">Success</button>
-<button class="btn btn-soft btn-warning">Warning</button>
-<button class="btn btn-soft btn-error">Error</button>
-```
-
----
-
-### DaisyUI Swap Component: Hamburger Button Toggle (HTML)
-
-Source: https://daisyui.com/components/swap
-
-Provides an example of creating a hamburger button that transforms into a close icon upon clicking, using the DaisyUI Swap component. The `swap` class is used, with a hidden checkbox controlling the state change between the hamburger and close icons.
-
-```html
-<label class="swap">
-  <input type="checkbox" />
-  <svg
-    class="swap-on fill-current"
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M3 6h18M3 12h18M3 18h18"></path>
-  </svg>
-  <svg
-    class="swap-off fill-current"
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M18 6L6 18M6 6l12 12"></path>
-  </svg>
-</label>
-```
-
----
-
-### Dock Component Syntax (HTML)
-
-Source: https://context7_llms
-
-Illustrates the HTML structure for a dock component, which functions as a bottom navigation bar. Content is typically a list of buttons with labels.
-
-```html
-<div class="dock {MODIFIER}">{CONTENT}</div>
-```
-
-```html
-<button>
-  <svg>{icon}</svg>
-  <span class="dock-label">Text</span>
-</button>
-```
-
----
-
-### Browser Mockup with Border - HTML
-
-Source: https://daisyui.com/components/mockup-browser
-
-Demonstrates how to create a browser mockup with a border using daisyUI's HTML structure. This is useful for showcasing web content within a realistic browser frame.
-
-```html
-<div class="mockup-browser border border-base-300">
-  <div class="mockup-browser-toolbar">
-    <input class="input input-bordered" value="https://daisyui.com" />
-  </div>
-  <div class="flex justify-center px-4 py-16 bg-base-200">Hello!</div>
-</div>
-```
-
----
-
-### DaisyUI Join Component: Custom Border Radius
-
-Source: https://daisyui.com/components/join
-
-Illustrates how to apply custom border radius to elements within the DaisyUI 'join' component. This example shows applying a rounded class to the 'join' container itself.
-
-```html
-<div class="join rounded-lg">
-  <button class="join-item btn">Subscribe</button>
-</div>
-<div class="join rounded-lg">
-  <button class="join-item btn">Subscribe</button>
-</div>
-<div class="join rounded-lg">
-  <button class="join-item btn">Subscribe</button>
-</div>
-<div class="join rounded-lg">
-  <button class="join-item btn">Subscribe</button>
-</div>
-```
-
----
-
-### DaisyUI Rating with Green Star Icon
-
-Source: https://daisyui.com/components/rating
-
-This example showcases a rating component using the 'mask-star-2' icon and applying a specific green color ('green-500'). This allows for custom branding or thematic consistency in the UI.
-
-```html
-<div class="rating">
-  <input type="radio" name="rating-green-star" class="mask mask-star-2" />
-  <input
-    type="radio"
-    name="rating-green-star"
-    class="mask mask-star-2"
-    checked
-  />
-  <input type="radio" name="rating-green-star" class="mask mask-star-2" />
-  <input type="radio" name="rating-green-star" class="mask mask-star-2" />
-  <input type="radio" name="rating-green-star" class="mask mask-star-2" />
-</div>
-<div class="rating">
-  <input
-    type="radio"
-    name="rating-green-half"
-    class="bg-green-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-green-half"
-    class="bg-green-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-green-half"
-    class="bg-green-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-green-half"
-    class="bg-green-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-green-half"
-    class="bg-green-500 mask mask-star-2"
-    checked
-  />
-</div>
-```
-
----
-
-### Basic DaisyUI Card Component
-
-Source: https://daisyui.com/components/card
-
-A fundamental card component structure in DaisyUI. It typically includes a figure for an image or icon, a body section for text content, and distinct areas for titles and actions. This example demonstrates the basic markup.
-
-```html
-<div class="card w-96 bg-base-100 shadow-xl">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557116-37ef5577107a.webp"
-      alt="Shoes"
-    />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">Card title!</h2>
-    <p>
-      A card component has a figure, a body part, and inside body there are
-      title and actions parts
-    </p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Card with Bottom Image Example
-
-Source: https://daisyui.com/components/card
-
-This code snippet demonstrates a basic DaisyUI card component featuring an image positioned at the bottom. It includes a title and descriptive text within the card body. This component is useful for displaying product information or articles.
-
-```html
-<div class="card w-96 bg-base-100 shadow-xl">
-  <div class="card-body">
-    <h2 class="card-title">Card Title</h2>
-    <p>
-      A card component has a figure, a body part, and inside body there are
-      title and actions parts
-    </p>
-  </div>
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes"
-    />
-  </figure>
-</div>
-```
-
----
-
-### Basic Textarea Component - daisyUI
-
-Source: https://daisyui.com/components/textarea
-
-Demonstrates the fundamental usage of the Textarea component in daisyUI. It shows a simple textarea element with a placeholder, ready for user input.
-
-```html
-<textarea class="textarea" placeholder="Bio"></textarea>
-```
-
----
-
-### DaisyUI Card with Custom Color
-
-Source: https://daisyui.com/components/card
-
-This example showcases a DaisyUI card with a custom background color, indicated by 'bg-primary'. It includes a title, descriptive text, and a 'Buy Now' button. Customizing colors allows for better theme integration and visual hierarchy.
-
-```html
-<div class="card w-96 bg-primary text-primary-content shadow-xl">
-  <div class="card-body">
-    <h2 class="card-title">Card title!</h2>
-    <p>
-      A card component has a figure, a body part, and inside body there are
-      title and actions parts
-    </p>
-    <div class="card-actions justify-end">
-      <button class="btn">Buy Now</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Basic Checkbox Usage (HTML)
-
-Source: https://daisyui.com/components/checkbox
-
-Demonstrates the basic HTML structure for a simple checkbox using daisyUI classes. No external dependencies are required beyond daisyUI.
-
-````html
-```html <input type="checkbox" class="checkbox" />
-````
-
-````
-
---------------------------------
-
-### Floating Label with Different Sizes (HTML/Tailwind CSS)
-
-Source: https://daisyui.com/components/label
-
-Presents examples of floating labels with various input sizes supported by daisyUI, including Extra Small, Small, Medium, Large, and Extra Large. This allows for flexible form design according to the application's needs.
-
-```html
-<div class="form-control relative w-full max-w-xs">
-  <input type="text" class="input input-xs input-bordered peer" placeholder=" " />
-  <label class="label absolute top-0 left-0 ml-2 px-1 text-xs peer-focus:text-xs peer-focus:ml-1 peer-focus:-top-2 transition-all duration-300">
-    <span class="label-text">Extra Small</span>
-  </label>
-</div>
-<div class="form-control relative w-full max-w-xs">
-  <input type="text" class="input input-sm input-bordered peer" placeholder=" " />
-  <label class="label absolute top-0 left-0 ml-2 px-1 text-xs peer-focus:text-xs peer-focus:ml-1 peer-focus:-top-2 transition-all duration-300">
-    <span class="label-text">Small</span>
-  </label>
-</div>
-<div class="form-control relative w-full max-w-xs">
-  <input type="text" class="input input-md input-bordered peer" placeholder=" " />
-  <label class="label absolute top-0 left-0 ml-2 px-1 text-xs peer-focus:text-xs peer-focus:ml-1 peer-focus:-top-2 transition-all duration-300">
-    <span class="label-text">Medium</span>
-  </label>
-</div>
-<div class="form-control relative w-full max-w-xs">
-  <input type="text" class="input input-lg input-bordered peer" placeholder=" " />
-  <label class="label absolute top-0 left-0 ml-2 px-1 text-xs peer-focus:text-xs peer-focus:ml-1 peer-focus:-top-2 transition-all duration-300">
-    <span class="label-text">Large</span>
-  </label>
-</div>
-<div class="form-control relative w-full max-w-xs">
-  <input type="text" class="input input-xl input-bordered peer" placeholder=" " />
-  <label class="label absolute top-0 left-0 ml-2 px-1 text-xs peer-focus:text-xs peer-focus:ml-1 peer-focus:-top-2 transition-all duration-300">
-    <span class="label-text">Extra Large</span>
-  </label>
-</div>
-````
-
----
-
-### Radial Progress with Different Values (React TSX)
-
-Source: https://daisyui.com/components/radial-progress
-
-A React (TSX) example showcasing the radial-progress component with various percentage values. This demonstrates how to dynamically set the '--value' CSS variable for different progress states.
-
-```tsx
-function RadialProgressDifferentValuesTsx() {
-  return (
-    <>
-      <div
-        className="radial-progress"
-        style={{ "--value": 0 } as React.CSSProperties}
-        role="progressbar"
-      >
-        0%
-      </div>
-      <div
-        className="radial-progress"
-        style={{ "--value": 20 } as React.CSSProperties}
-        role="progressbar"
-      >
-        20%
-      </div>
-      <div
-        className="radial-progress"
-        style={{ "--value": 60 } as React.CSSProperties}
-        role="progressbar"
-      >
-        60%
-      </div>
-      <div
-        className="radial-progress"
-        style={{ "--value": 80 } as React.CSSProperties}
-        role="progressbar"
-      >
-        80%
-      </div>
-      <div
-        className="radial-progress"
-        style={{ "--value": 100 } as React.CSSProperties}
-        role="progressbar"
-      >
-        100%
-      </div>
-    </>
-  );
-}
-```
-
----
-
-### DaisyUI Navbar Syntax (HTML)
-
-Source: https://context7_llms
-
-Demonstrates the basic structure of a DaisyUI navbar. Content can be positioned within the navbar using `navbar-start`, `navbar-center`, and `navbar-end` classes.
-
-```html
-<div class="navbar bg-base-100">
-  <div class="navbar-start">
-    <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
-  </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      <li><a>Link 1</a></li>
-      <li><a>Link 2</a></li>
-    </ul>
-  </div>
-  <div class="navbar-end">
-    <button class="btn btn-ghost btn-circle">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-      </svg>
-    </button>
-  </div>
-</div>
-```
-
----
-
-### Update tailwind.config.js for Tailwind CSS 4 and daisyUI 5
-
-Source: https://daisyui.com/docs/upgrade
-
-This snippet shows how to modify the tailwind.config.js file to remove daisyUI themes and plugins before running the Tailwind CSS upgrade tool, and how to re-add daisyUI with its themes after the upgrade.
-
-```javascript
-module.exports = {
-  content: ["./your-files/**/*.{html,js}"],
-  // other stuff...
-  // - daisyui: {
-  // - themes: ['light', 'dark', 'cupcake'],
-  // - },
-  // - plugins: [require("daisyui")],
-};
-```
-
-```javascript
-module.exports = {
-  content: ["./your-files/**/*.{html,js}"],
-  // other stuff...
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: [
-      {
-        light: {
-          ...require("daisyui/colors").light,
-          primary: "#007bff",
-        },
-      },
-      "dark",
-      "cupcake",
-    ],
-  },
-};
-```
-
----
-
-### Filter without HTML Form - daisyUI
-
-Source: https://daisyui.com/components/filter
-
-This example shows how to create a filter interface without using a full HTML form. This approach is useful when form submission is not required or when integrating the filter into a different UI structure. It still utilizes radio buttons for selection.
-
-```html
-<div class="filter">
-  <input
-    type="radio"
-    name="filter-group"
-    id="optionA"
-    class="filter-radio"
-    checked
-  />
-  <label for="optionA">Option A</label>
-
-  <input type="radio" name="filter-group" id="optionB" class="filter-radio" />
-  <label for="optionB">Option B</label>
-
-  <input type="radio" name="filter-group" id="optionC" class="filter-radio" />
-  <label for="optionC">Option C</label>
-
-  <button class="filter-reset">Reset</button>
-</div>
-```
-
----
-
-### DaisyUI Dash Button Styles
-
-Source: https://daisyui.com/components/button
-
-Features the 'dash' button style, which uses a dashed border for a distinct look. This style is applied using the 'btn-dash' class, with examples showing its integration with various color options.
-
-```html
-<button class="btn btn-dash">Default</button>
-<button class="btn btn-dash btn-primary">Primary</button>
-<button class="btn btn-dash btn-secondary">Secondary</button>
-<button class="btn btn-dash btn-accent">Accent</button>
-<button class="btn btn-dash btn-info">Info</button>
-<button class="btn btn-dash btn-success">Success</button>
-<button class="btn btn-dash btn-warning">Warning</button>
-<button class="btn btn-dash btn-error">Error</button>
-```
-
----
-
-### Label for Select Element (HTML/Tailwind CSS)
-
-Source: https://daisyui.com/components/label
-
-Illustrates using the daisyUI Label component with a select dropdown. This allows for clear labeling of select options and enhances user experience. Examples include different types of select inputs.
-
-```html
-<label class="label">
-  <span class="label-text">Choose your favorite</span>
-</label>
-<select class="select select-bordered w-full max-w-xs">
-  <option disabled selected>Pick one</option>
-  <option>Star Wars</option>
-  <option>Harry Potter</option>
-  <option>Lord of the Rings</option>
-  <option>Planet of the Apes</option>
-  <option>The Matrix</option>
-</select>
-```
-
-```html
-<div class="form-control w-full max-w-xs">
-  <label class="label">
-    <span class="label-text">Personal or Business</span>
-  </label>
-  <select class="select select-bordered">
-    <option>Personal</option>
-    <option>Business</option>
-  </select>
-</div>
-```
-
----
-
-### Basic DaisyUI Menu Component
-
-Source: https://daisyui.com/components/menu
-
-Demonstrates the basic structure of a DaisyUI menu with simple list items. This serves as a foundation for more complex menu configurations.
-
-```html
-<ul class="menu">
-  <li>Item 1</li>
-  <li>Item 2</li>
-  <li>Item 3</li>
-</ul>
-```
-
----
-
-### Diff Component Syntax (HTML)
-
-Source: https://context7_llms
-
-Demonstrates the structure for a diff component, used for comparing two items side-by-side. Aspect ratio classes can be added to maintain proportions.
-
-```html
-<figure class="diff">
-  <div class="diff-item-1">{item1}</div>
-  <div class="diff-item-2">{item2}</div>
-  <div class="diff-resizer"></div>
-</figure>
-```
-
----
-
-### DaisyUI Table with Active Row
-
-Source: https://daisyui.com/components/table
-
-Shows how to highlight an active row within a DaisyUI table. This is typically achieved by applying a specific class to the desired row element, visually indicating selection or focus. The example uses standard HTML table rows.
-
-```html
-<div class="overflow-x-auto">
-  <table class="table">
-    <!-- head -->
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- row 1 -->
-      <tr>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      <!-- row 2 - Active -->
-      <tr class="active">
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      <!-- row 3 -->
-      <tr>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-```
-
----
-
-### Floating Label Input (HTML/Tailwind CSS)
-
-Source: https://daisyui.com/components/label
-
-Demonstrates the 'floating-label' pattern in daisyUI, where the label floats above the input field when it's focused or has content. This provides a clean and modern UI for forms. Examples include different input sizes.
-
-```html
-<div class="form-control relative">
-  <input type="text" class="input input-bordered peer" placeholder=" " />
-  <label
-    class="label absolute top-0 left-0 ml-3 px-2 peer-focus:text-xs peer-focus:ml-1 peer-focus:-top-2 peer-hover:text-xs peer-hover:-top-2 transition-all duration-300"
-  >
-    <span class="label-text">Your Email</span>
-  </label>
-</div>
-```
-
-```html
-<div class="form-control relative w-full max-w-xs">
-  <input type="text" class="input input-bordered peer" placeholder=" " />
-  <label
-    class="label absolute top-0 left-0 ml-3 px-2 peer-focus:text-xs peer-focus:ml-1 peer-focus:-top-2 transition-all duration-300"
-  >
-    <span class="label-text">Username</span>
-  </label>
-</div>
-```
-
----
-
-### DaisyUI Responsive Button Sizes
-
-Source: https://daisyui.com/components/button
-
-Illustrates how to create responsive buttons that adapt their size based on the viewport. This uses DaisyUI's responsive prefixes to define different button sizes for various screen widths, enabling adaptive UI design.
-
-```html
-<button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">
-  Responsive
-</button>
-```
-
----
-
-### Textarea Component Color Variations - daisyUI
-
-Source: https://daisyui.com/components/textarea
-
-Presents various color options for the Textarea component in daisyUI, including neutral, primary, secondary, accent, info, success, warning, and error states. Each example applies a specific color class.
-
-````html
-```html
-<textarea class="textarea textarea-neutral" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-primary" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-secondary" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-accent" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-info" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-success" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-warning" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-error" placeholder="Bio"></textarea>
-````
-
-````
-
---------------------------------
-
-### Filter Component with HTML Form in HTML
-
-Source: https://context7_llms
-
-The filter component groups radio buttons, allowing only one selection at a time and displaying a reset button. This example shows its implementation using an HTML form, with classes for the component and the reset button.
-
-```html
-<form class="filter">
-  <input class="btn btn-square" type="reset" value="×"/>
-  <input class="btn" type="radio" name="my-radio" aria-label="Tab 1 title"/>
-  <input class="btn" type="radio" name="my-radio" aria-label="Tab 2 title"/>
-</form>
-````
-
----
-
-### daisyUI 5: Importing Library Parts via Plugin
+### Apply Soft Style to a Button
 
 Source: https://daisyui.com/docs/v5
 
-Shows the syntax for importing specific parts of the daisyUI library using a plugin, allowing for modular inclusion and exclusion of components. This is a new feature in daisyUI 5 for enhanced customization.
+Components such as 'button', 'badge', and 'alert' now support 'soft' and 'dash' style modifiers. This example shows applying the 'soft' style to a button for a softer appearance.
+
+```html
+<button class="btn btn-soft">Soft Button</button>
+```
+
+--------------------------------
+
+### CSS Responsive Design for Components
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Illustrates how to implement responsive behavior for UI components, ensuring they adapt to various screen sizes. This involves using media queries to adjust styles at different breakpoints.
 
 ```css
-@plugin "daisyui";
+/* Each breakpoint needs consideration */
+.card {
+  width: 100%;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .card {
+    width: 50%;
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    width: 33.333%;
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    width: 25%;
+  }
+}
 ```
-
----
-
-### DaisyUI Dropdown Syntax (Details/Summary)
-
-Source: https://context7_llms
-
-Implementation of a DaisyUI Dropdown using the HTML `<details>` and `<summary>` elements. The `<details>` element has the `dropdown` class, and the dropdown content is placed within a `<ul>` with the `dropdown-content` class. This method leverages native HTML semantics for dropdown functionality.
-
-```html
-<details class="dropdown">
-  <summary>Button</summary>
-  <ul class="dropdown-content">
-    {CONTENT}
-  </ul>
-</details>
-```
-
----
-
-### Basic File Input - daisyUI
-
-Source: https://daisyui.com/components/file-input
-
-Demonstrates the fundamental usage of the file input component in daisyUI. This code snippet shows a simple file input field without any specific styling or variations.
-
-```html
-<input type="file" class="file-input" />
-```
-
----
-
-### FAB and Speed Dial (Vertical) - With SVG Icons
-
-Source: https://daisyui.com/components/fab
-
-Illustrates how to integrate SVG icons into the FAB and Speed Dial buttons. This example shows the structure for both the main FAB button and the individual speed dial buttons, incorporating SVG elements for visual representation.
-
-```html
-<div class="fab">
-  <button class="fab-main-action">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M4 6h16M4 12h16M4 18h16"
-      />
-    </svg>
-  </button>
-  <div class="fab-content">
-    <button class="btn btn-circle btn-xs">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
-    </button>
-    <button class="btn btn-circle btn-xs">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
-    </button>
-    <button class="btn btn-circle btn-xs">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
-    </button>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Modal with Hidden Checkbox
-
-Source: https://daisyui.com/components/modal
-
-This example shows how to implement a modal using a hidden checkbox input. Clicking a label associated with the checkbox toggles the modal's visibility. This method provides a pure HTML/CSS approach to modal control.
-
-```html
-<label for="my-modal" class="btn">open modal</label>
-
-<input type="checkbox" id="my-modal" class="modal-toggle" />
-<div class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">This modal works with a hidden checkbox!</p>
-    <div class="modal-action">
-      <label for="my-modal" class="btn">Close</label>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Join Component: Responsive Layout
-
-Source: https://daisyui.com/components/join
-
-Shows how to achieve a responsive layout with the DaisyUI 'join' component. The items are displayed vertically on small screens and switch to a horizontal layout on larger screens, controlled by utility classes.
-
-```html
-<div class="join lg:join-vertical ">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join lg:join-vertical ">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join lg:join-vertical ">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join lg:join-vertical ">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join lg:join-vertical ">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-```
-
----
-
-### Label for Input Field (HTML/Tailwind CSS)
-
-Source: https://daisyui.com/components/label
-
-Demonstrates how to use the daisyUI Label component to associate text with an input field. This setup ensures proper accessibility and styling for form elements. It covers basic input fields and input fields with labels placed at the end.
-
-```html
-<label class="label">
-  <span class="label-text">Your email</span>
-</label>
-<input
-  type="text"
-  placeholder="Type here"
-  class="input input-bordered w-full max-w-xs"
-/>
-```
-
-```html
-<div class="form-control w-full max-w-xs">
-  <label class="label">
-    <span class="label-text">What's in your pocket?</span>
-  </label>
-  <input
-    type="text"
-    placeholder="Type here"
-    class="input input-bordered w-full max-w-xs"
-  />
-  <label class="label">
-    <span class="label-text-alt">Alternative label</span>
-  </label>
-</div>
-```
-
----
-
-### daisyUI 5: Micro CSS File for Toggle Component
-
-Source: https://daisyui.com/docs/v5
-
-Demonstrates how to include only the CSS for the toggle component from daisyUI's CDN for projects without a build step, significantly reducing the amount of CSS loaded. This showcases the 'Micro CSS files' feature for no-build projects.
-
-```html
-<link
-  href="https://cdn.jsdelivr.net/npm/daisyui@5/components/toggle.css"
-  rel="stylesheet"
-  type="text/css"
-/>
-```
-
----
-
-### DaisyUI Select Component Basic Usage
-
-Source: https://daisyui.com/components/select
-
-Demonstrates the basic HTML structure for a DaisyUI select component, allowing users to pick a color from a predefined list. It uses standard HTML select elements with DaisyUI classes for styling.
-
-```html
-<label class="form-control w-full max-w-xs">
-  <div class="label">
-    <span class="label-text">Pick a color</span>
-  </div>
-  <select class="select select-bordered w-full max-w-xs">
-    <option disabled selected>Crimson</option>
-    <option>Amber</option>
-    <option>Velvet</option>
-  </select>
-</label>
-```
-
----
-
-### FAB and Speed Dial (Vertical) - With Rectangle Buttons
-
-Source: https://daisyui.com/components/fab
-
-Demonstrates using standard rectangle buttons instead of circular buttons for the speed dial. This example shows the FAB structure with the main action button and the content area containing rectangular speed dial buttons.
-
-```html
-<div class="fab">
-  <button class="fab-main-action">F</button>
-  <div class="fab-content">
-    <button class="btn btn-xs">Button A</button>
-    <button class="btn btn-xs">Button B</button>
-    <button class="btn btn-xs">Button C</button>
-  </div>
-</div>
-```
-
----
-
-### Breadcrumbs with Max-Width and Scrolling - daisyUI
-
-Source: https://daisyui.com/components/breadcrumbs
-
-This example illustrates how to implement breadcrumbs that handle long text or a large number of items by applying a maximum width and enabling horizontal scrolling. This prevents layout issues on smaller screens or with extensive navigation paths. The container must have a defined width for the scrolling to function.
-
-```html
-<div class="max-w-xs ">
-  <div role="Breadcrumb" class="breadcrumbs">
-    <ul>
-      <li>
-        <a href="#">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="w-4 h-4 stroke-current"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6a2 2 0 00-2-2H5a2 2 0 00-2 2z"
-            ></path>
-          </svg>
-          Long text 1
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="w-4 h-4 stroke-current"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 13h6m-3-3v6m5 5H9a2 2 0 01-2-2V5a2 2 0 012-2h5.5a2 2 0 011.54.535M9 22V7h5.5a2 2 0 011.548.535l3.452 3.452a2 2 0 01.547 1.548L21 17a2 2 0 01-2 2H9z"
-            ></path>
-          </svg>
-          Long text 2
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="w-4 h-4 stroke-current"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 13h6m-3-3v6m5 5H9a2 2 0 01-2-2V5a2 2 0 012-2h5.5a2 2 0 011.54.535M9 22V7h5.5a2 2 0 011.548.535l3.452 3.452a2 2 0 01.547 1.548L21 17a2 2 0 01-2 2H9z"
-            ></path>
-          </svg>
-          Long text 3
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="w-4 h-4 stroke-current"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 13h6m-3-3v6m5 5H9a2 2 0 01-2-2V5a2 2 0 012-2h5.5a2 2 0 011.54.535M9 22V7h5.5a2 2 0 011.548.535l3.452 3.452a2 2 0 01.547 1.548L21 17a2 2 0 01-2 2H9z"
-            ></path>
-          </svg>
-          Long text 4
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="w-4 h-4 stroke-current"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 13h6m-3-3v6m5 5H9a2 2 0 01-2-2V5a2 2 0 012-2h5.5a2 2 0 011.54.535M9 22V7h5.5a2 2 0 011.548.535l3.452 3.452a2 2 0 01.547 1.548L21 17a2 2 0 01-2 2H9z"
-            ></path>
-          </svg>
-          Long text 5
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Pagination using Radio Inputs
-
-Source: https://daisyui.com/components/pagination
-
-Demonstrates using radio inputs within the DaisyUI pagination component. This approach is useful for scenarios where only one page can be selected at a time, offering a different interaction model.
-
-```html
-<div class="join">
-  <input
-    type="radio"
-    name="options"
-    aria-label="1"
-    class="join-item btn btn-square"
-    checked
-  />
-  <input
-    type="radio"
-    name="options"
-    aria-label="2"
-    class="join-item btn btn-square"
-  />
-  <input
-    type="radio"
-    name="options"
-    aria-label="3"
-    class="join-item btn btn-square"
-  />
-  <input
-    type="radio"
-    name="options"
-    aria-label="4"
-    class="join-item btn btn-square"
-  />
-</div>
-```
-
----
-
-### Basic DaisyUI Chat Bubble (HTML)
-
-Source: https://daisyui.com/components/chat
-
-Demonstrates the basic structure of a chat bubble using DaisyUI classes. It requires 'chat-start' or 'chat-end' for horizontal alignment and utilizes various color classes for the bubble itself.
-
-```html
-<div class="chat chat-start">
-  <div class="chat-image avatar">
-    <div class="w-10 rounded-full">
-      <img
-        src="https://img.daisyui.com/images/stock/photo-1534528736660-8977d6180181.webp"
-      />
-    </div>
-  </div>
-  <div class="chat-header">
-    Obi-Wan Kenobi
-    <time class="text-xs opacity-50">12:45</time>
-  </div>
-  <div class="chat-bubble chat-bubble-neutral">It is true. All of it.</div>
-  <div class="chat-footer opacity-50">Delivered</div>
-</div>
-
-<div class="chat chat-end">
-  <div class="chat-image avatar">
-    <div class="w-10 rounded-full">
-      <img
-        src="https://img.daisyui.com/images/stock/photo-1534528736660-8977d6180181.webp"
-      />
-    </div>
-  </div>
-  <div class="chat-header">
-    Anakin Skywalker
-    <time class="text-xs opacity-50">12:46</time>
-  </div>
-  <div class="chat-bubble chat-bubble-primary">Not all of it.</div>
-  <div class="chat-footer opacity-50">Seen</div>
-</div>
-```
-
----
-
-### DaisyUI Toggle Sizes (HTML)
-
-Source: https://daisyui.com/components/toggle
-
-Illustrates how to apply different size variants (xs, sm, md, lg, xl) to the DaisyUI toggle component.
-
-```html
-<input type="checkbox" class="toggle toggle-xs" />
-<input type="checkbox" class="toggle toggle-sm" />
-<input type="checkbox" class="toggle" />
-<input type="checkbox" class="toggle toggle-lg" />
-<input type="checkbox" class="toggle toggle-xl" />
-```
-
----
-
-### DaisyUI Basic Tabs with HTML
-
-Source: https://daisyui.com/components/tab
-
-Demonstrates the basic implementation of DaisyUI tabs using HTML. This includes the main 'tabs' container and individual 'tab' elements. The 'tab-content' class is used for the content associated with each tab.
-
-````html
-### tabs Tab 1 Tab 2 Tab 3 ``` html
-<div role="tablist" class="tabs tabs-lift">
-  <a role="tab" class="tab">Tab 1</a>
-  <a role="tab" class="tab">Tab 2</a>
-  <a role="tab" class="tab">Tab 3</a>
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 1
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 2
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 3
-</div>
-````
-
-````
 
 --------------------------------
 
-### Highlighted Line Code Mockup with daisyUI
+### Install Rust WebAssembly Target and Trunk
 
-Source: https://daisyui.com/components/mockup-code
+Source: https://daisyui.com/docs/install/yew
 
-Shows how to highlight a specific line within the 'mockup-code' component. This feature is useful for drawing attention to particular commands or output lines, like errors.
+Installs the necessary Rust toolchain components, including the WebAssembly target and the Trunk build tool, required for Yew projects.
 
-```html
-<div class="mockup-code">
-  <pre data-prefix="$"><code>npm i daisyui
-installing...
-Error!</code></pre>
-</div>
-````
+```bash
+rustup target add wasm32-unknown-unknown
 
----
 
-### Dropdown using details and summary (HTML)
-
-Source: https://daisyui.com/components/dropdown
-
-Implements a dropdown using native HTML 'details' and 'summary' elements. The content is toggled by clicking the summary, and can also be controlled programmatically via the 'open' attribute.
-
-```html
-<details>
-  <summary>Click me</summary>
-  <ul class="p-2">
-    <li>Item 1</li>
-    <li>Item 2</li>
-  </ul>
-</details>
 ```
 
----
+```bash
+cargo install --locked trunk
 
-### DaisyUI Join Component: Basic Usage
-
-Source: https://daisyui.com/components/join
-
-Demonstrates the fundamental usage of the DaisyUI 'join' component for grouping buttons. It shows how 'join' and 'join-item' classes are applied to create a horizontally grouped set of buttons.
-
-```html
-<div class="join">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
 ```
 
----
+--------------------------------
 
-### Ghost Styled File Input - daisyUI
+### HTML Carousel with Half Width Items (DaisyUI)
 
-Source: https://daisyui.com/components/file-input
+Source: https://daisyui.com/components/carousel
 
-Illustrates how to apply a 'ghost' style to the file input component for a more minimalist appearance. This style is often used when the input needs to blend seamlessly with the background or other elements.
-
-```html
-<input type="file" class="file-input file-input-ghost" />
-```
-
----
-
-### DaisyUI Pagination with Outline Buttons
-
-Source: https://daisyui.com/components/pagination
-
-Shows how to create DaisyUI pagination with outline buttons for 'Previous' and 'Next' pages. This style provides a less prominent visual distinction for navigation.
+This example shows a basic carousel implementation using DaisyUI classes in plain HTML. Each carousel item is set to occupy half the width of the carousel container.
 
 ```html
-<div class="join">
-  <button class="join-item btn btn-outline">Previous page</button>
-  <button class="join-item btn btn-outline">Next</button>
-</div>
-```
-
----
-
-### Helper Dropdown with Text in daisyUI
-
-Source: https://daisyui.com/components/dropdown
-
-Illustrates creating a 'helper' dropdown that appears alongside regular text. This pattern is useful for providing additional context or details without cluttering the main content. It uses daisyUI's 'dropdown' component.
-
-```html
-<div class="dropdown">
-  <label tabindex="0" class="m-1">A normal text and a helper dropdown</label>
-  <div class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-    <p>You needed more info? --------------------- Here is a description!</p>
+<div class="carousel rounded-box w-96">
+  <div class="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" class="w-full" />
+  </div>
+  <div class="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp" class="w-full" />
+  </div>
+  <div class="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp" class="w-full" />
+  </div>
+  <div class="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp" class="w-full" />
+  </div>
+  <div class="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" class="w-full" />
+  </div>
+  <div class="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" class="w-full" />
+  </div>
+  <div class="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp" class="w-full" />
   </div>
 </div>
 ```
 
----
+--------------------------------
 
-### HTML Skeleton Loader
+### Exclude Specific daisyUI Component in Tailwind CSS
 
-Source: https://context7_llms
+Source: https://daisyui.com/docs/v5
 
-A placeholder component to indicate a loading state. Uses the 'skeleton' class and requires height and width utility classes (e.g., 'h-_', 'w-_').
-
-```html
-<div class="skeleton h-20 w-full"></div>
-<div class="skeleton h-32 w-32 rounded-full"></div>
-```
-
----
-
-### Kbd Component for Keyboard Shortcuts with DaisyUI
-
-Source: https://context7_llms
-
-Shows how to use the 'kbd' component in DaisyUI to display keyboard shortcuts. The 'kbd' class is applied to the element, and optional size modifiers like 'kbd-lg' can be used.
-
-```html
-<kbd class="kbd kbd-lg">Ctrl + S</kbd>
-```
-
----
-
-### Chat Component Syntax (HTML)
-
-Source: https://context7_llms
-
-Defines the basic structure for a chat message bubble, including options for placement, avatar, and color. Requires placement classes like 'chat-start' or 'chat-end'.
-
-```html
-<div class="chat {PLACEMENT}">
-  <div class="chat-image"></div>
-  <div class="chat-header"></div>
-  <div class="chat-bubble {COLOR}">Message text</div>
-  <div class="chat-footer"></div>
-</div>
-```
-
----
-
-### Drawer with Navbar and Mobile Sidebar (HTML)
-
-Source: https://daisyui.com/components/drawer
-
-Demonstrates a responsive layout where a navbar is visible on desktop, and a drawer sidebar appears on mobile. The screen size change triggers the visibility of the respective navigation elements.
-
-```html
-<div class="drawer lg:drawer-open">
-  <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content flex flex-col items-center justify-center">
-    {/* Page content here */}
-    <label for="my-drawer-2" class="btn drawer-button lg:hidden"
-      >Open drawer</label
-    >
-  </div>
-  <div class="drawer-side">
-    <label
-      for="my-drawer-2"
-      aria-label="close sidebar"
-      class="drawer-overlay"
-    ></label>
-    <ul class="menu p-4 w-80 bg-base-200 text-base-content">
-      {/* Sidebar content here */}
-      <li><a>Sidebar Item 1</a></li>
-      <li><a>Sidebar Item 2</a></li>
-    </ul>
-  </div>
-</div>
-```
-
----
-
-### Drawer Component Structure (HTML)
-
-Source: https://context7_llms
-
-Outlines the basic HTML structure for a drawer component, which creates a sidebar layout. It includes toggles, content, sidebars, and overlays.
-
-```html
-<div class="drawer {MODIFIER}">
-  <div class="drawer-content"></div>
-  <div class="drawer-side">
-    <label for="my-drawer" class="drawer-overlay"></label>
-    <ul class="menu p-4 w-80 bg-base-100 text-base-content"></ul>
-  </div>
-</div>
-```
-
----
-
-### daisyUI CSS Plugin with Light Theme Only
-
-Source: https://context7_llms
-
-This CSS configuration snippet enables the daisyUI plugin but restricts the available themes to only 'light', setting it as the default theme.
+You can also exclude specific components from daisyUI when integrating with Tailwind CSS. This example shows how to exclude the 'scrollbar' component.
 
 ```css
 @plugin "daisyui" {
-  themes: light --default;
+  exclude: scrollbar;
 }
 ```
 
----
+--------------------------------
 
-### Basic DaisyUI Toggle (HTML)
+### Enable Noise Effect using CSS Variable
 
-Source: https://daisyui.com/components/toggle
+Source: https://daisyui.com/docs/v5
 
-Demonstrates the fundamental structure of a DaisyUI toggle switch using an HTML checkbox and associated label.
+This example demonstrates enabling the '--noise' effect using a CSS variable, which adds a textured look to components. Effects can be controlled globally or per theme.
 
-```html
-<label class="toggle">
-  <input type="checkbox" />
-</label>
+```css
+:root {
+  --noise: 1;
+}
 ```
 
----
+--------------------------------
 
-### Centered Hero Component - HTML
+### Pikaday Date Picker Integration (Svelte)
+
+Source: https://daisyui.com/components/calendar
+
+This Svelte component example shows how to integrate Pikaday for date selection. It includes instructions for installing Pikaday via npm and uses Svelte's reactive effects to manage the date picker instance.
+
+```svelte
+<script>
+  import Pikaday from "pikaday";
+  let myDatepicker;
+  $effect(() => {
+    if (myDatepicker) {
+      const picker = new Pikaday({
+        field: myDatepicker
+      });
+      return () => picker.destroy();
+    }
+  });
+</script>
+
+<input type="text" class="input pika-single"  bind:this={myDatepicker} value="Pick a day" />
+```
+
+--------------------------------
+
+### Add daisyUI Blueprint MCP Server
+
+Source: https://daisyui.com/docs/editor/claudecode
+
+This command adds the daisyUI Blueprint MCP server to Claude Code. It requires environment variables for license, email, and optionally a Figma API key for Figma-to-code conversion. The command installs the daisyui-blueprint package globally.
+
+```bash
+claude mcp add daisyui-blueprint \
+  --env LICENSE=YOUR_LICENSE_KEY \
+  --env EMAIL=YOUR_EMAIL \
+  --env FIGMA=YOUR_FIGMA_API_KEY \
+  -- npx -y daisyui-blueprint@latest
+```
+
+--------------------------------
+
+### Install daisyUI using Bun
+
+Source: https://daisyui.com/compare/daisyui-vs-chakra
+
+Adds the latest version of daisyUI as a development dependency using the Bun runtime and package manager.
+
+```bash
+bun add -D npm:daisyui@latest
+```
+
+--------------------------------
+
+### Install Tailwind CSS and daisyUI
+
+Source: https://daisyui.com/docs/install/astro
+
+Installs the necessary Tailwind CSS and daisyUI packages using npm.
+
+```bash
+npm install tailwindcss@latest @tailwindcss/vite@latest daisyui@latest
+
+```
+
+--------------------------------
+
+### Include Specific daisyUI Component in Tailwind CSS
+
+Source: https://daisyui.com/docs/v5
+
+When using daisyUI with Tailwind CSS, you can configure the plugin to include only specific components. This example demonstrates including only the 'toggle' component.
+
+```css
+@plugin "daisyui" {
+  include: toggle;
+}
+```
+
+--------------------------------
+
+### Color Text Examples with daisyUI
+
+Source: https://daisyui.com/docs/layout-and-typography
+
+Shows examples of text styled with various daisyUI color schemes, including primary, secondary, accent, info, success, warning, and error, for visual feedback and theming.
+
+```html
+<p class="text-primary">Primary text</p>
+<p class="text-secondary">Secondary text</p>
+<p class="text-accent">Accent text</p>
+<p class="text-info">Info text</p>
+<p class="text-success">Success text</p>
+<p class="text-warning">Warning text</p>
+<p class="text-error">Error text</p>
+```
+
+--------------------------------
+
+### Install Angular CLI Globally
+
+Source: https://daisyui.com/docs/install/angular
+
+Installs the Angular Command Line Interface globally on your system, enabling you to create and manage Angular projects. This is a prerequisite for the installation process.
+
+```bash
+npm install -g @angular/cli@latest
+```
+
+--------------------------------
+
+### Use daisyUI Button in Next.js Page
+
+Source: https://daisyui.com/blog/install-daisyui-and-tailwindcss-in-nextjs
+
+Example of rendering a primary button using daisyUI classes within a Next.js page component. This demonstrates basic integration and usage of daisyUI components.
+
+```typescript
+export default function Home() {
+  return (
+    <>
+      <button className="btn btn-primary">Hello daisyUI!</button>
+    </>
+  )
+}
+
+```
+
+--------------------------------
+
+### Create new Vite React project
+
+Source: https://daisyui.com/docs/install/react
+
+Initialize a new React project using Vite in the current directory. This command creates the necessary project structure and configuration files for a modern React development environment.
+
+```bash
+npm create vite@latest ./ -- --template react
+```
+
+--------------------------------
+
+### Example metadata.json Entry
+
+Source: https://daisyui.com/blog/daisyui-nextjs-online-store-template
+
+Demonstrates the structure for extending product data using a JSON file. This allows for custom categories, variants, images, and detailed product information beyond what the Lemon Squeezy API provides.
+
+```json
+{
+  "id": "12345",
+  "availability": true,
+  "sale": true,
+  "category": ["trending", "bestsellers"],
+  "original_price": "$50",
+  "variant": {
+    "size": [
+      { "name": "Small", "link": "https://example.com/small" },
+      { "name": "Medium", "link": "https://example.com/medium" }
+    ]
+  },
+  "info": {
+    "Material": "100% Cotton",
+    "Care Instructions": "Machine washable"
+  },
+  "images": ["https://example.com/image1.jpg", "https://example.com/image2.jpg"]
+}
+```
+
+--------------------------------
+
+### Reference daisyUI llms.txt in Windsurf chat
+
+Source: https://daisyui.com/docs/editor/windsurf
+
+Quick method to reference daisyUI documentation in Windsurf chat for accurate code generation. This approach fetches the compact text version of daisyUI docs from llms.txt file to provide context to the AI model without requiring MCP server setup.
+
+```text
+@web https://daisyui.com/llms.txt
+```
+
+--------------------------------
+
+### Basic Button Examples with daisyUI
+
+Source: https://daisyui.com/codepen
+
+Demonstrates how to use basic buttons with daisyUI classes for primary, secondary, and accent styles. These examples are standard HTML button elements styled by daisyUI.
+
+```html
+<!-- buttons -->
+<div class="p-4">
+  <button class="btn btn-primary">primary</button>
+  <button class="btn btn-secondary">secondary</button>
+  <button class="btn btn-accent">accent</button>
+</div>
+```
+
+--------------------------------
+
+### Configure daisyUI GitMCP Server in Zed
+
+Source: https://daisyui.com/docs/editor/zed
+
+Setup daisyUI GitMCP server in Zed using mcp-remote to connect to the official daisyUI GitHub repository. Enables Agent Mode to query daisyUI documentation and generate components from natural language prompts.
+
+```json
+{
+ "daisyui-github": {
+   "command": "npx",
+   "args": ["-y", "mcp-remote", "https://gitmcp.io/saadeghi/daisyui"]
+ }
+}
+```
+
+--------------------------------
+
+### Create New Angular Project
+
+Source: https://daisyui.com/docs/install/angular
+
+Creates a new Angular project named 'my-project' with CSS styling and navigates into the project directory. This sets up the basic structure for your Angular application.
+
+```bash
+ng new my-project --style css
+cd my-project
+```
+
+--------------------------------
+
+### Enable Depth Effect using CSS Variable
+
+Source: https://daisyui.com/docs/v5
+
+daisyUI 5 introduces 'Effect' CSS variables to globally or per-theme enable visual effects. This example shows how to enable the '--depth' effect, adding subtle depth to components.
+
+```css
+:root {
+  --depth: 1;
+}
+```
+
+--------------------------------
+
+### DaisyUI Link Component: HTML Example
+
+Source: https://daisyui.com/llms
+
+Shows how to style anchor tags as links using DaisyUI. The base class is 'link'. Additional modifier classes like 'link-hover' and color classes (`link-neutral`, `link-primary`, etc.) can be applied to customize the link's appearance. This component adds an underline style by default.
+
+```html
+<a class="link {MODIFIER}">Click me</a>
+```
+
+--------------------------------
+
+### Add daisyUI via npm
+
+Source: https://daisyui.com/docs/install/rails
+
+Steps to initialize a package.json and install the latest version of daisyUI using npm, for projects already using Node.js.
+
+```bash
+npm init -y
+npm install daisyui@latest
+```
+
+--------------------------------
+
+### CSS Accessibility Best Practices
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Showcases CSS code examples that incorporate accessibility considerations, such as focus indicators, high contrast mode support, reduced motion preferences, and proper color contrast ratios.
+
+```css
+/* Accessibility adds complexity */
+.button {
+  /* Visual focus indicators */
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .button {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}
+
+/* Proper color contrast ratios */
+.text-secondary {
+  color: #6b7280; /* Must meet WCAG AA standards */
+}
+```
+
+--------------------------------
+
+### Download daisyUI Bundle Files
+
+Source: https://daisyui.com/docs/install/yew
+
+Downloads the latest versions of the daisyUI JavaScript module ('daisyui.mjs') and theme file ('daisyui-theme.mjs') from GitHub releases.
+
+```bash
+curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.mjs
+curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.mjs
+
+```
+
+--------------------------------
+
+### Update Sidebar Navigation Component (Astro)
+
+Source: https://daisyui.com/blog/daisyui-astro-tailwind-documentation-template
+
+This snippet shows the structure of the Astro component responsible for rendering the sidebar navigation. Developers can modify this file to add, remove, or change documentation sections. It includes basic HTML structure for a drawer component.
+
+```astro
+<div class="drawer-side z-40 md:border-r md:border-base-content/10">
+  <label
+    for="my-drawer-2"
+    aria-label="close sidebar"
+    class="drawer-overlay"
+  ></label>
+  <aside class="bg-base-100 min-h-screen w-80">
+    <div
+      class="bg-base-100/90 sticky top-0 z-20 items-center gap-2 px-4 py-2 backdrop-blur lg:flex"
+    >
+      <a href="/" class="flex-0 btn btn-ghost px-2">
+        <h1
+          class="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-primary/50"
+        >
+          Access Shield{" "}
+          <span class="text-sm text-base-content opacity-50">docs</span>
+        </h1>
+      </a>
+    </div>
+  </aside>
+
+  <!-- SideBar Code -->
+</div>
+```
+
+--------------------------------
+
+### DaisyUI List Component: HTML Example
+
+Source: https://daisyui.com/llms
+
+Demonstrates the DaisyUI list component for vertical layouts. Use the 'list' class on a `<ul>` element and 'list-row' on each `<li>`. Modifier classes like 'list-col-wrap' and 'list-col-grow' can be used on list items to control wrapping and space distribution within rows.
+
+```html
+<ul class="list">
+  <li class="list-row">{CONTENT}</li>
+</ul>
+```
+
+--------------------------------
+
+### daisyUI Loading Ring Examples (HTML)
+
+Source: https://daisyui.com/components/loading
+
+Provides examples of the loading ring animation using HTML, showcasing its application with various size modifiers. The ring animation is a distinct visual cue for ongoing processes.
+
+```html
+<span class="loading loading-ring loading-xs"></span>
+<span class="loading loading-ring loading-sm"></span>
+<span class="loading loading-ring loading-md"></span>
+<span class="loading loading-ring loading-lg"></span>
+<span class="loading loading-ring loading-xl"></span>
+```
+
+--------------------------------
+
+### Default Button Examples (HTML)
+
+Source: https://daisyui.com/components/button
+
+Demonstrates the basic usage of the daisyUI default button component. This requires no external dependencies beyond the daisyUI CSS framework.
+
+```html
+<button class="btn">Default</button>
+```
+
+```html
+<button class="btn">Default</button>
+```
+
+```jsx
+<button className="btn">Default</button>
+```
+
+```jsx
+<button className="btn">Default</button>
+```
+
+--------------------------------
+
+### Initialize Deno Fresh Project with Tailwind CSS
+
+Source: https://daisyui.com/docs/install/fresh
+
+Creates a new Deno Fresh project with Tailwind CSS and VS Code integration pre-configured. This command sets up the project structure and dependencies needed for daisyUI integration.
+
+```bash
+deno run -Ar jsr:@fresh/init ./ --tailwind --vscode
+```
+
+--------------------------------
+
+### React JSX Carousel with Half Width Items (DaisyUI)
+
+Source: https://daisyui.com/components/carousel
+
+This example demonstrates a carousel with half-width items implemented using React JSX and DaisyUI classes. The structure is similar to the HTML version, adapted for React's syntax.
+
+```jsx
+<div className="carousel rounded-box w-96">
+  <div className="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" className="w-full" />
+  </div>
+  <div className="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp" className="w-full" />
+  </div>
+  <div className="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp" className="w-full" />
+  </div>
+  <div className="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp" className="w-full" />
+  </div>
+  <div className="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" className="w-full" />
+  </div>
+  <div className="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" className="w-full" />
+  </div>
+  <div className="carousel-item w-1/2">
+    <img src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp" className="w-full" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### CSS for Heading and Spacing Styling
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Provides CSS examples for styling headings, including font size, line height, letter spacing, font weight, and bottom margin. This snippet emphasizes the detailed decisions required for typography and spacing to impact user experience and readability.
+
+```css
+/* Each decision affects the user experience */
+.heading {
+  font-size: 1.875rem; /* Why this size? */
+  line-height: 2.25rem; /* Why this line height? */
+  letter-spacing: -0.025em; /* Why negative spacing? */
+  font-weight: 700; /* Why this weight? */
+  margin-bottom: 1.5rem; /* Why this spacing? */
+}
+```
+
+--------------------------------
+
+### DaisyUI Input Field: HTML Example
+
+Source: https://daisyui.com/llms
+
+Shows the basic syntax for creating a text input field using DaisyUI. The core class is 'input', which can be combined with various modifier classes for style (`input-ghost`), color (`input-neutral`, `input-primary`, etc.), and size (`input-xs`, `input-sm`, etc.). The type attribute can be any valid HTML input type.
+
+```html
+<input type="{type}" placeholder="Type here" class="input {MODIFIER}" />
+```
+
+--------------------------------
+
+### Configure daisyUI Blueprint MCP Server in Zed
+
+Source: https://daisyui.com/docs/editor/zed
+
+Setup the official daisyUI Blueprint MCP server in Zed by adding this configuration to enable Figma-to-code conversion and AI-powered daisyUI component generation. Requires a Blueprint license key and email address; Figma API key is optional.
+
+```json
+{
+ "daisyui-blueprint": {
+   "command": "npx",
+   "args": ["-y", "daisyui-blueprint@latest"],
+   "env": {
+     "LICENSE": "YOUR BLUEPRINT LICENSE KEY",
+     "EMAIL": "YOUR EMAIL ADDRESS",
+     "FIGMA": "YOUR FIGMA API KEY (optional)"
+   }
+ }
+}
+```
+
+--------------------------------
+
+### Framework-Specific Component Library Usage
+
+Source: https://daisyui.com/pages/best-component-library-for-beginners
+
+Example of using a framework-specific UI component library to render a button. While convenient, this approach creates tight coupling to specific frameworks and dependencies, limiting code portability and long-term maintainability.
+
+```JavaScript
+import { Button } from "some-ui-library"
+
+return <Button className="btn btn-primary">Click Me</Button>
+```
+
+--------------------------------
+
+### Carousel Snap to End - HTML Example
+
+Source: https://daisyui.com/components/carousel
+
+This snippet shows a basic implementation of a carousel that snaps to the end using DaisyUI classes in standard HTML. It requires the DaisyUI and Tailwind CSS libraries to be included in the project. The `carousel-end` class is key to achieving the desired alignment.
+
+```html
+<div class="carousel carousel-end rounded-box">
+  <div class="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" alt="Drink" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+      alt="Drink" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+      alt="Drink" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
+      alt="Drink" />
+  </div>
+  <div class="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" alt="Drink" />
+  </div>
+  <div class="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" alt="Drink" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
+      alt="Drink" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Fast Install Tailwind CSS and daisyUI (Windows)
+
+Source: https://daisyui.com/docs/install/django
+
+Installs Tailwind CSS and daisyUI quickly on Windows using PowerShell. It downloads the necessary files and sets up the input.css file within the static CSS directory.
+
+```powershell
+cd myapp/static/css && powershell -c "irm daisyui.com/fast.ps1 | iex"
+```
+
+--------------------------------
+
+### HTML Hero Component Example
 
 Source: https://daisyui.com/components/hero
 
-This HTML code snippet demonstrates how to implement a centered hero component using DaisyUI classes. It includes a title, description, and a call-to-action button. No external JavaScript dependencies are required for basic rendering.
+This is a basic hero component example using HTML and daisyUI classes. It features a background image, an overlay, and centered text content with a call-to-action button. No external dependencies are required other than the daisyUI CSS framework.
 
 ```html
-<div class="hero min-h-screen bg-base-200">
-  <div class="hero-content text-center">
+<div class="hero min-h-screen" style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);">
+  <div class="hero-overlay"></div>
+  <div class="hero-content text-neutral-content text-center">
     <div class="max-w-md">
-      <h1 class="text-5xl font-bold">Hello there</h1>
-      <p class="py-6">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-        excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
-        id nisi.
+      <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
+      <p class="mb-5">
+        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+        quasi. In deleniti eaque aut repudiandae et a id nisi.
       </p>
       <button class="btn btn-primary">Get Started</button>
     </div>
@@ -6321,597 +2252,60 @@ This HTML code snippet demonstrates how to implement a centered hero component u
 </div>
 ```
 
----
+--------------------------------
 
-### DaisyUI Toast with Alert - Basic Usage
+### Install daisyUI with NPM Package Manager
 
-Source: https://daisyui.com/components/toast
+Source: https://daisyui.com/pages/easy-component-library
 
-Demonstrates the basic usage of the DaisyUI Toast component, wrapping an alert message. This snippet shows how to implement a simple notification within the toast container.
+Shows the command to install daisyUI as a development dependency in a Tailwind CSS project using NPM. This is the first step in setting up daisyUI in your project.
 
-```html
-<div class="toast">
-  <div class="alert alert-info">
-    <div>
-      <span>New message arrived.</span>
-    </div>
-  </div>
-</div>
+```bash
+npm i -D daisyui
 ```
-
----
-
-### DaisyUI Steps: With Data Content
-
-Source: https://daisyui.com/components/steps
-
-Utilizes the `data-content` attribute to display custom text or icons within each step, providing more detailed information at a glance.
-
-```html
-<ul class="steps">
-  <li data-content="?" class="step step-neutral">Step 1</li>
-  <li data-content="!" class="step step-neutral">Step 2</li>
-  <li data-content="✓" class="step step-neutral">Step 3</li>
-  <li data-content="✕" class="step step-neutral">Step 4</li>
-  <li data-content="→" class="step step-neutral">Step 5</li>
-  <li data-content="←" class="step step-neutral">Step 6</li>
-  <li data-content="★" class="step step-neutral">Step 7</li>
-</ul>
-```
-
----
-
-### DaisyUI Alert Component Syntax (HTML)
-
-Source: https://context7_llms
-
-Shows the basic HTML structure for a DaisyUI alert component. Alerts are used to display important messages to users. Various styles, colors, and directions can be applied using modifier classes.
-
-```html
-<div role="alert" class="alert {MODIFIER}">{CONTENT}</div>
-```
-
----
-
-### Card Component Structure (HTML)
-
-Source: https://context7_llms
-
-Demonstrates the basic HTML structure for creating cards using DaisyUI, including image placement, title, body, and actions. Cards are used to group and display content.
-
-```html
-<div class="card w-96 bg-base-100 shadow-xl">
-  <figure>
-    <img src="/img/stock/photo-1606107557116-3565ded65004.jpg" alt="Shoes" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">Card title!</h2>
-    <p>
-      If a dog chews on his bag of bones, would a puppy have an appetite for the
-      same?
-    </p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Basic Status Component Usage (HTML)
-
-Source: https://daisyui.com/components/status
-
-Demonstrates the fundamental usage of the Status component using its default class name. This serves as the base for all other status variations.
-
-````html
-```html <span class="status"></span>
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Dropdown Syntax (Popover API)
+### Download Tailwind CSS Executable (Manual Install)
 
-Source: https://context7_llms
+Source: https://daisyui.com/docs/install/standalone
 
-This method utilizes the Popover API to create a DaisyUI Dropdown. A button is anchored to the dropdown content using `anchor-name` and `--{anchor}` CSS variables. The dropdown content itself is a `<ul>` with the `dropdown-content` class, marked as a `popover` and positioned using `position-anchor`.
+Commands to download the latest Tailwind CSS standalone executable for various operating systems (Linux, macOS, Windows). This is the first step in the manual installation process.
 
-```html
-<button popovertarget="{id}" style="anchor-name:--{anchor}">{button}</button>
-<ul class="dropdown-content" popover id="{id}" style="position-anchor:--{anchor}">{CONTENT}</ul>
-````
+```shell
+# Linux
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-arm64
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-arm64-musl
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64-musl
 
----
+# MacOS
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-arm64
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-x64
 
-### Divider Component Syntax (HTML)
-
-Source: https://context7_llms
-
-Shows the basic HTML for a divider, used to separate content. It can include text and various modifiers for color, direction, and placement.
-
-```html
-<div class="divider {MODIFIER}">{text}</div>
+# Windows
+curl -sLo tailwindcss.exe https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-windows-x64.exe
 ```
-
----
-
-### DaisyUI Basic Footer Component
-
-Source: https://daisyui.com/components/footer
-
-Demonstrates the fundamental structure of a DaisyUI footer, organized into columns for services, company information, and legal links. It utilizes vertical stacking by default, suitable for smaller screens.
-
-```html
-<footer class="footer p-10 bg-base-200 text-base-content">
-  <div>
-    <span class="footer-title">Services</span>
-    <a class="link link-hover">Branding</a>
-    <a class="link link-hover">Design</a>
-    <a class="link link-hover">Marketing</a>
-    <a class="link link-hover">Advertisement</a>
-  </div>
-  <div>
-    <span class="footer-title">Company</span>
-    <a class="link link-hover">About us</a>
-    <a class="link link-hover">Contact</a>
-    <a class="link link-hover">Jobs</a>
-    <a class="link link-hover">Press kit</a>
-  </div>
-  <div>
-    <span class="footer-title">Legal</span>
-    <a class="link link-hover">Terms of use</a>
-    <a class="link link-hover">Privacy policy</a>
-    <a class="link link-hover">Cookie policy</a>
-  </div>
-</footer>
-```
-
----
-
-### Basic FAB - HTML
-
-Source: https://context7_llms
-
-A minimal Floating Action Button (FAB) structure consisting of a container and a single button. This serves as the base for more complex FAB implementations.
-
-```html
-<div class="fab">
-  <button class="btn btn-lg btn-circle">{IconOriginal}</button>
-</div>
-```
-
----
-
-### Primary Color File Input - daisyUI
-
-Source: https://daisyui.com/components/file-input
-
-Demonstrates how to apply the primary color theme to the file input component. This snippet shows variations using primary, secondary, accent, info, success, warning, and error colors.
-
-```html
-<div>
-  <input type="file" class="file-input file-input-primary" />
-  <input type="file" class="file-input file-input-secondary" />
-  <input type="file" class="file-input file-input-accent" />
-  <input type="file" class="file-input file-input-info" />
-  <input type="file" class="file-input file-input-success" />
-  <input type="file" class="file-input file-input-warning" />
-  <input type="file" class="file-input file-input-error" />
-</div>
-```
-
----
-
-### Theme Controller Input for DaisyUI Themes
-
-Source: https://context7_llms
-
-Allows users to switch themes by selecting a checkbox or radio input with the 'theme-controller' class. The input's value should correspond to a valid DaisyUI theme name.
-
-```html
-<input type="checkbox" value="{theme-name}" class="theme-controller" />
-```
-
----
-
-### DaisyUI Text Input: Data List Suggestions
-
-Source: https://daisyui.com/components/input
-
-Demonstrates implementing a text input with data list suggestions using HTML's datalist element and DaisyUI styling. This provides users with predefined options to choose from.
-
-````html
-```html
-<input class="input input-bordered w-full max-w-xs" list="datalistOptions" />
-<datalist id="datalistOptions">
-  <option value="San Francisco" />
-  <option value="New York" />
-  <option value="London" />
-  <option value="Paris" />
-</datalist>
-````
-
-````
 
 --------------------------------
 
-### daisyUI CSS Plugin with Default Themes
+### Install PostCSS, Tailwind CSS, and daisyUI (npm)
 
-Source: https://context7_llms
+Source: https://daisyui.com/docs/install/postcss
 
-This CSS configuration sets up the daisyUI plugin to include both 'light' (as default) and 'dark' (as prefers-dark) themes. It also specifies the root element and leaves include/exclude/prefix options empty.
+Installs the required npm packages for PostCSS, PostCSS CLI, Tailwind CSS, the Tailwind CSS PostCSS plugin, and the latest version of daisyUI.
 
-```css
-@plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
-  root: ":root";
-  include: ;
-  exclude: ;
-  prefix: ;
-  logs: true;
-}
-````
-
----
-
-### DaisyUI Progress Bar Syntax (HTML)
-
-Source: https://context7_llms
-
-Provides the basic HTML structure for a DaisyUI progress bar. This component is used to visually indicate the progress of a task or the passage of time.
-
-```html
-<progress class="progress" value="70" max="100"></progress>
+```bash
+npm i postcss postcss-cli tailwindcss @tailwindcss/postcss daisyui@latest
 ```
-
----
-
-### DaisyUI Drawer Component Syntax
-
-Source: https://context7_llms
-
-The basic HTML structure for a DaisyUI Drawer. It includes a checkbox input to control visibility, the main content area, and a sidebar. A label associated with the checkbox input is used to toggle the drawer's state. Modifiers can be applied for placement and responsiveness.
-
-```html
-<div class="drawer {MODIFIER}">
-  <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content">{CONTENT}</div>
-  <div class="drawer-side">{SIDEBAR}</div>
-</div>
-```
-
----
-
-### DaisyUI Steps Component Syntax
-
-Source: https://context7_llms
-
-The DaisyUI steps component visualizes a process flow. It supports vertical and horizontal orientations, colors, and allows for icons and custom data content within each step.
-
-```html
-<ul class="steps {MODIFIER}">
-  <li class="step">{step content}</li>
-</ul>
-```
-
----
-
-### DaisyUI Toggle Colors (HTML)
-
-Source: https://daisyui.com/components/toggle
-
-Demonstrates applying various color classes (primary, secondary, accent, neutral, success, warning, info, error) to DaisyUI toggles.
-
-```html
-<input type="checkbox" class="toggle toggle-primary" />
-<input type="checkbox" class="toggle toggle-secondary" />
-<input type="checkbox" class="toggle toggle-accent" />
-<input type="checkbox" class="toggle toggle-neutral" />
-<input type="checkbox" class="toggle toggle-success" />
-<input type="checkbox" class="toggle toggle-warning" />
-<input type="checkbox" class="toggle toggle-info" />
-<input type="checkbox" class="toggle toggle-error" />
-```
-
----
-
-### Basic Radial Progress (Vue)
-
-Source: https://daisyui.com/components/radial-progress
-
-A Vue.js implementation of the radial-progress component, demonstrating its basic usage with CSS variables for value and accessibility attributes.
-
-```vue
-<template>
-  <div class="radial-progress" :style="{ '--value': 70 }" role="progressbar">
-    70%
-  </div>
-</template>
-
-<script setup lang="ts">
-// No script needed for basic example
-</script>
-
-<style>
-/* DaisyUI styles are assumed to be globally imported */
-</style>
-```
-
----
-
-### Enable DaisyUI 'toggle' Component
-
-Source: https://daisyui.com/docs/v5
-
-Shows the basic syntax for including the 'toggle' component from DaisyUI. This is a simple directive to enable a specific component's functionality.
-
-```CSS
-{ include: toggle; }
-```
-
----
-
-### DaisyUI Alert with Buttons (HTML)
-
-Source: https://daisyui.com/components/alert
-
-This snippet demonstrates a DaisyUI alert component with 'Deny' and 'Accept' buttons. It's useful for user confirmations or notifications where user interaction is required. No external JavaScript dependencies are explicitly shown.
-
-```html
-<div>
-  <div class="alert">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      class="stroke-info shrink-0 w-6 h-6"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M13 16h.01M11 20h.01M12 18h.01M12 6h.01M12 10h.01M12 14h.01M7 22h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z"
-      ></path>
-    </svg>
-    <span>we use cookies for no reason.</span>
-    <div>
-      <button class="btn btn-sm btn-ghost">Deny</button>
-      <button class="btn btn-sm btn-primary">Accept</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Checkbox Sizes (HTML)
-
-Source: https://daisyui.com/components/checkbox
-
-Illustrates how to apply different size variations to checkboxes using daisyUI's size utility classes. These classes control the visual dimensions of the checkbox component.
-
-````html
-```html
-<input type="checkbox" class="checkbox checkbox-xs" />
-<input type="checkbox" class="checkbox checkbox-sm" />
-<input type="checkbox" class="checkbox checkbox-md" />
-<input type="checkbox" class="checkbox checkbox-lg" />
-<input type="checkbox" class="checkbox checkbox-xl" />
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Pagination with Active Button
+### Timeline Component Syntax
 
-Source: https://daisyui.com/components/pagination
+Source: https://daisyui.com/llms
 
-Demonstrates how to create a DaisyUI pagination component with an active button. This involves using the 'join' and 'join-item' classes to group navigation links or buttons.
-
-```html
-<div class="join">
-  <button class="join-item btn">1</button>
-  <button class="join-item btn btn-active">2</button>
-  <button class="join-item btn">3</button>
-  <button class="join-item btn">4</button>
-</div>
-````
-
----
-
-### Multi-Column Footer Layout
-
-Source: https://daisyui.com/components/footer
-
-This snippet presents a footer with a three-column layout. The columns are labeled 'Services', 'Company', and 'Legal', each containing a list of related links. A final section includes company information and a copyright notice. This structure is ideal for organizing extensive footer content.
-
-```html
-### Two footer ###### Services Branding Design Marketing Advertisement ######
-Company About us Contact Jobs Press kit ###### Legal Terms of use Privacy policy
-Cookie policy ACME Industries Ltd. Providing reliable tech since 1992
-```
-
-```html
-###### Services Branding Design Marketing Advertisement ###### Company About us
-Contact Jobs Press kit ###### Legal Terms of use Privacy policy Cookie policy
-ACME Industries Ltd. Providing reliable tech since 1992
-```
-
-```html
-###### Services Branding Design Marketing Advertisement ###### Company About us
-Contact Jobs Press kit ###### Legal Terms of use Privacy policy Cookie policy
-ACME Industries Ltd. Providing reliable tech since 1992
-```
-
-```html
-###### Services Branding Design Marketing Advertisement ###### Company About us
-Contact Jobs Press kit ###### Legal Terms of use Privacy policy Cookie policy
-ACME Industries Ltd. Providing reliable tech since 1992
-```
-
----
-
-### Link Styling with Color Variants in daisyUI
-
-Source: https://daisyui.com/components/link
-
-Shows how to use various color utility classes with the 'link' class to style links according to the daisyUI theme. These classes include link-neutral, link-primary, link-secondary, link-accent, link-success, link-info, link-warning, and link-error.
-
-```html
-<a href="#" class="link link-neutral">Click me</a>
-<a href="#" class="link link-primary">Click me</a>
-<a href="#" class="link link-secondary">Click me</a>
-<a href="#" class="link link-accent">Click me</a>
-<a href="#" class="link link-success">Click me</a>
-<a href="#" class="link link-info">Click me</a>
-<a href="#" class="link link-warning">Click me</a>
-<a href="#" class="link link-error">Click me</a>
-```
-
----
-
-### Basic Link Styling with daisyUI
-
-Source: https://daisyui.com/components/link
-
-Demonstrates how to apply the 'link' class to an anchor tag to restore default link styling, overriding Tailwind CSS's default reset. This is the fundamental step for using daisyUI link styles.
-
-```html
-<a href="#" class="link">Click me</a>
-```
-
----
-
-### File Input Component in HTML
-
-Source: https://context7_llms
-
-The file-input component allows users to upload files. It supports various modifiers for styling, including ghost, color, and size variations. The basic syntax is an HTML input tag of type file with the 'file-input' class.
-
-```html
-<input type="file" class="file-input file-input-bordered w-full max-w-xs" />
-```
-
----
-
-### Breadcrumbs Navigation (HTML)
-
-Source: https://context7_llms
-
-Shows the basic structure for creating breadcrumbs navigation using DaisyUI. Breadcrumbs help users navigate through the site hierarchy.
-
-```html
-<div class="breadcrumbs">
-  <ul>
-    <li><a>Link 1</a></li>
-    <li><a>Link 2</a></li>
-    <li><a>Link 3</a></li>
-  </ul>
-</div>
-```
-
----
-
-### DaisyUI Avatar Component Syntax (HTML)
-
-Source: https://context7_llms
-
-Illustrates the HTML markup for DaisyUI avatar components, used for displaying user thumbnails or icons. This includes single avatars and avatar groups, with modifiers for online/offline status and placeholders.
-
-```html
-<div class="avatar {MODIFIER}">
-  <div>
-    <img src="{image-url}" />
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Rating with Half Stars
-
-Source: https://daisyui.com/components/rating
-
-Demonstrates how to implement half-star ratings using the 'rating-half' modifier. This allows for more granular user input, such as 3.5-star ratings.
-
-```html
-<div class="rating rating-half">
-  <input
-    type="radio"
-    name="rating-half-1"
-    class="bg-yellow-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-half-1"
-    class="bg-yellow-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-half-2"
-    class="bg-yellow-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-half-2"
-    class="bg-yellow-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-half-3"
-    class="bg-yellow-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-half-3"
-    class="bg-yellow-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-half-4"
-    class="bg-yellow-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-half-4"
-    class="bg-yellow-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-half-5"
-    class="bg-yellow-500 mask mask-star-2"
-  />
-  <input
-    type="radio"
-    name="rating-half-5"
-    class="bg-yellow-500 mask mask-star-2"
-  />
-</div>
-```
-
----
-
-### Checkbox Component Syntax (HTML)
-
-Source: https://context7_llms
-
-Illustrates the HTML structure for a checkbox with DaisyUI styling. Supports various color and size modifiers.
-
-```html
-<input type="checkbox" class="checkbox {MODIFIER}" />
-```
-
----
-
-### Timeline Component Syntax for Event Display
-
-Source: https://context7_llms
-
-A component for displaying events chronologically. It supports vertical and horizontal layouts, along with modifiers for snapping icons and compact views. The 'timeline-start', 'timeline-middle', and 'timeline-end' classes define the layout of each event item.
+Creates a vertical or horizontal timeline layout with start, middle, and end content sections. Supports modifiers for direction, icon positioning, and compact display. The component uses timeline-start, timeline-middle, and timeline-end divs to structure content vertically by default.
 
 ```html
 <ul class="timeline {MODIFIER}">
@@ -6923,856 +2317,769 @@ A component for displaying events chronologically. It supports vertical and hori
 </ul>
 ```
 
----
+--------------------------------
 
-### Collapse Component Syntax (HTML)
+### Install Tailwind CSS and daisyUI Dependencies
 
-Source: https://context7_llms
+Source: https://daisyui.com/docs/install/elysia
 
-Shows the HTML for a collapsible content section. It includes a title and content area, with support for different modifiers like 'collapse-arrow' and 'collapse-plus'.
+Installs the latest versions of Tailwind CSS, its CLI, and daisyUI using Bun. These are essential for styling with daisyUI.
 
-```html
-<div tabindex="0" class="collapse {MODIFIER}">
-  <div class="collapse-title">{title}</div>
-  <div class="collapse-content">{CONTENT}</div>
-</div>
+```bash
+bun install tailwindcss@latest @tailwindcss/cli@latest daisyui@latest
 ```
 
----
+--------------------------------
 
-### Basic Divider Usage in HTML
+### Fast Install Tailwind CSS and daisyUI (Linux/MacOS)
 
-Source: https://daisyui.com/components/divider
+Source: https://daisyui.com/docs/install/yew
 
-Demonstrates the fundamental use of the daisyUI divider component to create a simple horizontal line separator in HTML. It shows how to insert content before and after the divider.
+A shell script to quickly install the latest versions of Tailwind CSS and daisyUI by downloading standalone executables and creating an 'input.css' file.
 
-```html
-<div>content</div>
+```bash
+curl -sL daisyui.com/fast | bash
 
-<div class="divider"></div>
-
-<div>content</div>
 ```
 
-```html
-<div>content</div>
+--------------------------------
 
-<div class="divider">OR</div>
+### Install Django Package
 
-<div>content</div>
+Source: https://daisyui.com/docs/install/django
+
+Installs the Django Python package using pip. This is a prerequisite for creating and managing Django projects.
+
+```shell
+python -m pip install Django
 ```
 
----
+--------------------------------
 
-### DaisyUI Accordion Component Syntax (HTML)
+### DaisyUI Card Component Example
 
-Source: https://context7_llms
+Source: https://daisyui.com/codepen
 
-Demonstrates the structure for a DaisyUI accordion, which uses radio inputs to manage collapsible content. Each accordion item requires a unique name for its radio group to ensure correct functionality. Modifiers like `collapse-arrow` or `collapse-plus` can be applied.
-
-```html
-<div class="collapse {MODIFIER}">
-  <input type="radio" name="{name}" checked="{checked}" />
-  <div class="collapse-title">{title}</div>
-  <div class="collapse-content">{CONTENT}</div>
-</div>
-```
-
----
-
-### Input Component Styling with DaisyUI
-
-Source: https://context7_llms
-
-Demonstrates how to style input fields using DaisyUI's 'input' component class. Modifiers for style, color, and size can be applied. The 'input' class should be used on the parent element when multiple elements are contained within the input structure.
+An example of a card component using DaisyUI, featuring an image, a title, and descriptive text. This snippet illustrates how to structure content within a card for a visually appealing presentation.
 
 ```html
-<input
-  type="text"
-  placeholder="Type here"
-  class="input input-bordered input-primary input-lg"
-/>
-```
-
----
-
-### Link Component Styling with DaisyUI
-
-Source: https://context7_llms
-
-Explains how to style anchor tags as links using DaisyUI's 'link' component. Includes options for 'link-hover' and various color modifiers.
-
-```html
-<a class="link link-primary link-hover" href="#">Click me</a>
-```
-
----
-
-### Basic Stat Display (HTML)
-
-Source: https://daisyui.com/components/stat
-
-This code snippet demonstrates the basic structure for displaying statistics using the daisyUI Stat component. It includes a container for multiple stats and individual stat blocks with titles, values, and descriptions.
-
-```html
-<div class="stats">
-  <div class="stat">
-    <div class="stat-title">Total Page Views</div>
-    <div class="stat-value">89,400</div>
-    <div class="stat-desc">21% more than last month</div>
+<div class="card m-4 w-80 shadow-sm">
+  <figure>
+    <img src="https://img.daisyui.com/images/blog/daisyui-5.webp" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">DaisyUI 5.0</h2>
+    <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus.</p>
   </div>
 </div>
 ```
 
----
+--------------------------------
 
-### DaisyUI Fieldset for Login Form
+### DaisyUI Vertical and Horizontal Timeline Example (HTML)
 
-Source: https://daisyui.com/components/fieldset
+Source: https://daisyui.com/components/timeline
 
-Presents a practical application of the DaisyUI fieldset component within a login form. It includes fields for email and password, adhering to accessibility best practices with proper `id` and `for` attributes.
+This HTML snippet demonstrates how to create a responsive timeline component using DaisyUI. It supports both vertical and horizontal orientations, adapting to different screen sizes. The structure includes list items for each timeline event, with elements for start, middle, and end points.
 
 ```html
-<!-- Login form with fieldset -->
-<div class="space-y-4">
-  <label class="label">
-    <span class="label-text">Login</span>
-  </label>
-  <div class="form-control">
-    <label class="label">
-      <span class="label-text">Email</span>
-    </label>
-    <input
-      type="email"
-      placeholder="email@example.com"
-      class="input input-bordered"
-    />
-  </div>
-  <div class="form-control">
-    <label class="label">
-      <span class="label-text">Password</span>
-    </label>
-    <input
-      type="password"
-      placeholder="password"
-      class="input input-bordered"
-    />
-  </div>
-  <button class="btn btn-primary">Login</button>
-</div>
+<ul className="timeline timeline-vertical lg:timeline-horizontal">
+  <li>
+    <div className="timeline-start">1984</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">First Macintosh computer</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div className="timeline-start">1998</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">iMac</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div className="timeline-start">2001</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">iPod</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div className="timeline-start">2007</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">iPhone</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div className="timeline-start">2015</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">Apple Watch</div>
+  </li>
+</ul>
 ```
 
----
+--------------------------------
 
-### FAB and Speed Dial (Vertical) - Basic Structure
+### Fast Install Tailwind CSS and daisyUI (Windows)
 
-Source: https://daisyui.com/components/fab
+Source: https://daisyui.com/docs/install/yew
 
-Demonstrates the basic HTML structure for a vertical FAB and Speed Dial. It emphasizes the use of a focusable div with `tabIndex` and `role="button"` for accessibility, and shows how to structure the main FAB and the revealed speed dial buttons.
+A PowerShell command to quickly install the latest versions of Tailwind CSS and daisyUI on Windows by downloading executables and creating an 'input.css' file.
 
-```html
-<div class="fab">
-  <button class="fab-main-action">F</button>
-  <div class="fab-content">
-    <button class="btn btn-xs">A</button>
-    <button class="btn btn-xs">B</button>
-    <button class="btn btn-xs">C</button>
-  </div>
-</div>
+```powershell
+powershell -c "irm daisyui.com/fast.ps1 | iex"
+
 ```
 
----
+--------------------------------
 
-### Card as Dropdown in daisyUI
+### Create Vite Project
 
-Source: https://daisyui.com/components/dropdown
+Source: https://daisyui.com/docs/install/unocss
 
-Demonstrates how to use a card element as a dropdown trigger in daisyUI. This allows for richer content within dropdown menus by leveraging the card component's styling and structure. No external dependencies are required beyond daisyUI.
+Initializes a new Vite project using npm. This command creates a fresh project in the current directory with the vanilla template.
 
-```html
-<div class="dropdown">
-  <label tabindex="0" class="btn m-1">Click</label>
-  <ul
-    tabindex="0"
-    class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-  >
-    <li><a>This is a card. You can use any element as a dropdown.</a></li>
-  </ul>
-</div>
+```bash
+npm create vite@latest ./ -- --template vanilla
 ```
 
----
+--------------------------------
 
-### DaisyUI Range Slider with Steps and Measures
+### Apply Bold Star Mask to Image
 
-Source: https://daisyui.com/components/range
+Source: https://daisyui.com/components/mask
 
-Shows how to implement a range slider with defined steps and visual measures. This is useful for scenarios where specific increments are required, enhancing user guidance.
+This example shows how to apply a bold star (star-2) mask to an image using DaisyUI. The 'mask mask-star-2' class is used, requiring no additional setup. The input is an image source, and the output is an image masked in a bold star shape.
 
 ```html
-<input type="range" min="0" max="100" value="50" class="range" />
-<div class="w-full flex justify-between text-xs px-2">
-  <span>|</span><span>|</span><span>|</span><span>|</span><span>|</span>
-</div>
-
-<input type="range" min="0" max="100" value="30" class="range range-primary" />
-<div class="w-full flex justify-between text-xs px-2">
-  <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-</div>
-
-<input
-  type="range"
-  min="0"
-  max="100"
-  value="70"
-  class="range range-secondary"
-/>
-<div class="w-full flex justify-between text-xs px-2">
-  <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-</div>
-
-<input type="range" min="0" max="100" value="90" class="range range-accent" />
-<div class="w-full flex justify-between text-xs px-2">
-  <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-</div>
-
-<input type="range" min="0" max="100" value="10" class="range range-success" />
-<div class="w-full flex justify-between text-xs px-2">
-  <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-</div>
-
-<input type="range" min="0" max="100" value="40" class="range range-warning" />
-<div class="w-full flex justify-between text-xs px-2">
-  <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-</div>
-
-<input type="range" min="0" max="100" value="60" class="range range-info" />
-<div class="w-full flex justify-between text-xs px-2">
-  <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-</div>
-
-<input type="range" min="0" max="100" value="80" class="range range-error" />
-<div class="w-full flex justify-between text-xs px-2">
-  <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-</div>
+<img class="mask mask-star-2" src="https://img.daisyui.com/images/stock/photo-1567653418876-5bb0e566e1c2.webp" />
 ```
 
----
-
-### Basic DaisyUI Fieldset Usage
-
-Source: https://daisyui.com/components/fieldset
-
-Demonstrates the fundamental structure of a DaisyUI fieldset, including the `fieldset-legend` for the title and `label` for descriptions. This serves as a basic container for related form elements.
-
-```html
-<!-- Basic Fieldset -->
-<div class="form-control">
-  <label class="label">
-    <span class="label-text">Page title</span>
-  </label>
-  <input type="text" placeholder="Type here" class="input input-bordered" />
-</div>
+```jsx
+<img className="mask mask-star-2" src="https://img.daisyui.com/images/stock/photo-1567653418876-5bb0e566e1c2.webp" />
 ```
 
----
+--------------------------------
 
-### DaisyUI Navbar: Responsive with Dropdown and Center Menu
+### Customize Documentation Header with Navigation and Theme Toggle
 
-Source: https://daisyui.com/components/navbar
+Source: https://daisyui.com/blog/daisyui-astro-tailwind-documentation-template
 
-This snippet demonstrates a responsive DaisyUI Navbar that features a dropdown menu on small screens and a centered menu on larger screens, adapting to different viewports.
+Modify the documentation page header using the DocsHeader.astro component. This header includes a sticky navigation bar with a responsive hamburger menu, social media links (Twitter), and a theme toggle button for light/dark mode switching.
 
-```html
-<div
-  class="navbar bg-base-100 rounded-box flex-col lg:flex-row justify-between"
->
-  <div class="navbar-start w-full">
-    <div class="dropdown lg:hidden w-full">
-      <label tabindex="0" class="btn btn-ghost btn-circle">
+```astro
+<header class="sticky top-0 z-30">
+  <nav class="navbar bg-base-100/90 shadow-sm backdrop-blur-lg justify-center items-center py-2 md:px-10 px-2 border-b border-base-content/10">
+    <div class="navbar-start">
+      <label for="my-drawer-2" class="btn btn-square btn-ghost lg:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
-          stroke="currentColor"
+          class="inline-block w-5 h-5 stroke-current"
         >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M4 6h16M4 12h8m-8 6h8"
-          />
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
         </svg>
       </label>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-full"
-      >
-        <li><a>Item 1</a></li>
-        <li>
-          <details>
-            <summary>Parent</summary>
-            <ul class="p-2 bg-base-100 rounded-t-none">
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a>Item 3</a></li>
-      </ul>
     </div>
-    <a class="btn btn-ghost normal-case text-xl lg:hidden">daisyUI</a>
-  </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul class="p-2 bg-base-100 rounded-t-none">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a>Item 3</a></li>
-    </ul>
-  </div>
-  <div class="navbar-end w-full lg:w-auto">
-    <button class="btn btn-primary">Button</button>
-  </div>
-</div>
+
+    <div class="navbar-end">
+      <a
+        class="btn btn-sm btn-ghost"
+        href="https://www.x.com"
+        aria-label="twitter"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4">
+          <path
+            d="M13.3174 10.7749L19.1457 4H17.7646L12.7039 9.88256L8.66193 4H4L10.1122 12.8955L4 20H5.38119L10.7254 13.7878L14.994 20H19.656L13.3171 10.7749H13.3174ZM11.4257 12.9738L10.8064 12.0881L5.87886 5.03974H8.00029L11.9769 10.728L12.5962 11.6137L17.7652 19.0075H15.6438L11.4257 12.9742V12.9738Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </a>
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>
 ```
-
----
-
-### Radial Progress with Different Values (HTML)
-
-Source: https://daisyui.com/components/radial-progress
-
-Shows how to display radial progress at various percentages (0%, 20%, 60%, 80%, 100%) using the '--value' CSS variable. This illustrates the component's flexibility in representing different progress states.
-
-```html
-<div class="radial-progress" style="--value:0" role="progressbar">0%</div>
-<div class="radial-progress" style="--value:20" role="progressbar">20%</div>
-<div class="radial-progress" style="--value:60" role="progressbar">60%</div>
-<div class="radial-progress" style="--value:80" role="progressbar">80%</div>
-<div class="radial-progress" style="--value:100" role="progressbar">100%</div>
-```
-
----
-
-### Integrate DaisyUI into CSS
-
-Source: https://daisyui.com/
-
-Adds DaisyUI to your project's main CSS file by importing Tailwind CSS followed by the DaisyUI plugin. This step is crucial for enabling DaisyUI's styles and components.
-
-```css
-@import "tailwindcss";
-@plugin "daisyui";
-```
-
----
-
-### FAB with Vertical Buttons and Labels - HTML
-
-Source: https://context7_llms
-
-This FAB configuration includes labels for each of the expanding buttons, placed before the button element. This provides more context for the action associated with each button.
-
-```html
-<div class="fab">
-  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
-    {IconOriginal}
-  </div>
-  <div>{Label1}<button class="btn btn-lg btn-circle">{Icon1}</button></div>
-  <div>{Label2}<button class="btn btn-lg btn-circle">{Icon2}</button></div>
-  <div>{Label3}<button class="btn btn-lg btn-circle">{Icon3}</button></div>
-</div>
-```
-
----
-
-### DaisyUI Steps: Custom Content in Step Icon
-
-Source: https://daisyui.com/components/steps
-
-Demonstrates how to use custom content, such as emojis, within the step icons for enhanced visual feedback or specific step representation.
-
-```html
-<ul class="steps">
-  <li class="step step-neutral">😕Step 1</li>
-  <li class="step step-neutral">😃Step 2</li>
-  <li class="step step-neutral">😍Step 3</li>
-</ul>
-```
-
----
-
-### DaisyUI Select Component Ghost Style
-
-Source: https://daisyui.com/components/select
-
-Illustrates how to apply a 'ghost' style to the DaisyUI select component, removing the background for a more minimalist appearance. This is useful for forms where visual separation is less critical.
-
-```html
-<label class="form-control w-full max-w-xs">
-  <div class="label">
-    <span class="label-text">Pick a font</span>
-  </div>
-  <select class="select select-ghost w-full max-w-xs">
-    <option disabled selected>Inter</option>
-    <option>Poppins</option>
-    <option>Raleway</option>
-  </select>
-</label>
-```
-
----
-
-### DaisyUI Swap Component: Volume Icon Toggle (HTML)
-
-Source: https://daisyui.com/components/swap
-
-Illustrates how to use the DaisyUI Swap component to toggle between two icons, specifically for volume (on and off states). A hidden checkbox controls the swap logic, with SVG elements representing the icons.
-
-```html
-<label class="swap">
-  <input type="checkbox" />
-  <svg
-    class="swap-on fill-current"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M1 12v10l3-3 3 3v-10L6 9l-3-3z"></path>
-    <path d="M9 9h3v12h-3zm7-3v12h-3zm4-6v12h-3z"></path>
-  </svg>
-  <svg
-    class="swap-off fill-current"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M1 12v10l3-3 3 3v-10L6 9l-3-3z"></path>
-    <path d="M9 9h3v12h-3zm7-3v12h-3zm4-6v12h-3z"></path>
-  </svg>
-</label>
-```
-
----
-
-### Status Component Sizes (HTML)
-
-Source: https://daisyui.com/components/status
-
-Illustrates how to apply different size variations to the Status component using size-specific classes. Available sizes range from extra small (xs) to extra large (xl).
-
-````html
-```html
-<span class="status status-xs"></span>
-<span class="status status-sm"></span>
-<span class="status status-md"></span>
-<span class="status status-lg"></span>
-<span class="status status-xl"></span>
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Range Slider Basic Usage
+### HTML Card Component using daisyUI
 
-Source: https://daisyui.com/components/range
+Source: https://daisyui.com/pages/easy-css-library
 
-Demonstrates the basic implementation of a range slider using DaisyUI classes. This component allows users to select a value by sliding a handle and can be styled with different color classes.
-
-```html
-<input type="range" class="range">
-<input type="range" class="range range-primary">
-<input type="range" class="range range-secondary">
-<input type="range" class="range range-accent">
-<input type="range" class="range range-success">
-<input type="range" class="range range-warning">
-<input type="range" class="range range-info">
-<input type="range" class="range range-error">
-````
-
----
-
-### Long Line Scrolling in Code Mockup with daisyUI
-
-Source: https://daisyui.com/components/mockup-code
-
-Demonstrates how the 'mockup-code' component handles long lines of text by enabling horizontal scrolling. This ensures readability for code or text that exceeds the container width.
+Illustrates a professional-looking card component built with daisyUI. This example showcases how daisyUI provides pre-designed components with proper typography, spacing, and visual hierarchy, requiring no explicit CSS knowledge.
 
 ```html
-<div class="mockup-code">
-  <pre><code>Magnam dolore beatae necessitatibus nemopsum itaque sit. Et porro quae qui et et dolore ratione.</code></pre>
+<!-- Beautiful, functional components immediately -->
+<div class="card w-96 bg-base-100 shadow-xl">
+  <figure><img src="photo.jpg" alt="Album" /></figure>
+  <div class="card-body">
+    <h2 class="card-title">Professional Card</h2>
+    <p>Perfect typography, spacing, and visual hierarchy without any CSS knowledge.</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Action</button>
+    </div>
+  </div>
 </div>
 ```
 
----
+--------------------------------
 
-### DaisyUI Dropdown Menu Component
+### Fast Install daisyUI with Tailwind CLI (Linux/macOS)
 
-Source: https://daisyui.com/components/menu
+Source: https://daisyui.com/docs/install/standalone
 
-Illustrates how to create a collapsible dropdown menu using DaisyUI's menu component. Requires JS for toggle functionality.
+A quick command to download the latest Tailwind CSS Standalone executable and daisyUI bundle, create an `input.css` file, and generate `output.css` on Linux or macOS.
 
-```html
-<ul class="menu">
-  <li>
-    <details>
-      <summary>Menu Item</summary>
-      <ul>
-        <li>Sub Item 1</li>
-        <li>Sub Item 2</li>
-      </ul>
-    </details>
-  </li>
-  <li>Item 2</li>
-  <li>Item 3</li>
-</ul>
+```shell
+curl -sL daisyui.com/fast | bash
 ```
 
----
+--------------------------------
 
-### Exclude Specific DaisyUI Components with Plugins
+### Fast Install daisyUI with Tailwind CLI (Windows)
 
-Source: https://daisyui.com/docs/v5
+Source: https://daisyui.com/docs/install/standalone
 
-Demonstrates how to exclude specific components from DaisyUI when using its plugin system. This is useful for optimizing the library by only including necessary parts. It shows the syntax for both including and excluding components.
+A PowerShell command to download the latest Tailwind CSS Standalone executable and daisyUI bundle, create an `input.css` file, and generate `output.css` on Windows.
 
-```CSS
-@plugin "daisyui" {
-  exclude: scrollbar;
+```powershell
+powershell -c "irm daisyui.com/fast.ps1 | iex"
+```
+
+--------------------------------
+
+### CSS Inconsistent Implementation Examples
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Demonstrates how different developers may implement similar UI components with varying CSS properties, leading to inconsistencies in the user experience. This highlights the need for standardized guidelines.
+
+```css
+/* Different developers, different approaches */
+.card-one {
+  padding: 16px;
+  margin: 20px;
+  border-radius: 8px;
+}
+
+.card-two {
+  padding: 1rem;
+  margin: 1.25rem;
+  border-radius: 0.5rem;
+}
+
+.card-three {
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
 }
 ```
 
----
+--------------------------------
 
-### DaisyUI Hero Section with Form (HTML)
+### Serve HTML with Bun
 
-Source: https://daisyui.com/components/hero
+Source: https://daisyui.com/docs/install/bun
 
-This snippet demonstrates a hero section with an integrated form for user login. It includes fields for email and password, along with a 'Forgot password?' link and a submit button. This pattern is useful for creating prominent call-to-action areas on a webpage.
+Command to start the Bun development server and serve the `index.html` file. This command automatically processes the HTML and CSS with the configured plugins.
 
-```html
-### Hero with form ### Login now! Provident cupiditate voluptatem et in. Quaerat
-fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut
-repudiandae et a id nisi. Email Password Forgot password? Login
+```shell
+bun index.html
 ```
-
----
-
-### DaisyUI Card with Image Overlay
-
-Source: https://daisyui.com/components/card
-
-This code demonstrates a DaisyUI card where the image acts as an overlay for the content. It includes a title, descriptive text, and a 'Buy Now' button positioned within the image area. This design is effective for visually engaging content.
-
-```html
-<div class="card image-full w-96 shadow-xl">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes"
-    />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">Card Title</h2>
-    <p>
-      A card component has a figure, a body part, and inside body there are
-      title and actions parts
-    </p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Text Input: Colors
-
-Source: https://daisyui.com/components/input
-
-Demonstrates how to apply different color variations (primary, secondary, accent, info, success, warning, error) to DaisyUI text inputs. This allows for visual feedback and categorization.
-
-````html
-```html
-<input
-  type="text"
-  placeholder="Primary"
-  class="input input-primary input-bordered w-full max-w-xs"
-/>
-<input
-  type="text"
-  placeholder="Secondary"
-  class="input input-secondary input-bordered w-full max-w-xs"
-/>
-<input
-  type="text"
-  placeholder="Accent"
-  class="input input-accent input-bordered w-full max-w-xs"
-/>
-<input
-  type="text"
-  placeholder="Info"
-  class="input input-info input-bordered w-full max-w-xs"
-/>
-<input
-  type="text"
-  placeholder="Success"
-  class="input input-success input-bordered w-full max-w-xs"
-/>
-<input
-  type="text"
-  placeholder="Warning"
-  class="input input-warning input-bordered w-full max-w-xs"
-/>
-<input
-  type="text"
-  placeholder="Error"
-  class="input input-error input-bordered w-full max-w-xs"
-/>
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Navbar: Search Input and Dropdown
+### Install Tailwind CSS and daisyUI for Rsbuild
 
-Source: https://daisyui.com/components/navbar
+Source: https://daisyui.com/docs/install/rsbuild
 
-This snippet demonstrates a DaisyUI Navbar incorporating a search input field and a user profile dropdown menu. It combines utility with user interaction elements.
+Installs Tailwind CSS, its PostCSS plugin, and daisyUI as project dependencies. Rsbuild includes built-in PostCSS support.
 
-```html
-<div class="navbar bg-base-100 shadow-lg">
-  <div class="flex-1">
-    <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
-  </div>
-  <div class="flex-none">
-    <div class="form-control">
-      <input type="text" placeholder="Search" class="input input-bordered" />
-    </div>
-    <div class="dropdown dropdown-end">
-      <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full">
-          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-        </div>
-      </label>
-      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-        <li>
-          <a class="justify-between">
-            Profile
-            <span class="badge">New</span>
-          </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-````
+```bash
+npm add tailwindcss @tailwindcss/postcss daisyui@latest
 
----
+```
 
-### DaisyUI Toast Placement: Middle-Start
+--------------------------------
 
-Source: https://daisyui.com/components/toast
+### Toast Notification Wrapper
 
-Shows the implementation of the DaisyUI Toast component positioned in the middle-start (vertically centered, horizontally left) of the page. This uses 'toast-middle' and 'toast-start'.
+Source: https://daisyui.com/llms
+
+Stacks notification elements positioned at corners or center of the page. Accepts placement modifiers (start, center, end, top, middle, bottom) to control positioning. The component wraps content with positioning classes for flexible notification placement.
 
 ```html
-<div class="toast toast-start toast-middle">
-  <div class="alert alert-info">
-    <div>
-      <span>New mail arrived.</span>
-      <span>Message sent successfully.</span>
+<div class="toast {MODIFIER}">{CONTENT}</div>
+```
+
+--------------------------------
+
+### Install daisyUI Package
+
+Source: https://daisyui.com/docs/install/reactrouter
+
+Command to install the latest version of daisyUI using npm. This adds the daisyUI library to your project's dependencies.
+
+```bash
+npm install daisyui@latest
+```
+
+--------------------------------
+
+### Build Feature-Complete Card Component with DaisyUI
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Creates a reusable card component with title, body content, and action buttons using DaisyUI's card system. Demonstrates how DaisyUI reduces development time from hours to minutes. Pre-styled with shadows and responsive sizing for immediate production use.
+
+```HTML
+<div class="card w-96 bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title">Feature complete!</h2>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Ship it</button>
     </div>
   </div>
 </div>
 ```
 
----
+--------------------------------
 
-### Basic Breadcrumbs - daisyUI
+### Install Electron, Tailwind CSS, and daisyUI (Terminal)
 
-Source: https://daisyui.com/components/breadcrumbs
+Source: https://daisyui.com/docs/install/electron
 
-This snippet shows the fundamental implementation of breadcrumbs using daisyUI classes. It's designed for simple navigation where users can easily track their location within a site's hierarchy. No external dependencies are required beyond daisyUI and Tailwind CSS.
+Installs the core dependencies required for an Electron application with Tailwind CSS and daisyUI integration. This command fetches the latest versions of these packages from npm.
+
+```bash
+npm install electron tailwindcss@latest @tailwindcss/cli@latest daisyui@latest
+```
+
+--------------------------------
+
+### DaisyUI Label Components: HTML Examples
+
+Source: https://daisyui.com/llms
+
+Illustrates two ways to implement labels with DaisyUI: regular labels within an input group and floating labels. For regular labels, use the 'label' class on a `<span>` inside a container with the 'input' class. For floating labels, use the 'floating-label' class on the parent container, placing the `<span>` after the `<input>` element.
 
 ```html
-<div role="Breadcrumb" class="breadcrumbs">
-  <ul>
-    <li>
-      <a href="#">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          class="w-4 h-4 stroke-current"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6a2 2 0 00-2-2H5a2 2 0 00-2 2z"
-          ></path>
-        </svg>
-        Home
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          class="w-4 h-4 stroke-current"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 13h6m-3-3v6m5 5H9a2 2 0 01-2-2V5a2 2 0 012-2h5.5a2 2 0 011.54.535M9 22V7h5.5a2 2 0 011.548.535l3.452 3.452a2 2 0 01.547 1.548L21 17a2 2 0 01-2 2H9z"
-          ></path>
-        </svg>
-        Documents
-      </a>
-    </li>
-    <li>Add Document</li>
+<label class="input">
+  <span class="label">{label text}</span>
+  <input type="text" placeholder="Type here" />
+</label>
+```
+
+```html
+<label class="floating-label">
+  <input type="text" placeholder="Type here" class="input" />
+  <span>{label text}</span>
+</label>
+```
+
+--------------------------------
+
+### Force Open Dropdown Example (HTML & React JSX)
+
+Source: https://daisyui.com/components/dropdown
+
+Demonstrates how to force a DaisyUI dropdown to be open using the 'dropdown-open' class. This is useful for pre-showing dropdown content. The examples are provided in both plain HTML and React JSX.
+
+```html
+<div class="dropdown dropdown-open">
+  <div tabindex="0" role="button" class="btn m-1">Button</div>
+  <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
   </ul>
 </div>
 ```
 
----
-
-### Skeleton with Rectangle and Content - daisyUI
-
-Source: https://daisyui.com/components/skeleton
-
-This code snippet illustrates the use of a rectangular Skeleton component, suitable for placeholder content like text blocks or image areas. It provides a visual cue for loading data. This requires the daisyUI framework.
-
-```html
-<div class="skeleton rectangle"></div>
-```
-
----
-
-### DaisyUI Stack Component: Basic Usage
-
-Source: https://daisyui.com/components/stack
-
-Demonstrates the fundamental usage of the DaisyUI 'stack' component to vertically align three divs. This component utilizes Tailwind CSS classes to achieve the stacking effect.
-
-```html
-<div class="stack">
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
+```jsx
+<div className="dropdown dropdown-open">
+  <div tabIndex={0} role="button" className="btn m-1">Button</div>
+  <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
 </div>
 ```
 
----
+--------------------------------
 
-### Radial Progress with Custom Size and Thickness (Vue)
+### Install Tailwind CSS and Vite Plugin
 
-Source: https://daisyui.com/components/radial-progress
+Source: https://daisyui.com/pages/install-tailwind-css-vite
 
-Illustrates customizing the size and thickness of the radial-progress component in Vue.js using '--size' and '--thickness' CSS variables for a tailored look.
+Commands to install the latest versions of Tailwind CSS and its Vite plugin. These are necessary dependencies for using Tailwind CSS with Vite.
 
-```vue
-<template>
-  <div
-    class="radial-progress"
-    :style="{
-      '--value': 70,
-      '--size': '10rem',
-      '--thickness': '1rem',
-    }"
-    role="progressbar"
-  >
-    70%
-  </div>
-</template>
-
-<script setup lang="ts">
-// No script needed for basic example
-</script>
-
-<style>
-/* DaisyUI styles are assumed to be globally imported */
-</style>
+```bash
+npm install tailwindcss@latest @tailwindcss/vite@latest
 ```
 
----
+--------------------------------
 
-### DaisyUI Badge with Outline Style and Colors (HTML)
+### Configure Context7 MCP Server in Zed
 
-Source: https://daisyui.com/components/badge
+Source: https://daisyui.com/docs/editor/zed
 
-Shows how to use the 'outline' style for badges combined with different color classes. This results in a bordered appearance without a filled background.
+Setup Context7 MCP server in Zed for AI-powered daisyUI code generation. This lightweight configuration enables Agent Mode to ask questions about daisyUI components and generate code based on natural language prompts.
 
-```html
-<!-- Outline Primary Badge -->
-<div class="badge badge-outline badge-primary">Primary</div>
-
-<!-- Outline Secondary Badge -->
-<div class="badge badge-outline badge-secondary">Secondary</div>
-
-<!-- Outline Accent Badge -->
-<div class="badge badge-outline badge-accent">Accent</div>
-
-<!-- Outline Info Badge -->
-<div class="badge badge-outline badge-info">Info</div>
-
-<!-- Outline Success Badge -->
-<div class="badge badge-outline badge-success">Success</div>
-
-<!-- Outline Warning Badge -->
-<div class="badge badge-outline badge-warning">Warning</div>
-
-<!-- Outline Error Badge -->
-<div class="badge badge-outline badge-error">Error</div>
+```json
+{
+ "context7": {
+   "command": "npx",
+   "args": ["-y", "@upstash/context7-mcp@latest"]
+ }
+}
 ```
 
----
+--------------------------------
 
-### Hero Component Structure in HTML
+### React Radio Inputs for Joinable Button Groups (DaisyUI)
 
-Source: https://context7_llms
+Source: https://daisyui.com/components/pagination
 
-The hero component provides a large container for key content, often used for landing pages. It utilizes the 'hero' class and can include 'hero-content' for text and 'hero-overlay' for background image effects.
+This example demonstrates creating a group of radio inputs styled as joined buttons within a React component using DaisyUI classes. It utilizes JSX syntax, including 'className' instead of 'class', and the 'checked' attribute for initial selection. Ensure DaisyUI is installed and configured in your React project.
 
-```html
-<div
-  class="hero min-h-screen"
-  style="background-image: url(https://img.daisyui.com/images/stock/photo-1508762717628-14311d6a4f5c.jpg);"
->
-  <div class="hero-overlay bg-opacity-60"></div>
-  <div class="hero-content text-center text-neutral-content">
+```jsx
+<div className="join">
+  <input
+    className="join-item btn btn-square"
+    type="radio"
+    name="options"
+    aria-label="1"
+    checked="checked" />
+  <input className="join-item btn btn-square" type="radio" name="options" aria-label="2" />
+  <input className="join-item btn btn-square" type="radio" name="options" aria-label="3" />
+  <input className="join-item btn btn-square" type="radio" name="options" aria-label="4" />
+</div>
+```
+
+--------------------------------
+
+### Create Professional Hero Section with DaisyUI
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Builds a centered hero landing page section with headline, description, and call-to-action button. Requires DaisyUI CSS framework and uses Tailwind's utility classes for responsive sizing and typography. Ideal for beginners creating professional layouts without CSS expertise.
+
+```HTML
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content text-center">
     <div class="max-w-md">
-      <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
-      <p class="mb-5">
-        Provident cupidatat officia deserunt mollit anim id est laborum. Seitan
-        Shirley est cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non dolore magna aliqua.
+      <h1 class="text-5xl font-bold">Hello there</h1>
+      <p class="py-6">Professional-looking websites without learning CSS first.</p>
+      <button class="btn btn-primary">Get Started</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Join Component: HTML Example
+
+Source: https://daisyui.com/llms
+
+Demonstrates the DaisyUI join component for grouping elements like buttons or inputs. Use the 'join' class on the container and 'join-item' on child elements. The 'join-vertical' or 'join-horizontal' modifier can control the layout direction. This component applies border radius to the first and last items in the group.
+
+```html
+<div class="join {MODIFIER}">{CONTENT}</div>
+```
+
+--------------------------------
+
+### DaisyUI Tabs Component Examples (HTML)
+
+Source: https://daisyui.com/components/tab
+
+Demonstrates the creation of DaisyUI tabs with different size variations (xs, sm, md, lg, xl) using HTML structure. Each example shows a basic tab list with active and inactive tab elements.
+
+```html
+<div role="tablist" class="tabs tabs-lift tabs-xs">
+  <a role="tab" class="tab">Xsmall</a>
+  <a role="tab" class="tab tab-active">Xsmall</a>
+  <a role="tab" class="tab">Xsmall</a>
+</div>
+
+<div role="tablist" class="tabs tabs-lift tabs-sm">
+  <a role="tab" class="tab">Small</a>
+  <a role="tab" class="tab tab-active">Small</a>
+  <a role="tab" class="tab">Small</a>
+</div>
+
+<div role="tablist" class="tabs tabs-lift">
+  <a role="tab" class="tab">Medium</a>
+  <a role="tab" class="tab tab-active">Medium</a>
+  <a role="tab" class="tab">Medium</a>
+</div>
+
+<div role="tablist" class="tabs tabs-lift tabs-lg">
+  <a role="tab" class="tab">Large</a>
+  <a role="tab" class="tab tab-active">Large</a>
+  <a role="tab" class="tab">Large</a>
+</div>
+
+<div role="tablist" class="tabs tabs-lift tabs-xl">
+  <a role="tab" class="tab">Xlarge</a>
+  <a role="tab" class="tab tab-active">Xlarge</a>
+  <a role="tab" class="tab">Xlarge</a>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Tooltip Placement Examples
+
+Source: https://daisyui.com/components/tooltip
+
+Demonstrates the different placement options for DaisyUI tooltips: top, bottom, left, and right. These are controlled by adding corresponding classes (`tooltip-top`, `tooltip-bottom`, `tooltip-left`, `tooltip-right`) to the tooltip container. These examples also show the `tooltip-open` modifier for consistent visibility.
+
+```html
+<div class="tooltip tooltip-open tooltip-top" data-tip="hello">
+  <button class="btn">Top</button>
+</div>
+```
+
+```html
+<div class="tooltip tooltip-open tooltip-bottom" data-tip="hello">
+  <button class="btn">Bottom</button>
+</div>
+```
+
+```html
+<div class="tooltip tooltip-open tooltip-left" data-tip="hello">
+  <button class="btn">Left</button>
+</div>
+```
+
+```html
+<div className="tooltip tooltip-open tooltip-top" data-tip="hello">
+  <button className="btn">Top</button>
+</div>
+```
+
+```html
+<div className="tooltip tooltip-open tooltip-bottom" data-tip="hello">
+  <button className="btn">Bottom</button>
+</div>
+```
+
+```html
+<div className="tooltip tooltip-open tooltip-left" data-tip="hello">
+  <button className="btn">Left</button>
+</div>
+```
+
+--------------------------------
+
+### Install Tailwind CSS and daisyUI Packages
+
+Source: https://daisyui.com/docs/install/nextjs
+
+Installs Tailwind CSS, its PostCSS plugin, and the latest version of daisyUI. These are essential dependencies for using daisyUI in a Next.js project.
+
+```bash
+npm install tailwindcss @tailwindcss/postcss daisyui@latest
+```
+
+--------------------------------
+
+### Vertical Timeline with DaisyUI
+
+Source: https://daisyui.com/components/timeline
+
+This HTML snippet shows how to create a vertical timeline using DaisyUI's timeline component. It includes styling for the timeline itself, the start and end points of each item, and the connecting lines. The example uses SVG icons for timeline markers and applies primary color to the lines.
+
+```html
+<ul class="timeline timeline-vertical">
+  <li>
+    <div class="timeline-start timeline-box">First Macintosh computer</div>
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="text-primary h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <hr class="bg-primary" />
+  </li>
+  <li>
+    <hr class="bg-primary" />
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="text-primary h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div class="timeline-end timeline-box">iMac</div>
+    <hr class="bg-primary" />
+  </li>
+  <li>
+    <hr class="bg-primary" />
+    <div class="timeline-start timeline-box">iPod</div>
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="text-primary h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div class="timeline-end timeline-box">iPhone</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div class="timeline-start timeline-box">Apple Watch</div>
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+  </li>
+</ul>
+```
+
+--------------------------------
+
+### DaisyUI Hero Component Example (HTML)
+
+Source: https://daisyui.com/components/hero
+
+An example of a centered Hero component using DaisyUI classes. It displays a title, description, and a call-to-action button. This component is typically used for landing pages or promotional sections.
+
+```html
+<div class="hero bg-base-200 min-h-screen">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <h1 class="text-5xl font-bold">Hello there</h1>
+      <p class="py-6">
+        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+        quasi. In deleniti eaque aut repudiandae et a id nisi.
       </p>
       <button class="btn btn-primary">Get Started</button>
     </div>
@@ -7780,905 +3087,265 @@ The hero component provides a large container for key content, often used for la
 </div>
 ```
 
----
+--------------------------------
 
-### HTML Stack Layout
+### Download Tailwind CSS Executables
 
-Source: https://context7_llms
+Source: https://daisyui.com/docs/install/yew
 
-Arranges elements visually on top of each other using the 'stack' class. Optional modifiers like 'stack-top' and 'stack-bottom' can control placement. Width and height can be set with utility classes.
+Commands to download the Tailwind CSS executable for various operating systems (Linux, MacOS, Windows) from GitHub releases.
 
-```html
-<div class="stack">
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-</div>
-<div class="stack stack-bottom h-32 w-32">
-  <div class="bg-primary">1</div>
-  <div class="bg-secondary">2</div>
-  <div class="bg-accent">3</div>
-</div>
+```bash
+# Run the corresponding command for your OS
+
+# Linux
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-arm64
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-arm64-musl
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64-musl
+
+# MacOS
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-arm64
+curl -sLo tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-x64
+
+# Windows
+curl -sLo tailwindcss.exe https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-windows-x64.exe
+
 ```
-
----
-
-### Countdown Component Syntax (HTML)
-
-Source: https://context7_llms
-
-Provides the HTML for a countdown timer with a transition effect. Requires a CSS variable '--value' to set the number and JavaScript to update it.
-
-```html
-<span class="countdown">
-  <span style="--value:{number};">number</span>
-</span>
-```
-
----
-
-### DaisyUI Tab Component Syntax (Radio Inputs)
-
-Source: https://context7_llms
-
-This DaisyUI tab component utilizes radio inputs for managing tab states, often paired with 'tabs-box' styling. Radio inputs are essential for the tab content to function correctly upon clicking.
-
-```html
-<div role="tablist" class="tabs tabs-box">
-  <input type="radio" name="my_tabs" class="tab" aria-label="Tab" />
-</div>
-```
-
----
-
-### DaisyUI Swap Component Syntax (Checkbox)
-
-Source: https://context7_llms
-
-The DaisyUI swap component allows toggling between two elements using a checkbox. It provides 'swap-on' and 'swap-off' classes for the content to be displayed in active and inactive states, respectively.
-
-```html
-<label class="swap {MODIFIER}">
-  <input type="checkbox" />
-  <div class="swap-on">{content when active}</div>
-  <div class="swap-off">{content when inactive}</div>
-</label>
-```
-
----
-
-### DaisyUI Navbar: Icon, Indicator, and Dropdown
-
-Source: https://daisyui.com/components/navbar
-
-Presents a DaisyUI Navbar with an icon, a notification indicator, and a dropdown menu. This is suitable for e-commerce or user-centric applications.
-
-```html
-<div class="navbar bg-base-100 shadow-lg">
-  <div class="flex-1">
-    <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
-  </div>
-  <div class="flex-none">
-    <div class="dropdown dropdown-end">
-      <label tabindex="0" class="btn btn-ghost btn-circle">
-        <div class="indicator">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 17h5l1-1.769-1-1.769h-6c0-1.066-.864-1.927-1.93-2.001C11.066 10.864 10 11.725 10 13v4h5zM6 17v4a2 2 0 002 2h10a2 2 0 002-2v-4"
-            />
-          </svg>
-          <span class="badge badge-sm indicator-item">8</span>
-        </div>
-      </label>
-      <div
-        tabindex="0"
-        class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
-      >
-        <div class="card-body">
-          <span class="font-bold text-lg">8 Items</span>
-          <span class="text-info">Subtotal: $999</span>
-          <div class="card-actions">
-            <button class="btn btn-primary btn-block btn-sm">View cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="dropdown dropdown-end">
-      <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full">
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-          />
-        </div>
-      </label>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        <li>
-          <a class="justify-between">
-            Profile
-            <span class="badge">New</span>
-          </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Label Component for Input Fields with DaisyUI
-
-Source: https://context7_llms
-
-Demonstrates two ways to use the 'label' component in DaisyUI: regular labels associated with inputs and 'floating-label' for a dynamic label effect. The 'input' class styles the parent container for regular labels.
-
-```html
-<label class="input">
-  <span class="label">Email</span>
-  <input type="email" placeholder="Type here" />
-</label>
-```
-
-```html
-<label class="floating-label">
-  <input type="text" placeholder="Type here" class="input" />
-  <span>Username</span>
-</label>
-```
-
----
-
-### DaisyUI Badge with Soft Style and Colors (HTML)
-
-Source: https://daisyui.com/components/badge
-
-Demonstrates the 'soft' style applied to badges in conjunction with various color classes. This creates a less prominent, filled appearance suitable for different contexts.
-
-```html
-<!-- Soft Primary Badge -->
-<div class="badge badge-soft badge-primary">Primary</div>
-
-<!-- Soft Secondary Badge -->
-<div class="badge badge-soft badge-secondary">Secondary</div>
-
-<!-- Soft Accent Badge -->
-<div class="badge badge-soft badge-accent">Accent</div>
-
-<!-- Soft Info Badge -->
-<div class="badge badge-soft badge-info">Info</div>
-
-<!-- Soft Success Badge -->
-<div class="badge badge-soft badge-success">Success</div>
-
-<!-- Soft Warning Badge -->
-<div class="badge badge-soft badge-warning">Warning</div>
-
-<!-- Soft Error Badge -->
-<div class="badge badge-soft badge-error">Error</div>
-```
-
----
-
-### Centered Footer with Logo and Social Icons
-
-Source: https://daisyui.com/components/footer
-
-This snippet demonstrates a centered footer layout that includes a company name, a tagline, and a copyright notice. It's designed to be a common footer pattern for websites and applications. No specific external dependencies are required beyond a basic HTML structure and potentially CSS for styling.
-
-```html
-### Centered footer with logo and social icons ACME Industries Ltd. Providing
-reliable tech since 1992 Copyright © 2025 - All right reserved
-```
-
-```html
-ACME Industries Ltd. Providing reliable tech since 1992 Copyright © {new
-Date().getFullYear()} - All right reserved
-```
-
-```html
-ACME Industries Ltd. Providing reliable tech since 1992 Copyright © {new
-Date().getFullYear()} - All right reserved
-```
-
-```html
-ACME Industries Ltd. Providing reliable tech since 1992 Copyright © {new
-Date().getFullYear()} - All right reserved
-```
-
-```html
-ACME Industries Ltd. Providing reliable tech since 1992 Copyright © {new
-Date().getFullYear()} - All right reserved
-```
-
----
-
-### FAB with Main Action Button - HTML
-
-Source: https://context7_llms
-
-A FAB that features a distinct 'main action' button displayed when the FAB is expanded. This button is visually different and intended for a primary action.
-
-```html
-<div class="fab">
-  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
-    {IconOriginal}
-  </div>
-  <div class="fab-main-action">
-    {LabelMainAction}<button class="btn btn-circle btn-secondary btn-lg">
-      {IconMainAction}
-    </button>
-  </div>
-  <div>{Label1}<button class="btn btn-lg btn-circle">{Icon1}</button></div>
-  <div>{Label2}<button class="btn btn-lg btn-circle">{Icon2}</button></div>
-  <div>{Label3}<button class="btn btn-lg btn-circle">{Icon3}</button></div>
-</div>
-```
-
----
-
-### DaisyUI Swap Component: Basic Text Toggle (HTML)
-
-Source: https://daisyui.com/components/swap
-
-Demonstrates the fundamental usage of the DaisyUI Swap component for toggling between two text elements (ON/OFF). It utilizes a hidden checkbox to control the visibility of the 'swap-on' and 'swap-off' child elements.
-
-```html
-<label class="swap">
-  <input type="checkbox" />
-  <div class="swap-on">ON</div>
-  <div class="swap-off">OFF</div>
-</label>
-```
-
----
-
-### Join Component for Grouping Elements with DaisyUI
-
-Source: https://context7_llms
-
-Illustrates the use of the 'join' and 'join-item' classes in DaisyUI to group elements like buttons or inputs. Supports 'join-vertical' and 'join-horizontal' for orientation and responsive adjustments with 'lg:join-horizontal'.
-
-```html
-<div class="join">
-  <button class="btn join-item">Button 1</button>
-  <button class="btn join-item">Button 2</button>
-  <button class="btn join-item">Button 3</button>
-</div>
-```
-
----
-
-### Responsive Drawer: Always Visible on Large Screens (HTML)
-
-Source: https://daisyui.com/components/drawer
-
-Illustrates a responsive drawer pattern where the sidebar is persistently visible on large screens (using `lg:drawer-open`) and can be toggled on smaller screens via a button.
-
-```html
-<div class="drawer lg:drawer-open">
-  <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content flex flex-col items-center justify-center">
-    {/* Page content here */}
-    <label for="my-drawer-3" class="btn drawer-button lg:hidden"
-      >Open drawer</label
-    >
-  </div>
-  <div class="drawer-side">
-    <label
-      for="my-drawer-3"
-      aria-label="close sidebar"
-      class="drawer-overlay"
-    ></label>
-    <ul class="menu p-4 w-80 bg-base-200 text-base-content">
-      {/* Sidebar content here */}
-      <li><a>Sidebar Item 1</a></li>
-      <li><a>Sidebar Item 2</a></li>
-    </ul>
-  </div>
-</div>
-```
-
----
-
-### Status Component Colors (HTML)
-
-Source: https://daisyui.com/components/status
-
-Shows how to style the Status component with various color options provided by daisyUI, including neutral, primary, secondary, accent, info, success, warning, and error.
-
-````html
-```html
-<span class="status status-neutral"></span>
-<span class="status status-primary"></span>
-<span class="status status-secondary"></span>
-<span class="status status-accent"></span>
-<span class="status status-info"></span>
-<span class="status status-success"></span>
-<span class="status status-warning"></span>
-<span class="status status-error"></span>
-````
-
-````
 
 --------------------------------
 
-### Drawer Component Structure (HTML)
+### Configure Trunk.toml for Build Hook
 
-Source: https://daisyui.com/components/drawer
+Source: https://daisyui.com/docs/install/yew
 
-Defines the basic HTML structure for a DaisyUI Drawer component, including the main container, a hidden toggle checkbox, content area, sidebar wrapper, overlay, and sidebar content.
+Defines the build settings for Trunk, specifying the main HTML target, output directory, and a build hook to automatically compile CSS using Tailwind.
 
-```html
-.drawer // The root container
-  .drawer-toggle // A hidden checkbox to toggle the visibility of the sidebar
-  .drawer-content // All your page content goes here
-    // navbar, content, footer
-    .drawer-side // Sidebar wrapper
-      .drawer-overlay // A dark overlay that covers the whole page when the drawer is open
-      // Sidebar content (menu or anything)
-````
+```toml
+[build]
+target = "index.html"
+dist = "dist"
 
----
+[[hooks]]
+stage = "build"
+command = "sh"
+command_arguments = ["-c", "./tailwindcss -i input.css -o $TRUNK_STAGING_DIR/output.css"]
 
-### DaisyUI Toggle with Custom Colors (HTML)
-
-Source: https://daisyui.com/components/toggle
-
-Illustrates how to apply custom colors to a DaisyUI toggle switch, allowing for more design flexibility.
-
-```html
-<input type="checkbox" data-toggle-bg="#673ab7" class="toggle" />
-<input type="checkbox" data-toggle-bg="#e91e63" class="toggle" />
 ```
-
----
-
-### Basic Input Field in HTML
-
-Source: https://context7_llms
-
-A standard text input field. This component is a basic building block for forms and can be styled using various DaisyUI classes for appearance and size.
-
-```html
-<input
-  type="text"
-  placeholder="Type here..."
-  class="input input-bordered w-full max-w-xs"
-/>
-```
-
----
-
-### DaisyUI Text Input: Ghost Style
-
-Source: https://daisyui.com/components/input
-
-Shows how to apply the 'ghost' style to DaisyUI text inputs, creating a minimalist appearance. This style is useful for elements that should blend seamlessly with the background.
-
-````html
-```html
-<input
-  type="text"
-  placeholder="Ghost"
-  class="input input-bordered input-ghost w-full max-w-xs"
-/>
-````
-
-````
 
 --------------------------------
 
-### List Component for Structured Data with DaisyUI
-
-Source: https://context7_llms
-
-Shows the DaisyUI 'list' component for displaying information in rows. Uses 'list' for the container and 'list-row' for each item. Modifiers like 'list-col-wrap' and 'list-col-grow' can alter layout.
-
-```html
-<ul class="list">
-  <li class="list-row">
-    <span>Item 1</span>
-    <span>Details 1</span>
-  </li>
-  <li class="list-row">
-    <span>Item 2</span>
-    <span>Details 2</span>
-  </li>
-</ul>
-````
-
----
-
-### daisyUI 5: Improved Color Variables
+### daisyUI 5 Dependency Comparison - Before and After
 
 Source: https://daisyui.com/docs/v5
 
-Illustrates the new, more readable, and customizable CSS variables for colors in daisyUI 5, utilizing the 'oklch' format for better control and compatibility with Tailwind CSS 4's color-mix() function. This replaces the older, harder-to-read format.
+Comparison of daisyUI dependency tree before version 5 (1.8 MB, 250 files, 7 dependencies including culori, picocolors, postcss-js) versus after version 5 (0 KB, zero dependencies). Demonstrates significant reduction in package footprint and maintenance complexity.
 
-```css
-/* Before
-* hard to read variable names, hard to customize values
-*/
- {
-  --b1: 100% 0 0;
-  --b2: 96.1151% 0 0;
-  --b3: 92.4169% 0.00108 197.137559;
-  --bc: 27.8078% 0.029596 256.847952;
-  --p: 49.12% 0.3096 275.75;
-  --pc: 89.824% 0.06192 275.75;
-  --s: 69.71% 0.329 342.55;
-  --sc: 98.71% 0.0106 342.55;
-  --a: 76.76% 0.184 183.61;
-  --ac: 15.352% 0.0368 183.61;
-  --n: 32.1785% 0.02476 255.701624;
-  --nc: 89.4994% 0.011585 252.096176;
-  --in: 72.06% 0.191 231.6;
-  --inc: 0% 0 0;
-  --su: 64.8% 0.15 160;
-  --suc: 0% 0 0;
-  --wa: 84.71% 0.199 83.87;
-  --wac: 0% 0 0;
-  --er: 71.76% 0.221 22.18;
-  --erc: 0% 0 0;
-}
+```text
+Before
+Dependencies - Total 1.8 MB on disk (250 files)
+  ├╴ culori
+  ├╴ picocolors
+  ├╴ postcss-js
+  │  ╰╴ camelcase-css
+  ╰╴ css-selector-tokenizer
+     ├╴ cssesc
+     ╰╴ fastparse
 
-/* After
-* standard color format, easy to customize in browser
-*/
- {
-  --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(96.115% 0 0);
-  --color-base-300: oklch(92.416% 0.001 197.137);
-  --color-base-content: oklch(27.807% 0.029 256.847);
-  --color-primary: oklch(49.12% 0.309 275.75);
-  --color-primary-content: oklch(89.824% 0.061 275.75);
-  --color-secondary: oklch(69.71% 0.329 342.55);
-  --color-secondary-content: oklch(98.71% 0.01 342.55);
-  --color-accent: oklch(76.76% 0.184 183.61);
-  --color-accent-content: oklch(15.352% 0.036 183.61);
-  --color-neutral: oklch(20% 0.024 255.701);
-  --color-neutral-content: oklch(89.499% 0.011 252.096);
-  --color-info: oklch(72.06% 0.191 231.6);
-  --color-info-content: oklch(0% 0 0);
-  --color-success: oklch(64.8% 0.15 160);
-  --color-success-content: oklch(0% 0 0);
-  --color-warning: oklch(84.71% 0.199 83.87);
-  --color-warning-content: oklch(0% 0 0);
-  --color-error: oklch(71.76% 0.221 22.18);
-  --color-error-content: oklch(0% 0 0);
-}
+After
+No dependencies - 0 kB
 ```
-
----
-
-### DaisyUI Tab Component Syntax (Buttons)
-
-Source: https://context7_llms
-
-The DaisyUI tab component displays links in a tabbed format using button elements. It supports various styles like 'tabs-box' and 'tabs-border', and placement options like 'tabs-top'.
-
-```html
-<div role="tablist" class="tabs {MODIFIER}">
-  <button role="tab" class="tab">Tab</button>
-</div>
-```
-
----
-
-### Basic Radial Progress (React TSX)
-
-Source: https://daisyui.com/components/radial-progress
-
-Provides a React (TSX) implementation of the radial-progress component. It uses CSS variables for value, size, and thickness, and includes accessibility attributes.
-
-```tsx
-function RadialProgressTsx() {
-  return (
-    <div
-      className="radial-progress"
-      style={{ "--value": 70 } as React.CSSProperties}
-      role="progressbar"
-    >
-      70%
-    </div>
-  );
-}
-```
-
----
-
-### DaisyUI Bordered Tabs with HTML
-
-Source: https://daisyui.com/components/tab
-
-Illustrates how to apply a border style to the DaisyUI tabs component. This variation uses the 'tabs-border' class for a distinct visual appearance. The structure remains similar to basic tabs.
-
-````html
-### tabs-border Tab 1 Tab 2 Tab 3 ``` html
-<div role="tablist" class="tabs tabs-border">
-  <a role="tab" class="tab">Tab 1</a>
-  <a role="tab" class="tab">Tab 2</a>
-  <a role="tab" class="tab">Tab 3</a>
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 1
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 2
-</div>
-<div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-  Tab content 3
-</div>
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Menu Sizes
+### DaisyUI Indicator: HTML Example
 
-Source: https://daisyui.com/components/menu
+Source: https://daisyui.com/llms
 
-Illustrates how to apply different size modifiers to DaisyUI menu items, ranging from extra small to extra large. This allows for flexible visual design.
-
-```html
-<ul class="menu menu-xs">
-  <li>Xsmall 1</li>
-  <li>Xsmall 2</li>
-</ul>
-<ul class="menu menu-sm">
-  <li>Small 1</li>
-  <li>Small 2</li>
-</ul>
-<ul class="menu menu-md">
-  <li>Medium 1</li>
-  <li>Medium 2</li>
-</ul>
-<ul class="menu menu-lg">
-  <li>Large 1</li>
-  <li>Large 2</li>
-</ul>
-<ul class="menu menu-xl">
-  <li>Xlarge 1</li>
-  <li>Xlarge 2</li>
-</ul>
-````
-
----
-
-### DaisyUI Toggle with Fieldset and Label (HTML)
-
-Source: https://daisyui.com/components/toggle
-
-Shows how to integrate a DaisyUI toggle within a fieldset and label for better form organization and accessibility.
+Illustrates how to use the DaisyUI indicator component to overlay elements. The structure involves a parent `<div>` with the 'indicator' class, containing a `<span>` with the 'indicator-item' class for the overlaid content, followed by the main content `<div>`. Placement classes like `indicator-start`, `indicator-center`, `indicator-end`, `indicator-top`, `indicator-middle`, `indicator-bottom` can be used to position the indicator item.
 
 ```html
-<div class="form-control">
-  <label class="label cursor-pointer">
-    <span class="label-text">Remember me</span>
-    <input type="checkbox" class="toggle" checked />
-  </label>
+<div class="indicator">
+  <span class="indicator-item">{indicator content}</span>
+  <div>{main content}</div>
 </div>
 ```
-
----
-
-### DaisyUI Steps: Custom Colors
-
-Source: https://daisyui.com/components/steps
-
-Applies custom color classes to the steps to visually differentiate them or match a specific theme, using DaisyUI's color palette.
-
-```html
-<ul class="steps">
-  <li class="step step-primary">Fly to moon</li>
-  <li class="step step-secondary">Shrink the moon</li>
-  <li class="step step-accent">Grab the moon</li>
-  <li class="step step-info">Sit on toilet</li>
-</ul>
-```
-
----
-
-### DaisyUI Select Component with Fieldset and Labels
-
-Source: https://daisyui.com/components/select
-
-Shows how to integrate the DaisyUI select component within a fieldset, using legend for the main title and labels for individual options. This structure improves accessibility and organization for grouped form elements.
-
-```html
-<fieldset class="space-y-6">
-  <legend class="sr-only">Browsers</legend>
-  <div class="form-control w-full max-w-xs">
-    <label class="label">
-      <span class="label-text">Pick a browser</span>
-    </label>
-    <select class="select select-bordered w-full max-w-xs">
-      <option disabled selected>Chrome</option>
-      <option>FireFox</option>
-      <option>Safari</option>
-    </select>
-    <label class="label">
-      <span class="label-text-alt">Optional</span>
-    </label>
-  </div>
-</fieldset>
-```
-
----
-
-### DaisyUI Stack Component: Stacked Images
-
-Source: https://daisyui.com/components/stack
-
-Illustrates how to use the DaisyUI 'stack' component to layer images vertically. This is useful for creating visual effects where images overlap or are presented in a stacked format.
-
-```html
-<div class="stack">
-  <img
-    src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
-    alt="Image 1"
-  />
-  <img
-    src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
-    alt="Image 2"
-  />
-  <img
-    src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
-    alt="Image 3"
-  />
-</div>
-```
-
----
-
-### DaisyUI Tab Sizes with HTML
-
-Source: https://daisyui.com/components/tab
-
-Demonstrates the different size variations available for DaisyUI tabs, including extra-small (xs), small (sm), medium (md), large (lg), and extra-large (xl). Each size is applied using corresponding class names.
-
-````html
-### Sizes Xsmall Xsmall Xsmall Small Small Small Medium Medium Medium Large
-Large Large Xlarge Xlarge Xlarge ``` html
-<div class="flex flex-col gap-3">
-  <div>
-    <div role="tablist" class="tabs tabs-lift">
-      <a role="tab" class="tab tab-xs">Xsmall</a>
-      <a role="tab" class="tab tab-xs">Xsmall</a>
-      <a role="tab" class="tab tab-xs">Xsmall</a>
-    </div>
-    <div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-      Tab content
-    </div>
-  </div>
-  <div>
-    <div role="tablist" class="tabs tabs-lift">
-      <a role="tab" class="tab tab-sm">Small</a>
-      <a role="tab" class="tab tab-sm">Small</a>
-      <a role="tab" class="tab tab-sm">Small</a>
-    </div>
-    <div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-      Tab content
-    </div>
-  </div>
-  <div>
-    <div role="tablist" class="tabs tabs-lift">
-      <a role="tab" class="tab tab-md">Medium</a>
-      <a role="tab" class="tab tab-md">Medium</a>
-      <a role="tab" class="tab tab-md">Medium</a>
-    </div>
-    <div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-      Tab content
-    </div>
-  </div>
-  <div>
-    <div role="tablist" class="tabs tabs-lift">
-      <a role="tab" class="tab tab-lg">Large</a>
-      <a role="tab" class="tab tab-lg">Large</a>
-      <a role="tab" class="tab tab-lg">Large</a>
-    </div>
-    <div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-      Tab content
-    </div>
-  </div>
-  <div>
-    <div role="tablist" class="tabs tabs-lift">
-      <a role="tab" class="tab tab-xl">Xlarge</a>
-      <a role="tab" class="tab tab-xl">Xlarge</a>
-      <a role="tab" class="tab tab-xl">Xlarge</a>
-    </div>
-    <div class="p-4 border border-t-0 border-base-content/20 rounded-b-box">
-      Tab content
-    </div>
-  </div>
-</div>
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Join Component: Vertical Grouping
+### Install Tailwind CSS and daisyUI for Bun
 
-Source: https://daisyui.com/components/join
+Source: https://daisyui.com/docs/install/bun
 
-Illustrates how to use the 'join-vertical' class with the DaisyUI 'join' component to stack grouped items vertically. This is useful for creating vertical lists of buttons or other form elements.
+Installs the necessary packages, `bun-plugin-tailwind`, `tailwindcss`, and `daisyui`, using the Bun package manager. These are required for Tailwind CSS and daisyUI integration.
 
-```html
-<div class="join join-vertical">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join join-vertical">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join join-vertical">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join join-vertical">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-<div class="join join-vertical">
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-  <button class="join-item btn">Button</button>
-</div>
-````
-
----
-
-### DaisyUI Chat Bubble with Image (HTML)
-
-Source: https://daisyui.com/components/chat
-
-Shows how to integrate an image within a DaisyUI chat bubble, typically used for author avatars. The 'chat-image' class is essential for this layout.
-
-```html
-<div class="chat chat-start">
-  <div class="chat-image avatar">
-    <div class="w-10 rounded-full">
-      <img src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
-    </div>
-  </div>
-  <div class="chat-bubble">
-    It was said that you would, destroy the Sith, not join them.
-  </div>
-</div>
-<div class="chat chat-start">
-  <div class="chat-image avatar">
-    <div class="w-10 rounded-full">
-      <img src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
-    </div>
-  </div>
-  <div class="chat-bubble">It was you who would bring balance to the Force</div>
-</div>
-<div class="chat chat-start">
-  <div class="chat-image avatar">
-    <div class="w-10 rounded-full">
-      <img src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp" />
-    </div>
-  </div>
-  <div class="chat-bubble">Not leave it in Darkness</div>
-</div>
-
-<div class="chat chat-end">
-  <div class="chat-image avatar">
-    <div class="w-10 rounded-full">
-      <img
-        src="https://img.daisyui.com/images/profile/demo/chuckles@192.webp"
-      />
-    </div>
-  </div>
-  <div class="chat-bubble">I wish that were so!</div>
-</div>
-<div class="chat chat-end">
-  <div class="chat-image avatar">
-    <div class="w-10 rounded-full">
-      <img
-        src="https://img.daisyui.com/images/profile/demo/chuckles@192.webp"
-      />
-    </div>
-  </div>
-  <div class="chat-bubble">I did, and I will!</div>
-</div>
+```shell
+bun install bun-plugin-tailwind tailwindcss@latest daisyui@latest
 ```
-
----
-
-### DaisyUI Tabs with Radio Inputs and HTML
-
-Source: https://daisyui.com/components/tab
-
-Explains how to implement DaisyUI tabs using radio inputs for interactive tab switching. This approach requires unique 'name' attributes for each tab group and uses hidden radio inputs to control the active state.
-
-````html
-### tabs-box using radio inputs ``` html
-<div class="flex w-full flex-col gap-3">
-  <div role="tablist" class="tabs tabs-boxed">
-    <input
-      type="radio"
-      name="my_tab_group_1"
-      role="tab"
-      class="tab"
-      aria-label="Tab 1"
-      checked
-    />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">
-      Tab content 1
-    </div>
-
-    <input
-      type="radio"
-      name="my_tab_group_1"
-      role="tab"
-      class="tab"
-      aria-label="Tab 2"
-    />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">
-      Tab content 2
-    </div>
-
-    <input
-      type="radio"
-      name="my_tab_group_1"
-      role="tab"
-      class="tab"
-      aria-label="Tab 3"
-    />
-    <div role="tabpanel" class="tab-content border rounded-t-none p-4">
-      Tab content 3
-    </div>
-  </div>
-</div>
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Swap Component: Icons with Flip Effect (HTML)
+### Yew App HTML Structure
 
-Source: https://daisyui.com/components/swap
+Source: https://daisyui.com/docs/install/yew
 
-Demonstrates the flip effect for icon toggling using the DaisyUI Swap component. The `swap-flip` class is applied to the swap container, allowing for a 3D flip transition between two child elements (e.g., devil and angel emojis).
+Defines the basic HTML structure for a Yew application, including the character set, title, and a link to the 'output.css' stylesheet.
 
 ```html
-<label class="swap swap-flip">
-  <input type="checkbox" />
-  <div class="swap-on">😈</div>
-  <div class="swap-off">😇</div>
-</label>
-````
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Yew App</title>
+    <link rel="stylesheet" href="output.css" />
+  </head>
+  <body></body>
+</html>
 
----
+```
 
-### DaisyUI Custom Theme with Tailwind CSS
+--------------------------------
 
-Source: https://context7_llms
+### Initialize Bun Project
 
-Defines a custom DaisyUI theme by importing Tailwind CSS and daisyUI plugins. It specifies various CSS variables for colors, border-radius, sizes, and component depth/noise. This allows for a fully branded user interface.
+Source: https://daisyui.com/docs/install/bun
+
+Initializes a new Bun project in the current directory. This is the first step to setting up the development environment.
+
+```shell
+bun init -y
+```
+
+--------------------------------
+
+### DaisyUI Hero Component Example (React)
+
+Source: https://daisyui.com/components/hero
+
+A React implementation of the DaisyUI Hero component. This example demonstrates how to use the Hero component within a React application, maintaining the same structure and functionality as the HTML version.
+
+```jsx
+<div className="hero bg-base-200 min-h-screen">
+  <div className="hero-content text-center">
+    <div className="max-w-md">
+      <h1 className="text-5xl font-bold">Hello there</h1>
+      <p className="py-6">
+        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+        quasi. In deleniti eaque aut repudiandae et a id nisi.
+      </p>
+      <button className="btn btn-primary">Get Started</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Install Tailwind CSS for Rails
+
+Source: https://daisyui.com/docs/install/rails
+
+Commands to add the tailwindcss-rails gem and install Tailwind CSS into a Rails project.
+
+```bash
+./bin/bundle add tailwindcss-rails
+./bin/rails tailwindcss:install
+```
+
+--------------------------------
+
+### Card as Dropdown Example (HTML & React JSX)
+
+Source: https://daisyui.com/components/dropdown
+
+Shows how to use a DaisyUI card component as the content for a dropdown. This allows for richer, more complex content within the dropdown. The examples are provided in HTML and React JSX.
+
+```html
+<div class="dropdown">
+  <div tabindex="0" role="button" class="btn m-1">Click</div>
+  <div
+    tabindex="0"
+    class="dropdown-content card card-sm bg-base-100 z-1 w-64 shadow-md">
+    <div class="card-body">
+      <p>This is a card. You can use any element as a dropdown.</p>
+    </div>
+  </div>
+</div>
+```
+
+```jsx
+<div className="dropdown">
+  <div tabIndex={0} role="button" className="btn m-1">Click</div>
+  <div
+    tabIndex={0}
+    className="dropdown-content card card-sm bg-base-100 z-1 w-64 shadow-md">
+    <div className="card-body">
+      <p>This is a card. You can use any element as a dropdown.</p>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Window Mockup with DaisyUI
+
+Source: https://daisyui.com/llms
+
+Creates a box that mimics an operating system window. Used for framing content within a typical window UI.
+
+```html
+<div class="mockup-window border bg-base-300">
+  <div class="flex flex-col gap-3 p-4">
+    <div>Window Content</div>
+    <button class="btn btn-primary">Click Me</button>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Import daisyUI CSS
+
+Source: https://daisyui.com/blog/npm-init-daisyui
+
+Demonstrates how to import the generated CSS file into your project. This is necessary if you are not using a bundler that handles CSS imports automatically.
+
+```javascript
+import "/output.css"
+```
+
+--------------------------------
+
+### Basic Yew App Component
+
+Source: https://daisyui.com/docs/install/yew
+
+A simple Yew functional component that renders an HTML button with the text 'Hello daisyUI' and applies a CSS class for styling.
+
+```rust
+use yew::prelude::*;
+
+#[function_component]
+fn App() -> Html {
+    html! {
+        <button class="btn">{ "Hello daisyUI" }</button>
+    }
+}
+
+fn main() {
+    yew::Renderer::<App>::new().render();
+}
+
+```
+
+--------------------------------
+
+### DaisyUI Custom Theme with Custom Colors (CSS)
+
+Source: https://daisyui.com/llms
+
+Defines a custom DaisyUI theme by importing Tailwind CSS and daisyUI plugins, and then configuring theme properties like colors and border radii using CSS variables. This example uses OKLCH color format but supports hex or other formats. Ensure all required CSS variables are present when creating a custom theme.
 
 ```css
 @import "tailwindcss";
@@ -8723,55 +3390,479 @@ Defines a custom DaisyUI theme by importing Tailwind CSS and daisyUI plugins. It
   --depth: 1; /* only 0 or 1 – Adds a shadow and subtle 3D depth effect to components */
   --noise: 0; /* only 0 or 1 - Adds a subtle noise (grain) effect to components */
 }
+
 ```
 
----
+--------------------------------
 
-### HTML Dialog Modal with JS Open and Click Outside Close (DaisyUI)
+### Dropdown Component Syntax and Usage (HTML)
 
-Source: https://daisyui.com/components/modal
+Source: https://daisyui.com/llms
 
-This snippet shows a DaisyUI modal implemented with an HTML dialog element. It is opened via JavaScript's `showModal()` method. The modal includes a 'modal-backdrop' class, which, when clicked, closes the modal, providing a common user interaction pattern for dismissing dialogs.
+Illustrates different methods for implementing DaisyUI dropdowns, including using the HTML `<details>` and `<summary>` elements, the Popover API, and CSS focus with `tabindex`. It outlines class names for styling and placement.
 
 ```html
-<button class="btn" onclick="my_modal_2.showModal()">open modal</button>
-<dialog id="my_modal_2" class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Press ESC key or click outside to close</p>
-    <div class="modal-action">
-      <form method="dialog">
-        <button class="btn">close</button>
-      </form>
-    </div>
+<details class="dropdown">
+  <summary>Button</summary>
+  <ul class="dropdown-content">{CONTENT}</ul>
+</details>
+```
+
+```html
+<button popovertarget="{id}" style="anchor-name:--{anchor}">{button}</button>
+<ul class="dropdown-content" popover id="{id}" style="position-anchor:--{anchor}">{CONTENT}</ul>
+```
+
+```html
+<div class="dropdown">
+  <div tabindex="0" role="button">Button</div>
+  <ul tabindex="-1" class="dropdown-content">{CONTENT}</ul>
+</div>
+```
+
+--------------------------------
+
+### Install daisyUI npm Package
+
+Source: https://daisyui.com/blog/9-best-tailwind-css-plugins-for-developers
+
+Install the daisyUI component library for Tailwind CSS using npm package manager. This command downloads the daisyUI package and its dependencies to your project's node_modules directory.
+
+```bash
+npm i daisyui
+```
+
+--------------------------------
+
+### Install Tailwind CSS and daisyUI for Ember
+
+Source: https://daisyui.com/docs/install/ember
+
+Installs the necessary packages for Tailwind CSS and daisyUI into an Ember project using npm. This includes the latest versions of tailwindcss, @tailwindcss/vite, and daisyui, preparing the project for styling integration.
+
+```bash
+npm install tailwindcss@latest @tailwindcss/vite@latest daisyui@latest
+```
+
+--------------------------------
+
+### HTML, React, Vue, Svelte, Angular Button Examples using daisyUI
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Demonstrates the framework-agnostic nature of daisyUI. This snippet shows the same button component implemented in plain HTML, React, Vue, Svelte, and Angular, highlighting daisyUI's compatibility across various frontend technologies without additional dependencies.
+
+```html
+<!-- Plain HTML -->
+<button class="btn btn-primary">Click Me</button>
+
+<!-- React -->
+<button className="btn btn-primary">Click Me</button>
+
+<!-- Vue -->
+<button class="btn btn-primary">Click Me</button>
+
+<!-- Svelte -->
+<button class="btn btn-primary">Click Me</button>
+
+<!-- Angular -->
+<button class="btn btn-primary">Click Me</button>
+```
+
+--------------------------------
+
+### Create React Router Project
+
+Source: https://daisyui.com/docs/install/reactrouter
+
+Command to create a new React Router project in the current directory. This sets up the basic structure for a React application with routing capabilities.
+
+```bash
+npm create react-router@latest ./
+```
+
+--------------------------------
+
+### Install Tailwind CSS and daisyUI Dependencies
+
+Source: https://daisyui.com/docs/install/angular
+
+Installs the latest versions of daisyUI, Tailwind CSS, Tailwind CSS PostCSS plugin, and PostCSS. The `--force` flag may be used to resolve potential peer dependency conflicts.
+
+```bash
+npm install daisyui@latest tailwindcss@latest @tailwindcss/postcss@latest postcss@latest --force
+```
+
+--------------------------------
+
+### Configure Context7 MCP server in Windsurf
+
+Source: https://daisyui.com/docs/editor/windsurf
+
+Setup Context7 as an alternative MCP server for daisyUI integration in Windsurf. Provides context-aware AI code generation without requiring additional credentials, using Upstash's Context7 MCP package.
+
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    }
+  }
+}
+```
+
+--------------------------------
+
+### Create Vite Vue Project
+
+Source: https://daisyui.com/docs/install/vue
+
+Command to create a new Vite Vue project in the current directory. This sets up the basic structure for a Vue.js application using Vite as the build tool.
+
+```bash
+npm create vite@latest ./ -- --template vue
+```
+
+--------------------------------
+
+### Carousel Snap to End - JSX Example
+
+Source: https://daisyui.com/components/carousel
+
+This snippet demonstrates how to create a carousel that snaps to the end using DaisyUI classes within a JSX environment, commonly found in React applications. It requires DaisyUI and Tailwind CSS. The `carousel-end` class ensures the carousel items align to the right side.
+
+```jsx
+<div className="carousel carousel-end rounded-box">
+  <div className="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" alt="Drink" />
   </div>
-  <form method="dialog" class="modal-backdrop">
-    <button>close</button>
-  </form>
-</dialog>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+      alt="Drink" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+      alt="Drink" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
+      alt="Drink" />
+  </div>
+  <div className="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" alt="Drink" />
+  </div>
+  <div className="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" alt="Drink" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
+      alt="Drink" />
+  </div>
+</div>
 ```
 
-```javascript
-// Open the modal using document.getElementById('ID').showModal() method
-document.getElementById("my_modal_2").showModal();
+--------------------------------
+
+### Link daisyUI CSS in HTML
+
+Source: https://daisyui.com/blog/npm-init-daisyui
+
+Shows how to include the daisyUI CSS file directly in your HTML, typically used in static site generation or when not utilizing a module bundler.
+
+```html
+<link href="/output.css" rel="stylesheet" />
 ```
 
+--------------------------------
+
+### Phone Mockup with DaisyUI
+
+Source: https://daisyui.com/llms
+
+Shows a mockup of an iPhone, including a camera element and a display area for content. Useful for showcasing mobile applications.
+
+```html
+<div class="mockup-phone">
+  <div class="mockup-phone-camera"></div>
+  <div class="mockup-phone-display">
+    Content goes here
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Preview Production Build (npm)
+
+Source: https://daisyui.com/blog/nexus-dashboard-template
+
+Starts a local server to preview the production build of the project. Useful for testing the deployed version before actual release.
+
+```bash
+npm run preview
+```
+
+--------------------------------
+
+### Create Ember Project with Vite
+
+Source: https://daisyui.com/docs/install/ember
+
+Initializes a new Ember project using the latest ember-cli version with the @ember/app-blueprint, leveraging Vite for build tooling. This command sets up the basic structure for a modern Ember application.
+
+```bash
+npx ember-cli@latest init --blueprint @ember/app-blueprint
+```
+
+--------------------------------
+
+### Code Mockup with DaisyUI
+
+Source: https://daisyui.com/llms
+
+Displays code blocks within a box that looks like a code editor. Supports line prefixes and can be used with syntax highlighting libraries.
+
+```html
+<div class="mockup-code">
+  <pre data-prefix="1"><code>import React from 'react'
+</code></pre>
+  <pre data-prefix="2" className="text-warning"><code>// Warning: Something is not right
+</code></pre>
+  <pre data-prefix="3"><code>console.log('Hello world!')
+</code></pre>
+</div>
+```
+
+--------------------------------
+
+### Build CSS with Tailwind CLI
+
+Source: https://daisyui.com/blog/npm-init-daisyui
+
+A command-line instruction to process your main CSS file (e.g., `tailwind.css`) and output the compiled CSS (e.g., `output.css`) using the Tailwind CSS CLI. This is useful for projects without a bundler.
+
+```bash
+npx tailwindcss -i tailwind.css -o output.css
+```
+
+--------------------------------
+
+### Install Tailwind CSS CLI and daisyUI
+
+Source: https://daisyui.com/docs/install/htmx
+
+Installs the latest versions of Tailwind CSS CLI, @tailwindcss/cli, and daisyUI using npm. This is a prerequisite for using daisyUI with Tailwind CSS.
+
+```bash
+npm install tailwindcss@latest @tailwindcss/cli@latest daisyui@latest
+```
+
+--------------------------------
+
+### Theme Switching with daisyUI
+
+Source: https://daisyui.com/pages/ui-library-for-hackaton
+
+This example shows how to switch between different themes for an entire application using a single attribute change on the `<html>` tag. It supports numerous professional themes, allowing for instant visual style changes.
+
+```html
+<!-- Light theme -->
+<html data-theme="light">
+
+<!-- Dark theme -->
+<html data-theme="dark">
+
+<!-- Cyberpunk theme for that extra wow factor -->
+<html data-theme="cyberpunk">
+```
+
+--------------------------------
+
+### Run Laravel Project with Artisan and Vite
+
+Source: https://daisyui.com/docs/install/laravel
+
+Commands to serve the Laravel project using Artisan and simultaneously run the Vite development server to compile frontend assets.
+
+```shell
+php artisan serve
+npm run dev
+```
+
+--------------------------------
+
+### Pagination Component Syntax
+
+Source: https://daisyui.com/llms
+
+Illustrates the structure for a DaisyUI pagination component using the 'join' class. Each item within the pagination should use the 'join-item' class.
+
+```html
+<div class="join">{CONTENT}</div>
+```
+
+--------------------------------
+
+### Configure daisyUI GitMCP Server in Claude Desktop
+
+Source: https://daisyui.com/docs/editor/claude
+
+This configuration sets up the daisyUI GitMCP server by specifying the npx command and arguments to run 'mcp-remote' with the daisyUI GitMCP repository URL. This allows direct generation of daisyUI code without needing to specify the server in the prompt.
+
+```json
+{
+  "mcpServers": {
+    "daisyui-github": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://gitmcp.io/saadeghi/daisyui"]
+    }
+  }
+}
+```
+
+--------------------------------
+
+### Eleventy Layout Template
+
+Source: https://daisyui.com/docs/install/11ty
+
+A default layout template for Eleventy using Nunjucks syntax. It includes basic HTML structure, head meta tags, and links to the main CSS file, applying the 'prose' class for typography.
+
+```html
+---
+title: My Blog
 ---
 
-### FAB Flower with Tooltips - HTML
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/styles/index.css">
+  </head>
+  <body class="prose">
+    {{ content | safe }}
+  </body>
+</html>
+```
 
-Source: https://context7_llms
+--------------------------------
 
-A FAB in the flower arrangement that uses tooltips to provide labels for the expanding buttons. This is suitable when there isn't enough space for visible text labels.
+### DaisyUI Dropdown Component Example
+
+Source: https://daisyui.com/codepen
+
+Shows a basic implementation of a dropdown menu using DaisyUI's `<details>` element. It includes a summary button to toggle the dropdown and a list of items within the dropdown content.
+
+```html
+<details class="dropdown m-4">
+  <summary class="btn m-1">open/close dropdown</summary>
+  <ul class="dropdown-content menu z-[2] w-52 rounded-box bg-base-200 p-2">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</details>
+```
+
+--------------------------------
+
+### Basic DaisyUI Menu Example (HTML)
+
+Source: https://daisyui.com/components/menu
+
+A fundamental example of a DaisyUI menu using an unordered list with 'menu' class. This creates a simple, vertically oriented menu. It uses 'bg-base-200' for background and 'rounded-box' for rounded corners.
+
+```html
+<ul class="menu bg-base-200 rounded-box w-56">
+  <li><a>Item 1</a></li>
+  <li><a>Item 2</a></li>
+  <li><a>Item 3</a></li>
+</ul>
+```
+
+--------------------------------
+
+### DaisyUI FAB Component Syntax and Examples
+
+Source: https://daisyui.com/llms
+
+The Floating Action Button (FAB) component in DaisyUI allows for a button that stays in the bottom corner of the screen, revealing additional action buttons when clicked. It supports vertical or quarter-circle arrangements, labels, tooltips, and integration with close or main action buttons. The structure involves a main container with the 'fab' class and nested buttons for actions.
+
+```html
+<div class="fab">
+  <button class="btn btn-lg btn-circle">{IconOriginal}</button>
+</div>
+```
+
+```html
+<div class="fab">
+  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">{IconOriginal}</div>
+  <button class="btn btn-lg btn-circle">{Icon1}</button>
+  <button class="btn btn-lg btn-circle">{Icon2}</button>
+  <button class="btn btn-lg btn-circle">{Icon3}</button>
+</div>
+```
+
+```html
+<div class="fab">
+  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">{IconOriginal}</div>
+  <div>{Label1}<button class="btn btn-lg btn-circle">{Icon1}</button></div>
+  <div>{Label2}<button class="btn btn-lg btn-circle">{Icon2}</button></div>
+  <div>{Label3}<button class="btn btn-lg btn-circle">{Icon3}</button></div>
+</div>
+```
+
+```html
+<div class="fab">
+  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">{IconOriginal}</div>
+  <button class="btn btn-lg">{Label1}</button>
+  <button class="btn btn-lg">{Label2}</button>
+  <button class="btn btn-lg">{Label3}</button>
+</div>
+```
+
+```html
+<div class="fab">
+  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">{IconOriginal}</div>
+  <div class="fab-close">Close <span class="btn btn-circle btn-lg btn-error">✕</span></div>
+  <div>{Label1}<button class="btn btn-lg btn-circle">{Icon1}</button></div>
+  <div>{Label2}<button class="btn btn-lg btn-circle">{Icon2}</button></div>
+  <div>{Label3}<button class="btn btn-lg btn-circle">{Icon3}</button></div>
+</div>
+```
+
+```html
+<div class="fab">
+  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">{IconOriginal}</div>
+  <div class="fab-main-action">
+    {LabelMainAction}<button class="btn btn-circle btn-secondary btn-lg">{IconMainAction}</button>
+  </div>
+  <div>{Label1}<button class="btn btn-lg btn-circle">{Icon1}</button></div>
+  <div>{Label2}<button class="btn btn-lg btn-circle">{Icon2}</button></div>
+  <div>{Label3}<button class="btn btn-lg btn-circle">{Icon3}</button></div>
+</div>
+```
 
 ```html
 <div class="fab fab-flower">
-  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
-    {IconOriginal}
-  </div>
-  <button class="fab-main-action btn btn-circle btn-lg">
-    {IconMainAction}
-  </button>
+  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">{IconOriginal}</div>
+  <button class="fab-main-action btn btn-circle btn-lg">{IconMainAction}</button>
+  <button class="btn btn-lg btn-circle">{Icon1}</button>
+  <button class="btn btn-lg btn-circle">{Icon2}</button>
+  <button class="btn btn-lg btn-circle">{Icon3}</button>
+</div>
+```
+
+```html
+<div class="fab fab-flower">
+  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">{IconOriginal}</div>
+  <button class="fab-main-action btn btn-circle btn-lg">{IconMainAction}</button>
   <div class="tooltip tooltip-left" data-tip="{Label1}">
     <button class="btn btn-lg btn-circle">{Icon1}</button>
   </div>
@@ -8784,329 +3875,1599 @@ A FAB in the flower arrangement that uses tooltips to provide labels for the exp
 </div>
 ```
 
----
+--------------------------------
 
-### Countdown in Boxes (HTML)
+### Configure input.css for Tailwind CSS and daisyUI
 
-Source: https://daisyui.com/components/countdown
+Source: https://daisyui.com/docs/install/yew
 
-Presents the DaisyUI Countdown component styled within boxes, offering a visually distinct way to display time units. Each unit is contained within its own background box.
+Sets up the 'input.css' file to import Tailwind CSS, specify source files for processing, and include daisyUI plugins for theming.
 
-```html
-<div class="grid grid-flow-col gap-5 text-center auto-rows-max">
-  <div
-    class="flex flex-col p-2 bg-neutral-800 rounded-box text-neutral-content"
-  >
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:15"></span>
-    </span>
-    days
-  </div>
-  <div
-    class="flex flex-col p-2 bg-neutral-800 rounded-box text-neutral-content"
-  >
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:10"></span>
-    </span>
-    hours
-  </div>
-  <div
-    class="flex flex-col p-2 bg-neutral-800 rounded-box text-neutral-content"
-  >
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:24"></span>
-    </span>
-    min
-  </div>
-  <div
-    class="flex flex-col p-2 bg-neutral-800 rounded-box text-neutral-content"
-  >
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:59"></span>
-    </span>
-    sec
-  </div>
-</div>
-```
+```css
+@import "tailwindcss";
 
----
+@source not "./tailwindcss";
+@source not "./daisyui{,*}.mjs";
 
-### Customizing Component Border Size with CSS Variables
+@plugin "./daisyui.mjs";
 
-Source: https://daisyui.com/docs/v5
-
-Demonstrates how to customize the border size for DaisyUI components like buttons and inputs using the `--border` CSS variable. This allows for consistent border styling across different themes or globally.
-
-```CSS
-/* Example for customizing border size */
-:root {
-  --border: 2px; /* Adjust border width */
+/* Optional for custom themes – Docs: https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme */
+@plugin "./daisyui-theme.mjs"{ 
+  /* custom theme here */ 
 }
+
 ```
 
----
+--------------------------------
 
-### DaisyUI Validator for Form Inputs (HTML)
+### Themed Button Examples with daisyUI
 
-Source: https://daisyui.com/components/validator
+Source: https://daisyui.com/codepen
 
-Demonstrates the basic usage of the 'validator' class for form inputs like text, select, and textarea. It shows how an invalid input triggers an error color, and a valid input triggers a success color. The 'validator-hint' class is used for displaying validation messages.
+Shows how to apply a specific daisyUI theme (e.g., 'abyss') to buttons using the `data-theme` attribute. This allows for easy theme switching on specific sections or the entire page.
 
 ```html
-<input
-  type="email"
-  class="input input-bordered validator"
-  placeholder="email"
-/>
-<p class="validator-hint">Enter valid email address</p>
-
-<select class="select select-bordered validator">
-  <option disabled selected>Choose option</option>
-  <option>option 1</option>
-  <option>option 2</option>
-</select>
-<p class="validator-hint">Choose option</p>
-
-<textarea
-  class="textarea textarea-bordered validator"
-  placeholder="Bio"
-></textarea>
-<p class="validator-hint">Enter valid email address</p>
+<!-- same buttons with another theme! -->
+<div class="p-4" data-theme="abyss">
+  <button class="btn btn-primary">Primary</button>
+  <button class="btn btn-secondary">Secondary</button>
+  <button class="btn btn-accent">Accent</button>
+</div>
 ```
 
----
+--------------------------------
 
-### HTML: daisyUI List with Default Second Column Grow
+### Download Tailwind CSS Executable (Linux)
 
-Source: https://daisyui.com/components/list
+Source: https://daisyui.com/docs/install/django
 
-This snippet demonstrates the default behavior of the daisyUI List component where the second column within a 'list-row' automatically grows to fill remaining space. It is useful for displaying data in a structured, responsive manner.
+Downloads the Tailwind CSS standalone executable for various Linux architectures. These commands fetch the necessary binary to the static CSS directory.
+
+```shell
+# Run the corresponding command for your OS
+
+# Linux
+curl -sLo myapp/static/css/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-arm64
+curl -sLo myapp/static/css/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-arm64-musl
+curl -sLo myapp/static/css/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+curl -sLo myapp/static/css/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64-musl
+```
+
+--------------------------------
+
+### Create Image Carousel with DaisyUI - HTML
+
+Source: https://daisyui.com/components/carousel
+
+Implements a responsive image carousel using DaisyUI's carousel component with rounded styling. The carousel automatically snaps items to the start position and displays multiple food photography items. Use the carousel-item class for each slide.
 
 ```html
-<div class="list">
-  <div class="list-row">
-    <div>Most played songs this week</div>
-    <div>
-      <img
-        src="https://img.daisyui.com/images/profile/demo/1@94.webp"
-        alt="User Avatar"
-      />
-      Dio Lupa Remaining Reason
-    </div>
+<div class="carousel rounded-box">
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
+      alt="Burger" />
   </div>
-  <div class="list-row">
-    <div></div>
-    <div>
-      <img
-        src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-        alt="User Avatar"
-      />
-      Ellie Beilish Bears of a fever
-    </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+      alt="Burger" />
   </div>
-  <div class="list-row">
-    <div></div>
-    <div>
-      <img
-        src="https://img.daisyui.com/images/profile/demo/3@94.webp"
-        alt="User Avatar"
-      />
-      Sabrino Gardener Cappuccino
-    </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+      alt="Burger" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
+      alt="Burger" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp"
+      alt="Burger" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp"
+      alt="Burger" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
+      alt="Burger" />
   </div>
 </div>
 ```
 
----
+--------------------------------
 
-### Import daisyUI as a Plugin in Tailwind CSS 4 (CSS)
+### Indicator Start Position with DaisyUI
+
+Source: https://daisyui.com/components/indicator
+
+Demonstrates how to position an indicator at the start of an element using DaisyUI classes. This requires the 'indicator-item' and 'indicator-start' classes on the indicator element.
+
+```html
+<div class="indicator">
+  <span class="indicator-item indicator-start badge badge-secondary"></span>
+  <div class="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
+
+```jsx
+<div className="indicator">
+  <span className="indicator-item indicator-start badge badge-secondary"></span>
+  <div className="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Modal Component Example
+
+Source: https://daisyui.com/codepen
+
+A functional example of a modal dialog implemented with DaisyUI. It includes a button to trigger the modal and the modal structure itself with a form and a close button. The modal is controlled via JavaScript's `showModal()` method.
+
+```html
+<!-- Open the modal using ID.showModal() method -->
+<button class="btn" onclick="my_modal_1.showModal()">open modal</button>
+<dialog id="my_modal_1" class="modal">
+  <form method="dialog" class="modal-box">
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <button class="btn">Close</button>
+    </div>
+  </form>
+</dialog>
+```
+
+--------------------------------
+
+### Rails Controller for Homepage
+
+Source: https://daisyui.com/docs/install/rails
+
+A simple Rails controller action to render the homepage.
+
+```ruby
+class PagesController < ApplicationController
+  def home
+  end
+end
+```
+
+--------------------------------
+
+### Installing Mary UI on an Existing Laravel Project
+
+Source: https://daisyui.com/blog/mary-ui
+
+Outlines the steps to install Mary UI on an existing Laravel project, including adding Tailwind CSS and daisyUI dependencies, initializing Tailwind CSS configuration, modifying `tailwind.config.js`, updating the main CSS file with Tailwind directives, setting up Livewire's default app template, and adding Vite assets.
+
+```bash
+composer require robsontenorio/mary
+yarn add -D tailwindcss daisyui@latest postcss autoprefixer && npx tailwindcss init -p
+php artisan livewire:layout
+yarn dev
+```
+
+--------------------------------
+
+### Secondary Color Link with DaisyUI
+
+Source: https://daisyui.com/components/link
+
+This example shows how to style a link with the secondary color theme using the 'link link-secondary' classes. It provides examples for both standard HTML and React JSX.
+
+```html
+<a class="link link-secondary">Click me</a>
+```
+
+```jsx
+<a className="link link-secondary">Click me</a>
+```
+
+--------------------------------
+
+### Design Complete Dashboard Layout with DaisyUI Drawer
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Constructs a production-ready dashboard prototype with collapsible sidebar drawer, navbar, and statistics cards. Combines DaisyUI drawer, navbar, stats, and card components for rapid prototyping. Delivers complete layout functionality in minutes without custom CSS.
+
+```HTML
+<div class="drawer">
+  <input id="drawer-toggle" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col">
+    <!-- Navbar -->
+    <div class="navbar bg-base-300">
+      <div class="flex-none">
+        <label for="drawer-toggle" class="btn btn-square btn-ghost">☰</label>
+      </div>
+      <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">Dashboard</a>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="p-4">
+      <div class="stats shadow">
+        <div class="stat">
+          <div class="stat-title">Total Users</div>
+          <div class="stat-value">89,400</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-side">
+    <label for="drawer-toggle" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-80 bg-base-200">
+      <li><a>Analytics</a></li>
+      <li><a>Users</a></li>
+      <li><a>Settings</a></li>
+    </ul>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Install daisyUI as a Tailwind CSS Plugin
 
 Source: https://daisyui.com/docs/v5
 
-Demonstrates how to import daisyUI as a plugin directly within your main CSS file when using Tailwind CSS 4. This is the new recommended approach for integration.
+Demonstrates how to integrate daisyUI with Tailwind CSS 4 by importing it as a plugin directly within the CSS file, replacing the previous method of requiring it in the tailwind.config file.
 
 ```css
 /* app.css */
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+
+
 ```
 
----
+--------------------------------
 
-### Dropdown using Popover API and anchor positioning (HTML)
+### Eleventy Configuration (eleventy.config.mjs)
 
-Source: https://daisyui.com/components/dropdown
+Source: https://daisyui.com/docs/install/11ty
 
-Utilizes the HTML Popover API for dropdowns, which renders content in a top layer, simplifying z-index and overflow issues. CSS Anchor Positioning is used for relative placement, though browser support for anchor positioning varies.
+Configuration file for Eleventy using ES Modules. It sets up a PostCSS process to compile Tailwind CSS and daisyUI on the 'eleventy.before' event, ensuring styles are ready before the build.
 
-```html
-<button popovertarget="my-popover" anchor-name="--my-anchor">Button</button>
-<div id="my-popover" popover anchor-name="--my-anchor">
-  <ul class="p-2">
-    <li>Item 1</li>
-    <li>Item 2</li>
-  </ul>
-</div>
+```javascript
+import fs from 'fs';
+import path from 'path';
+import postcss from 'postcss';
+import tailwindcss from '@tailwindcss/postcss';
+
+export default function (eleventyConfig) {
+  eleventyConfig.on('eleventy.before', async () => {
+    const tailwindInputPath = path.resolve('./src/styles/index.css');
+    const tailwindOutputPath = './dist/styles/index.css';
+    const cssContent = fs.readFileSync(tailwindInputPath, 'utf8');
+    const outputDir = path.dirname(tailwindOutputPath);
+
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+
+    const result = await postcss([tailwindcss()]).process(cssContent, {
+      from: tailwindInputPath,
+      to: tailwindOutputPath,
+    });
+
+    fs.writeFileSync(tailwindOutputPath, result.css);
+  });
+
+  return {
+    dir: { input: 'src', output: 'dist' },
+  };
+}
 ```
 
----
+--------------------------------
 
-### DaisyUI Radio Button Colors
+### Product Details Page Layout (Next.js)
 
-Source: https://daisyui.com/components/radio
+Source: https://daisyui.com/blog/daisyui-nextjs-online-store-template
 
-Shows how to apply different color themes to DaisyUI radio buttons. This includes neutral, primary, secondary, accent, success, warning, info, and error color variants.
+Example snippet showing the basic structure for a product details page in a Next.js application. It includes a placeholder for the product image component and sets up a responsive grid layout.
 
-```html
-<!-- Radio Neutral -->
-<input type="radio" name="radio-color" class="radio radio-neutral" checked />
-
-<!-- Radio Primary -->
-<input type="radio" name="radio-color" class="radio radio-primary" checked />
-
-<!-- Radio Secondary -->
-<input type="radio" name="radio-color" class="radio radio-secondary" checked />
-
-<!-- Radio Accent -->
-<input type="radio" name="radio-color" class="radio radio-accent" checked />
-
-<!-- Radio Success -->
-<input type="radio" name="radio-color" class="radio radio-success" checked />
-
-<!-- Radio Warning -->
-<input type="radio" name="radio-color" class="radio radio-warning" checked />
-
-<!-- Radio Info -->
-<input type="radio" name="radio-color" class="radio radio-info" checked />
-
-<!-- Radio Error -->
-<input type="radio" name="radio-color" class="radio radio-error" checked />
-```
-
----
-
-### DaisyUI Alert with Title and Description (HTML)
-
-Source: https://daisyui.com/components/alert
-
-This code shows a DaisyUI alert component featuring a title ('New message!') and a description ('You have 1 unread message') followed by a call-to-action link ('See'). It's suitable for displaying important notifications or updates.
-
-```html
-<div>
-  <div class="alert alert-info">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      class="stroke-current shrink-0 w-6 h-6"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M13 16h.01M11 20h.01M12 18h.01M12 6h.01M12 10h.01M12 14h.01M7 22h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z"
-      ></path>
-    </svg>
-    <div>
-      <h3 class="font-bold">New message!</h3>
-      <div class="text-xs">You have 1 unread message</div>
+```javascript
+const ProductDetails = () => {
+  return (
+    <div className="pb-20">
+      <div className="mt-10 flex flex-col">
+        <div className="flex flex-col lg:grid gap-6 lg:gap-12 lg:grid-cols-2">
+          <ProductImage params={{ slug: slug as string }} />
+        </div>
+      </div>
     </div>
-    <button class="btn btn-sm">See</button>
+  );
+};
+```
+
+--------------------------------
+
+### Create Next.js Project
+
+Source: https://daisyui.com/blog/install-daisyui-and-tailwindcss-in-nextjs
+
+Command to initialize a new Next.js project. It prompts the user for configuration details, including enabling Tailwind CSS.
+
+```bash
+npx create-next-app@latest
+```
+
+--------------------------------
+
+### daisyUI Loading Spinner Examples (HTML)
+
+Source: https://daisyui.com/components/loading
+
+Demonstrates how to implement the loading spinner component with different size classes in HTML. This component is purely visual and requires no additional JavaScript for its animation.
+
+```html
+<span class="loading loading-spinner loading-xs"></span>
+<span class="loading loading-spinner loading-sm"></span>
+<span class="loading loading-spinner loading-md"></span>
+<span class="loading loading-spinner loading-lg"></span>
+<span class="loading loading-spinner loading-xl"></span>
+```
+
+--------------------------------
+
+### Configure Vite for Tailwind CSS in Solid
+
+Source: https://daisyui.com/docs/install/solid
+
+Configures the Vite build tool to include the Tailwind CSS plugin and the Solid.js plugin. Sets the development server port and build target.
+
+```javascript
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+import solidPlugin from "vite-plugin-solid";
+
+export default defineConfig({
+  plugins: [tailwindcss(), solidPlugin()],
+  server: {
+    port: 3000,
+  },
+  build: {
+    target: "esnext",
+  },
+});
+```
+
+--------------------------------
+
+### Tailwind CSS Modal Example
+
+Source: https://daisyui.com/pages/css-library-for-html
+
+An example of a modal component built using only Tailwind CSS utility classes. It demonstrates the verbosity and potential for overwhelm when constructing UI elements solely with utility classes, requiring significant memorization and debugging time.
+
+```html
+<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+  <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative">
+    <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <h3 class="text-xl font-bold text-gray-900 mb-4">Modal Title</h3>
+    <p class="text-gray-600 mb-6">Modal content goes here.</p>
+    <div class="flex justify-end space-x-3">
+      <button class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg transition-colors">
+        Cancel
+      </button>
+      <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+        Confirm
+      </button>
+    </div>
   </div>
 </div>
 ```
 
----
+--------------------------------
 
-### Customizing DaisyUI Themes with Custom Fonts (CSS)
+### Homepage with daisyUI Button
 
-Source: https://daisyui.com/docs/v5
+Source: https://daisyui.com/docs/install/rails
 
-This snippet demonstrates how to customize daisyUI themes by applying custom font families. It shows how to use the `@plugin` directive to modify existing themes like 'cyberpunk' and 'wireframe' with specific font stacks. This is useful for enforcing consistent typography across your project.
-
-```css
-@plugin "daisyui";
-@plugin "daisyui/theme" {
-  name: cyberpunk;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    Liberation Mono, Courier New, monospace;
-}
-@plugin "daisyui/theme" {
-  name: wireframe;
-  font-family: Chalkboard, comic sans ms, "sans-serif";
-}
-```
-
----
-
-### DaisyUI Navbar: Title and Icon
-
-Source: https://daisyui.com/components/navbar
-
-Demonstrates how to create a DaisyUI Navbar that includes both a title and an icon. This enhances the visual identity of the navigation bar.
+An HTML view for a Rails page demonstrating the use of a daisyUI primary button.
 
 ```html
-<div class="navbar bg-base-100">
-  <a class="btn btn-ghost normal-case text-xl">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M3 12l2-2m0 0l7-7 7 7M5 12v6a2 2 0 002 2h10a2 2 0 002-2v-6"
-      />
-    </svg>
-    daisyUI
-  </a>
+<button class="btn btn-primary">Hello daisyUI!</button>
+```
+
+--------------------------------
+
+### Browser Mockup with DaisyUI
+
+Source: https://daisyui.com/llms
+
+Provides a box that resembles a browser window, including a toolbar. Used to display web content within a browser frame.
+
+```html
+<div class="mockup-browser">
+  <div class="mockup-browser-toolbar">
+    <div class="input input-bordered input-xs">https://daisyui.com</div>
+  </div>
+  <div class="mockup-browser-content">{CONTENT}</div>
 </div>
 ```
 
----
+--------------------------------
 
-### DaisyUI Dropdown Syntax (CSS Focus)
+### Navbar Component Syntax
 
-Source: https://context7_llms
+Source: https://daisyui.com/llms
 
-A DaisyUI Dropdown implemented using CSS focus and `tabindex`. The trigger element has `tabindex="0"` and `role="button"`. The dropdown content, a `<ul>` with the `dropdown-content` class, is made focusable with `tabindex="-1"`. This approach relies on keyboard interaction for opening/closing.
+Shows the basic structure for a DaisyUI navbar component. It uses the 'navbar' class for the main container and 'navbar-start', 'navbar-center', and 'navbar-end' for content alignment.
 
 ```html
-<div class="dropdown">
-  <div tabindex="0" role="button">Button</div>
-  <ul tabindex="-1" class="dropdown-content">
-    {CONTENT}
+<div class="navbar">{CONTENT}</div>
+```
+
+--------------------------------
+
+### Configure daisyUI Blueprint MCP Server in Claude Desktop
+
+Source: https://daisyui.com/docs/editor/claude
+
+This configuration adds the official daisyUI Blueprint MCP server to Claude desktop. It requires a Blueprint license key, email, and optionally a Figma API key. Once configured, prompts can specify 'use Blueprint MCP' for enhanced daisyUI code generation.
+
+```json
+{
+  "mcpServers": {
+    "daisyui-blueprint": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "daisyui-blueprint@latest"],
+      "env": {
+        "LICENSE": "YOUR BLUEPRINT LICENSE KEY",
+        "EMAIL": "YOUR EMAIL ADDRESS",
+        "FIGMA": "YOUR FIGMA API KEY (optional)"
+      }
+    }
+  }
+}
+```
+
+--------------------------------
+
+### Configure Browserslist for Turbopack Compatibility
+
+Source: https://daisyui.com/docs/install/nextjs
+
+Sets the `browserslist` in `package.json` to target modern browsers when using Turbopack. This helps avoid style issues caused by Lightning CSS polyfilling.
+
+```bash
+npm pkg set browserslist="> 1%"
+
+```
+
+--------------------------------
+
+### Build Project for Production (npm)
+
+Source: https://daisyui.com/blog/daisyui-nextjs-online-store-template
+
+Generates an optimized static build of the Next.js application. This command prepares the site for deployment by creating production-ready assets.
+
+```bash
+npm run build
+```
+
+--------------------------------
+
+### Configure Tailwind CSS with daisyUI
+
+Source: https://daisyui.com/blog/how-to-install-sveltekit-and-daisyui
+
+This snippet shows how to modify the `tailwind.config.js` file to include daisyUI as a plugin and specify the content files that Tailwind should scan for classes. The `content` array should point to your source files.
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./src/**/*.{html,svelte,js,ts}'],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('daisyui')],
+}
+```
+
+--------------------------------
+
+### DaisyUI Multi-Column Footer Example
+
+Source: https://daisyui.com/components/footer
+
+This HTML snippet demonstrates a multi-column footer layout using DaisyUI classes. It includes navigation links organized into 'Services,' 'Company,' and 'Legal' sections. This footer is responsive and adapts to different screen sizes.
+
+```html
+<footer class="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
+  <nav>
+    <h6 class="footer-title">Services</h6>
+    <a class="link link-hover">Branding</a>
+    <a class="link link-hover">Design</a>
+    <a class="link link-hover">Marketing</a>
+    <a class="link link-hover">Advertisement</a>
+  </nav>
+  <nav>
+    <h6 class="footer-title">Company</h6>
+    <a class="link link-hover">About us</a>
+    <a class="link link-hover">Contact</a>
+    <a class="link link-hover">Jobs</a>
+    <a class="link link-hover">Press kit</a>
+  </nav>
+  <nav>
+    <h6 class="footer-title">Legal</h6>
+    <a class="link link-hover">Terms of use</a>
+    <a class="link link-hover">Privacy policy</a>
+    <a class="link link-hover">Cookie policy</a>
+  </nav>
+</footer>
+```
+
+--------------------------------
+
+### Download Tailwind CSS Executable for Different OS
+
+Source: https://daisyui.com/docs/install/zola
+
+Downloads the Tailwind CSS executable tailored for different operating systems and architectures. These commands fetch the binary and save it to the 'static/' directory.
+
+```bash
+# Linux
+curl -sLo static/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-arm64
+curl -sLo static/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-arm64-musl
+curl -sLo static/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+curl -sLo static/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64-musl
+
+# MacOS
+curl -sLo static/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-arm64
+curl -sLo static/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-x64
+
+# Windows
+curl -sLo static\tailwindcss.exe https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-windows-x64.exe
+```
+
+--------------------------------
+
+### Django Home View
+
+Source: https://daisyui.com/docs/install/django
+
+A simple Django view function that renders the 'index.html' template. This view is responsible for serving the homepage content.
+
+```python
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'index.html')
+```
+
+--------------------------------
+
+### Download daisyUI Bundle Files
+
+Source: https://daisyui.com/docs/install/django
+
+Downloads the latest versions of daisyUI's main JavaScript bundle (daisyui.mjs) and theme configuration file (daisyui-theme.mjs). These files are placed alongside the Tailwind CSS executable.
+
+```shell
+curl -sLO myapp/static/css/daisyui.mjs https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.mjs
+curl -sLO myapp/static/css/daisyui-theme.mjs https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.mjs
+```
+
+--------------------------------
+
+### Configure daisyUI Blueprint MCP Server in Cursor
+
+Source: https://daisyui.com/docs/editor/cursor
+
+This JSON configuration adds the 'daisyui-blueprint' MCP server to Cursor's settings. It utilizes `npx` to run `daisyui-blueprint@latest` and requires environment variables for license, email, and optionally a Figma API key.
+
+```json
+{
+  "mcpServers": {
++   "daisyui-blueprint": {
++     "type": "stdio",
++     "command": "npx",
++     "args": ["-y", "daisyui-blueprint@latest"],
++     "env": {
++       "LICENSE": "YOUR BLUEPRINT LICENSE KEY",
++       "EMAIL": "YOUR EMAIL ADDRESS",
++       "FIGMA": "YOUR FIGMA API KEY (optional)"
++     }
++   }
+  }
+}
+```
+
+--------------------------------
+
+### DaisyUI HTML Rating Component Examples
+
+Source: https://daisyui.com/components/rating
+
+These examples demonstrate the basic structure of a DaisyUI rating component using standard HTML. They show how to create a group of radio inputs styled as stars, with different sizes (md, xl) and a pre-selected option.
+
+```html
+<div class="rating rating-md">
+  <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+  <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-400" aria-label="2 star" />
+  <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-400" aria-label="3 star" checked="checked" />
+  <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+  <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+</div>
+<!-- xl -->
+<div class="rating rating-xl">
+  <input type="radio" name="rating-9" class="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+  <input type="radio" name="rating-9" class="mask mask-star-2 bg-orange-400" aria-label="2 star" checked="checked" />
+  <input type="radio" name="rating-9" class="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+  <input type="radio" name="rating-9" class="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+  <input type="radio" name="rating-9" class="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Collapse with Icon Moved to Start (HTML)
+
+Source: https://daisyui.com/components/collapse
+
+This DaisyUI collapse component demonstrates moving the expansion icon to the start of the collapse title using utility classes like `after:start-5 after:end-auto`. It also adjusts padding with `pe-4 ps-12` for visual alignment. This is a pure HTML implementation.
+
+```html
+<div tabindex="0" class="collapse collapse-arrow bg-base-100 border-base-300 border">
+  <div class="collapse-title font-semibold after:start-5 after:end-auto pe-4 ps-12">How do I create an account?</div>
+  <div class="collapse-content text-sm">
+    Click the "Sign Up" button in the top right corner and follow the registration process.
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Rails Routes for Homepage
+
+Source: https://daisyui.com/docs/install/rails
+
+Defines the root route for the Rails application to point to the `pages#home` action.
+
+```ruby
+Rails.application.routes.draw do
+  root to: 'pages#home'
+end
+```
+
+--------------------------------
+
+### Badge as Indicator Example (React JSX)
+
+Source: https://daisyui.com/components/indicator
+
+Provides a React JSX example for using a badge as an indicator. This is effective for highlighting new items or unread counts associated with content blocks.
+
+```jsx
+<div className="indicator">
+  <span className="indicator-item badge badge-primary">New</span>
+  <div className="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
+
+--------------------------------
+
+### Make Tailwind CSS Executable (Linux/MacOS)
+
+Source: https://daisyui.com/docs/install/yew
+
+Changes the file permissions to make the downloaded Tailwind CSS executable file runnable on Linux and MacOS systems.
+
+```bash
+chmod +x tailwindcss
+
+```
+
+--------------------------------
+
+### Indicator Middle and Start Alignment with DaisyUI
+
+Source: https://daisyui.com/components/indicator
+
+Combines vertical middle alignment with horizontal start alignment for an indicator using DaisyUI. This requires 'indicator-item', 'indicator-middle', and 'indicator-start' classes.
+
+```html
+<div class="indicator">
+  <span
+    class="indicator-item indicator-middle indicator-start badge badge-secondary"
+  ></span>
+  <div class="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
+
+```jsx
+<div className="indicator">
+  <span
+    className="indicator-item indicator-middle indicator-start badge badge-secondary"
+  ></span>
+  <div className="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
+
+--------------------------------
+
+### Update Mockup Phone Component Classes
+
+Source: https://daisyui.com/docs/upgrade
+
+Details the renaming of internal classes within the `mockup-phone` component for better organization. `camera` is now `mockup-phone-camera` and `display` is `mockup-phone-display`.
+
+```html
+<div class="mockup-phone">
+  <div class="camera"></div>
+  <div class="display">
+    <div class="artboard artboard-demo phone-1">Hi.</div>
+  </div>
+</div>
+```
+
+```html
+<div class="mockup-phone">
+  <div class="mockup-phone-camera"></div>
+  <div class="mockup-phone-display">
+    <div class="w-[320px] h-[568px]">Hi.</div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Migrate from Utility Approach to Semantic Components
+
+Source: https://daisyui.com/pages/tailwind-css-alternative
+
+Example showing migration from pure Tailwind utility classes to daisyUI semantic components. Demonstrates how to replace verbose utility combinations with concise semantic class names for buttons.
+
+```html
+<!-- Old utility approach -->
+<button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+  Old Button
+</button>
+
+<!-- New semantic approach -->
+<button class="btn btn-primary">New Button</button>
+```
+
+--------------------------------
+
+### Divider with Colors
+
+Source: https://daisyui.com/components/divider
+
+This example showcases how to apply different color themes to DaisyUI dividers. It includes examples for default, neutral, primary, secondary, accent, success, warning, info, and error color variants. These are achieved by adding specific classes to the divider element.
+
+```html
+<div class="flex w-full flex-col">
+  <div class="divider">Default</div>
+  <div class="divider divider-neutral">Neutral</div>
+  <div class="divider divider-primary">Primary</div>
+  <div class="divider divider-secondary">Secondary</div>
+  <div class="divider divider-accent">Accent</div>
+  <div class="divider divider-success">Success</div>
+  <div class="divider divider-warning">Warning</div>
+  <div class="divider divider-info">Info</div>
+  <div class="divider divider-error">Error</div>
+</div>
+```
+
+```jsx
+<div className="flex w-full flex-col">
+  <div className="divider">Default</div>
+  <div className="divider divider-neutral">Neutral</div>
+  <div className="divider divider-primary">Primary</div>
+  <div className="divider divider-secondary">Secondary</div>
+  <div className="divider divider-accent">Accent</div>
+  <div className="divider divider-success">Success</div>
+  <div className="divider divider-warning">Warning</div>
+  <div className="divider divider-info">Info</div>
+  <div className="divider divider-error">Error</div>
+</div>
+```
+
+--------------------------------
+
+### Error Color Link with DaisyUI
+
+Source: https://daisyui.com/components/link
+
+This example illustrates how to style a link with the error color theme using the 'link link-error' classes. It includes examples for both standard HTML and React JSX.
+
+```html
+<a class="link link-error">Click me</a>
+```
+
+```jsx
+<a className="link link-error">Click me</a>
+```
+
+--------------------------------
+
+### CSS Cross-Browser Compatibility Techniques
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Demonstrates CSS techniques for ensuring compatibility across different web browsers, including fallbacks for older versions. It addresses the need for defensive coding to handle variations in CSS interpretation.
+
+```css
+/* Supporting all browsers means extra code */
+.flexible-layout {
+  display: -webkit-box; /* Old Safari */
+  display: -ms-flexbox; /* IE 10 */
+  display: flex; /* Modern browsers */
+  
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  
+  gap: 1rem; /* Doesn't work in older browsers */
+  /* Fallback spacing for older browsers */
+}
+
+.flexible-layout > * + * {
+  margin-top: 1rem;
+}
+```
+
+--------------------------------
+
+### Basic DaisyUI Tooltip Example
+
+Source: https://daisyui.com/components/tooltip
+
+Demonstrates a simple tooltip that appears when hovering over a button. It uses the `tooltip` class and the `data-tip` attribute to define the tooltip's content. This is the most straightforward way to implement tooltips in DaisyUI.
+
+```html
+<div class="tooltip" data-tip="hello">
+  <button class="btn">Hover me</button>
+</div>
+```
+
+```html
+<div className="tooltip" data-tip="hello">
+  <button className="btn">Hover me</button>
+</div>
+```
+
+--------------------------------
+
+### Basic Button Styling with CSS
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Demonstrates the extensive CSS properties required to create a basic interactive button, including styling for default, hover, focus, disabled, and active states. This highlights the complexity developers face when styling even simple elements from scratch.
+
+```css
+/* Just to create a proper button */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.button:hover {
+  background-color: #e5e7eb;
+}
+
+.button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:active {
+  transform: translateY(0.5px);
+}
+
+/* And this is just one button variant! */
+```
+
+--------------------------------
+
+### Hero Section Example
+
+Source: https://daisyui.com/pages/ui-library-for-hackaton
+
+This code snippet demonstrates a complete hero section using daisyUI components. It's designed for rapid implementation and visual appeal, requiring only a few lines of HTML within a Tailwind CSS project.
+
+```html
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <h1 class="text-5xl font-bold">Hello Hackathon!</h1>
+      <p class="py-6">Your amazing idea deserves an amazing demo. Built with daisyUI in minutes, not hours.</p>
+      <button class="btn btn-primary">Get Started</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Django Homepage Template
+
+Source: https://daisyui.com/docs/install/django
+
+An HTML template for a Django homepage. It includes a title, loads static files, and links to a CSS file (output.css) for styling, along with a primary button styled by daisyUI.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Django App</title>
+    {% load static %}
+    <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <button class="btn btn-primary">Hello daisyUI</button>
+</body>
+</html>
+```
+
+--------------------------------
+
+### Download Tailwind CSS Executable (Windows)
+
+Source: https://daisyui.com/docs/install/django
+
+Downloads the Tailwind CSS standalone executable for Windows (x64 architecture). The executable is saved to the static CSS directory.
+
+```shell
+# Windows
+curl -sLo myapp/static/css/tailwindcss.exe https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-windows-x64.exe
+```
+
+--------------------------------
+
+### Make Tailwind CSS Executable (Linux/macOS)
+
+Source: https://daisyui.com/docs/install/standalone
+
+A command to grant execute permissions to the downloaded Tailwind CSS executable file on Linux and macOS systems.
+
+```shell
+chmod +x tailwindcss
+```
+
+--------------------------------
+
+### Django Settings: Add App
+
+Source: https://daisyui.com/docs/install/django
+
+Includes the 'myapp' application in the INSTALLED_APPS list within the Django project's settings.py file. This registers the app with Django, allowing it to be used.
+
+```python
+  INSTALLED_APPS = [
+      "django.contrib.admin",
+      "django.contrib.auth",
+      "django.contrib.contenttypes",
+      "django.contrib.sessions",
+      "django.contrib.messages",
+      "django.contrib.staticfiles",
++     "myapp",
+  ]
+```
+
+--------------------------------
+
+### Configuring daisyUI 5 with a Single Theme (Light)
+
+Source: https://daisyui.com/llms
+
+This configuration limits daisyUI to only use the 'light' theme. It's useful for projects that require a consistent, single theme.
+
+```css
+@plugin "daisyui" {
+  themes: light --default;
+}
+```
+
+--------------------------------
+
+### Import CSS in Astro Layout
+
+Source: https://daisyui.com/docs/install/astro
+
+Imports the configured CSS file into the main Astro layout file (Layout.astro) to apply the styles globally.
+
+```html
+---
+import "../assets/app.css";
+---
+
+```
+
+--------------------------------
+
+### Configure PostCSS for Tailwind CSS
+
+Source: https://daisyui.com/docs/install/nextjs
+
+Sets up the PostCSS configuration file to include Tailwind CSS. This allows PostCSS to process Tailwind's utility classes.
+
+```javascript
+/** @type {import('postcss-load-config').Config} */
+const config = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+};
+export default config;
+
+```
+
+--------------------------------
+
+### Indicator for Button Example (React JSX)
+
+Source: https://daisyui.com/components/indicator
+
+Presents a React JSX example for using an indicator with a button. This pattern is useful for UI elements that require a numerical badge, such as notification counts for interactive buttons.
+
+```jsx
+<div className="indicator">
+  <span className="indicator-item badge badge-secondary">12</span>
+  <button className="btn">inbox</button>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Chat Bubble Component Example
+
+Source: https://daisyui.com/codepen
+
+Illustrates a chat bubble component from DaisyUI, showing a message from a user with an avatar. This snippet includes the avatar styling and the chat bubble containing text and a link.
+
+```html
+<div class="chat chat-start m-4">
+  <div class="avatar chat-image">
+    <div class="w-10 rounded-full">
+      <img src="https://img.daisyui.com/images/profile/people/pouya-saadeghi.webp" />
+    </div>
+  </div>
+  <div class="chat-bubble">see all components <a class="link" target="_blank" href="https://daisyui.com/components">Here</a></div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Toast: Start and Middle Alignment
+
+Source: https://daisyui.com/components/toast
+
+Displays toast notifications aligned to the start and middle of the viewport. This is useful for non-intrusive messages that appear on the side. It uses standard HTML and DaisyUI classes.
+
+```html
+<div class="toast toast-start toast-middle">
+  <div class="alert alert-info">
+    <span>New mail arrived.</span>
+  </div>
+  <div class="alert alert-success">
+    <span>Message sent successfully.</span>
+  </div>
+</div>
+```
+
+```jsx
+<div className="toast toast-start toast-middle">
+  <div className="alert alert-info">
+    <span>New mail arrived.</span>
+  </div>
+  <div className="alert alert-success">
+    <span>Message sent successfully.</span>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Loading Indicators with DaisyUI
+
+Source: https://daisyui.com/llms
+
+Displays an animation to indicate that content is loading. Supports various styles like spinner, dots, and ring, along with different sizes.
+
+```html
+<span class="loading loading-spinner"></span>
+<span class="loading loading-dots loading-lg"></span>
+<span class="loading loading-ring loading-xl"></span>
+```
+
+--------------------------------
+
+### Import UnoCSS Styles
+
+Source: https://daisyui.com/docs/install/unocss
+
+Adds UnoCSS reset styles and the main UnoCSS import to the `src/main.js` file. This ensures that UnoCSS and its presets are applied correctly to the application.
+
+```javascript
+import "@unocss/reset/tailwind.css";
+import "uno.css";
+```
+
+--------------------------------
+
+### Configure PostCSS for Rsbuild
+
+Source: https://daisyui.com/docs/install/rsbuild
+
+Sets up the PostCSS configuration file (`postcss.config.mjs`) to include the Tailwind CSS plugin, which is essential for using Tailwind directives.
+
+```javascript
+const config = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+};
+export default config;
+
+```
+
+--------------------------------
+
+### Configure SvelteKit Preprocessing
+
+Source: https://daisyui.com/blog/how-to-install-sveltekit-and-daisyui
+
+This shows the necessary addition to `svelte.config.js` to enable Vite preprocessing, which is required for SvelteKit to handle CSS transformations correctly when using Tailwind CSS and daisyUI.
+
+```javascript
+import adapter from '@sveltejs/adapter-auto';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  preprocess: vitePreprocess(),
+  kit: {
+    // adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
+    // If your environment is not supported or you settled on a specific environment, switch out the adapter.
+    // See https://kit.svelte.dev/docs/adapters for more information about adapters.
+    adapter: adapter()
+  }
+};
+
+export default config;
+
+```
+
+--------------------------------
+
+### DaisyUI Card Component Examples
+
+Source: https://daisyui.com/components/card
+
+Demonstrates the structure of a basic card component in DaisyUI, including its body, title, description, and action buttons. This component is reusable and can be customized with various CSS classes for styling and sizing.
+
+```html
+<div class="card w-96 bg-base-100 card-xl shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Xlarge Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+```
+
+```html
+<div class="card w-96 bg-base-100 card-xs shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Xsmall Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+```
+
+```html
+<div class="card w-96 bg-base-100 card-sm shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Small Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+```
+
+```html
+<div class="card w-96 bg-base-100 card-md shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Medium Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+```
+
+```html
+<div class="card w-96 bg-base-100 card-lg shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Large Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+```
+
+```html
+<div class="card w-96 bg-base-100 card-xl shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Xlarge Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Build CSS with PostCSS CLI
+
+Source: https://daisyui.com/blog/npm-init-daisyui
+
+This command compiles your CSS file using the PostCSS CLI, which can be configured with plugins like Autoprefixer. It's an alternative to the Tailwind CSS CLI for building your styles.
+
+```bash
+npx postcss-cli tailwind.css -o output.css
+```
+
+--------------------------------
+
+### Unreadable Tailwind CSS Card Component Example
+
+Source: https://daisyui.com/pages/css-library-for-html
+
+Highlights the significant readability and maintainability challenges that arise from using extensive utility classes in Tailwind CSS for complex components. The example of a card component shows how a single element can become cluttered with numerous classes, making it difficult to parse and modify.
+
+```html
+<!-- A simple card component -->
+<div class="max-w-sm mx-auto bg-white rounded-xl shadow-lg overflow-hidden md:max-w-2xl m-3 hover:shadow-xl transition-shadow duration-300">
+  <div class="md:flex">
+    <div class="md:shrink-0">
+      <img class="h-48 w-full object-cover md:h-full md:w-48" src="image.jpg" alt="Album">
+    </div>
+    <div class="p-8">
+      <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Article</div>
+      <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Card title</a>
+      <p class="mt-2 text-slate-500">Card description goes here...</p>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Info Color Link with DaisyUI
+
+Source: https://daisyui.com/components/link
+
+This example demonstrates styling a link with the info color theme using the 'link link-info' classes, presented in both HTML and React JSX formats.
+
+```html
+<a class="link link-info">Click me</a>
+```
+
+```jsx
+<a className="link link-info">Click me</a>
+```
+
+--------------------------------
+
+### Add Context7 MCP Server (Local Connection)
+
+Source: https://daisyui.com/docs/editor/claudecode
+
+This command sets up a local connection to the Context7 MCP server using the '@upstash/context7-mcp' package. This is suitable for local development environments.
+
+```bash
+claude mcp add context7 -- npx -y @upstash/context7-mcp
+```
+
+--------------------------------
+
+### Build CSS with Tailwind CLI (Linux/macOS)
+
+Source: https://daisyui.com/docs/install/standalone
+
+Command to compile `input.css` into `output.css` using the Tailwind CSS standalone executable. Includes the `--watch` flag for automatic updates.
+
+```shell
+./tailwindcss -i input.css -o output.css --watch
+```
+
+--------------------------------
+
+### HTML Card Component: Traditional CSS vs. daisyUI Comparison
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Compares the development time and complexity of creating a card component using traditional CSS versus daisyUI. The traditional CSS approach requires significant custom styling, while the daisyUI approach achieves a similar result in seconds with minimal markup.
+
+```html
+<!-- Traditional CSS: 2-3 hours -->
+<div class="custom-card">
+  <img class="custom-image" src="photo.jpg" alt="Photo" />
+  <div class="custom-content">
+    <h3 class="custom-title">Card Title</h3>
+    <p class="custom-description">Description text</p>
+    <button class="custom-button custom-button-primary">Action</button>
+  </div>
+</div>
+
+<style>
+.custom-card {
+  width: 24rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.custom-image {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+}
+
+.custom-content {
+  padding: 2rem;
+}
+
+.custom-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+
+.custom-description {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.custom-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.custom-button:hover {
+  background-color: #2563eb;
+}
+</style>
+
+<!-- daisyUI: 30 seconds -->
+<div class="card w-96 bg-base-100 shadow-xl">
+  <figure><img src="photo.jpg" alt="Album" /></figure>
+  <div class="card-body">
+    <h2 class="card-title">Card Title</h2>
+    <p>Description text</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Action</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Dioxus App Component with daisyUI Button
+
+Source: https://daisyui.com/docs/install/dioxus
+
+Sets up the main Dioxus application component (`App`) to include a stylesheet for Tailwind CSS/daisyUI and a button styled with the 'btn' class from daisyUI. This code replaces the default content in `src/main.rs`.
+
+```rust
+use dioxus::prelude::*;
+
+fn main() {
+    dioxus::launch(App);
+}
+
+#[component]
+fn App() -> Element {
+    rsx! {
+        document::Stylesheet {href: asset!("/assets/main.css")} 
+        button { class: "btn", "Hello daisyUI" }
+    }
+}
+```
+
+--------------------------------
+
+### DaisyUI Tabs Component (HTML)
+
+Source: https://daisyui.com/tailwindplay
+
+Illustrates the creation of a tabbed interface using DaisyUI's 'tabs' and 'tab' classes. The example features a 'tabs-lift' style and highlights an active tab, demonstrating basic navigation structure.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaisyUI Tabs</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.1.17/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- tab -->
+<div class="tabs tabs-lift p-4">
+<button class="tab">Tab 1</button>
+<button class="tab tab-active">Tab 2</button>
+<button class="tab">Tab 3</button>
+<button class="tab"></button>
+</div>
+
+</body>
+</html>
+```
+
+--------------------------------
+
+### Configure Tailwind CSS and daisyUI
+
+Source: https://daisyui.com/docs/install/dioxus
+
+Defines the Tailwind CSS and daisyUI configuration in a `tailwind.css` file. This file specifies source files, imports Tailwind CSS, and applies the daisyUI plugin.
+
+```css
+@source "./src/**/*.{rs,html,css}";
+@import "tailwindcss";
+@plugin "daisyui";
+```
+
+--------------------------------
+
+### Force Close Dropdown Example (HTML & React JSX)
+
+Source: https://daisyui.com/components/dropdown
+
+Illustrates how to force a DaisyUI dropdown to be closed using the 'dropdown-close' class. This is typically used when the dropdown should be hidden by default or after an action. Examples are provided in HTML and React JSX.
+
+```html
+<div class="dropdown dropdown-close">
+  <div tabindex="0" role="button" class="btn m-1">Button</div>
+  <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
   </ul>
 </div>
 ```
 
----
-
-### DaisyUI Toggle with Icons Inside (HTML)
-
-Source: https://daisyui.com/components/toggle
-
-Demonstrates how to embed icons within a DaisyUI toggle switch, typically used for visual indication of the on/off state.
-
-```html
-<label class="toggle">
-  <input type="checkbox" />
-  <span class="label-text">ON</span>
-  <span class="label-text">OFF</span>
-</label>
+```jsx
+<div className="dropdown dropdown-close">
+  <div tabIndex={0} role="button" className="btn m-1">Button</div>
+  <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</div>
 ```
 
----
+--------------------------------
 
-### DaisyUI Pagination with Disabled Button
+### Text Formatting Examples with daisyUI and Tailwind CSS Typography
+
+Source: https://daisyui.com/docs/layout-and-typography
+
+Showcases various text formatting options including bold, italic, and combinations thereof, leveraging daisyUI's theming and Tailwind CSS Typography for emphasis and readability.
+
+```html
+<b>Bold</b> text is perfect for highlighting key points.
+<i>Italic</i> text is great for emphasizing specific words.
+<b><i>Bold and Italic</i></b> text can be used for extra emphasis.
+```
+
+--------------------------------
+
+### Indicator for Tab Example (React JSX)
+
+Source: https://daisyui.com/components/indicator
+
+Provides a React JSX example of using a badge indicator within DaisyUI's tab component. This is useful for visually highlighting tabs with new or relevant information, such as unread counts.
+
+```jsx
+<div className="tabs tabs-lift">
+  <a className="tab">Messages</a>
+  <a className="indicator tab tab-active">
+    Notifications
+    <span className="indicator-item badge">8</span>
+  </a>
+  <a className="tab">Requests</a>
+</div>
+```
+
+--------------------------------
+
+### Customize Hero Section in Astro Component
+
+Source: https://daisyui.com/blog/how-to-make-a-blog-quickly-using-astro-and-daisyUI
+
+Modify the hero section of the blog by editing the src/components/Hero.astro file to display personalized introduction text, images, and branding. This section uses daisyUI components like badges and HTML structure for layout.
+
+```astro
+<div class="text-center pt-10">
+  <div class="badge badge-outline badge-lg">Hello!</div>
+  <h1 class="text-4xl md:text-5xl xl:text-7xl font-semibold brightness-150">
+    I'm <span class="text-primary">Antonio,</span>
+    <br />
+    Digital Marketer & Founder
+  </h1>
+</div>
+
+<img
+  src="/images/antonio.png"
+  alt="Antonio"
+  class="max-w-xs md:max-w-lg mt-4 absolute"
+/>
+
+<img src="/images/bg.png" alt="bg" height="{500}" width="{700}" />
+```
+
+--------------------------------
+
+### DaisyUI Button Join with Pagination
 
 Source: https://daisyui.com/components/pagination
 
-Illustrates how to create a DaisyUI pagination component with a disabled button, typically used for the 'previous' or 'next' links when they are not available. This uses the 'join' and 'join-item' classes.
+Demonstrates a basic button join for pagination with numerical page links. This example shows how to group sequential page numbers within a join component.
 
 ```html
 <div class="join">
@@ -9114,380 +5475,4069 @@ Illustrates how to create a DaisyUI pagination component with a disabled button,
   <button class="join-item btn">2</button>
   <button class="join-item btn btn-disabled">...</button>
   <button class="join-item btn">99</button>
-  <button class="join-item btn btn-active">100</button>
+  <button class="join-item btn">100</button>
 </div>
 ```
 
----
+```jsx
+<div className="join">
+  <button className="join-item btn">1</button>
+  <button className="join-item btn">2</button>
+  <button className="join-item btn btn-disabled">...</button>
+  <button className="join-item btn">99</button>
+  <button className="join-item btn">100</button>
+</div>
+```
 
-### DaisyUI Fieldset with Multiple Inputs
+--------------------------------
+
+### Add Tailwind CSS and daisyUI to CSS
+
+Source: https://daisyui.com/docs/install/astro
+
+Integrates Tailwind CSS and daisyUI into the main CSS file by importing them. This replaces any existing styles.
+
+```css
+@import "tailwindcss";
+@plugin "daisyui";
+
+```
+
+--------------------------------
+
+### daisyUI Loading Dots Examples (HTML)
+
+Source: https://daisyui.com/components/loading
+
+Illustrates the use of the loading dots animation style with different size variations in standard HTML. This component provides a subtle loading indicator.
+
+```html
+<span class="loading loading-dots loading-xs"></span>
+<span class="loading loading-dots loading-sm"></span>
+<span class="loading loading-dots loading-md"></span>
+<span class="loading loading-dots loading-lg"></span>
+<span class="loading loading-dots loading-xl"></span>
+```
+
+--------------------------------
+
+### HTML Structure with daisyUI Button
+
+Source: https://daisyui.com/docs/install/elysia
+
+A basic HTML file that includes the generated CSS file (`output.css`) and demonstrates a primary button styled with daisyUI classes.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/output.css">
+  </head>
+  <body>
+    <button class="btn btn-primary">Hello daisyUI</button>
+  </body>
+</html>
+
+```
+
+--------------------------------
+
+### Setup daisyUI llms.txt in Cline VSCode Extension
+
+Source: https://daisyui.com/docs/editor/cline
+
+This command downloads the daisyUI llms.txt file, a text version of daisyUI documentation, to be used by the Cline VSCode extension for accurate code generation. It saves the file to the `.clinerules/daisyui.md` path within your workspace.
+
+```bash
+curl -L https://daisyui.com/llms.txt --create-dirs -o .clinerules/daisyui.md
+```
+
+--------------------------------
+
+### Save DaisyUI llms.txt to Cursor Workspace
+
+Source: https://daisyui.com/docs/editor/cursor
+
+This terminal command downloads the DaisyUI `llms.txt` file and saves it to the `.cursor/rules/daisyui.mdc` path within your project. This enables persistent access for Cursor's AI to DaisyUI documentation.
+
+```bash
+curl -L https://daisyui.com/llms.txt --create-dirs -o .cursor/rules/daisyui.mdc
+```
+
+--------------------------------
+
+### Import Tailwind CSS in SvelteKit Layout
+
+Source: https://daisyui.com/blog/how-to-install-sveltekit-and-daisyui
+
+This command creates a new `+layout.svelte` file in the `src/routes` directory and imports the Tailwind CSS stylesheet. This ensures that Tailwind's styles are applied globally to your SvelteKit application.
+
+```bash
+echo '
+<script>
+  import "tailwindcss/tailwind.css";
+</script>
+
+<slot />
+' > src/routes/+layout.svelte
+```
+
+--------------------------------
+
+### Build CSS with Tailwind CLI (Windows)
+
+Source: https://daisyui.com/docs/install/standalone
+
+Command to compile `input.css` into `output.css` using the Tailwind CSS standalone executable on Windows. Includes the `--watch` flag for automatic updates.
+
+```shell
+tailwindcss.exe -i input.css -o output.css --watch
+```
+
+--------------------------------
+
+### Make Tailwind CSS Executable (Linux/macOS)
+
+Source: https://daisyui.com/docs/install/django
+
+Grants execute permissions to the downloaded Tailwind CSS binary on Linux and macOS systems. This step is necessary to run the Tailwind CSS command-line tool.
+
+```shell
+chmod +x myapp/static/css/tailwindcss
+```
+
+--------------------------------
+
+### Progress Bar Component Syntax
+
+Source: https://daisyui.com/llms
+
+Provides the syntax for a DaisyUI progress bar. The 'progress' class is used, along with optional color modifiers. The 'value' and 'max' attributes are mandatory.
+
+```html
+<progress class="progress {MODIFIER}" value="50" max="100"></progress>
+```
+
+--------------------------------
+
+### Add CSS Build Script to package.json (JSON)
+
+Source: https://daisyui.com/docs/install/postcss
+
+Defines a script in the 'package.json' file to compile the CSS using PostCSS. This script takes 'app.css' as input and outputs to 'public/output.css'.
+
+```json
+{
+  "scripts": {
+    "build:css": "postcss app.css -o public/output.css"
+  }
+}
+```
+
+--------------------------------
+
+### HTML Structure for daisyUI
+
+Source: https://daisyui.com/docs/install/bun
+
+Basic HTML file structure that includes a link to the `style.css` file and a sample button with a daisyUI class. This file will be served by the Bun dev server.
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>daisyUI</title>
+    <link rel="stylesheet" href="./style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <button class="btn">daisyUI Button</button>
+  </body>
+</html>
+```
+
+--------------------------------
+
+### Elysia Server with CSS Watcher
+
+Source: https://daisyui.com/docs/install/elysia
+
+Sets up an Elysia server to serve static files and automatically rebuilds the CSS using Tailwind CLI whenever changes are detected in the `public` directory. Requires `@elysiajs/static` and Node.js `child_process` and `fs` modules.
+
+```typescript
+import { Elysia } from "elysia";
+import { staticPlugin } from '@elysiajs/static'
+import { exec } from 'child_process'
+import { watch } from 'fs'
+
+const buildCSS = () =>
+  new Promise(resolve =>
+    exec('tailwindcss -i ./src/app.css -o ./public/output.css',
+      (_error, _stdout, stderr) => {
+        console.log(stderr);
+        resolve(null);
+      })
+  );
+
+await buildCSS();
+
+const watcher = watch('./public', { recursive: true },
+  async () => {
+    await buildCSS();
+  }
+);
+
+process.on('SIGINT', () => {
+  watcher.close();
+  process.exit(0);
+});
+
+const app = new Elysia()
+	.use(
+		staticPlugin({
+			assets: "public",
+      prefix: "",
+		}),
+	)
+	.listen(3000, ({ hostname, port }) => {
+		console.log(`Server started http://${hostname}:${port}`);
+	});
+
+```
+
+--------------------------------
+
+### DaisyUI JSX Rating Component Examples
+
+Source: https://daisyui.com/components/rating
+
+These JSX examples demonstrate how to implement DaisyUI rating components within a React application. They showcase various sizes (xs, sm, md, lg, xl) and how to set a default checked state using the 'defaultChecked' prop.
+
+```jsx
+<div>
+  {/* xs */}
+  <div className="rating rating-xs">
+    <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+    <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" aria-label="2 star" defaultChecked />
+    <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+    <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+    <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+  </div>
+  {/* sm */}
+  <div className="rating rating-sm">
+    <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+    <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" aria-label="2 star" defaultChecked />
+    <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+    <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+    <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+  </div>
+  {/* md */}
+  <div className="rating rating-md">
+    <input type="radio" name="rating-7" className="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+    <input type="radio" name="rating-7" className="mask mask-star-2 bg-orange-400" aria-label="2 star" defaultChecked />
+    <input type="radio" name="rating-7" className="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+    <input type="radio" name="rating-7" className="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+    <input type="radio" name="rating-7" className="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+  </div>
+  {/* lg */}
+  <div className="rating rating-lg">
+    <input type="radio" name="rating-8" className="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+    <input type="radio" name="rating-8" className="mask mask-star-2 bg-orange-400" aria-label="2 star" defaultChecked />
+    <input type="radio" name="rating-8" className="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+    <input type="radio" name="rating-8" className="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+    <input type="radio" name="rating-8" className="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+  </div>
+  {/* xl */}
+  <div className="rating rating-xl">
+    <input type="radio" name="rating-9" className="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+    <input type="radio" name="rating-9" className="mask mask-star-2 bg-orange-400" aria-label="2 star" defaultChecked />
+    <input type="radio" name="rating-9" className="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+    <input type="radio" name="rating-9" className="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+    <input type="radio" name="rating-9" className="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Build Responsive Navigation Bar with DaisyUI
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Creates a responsive navbar component with dropdown menu for mobile navigation and brand/call-to-action elements. Uses DaisyUI navbar, dropdown, and button components with responsive classes for mobile-first design. Supports mobile and desktop layouts automatically.
+
+```HTML
+<div class="navbar bg-base-100">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-ghost lg:hidden">Menu</label>
+      <ul class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+        <li><a>Item 1</a></li>
+        <li><a>Item 2</a></li>
+      </ul>
+    </div>
+    <a class="btn btn-ghost normal-case text-xl">Brand</a>
+  </div>
+  <div class="navbar-end">
+    <a class="btn">Get started</a>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Add Yew Dependency to Cargo.toml
+
+Source: https://daisyui.com/docs/install/yew
+
+Specifies the 'yew' crate as a dependency in the Cargo.toml file, enabling its use in the Rust project for front-end development.
+
+```toml
+[package]
+name = "yew-app"
+version = "0.1.0"
+edition = "2025"
+
+[dependencies]
++ yew = { git = "https://github.com/yewstack/yew/", features = ["csr"] }
+
+```
+
+--------------------------------
+
+### Update Stack Component Sizing
+
+Source: https://daisyui.com/docs/upgrade
+
+Explains the change in how the Stack component is sized. Instead of sizing individual items, the width and height are now applied directly to the `stack` container itself.
+
+```html
+<div class="stack">
+  <div class="card bg-base-100 w-36 h-36">Text</div>
+  <div class="card bg-base-100 w-36 h-36">Text</div>
+  <div class="card bg-base-100 w-36 h-36">Text</div>
+</div>
+```
+
+```html
+<div class="stack w-36 h-32">
+  <div class="card bg-base-100">Text</div>
+  <div class="card bg-base-100">Text</div>
+  <div class="card bg-base-100">Text</div>
+</div>
+```
+
+--------------------------------
+
+### Window Mockup with Border - HTML
+
+Source: https://daisyui.com/components/mockup-window
+
+This code snippet demonstrates how to create a window mockup with a border using daisyUI classes. It requires no external dependencies and generates a basic OS window structure.
+
+```html
+<div class="mockup-window border border-base-300 w-full">
+  <div class="grid place-content-center border-t border-base-300 h-80">Hello!</div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Code Mockup Without Prefix
+
+Source: https://daisyui.com/components/mockup-code
+
+An example of the code mockup component used without any line prefixes. This provides a clean display for code snippets where line numbering or command prompts are not necessary. It relies solely on the `mockup-code` and `pre` tags for styling.
+
+```html
+<div class="mockup-code w-full">
+  <pre><code>without prefix</code></pre>
+</div>
+```
+
+```html
+<div className="mockup-code w-full">
+  <pre><code>without prefix</code></pre>
+</div>
+```
+
+--------------------------------
+
+### Django URL Configuration for Home View
+
+Source: https://daisyui.com/docs/install/django
+
+Adds a URL pattern to the Django project's URL configuration (urls.py) to map the root URL ('') to the 'home' view function. This makes the homepage accessible.
+
+```python
+from django.contrib import admin
+from django.urls import path
++ from . import views
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
++    path("", views.home, name="home"),
+]
+```
+
+--------------------------------
+
+### daisyUI Loading Ring Examples (JSX)
+
+Source: https://daisyui.com/components/loading
+
+Demonstrates the loading ring component in JSX, allowing developers to integrate it into React applications with different size settings. This provides a clear visual indication of loading.
+
+```jsx
+<span className="loading loading-ring loading-xs"></span>
+<span className="loading loading-ring loading-sm"></span>
+<span className="loading loading-ring loading-md"></span>
+<span className="loading loading-ring loading-lg"></span>
+<span className="loading loading-ring loading-xl"></span>
+```
+
+--------------------------------
+
+### Create Production-Ready Alert Component with DaisyUI
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Displays a success alert with icon and message text using DaisyUI's alert component with semantic styling. Includes embedded SVG icon and shadow effects for visual hierarchy. Ensures accessibility compliance and professional appearance for production applications.
+
+```HTML
+<div class="alert alert-success shadow-lg">
+  <div>
+    <svg class="stroke-current flex-shrink-0 w-6 h-6" fill="none" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    <span>Your purchase has been confirmed!</span>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Card Component HTML Examples
+
+Source: https://daisyui.com/components/card
+
+This snippet displays multiple card components in HTML using DaisyUI classes. It shows cards of different sizes (x-small to x-large) with consistent internal structure including a title, paragraph, and a 'Buy Now' button within an action div.
+
+```html
+<div class="card w-96 bg-base-100 card-xs shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Xsmall Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<div class="card w-96 bg-base-100 card-sm shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Small Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<div class="card w-96 bg-base-100 card-md shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Medium Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<div class="card w-96 bg-base-100 card-lg shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Large Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<div class="card w-96 bg-base-100 card-xl shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Xlarge Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="justify-end card-actions">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Dropdown Aligns to Start of Button Horizontally (HTML)
+
+Source: https://daisyui.com/components/dropdown
+
+This HTML snippet demonstrates a dropdown component from DaisyUI that aligns its menu to the start of the trigger button horizontally. It utilizes the 'dropdown-start' class for alignment. The dropdown contains a button and a list of menu items.
+
+```html
+<div class="dropdown dropdown-start">
+  <div tabindex="0" role="button" class="btn m-1">Click ⬇️</div>
+  <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</div>
+```
+
+--------------------------------
+
+### Configure Astro for Tailwind CSS
+
+Source: https://daisyui.com/docs/install/astro
+
+Adds the Tailwind CSS Vite plugin to the Astro configuration file (astro.config.mjs).
+
+```javascript
+// @ts-check
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  vite: {
+    plugins: [tailwindcss()],
+  },
+});
+
+```
+
+--------------------------------
+
+### DaisyUI Collapse with Icon Moved to Start (React)
+
+Source: https://daisyui.com/components/collapse
+
+A React version of the DaisyUI collapse component with the icon positioned at the start. It employs the `collapse-arrow` class and custom utility classes (`after:start-5 after:end-auto`, `pe-4 ps-12`) for icon and padding adjustments within a JSX structure.
+
+```jsx
+<div tabIndex={0} className="collapse collapse-arrow bg-base-100 border-base-300 border">
+  <div className="collapse-title font-semibold after:start-5 after:end-auto pe-4 ps-12">How do I create an account?</div>
+  <div className="collapse-content text-sm">
+    Click the "Sign Up" button in the top right corner and follow the registration process.
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Toast: Start and Bottom Alignment (Default)
+
+Source: https://daisyui.com/components/toast
+
+Presents toast notifications aligned to the start (left side) and bottom of the viewport, which is the default vertical positioning. This is suitable for less critical, persistent messages. The code uses standard HTML and DaisyUI classes.
+
+```html
+<div class="toast toast-start">
+  <div class="alert alert-info">
+    <span>New mail arrived.</span>
+  </div>
+  <div class="alert alert-success">
+    <span>Message sent successfully.</span>
+  </div>
+</div>
+```
+
+```jsx
+<div className="toast toast-start">
+  <div className="alert alert-info">
+    <span>New mail arrived.</span>
+  </div>
+  <div className="alert alert-success">
+    <span>Message sent successfully.</span>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### React JSX Scrollable Steps Example
+
+Source: https://daisyui.com/components/steps
+
+This React JSX snippet demonstrates the creation of scrollable step indicators using DaisyUI. Similar to the HTML version, it wraps the steps in a div with 'overflow-x-auto' for horizontal scrolling. The example uses JSX syntax with 'className' instead of 'class' for applying CSS classes.
+
+```jsx
+<div className="overflow-x-auto">
+  <ul className="steps">
+    <li className="step">start</li>
+    <li className="step step-secondary">2</li>
+    <li className="step step-secondary">3</li>
+    <li className="step step-secondary">4</li>
+    <li className="step">5</li>
+    <li className="step step-accent">6</li>
+    <li className="step step-accent">7</li>
+    <li className="step">8</li>
+    <li className="step step-error">9</li>
+    <li className="step step-error">10</li>
+    <li className="step">11</li>
+    <li className="step">12</li>
+    <li className="step step-warning">13</li>
+    <li className="step step-warning">14</li>
+    <li className="step">15</li>
+    <li className="step step-neutral">16</li>
+    <li className="step step-neutral">17</li>
+    <li className="step step-neutral">18</li>
+    <li className="step step-neutral">19</li>
+    <li className="step step-neutral">20</li>
+    <li className="step step-neutral">21</li>
+    <li className="step step-neutral">22</li>
+    <li className="step step-neutral">23</li>
+    <li className="step step-neutral">end</li>
+  </ul>
+</div>
+```
+
+--------------------------------
+
+### Chat Bubble with Start and End Alignment - HTML
+
+Source: https://daisyui.com/components/chat
+
+Creates two chat bubbles with different horizontal alignments using chat-start and chat-end classes. The first bubble aligns to the start (left) and the second to the end (right), demonstrating basic conversation layout with multi-line content support.
+
+```html
+<div class="chat chat-start">
+  <div class="chat-bubble">
+    It's over Anakin,
+    <br />
+    I have the high ground.
+  </div>
+</div>
+<div class="chat chat-end">
+  <div class="chat-bubble">You underestimate my power!</div>
+</div>
+```
+
+--------------------------------
+
+### Configure Lemon Squeezy API Key
+
+Source: https://daisyui.com/blog/daisyui-nextjs-online-store-template
+
+Sets up the environment variable to connect your online store to the Lemon Squeezy API. Replace 'your_api_key_here' with your actual API key. This enables fetching real product data.
+
+```env
+LEMON_SQUEEZY_API_KEY=your_api_key_here
+```
+
+--------------------------------
+
+### Add daisyUI via downloaded mjs files
+
+Source: https://daisyui.com/docs/install/rails
+
+Commands to download daisyUI and daisyUI-theme mjs files for integration without Node.js. This method is recommended for users not using Node.js.
+
+```bash
+curl -sLo app/assets/tailwind/daisyui.mjs https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.mjs
+curl -sLo app/assets/tailwind/daisyui-theme.mjs https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.mjs
+```
+
+--------------------------------
+
+### Import CSS in Svelte Page
+
+Source: https://daisyui.com/docs/install/sveltekit
+
+Imports the configured CSS file (src/app.css) into a Svelte page or layout component (src/routes/+page.svelte). This makes the styles available throughout the application.
+
+```svelte
+<script>
+  import "../app.css";
+</script>
+
+```
+
+--------------------------------
+
+### Dropdown Aligns to Start of Button Horizontally (React)
+
+Source: https://daisyui.com/components/dropdown
+
+This React snippet demonstrates a dropdown component from DaisyUI that aligns its menu to the start of the trigger button horizontally. It utilizes the 'dropdown-start' class for alignment. The dropdown contains a button and a list of menu items.
+
+```jsx
+<div className="dropdown dropdown-start">
+  <div tabIndex={0} role="button" className="btn m-1">Click ⬇️</div>
+  <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</div>
+```
+
+--------------------------------
+
+### UnoCSS Configuration for daisyUI
+
+Source: https://daisyui.com/docs/install/unocss
+
+Sets up the UnoCSS configuration in `unocss.config.js`. It includes the daisyUI preset and presetWind4, and specifies content sources for scanning class names.
+
+```javascript
+import { defineConfig } from "unocss";
+import presetWind4 from "@unocss/preset-wind4";
+import { presetDaisy } from "@ameinhardt/unocss-preset-daisy";
+
+export default defineConfig({
+  content: {
+    pipeline: {
+      include: ["src/**/*.{js,ts}"],
+    },
+  },
+  presets: [presetDaisy(), presetWind4()],
+});
+```
+
+--------------------------------
+
+### CSS File with Tailwind CSS and daisyUI Imports
+
+Source: https://daisyui.com/docs/install/11ty
+
+The main CSS file for the Eleventy project. It imports Tailwind CSS, the Tailwind Typography plugin, and daisyUI using the `@import` and `@plugin` directives.
+
+```css
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+```
+
+--------------------------------
+
+### Configure PostCSS with Tailwind CSS (JavaScript)
+
+Source: https://daisyui.com/docs/install/postcss
+
+Sets up the PostCSS configuration file to include the Tailwind CSS PostCSS plugin. This file should be named 'postcss.config.mjs'.
+
+```javascript
+const config = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+};
+export default config;
+```
+
+--------------------------------
+
+### Download Tailwind CSS Executable (macOS)
+
+Source: https://daisyui.com/docs/install/django
+
+Downloads the Tailwind CSS standalone executable for macOS, supporting both ARM64 and x64 architectures. The downloaded file is placed in the static CSS directory.
+
+```shell
+# MacOS
+curl -sLo myapp/static/css/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-arm64
+curl -sLo myapp/static/css/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-x64
+```
+
+--------------------------------
+
+### Multi-line DaisyUI Code Mockup
+
+Source: https://daisyui.com/components/mockup-code
+
+Renders multiple lines of code, simulating a terminal output with different prefixes and status indicators. This component is ideal for showing command execution sequences, including installation steps and completion messages. It uses multiple `pre` elements within the `mockup-code` container.
+
+```html
+<div class="mockup-code w-full">
+  <pre data-prefix="$"><code>npm i daisyui</code></pre>
+  <pre data-prefix=">" class="text-warning"><code>installing...</code></pre>
+  <pre data-prefix=">" class="text-success"><code>Done!</code></pre>
+</div>
+```
+
+```html
+<div className="mockup-code w-full">
+  <pre data-prefix="$"><code>npm i daisyui</code></pre>
+  <pre data-prefix=">" className="text-warning"><code>installing...</code></pre>
+  <pre data-prefix=">" className="text-success"><code>Done!</code></pre>
+</div>
+```
+
+--------------------------------
+
+### Button Styles with daisyUI
+
+Source: https://daisyui.com/pages/ui-library-for-hackaton
+
+This example showcases various button styles available in daisyUI. By changing a single class, developers can instantly apply different appearances like primary, secondary, accent, or ghost to their buttons.
+
+```html
+<!-- Try different button styles instantly -->
+<button class="btn btn-primary">Primary Action</button>
+<button class="btn btn-secondary">Secondary Action</button>
+<button class="btn btn-accent">Accent Action</button>
+<button class="btn btn-ghost">Ghost Action</button>
+```
+
+--------------------------------
+
+### Menu Component with DaisyUI
+
+Source: https://daisyui.com/llms
+
+Used to display lists of links vertically or horizontally. Supports dropdowns, active states, and different sizes. Can be made responsive.
+
+```html
+<ul class="menu menu-vertical">
+  <li><button>Item 1</button></li>
+  <li><button>Item 2</button></li>
+</ul>
+
+<ul class="menu menu-horizontal menu-lg">
+  <li><button>Item A</button></li>
+  <li><button>Item B</button></li>
+</ul>
+```
+
+--------------------------------
+
+### Update Card Compact to Small Size
+
+Source: https://daisyui.com/docs/upgrade
+
+Illustrates the change from `card-compact` to `card-sm` for controlling the size of the Card component, providing a more intuitive sizing system.
+
+```html
+<div class="card card-compact">
+  <!-- ... -->
+</div>
+```
+
+```html
+<div class="card card-sm">
+  <!-- ... -->
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Stats Component Example (HTML)
+
+Source: https://daisyui.com/components/stat
+
+This HTML snippet demonstrates the basic structure of the DaisyUI Stats component. It displays download counts, new user figures, and new register data using predefined CSS classes. This component is built with Tailwind CSS and is easily customizable.
+
+```html
+<div class="stats shadow">
+  <div class="stat">
+    <div class="stat-figure text-secondary">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        class="inline-block h-8 w-8 stroke-current"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        ></path>
+      </svg>
+    </div>
+    <div class="stat-title">Downloads</div>
+    <div class="stat-value">31K</div>
+    <div class="stat-desc">Jan 1st - Feb 1st</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-figure text-secondary">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        class="inline-block h-8 w-8 stroke-current"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+        ></path>
+      </svg>
+    </div>
+    <div class="stat-title">New Users</div>
+    <div class="stat-value">4,200</div>
+    <div class="stat-desc">↗︎ 400 (22%)</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-figure text-secondary">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        class="inline-block h-8 w-8 stroke-current"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+        ></path>
+      </svg>
+    </div>
+    <div class="stat-title">New Registers</div>
+    <div class="stat-value">1,200</div>
+    <div class="stat-desc">↘︎ 90 (14%)</div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### HTML Structure with daisyUI Button (`src/index.html`)
+
+Source: https://daisyui.com/docs/install/electron
+
+Basic HTML structure for an Electron app's renderer process. It includes meta tags for character set and content security policy, links the generated CSS file, and displays a button styled with a daisyUI class.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" type="text/css" href="../public/output.css">
+  </head>
+  <body>
+    <button class="btn">Hello daisyUI</button>
+  </body>
+</html>
+```
+
+--------------------------------
+
+### Configure Tailwind CSS and daisyUI Input
+
+Source: https://daisyui.com/docs/install/zola
+
+Sets up the main CSS input file for Tailwind CSS, importing Tailwind itself and daisyUI plugins. It also demonstrates how to include custom themes.
+
+```css
+@import "tailwindcss";
+
+@source not "./daisyui{,*}.mjs";
+
+@plugin "./daisyui.mjs";
+
+/* Optional for custom themes – Docs: https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme */
+@plugin "./daisyui-theme.js"{
+  /* custom theme here */
+}
+```
+
+--------------------------------
+
+### Configure Vite for UnoCSS
+
+Source: https://daisyui.com/docs/install/unocss
+
+Integrates UnoCSS into the Vite build process by adding the unocss plugin to the `vite.config.js` file. This enables UnoCSS transformations during development and build.
+
+```javascript
+import { defineConfig } from 'vite';
+import unocss from "unocss/vite";
+
+export default defineConfig({
+  plugins: [
+    unocss()
+  ],
+});
+```
+
+--------------------------------
+
+### Create a Button with daisyUI
+
+Source: https://daisyui.com/blog/daisyui-vs-tailwindui
+
+Demonstrates how to create a simple button using daisyUI's `btn` class. daisyUI simplifies styling by providing component classes that work with Tailwind CSS.
+
+```html
+<button class="btn">Button</button>
+```
+
+--------------------------------
+
+### DaisyUI Tooltip - Accent Color (HTML)
+
+Source: https://daisyui.com/components/tooltip
+
+This example shows an accent-colored tooltip implemented with DaisyUI. The 'tooltip-accent' and 'btn-accent' classes are applied for styling. The tooltip content is 'accent'.
+
+```html
+<div class="tooltip tooltip-open tooltip-accent" data-tip="accent">
+  <button class="btn btn-accent">accent</button>
+</div>
+```
+
+--------------------------------
+
+### Configure daisyUI GitMCP Server in Cursor
+
+Source: https://daisyui.com/docs/editor/cursor
+
+This JSON configuration adds the 'daisyui-github' MCP server to Cursor. It specifies a URL for the GitMCP service, allowing Cursor to interact with DaisyUI documentation hosted on gitmcp.io.
+
+```json
+{
+  "mcpServers": {
++   "daisyui-github": {
++     "url": "https://gitmcp.io/saadeghi/daisyui"
++   }
+  }
+}
+```
+
+--------------------------------
+
+### Configure Context7 MCP Server in Cursor
+
+Source: https://daisyui.com/docs/editor/cursor
+
+This JSON configuration adds the 'Context7' MCP server to Cursor. It uses `npx` to run `@upstash/context7-mcp@latest`, providing an alternative AI backend for DaisyUI related queries.
+
+```json
+{
+  "mcpServers": {
++   "Context7": {
++     "type": "stdio",
++     "command": "npx",
++     "args": ["-y", "@upstash/context7-mcp@latest"]
++   }
+  }
+}
+```
+
+--------------------------------
+
+### Generate output.css with Tailwind CSS (Linux/macOS)
+
+Source: https://daisyui.com/docs/install/django
+
+Runs the Tailwind CSS executable to process input.css and generate output.css, which contains the compiled Tailwind and daisyUI styles. The --watch flag enables automatic recompilation on file changes.
+
+```shell
+myapp/static/css/tailwindcss -i myapp/static/css/input.css -o myapp/static/css/output.css --watch
+```
+
+--------------------------------
+
+### Configure Tailwind CSS and daisyUI Input
+
+Source: https://daisyui.com/docs/install/django
+
+Defines the input CSS file (input.css) for Tailwind CSS, importing Tailwind directives and daisyUI plugins. This file specifies how Tailwind and daisyUI should be processed.
+
+```css
+@import "tailwindcss";
+
+@source not "./tailwindcss";
+@source not "./daisyui{*}.mjs";
+
+@plugin "./daisyui.mjs";
+
+/* Optional for custom themes – Docs: https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme */
+@plugin "./daisyui-theme.mjs"{
+  /* custom theme here */
+}
+```
+
+--------------------------------
+
+### Radial Progress Component Syntax
+
+Source: https://daisyui.com/llms
+
+Shows how to implement a radial progress bar using DaisyUI. It utilizes a 'div' element with the 'radial-progress' class and CSS variables for value, size, and thickness.
+
+```html
+<div class="radial-progress" style="--value:70;" aria-valuenow="70" role="progressbar">70%</div>
+```
+
+--------------------------------
+
+### DaisyUI Mockup Code with Primary Color
+
+Source: https://daisyui.com/components/mockup-code
+
+This example shows how to use the `mockup-code` component with a primary background color and primary content text. It utilizes standard HTML and CSS classes provided by daisyUI.
+
+```html
+<div class="mockup-code bg-primary text-primary-content w-full">
+  <pre><code>can be any color!</code></pre>
+</div>
+```
+
+```html
+<div class="mockup-code bg-primary text-primary-content w-full">
+  <pre><code>can be any color!</code></pre>
+</div>
+```
+
+--------------------------------
+
+### Configure Vite for Tailwind CSS
+
+Source: https://daisyui.com/docs/install/sveltekit
+
+Adds the tailwindcss plugin to the Vite configuration file (vite.config.js). This ensures Tailwind CSS is processed correctly within the SvelteKit build.
+
+```javascript
+import tailwindcss from "@tailwindcss/vite";
+import { sveltekit } from "@sveltejs/kit/vite";
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  plugins: [tailwindcss(), sveltekit()],
+});
+
+```
+
+--------------------------------
+
+### DaisyUI Warning Tooltip
+
+Source: https://daisyui.com/components/tooltip
+
+Displays a warning-themed tooltip with associated button. This example shows the basic implementation of a warning tooltip in DaisyUI. It requires the DaisyUI CSS to be included in the project.
+
+```html
+<div class="tooltip tooltip-open tooltip-warning" data-tip="warning">
+  <button class="btn btn-warning">warning</button>
+</div>
+```
+
+```jsx
+<div className="tooltip tooltip-open tooltip-warning" data-tip="warning">
+  <button className="btn btn-warning">warning</button>
+</div>
+```
+
+--------------------------------
+
+### Badge as Indicator Example (HTML)
+
+Source: https://daisyui.com/components/indicator
+
+Shows how to use a badge as an indicator on another element, such as displaying a 'New' notification count. This utilizes the `indicator-item` class with the `badge` component.
+
+```html
+<div class="indicator">
+  <span class="indicator-item badge badge-primary">New</span>
+  <div class="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Card Component JSX Examples
+
+Source: https://daisyui.com/components/card
+
+This snippet demonstrates the implementation of DaisyUI card components using JSX syntax, likely within a React environment. It mirrors the HTML structure, showcasing cards of varying sizes (x-small to x-large) with the same content and button.
+
+```jsx
+<div className="card w-96 bg-base-100 card-xs shadow-sm">
+  <div className="card-body">
+    <h2 className="card-title">Xsmall Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div className="justify-end card-actions">
+      <button className="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<div className="card w-96 bg-base-100 card-sm shadow-sm">
+  <div className="card-body">
+    <h2 className="card-title">Small Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div className="justify-end card-actions">
+      <button className="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<div className="card w-96 bg-base-100 card-md shadow-sm">
+  <div className="card-body">
+    <h2 className="card-title">Medium Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div className="justify-end card-actions">
+      <button className="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<div className="card w-96 bg-base-100 card-lg shadow-sm">
+  <div className="card-body">
+    <h2 className="card-title">Large Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div className="justify-end card-actions">
+      <button className="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<div className="card w-96 bg-base-100 card-xl shadow-sm">
+  <div className="card-body">
+    <h2 className="card-title">Xlarge Card</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div className="justify-end card-actions">
+      <button className="btn btn-primary">Buy Now</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Steps with Custom Colors (HTML)
+
+Source: https://daisyui.com/components/steps
+
+Shows how to apply custom color themes to DaisyUI steps, such as 'info' and 'error'. This example uses 'step-info' for the first three steps and 'step-error' with a 'data-content' attribute for the final step, indicating a potential issue or a distinct final state.
+
+```html
+<ul class="steps">
+  <li class="step step-info">Fly to moon</li>
+  <li class="step step-info">Shrink the moon</li>
+  <li class="step step-info">Grab the moon</li>
+  <li class="step step-error" data-content="?">Sit on toilet</li>
+</ul>
+```
+
+```jsx
+<ul className="steps">
+  <li className="step step-info">Fly to moon</li>
+  <li className="step step-info">Shrink the moon</li>
+  <li className="step step-info">Grab the moon</li>
+  <li className="step step-error" data-content="?">Sit on toilet</li>
+</ul>
+```
+
+--------------------------------
+
+### Update Card Border Class
+
+Source: https://daisyui.com/docs/upgrade
+
+Demonstrates the renaming of the `card-bordered` class to `card-border` for consistency within the Card component styling.
+
+```html
+<div class="card card-bordered">
+  <!-- ... -->
+</div>
+```
+
+```html
+<div class="card card-border">
+  <!-- ... -->
+</div>
+```
+
+--------------------------------
+
+### CSS for Card Component Styling
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Illustrates CSS code snippets used for styling a card component, focusing on background color, border, and text color. It also shows a hover state for a button within the context of a card, demonstrating the need for careful color choices and design considerations.
+
+```css
+/* Which colors actually work together? */
+.card {
+  background-color: #f8fafc; /* Light gray */
+  border: 1px solid #e2e8f0; /* Medium gray */
+  color: #1e293b; /* Dark gray */
+}
+
+/* How do you create hover states that feel natural? */
+.button:hover {
+  background-color: #3730a3; /* Is this the right shade? */
+}
+```
+
+--------------------------------
+
+### Replace btn-group and input-group with join Component in HTML
+
+Source: https://daisyui.com/docs/upgrade
+
+Migrate from deprecated btn-group and input-group components to the join component with join-item class for grouped buttons and inputs with improved styling and flexibility.
+
+```html
+before
+<div class="btn-group">
+  <button class="btn">Button 1</button>
+  <button class="btn">Button 2</button>
+</div>
+
+after
+<div class="join">
+  <button class="btn join-item">Button 1</button>
+  <button class="btn join-item">Button 2</button>
+</div>
+```
+
+--------------------------------
+
+### HTML Modals: Dialog, Checkbox, Anchor Links
+
+Source: https://daisyui.com/llms
+
+Demonstrates three methods for implementing modals in HTML using DaisyUI: the standard HTML dialog element, a legacy checkbox-based approach, and a legacy anchor link method. Each method has specific syntax and rules for opening and closing.
+
+```html
+<button onclick="my_modal.showModal()">Open modal</button>
+<dialog id="my_modal" class="modal">
+  <div class="modal-box">{CONTENT}</div>
+  <form method="dialog" class="modal-backdrop"><button>close</button></form>
+</dialog>
+```
+
+```html
+<label for="my-modal" class="btn">Open modal</label>
+<input type="checkbox" id="my-modal" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box">{CONTENT}</div>
+  <label class="modal-backdrop" for="my-modal">Close</label>
+</div>
+```
+
+```html
+<a href="#my-modal" class="btn">Open modal</a>
+<div class="modal" id="my-modal">
+  <div class="modal-box">{CONTENT}</div>
+</div>
+```
+
+--------------------------------
+
+### React Custom Line Height Example
+
+Source: https://daisyui.com/components/text-rotate
+
+This React component showcases custom line height in daisyUI using 'leading-[value]'. It's functionally identical to the HTML example, applying a large line height to enhance vertical spacing for tall text. This code is suitable for React projects utilizing daisyUI.
+
+```jsx
+<span className="text-rotate text-7xl leading-[2]">
+  <span className="justify-items-center">
+    <span>📐 DESIGN</span>
+    <span>⌨️ DEVELOP</span>
+    <span>🌎 DEPLOY</span>
+    <span>🌱 SCALE</span>
+    <span>🔧 MAINTAIN</span>
+    <span>♻️ REPEAT</span>
+  </span>
+</span>
+```
+
+--------------------------------
+
+### Configure Vite with Tailwind CSS and Preact
+
+Source: https://daisyui.com/docs/install/preact
+
+Update the Vite configuration file to include Tailwind CSS and Preact plugins. This enables Tailwind CSS processing and Preact-specific optimizations during the build process.
+
+```javascript
+import { defineConfig } from 'vite'
+import tailwindcss from "@tailwindcss/vite";
+import preact from '@preact/preset-vite'
+
+export default defineConfig({
+  plugins: [tailwindcss(), preact()],
+})
+```
+
+--------------------------------
+
+### Tailwind CSS Button with Utility Classes
+
+Source: https://daisyui.com/blog/full-circle
+
+This example demonstrates a button created using only Tailwind CSS utility classes. It showcases the verbosity and potential maintenance challenges of a utility-first approach for complex components, requiring numerous classes for styling and states.
+
+```html
+<button
+  class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+>
+  Button
+</button>
+```
+
+--------------------------------
+
+### HTML DaisyUI Footer with Form
+
+Source: https://daisyui.com/components/footer
+
+A standard HTML implementation of a DaisyUI footer. It includes navigation links organized into columns (Services, Company, Legal) and a newsletter signup form with input and submit button. This example uses basic HTML and DaisyUI classes.
+
+```html
+<footer class="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
+  <nav>
+    <h6 class="footer-title">Services</h6>
+    <a class="link link-hover">Branding</a>
+    <a class="link link-hover">Design</a>
+    <a class="link link-hover">Marketing</a>
+    <a class="link link-hover">Advertisement</a>
+  </nav>
+  <nav>
+    <h6 class="footer-title">Company</h6>
+    <a class="link link-hover">About us</a>
+    <a class="link link-hover">Contact</a>
+    <a class="link link-hover">Jobs</a>
+    <a class="link link-hover">Press kit</a>
+  </nav>
+  <nav>
+    <h6 class="footer-title">Legal</h6>
+    <a class="link link-hover">Terms of use</a>
+    <a class="link link-hover">Privacy policy</a>
+    <a class="link link-hover">Cookie policy</a>
+  </nav>
+  <form>
+    <h6 class="footer-title">Newsletter</h6>
+    <fieldset class="w-80">
+      <label>Enter your email address</label>
+      <div class="join">
+        <input
+          type="text"
+          placeholder="username@site.com"
+          class="input input-bordered join-item" />
+        <button class="btn btn-primary join-item">Subscribe</button>
+      </div>
+    </fieldset>
+  </form>
+</footer>
+```
+
+--------------------------------
+
+### Advanced daisyUI 5 Configuration with Customizations
+
+Source: https://daisyui.com/llms
+
+This advanced configuration enables all built-in themes, sets 'bumblebee' as the default and 'synthwave' for dark mode. It also excludes specific components from the prefixing and disables console logging.
+
+```css
+@plugin "daisyui" {
+  themes: light, dark, cupcake, bumblebee --default, emerald, corporate, synthwave --prefersdark, retro, cyberpunk, valentine, halloween, garden, forest, aqua, lofi, pastel, fantasy, wireframe, black, luxury, dracula, cmyk, autumn, business, acid, lemonade, night, coffee, winter, dim, nord, sunset, caramellatte, abyss, silk;
+  root: ":root";
+  include: ;
+  exclude: rootscrollgutter, checkbox;
+  prefix: daisy-;
+  logs: false;
+}
+```
+
+--------------------------------
+
+### Modal Dialogs with DaisyUI
+
+Source: https://daisyui.com/llms
+
+Used to display dialogs or boxes, often triggered by a button click. Supports various placements like top, middle, and bottom, and can be opened programmatically.
+
+```html
+<!-- Button to open modal -->
+<label for="my-modal-3" class="btn modal-toggle">Open Modal</label>
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal-3" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Congratulations!</h3>
+    <p class="py-4">You've been selected for a discount!</p>
+    <div class="modal-action">
+      <label for="my-modal-3" class="btn">Close</label>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Info Progress Bar in HTML
+
+Source: https://daisyui.com/components/progress
+
+Presents the DaisyUI progress bar component styled with the 'info' color theme in HTML. This example shows how to apply the `progress-info` class to change the bar's appearance while maintaining functionality.
+
+```html
+<progress class="progress progress-info w-56" value="0" max="100"></progress>
+<progress class="progress progress-info w-56" value="10" max="100"></progress>
+<progress class="progress progress-info w-56" value="40" max="100"></progress>
+<progress class="progress progress-info w-56" value="70" max="100"></progress>
+<progress class="progress progress-info w-56" value="100" max="100"></progress>
+```
+
+--------------------------------
+
+### daisyUI Loading Dots Examples (JSX)
+
+Source: https://daisyui.com/components/loading
+
+Presents the loading dots component in JSX format, suitable for React projects, demonstrating different size configurations. This offers a simple yet effective way to show loading states.
+
+```jsx
+<span className="loading loading-dots loading-xs"></span>
+<span className="loading loading-dots loading-sm"></span>
+<span className="loading loading-dots loading-md"></span>
+<span className="loading loading-dots loading-lg"></span>
+<span className="loading loading-dots loading-xl"></span>
+```
+
+--------------------------------
+
+### Build CSS using Tailwind CSS Executable
+
+Source: https://daisyui.com/docs/install/zola
+
+Compiles the CSS input file into an output CSS file using the downloaded Tailwind CSS executable. The `--watch` flag enables live updates when the input file changes.
+
+```bash
+./static/tailwindcss -i static/input.css -o static/output.css --watch
+# For Windows
+static\tailwindcss.exe -i static\input.css -o static\output.css --watch
+```
+
+--------------------------------
+
+### Configure Tailwind CSS and daisyUI in app.css
+
+Source: https://daisyui.com/docs/install/laravel
+
+This configuration integrates Tailwind CSS with daisyUI by importing Tailwind CSS, specifying source files for CSS processing, and enabling the daisyUI plugin.
+
+```css
+@import "tailwindcss";
+
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../storage/framework/views/*.php";
+
+@plugin "daisyui";
+```
+
+--------------------------------
+
+### Status Indicator Example (HTML)
+
+Source: https://daisyui.com/components/indicator
+
+Demonstrates how to use the indicator component to display a status indicator, such as a success icon, on the corner of another element. This is useful for visually representing the state of an item.
+
+```html
+<div class="indicator">
+  <span class="indicator-item status status-success"></span>
+  <div class="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
+
+--------------------------------
+
+### Dropdown with Details and Summary (JSX)
+
+Source: https://daisyui.com/components/dropdown
+
+This example shows how to create a dropdown using 'details' and 'summary' elements within a JSX environment, likely for a framework like React. It utilizes daisyUI classes for styling and functionality, mirroring the HTML approach but adapted for JSX syntax.
+
+```jsx
+<details className="dropdown">
+  <summary className="btn m-1">open or close</summary>
+  <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</details>
+```
+
+--------------------------------
+
+### Skeleton Loading Component
+
+Source: https://daisyui.com/llms
+
+Component for displaying loading states with optional text skeleton modifier. Supports height and width utility classes (h-* and w-*) to customize dimensions.
+
+```html
+<div class="skeleton"></div>
+```
+
+```html
+<div class="skeleton skeleton-text">Loading data...</div>
+```
+
+--------------------------------
+
+### Configure Vite for Tailwind CSS
+
+Source: https://daisyui.com/docs/install/lit
+
+Adds the Tailwind CSS Vite plugin to the Vite configuration file (`vite.config.js`). This ensures that Tailwind CSS is processed correctly during the build.
+
+```javascript
+import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
+
+export default defineConfig({
+  plugins: [
+    tailwindcss()
+  ],
+});
+```
+
+--------------------------------
+
+### Configure daisyUI GitMCP Server in VSCode Workspace
+
+Source: https://daisyui.com/docs/editor/vscode
+
+This JSON configuration integrates the 'daisyUI' GitMCP server for your current workspace. It specifies the server type as 'sse' and provides the URL for the daisyUI GitMCP service.
+
+```json
+{
+  "servers": {
+    "daisyUI": {
+      "type": "sse",
+      "url": "https://gitmcp.io/saadeghi/daisyui"
+    }
+  }
+}
+```
+
+--------------------------------
+
+### Tailwind CSS Configuration for DaisyUI (JavaScript)
+
+Source: https://daisyui.com/resources/videos/nextjs-13-e-commerce-tutorial-app-router-typescript-deployment-tailwindcss-prisma-daisyui-k4zif0mhblc
+
+Configuration file for Tailwind CSS, enabling DaisyUI component styling. This setup defines the theme, plugins, and other customization options for Tailwind CSS, ensuring DaisyUI components are correctly integrated and styled within the project.
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    // Or if using `src` directory:
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [require("daisyui")],
+};
+
+```
+
+--------------------------------
+
+### Stacked Cards with Shadows HTML Example
+
+Source: https://daisyui.com/components/stack
+
+Shows how to apply varying shadow effects to stacked cards using DaisyUI's shadow utility classes. This allows for depth and emphasis on individual cards within the stack.
+
+```html
+<div class="stack">
+  <div class="card bg-base-200 text-center shadow-md">
+    <div class="card-body">A</div>
+  </div>
+  <div class="card bg-base-200 text-center shadow">
+    <div class="card-body">B</div>
+  </div>
+  <div class="card bg-base-200 text-center shadow-sm">
+    <div class="card-body">C</div>
+  </div>
+</div>
+```
+
+```jsx
+<div className="stack">
+  <div className="card bg-base-200 text-center shadow-md">
+    <div className="card-body">A</div>
+  </div>
+  <div className="card bg-base-200 text-center shadow">
+    <div className="card-body">B</div>
+  </div>
+  <div className="card bg-base-200 text-center shadow-sm">
+    <div className="card-body">C</div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Progressive Button Styling with daisyUI and Tailwind Utilities
+
+Source: https://daisyui.com/pages/tailwind-css-alternative
+
+Illustrates the gradual learning curve of daisyUI, allowing developers to start with simple semantic classes and progressively add Tailwind CSS utilities for customization or to create variations.
+
+```html
+<!-- Start simple -->
+<button class="btn btn-primary">Click me</button>
+
+<!-- Add utilities for customization -->
+<button class="btn btn-primary lg:btn-lg xl:w-full">Click me</button>
+
+<!-- Or create variations -->
+<button class="btn btn-primary hover:scale-105 transition-transform">Click me</button>
+```
+
+--------------------------------
+
+### Design Professional Login Form with DaisyUI
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Builds a complete login form using DaisyUI card, form-control, input, label, and button components. Demonstrates consistent styling across form elements with accessibility-compliant labels and inputs. Ensures uniform appearance regardless of developer experience level.
+
+```HTML
+<form class="card w-full max-w-sm bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title">Login</h2>
+    <div class="form-control w-full max-w-xs">
+      <label class="label">
+        <span class="label-text">Email</span>
+      </label>
+      <input type="email" class="input input-bordered w-full max-w-xs" />
+    </div>
+    <div class="form-control w-full max-w-xs">
+      <label class="label">
+        <span class="label-text">Password</span>
+      </label>
+      <input type="password" class="input input-bordered w-full max-w-xs" />
+    </div>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Login</button>
+    </div>
+  </div>
+</form>
+```
+
+--------------------------------
+
+### Add Social Media Links in Hero Component
+
+Source: https://daisyui.com/blog/how-to-make-a-blog-quickly-using-astro-and-daisyUI
+
+Update social media links in the src/components/Hero.astro file using daisyUI button components and SVG icons. This enables visitors to connect with the blog author across various platforms.
+
+```astro
+<div class="flex justify-center lg:justify-start space-x-4 mt-4">
+  <a
+    class="btn btn-circle btn-md"
+    href="https://www.x.com"
+    aria-label="twitter"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-8 w-8">
+      <path
+        d="M13.3174 10.7749L19.1457 4H17.7646L12.7039 9.88256L8.66193 4H4L10.1122 12.8955L4 20H5.38119L10.7254 13.7878L14.994 20H19.656L13.3171 10.7749H13.3174ZM11.4257 12.9738L10.8064 12.0881L5.87886 5.03974H8.00029L11.9769 10.728L12.5962 11.6137L17.7652 19.0075H15.6438L11.4257 12.9742V12.9738Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  </a>
+</div>
+```
+
+--------------------------------
+
+### daisyUI Loading Spinner Examples (JSX)
+
+Source: https://daisyui.com/components/loading
+
+Shows how to use the loading spinner component with various size options in JSX, commonly used in React applications. The implementation is similar to HTML but uses JSX syntax for class names.
+
+```jsx
+<span className="loading loading-spinner loading-xs"></span>
+<span className="loading loading-spinner loading-sm"></span>
+<span className="loading loading-spinner loading-md"></span>
+<span className="loading loading-spinner loading-lg"></span>
+<span className="loading loading-spinner loading-xl"></span>
+```
+
+--------------------------------
+
+### Basic Button Styling with daisyUI
+
+Source: https://daisyui.com/index
+
+Demonstrates how to style a simple button using daisyUI's component class names combined with Tailwind CSS utilities. The example shows a button with the 'btn' and 'btn-primary' classes.
+
+```html
+<a class="btn btn-primary">Button</a>
+```
+
+--------------------------------
+
+### Generate output.css with Tailwind CSS (Windows)
+
+Source: https://daisyui.com/docs/install/django
+
+Executes the Tailwind CSS build process on Windows, generating output.css from input.css. The --watch option ensures that the CSS file is updated automatically when source files are modified.
+
+```shell
+myappstaticcss\tailwindcss.exe -i myapp/static/css/input.css -o myapp/static/css/output.css --watch
+```
+
+--------------------------------
+
+### CSS for Card Layout and Visual Rhythm
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Shows CSS properties used to style a card component's padding, bottom margin, border-radius, and box-shadow. This snippet illustrates how layout and spacing decisions contribute to visual rhythm and overall user experience.
+
+```css
+/* How much spacing creates good visual rhythm? */
+.card {
+  padding: 1.5rem; /* Why this padding? */
+  margin-bottom: 2rem; /* Why this margin? */
+  border-radius: 0.5rem; /* Why this radius? */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Why this shadow? */
+}
+```
+
+--------------------------------
+
+### Add daisyUI via CDN
+
+Source: https://daisyui.com/docs/install/rails
+
+This method allows quick addition of daisyUI without adding new files by directly importing it via CDN in the CSS file. It's recommended for simplicity and speed.
+
+```css
+@import "tailwindcss";
+
+@import "https://cdn.jsdelivr.net/npm/daisyui@5";
+```
+
+--------------------------------
+
+### DaisyUI Responsive Tooltip for Large Screens
+
+Source: https://daisyui.com/components/tooltip
+
+Implements a tooltip that is only visible on large screens and up. This example utilizes DaisyUI's responsive prefix 'lg:' to control visibility. It requires DaisyUI CSS.
+
+```html
+<div class="lg:tooltip" data-tip="hello">
+  <button class="btn">Hover me</button>
+</div>
+```
+
+```jsx
+<div className="lg:tooltip" data-tip="hello">
+  <button className="btn">Hover me</button>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Tooltip - Primary Color (HTML)
+
+Source: https://daisyui.com/components/tooltip
+
+This example illustrates a primary-colored tooltip with DaisyUI. The 'tooltip-primary' and 'btn-primary' classes are used to style the tooltip and button, respectively. The tooltip text is 'primary'.
+
+```html
+<div class="tooltip tooltip-open tooltip-primary" data-tip="primary">
+  <button class="btn btn-primary">primary</button>
+</div>
+```
+
+--------------------------------
+
+### Basic DaisyUI Menu Example (React)
+
+Source: https://daisyui.com/components/menu
+
+Demonstrates a basic DaisyUI menu component in React. It utilizes the same 'menu' class structure as the HTML version for styling and layout. The 'w-56' class sets a fixed width.
+
+```jsx
+<ul className="menu bg-base-200 rounded-box w-56">
+  <li><a>Item 1</a></li>
+  <li><a>Item 2</a></li>
+  <li><a>Item 3</a></li>
+</ul>
+```
+
+--------------------------------
+
+### Checkbox with Fieldset and Label React
+
+Source: https://daisyui.com/components/checkbox
+
+Provides the React implementation for a checkbox within a fieldset and label. This example uses `defaultChecked` and daisyUI classes for styling.
+
+```jsx
+<fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+  <legend className="fieldset-legend">Login options</legend>
+  <label className="label">
+    <input type="checkbox" defaultChecked className="checkbox" />
+    Remember me
+  </label>
+</fieldset>
+```
+
+--------------------------------
+
+### CSS Theme Customization for daisyUI Components
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Illustrates how to customize the appearance of daisyUI components globally by modifying CSS variables within a theme. This example shows how changing primary, secondary, and accent colors for the 'corporate' theme instantly updates all components without individual CSS overrides.
+
+```css
+/* Change your entire site's appearance */
+[data-theme="corporate"] {
+  --primary: #4f46e5;
+  --secondary: #7c3aed;
+  --accent: #f59e0b;
+}
+
+/* All components update instantly */
+```
+
+--------------------------------
+
+### Success Color Link with DaisyUI
+
+Source: https://daisyui.com/components/link
+
+This snippet shows how to style a link with the success color theme using the 'link link-success' classes, with examples for both HTML and React JSX.
+
+```html
+<a class="link link-success">Click me</a>
+```
+
+```jsx
+<a className="link link-success">Click me</a>
+```
+
+--------------------------------
+
+### Initialize daisyUI with Configuration
+
+Source: https://daisyui.com/docs/config
+
+Demonstrates how to replace the default daisyUI plugin import with a configurable version by using brackets `{}` instead of a semicolon `;` to enclose configuration options. This allows for customization of daisyUI's behavior.
+
+```css
+@plugin "daisyui";
+@plugin "daisyui" {
+}
+```
+
+--------------------------------
+
+### Fieldset with Background and Border Styling in DaisyUI
 
 Source: https://daisyui.com/components/fieldset
 
-Illustrates creating a DaisyUI fieldset that contains multiple input fields. It emphasizes the importance of unique `id` and `for` attributes for accessibility, linking labels to their respective inputs.
+Shows how to apply background, border, and rounded box styles to a DaisyUI fieldset. This example enhances the visual presentation of the fieldset container, making it stand out.
 
 ```html
-<!-- Fieldset with multiple inputs -->
-<div class="space-y-4">
-  <label class="label">
-    <span class="label-text">Page details</span>
-  </label>
-  <div class="form-control">
-    <label class="label">
-      <span class="label-text">Title</span>
-    </label>
-    <input type="text" placeholder="Title" class="input input-bordered" />
-  </div>
-  <div class="form-control">
-    <label class="label">
-      <span class="label-text">Slug</span>
-    </label>
-    <input type="text" placeholder="Slug" class="input input-bordered" />
-  </div>
-  <div class="form-control">
-    <label class="label">
-      <span class="label-text">Author</span>
-    </label>
-    <input type="text" placeholder="Author" class="input input-bordered" />
+<fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <legend class="fieldset-legend">Page title</legend>
+  <input type="text" class="input" placeholder="My awesome page" />
+  <p class="label">You can edit page title later on from settings</p>
+</fieldset>
+```
+
+```jsx
+<fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <legend className="fieldset-legend">Page title</legend>
+  <input type="text" className="input" placeholder="My awesome page" />
+  <p className="label">You can edit page title later on from settings</p>
+</fieldset>
+```
+
+--------------------------------
+
+### HTML Input with Label, Placeholder, and Optional Badge
+
+Source: https://daisyui.com/components/input
+
+This example illustrates an input field with a preceding text label ('Path'), a placeholder, and an 'Optional' badge. This pattern is useful for form inputs where some fields are not mandatory.
+
+```html
+<label class="input">
+  Path
+  <input type="text" class="grow" placeholder="src/app/" />
+  <span class="badge badge-neutral badge-xs">Optional</span>
+</label>
+```
+
+--------------------------------
+
+### React Material-UI Component Example (JavaScript)
+
+Source: https://daisyui.com/pages/css-library-for-html
+
+Shows how to use Material-UI components within a React application. It includes importing `Button`, `Card`, and `TextField` from `@mui/material` and using them to construct a simple form. This highlights framework lock-in.
+
+```javascript
+// Material-UI (React only)
+import { Button, Card, TextField } from '@mui/material';
+
+function MyComponent() {
+  return (
+    <Card>
+      <TextField label="Email" />
+      <Button variant="contained">Submit</Button>
+    </Card>
+  );
+}
+```
+
+--------------------------------
+
+### DaisyUI Button Join for Navigation Arrows
+
+Source: https://daisyui.com/components/pagination
+
+Illustrates a button join used for navigation, typically for previous and next page links. This example uses text labels within the join component.
+
+```html
+<div class="join">
+  <button class="join-item btn">«</button>
+  <button class="join-item btn">Page 22</button>
+  <button class="join-item btn">»</button>
+</div>
+```
+
+```jsx
+<div className="join">
+  <button className="join-item btn">«</button>
+  <button className="join-item btn">Page 22</button>
+  <button className="join-item btn">»</button>
+</div>
+```
+
+--------------------------------
+
+### Button with Loading Spinner (HTML)
+
+Source: https://daisyui.com/components/button
+
+Provides examples of buttons displaying a loading spinner, either as a standalone square button or alongside text. It utilizes DaisyUI's `loading` and `loading-spinner` classes within a `<span>` element.
+
+```html
+<button class="btn btn-square">
+  <span class="loading loading-spinner"></span>
+</button>
+
+<button class="btn">
+  <span class="loading loading-spinner"></span>
+  loading
+</button>
+```
+
+--------------------------------
+
+### Configure Vite for Tailwind CSS in Qwik
+
+Source: https://daisyui.com/docs/install/qwik
+
+Adds the Tailwind CSS plugin to the Vite configuration file for a Qwik project. This allows Vite to process Tailwind CSS during the build and development process.
+
+```javascript
+import tailwindcss from "@tailwindcss/vite";
+//...
+export default defineConfig(({ command, mode }): UserConfig => {
+  return {
+    plugins: [tailwindcss(), qwikCity(), qwikVite(), tsconfigPaths()],
+    // ...
+  };
+});
+```
+
+--------------------------------
+
+### DaisyUI Mockup Code in React with Primary Color
+
+Source: https://daisyui.com/components/mockup-code
+
+This example demonstrates the `mockup-code` component within a React application, using `className` for styling. It applies a primary background and text color.
+
+```jsx
+<div className="mockup-code bg-primary text-primary-content w-full">
+  <pre><code>can be any color!</code></pre>
+</div>
+```
+
+```jsx
+<div className="mockup-code bg-primary text-primary-content w-full">
+  <pre><code>can be any color!</code></pre>
+</div>
+```
+
+--------------------------------
+
+### Download daisyUI JS Files
+
+Source: https://daisyui.com/docs/install/zola
+
+Downloads the latest bundled JavaScript files for daisyUI, including the main module and the theme module. These files are saved alongside the Tailwind CSS executable.
+
+```bash
+curl -sLo static/daisyui.mjs https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.mjs
+curl -sLo static/daisyui-theme.mjs https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.mjs
+```
+
+--------------------------------
+
+### daisyUI Button with Component Class
+
+Source: https://daisyui.com/blog/full-circle
+
+This example shows the same button implemented using daisyUI's component class ('btn') and a primary color modifier ('btn-primary'). It highlights the conciseness and readability achieved by using component classes, simplifying HTML structure and development speed.
+
+```html
+<button class="btn btn-primary">Button</button>
+```
+
+--------------------------------
+
+### Combining daisyUI Components with Tailwind CSS Utilities
+
+Source: https://daisyui.com/pages/css-library-for-html
+
+Shows how to integrate daisyUI's semantic components with Tailwind CSS utility classes for fine-grained control over layout and specific styling aspects. This example features a responsive card layout.
+
+```html
+<div class="card lg:card-side bg-base-100 shadow-xl">
+  <figure class="lg:w-1/3">
+    <img src="photo.jpg" alt="Album" class="w-full h-full object-cover" />
+  </figure>
+  <div class="card-body lg:w-2/3">
+    <h2 class="card-title text-2xl lg:text-3xl">Card title</h2>
+    <p class="opacity-70">Card description.</p>
+    <div class="card-actions justify-end mt-4">
+      <button class="btn btn-primary">Buy Now</button>
+    </div>
   </div>
 </div>
 ```
 
----
+--------------------------------
 
-### DaisyUI Swap Component: Icons with Rotate Effect (HTML)
+### Indicator Bottom Start Positioning (HTML)
 
-Source: https://daisyui.com/components/swap
+Source: https://daisyui.com/components/indicator
 
-Shows how to implement the rotate effect on icon toggling using the DaisyUI Swap component. The `swap-rotate` class is applied to the swap container, and a hidden checkbox controls the state change between two icons (e.g., sun and moon).
+Illustrates the 'indicator-bottom' and 'indicator-start' positioning for a DaisyUI indicator. This configuration places a secondary badge indicator at the bottom and to the left of the content. It requires the DaisyUI library to be included in the project.
 
 ```html
-<label class="swap swap-rotate">
-  <input type="checkbox" />
-  <svg
-    class="swap-on fill-current"
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <circle cx="12" cy="12" r="4"></circle>
-    <path
-      d="M16 12h4M20 12h-4M12 16h.01M12 20h.01M12 8h.01M12 4h.01M8 12h.01M4 12h.01M20 4l-2 2M18 20l2-2M6 4l2 2M4 20l2-2"
-    ></path>
-  </svg>
-  <svg
-    class="swap-off fill-current"
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-  </svg>
-</label>
+<div class="indicator">
+  <span
+    class="indicator-item indicator-bottom indicator-start badge badge-secondary"
+  ></span>
+  <div class="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
 ```
 
----
+```jsx
+<div className="indicator">
+  <span
+    className="indicator-item indicator-bottom indicator-start badge badge-secondary"
+  ></span>
+  <div className="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
 
-### DaisyUI Badge with Dash Style and Colors (HTML)
+--------------------------------
+
+### Claude Code MCP Server Installation Command
+
+Source: https://daisyui.com/blueprint
+
+This command-line interface (CLI) command adds the daisyUI Blueprint MCP server for use with Claude Code. It configures necessary environment variables, including LICENSE, EMAIL, and an optional FIGMA API key for Figma-to-code generation.
+
+```bash
+claude mcp add daisyui-blueprint
+    --env LICENSE=YOUR_LICENSE_KEY
+    --env EMAIL=YOUR_EMAIL
+    --env FIGMA=YOUR_FIGMA_API_KEY
+    -- npx -y daisyui-blueprint@latest
+```
+
+--------------------------------
+
+### Manual MCP Server Configuration (JSON)
+
+Source: https://daisyui.com/blueprint
+
+This JSON object represents the configuration for the daisyUI Blueprint MCP server, intended for manual setup in LLM tools or code editors. It defines the server type, command to run, and environment variables for license and email.
+
+```json
+"daisyui-blueprint": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "daisyui-blueprint@latest"],
+    "env": {
+      "LICENSE": "",
+      "EMAIL": ""
+    }
+  }
+```
+
+--------------------------------
+
+### CSS Button Styling: Junior vs. Senior Developer Approaches
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Demonstrates inconsistent button styling due to varying developer skill levels. The junior developer's approach uses basic CSS properties, while the senior developer's approach incorporates advanced techniques like gradients, transitions, and shadows for a more polished look.
+
+```css
+/* Junior developer's button */
+.btn {
+  background: blue;
+  color: white;
+  padding: 10px;
+  border: none;
+}
+
+/* Senior developer's button */
+.button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+```
+
+--------------------------------
+
+### DaisyUI Chat Component Syntax
+
+Source: https://daisyui.com/llms
+
+The DaisyUI chat component displays messages with options for placement, avatar, and color. It requires a placement class (`chat-start` or `chat-end`) and optionally accepts color classes. Avatars can be added using a nested `chat-image` div.
+
+```html
+<div class="chat {PLACEMENT}">
+  <div class="chat-image"></div>
+  <div class="chat-header"></div>
+  <div class="chat-bubble {COLOR}">Message text</div>
+  <div class="chat-footer"></div>
+</div>
+```
+
+--------------------------------
+
+### Configure Vite for Tailwind CSS
+
+Source: https://daisyui.com/docs/install/vike
+
+Adds the Tailwind CSS Vite plugin to the Vite configuration file (`vite.config.ts`). This enables Tailwind CSS processing within the Vite build pipeline.
+
+```typescript
+import tailwindcss from "@tailwindcss/vite";
+import vike from "vike/plugin";
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  plugins: [tailwindcss(), vike()],
+});
+```
+
+--------------------------------
+
+### Pikaday Date Picker (HTML)
+
+Source: https://daisyui.com/components/calendar
+
+This example demonstrates the basic usage of the Pikaday JavaScript datepicker library with an HTML input field. It includes the CDN link for Pikaday and a simple script to initialize the date picker.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+<input type="text" class="input pika-single" id="myDatepicker">
+<script>
+  var picker = new Pikaday({ field: document.getElementById('myDatepicker') });
+</script>
+```
+
+--------------------------------
+
+### HTML Button Components with daisyUI Primary, Secondary, Accent Styles
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Demonstrates how daisyUI simplifies design decisions by providing pre-defined styles for buttons. This snippet shows primary, secondary, and accent button variations, eliminating the need for manual color and spacing choices.
+
+```html
+<!-- No color decisions needed -->
+<button class="btn btn-primary">Primary Action</button>
+<button class="btn btn-secondary">Secondary Action</button>
+<button class="btn btn-accent">Accent Action</button>
+
+<!-- No spacing decisions needed -->
+<div class="card">
+  <div class="card-body">
+    <!-- Perfect spacing automatically -->
+  </div>
+</div>
+
+<!-- No typography decisions needed -->
+<h1 class="text-4xl font-bold">Heading</h1>
+<p class="text-base">Body text with proper line height.</p>
+```
+
+--------------------------------
+
+### Add DaisyUI llms.txt as Custom Docs in Cursor
+
+Source: https://daisyui.com/docs/editor/cursor
+
+This process involves adding the DaisyUI `llms.txt` URL as a custom document within Cursor via the command palette. Once added, you can invoke DaisyUI docs using the `@docs` command followed by `daisyUI`.
+
+```plaintext
+https://daisyui.com/llms.txt
+```
+
+--------------------------------
+
+### Configure Tailwind CSS and daisyUI (npm/mjs)
+
+Source: https://daisyui.com/docs/install/rails
+
+Configuration for Tailwind CSS and daisyUI in `application.css`. It shows how to import Tailwind CSS and daisyUI as a plugin, with an option for custom themes when using mjs files.
+
+```css
+@import "tailwindcss";
+@plugin "daisyui";
+```
+
+```css
+@import "tailwindcss";
+
+@source not "./daisyui{*}.mjs";
+
+@plugin "./daisyui.mjs";
+
+/* Optional for custom themes – Docs: https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme */
+@plugin "./daisyui-theme.mjs"{
+  /* custom theme here */
+}
+```
+
+--------------------------------
+
+### CSS Styling for Primary Button Component
+
+Source: https://daisyui.com/pages/ui-library-for-hackaton
+
+Demonstrates the CSS complexity required to style a single button variant with hover and active states. This example illustrates the time-consuming nature of creating design systems from scratch, showing gradient backgrounds, shadows, transitions, and state-based transformations that must be repeated for each component variant.
+
+```css
+.primary-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.primary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+.primary-button:active {
+  transform: translateY(0);
+}
+```
+
+--------------------------------
+
+### Update Input Component Styling
+
+Source: https://daisyui.com/docs/upgrade
+
+Illustrates changes to the Input component, including default width and border handling. The `input-bordered` class is removed as borders are now default, and `input-ghost` is used to remove them.
+
+```html
+<!-- Input with border -->
+<input class="input input-bordered"/>
+
+<!-- Input without border -->
+<input class="input"/>
+
+<!-- Input with 20rem width -->
+<input class="input w-full max-w-xs"/>
+```
+
+```html
+<!-- Input with border -->
+<input class="input"/>
+
+<!-- Input without border -->
+<input class="input input-ghost"/>
+
+<!-- Input with consistent width -->
+<input class="input"/>
+```
+
+--------------------------------
+
+### Phone Mockup with Color and Wallpaper (HTML)
+
+Source: https://daisyui.com/components/mockup-phone
+
+This example illustrates how to add a custom border color and a background image to the phone mockup using DaisyUI. The `border-[#ff8938]` class sets the border color, and an `<img>` tag within the display area shows the wallpaper. This allows for more visually appealing mockups.
+
+```html
+<div class="mockup-phone border-[#ff8938]">
+  <div class="mockup-phone-camera"></div>
+  <div class="mockup-phone-display">
+    <img alt="wallpaper" src="https://img.daisyui.com/images/stock/453966.webp" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Outline Style Badges (React)
 
 Source: https://daisyui.com/components/badge
 
-Illustrates the 'dash' style for badges, applied with various color classes. This creates a dashed border effect, offering a distinct visual alternative to solid outlines.
+Provides examples of outline-styled badges in a React component using DaisyUI classes. The 'className' attribute is used for applying styles.
 
-```html
-<!-- Dash Primary Badge -->
-<div class="badge badge-dash badge-primary">Primary</div>
-
-<!-- Dash Secondary Badge -->
-<div class="badge badge-dash badge-secondary">Secondary</div>
-
-<!-- Dash Accent Badge -->
-<div class="badge badge-dash badge-accent">Accent</div>
-
-<!-- Dash Info Badge -->
-<div class="badge badge-dash badge-info">Info</div>
-
-<!-- Dash Success Badge -->
-<div class="badge badge-dash badge-success">Success</div>
-
-<!-- Dash Warning Badge -->
-<div class="badge badge-dash badge-warning">Warning</div>
-
-<!-- Dash Error Badge -->
-<div class="badge badge-dash badge-error">Error</div>
+```jsx
+<div className="badge badge-outline badge-primary">Primary</div>
+<div className="badge badge-outline badge-secondary">Secondary</div>
+<div className="badge badge-outline badge-accent">Accent</div>
+<div className="badge badge-outline badge-info">Info</div>
+<div className="badge badge-outline badge-success">Success</div>
+<div className="badge badge-outline badge-warning">Warning</div>
+<div className="badge badge-outline badge-error">Error</div>
 ```
 
----
+--------------------------------
 
-### Hero with Figure Component - HTML
+### Configure daisyUI Blueprint MCP Server in VSCode
 
-Source: https://daisyui.com/components/hero
+Source: https://daisyui.com/docs/editor/vscode
 
-This HTML code snippet shows a DaisyUI hero component featuring an image on one side and content on the other. It's suitable for introducing a product or service with visual context. The layout can be reversed using specific classes.
+This JSON configuration adds the 'daisyui-blueprint' MCP server to your VSCode settings. It specifies the server type, command to run, arguments, and environment variables including your license key, email, and an optional Figma API key.
+
+```json
+{
+  "servers": {
+    "daisyui-blueprint": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "daisyui-blueprint@latest"],
+      "env": {
+        "LICENSE": "YOUR BLUEPRINT LICENSE KEY",
+        "EMAIL": "YOUR EMAIL ADDRESS",
+        "FIGMA": "YOUR FIGMA API KEY (optional)"
+      }
+    }
+  }
+}
+```
+
+--------------------------------
+
+### Import Ember CSS in index.html
+
+Source: https://daisyui.com/docs/install/ember
+
+Configures the `index.html` file within an Ember project to import the main CSS file, which now includes Tailwind CSS and daisyUI. This ensures that the styles are loaded correctly when the application runs.
 
 ```html
-<div class="hero min-h-screen bg-base-200">
-  <div class="hero-content flex-col lg:flex-row">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-      class="max-w-sm rounded-lg shadow-2xl"
-    />
+<head>
++  <script type="module">
++    import "./app/styles.css";
++  </script>
+  <!-- the rest -->
+</head>
+```
+
+--------------------------------
+
+### Update Footer Layout
+
+Source: https://daisyui.com/docs/upgrade
+
+Demonstrates the change in the default footer layout. It is now vertical by default, and the `footer-horizontal` class can be applied for horizontal layout at specific screen sizes.
+
+```html
+<footer class="footer">
+  <!-- ... -->
+</footer>
+```
+
+```html
+<footer class="footer md:footer-horizontal">
+  <!-- ... -->
+</footer>
+```
+
+--------------------------------
+
+### Status Indicator Example (React JSX)
+
+Source: https://daisyui.com/components/indicator
+
+Illustrates the implementation of a DaisyUI status indicator within a React application using JSX. This pattern is commonly used for notifications or availability markers.
+
+```jsx
+<div className="indicator">
+  <span className="indicator-item status status-success"></span>
+  <div className="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
+
+--------------------------------
+
+### Steps Component for Process Indicators
+
+Source: https://daisyui.com/llms
+
+Component for displaying a sequential list of steps in a process with optional vertical or horizontal direction. Supports color modifiers, step icons, and data-content attributes for displaying custom values.
+
+```html
+<ul class="steps {MODIFIER}">
+  <li class="step">{step content}</li>
+</ul>
+```
+
+--------------------------------
+
+### Using daisyUI Color Utility Classes
+
+Source: https://daisyui.com/docs/utilities
+
+Demonstrates how to apply daisyUI's color utility classes to set background and text colors. These classes work similarly to Tailwind CSS color utilities. The example shows setting a primary background and a contrasting content color.
+
+```html
+<div class="bg-primary text-primary-content">Primary color</div>
+```
+
+```html
+<div class="bg-primary text-primary-content/60">Primary-content color with 60% opacity</div>
+```
+
+--------------------------------
+
+### DaisyUI Form Elements: Toggles, Checkboxes, and Radios
+
+Source: https://daisyui.com/codepen
+
+Demonstrates the usage of toggle switches, checkboxes, and radio buttons with different color variants provided by DaisyUI. These examples show basic HTML structure for form inputs with custom styling classes.
+
+```html
+<input type="checkbox" class="toggle toggle-primary" />
+<input type="checkbox" class="toggle toggle-secondary" />
+<input type="checkbox" class="toggle toggle-accent" />
+<br/>
+<input type="checkbox" class="checkbox" />
+<input type="checkbox" class="checkbox-primary checkbox" />
+<input type="checkbox" class="checkbox-secondary checkbox" />
+<input type="checkbox" class="checkbox-accent checkbox" />
+<br/>
+<input type="radio" name="radio" class="radio" />
+<input type="radio" name="radio" class="radio-primary radio" />
+<input type="radio" name="radio" class="radio-secondary radio" />
+<input type="radio" name="radio" class="radio-accent radio" />
+```
+
+--------------------------------
+
+### Make Tailwind CSS Executable (Linux/macOS)
+
+Source: https://daisyui.com/docs/install/zola
+
+Grants execute permissions to the downloaded Tailwind CSS binary file. This command is essential for running the Tailwind CSS compiler on Linux and macOS systems.
+
+```bash
+chmod +x static/tailwindcss
+```
+
+--------------------------------
+
+### Add daisyUI to CSS
+
+Source: https://daisyui.com/docs/upgrade
+
+Import daisyUI into your main CSS file. You can either use a basic import or specify built-in themes directly within the import statement for immediate theme activation.
+
+```css
+@import "tailwindcss";
+@plugin "daisyui";
+```
+
+```css
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, cupcake;
+}
+```
+
+--------------------------------
+
+### Dynamic Tailwind CSS Class Names Example
+
+Source: https://daisyui.com/blog/most-common-mistake-when-using-tailwind-css
+
+Demonstrates the incorrect use of dynamic class names in HTML with Tailwind CSS, which fails during production builds.
+
+```html
+<div class="bg-red-500"></div>
+<div class="bg-green-500"></div>
+<div class="bg-blue-500"></div>
+
+<div class="bg-{{ color }}-500"></div>
+<div class="btn btn-{{ type }}"></div>
+```
+
+--------------------------------
+
+### Basic daisyUI Skeleton Component
+
+Source: https://daisyui.com/components/skeleton
+
+This snippet demonstrates the basic usage of the daisyUI Skeleton component to create a simple loading placeholder. It requires the daisyUI CSS framework. The output is a div with a loading animation.
+
+```html
+<div class="skeleton h-32 w-32"></div>
+```
+
+```jsx
+<div className="skeleton h-32 w-32"></div>
+```
+
+--------------------------------
+
+### HTML File Size Explosion with Tailwind CSS
+
+Source: https://daisyui.com/pages/tailwind-css-alternative
+
+Shows an example of repetitive utility classes in HTML, leading to bloated file sizes and reduced readability. This demonstrates how common classes are repeated across elements.
+
+```html
+<div class="flex flex-col space-y-4 p-6 bg-white rounded-lg shadow-lg">
+  <div class="flex items-center space-x-3">
+    <div class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"></div>
+    <div class="flex-1 min-w-0">
+      <p class="text-sm font-medium text-gray-900 truncate">Username</p>
+      <p class="text-sm text-gray-500 truncate">user@example.com</p>
+    </div>
+  </div>
+  <div class="flex items-center space-x-3">
+    <div class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"></div>
+    <div class="flex-1 min-w-0">
+      <p class="text-sm font-medium text-gray-900 truncate">Another User</p>
+      <p class="text-sm text-gray-500 truncate">another@example.com</p>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Customizing daisyUI Button with Utility Classes
+
+Source: https://daisyui.com/blog/full-circle
+
+This example illustrates how daisyUI components can be easily customized by combining component classes with Tailwind CSS utility classes. It demonstrates adding size, background color, padding, and rounded corners to a daisyUI button, showing the seamless integration of both approaches.
+
+```html
+<button class="btn btn-primary rounded-xl bg-blue-500 px-8">Custom Button</button>
+```
+
+--------------------------------
+
+### Indicator for Button Example (HTML)
+
+Source: https://daisyui.com/components/indicator
+
+Demonstrates attaching a numerical badge indicator to a button, commonly used for displaying counts like unread messages in an inbox. The `indicator-item` class is applied to the badge.
+
+```html
+<div class="indicator">
+  <span class="indicator-item badge badge-secondary">12</span>
+  <button class="btn">inbox</button>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Toggle and Checkbox/Radio Inputs (HTML)
+
+Source: https://daisyui.com/tailwindplay
+
+Shows how to implement toggle switches and standard checkboxes/radio buttons using DaisyUI's 'toggle' class. It includes examples of default toggles and themed toggles with the 'toggle-primary' class.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaisyUI Toggles</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.1.17/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- toggle, checkbox, radio -->
+<div class="p-4">
+<input type="checkbox" class="toggle" />
+<input type="checkbox" class="toggle toggle-primary" />
+</div>
+
+</body>
+</html>
+```
+
+--------------------------------
+
+### Update Bottom Navigation to Dock Component
+
+Source: https://daisyui.com/docs/upgrade
+
+Replaces the deprecated `bottom-nav` component with the `dock` component for a more modern and accessible navigation pattern. This includes updating size variants and active states.
+
+```html
+<div class="btm-nav btm-nav-sm">
+  <button>🏠</button>
+  <button class="active">🍿</button>
+  <button>⚙️</button>
+</div>
+```
+
+```html
+<div class="dock dock-sm">
+  <button>🏠</button>
+  <button class="dock-active">🍿</button>
+  <button>⚙️</button>
+</div>
+```
+
+--------------------------------
+
+### Indicator for Tab Example (HTML)
+
+Source: https://daisyui.com/components/indicator
+
+Illustrates how to integrate a badge indicator within a tab component to show counts for specific tabs, like notifications. This uses the `indicator` and `indicator-item` classes on a tab element.
+
+```html
+<div class="tabs tabs-lift">
+  <a class="tab">Messages</a>
+  <a class="indicator tab tab-active">
+    Notifications
+    <span class="indicator-item badge">8</span>
+  </a>
+  <a class="tab">Requests</a>
+</div>
+```
+
+--------------------------------
+
+### Update Stats Background Color
+
+Source: https://daisyui.com/docs/upgrade
+
+Informs that the background color of the `stats` component is now transparent by default. Use `bg-base-100` or other background utility classes if a solid background is desired.
+
+```html
+<!-- Example assuming a previous version with a default background -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-title">Total Page Views</div>
+    <div class="stat-value">89,400</div>
+  </div>
+</div>
+
+<!-- To add a background -->
+<div class="stats bg-base-100">
+  <div class="stat">
+    <div class="stat-title">Total Page Views</div>
+    <div class="stat-value">89,400</div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Navbar with Title and Icon (HTML)
+
+Source: https://daisyui.com/components/navbar
+
+An HTML example of a DaisyUI Navbar featuring a title and an icon button. It uses 'navbar-start' and 'navbar-end' implicitly through flexbox classes ('flex-1', 'flex-none') for layout. Includes SVG for the icon.
+
+```html
+<div class="navbar bg-base-100 shadow-sm">
+  <div class="flex-1">
+    <a class="btn btn-ghost text-xl">daisyUI</a>
+  </div>
+  <div class="flex-none">
+    <button class="btn btn-square btn-ghost">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path> </svg>
+    </button>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Create Simple Button Component with daisyUI
+
+Source: https://daisyui.com/pages/easy-component-library
+
+Demonstrates the basic syntax for creating a button using daisyUI's simple class naming convention. The btn class provides all necessary button styling without writing custom CSS. This exemplifies daisyUI's focus on readable, semantic HTML.
+
+```html
+<button class="btn">Click Me</button>
+```
+
+--------------------------------
+
+### Configure Vite for Tailwind CSS
+
+Source: https://daisyui.com/docs/install/vue
+
+Configures the Vite build tool to use Tailwind CSS. This involves importing the tailwindcss plugin and adding it to the Vite configuration's plugins array.
+
+```javascript
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+import vue from "@vitejs/plugin-vue";
+
+export default defineConfig({
+  plugins: [tailwindcss(), vue()],
+});
+```
+
+--------------------------------
+
+### Radio Button Component Syntax
+
+Source: https://daisyui.com/llms
+
+Demonstrates the basic HTML structure for a DaisyUI radio button. The 'radio' class is applied to an input element, with optional color and size modifiers. Ensure unique 'name' attributes for radio groups.
+
+```html
+<input type="radio" name="{name}" class="radio {MODIFIER}" />
+```
+
+--------------------------------
+
+### Accent Color Link with DaisyUI
+
+Source: https://daisyui.com/components/link
+
+This code illustrates how to apply the accent color to a DaisyUI link by utilizing the 'link link-accent' classes. Examples are provided for both HTML and React JSX.
+
+```html
+<a class="link link-accent">Click me</a>
+```
+
+```jsx
+<a className="link link-accent">Click me</a>
+```
+
+--------------------------------
+
+### Unordered List Styling with daisyUI and Tailwind CSS Typography
+
+Source: https://daisyui.com/docs/layout-and-typography
+
+Presents examples of unordered lists (bullet points) and nested unordered lists, styled by daisyUI and Tailwind CSS Typography for organized information presentation.
+
+```html
+<ul>
+  <li>First item</li>
+  <li>Second item</li>
+  <ul>
+    <li>Subitem one</li>
+    <li>Subitem two</li>
+  </ul>
+</ul>
+```
+
+--------------------------------
+
+### DaisyUI Join: Search Input and Filter Select
+
+Source: https://daisyui.com/components/join
+
+Demonstrates a search bar with an input field and a dropdown filter, all joined together using DaisyUI's join classes. This example shows how elements nested within the join group still inherit the styling.
+
+```html
+<div class="join">
+  <div>
     <div>
-      <h1 class="text-5xl font-bold">Box Office News!</h1>
-      <p class="py-6">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-        excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
-        id nisi.
-      </p>
+      <input class="input join-item" placeholder="Search" />
+    </div>
+  </div>
+  <select class="select join-item">
+    <option disabled selected>Filter</option>
+    <option>Sci-fi</option>
+    <option>Drama</option>
+    <option>Action</option>
+  </select>
+  <div class="indicator">
+    <span class="indicator-item badge badge-secondary">new</span>
+    <button class="btn join-item">Search</button>
+  </div>
+</div>
+```
+
+```jsx
+<div className="join">
+  <div>
+    <div>
+      <input className="input join-item" placeholder="Search" />
+    </div>
+  </div>
+  <select className="select join-item">
+    <option disabled selected>Filter</option>
+    <option>Sci-fi</option>
+    <option>Drama</option>
+    <option>Action</option>
+  </select>
+  <div className="indicator">
+    <span className="indicator-item badge badge-secondary">new</span>
+    <button className="btn join-item">Search</button>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### daisyUI Skeleton with Circle Content
+
+Source: https://daisyui.com/components/skeleton
+
+This example shows how to use daisyUI Skeleton to create a loading state for a profile picture and associated text. It requires daisyUI CSS. The output displays a rounded placeholder for an image and placeholders for text, arranged in a column.
+
+```html
+<div class="flex w-52 flex-col gap-4">
+  <div class="flex items-center gap-4">
+    <div class="skeleton h-16 w-16 shrink-0 rounded-full"></div>
+    <div class="flex flex-col gap-4">
+      <div class="skeleton h-4 w-20"></div>
+      <div class="skeleton h-4 w-28"></div>
+    </div>
+  </div>
+  <div class="skeleton h-32 w-full"></div>
+</div>
+```
+
+```jsx
+<div className="flex w-52 flex-col gap-4">
+  <div className="flex items-center gap-4">
+    <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
+    <div className="flex flex-col gap-4">
+      <div className="skeleton h-4 w-20"></div>
+      <div className="skeleton h-4 w-28"></div>
+    </div>
+  </div>
+  <div className="skeleton h-32 w-full"></div>
+</div>
+```
+
+--------------------------------
+
+### Update Avatar Status Classes
+
+Source: https://daisyui.com/docs/upgrade
+
+In daisyUI 5, avatar status classes have been renamed for better clarity. The `online` class is now `avatar-online`, `offline` is `avatar-offline`, and `placeholder` is `avatar-placeholder`.
+
+```html
+- <div class="avatar online">
++ <div class="avatar avatar-online">
+  <div class="w-24 rounded-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+  </div>
+</div>
+```
+
+```html
+- <div class="avatar offline">
++ <div class="avatar avatar-offline">
+  <div class="w-24 rounded-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Horizontal Divider with Text (HTML)
+
+Source: https://daisyui.com/components/divider
+
+Illustrates a horizontal divider used to separate elements arranged side-by-side. This example requires the 'divider-horizontal' class and uses flexbox for layout.
+
+```html
+<div class="flex w-full">
+  <div class="card bg-base-300 rounded-box grid h-20 grow place-items-center">content</div>
+  <div class="divider divider-horizontal">OR</div>
+  <div class="card bg-base-300 rounded-box grid h-20 grow place-items-center">content</div>
+</div>
+```
+
+```jsx
+<div className="flex w-full">
+  <div className="card bg-base-300 rounded-box grid h-20 grow place-items-center">content</div>
+  <div className="divider divider-horizontal">OR</div>
+  <div className="card bg-base-300 rounded-box grid h-20 grow place-items-center">content</div>
+</div>
+```
+
+--------------------------------
+
+### Configure Vite with Tailwind CSS and React plugins
+
+Source: https://daisyui.com/docs/install/react
+
+Update the Vite configuration file to include Tailwind CSS and React plugins. This enables Tailwind CSS processing and React JSX transformation during the build process.
+
+```javascript
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [tailwindcss(), react()],
+});
+```
+
+--------------------------------
+
+### HTML Collapsible Submenu Example
+
+Source: https://daisyui.com/components/menu
+
+Demonstrates a nested, collapsible submenu structure using DaisyUI's menu classes and native HTML 'details' and 'summary' elements. This provides an accessible, interactive menu without JavaScript.
+
+```html
+<ul class="menu bg-base-200 rounded-box w-56">
+  <li><a>Item 1</a></li>
+  <li>
+    <details open>
+      <summary>Parent</summary>
+      <ul>
+        <li><a>Submenu 1</a></li>
+        <li><a>Submenu 2</a></li>
+        <li>
+          <details open>
+            <summary>Parent</summary>
+            <ul>
+              <li><a>Submenu 1</a></li>
+              <li><a>Submenu 2</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </details>
+  </li>
+  <li><a>Item 3</a></li>
+</ul>
+```
+
+```jsx
+<ul className="menu bg-base-200 rounded-box w-56">
+  <li><a>Item 1</a></li>
+  <li>
+    <details open>
+      <summary>Parent</summary>
+      <ul>
+        <li><a>Submenu 1</a></li>
+        <li><a>Submenu 2</a></li>
+        <li>
+          <details open>
+            <summary>Parent</summary>
+            <ul>
+              <li><a>Submenu 1</a></li>
+              <li><a>Submenu 2</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </details>
+  </li>
+  <li><a>Item 3</a></li>
+</ul>
+```
+
+--------------------------------
+
+### HTML Input with Icons and Keyboard Shortcuts
+
+Source: https://daisyui.com/components/input
+
+This example shows how to create a search input with an integrated search icon and keyboard shortcut hints (⌘K). It uses the 'input' class for the parent container and 'kbd' for the shortcut keys. The SVG icon is also embedded directly.
+
+```html
+<label class="input">
+  <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      stroke-width="2.5"
+      fill="none"
+      stroke="currentColor"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </g>
+  </svg>
+  <input type="search" class="grow" placeholder="Search" />
+  <kbd class="kbd kbd-sm">⌘</kbd>
+  <kbd class="kbd kbd-sm">K</kbd>
+</label>
+```
+
+--------------------------------
+
+### Create Theme Controller with Checkbox or Radio Input
+
+Source: https://daisyui.com/llms
+
+Switch page themes dynamically using a checked checkbox or radio input with theme-controller class. The page theme matches the input's value attribute, which must be a valid DaisyUI theme name.
+
+```html
+<input type="checkbox" value="{theme-name}" class="theme-controller" />
+```
+
+--------------------------------
+
+### Update Select Component Styling
+
+Source: https://daisyui.com/docs/upgrade
+
+Illustrates changes to the Select component, similar to the Input component. It now has a default width and border. The `select-ghost` class is used to remove the default border.
+
+```html
+<!-- Select with border -->
+<select class="select select-bordered">
+
+<!-- Select without border -->
+<select class="select">
+
+<!-- Select with consistent width -->
+<select class="select w-full max-w-xs">
+
+```
+
+```html
+<!-- Select with border -->
+<select class="select">
+
+<!-- Select without border -->
+<select class="select select-ghost">
+
+<!-- Select with consistent width -->
+<select class="select">
+
+```
+
+--------------------------------
+
+### Badge Styles Component in HTML
+
+Source: https://daisyui.com/components/badge
+
+Provides examples of different badge styling options, including 'badge-outline', 'badge-dash', 'badge-soft', and 'badge-ghost'. These classes modify the visual appearance of the badge border and background.
+
+```html
+<span class="badge badge-outline">Outline</span>
+<span class="badge badge-dash">Dash</span>
+<span class="badge badge-soft">Soft</span>
+<span class="badge badge-ghost">Ghost</span>
+```
+
+--------------------------------
+
+### Add daisyUI plugin to Tailwind CSS
+
+Source: https://daisyui.com/docs/install/waku
+
+This snippet shows how to integrate daisyUI into the project's main CSS file by adding the daisyUI plugin to the Tailwind CSS import. This step is crucial for enabling daisyUI's components and utility classes.
+
+```css
+@import "tailwindcss";
++@plugin "daisyui";
+```
+
+--------------------------------
+
+### DaisyUI Modal Structure (HTML)
+
+Source: https://daisyui.com/tailwindplay
+
+Presents a basic structure for a modal dialog using DaisyUI components. It includes a button to trigger the modal and the modal's content area with a close button and example steps.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaisyUI Modal</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.1.17/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<!-- Button to open modal -->
+<label for="my_modal_1" class="btn">open modal</label>
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my_modal_1" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Press ESC key or click the button below to close</h3>
+    <p class="py-4">This is a modal example with steps:</p>
+    <ul class="steps steps-vertical">
+      <li class="step">Register</li>
+      <li class="step step-neutral">Choose plan</li>
+      <li class="step step-neutral">Purchase</li>
+      <li class="step step-neutral">Receive Product</li>
+    </ul>
+    <div class="modal-action">
+      <label for="my_modal_1" class="btn">Close</label>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+```
+
+--------------------------------
+
+### Range Slider with Steps and Measures (HTML)
+
+Source: https://daisyui.com/components/range
+
+A range slider configured with steps and visual measurement markers. This example uses additional divs to display the step values and divider lines.
+
+```html
+<div class="w-full max-w-xs">
+  <input type="range" min="0" max="100" value="25" class="range" step="25" />
+  <div class="flex justify-between px-2.5 mt-2 text-xs">
+    <span>|</span>
+    <span>|</span>
+    <span>|</span>
+    <span>|</span>
+    <span>|</span>
+  </div>
+  <div class="flex justify-between px-2.5 mt-2 text-xs">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Basic DaisyUI Radio Button Implementation (HTML)
+
+Source: https://daisyui.com/components/radio
+
+Demonstrates the basic structure for creating radio buttons using DaisyUI classes. Each set of radio inputs must have a unique 'name' attribute. This example uses the 'radio' class for styling and 'checked' attribute to indicate a default selection.
+
+```html
+<input type="radio" name="radio-1" class="radio" checked="checked" />
+<input type="radio" name="radio-1" class="radio" />
+```
+
+--------------------------------
+
+### DaisyUI Hero Component
+
+Source: https://daisyui.com/llms
+
+The hero component provides a large, prominent area for displaying key content like titles and descriptions, often used on landing pages. It can include background images and overlays for emphasis. The 'hero-content' class is used for text elements, and 'hero-overlay' can be applied for color overlays.
+
+```html
+<div class="hero min-h-screen" style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522786-5576f8843bad.jpg);">
+  <div class="hero-overlay bg-opacity-60"></div>
+  <div class="hero-content text-center text-neutral-content">
+    <div class="max-w-md">
+      <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
+      <p class="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
       <button class="btn btn-primary">Get Started</button>
     </div>
   </div>
 </div>
 ```
 
----
+--------------------------------
 
-### Large Text Countdown with Labels (HTML)
+### JSX Input with Icons and Keyboard Shortcuts
 
-Source: https://daisyui.com/components/countdown
+Source: https://daisyui.com/components/input
 
-Demonstrates how to use the DaisyUI Countdown component for displaying larger text with descriptive labels for units like days, hours, minutes, and seconds.
+This is the JSX equivalent of the HTML search input example. It uses 'className' instead of 'class' for CSS classes and demonstrates the same styling for icons and keyboard shortcuts within an input group.
+
+```jsx
+<label className="input">
+  <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g
+      strokeLinejoin="round"
+      strokeLinecap="round"
+      strokeWidth="2.5"
+      fill="none"
+      stroke="currentColor"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </g>
+  </svg>
+  <input type="search" className="grow" placeholder="Search" />
+  <kbd className="kbd kbd-sm">⌘</kbd>
+  <kbd className="kbd kbd-sm">K</kbd>
+</label>
+```
+
+--------------------------------
+
+### Element Masking with DaisyUI
+
+Source: https://daisyui.com/llms
+
+Crops content into common shapes such as squircle, heart, hexagon, or circle. Requires a mask style class and can be combined with modifier classes for half shapes.
 
 ```html
-<div class="grid grid-flow-col gap-5 text-neutral-content">
-  <div class="flex flex-col p-2 bg-base-100 rounded-box">
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:15"></span>
-    </span>
-    days
+<img class="mask mask-squircle" src="{image-url}" />
+<img class="mask mask-heart" src="{image-url}" />
+<img class="mask mask-hexagon-2 mask-half-1" src="{image-url}" />
+```
+
+--------------------------------
+
+### React Material-UI Component Example
+
+Source: https://daisyui.com/pages/best-component-library-for-2026
+
+This React code snippet shows how to use components from the Material-UI library. It highlights framework lock-in, as these components are specific to React and would require a complete rewrite if migrating to a different framework like Vue or Svelte.
+
+```javascript
+// Material-UI (React only)
+import { Button, Card, TextField } from '@mui/material';
+
+function MyComponent() {
+  return (
+    <Card>
+      <TextField label="Email" variant="outlined" />
+      <Button variant="contained" color="primary">Submit</Button>
+    </Card>
+  );
+}
+```
+
+--------------------------------
+
+### HTML and Tailwind CSS Feature Styling
+
+Source: https://daisyui.com/pages/easy-css-library
+
+Contrasts the minimal time required for functional code implementation with the extensive time needed for styling using HTML and Tailwind CSS. This illustrates the productivity impact of complex styling requirements.
+
+```html
+<!-- The functionality: 5 minutes -->
+<form onSubmit={handleSubmit}>
+  <input name="email" type="email" />
+  <button type="submit">Subscribe</button>
+</form>
+
+<!-- The styling: 2 hours -->
+<form className="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
+  <div className="mb-6">
+    <label className="block text-gray-700 text-sm font-bold mb-2">
+      Email Address
+    </label>
+    <input 
+      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500 transition duration-200"
+      name="email" 
+      type="email" 
+    />
   </div>
-  <div class="flex flex-col p-2 bg-base-100 rounded-box">
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:10"></span>
-    </span>
-    hours
+  <button 
+    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200 w-full"
+    type="submit"
+  >
+    Subscribe
+  </button>
+</form>
+```
+
+--------------------------------
+
+### JSX Input with File Icon and Placeholder
+
+Source: https://daisyui.com/components/input
+
+This JSX code demonstrates a file-like input field, mirroring the HTML example. It includes an SVG file icon and a placeholder for the input value, suitable for contexts like file paths.
+
+```jsx
+<label className="input">
+  <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g
+      strokeLinejoin="round"
+      strokeLinecap="round"
+      strokeWidth="2.5"
+      fill="none"
+      stroke="currentColor"
+    >
+      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+      <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+    </g>
+  </svg>
+  <input type="text" className="grow" placeholder="index.php" />
+</label>
+```
+
+--------------------------------
+
+### DaisyUI Disabled Toggles (React)
+
+Source: https://daisyui.com/components/toggle
+
+Demonstrates disabling DaisyUI toggle components in a React environment using the 'disabled' prop. Examples include both disabled and checked disabled states.
+
+```jsx
+<input type="checkbox" className="toggle" disabled />
+<input type="checkbox" className="toggle" disabled defaultChecked />
+```
+
+--------------------------------
+
+### DaisyUI Indeterminate Progress Bar Examples
+
+Source: https://daisyui.com/components/progress
+
+Shows how to create an indeterminate progress bar in DaisyUI, which is used when the progress cannot be determined. This variant does not require a 'value' attribute. It simply displays a continuous loading animation.
+
+```html
+<progress class="progress w-56"></progress>
+```
+
+```jsx
+<progress className="progress w-56"></progress>
+```
+
+--------------------------------
+
+### Radix UI React Component Example with Framework Lock-in
+
+Source: https://daisyui.com/pages/scalable-component-library
+
+Demonstrates a React-based component implementation using Radix UI that only works within React framework context. Shows typical usage of Radix UI Button, Card, and TextField components that cannot be reused in other frameworks like Vue or vanilla JavaScript, illustrating the framework lock-in problem at scale.
+
+```javascript
+// Radix UI components only work in React
+import { Button } from '@radix-ui/themes';
+import { Card } from '@radix-ui/themes';
+import { TextField } from '@radix-ui/themes';
+
+function UserForm() {
+  return (
+    <Card>
+      <TextField placeholder="Email" />
+      <Button>Submit</Button>
+    </Card>
+  );
+}
+```
+
+--------------------------------
+
+### Add Tailwind CSS Import to CSS File
+
+Source: https://daisyui.com/pages/install-tailwind-css-vite
+
+Adds the Tailwind CSS import statement to the main CSS file (e.g., src/style.css). This enables Tailwind's utility classes.
+
+```css
+@import "tailwindcss";
+```
+
+--------------------------------
+
+### Create a Dropdown Menu with Headless UI (React)
+
+Source: https://daisyui.com/blog/how-to-use-headless-ui-and-daisyui
+
+Demonstrates the basic structure of a dropdown menu component using Headless UI for React. It shows how to import and use Menu, Menu.Button, and Menu.Items.
+
+```jsx
+import { Menu } from "@headlessui/react"
+
+export default function MyDropDown() {
+  return (
+    <Menu>
+      <Menu.Button>Button</Menu.Button>
+      <Menu.Items>
+        <Menu.Item>
+          <li>
+            <a href="/link">Item 1</a>
+          </li>
+        </Menu.Item>
+        <Menu.Item>
+          <li>
+            <a href="/link">Item 2</a>
+          </li>
+        </Menu.Item>
+      </Menu.Items>
+    </Menu>
+  )
+}
+```
+
+--------------------------------
+
+### Refactor Complex Form Labels with Fieldset in HTML
+
+Source: https://daisyui.com/docs/upgrade
+
+Convert form-control structures with multiple label-text and label-text-alt elements to fieldset with flex layout labels for better semantic markup and maintainability.
+
+```html
+before
+<label class="form-control w-full max-w-xs">
+  <div class="label">
+    <span class="label-text">What is your name?</span>
+    <span class="label-text-alt">Top Right label</span>
   </div>
-  <div class="flex flex-col p-2 bg-base-100 rounded-box">
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:24"></span>
-    </span>
-    min
+  <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+  <div class="label">
+    <span class="label-text-alt">Bottom Left label</span>
+    <span class="label-text-alt">Bottom Right label</span>
   </div>
-  <div class="flex flex-col p-2 bg-base-100 rounded-box">
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:59"></span>
-    </span>
-    sec
+</label>
+
+after
+<fieldset class="fieldset max-w-xs">
+  <label class="label flex justify-between" for="name">
+    <span>What is your name?</span>
+    <span>Top Right label</span>
+  </label>
+  <input id="name" class="input" placeholder="Name" />
+  <label class="label flex justify-between" for="name">
+    <span>Bottom Left label</span>
+    <span>Bottom Right label</span>
+  </label>
+</fieldset>
+```
+
+--------------------------------
+
+### Configure daisyUI Plugin in Tailwind Config
+
+Source: https://daisyui.com/blog/9-best-tailwind-css-plugins-for-developers
+
+Add daisyUI to the plugins array in your tailwind.config.js file to enable the daisyUI component library. This configuration file is the main entry point for Tailwind CSS customization and plugin setup.
+
+```javascript
+module.exports = {
+  plugins: [require("daisyui")],
+}
+```
+
+--------------------------------
+
+### Update Menu Item Classes
+
+Source: https://daisyui.com/docs/upgrade
+
+Shows the renaming of classes for menu items to improve clarity and consistency. `disabled`, `active`, and `focus` classes are renamed to `menu-disabled`, `menu-active`, and `menu-focus` respectively.
+
+```html
+<ul class="menu">
+  <li class="disabled"><a>disabled item</a></li>
+  <li class="active"><a>active item</a></li>
+  <li class="focus"><a>focus item</a></li>
+</ul>
+```
+
+```html
+<ul class="menu w-full">
+  <li class="menu-disabled"><a>disabled item</a></li>
+  <li class="menu-active"><a>active item</a></li>
+  <li class="menu-focus"><a>focus item</a></li>
+</ul>
+```
+
+--------------------------------
+
+### Tailwind CSS Button Example
+
+Source: https://daisyui.com/pages/tailwind-css
+
+Demonstrates a basic button styled using Tailwind CSS utility classes. This showcases the direct application of utility classes in HTML for styling elements, requiring no external CSS files.
+
+```html
+<button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Click Me</button>
+```
+
+--------------------------------
+
+### HTML Carousel Snap to Center with DaisyUI
+
+Source: https://daisyui.com/components/carousel
+
+This HTML snippet shows how to create a carousel that centers its items using DaisyUI's 'carousel-center' class. It requires no external JavaScript dependencies for basic functionality.
+
+```html
+<div class="carousel carousel-center rounded-box">
+  <div class="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" alt="Pizza" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+      alt="Pizza" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+      alt="Pizza" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
+      alt="Pizza" />
+  </div>
+  <div class="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" alt="Pizza" />
+  </div>
+  <div class="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" alt="Pizza" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
+      alt="Pizza" />
   </div>
 </div>
 ```
 
----
+--------------------------------
 
-### DaisyUI Textarea Component Syntax
+### DaisyUI Collapse Component Syntax
 
-Source: https://context7_llms
+Source: https://daisyui.com/llms
 
-The DaisyUI textarea component allows multi-line text input from users. It can be styled with 'textarea-ghost' and supports various color and size modifiers for customization.
+The DaisyUI collapse component is used for showing and hiding content. It features `collapse-title` and `collapse-content` parts and can be modified with classes like `collapse-arrow` or `collapse-plus`. An alternative to `tabindex="0"` is using an `<input type="checkbox">` as the first child.
+
+```html
+<div tabindex="0" class="collapse {MODIFIER}">
+  <div class="collapse-title">{title}</div>
+  <div class="collapse-content">{CONTENT}</div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Tooltip - Primary Color (React JSX)
+
+Source: https://daisyui.com/components/tooltip
+
+This example illustrates a primary-colored tooltip using DaisyUI in React JSX. It applies 'tooltip-primary' and 'btn-primary' classes for styling. The tooltip text is 'primary'.
+
+```jsx
+<div className="tooltip tooltip-open tooltip-primary" data-tip="primary">
+  <button className="btn btn-primary">primary</button>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI List Item Structure
+
+Source: https://daisyui.com/components/list
+
+This snippet shows a basic list item structure used in DaisyUI examples, typically containing an image, text content, and action buttons. It's a common pattern for displaying user-related or content-related information.
+
+```html
+<li class="list-row">
+    <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/4@94.webp"/></div>
+    <div>
+      <div>Ellie Beilish</div>
+      <div class="text-xs uppercase font-semibold opacity-60">Bears of a fever</div>
+    </div>
+    <p class="list-col-wrap text-xs">
+      "Bears of a Fever" captivated audiences with its intense energy and mysterious lyrics. Its popularity skyrocketed after fans shared it widely online, earning Ellie critical acclaim.
+    </p>
+    <button class="btn btn-square btn-ghost">
+      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+    </button>
+    <button class="btn btn-square btn-ghost">
+      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg>
+    </button>
+  </li>
+```
+
+--------------------------------
+
+### Basic DaisyUI Avatar Component Example
+
+Source: https://daisyui.com/components/avatar
+
+This snippet shows the basic structure for creating an avatar component using DaisyUI. It requires a parent div with the class 'avatar' and a nested div with a specified width and 'rounded' class, containing an image element.
+
+```html
+<div class="avatar">
+  <div class="w-24 rounded">
+    <img src="https://img.daisyui.com/images/profile/demo/batperson@192.webp" />
+  </div>
+</div>
+```
+
+```jsx
+<div className="avatar">
+  <div className="w-24 rounded">
+    <img src="https://img.daisyui.com/images/profile/demo/batperson@192.webp" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Horizontal Menu (JSX)
+
+Source: https://daisyui.com/components/menu
+
+Provides a JSX example for creating a horizontal menu with DaisyUI. This is useful for React projects where navigation elements need to be displayed in a row, applying the 'menu-horizontal' class.
+
+```jsx
+<ul className="menu menu-horizontal bg-base-200">
+  <li><a>Item 1</a></li>
+  <li><a>Item 2</a></li>
+  <li><a>Item 3</a></li>
+</ul>
+```
+
+--------------------------------
+
+### DaisyUI Tabs Component Examples with JSX (React)
+
+Source: https://daisyui.com/components/tab
+
+Illustrates the implementation of DaisyUI tabs using JSX syntax, commonly found in React projects. It covers various sizes (xs, sm, md, lg, xl) with active and inactive tab states.
+
+```jsx
+<div role="tablist" className="tabs tabs-lift tabs-xs">
+  <a role="tab" className="tab">Xsmall</a>
+  <a role="tab" className="tab tab-active">Xsmall</a>
+  <a role="tab" className="tab">Xsmall</a>
+</div>
+
+<div role="tablist" className="tabs tabs-lift tabs-sm">
+  <a role="tab" className="tab">Small</a>
+  <a role="tab" className="tab tab-active">Small</a>
+  <a role="tab" className="tab">Small</a>
+</div>
+
+<div role="tablist" className="tabs tabs-lift">
+  <a role="tab" className="tab">Medium</a>
+  <a role="tab" className="tab tab-active">Medium</a>
+  <a role="tab" className="tab">Medium</a>
+</div>
+
+<div role="tablist" className="tabs tabs-lift tabs-lg">
+  <a role="tab" className="tab">Large</a>
+  <a role="tab" className="tab tab-active">Large</a>
+  <a role="tab" className="tab">Large</a>
+</div>
+
+<div role="tablist" className="tabs tabs-lift tabs-xl">
+  <a role="tab" className="tab">Xlarge</a>
+  <a role="tab" className="tab tab-active">Xlarge</a>
+  <a role="tab" className="tab">Xlarge</a>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Join: Email Input and Subscribe Button
+
+Source: https://daisyui.com/components/join
+
+Illustrates a simple subscription form where an email input and a subscribe button are joined. This example highlights the use of `rounded-r-full` on the button to create a rounded end for the joined group.
+
+```html
+<div class="join">
+  <input class="input join-item" placeholder="Email" />
+  <button class="btn join-item rounded-r-full">Subscribe</button>
+</div>
+```
+
+```jsx
+<div className="join">
+  <input className="input join-item" placeholder="Email" />
+  <button className="btn join-item rounded-r-full">Subscribe</button>
+</div>
+```
+
+--------------------------------
+
+### Select Component with Modifiers
+
+Source: https://daisyui.com/llms
+
+HTML select element for picking values from a list of options. Supports optional modifier classes for styling, color variants, and sizes. The {MODIFIER} placeholder accepts style, color, and size class names.
+
+```html
+<select class="select {MODIFIER}">
+  <option>Option</option>
+</select>
+```
+
+--------------------------------
+
+### DaisyUI Tooltip - Accent Color (React JSX)
+
+Source: https://daisyui.com/components/tooltip
+
+This example shows an accent-colored tooltip implemented with DaisyUI in React JSX. It applies 'tooltip-accent' and 'btn-accent' classes for styling. The tooltip content is 'accent'.
+
+```jsx
+<div className="tooltip tooltip-open tooltip-accent" data-tip="accent">
+  <button className="btn btn-accent">accent</button>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Pagination with Active State (HTML)
+
+Source: https://daisyui.com/components/pagination
+
+Demonstrates how to create a pagination component using daisyUI's 'join' and 'join-item' classes. The 'btn-active' class is used to highlight the current page. This component is built using standard HTML and daisyUI classes.
+
+```html
+<div class="join">
+  <button class="join-item btn">1</button>
+  <button class="join-item btn btn-active">2</button>
+  <button class="join-item btn">3</button>
+  <button class="join-item btn">4</button>
+</div>
+```
+
+--------------------------------
+
+### Inline Code Styling with daisyUI and Tailwind CSS Typography
+
+Source: https://daisyui.com/docs/layout-and-typography
+
+Provides an example of styling inline code snippets within text using daisyUI and Tailwind CSS Typography, making code elements stand out clearly.
+
+```html
+Here is an example of inline code: `console.log('Hello, world!');`
+```
+
+--------------------------------
+
+### HTML: Hardcoded Colors Example
+
+Source: https://daisyui.com/docs/colors
+
+This HTML snippet demonstrates the use of hardcoded color names for styling elements. It requires more class names to support dark mode and leads to higher maintenance costs and slower development.
+
+```html
+<div class="bg-zinc-100">
+  <div class="border-zinc-200 bg-zinc-50 text-zinc-800">
+    This is a hardcoded dark text on a light background, it needs double the amount of class names
+    to support dark mode.
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Warning Color Link with DaisyUI
+
+Source: https://daisyui.com/components/link
+
+This code snippet shows how to apply the warning color theme to a DaisyUI link using the 'link link-warning' classes. Examples are provided for HTML and React JSX.
+
+```html
+<a class="link link-warning">Click me</a>
+```
+
+```jsx
+<a className="link link-warning">Click me</a>
+```
+
+--------------------------------
+
+### DaisyUI Drawer Component Syntax
+
+Source: https://daisyui.com/llms
+
+The DaisyUI drawer component creates a sidebar that can be shown or hidden on the left or right side of the page. It uses classes like `drawer`, `drawer-content`, `drawer-side`, and `drawer-toggle`. Variants like `is-drawer-open:` and `is-drawer-close:` can control its state.
+
+```html
+<div class="drawer {MODIFIER}">
+  <div class="drawer-content">
+    <!-- Page content here -->
+  </div>
+  <div class="drawer-side">
+    <label for="my-drawer" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+      <!-- Sidebar content -->
+    </ul>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Link Styling with daisyUI
+
+Source: https://daisyui.com/docs/layout-and-typography
+
+Shows how to create and style links using daisyUI, ensuring consistent appearance across the website and integration with daisyUI's theming system.
+
+```html
+<a href="#">Visit daisyUI</a>
+```
+
+--------------------------------
+
+### daisyUI Responsive Card Layout Component
+
+Source: https://daisyui.com/pages/best-component-library-for-2026
+
+Demonstrates a responsive card component with semantic class names and predictable behavior. The card includes an image, title, description, and action buttons, showcasing zero-configuration responsive design principles.
+
+```html
+<!-- Responsive card layout -->
+<div class="card w-96 bg-base-100 shadow-xl">
+  <figure><img src="photo.jpg" alt="Photo" /></figure>
+  <div class="card-body">
+    <h2 class="card-title">Card Title</h2>
+    <p>Card description goes here.</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Action</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Use Responsive Modifiers with daisyUI Components
+
+Source: https://daisyui.com/docs/v5
+
+daisyUI 5 makes all modifier classes responsive by default. This allows for the use of responsive prefixes like 'md:' with any component modifier, enabling adaptive designs.
+
+```html
+<button class="btn md:btn-lg lg:btn-xl">Responsive Button</button>
+```
+
+--------------------------------
+
+### Add daisyUI GitMCP Server (HTTP Transport)
+
+Source: https://daisyui.com/docs/editor/claudecode
+
+This command adds the daisyUI GitMCP server to Claude Code using HTTP transport. It specifies the server name and its URL, allowing for daisyUI code generation.
+
+```bash
+claude mcp add --transport http daisyui https://gitmcp.io/saadeghi/daisyui
+```
+
+--------------------------------
+
+### DaisyUI Diff Component Syntax
+
+Source: https://daisyui.com/llms
+
+The DaisyUI diff component displays a side-by-side comparison of two items. It uses `diff-item-1` and `diff-item-2` for the content and `diff-resizer` for the separator. Aspect ratio classes like `aspect-16/9` can be added to the main `figure` element.
+
+```html
+<figure class="diff">
+  <div class="diff-item-1">{item1}</div>
+  <div class="diff-item-2">{item2}</div>
+  <div class="diff-resizer"></div>
+</figure>
+```
+
+--------------------------------
+
+### Create Textarea Input with Optional Styling
+
+Source: https://daisyui.com/llms
+
+Build multi-line text input fields with optional style, color, and size modifiers. Supports ghost style variant and multiple color themes (neutral, primary, secondary, accent, info, success, warning, error) with size options from extra-small to extra-large.
 
 ```html
 <textarea class="textarea {MODIFIER}" placeholder="Bio"></textarea>
 ```
 
----
+--------------------------------
 
-### DaisyUI Rating Component Basic Structure
+### Swap Component for Toggle Visibility
 
-Source: https://daisyui.com/components/rating
+Source: https://daisyui.com/llms
 
-This snippet shows the fundamental HTML structure for a DaisyUI rating component. It uses radio inputs within a div with the class 'rating'. Each radio button represents a rating option.
-
-```html
-<div class="rating">
-  \n <input type="radio" name="rating-1" class="mask mask-star" />\n
-  <input type="radio" name="rating-2" class="mask mask-star" checked />\n
-  <input type="radio" name="rating-3" class="mask mask-star" />\n
-  <input type="radio" name="rating-4" class="mask mask-star" />\n
-  <input type="radio" name="rating-5" class="mask mask-star" />\n
-</div>
-```
-
----
-
-### DaisyUI Badge within Text (HTML)
-
-Source: https://daisyui.com/components/badge
-
-Demonstrates how DaisyUI badges can be integrated within standard text elements like headings and paragraphs. This allows for context-specific labeling.
+Component that toggles visibility between two elements using a checkbox input or CSS class. Supports swap-rotate and swap-flip style modifiers and swap-indeterminate state for indeterminate checkboxes.
 
 ```html
-<h1>Heading 1 <span class="badge">Badge</span></h1>
-<h2>Heading 2 <span class="badge">Badge</span></h2>
-<h3>Heading 3 <span class="badge">Badge</span></h3>
-<h4>Heading 4 <span class="badge">Badge</span></h4>
-<h5>Heading 5 <span class="badge">Badge</span></h5>
-<p>Paragraph text with a <span class="badge">Badge</span> inside.</p>
+<label class="swap {MODIFIER}">
+  <input type="checkbox" />
+  <div class="swap-on">{content when active}</div>
+  <div class="swap-off">{content when inactive}</div>
+</label>
 ```
-
----
-
-### DaisyUI Empty Badge (HTML)
-
-Source: https://daisyui.com/components/badge
-
-Shows the implementation of an empty badge in DaisyUI. This can be used as a placeholder or for visual elements that do not contain text content.
-
-```html
-<div class="badge"></div>
-<div class="badge badge-outline"></div>
-<div class="badge badge-soft"></div>
-<div class="badge badge-ghost"></div>
-<div class="badge badge-dash"></div>
-```
-
----
-
-### DaisyUI Responsive Menu (Vertical/Horizontal)
-
-Source: https://daisyui.com/components/menu
-
-Shows a menu that displays vertically on small screens and horizontally on larger screens. Achieved using DaisyUI's responsive modifiers.
-
-```html
-<ul class="menu menu-vertical lg:menu-horizontal">
-  <li>Item 1</li>
-  <li>Item 2</li>
-  <li>Item 3</li>
-</ul>
-```
-
----
-
-### Dropdown in Navbar with daisyUI
-
-Source: https://daisyui.com/components/dropdown
-
-Shows how to implement a dropdown menu within a daisyUI navigation bar. This is useful for organizing navigation links or actions. The snippet utilizes the 'dropdown' and 'navbar' components from daisyUI.
-
-```html
-<div class="navbar bg-base-100">
-  <div class="dropdown">
-    <label tabindex="0" class="btn btn-ghost lg:btn-circle">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16m-7 6h7"
-        />
-      </svg>
-    </label>
-    <ul
-      tabindex="0"
-      class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-    >
-      <li>
-        <a>Dropdown</a>
-        <ul class="p-2">
-          <li><a>Item 1</a></li>
-          <li><a>Item 2</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  <div class="flex-1 px-2 mx-2">daisyUI</div>
-  <div class="flex-none">
-    <button class="btn btn-square btn-ghost">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-      </svg>
-    </button>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Navbar: Menu and Submenu
-
-Source: https://daisyui.com/components/navbar
-
-Shows how to implement a DaisyUI Navbar with a dropdown menu, including parent items and nested submenus. This is useful for complex navigation structures.
-
-```html
-<div class="navbar bg-base-100 rounded-box">
-  <div class="flex-1 px-2 mx-2">
-    <span class="text-lg font-bold">daisyUI</span>
-  </div>
-  <div class="flex-none">
-    <ul class="menu menu-horizontal px-1">
-      <li><a>Link</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul class="p-2 bg-base-100 rounded-t-none">
-            <li><a>Link 1</a></li>
-            <li><a>Link 2</a></li>
-          </ul>
-        </details>
-      </li>
-    </ul>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Neutral Badge with Outline or Dash Style (HTML)
-
-Source: https://daisyui.com/components/badge
-
-Demonstrates the neutral badge style combined with outline and dash styles. These are intended for use on light backgrounds and feature dark text for better contrast.
-
-```html
-<!-- Neutral Outline Badge -->
-<div class="badge badge-neutral badge-outline">Outline</div>
-
-<!-- Neutral Dash Badge -->
-<div class="badge badge-neutral badge-dash">Dash</div>
-```
-
----
-
-### DaisyUI Swap Component Syntax (Class Name)
-
-Source: https://context7_llms
-
-This variant of the DaisyUI swap component toggles visibility between two elements using a class name modifier, typically controlled via JavaScript. It also uses 'swap-on' and 'swap-off' for content visibility.
 
 ```html
 <div class="swap {MODIFIER}">
@@ -9496,1104 +9546,1754 @@ This variant of the DaisyUI swap component toggles visibility between two elemen
 </div>
 ```
 
----
-
-### Basic FAB with Vertical Buttons - HTML
-
-Source: https://context7_llms
-
-A standard FAB with a main action button that expands to reveal three additional circular buttons arranged vertically. This is the default behavior for FABs.
-
-```html
-<div class="fab">
-  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
-    {IconOriginal}
-  </div>
-  <button class="btn btn-lg btn-circle">{Icon1}</button>
-  <button class="btn btn-lg btn-circle">{Icon2}</button>
-  <button class="btn btn-lg btn-circle">{Icon3}</button>
-</div>
-```
-
----
-
-### Utilizing Responsive Modifiers in DaisyUI
-
-Source: https://daisyui.com/docs/v5
-
-Highlights that all DaisyUI component modifiers are now responsive by default. This allows developers to use standard Tailwind CSS responsive prefixes like `md:` and `lg:` with any DaisyUI modifier for adaptive designs.
-
-```HTML
-<!-- Example: Button with different styles on different screen sizes -->
-<button class="btn btn-primary md:btn-secondary lg:btn-accent">Responsive Button</button>
-```
-
----
-
-### Centered Footer with Social Icons and Copyright
-
-Source: https://daisyui.com/components/footer
-
-This snippet shows a centered footer containing links for 'About us', 'Contact', 'Jobs', and 'Press kit', followed by a copyright notice attributing the work to ACME Industries Ltd. It's suitable for a minimalist footer design. The dynamic year calculation is handled by a JavaScript expression.
-
-```html
-### Centered footer with social icons About us Contact Jobs Press kit Copyright
-© 2025 - All right reserved by ACME Industries Ltd
-```
-
-```html
-About us Contact Jobs Press kit Copyright © {new Date().getFullYear()} - All
-right reserved by ACME Industries Ltd
-```
-
-```html
-About us Contact Jobs Press kit Copyright © {new Date().getFullYear()} - All
-right reserved by ACME Industries Ltd
-```
-
-```html
-About us Contact Jobs Press kit Copyright © {new Date().getFullYear()} - All
-right reserved by ACME Industries Ltd
-```
-
-```html
-About us Contact Jobs Press kit Copyright © {new Date().getFullYear()} - All
-right reserved by ACME Industries Ltd
-```
-
----
-
-### Checkbox Colors (HTML)
-
-Source: https://daisyui.com/components/checkbox
-
-Demonstrates how to apply various color themes to checkboxes using daisyUI's color utility classes. These classes change the primary color of the checkbox.
-
-````html
-```html
-<input type="checkbox" class="checkbox checkbox-primary" />
-<input type="checkbox" class="checkbox checkbox-secondary" />
-<input type="checkbox" class="checkbox checkbox-accent" />
-<input type="checkbox" class="checkbox checkbox-neutral" />
-<input type="checkbox" class="checkbox checkbox-success" />
-<input type="checkbox" class="checkbox checkbox-warning" />
-<input type="checkbox" class="checkbox checkbox-info" />
-<input type="checkbox" class="checkbox checkbox-error" />
-````
-
-````
-
 --------------------------------
 
-### HTML: daisyUI List with Third Column Grow
-
-Source: https://daisyui.com/components/list
-
-This snippet illustrates how to configure the daisyUI List component so that the third column within a 'list-row' takes up the remaining space. This is achieved by applying appropriate modifiers and is useful for layouts requiring specific column sizing.
-
-```html
-<div class="list">
-  <div class="list-row">
-    <div>Most played songs this week</div>
-    <div>01</div>
-    <div>
-      <img src="https://img.daisyui.com/images/profile/demo/1@94.webp" alt="User Avatar">
-      Dio Lupa
-      Remaining Reason
-    </div>
-  </div>
-  <div class="list-row">
-    <div></div>
-    <div>02</div>
-    <div>
-      <img src="https://img.daisyui.com/images/profile/demo/4@94.webp" alt="User Avatar">
-      Ellie Beilish
-      Bears of a fever
-    </div>
-  </div>
-  <div class="list-row">
-    <div></div>
-    <div>03</div>
-    <div>
-      <img src="https://img.daisyui.com/images/profile/demo/3@94.webp" alt="User Avatar">
-      Sabrino Gardener
-      Cappuccino
-    </div>
-  </div>
-</div>
-````
-
----
-
-### Responsive Dialog Modal
-
-Source: https://daisyui.com/components/modal
-
-This modal is designed to be responsive, positioning at the bottom on small screens (SM) and in the middle on medium screens (MD). It can be opened using JavaScript.
-
-```html
-<!-- Responsive Modal goes bottom on SM screen size, goes middle on MD screen size -->
-<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-        ✕
-      </button>
-    </form>
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
-      <form method="dialog"><button class="btn">Close</button></form>
-    </div>
-  </div>
-</dialog>
-<button class="btn" onclick="my_modal_5.showModal()">open modal</button>
-```
-
----
-
-### Link Styling with Hover Underline in daisyUI
-
-Source: https://daisyui.com/components/link
-
-Illustrates how to make a link's underline appear only when the user hovers over it. This is achieved by combining the 'link' class with the 'link-hover' class for a more interactive user experience.
-
-```html
-<a href="#" class="link link-hover">Click me</a>
-```
-
----
-
-### DaisyUI Icon-Only Menu with Tooltips
-
-Source: https://daisyui.com/components/menu
-
-Demonstrates an icon-only menu where each icon is paired with a tooltip for better usability. Applicable to both vertical and horizontal menu orientations.
-
-```html
-<ul class="menu menu-vertical w-16 p-2">
-  <li>
-    <a data-tooltip="Tooltip 1">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 12h18M3 6h18M3 18h18"
-        />
-      </svg>
-    </a>
-  </li>
-  <li>
-    <a data-tooltip="Tooltip 2">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 12h18M3 6h18M3 18h18"
-        />
-      </svg>
-    </a>
-  </li>
-  <li>
-    <a data-tooltip="Tooltip 3">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 12h18M3 6h18M3 18h18"
-        />
-      </svg>
-    </a>
-  </li>
-</ul>
-```
-
-```html
-<ul class="menu menu-horizontal rounded-box">
-  <li>
-    <a data-tooltip="Tooltip 1">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 12h18M3 6h18M3 18h18"
-        />
-      </svg>
-    </a>
-  </li>
-  <li>
-    <a data-tooltip="Tooltip 2">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 12h18M3 6h18M3 18h18"
-        />
-      </svg>
-    </a>
-  </li>
-  <li>
-    <a data-tooltip="Tooltip 3">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 12h18M3 6h18M3 18h18"
-        />
-      </svg>
-    </a>
-  </li>
-</ul>
-```
-
----
-
-### Label for Date Input (HTML/Tailwind CSS)
-
-Source: https://daisyui.com/components/label
-
-Shows how to apply daisyUI labels to date input fields. This ensures that date input elements are clearly identified and accessible to users. Multiple styling options are presented.
-
-```html
-<label class="label">
-  <span class="label-text">Publish date</span>
-</label>
-<input type="date" class="input input-bordered w-full max-w-xs" />
-```
-
-```html
-<div class="form-control w-full max-w-xs">
-  <label class="label">
-    <span class="label-text">Event date</span>
-  </label>
-  <input type="date" class="input input-bordered" />
-</div>
-```
-
----
-
-### DaisyUI Text Input: Sizes
+### JSX Input with Label, Placeholder, and Optional Badge
 
 Source: https://daisyui.com/components/input
 
-Presents various size options (xs, sm, md, lg, xl) for DaisyUI text inputs. This allows developers to control the visual footprint of input fields to match design requirements.
+This JSX example shows how to create an input field with a text label, a placeholder, and an 'Optional' badge using DaisyUI classes. It's functionally identical to the HTML version but uses JSX syntax.
 
-````html
-```html
-<input
-  type="text"
-  placeholder="Extra small"
-  class="input input-bordered input-xs w-full max-w-xs"
-/>
-<input
-  type="text"
-  placeholder="Small"
-  class="input input-bordered input-sm w-full max-w-xs"
-/>
-<input
-  type="text"
-  placeholder="Medium"
-  class="input input-bordered input-md w-full max-w-xs"
-/>
-<input
-  type="text"
-  placeholder="Large"
-  class="input input-bordered input-lg w-full max-w-xs"
-/>
-<input
-  type="text"
-  placeholder="Extra large"
-  class="input input-bordered input-xl w-full max-w-xs"
-/>
-````
-
-````
+```jsx
+<label className="input">
+  Path
+  <input type="text" className="grow" placeholder="src/app/" />
+  <span className="badge badge-neutral badge-xs">Optional</span>
+</label>
+```
 
 --------------------------------
 
-### DaisyUI Centered Footer Layout
+### HTML Hover Gallery Example
 
-Source: https://daisyui.com/components/footer
+Source: https://daisyui.com/components/hover-gallery
 
-Shows how to center-align the content within a DaisyUI footer using the 'footer-center' class. This is useful for creating a more compact and visually balanced footer layout.
+This HTML snippet demonstrates the basic implementation of the daisyUI Hover Gallery component. It uses a `<figure>` element with the 'hover-gallery' class to contain multiple `<img>` tags. Hovering horizontally over the gallery reveals the subsequent images. This component is limited to a maximum of 10 images.
 
 ```html
-<footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
-  <div>
-    <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" class="inline-block fill-current"><path d="M22.672 17.011c0 3.903-3.167 7.011-7.011 7.011s-7.011-3.107-7.011-7.011c0-3.207 2.167-5.955 5.153-6.761V4.217c0-1.066-.868-1.931-1.931-1.931H9.716c-1.066 0-1.931.865-1.931 1.931v4.023c-1.493.697-2.868 1.734-3.838 3.013-.97 1.279-1.484 2.829-1.484 4.471 0 3.903 3.167 7.011 7.011 7.011s7.011-3.107 7.011-7.011c0-1.741-.514-3.389-1.484-4.728-.97-1.339-2.345-2.376-3.838-3.013v-4.023c0-1.066-.868-1.931-1.931-1.931H7.011c-1.066 0-1.931.865-1.931 1.931v10.207c0 1.652 1.101 3.107 2.688 3.563.968.291 1.987.437 3.011.437s2.043-.146 3.011-.437c1.587-.456 2.688-1.911 2.688-3.563V10.218c0-1.066-.868-1.931-1.931-1.931H9.716c-1.066 0-1.931.865-1.931 1.931v5.726c1.503.717 3.181 1.185 4.963 1.185 1.782 0 3.46-.468 4.963-1.185.774-.373 1.438-.929 1.974-1.616.536-.687.973-1.443 1.29-2.247.317-.804.475-1.657.475-2.539z"></path></svg>
-    <p class="font-bold">
-      ACME Industries Ltd.
-    </p>
-    <p>
-      Providing reliable tech since 1992
-    </p>
-  </div>
-  <div>
-    <span class="footer-title">Services</span>
-    <a class="link link-hover">Branding</a>
-    <a class="link link-hover">Design</a>
-    <a class="link link-hover">Marketing</a>
-    <a class="link link-hover">Advertisement</a>
-  </div>
-  <div>
-    <span class="footer-title">Company</span>
-    <a class="link link-hover">About us</a>
-    <a class="link link-hover">Contact</a>
-    <a class="link link-hover">Jobs</a>
-    <a class="link link-hover">Press kit</a>
-  </div>
-  <div>
-    <span class="footer-title">Legal</span>
-    <a class="link link-hover">Terms of use</a>
-    <a class="link link-hover">Privacy policy</a>
-    <a class="link link-hover">Cookie policy</a>
-  </div>
-</footer>
-````
-
----
-
-### Radial Progress with Custom Size and Thickness (React TSX)
-
-Source: https://daisyui.com/components/radial-progress
-
-This React (TSX) code illustrates customizing the size and thickness of the radial-progress component using '--size' and '--thickness' CSS variables for a tailored visual representation.
-
-```tsx
-function RadialProgressCustomSizeThicknessTsx() {
-  return (
-    <div
-      className="radial-progress"
-      style={
-        {
-          "--value": 70,
-          "--size": "10rem",
-          "--thickness": "1rem",
-        } as React.CSSProperties
-      }
-      role="progressbar"
-    >
-      70%
-    </div>
-  );
-}
+<figure class="hover-gallery max-w-60">
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-1.webp" />
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-2.webp" />
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-3.webp" />
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-4.webp" />
+</figure>
 ```
 
----
+--------------------------------
 
-### Countdown Component with 2 or 3 Digits (CSS)
+### Rating Component Syntax
 
-Source: https://daisyui.com/components/countdown
+Source: https://daisyui.com/llms
 
-Shows how to configure the DaisyUI Countdown component to display a minimum of 2 or 3 digits using CSS variables. This ensures consistent formatting regardless of the number's magnitude.
+Shows the basic structure for a DaisyUI rating component, which uses radio buttons styled as stars. The 'rating' class is applied to a div, and individual radio inputs use the 'mask mask-star' class.
+
+```html
+<div class="rating {MODIFIER}">
+  <input type="radio" name="rating-1" class="mask mask-star" />
+</div>
+```
+
+--------------------------------
+
+### Tailwind CSS Button Example
+
+Source: https://daisyui.com/pages/minimal-css-framework
+
+This code snippet demonstrates how to create a button using only Tailwind CSS classes. It includes styling for different states like hover and focus, as well as dark mode support, resulting in a lengthy list of class names.
+
+```html
+<button
+  class="bg-zinc-100 border font-semibold text-zinc-900 
+  text-sm px-4 duration-200 py-2.5 transition-all hover:border-zinc-300 
+  hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 
+  focus-visible:outline-zinc-900 active:translate-y-[0.5px] inline-flex gap-2 
+  rounded-sm active:border-zinc-300 active:bg-zinc-200 active:shadow-none 
+  text-center align-middle cursor-pointer border-zinc-200 dark:border-zinc-700 
+  dark:bg-neutral-700 dark:text-zinc-300 dark:hover:border-zinc-950 
+  dark:hover:bg-zinc-950 dark:focus-visible:outline-zinc-200 
+  dark:active:border-zinc-950 dark:active:bg-zinc-900"
+>
+  Click Me
+</button>
+```
+
+--------------------------------
+
+### Basic DaisyUI Select Component (React)
+
+Source: https://daisyui.com/components/select
+
+Provides an example of the DaisyUI select component implemented in React. It mirrors the HTML functionality, enabling users to choose from a list of options, styled with DaisyUI classes. Note the use of `defaultValue` for initial selection.
+
+```jsx
+<select defaultValue="Pick a color" className="select">
+  <option disabled={true}>Pick a color</option>
+  <option>Crimson</option>
+  <option>Amber</option>
+  <option>Velvet</option>
+</select>
+```
+
+--------------------------------
+
+### DaisyUI Collapse with Focus
+
+Source: https://daisyui.com/components/collapse
+
+Demonstrates a DaisyUI collapse component that functions with focus. When the element loses focus, the content is hidden. It requires the 'collapse', 'collapse-title', and 'collapse-content' classes. This example uses standard HTML.
+
+```html
+<div tabindex="0" class="collapse bg-base-100 border-base-300 border">
+  <div class="collapse-title font-semibold">How do I create an account?</div>
+  <div class="collapse-content text-sm">
+    Click the "Sign Up" button in the top right corner and follow the registration process.
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Add daisyUI Plugin Directive to main.css
+
+Source: https://daisyui.com/docs/install/wordpress
+
+Add the daisyUI plugin directive to your main.css file in the WindPress editor to enable daisyUI component classes in your WordPress theme. This single line imports all daisyUI components and utilities after Tailwind CSS is configured.
 
 ```css
---digits: 2;
-/* or */
---digits: 3;
+@plugin "daisyui";
 ```
-
----
-
-### Toast Component for Corner Notifications
-
-Source: https://context7_llms
-
-A wrapper component used to stack elements and position them in the corner of the page. Modifiers can be used to control the placement of the toast, such as 'toast-start', 'toast-center', or 'toast-end'.
-
-```html
-<div class="toast {MODIFIER}">{CONTENT}</div>
-```
-
----
-
-### Dialog Modal with Custom Width
-
-Source: https://daisyui.com/components/modal
-
-Demonstrates how to create a dialog modal with a customizable width using DaisyUI's 'w-' and 'max-w-' utility classes. The modal can be opened programmatically.
-
-```html
-<!-- Dialog modal with custom width -->
-<dialog id="my_modal_4" class="modal">
-  <div class="modal-box w-11/12 max-w-5xl">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-        ✕
-      </button>
-    </form>
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Click the button below to close</p>
-    <div class="modal-action">
-      <form method="dialog"><button class="btn">Close</button></form>
-    </div>
-  </div>
-</dialog>
-<button class="btn" onclick="my_modal_4.showModal()">open modal</button>
-```
-
----
-
-### DaisyUI Badge Color Variations (HTML)
-
-Source: https://daisyui.com/components/badge
-
-Illustrates how to apply different color schemes to DaisyUI badges using color-related classes. This allows for semantic meaning and visual distinction based on status or type.
-
-```html
-<!-- Neutral Badge -->
-<div class="badge badge-neutral">Neutral</div>
-
-<!-- Primary Badge -->
-<div class="badge badge-primary">Primary</div>
-
-<!-- Secondary Badge -->
-<div class="badge badge-secondary">Secondary</div>
-
-<!-- Accent Badge -->
-<div class="badge badge-accent">Accent</div>
-
-<!-- Info Badge -->
-<div class="badge badge-info">Info</div>
-
-<!-- Success Badge -->
-<div class="badge badge-success">Success</div>
-
-<!-- Warning Badge -->
-<div class="badge badge-warning">Warning</div>
-
-<!-- Error Badge -->
-<div class="badge badge-error">Error</div>
-```
-
----
-
-### DaisyUI Modal with Anchor Links (Alternative)
-
-Source: https://daisyui.com/components/modal
-
-This is another variation of a DaisyUI modal controlled by anchor links, specifically demonstrating the 'Close' functionality within the modal box. It's a common pattern for simple modal interactions.
-
-```html
-<label for="my_modal" class="btn">open modal</label>
-
-<input type="checkbox" id="my_modal" class="modal-toggle" />
-<div class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">This modal works with anchor links</p>
-    <div class="modal-action">
-      <label for="my_modal" class="btn">Close</label>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Indeterminate Toggle (JavaScript)
-
-Source: https://daisyui.com/components/toggle
-
-Explains how to programmatically set a DaisyUI toggle to an indeterminate state using JavaScript. This is useful for representing a state that is neither fully on nor fully off.
-
-```javascript
-document.getElementById("my-toggle").indeterminate = true;
-```
-
----
-
-### DaisyUI Text Input: With Fieldset and Legend
-
-Source: https://daisyui.com/components/input
-
-Illustrates using a fieldset and legend with DaisyUI text inputs to group related form elements semantically. This enhances accessibility and organization.
-
-````html
-```html
-<fieldset class="w-full">
-  <legend class="text-lg font-semibold">What is your name?</legend>
-  <label class="input input-bordered flex items-center gap-2">
-    <input type="text" class="grow" placeholder="Optional" />
-  </label>
-</fieldset>
-````
-
-````
 
 --------------------------------
 
-### Mask Component for Shaping Content with DaisyUI
+### HTML Input with File Icon and Placeholder
 
-Source: https://context7_llms
+Source: https://daisyui.com/components/input
 
-Illustrates how to use the DaisyUI 'mask' component to apply shapes to elements, particularly images. Requires a style modifier (e.g., 'mask-circle', 'mask-heart') and can be combined with size classes.
-
-```html
-<img class="mask mask-squircle w-32 h-32" src="{image-url}" alt="Shaped Image" />
-````
-
----
-
-### FAB Flower Arrangement - HTML
-
-Source: https://context7_llms
-
-This FAB uses the 'fab-flower' class to arrange the expanding buttons in a quarter-circle shape instead of a vertical line. It also includes a main action button.
+This snippet demonstrates an input field styled with a file icon, suitable for file paths or similar inputs. It uses a placeholder to guide the user and includes an SVG icon representing a file.
 
 ```html
-<div class="fab fab-flower">
-  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
-    {IconOriginal}
-  </div>
-  <button class="fab-main-action btn btn-circle btn-lg">
-    {IconMainAction}
-  </button>
-  <button class="btn btn-lg btn-circle">{Icon1}</button>
-  <button class="btn btn-lg btn-circle">{Icon2}</button>
-  <button class="btn btn-lg btn-circle">{Icon3}</button>
-</div>
-```
-
----
-
-### Footer Component Structure in HTML
-
-Source: https://context7_llms
-
-The footer component is designed to hold logos, copyright information, and navigation links. It uses the 'footer' class and can include 'footer-title' for section headings. Modifiers for placement and direction are optional.
-
-```html
-<footer class="footer p-10 bg-neutral text-neutral-content">
-  <div>
-    <svg
-      width="50"
-      height="50"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
+<label class="input">
+  <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      stroke-width="2.5"
+      fill="none"
+      stroke="currentColor"
     >
-      <path d="M12 2L0 22h24L12 2zM3.535 20 12 3.878 20.465 20H3.535z"></path>
-    </svg>
-    <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
-  </div>
-  <div>
-    <span class="footer-title">Services</span>
-    <a class="link link-hover">Branding</a>
-    <a class="link link-hover">Design</a>
-    <a class="link link-hover">Marketing</a>
-    <a class="link link-hover">Advertisement</a>
-  </div>
-  <div>
-    <span class="footer-title">Company</span>
-    <a class="link link-hover">About us</a>
-    <a class="link link-hover">Contact</a>
-    <a class="link link-hover">Jobs</a>
-    <a class="link link-hover">Press kit</a>
-  </div>
-  <div>
-    <span class="footer-title">Legal</span>
-    <a class="link link-hover">Terms of use</a>
-    <a class="link link-hover">Privacy policy</a>
-    <a class="link link-hover">Cookie policy</a>
-  </div>
-</footer>
+      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+      <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+    </g>
+  </svg>
+  <input type="text" class="grow" placeholder="index.php" />
+</label>
 ```
 
----
+--------------------------------
 
-### DaisyUI Modal with Anchor Link
+### File Input with Fieldset and Label (HTML)
 
-Source: https://daisyui.com/components/modal
+Source: https://daisyui.com/components/file-input
 
-This snippet demonstrates how to create a modal that is triggered by clicking an anchor link. It utilizes HTML structure and specific DaisyUI classes for functionality. No external JavaScript is explicitly required for this basic implementation.
-
-```html
-<label for="my_modal_8" class="btn">open modal</label>
-
-<input type="checkbox" id="my_modal_8" class="modal-toggle" />
-<div class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">This modal works with anchor links</p>
-    <div class="modal-action">
-      <label for="my_modal_8" class="btn">Yay!</label>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### HTML Dialog Modal with JS Open/Close (DaisyUI)
-
-Source: https://daisyui.com/components/modal
-
-Demonstrates how to use an HTML dialog element as a modal with DaisyUI. The modal is opened using JavaScript's `showModal()` method and can be closed programmatically with `close()`. It includes a button to trigger the opening and a close button within the modal. Accessibility is enhanced by allowing closure via the ESC key.
-
-```html
-<button class="btn" onclick="my_modal_1.showModal()">open modal</button>
-<dialog id="my_modal_1" class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
-      <form method="dialog">
-        <button class="btn">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
-```
-
-```javascript
-// Open the modal using document.getElementById('ID').showModal() method
-document.getElementById("my_modal_1").showModal();
-```
-
----
-
-### DaisyUI Button Color Variants
-
-Source: https://daisyui.com/components/button
-
-Showcases the range of predefined color options available for DaisyUI buttons, including neutral, primary, secondary, accent, info, success, warning, and error. Each color variant is applied using corresponding class names.
-
-```html
-<button class="btn btn-neutral">Neutral</button>
-<button class="btn btn-primary">Primary</button>
-<button class="btn btn-secondary">Secondary</button>
-<button class="btn btn-accent">Accent</button>
-<button class="btn btn-info">Info</button>
-<button class="btn btn-success">Success</button>
-<button class="btn btn-warning">Warning</button>
-<button class="btn btn-error">Error</button>
-```
-
----
-
-### Fieldset Component - HTML
-
-Source: https://context7_llms
-
-Defines a fieldset component for grouping related form elements. It includes a legend for the title and a paragraph for the description, with specific DaisyUI classes.
+Provides an example of integrating the DaisyUI file input within a fieldset, including a legend and a label for additional context. This structure is useful for grouping related form elements and providing user guidance on file size limits.
 
 ```html
 <fieldset class="fieldset">
-  <legend class="fieldset-legend">{title}</legend>
-  {CONTENT}
-  <p class="label">{description}</p>
+  <legend class="fieldset-legend">Pick a file</legend>
+  <input type="file" class="file-input" />
+  <label class="label">Max size 2MB</label>
 </fieldset>
 ```
 
----
+--------------------------------
 
-### Applying 'soft' and 'dash' Styles to DaisyUI Components
+### Theme Controller Checkbox Input (HTML)
 
-Source: https://daisyui.com/docs/v5
+Source: https://daisyui.com/components/theme-controller
 
-Shows how to apply new 'soft' and 'dash' style modifiers to DaisyUI components such as buttons and badges. The 'soft' style provides a gentler appearance, while 'dash' adds a dashed border.
-
-```HTML
-<!-- Example for a soft button -->
-<button class="btn btn-soft">Soft Button</button>
-
-<!-- Example for a dashed alert -->
-<div class="alert alert-dash">Dashed Alert</div>
-```
-
----
-
-### Basic Countdown Component Usage (HTML)
-
-Source: https://daisyui.com/components/countdown
-
-Demonstrates the basic HTML structure for the DaisyUI Countdown component. It requires JavaScript to update the span text and the '--value' CSS variable. The value must be between 0 and 999.
+Example of a theme controller using an HTML checkbox input. This component changes the page theme based on its checked state and the 'value' attribute. It works with CSS only.
 
 ```html
-<div class="countdown">
-  <span></span>
+<input type="checkbox" value="synthwave" class="checkbox theme-controller" />
+```
+
+```html
+<input type="checkbox" value="synthwave" class="checkbox theme-controller" />
+```
+
+--------------------------------
+
+### Create Tabs Component with Buttons or Radio Inputs
+
+Source: https://daisyui.com/llms
+
+Build tabbed interfaces using either button or radio input elements. Buttons provide basic tab structure, while radio inputs enable tab content switching functionality. Optional modifiers control styling with classes like tabs-box, tabs-border, and tabs-lift.
+
+```html
+<div role="tablist" class="tabs {MODIFIER}">
+  <button role="tab" class="tab">Tab</button>
 </div>
 ```
 
----
+```html
+<div role="tablist" class="tabs tabs-box">
+  <input type="radio" name="my_tabs" class="tab" aria-label="Tab" />
+</div>
+```
 
-### Checkbox with Custom Colors (HTML)
+--------------------------------
+
+### HTML Button Comparison: Without and With daisyUI
+
+Source: https://daisyui.com/pages/best-component-library-for-beginners
+
+Demonstrates the significant reduction in HTML code needed for a button when using daisyUI compared to writing raw Tailwind CSS classes. This highlights daisyUI's simplicity and efficiency for creating UI elements.
+
+```html
+<button
+  class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+>
+  Click Me
+</button>
+```
+
+```html
+<button class="btn">Click Me</button>
+```
+
+--------------------------------
+
+### Clean Next.js Global CSS
+
+Source: https://daisyui.com/blog/install-daisyui-and-tailwindcss-in-nextjs
+
+Minimalist global CSS file for Next.js, including only the necessary Tailwind CSS directives. This removes default Next.js styles for a clean slate.
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+```
+
+--------------------------------
+
+### DaisyUI Avatar Placeholder with Text (HTML)
+
+Source: https://daisyui.com/components/avatar
+
+Shows how to implement avatar placeholders using text, suitable for when an image is not available. Includes examples of different sizes and online status. Uses DaisyUI CSS classes and HTML structure.
+
+```html
+<div class="avatar avatar-placeholder">
+  <div class="bg-neutral text-neutral-content w-24 rounded-full">
+    <span class="text-3xl">D</span>
+  </div>
+</div>
+<div class="avatar avatar-online avatar-placeholder">
+  <div class="bg-neutral text-neutral-content w-16 rounded-full">
+    <span class="text-xl">AI</span>
+  </div>
+</div>
+<div class="avatar avatar-placeholder">
+  <div class="bg-neutral text-neutral-content w-12 rounded-full">
+    <span>SY</span>
+  </div>
+</div>
+<div class="avatar avatar-placeholder">
+  <div class="bg-neutral text-neutral-content w-8 rounded-full">
+    <span class="text-xs">UI</span>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Applying a Specific daisyUI Theme (Material)
+
+Source: https://daisyui.com/blog/nexus-dashboard-template
+
+Shows how to include and apply a specific daisyUI theme, such as 'material', by copying its configuration and setting the `data-theme` attribute on the HTML tag. Ensure Tailwind CSS and daisyUI are installed.
+
+```css
+@plugin "daisyui/theme" {
+  name: "material";
+  color-scheme: light;
+  --color-primary: #167bff;
+  /* ... */
+}
+
+/* Then apply it: <html data-theme="material"> */
+```
+
+--------------------------------
+
+### Configure PostCSS for Tailwind CSS
+
+Source: https://daisyui.com/docs/install/angular
+
+Creates a `.postcssrc.json` file at the root of your project to configure the PostCSS build process, specifically enabling the Tailwind CSS plugin. This file tells PostCSS to use the Tailwind CSS transformations.
+
+```json
+{
+  "plugins": {
+    "@tailwindcss/postcss": {}
+  }
+}
+```
+
+--------------------------------
+
+### Checkbox Sizes React
 
 Source: https://daisyui.com/components/checkbox
 
-Demonstrates how to apply custom colors to checkboxes by defining and using CSS variables. This allows for more granular control over the checkbox appearance.
+Presents the React version for applying various checkbox sizes using daisyUI classes. This code snippet includes examples for extra small to extra large checkboxes.
 
-````html
-```html
-<input type="checkbox" class="checkbox" style="--chkbg: #f00; --chkfg: #fff;" />
-<input
-  type="checkbox"
-  class="checkbox checkbox-primary"
-  style="--chkbg: #0f0; --chkfg: #fff;"
-/>
-<input
-  type="checkbox"
-  class="checkbox checkbox-accent"
-  style="--chkbg: #00f; --chkfg: #fff;"
-/>
-````
-
-````
+```jsx
+<input type="checkbox" defaultChecked className="checkbox checkbox-xs" />
+<input type="checkbox" defaultChecked className="checkbox checkbox-sm" />
+<input type="checkbox" defaultChecked className="checkbox checkbox-md" />
+<input type="checkbox" defaultChecked className="checkbox checkbox-lg" />
+<input type="checkbox" defaultChecked className="checkbox checkbox-xl" />
+```
 
 --------------------------------
 
-### DaisyUI Toast Placement: Bottom-Start
+### DaisyUI Dock Small Size HTML Example
 
-Source: https://daisyui.com/components/toast
+Source: https://daisyui.com/components/dock
 
-Shows how to set the DaisyUI Toast component to the bottom-start (bottom-left) position. This uses the 'toast-bottom' and 'toast-start' classes, with 'toast-bottom' being the default vertical alignment.
+This HTML snippet illustrates how to implement a small-sized dock component using DaisyUI classes. It includes three button elements, each containing an SVG icon, with one button designated as 'dock-active'.
 
 ```html
-<div class="toast toast-start toast-bottom">
-  <div class="alert alert-info">
-    <div>
-      <span>New mail arrived.</span>
-      <span>Message sent successfully.</span>
-    </div>
-  </div>
+<div class="dock dock-sm">
+  <button>
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><polyline points="1 11 12 2 23 11" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><path d="m5,13v7c0,1.105.895,2,2,2h10c1.105,0,2-.895,2-2v-7" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path><line x1="12" y1="22" x2="12" y2="18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></line></g></svg>
+  </button>
+  
+  <button class="dock-active">
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><polyline points="3 14 9 14 9 17 15 17 15 14 21 14" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></rect></g></svg>
+  </button>
+  
+  <button>
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></circle><path d="m22,13.25v-2.5l-2.318-.966c-.167-.581-.395-1.135-.682-1.654l.954-2.318-1.768-1.768-2.318.954c-.518-.287-1.073-.515-1.654-.682l-.966-2.318h-2.5l-.966,2.318c-.581.167-1.135.395-1.654.682l-2.318-.954-1.768,1.768.954,2.318c-.287.518-.515,1.073-.682,1.654l-2.318.966v2.5l2.318.966c.167.581.395,1.135.682,1.654l-.954,2.318,1.768,1.768,2.318-.954c.518.287,1.073.515,1.654.682l.966,2.318h2.5l.966-2.318c.581-.167,1.135-.395,1.654-.682l2.318.954,1.768-1.768-.954-2.318c.287-.518.515-1.073.682-1.654l2.318-.966Z" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path></g></svg>
+  </button>
 </div>
-````
-
----
-
-### DaisyUI Disabled Toggle (HTML)
-
-Source: https://daisyui.com/components/toggle
-
-Shows how to create a disabled DaisyUI toggle switch by adding the 'disabled' attribute to the input element.
-
-```html
-<input type="checkbox" class="toggle" checked disabled />
-<input type="checkbox" class="toggle" disabled />
 ```
-
----
-
-### DaisyUI Text Input: Search with Icon
-
-Source: https://daisyui.com/components/input
-
-Shows a search input field styled with an icon using DaisyUI. This provides a clear visual cue for the search functionality within a form.
-
-````html
-```html
-<label class="input input-bordered flex items-center gap-2">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 16 16"
-    fill="currentColor"
-    class="w-4 h-4 opacity-70"
-  >
-    <path
-      fill-rule="evenodd"
-      d="M9.965 11.026a2 2 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-      clip-rule="evenodd"
-    />
-  </svg>
-  <input type="text" class="grow" placeholder="Search" />
-</label>
-````
-
-````
 
 --------------------------------
 
-### Filter with HTML Form, Checkboxes, and Reset Button - daisyUI
+### Configure Tailwind CSS with daisyUI Plugin
 
-Source: https://daisyui.com/components/filter
+Source: https://daisyui.com/blog/install-daisyui-and-tailwindcss-in-nextjs
 
-This snippet demonstrates a multi-select filter using checkboxes within an HTML form. Unlike radio buttons, checkboxes allow users to select multiple options simultaneously. The `filter` class is not needed here, only the checkboxes and the reset button.
+TypeScript configuration for Tailwind CSS, adding daisyUI as a plugin. This step enables daisyUI's styles and components within the Next.js project.
 
-```html
-<form>
-  <div class="checkbox-group">
-    <input type="checkbox" id="multiselect1" class="filter-checkbox" checked>
-    <label for="multiselect1">Multi-Select 1</label>
+```typescript
+import type { Config } from 'tailwindcss'
++ import daisyui from 'daisyui'
+const config: Config = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+    },
+  },
+- plugins: [],
++ plugins: [daisyui],
+}
+export default config
 
-    <input type="checkbox" id="multiselect2" class="filter-checkbox">
-    <label for="multiselect2">Multi-Select 2</label>
-
-    <input type="checkbox" id="multiselect3" class="filter-checkbox">
-    <label for="multiselect3">Multi-Select 3</label>
-  </div>
-  <button type="reset" class="filter-reset">Reset Filters</button>
-</form>
-````
-
----
-
-### Dropdown using CSS focus (HTML)
-
-Source: https://daisyui.com/components/dropdown
-
-A dropdown implemented using CSS focus, where content appears when a focusable element (like a div with tabindex) is focused. This method is often used with a workaround for Safari's focus bug on buttons.
-
-```html
-<div tabindex="0" role="button" class="focus:bg-base-300">
-  Click
-  <ul class="absolute hidden group-focus:block bg-base-100 p-2">
-    <li>Item 1</li>
-    <li>Item 2</li>
-  </ul>
-</div>
 ```
-
----
-
-### Checkbox with Fieldset and Label (HTML)
-
-Source: https://daisyui.com/components/checkbox
-
-Shows how to group checkboxes within a fieldset and associate them with labels for better accessibility and user experience. This structure is common for form elements.
-
-````html
-```html
-<div class="form-control">
-  <label class="label cursor-pointer">
-    <span class="label-text">Remember me</span>
-    <input type="checkbox" class="checkbox" checked />
-  </label>
-</div>
-````
-
-````
 
 --------------------------------
 
-### FAB and Speed Dial (Vertical) - With Labels and fab-close
+### Responsive Mega Menu with Submenus (HTML)
 
-Source: https://daisyui.com/components/fab
+Source: https://daisyui.com/components/menu
 
-Illustrates a FAB configuration where the main action button transforms into a 'Close' button when the speed dial is open, and includes text labels for the speed dial items. This provides a user-friendly way to dismiss the speed dial.
-
-```html
-<div class="fab">
-  <button class="fab-close">✕</button>
-  <div class="fab-content">
-    <div class="flex items-center gap-2">
-      <label>Label A</label>
-      <button class="btn btn-xs">A</button>
-    </div>
-    <div class="flex items-center gap-2">
-      <label>Label B</label>
-      <button class="btn btn-xs">B</button>
-    </div>
-    <div class="flex items-center gap-2">
-      <label>Label C</label>
-      <button class="btn btn-xs">C</button>
-    </div>
-  </div>
-</div>
-````
-
----
-
-### DaisyUI Horizontal Footer Layout
-
-Source: https://daisyui.com/components/footer
-
-Illustrates how to arrange footer columns horizontally using the 'footer-horizontal' class, making better use of horizontal space on larger screens. This is often used in conjunction with responsive design breakpoints.
+A responsive mega menu implementation using DaisyUI's menu component in plain HTML. It supports horizontal display on larger screens and includes nested submenus for organized navigation. This example is framework-agnostic and uses standard HTML structure.
 
 ```html
-<footer class="footer p-10 bg-base-200 text-base-content">
-  <div class="grid grid-flow-col gap-4">
-    <a>
-      <svg
-        width="50"
-        height="50"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        class="inline-block fill-current"
-      >
-        <path
-          d="M22.672 17.011c0 3.903-3.167 7.011-7.011 7.011s-7.011-3.107-7.011-7.011c0-3.207 2.167-5.955 5.153-6.761V4.217c0-1.066-.868-1.931-1.931-1.931H9.716c-1.066 0-1.931.865-1.931 1.931v4.023c-1.493.697-2.868 1.734-3.838 3.013-.97 1.279-1.484 2.829-1.484 4.471 0 3.903 3.167 7.011 7.011 7.011s7.011-3.107 7.011-7.011c0-1.741-.514-3.389-1.484-4.728-.97-1.339-2.345-2.376-3.838-3.013v-4.023c0-1.066-.868-1.931-1.931-1.931H7.011c-1.066 0-1.931.865-1.931 1.931v10.207c0 1.652 1.101 3.107 2.688 3.563.968.291 1.987.437 3.011.437s2.043-.146 3.011-.437c1.587-.456 2.688-1.911 2.688-3.563V10.218c0-1.066-.868-1.931-1.931-1.931H9.716c-1.066 0-1.931.865-1.931 1.931v5.726c1.503.717 3.181 1.185 4.963 1.185 1.782 0 3.46-.468 4.963-1.185.774-.373 1.438-.929 1.974-1.616.536-.687.973-1.443 1.29-2.247.317-.804.475-1.657.475-2.539z"
-        ></path>
-      </svg>
-    </a>
-    <div>
-      <span class="footer-title">Services</span>
-      <a class="link link-hover">Branding</a>
-      <a class="link link-hover">Design</a>
-      <a class="link link-hover">Marketing</a>
-      <a class="link link-hover">Advertisement</a>
-    </div>
-    <div>
-      <span class="footer-title">Company</span>
-      <a class="link link-hover">About us</a>
-      <a class="link link-hover">Contact</a>
-      <a class="link link-hover">Jobs</a>
-      <a class="link link-hover">Press kit</a>
-    </div>
-    <div>
-      <span class="footer-title">Legal</span>
-      <a class="link link-hover">Terms of use</a>
-      <a class="link link-hover">Privacy policy</a>
-      <a class="link link-hover">Cookie policy</a>
-    </div>
-  </div>
-</footer>
+<ul class="menu xl:menu-horizontal bg-base-200 rounded-box lg:min-w-max">
+  <li>
+    <a>Solutions</a>
+    <ul>
+      <li><a>Design</a></li>
+      <li><a>Development</a></li>
+      <li><a>Hosting</a></li>
+      <li><a>Domain register</a></li>
+    </ul>
+  </li>
+  <li>
+    <a>Enterprise</a>
+    <ul>
+      <li><a>CRM software</a></li>
+      <li><a>Marketing management</a></li>
+      <li><a>Security</a></li>
+      <li><a>Consulting</a></li>
+    </ul>
+  </li>
+  <li>
+    <a>Products</a>
+    <ul>
+      <li><a>UI Kit</a></li>
+      <li><a>WordPress themes</a></li>
+      <li><a>WordPress plugins</a></li>
+      <li>
+        <a>Open source</a>
+        <ul>
+          <li><a>Auth management system</a></li>
+          <li><a>VScode theme</a></li>
+          <li><a>Color picker app</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a>Company</a>
+    <ul>
+      <li><a>About us</a></li>
+      <li><a>Contact us</a></li>
+      <li><a>Privacy policy</a></li>
+      <li><a>Press kit</a></li>
+    </ul>
+  </li>
+</ul>
 ```
 
----
+--------------------------------
 
-### DaisyUI Stats Component Syntax
+### Framework-Agnostic Styling with DaisyUI Classes
 
-Source: https://context7_llms
+Source: https://daisyui.com/pages/scalable-component-library
 
-The DaisyUI stats component displays statistical information. It can be modified with direction classes and contains individual stat elements with titles, values, and descriptions.
+Shows how the same CSS classes, like `btn btn-primary`, can be used across different JavaScript frameworks including Next.js, React, Vue.js, and Svelte. This demonstrates framework agnosticism, ensuring visual consistency regardless of the underlying technology.
 
 ```html
-<div class="stats {MODIFIER}">
-  <div class="stat">{CONTENT}</div>
+<!-- Next.js landing page -->
+<button className="btn btn-primary">Get Started</button>
+
+<!-- React admin dashboard -->
+<button className="btn btn-primary">Save Changes</button>
+
+<!-- Vue.js analytics -->
+<button class="btn btn-primary">Export Data</button>
+
+<!-- Svelte documentation -->
+<button class="btn btn-primary">View Docs</button>
+```
+
+--------------------------------
+
+### DaisyUI Avatar Placeholder with Text (JSX)
+
+Source: https://daisyui.com/components/avatar
+
+Provides examples of text-based avatar placeholders using JSX, ideal for React projects. Demonstrates varying sizes and online status indicators, relying on DaisyUI CSS classes.
+
+```jsx
+<div className="avatar avatar-placeholder">
+  <div className="bg-neutral text-neutral-content w-24 rounded-full">
+    <span className="text-3xl">D</span>
+  </div>
+</div>
+<div className="avatar avatar-online avatar-placeholder">
+  <div className="bg-neutral text-neutral-content w-16 rounded-full">
+    <span className="text-xl">AI</span>
+  </div>
+</div>
+<div className="avatar avatar-placeholder">
+  <div className="bg-neutral text-neutral-content w-12 rounded-full">
+    <span>SY</span>
+  </div>
+</div>
+<div className="avatar avatar-placeholder">
+  <div className="bg-neutral text-neutral-content w-8 rounded-full">
+    <span className="text-xs">UI</span>
+  </div>
 </div>
 ```
 
----
+--------------------------------
 
-### DaisyUI Status Component Syntax
+### Range Slider Component Syntax
 
-Source: https://context7_llms
+Source: https://daisyui.com/llms
 
-The DaisyUI status component is a small icon used to visually represent an element's current status (e.g., online, offline, error). It supports various color and size modifiers.
+Illustrates the HTML syntax for a DaisyUI range slider. The 'range' class is used on an input element of type 'range', with optional color and size modifiers. 'min' and 'max' attributes are required.
+
+```html
+<input type="range" min="0" max="100" value="40" class="range {MODIFIER}" />
+```
+
+--------------------------------
+
+### Chat Bubble Component for Conversations
+
+Source: https://daisyui.com/llms
+
+Chat bubbles display individual lines of conversation, including author information and timestamps. Key classes include 'chat', 'chat-image', 'chat-header', 'chat-footer', and 'chat-bubble'. Bubbles can be placed at the 'chat-start' or 'chat-end' of the conversation and colored using variants like 'chat-bubble-primary'.
+
+```html
+<div class="chat chat-start">
+  <div class="chat-image avatar">
+    <div class="w-10 rounded-full">
+      <img src="/images/stock/photo-1534528736661-d95f166972f0.jpg" />
+    </div>
+  </div>
+  <div class="chat-header">
+    Awesome
+    <time class="text-xs opacity-50">12:46</time>
+  </div>
+  <div class="chat-bubble chat-bubble-primary">Hello there!</div>
+</div>
+<div class="chat chat-end">
+  <div class="chat-image avatar">
+    <div class="w-10 rounded-full">
+      <img src="/images/stock/photo-1534528736661-d95f166972f0.jpg" />
+    </div>
+  </div>
+  <div class="chat-header">
+    You
+    <time class="text-xs opacity-50">12:48</time>
+  </div>
+  <div class="chat-bubble chat-bubble-secondary">Hi!</div>
+</div>
+```
+
+--------------------------------
+
+### Advanced CSS for UI without JavaScript
+
+Source: https://daisyui.com/pages/scalable-component-library
+
+Demonstrates how advanced CSS features like grid layouts, interactive states, animations, dark mode, and container queries can achieve complex UI patterns without JavaScript. These examples showcase the power of modern CSS in building dynamic and responsive web interfaces.
+
+```css
+/* Complex layouts without JavaScript */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* Interactive states without JavaScript */
+.dropdown:focus-within .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Smooth animations without JavaScript */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Dark mode without JavaScript */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+  }
+}
+
+/* Container queries for responsive components */
+@container (min-width: 400px) {
+  .card {
+    display: flex;
+    flex-direction: row;
+  }
+}
+```
+
+--------------------------------
+
+### Theme Controller Checkbox Input (React)
+
+Source: https://daisyui.com/components/theme-controller
+
+Example of a theme controller using a React checkbox input. This component changes the page theme based on its checked state and the 'value' attribute. It works with CSS only.
+
+```jsx
+<input type="checkbox" value="synthwave" className="checkbox theme-controller" />
+```
+
+```jsx
+<input type="checkbox" value="synthwave" className="checkbox theme-controller" />
+```
+
+--------------------------------
+
+### Status Icon Component
+
+Source: https://daisyui.com/llms
+
+Minimal icon component for displaying status indicators like online, offline, or error states. Supports color variants and size modifiers. Note: This component does not render any visible content by itself.
 
 ```html
 <span class="status {MODIFIER}"></span>
 ```
 
----
+--------------------------------
 
-### DaisyUI Timeline with Bottom Side Only (HTML)
+### Window Mockup with Background Color - HTML
+
+Source: https://daisyui.com/components/mockup-window
+
+This HTML snippet illustrates creating a window mockup with a background color using daisyUI classes. It's a simple component that adds visual distinction to the window element.
+
+```html
+<div class="mockup-window bg-base-100 border border-base-300">
+  <div class="grid place-content-center h-80">Hello!</div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI File Input Primary Colors (HTML)
+
+Source: https://daisyui.com/components/file-input
+
+This snippet shows how to apply different primary color themes to the file input component using DaisyUI's utility classes in HTML. It includes examples for 'primary', 'secondary', 'accent', 'neutral', 'info', 'success', 'warning', and 'error' color variants. No external dependencies are required beyond DaisyUI.
+
+```html
+<input type="file" class="file-input file-input-primary" />
+<input type="file" class="file-input file-input-secondary" />
+<input type="file" class="file-input file-input-accent" />
+<input type="file" class="file-input file-input-neutral" />
+<input type="file" class="file-input file-input-info" />
+<input type="file" class="file-input file-input-success" />
+<input type="file" class="file-input file-input-warning" />
+<input type="file" class="file-input file-input-error" />
+```
+
+--------------------------------
+
+### DaisyUI File Input Component
+
+Source: https://daisyui.com/llms
+
+The file-input component allows users to upload files. It supports various modifiers for styling, including ghost style, colors, and sizes. The basic syntax involves an HTML input tag with type 'file' and the 'file-input' class, optionally combined with style, color, and size classes.
+
+```html
+<input type="file" class="file-input file-input-bordered" />
+```
+
+--------------------------------
+
+### Hover Underline Effect for Links
+
+Source: https://daisyui.com/components/link
+
+This code demonstrates how to make a DaisyUI link show its underline only on hover by applying the 'link link-hover' classes. Examples are provided for HTML and React JSX.
+
+```html
+<a class="link link-hover">Click me</a>
+```
+
+```jsx
+<a className="link link-hover">Click me</a>
+```
+
+--------------------------------
+
+### DaisyUI Toggle with Fieldset and Label (HTML)
+
+Source: https://daisyui.com/components/toggle
+
+This example shows how to integrate a DaisyUI Toggle component within a fieldset and label structure for better form organization. It includes a legend for the fieldset and a label containing the toggle and associated text.
+
+```html
+<fieldset class="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
+  <legend class="fieldset-legend">Login options</legend>
+  <label class="label">
+    <input type="checkbox" checked="checked" class="toggle" />
+    Remember me
+  </label>
+</fieldset>
+```
+
+--------------------------------
+
+### Add Context7 MCP Server (HTTP Transport)
+
+Source: https://daisyui.com/docs/editor/claudecode
+
+This command configures Claude Code to use the Context7 MCP server via HTTP transport. It specifies the transport protocol and the URL of the Context7 MCP server.
+
+```bash
+claude mcp add --transport http context7 https://mcp.context7.com/mcp
+```
+
+--------------------------------
+
+### Basic DaisyUI Progress Bar (HTML)
+
+Source: https://daisyui.com/components/progress
+
+Demonstrates the basic usage of the DaisyUI progress component in HTML. It shows how to create a progress bar with a specified width and current value. The component relies on the 'progress' class for styling.
+
+```html
+<progress class="progress w-56" value="0" max="100"></progress>
+<progress class="progress w-56" value="10" max="100"></progress>
+<progress class="progress w-56" value="40" max="100"></progress>
+<progress class="progress w-56" value="70" max="100"></progress>
+<progress class="progress w-56" value="100" max="100"></progress>
+```
+
+--------------------------------
+
+### DaisyUI Simple Footer with Social Links Example
+
+Source: https://daisyui.com/components/footer
+
+This HTML snippet showcases a simpler footer design with DaisyUI. It includes a copyright notice and placeholders for social media links using SVG icons. This footer is designed to be placed at the bottom of a page and is styled with a top border.
+
+```html
+<footer class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
+  <aside class="grid-flow-col items-center">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      class="fill-current">
+      <path
+        d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path>
+    </svg>
+    <p>
+      ACME Industries Ltd.
+      <br />
+      Providing reliable tech since 1992
+    </p>
+  </aside>
+  <nav class="md:place-self-center md:justify-self-end">
+    <div class="grid grid-flow-col gap-4">
+      <a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          class="fill-current">
+          <path
+            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
+        </svg>
+      </a>
+      <a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          class="fill-current">
+          <path
+            d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+        </svg>
+      </a>
+      <a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          class="fill-current">
+          <path
+            d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+        </svg>
+      </a>
+    </div>
+  </nav>
+</footer>
+```
+
+--------------------------------
+
+### DaisyUI List with Song Information and Actions
+
+Source: https://daisyui.com/components/list
+
+This snippet demonstrates a list item representing a song, including album art, artist and song title, a description, and play/like buttons. It utilizes DaisyUI classes for styling.
+
+```html
+<ul class="list bg-base-100 rounded-box shadow-md">
+  
+  <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Most played songs this week</li>
+  
+  <li class="list-row">
+    <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp"/></div>
+    <div>
+      <div>Dio Lupa</div>
+      <div class="text-xs uppercase font-semibold opacity-60">Remaining Reason</div>
+    </div>
+    <p class="list-col-wrap text-xs">
+      "Remaining Reason" became an instant hit, praised for its haunting sound and emotional depth. A viral performance brought it widespread recognition, making it one of Dio Lupa’s most iconic tracks.
+    </p>
+    <button class="btn btn-square btn-ghost">
+      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+    </button>
+    <button class="btn btn-square btn-ghost">
+      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></g></svg>
+    </button>
+  </li>
+  
+
+```
+
+--------------------------------
+
+### Figma API Integration for daisyUI Blueprint MCP
+
+Source: https://daisyui.com/blueprint
+
+This configuration snippet demonstrates how to integrate Figma API credentials into the daisyUI Blueprint MCP server setup. It includes the FIGMA environment variable, which is essential for enabling Figma-to-code conversion.
+
+```json
+"daisyui-blueprint": {
+    "type": "stdio",
+    "command": "npx",
+    "env": {
+      "LICENSE": "YOUR LICENSE KEY",
+      "EMAIL": "YOUR EMAIL",
+      "FIGMA": "YOUR FIGMA API KEY"
+    }
+  }
+```
+
+--------------------------------
+
+### Button with Loading Spinner (JSX)
+
+Source: https://daisyui.com/components/button
+
+Shows how to integrate a loading spinner into buttons within a React application using DaisyUI's classes via JSX. This includes examples for square buttons and buttons with accompanying text, using `className` for styling.
+
+```jsx
+<button className="btn btn-square">
+  <span className="loading loading-spinner"></span>
+</button>
+
+<button className="btn">
+  <span className="loading loading-spinner"></span>
+  loading
+</button>
+```
+
+--------------------------------
+
+### DaisyUI Divider Component Syntax
+
+Source: https://daisyui.com/llms
+
+The DaisyUI divider component separates content vertically or horizontally. It can include text and be modified with classes for direction, color, and placement. Omitting text creates a blank divider.
+
+```html
+<div class="divider {MODIFIER}">{text}</div>
+```
+
+--------------------------------
+
+### Code Block Styling with daisyUI
+
+Source: https://daisyui.com/docs/layout-and-typography
+
+Illustrates how to display code blocks using daisyUI, which supports styling for larger code snippets potentially integrated with highlighting libraries like Shiki or Prism.
+
+```javascript
+function greet() {
+  console.log('Hello, world!');
+}
+```
+
+--------------------------------
+
+### Styled DaisyUI Timeline with Primary Color
 
 Source: https://daisyui.com/components/timeline
 
-Illustrates a DaisyUI timeline where all content is positioned on the bottom side. This layout is suitable for simpler timelines where a dual-sided display is not required.
+This example demonstrates a DaisyUI timeline styled with the primary color. It applies the 'bg-primary' class to the horizontal rules and uses 'text-primary' for the SVG icons, creating a cohesive look.
 
 ```html
-<ul class="timeline">
+<ul className="timeline">
   <li>
-    <div class="timeline-start">First Macintosh computer</div>
-    <div class="timeline-middle">
-      <div class="w-40"></div>
+    <div className="timeline-start timeline-box">First Macintosh computer</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="text-primary h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
     </div>
-    <div class="timeline-end">
-      <time>1984</time>
-    </div>
+    <hr className="bg-primary" />
   </li>
   <li>
-    <div class="timeline-start">iMac</div>
-    <div class="timeline-middle">
-      <div class="w-40"></div>
+    <hr className="bg-primary" />
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="text-primary h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
     </div>
-    <div class="timeline-end">
-      <time>1998</time>
-    </div>
+    <div className="timeline-end timeline-box">iMac</div>
+    <hr className="bg-primary" />
   </li>
   <li>
-    <div class="timeline-start">iPod</div>
-    <div class="timeline-middle">
-      <div class="w-40"></div>
+    <hr className="bg-primary" />
+    <div className="timeline-start timeline-box">iPod</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="text-primary h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
     </div>
-    <div class="timeline-end">
-      <time>2001</time>
-    </div>
+    <hr />
   </li>
   <li>
-    <div class="timeline-start">iPhone</div>
-    <div class="timeline-middle">
-      <div class="w-40"></div>
+    <hr />
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
     </div>
-    <div class="timeline-end">
-      <time>2007</time>
-    </div>
+    <div className="timeline-end timeline-box">iPhone</div>
+    <hr />
   </li>
   <li>
-    <div class="timeline-start">Apple Watch</div>
-    <div class="timeline-middle">
-      <div class="w-40"></div>
-    </div>
-    <div class="timeline-end">
-      <time>2015</time>
+    <hr />
+    <div className="timeline-start timeline-box">Apple Watch</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
     </div>
   </li>
 </ul>
 ```
 
----
+--------------------------------
 
-### DaisyUI Toast Placement: Top-Center
+### HTML Responsive Grid Layout with Tailwind CSS
 
-Source: https://daisyui.com/components/toast
+Source: https://daisyui.com/pages/ui-library-for-hackaton
 
-Illustrates positioning the DaisyUI Toast component at the top-center of the page. This configuration utilizes the 'toast-top' and 'toast-center' classes.
+Demonstrates the complexity of building responsive layouts that work across multiple screen sizes (mobile, tablet, laptop). Uses Tailwind CSS utility classes to manage responsive breakpoints (sm, lg, xl) for grid columns, gaps, padding, and component sizing, illustrating the overhead required for cross-device compatibility.
 
 ```html
-<div class="toast toast-top toast-center">
-  <div class="alert alert-info">
-    <div>
-      <span>New mail arrived.</span>
-      <span>Message sent successfully.</span>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 lg:p-8">
+  <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-4 sm:p-6">
+    <h3 class="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900">Card Title</h3>
+    <p class="text-sm sm:text-base text-gray-600 mb-4">Card description goes here...</p>
+    <button class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors duration-200">
+      Action
+    </button>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI HTML Structure and Components
+
+Source: https://daisyui.com/codepen
+
+This HTML snippet showcases the integration of DaisyUI with Tailwind CSS. It includes examples of buttons, tabs, and form elements styled using DaisyUI classes. The code demonstrates how to link DaisyUI themes and the Tailwind CSS browser package.
+
+```html
+<!-- daisyUI -->
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+
+<!-- All daisyUI themes -->
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<!-- buttons -->
+<div class="p-4">
+ <button class="btn btn-primary">primary</button>
+ <button class="btn btn-secondary">secondary</button>
+ <button class="btn btn-accent">accent</button>
+</div>
+
+<!-- same buttons with another theme! -->
+<div class="p-4" data-theme="abyss">
+ <button class="btn btn-primary">Primary</button>
+ <button class="btn btn-secondary">Secondary</button>
+ <button class="btn btn-accent">Accent</button>
+</div>
+
+<!-- tab -->
+<div class="tabs tabs-lift m-4">
+ <button class="tab">Tab 1</button>
+ <button class="tab tab-active">Tab 2</button>
+ <button class="tab">Tab 3</button>
+ <button class="tab"></button>
+</div>
+
+<!-- toggle, checkbox, radio -->
+<div class="p-4">
+ <input type="checkbox" class="toggle" />
+ <input type="checkbox" class="checkbox" />
+ <input type="radio" name="radio-1" class="radio" checked />
+</div>
+```
+
+--------------------------------
+
+### Example Form Component using Tailwind CSS and daisyUI
+
+Source: https://daisyui.com/index
+
+This HTML snippet showcases a form component with an input field, checkboxes, and a submit button, all styled using a combination of Tailwind CSS utility classes and daisyUI's component class names. It demonstrates how to create a visually appealing and functional form with minimal code.
+
+```html
+<div class="w-80 rounded-lg bg-zinc-50 text-zinc-800">
+  <div class="flex flex-col gap-3 p-8">
+    <input placeholder="Email" class="w-full rounded-sm border border-zinc-300 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-zinc-700 focus:ring-offset-2 focus:ring-offset-zinc-100 focus:outline-none focus-visible:border-zinc-900"/>
+    <label class="flex cursor-pointer items-center text-sm gap-1.5 text-zinc-500">
+      <div class="relative inline-block h-5">
+        <input type="checkbox" class="peer h-5 w-8 cursor-pointer appearance-none rounded-full border border-zinc-400 peer-checked:bg-white checked:border-zinc-900 focus-visible:ring-2 focus-visible:ring-zinc-400 checked:focus-visible:ring-zinc-900 focus-visible:ring-offset-2 focus-visible:outline-none"/>
+        <span class="pointer-events-none absolute start-0.75 top-0.75 block size-[0.875rem] rounded-full bg-zinc-400 transition-all duration-200 peer-checked:start-[0.9375rem] peer-checked:bg-zinc-900"></span>
+      </div>
+      Submit to newsletter
+    </label>
+    <label class="flex cursor-pointer items-center text-sm gap-1.5 text-zinc-500">
+      <div class="relative inline-block h-5">
+        <input type="checkbox" class="peer h-5 w-8 cursor-pointer appearance-none rounded-full border border-zinc-400 peer-checked:bg-white checked:border-zinc-900 focus-visible:ring-2 focus-visible:ring-zinc-400 checked:focus-visible:ring-zinc-900 focus-visible:ring-offset-2 focus-visible:outline-none"/>
+        <span class="pointer-events-none absolute start-0.75 top-0.75 block size-[0.875rem] rounded-full bg-zinc-400 transition-all duration-200 peer-checked:start-[0.9375rem] peer-checked:bg-zinc-900"></span>
+      </div>
+      Accept terms of use
+    </label>
+    <button class="inline-block cursor-pointer rounded-sm bg-zinc-900 px-4 py-2.5 text-center text-sm font-semibold text-white shadow-[0_.2rem_0.3rem_-.25rem_black] active:shadow-none transition duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-zinc-700 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-[1px]" >Save</button>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### HTML: Semantic Colors Example
+
+Source: https://daisyui.com/docs/colors
+
+This HTML snippet showcases daisyUI's semantic color utility classes. It automatically handles dark mode and reduces the need for additional class names, leading to faster development and easier theme management.
+
+```html
+<div class="bg-base-200">
+  <div class="bg-base-100 border-base-300 text-base-content">
+    This is dark text on a light background, which switches to light text on a dark background in
+    dark mode.
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Dropdown Right Aligned (HTML)
+
+Source: https://daisyui.com/components/dropdown
+
+This example demonstrates a basic right-aligned dropdown menu using DaisyUI's 'dropdown-right' class. It's a simple implementation suitable for general use cases where the dropdown should appear to the right of the trigger. Only HTML and DaisyUI are needed.
+
+```html
+<div class="dropdown dropdown-right">
+  <div tabindex="0" role="button" class="btn m-1">Click ➡️</div>
+  <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</div>
+```
+
+--------------------------------
+
+### Apply Global Styles to Lit Element's Shadow DOM
+
+Source: https://daisyui.com/docs/install/lit
+
+Injects global styles, including those from Tailwind CSS and daisyUI, into a Lit element's shadow DOM using `unsafeCSS`. This allows daisyUI class names to be applied to elements within the shadow DOM.
+
+```javascript
+import { LitElement, html } from "lit";
+import { unsafeCSS } from "lit";
+import globalStyles from "./index.css?inline";
+
+export class MyElement extends LitElement {
+  static styles = [unsafeCSS(globalStyles)];
+  render() {
+    return html`<button class="btn">daisyUI button</button> `;
+  }
+}
+
+window.customElements.define("my-element", MyElement);
+```
+
+--------------------------------
+
+### DaisyUI Modal with Anchor Link (HTML)
+
+Source: https://daisyui.com/components/modal
+
+This HTML example implements a modal using anchor links. Clicking the 'open modal' link navigates to an anchor with the modal's ID, causing it to appear. The modal itself is a `div` with the specified ID and DaisyUI classes. Closing the modal involves linking to `#`, which scrolls the page to the top.
+
+```html
+<!-- The button to open modal -->
+<a href="#my_modal_8" class="btn">open modal</a>
+
+<!-- Put this part before </body> tag -->
+<div class="modal" role="dialog" id="my_modal_8">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">This modal works with anchor links</p>
+    <div class="modal-action">
+      <a href="#" class="btn">Yay!</a>
     </div>
   </div>
 </div>
 ```
 
----
+--------------------------------
 
-### DaisyUI Table Component Syntax
+### DaisyUI Ghost Badge (HTML)
 
-Source: https://context7_llms
+Source: https://daisyui.com/components/badge
 
-The DaisyUI table component structures data in a tabular format. It supports modifiers for zebra striping, row/column pinning, and various sizes. An 'overflow-x-auto' class is recommended for horizontal scrolling on smaller screens.
+Illustrates the implementation of a ghost badge using DaisyUI. The ghost style provides a minimal visual appearance for the badge, suitable for less prominent notifications or labels. The example shows a basic ghost badge.
+
+```html
+<div class="badge badge-ghost">ghost</div>
+```
+
+```jsx
+<div className="badge badge-ghost">ghost</div>
+```
+
+--------------------------------
+
+### React Centered Footer with Social Icons
+
+Source: https://daisyui.com/components/footer
+
+A React implementation of the centered footer component. It uses JSX syntax and includes the dynamic generation of the copyright year. This example is suitable for use within a React application.
+
+```jsx
+<footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10">
+  <nav className="grid grid-flow-col gap-4">
+    <a className="link link-hover">About us</a>
+    <a className="link link-hover">Contact</a>
+    <a className="link link-hover">Jobs</a>
+    <a className="link link-hover">Press kit</a>
+  </nav>
+  <nav>
+    <div className="grid grid-flow-col gap-4">
+      <a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          className="fill-current">
+          <path
+            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
+        </svg>
+      </a>
+      <a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          className="fill-current">
+          <path
+            d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+        </svg>
+      </a>
+      <a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          className="fill-current">
+          <path
+            d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+        </svg>
+      </a>
+    </div>
+  </nav>
+  <aside>
+    <p>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
+  </aside>
+</footer>
+```
+
+--------------------------------
+
+### DaisyUI Accent Color Select (React)
+
+Source: https://daisyui.com/components/select
+
+A React example of a select dropdown styled with DaisyUI's accent color, facilitating color scheme selection. It uses React props for state management.
+
+```jsx
+<select defaultValue="Color scheme" className="select select-accent">
+  <option disabled={true}>Color scheme</option>
+  <option>Light mode</option>
+  <option>Dark mode</option>
+  <option>System</option>
+</select>
+```
+
+--------------------------------
+
+### Create Image Carousel with DaisyUI - React/JSX
+
+Source: https://daisyui.com/components/carousel
+
+Implements the same carousel component in React/JSX syntax using className instead of class. Suitable for React applications utilizing DaisyUI's carousel styling with automatic snap-to-start behavior for image galleries.
+
+```jsx
+<div className="carousel rounded-box">
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
+      alt="Burger" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+      alt="Burger" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+      alt="Burger" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
+      alt="Burger" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp"
+      alt="Burger" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp"
+      alt="Burger" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
+      alt="Burger" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Link Styling within Paragraphs
+
+Source: https://daisyui.com/components/link
+
+This example shows how to integrate the DaisyUI 'link' class into a paragraph to style specific links within a text block, making them appear as normal links again after Tailwind CSS resets.
+
+```html
+<p>
+  Tailwind CSS resets the style of links by default.
+  <br />
+  Add "link" class to make it look like a
+  <a class="link">normal link</a>
+  again.
+</p>
+```
+
+```jsx
+<p>
+  Tailwind CSS resets the style of links by default.
+  <br />
+  Add "link" class to make it look like a
+  <a className="link">normal link</a>
+  again.
+</p>
+```
+
+--------------------------------
+
+### Responsive Card Styling (CSS)
+
+Source: https://daisyui.com/pages/css-library-for-html
+
+Demonstrates the process of applying responsive styles to a card component using media queries for different screen sizes (desktop, tablet, mobile). It shows how padding and display properties change based on viewport width.
+
+```css
+/* Desktop styles */
+.card {
+  width: 400px;
+  padding: 24px;
+  display: flex;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    padding: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .card {
+    padding: 12px;
+    display: block;
+  }
+}
+```
+
+--------------------------------
+
+### DaisyUI Custom Collapse Colors on Focus (HTML)
+
+Source: https://daisyui.com/components/collapse
+
+This example showcases a DaisyUI collapse component with custom background and text colors applied when the component is focused. It leverages Tailwind CSS 'group' and 'group-focus' utilities.
+
+```html
+<div
+  tabindex="0"
+  class="bg-primary text-primary-content focus:bg-secondary focus:text-secondary-content collapse"
+>
+  <div class="collapse-title font-semibold">How do I create an account?</div>
+  <div class="collapse-content text-sm">
+    Click the "Sign Up" button in the top right corner and follow the registration process.
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Theme Controller Toggle Input (HTML)
+
+Source: https://daisyui.com/components/theme-controller
+
+Example of a theme controller using an HTML checkbox input styled as a toggle. This component changes the page theme based on its checked state and the 'value' attribute. It works with CSS only.
+
+```html
+<input type="checkbox" value="synthwave" class="toggle theme-controller" />
+```
+
+```html
+<input type="checkbox" value="synthwave" class="toggle theme-controller" />
+```
+
+--------------------------------
+
+### Customizing Button with Tailwind CSS utilities
+
+Source: https://daisyui.com/index
+
+Illustrates how to further customize a daisyUI button by applying Tailwind CSS utility classes. This example shows how to make the button fully rounded using the 'rounded-full' class.
+
+```html
+<a class="btn btn-primary rounded-full">Button</a>
+```
+
+--------------------------------
+
+### Stacked Cards (End Direction) HTML Example
+
+Source: https://daisyui.com/components/stack
+
+Illustrates stacking cards from the end of the container using DaisyUI's 'stack-end' class. This provides a reversed layering effect compared to 'stack-start', suitable for different visual compositions.
+
+```html
+<div class="stack stack-end size-28">
+  <div class="border-base-content card bg-base-100 border text-center">
+    <div class="card-body">A</div>
+  </div>
+  <div class="border-base-content card bg-base-100 border text-center">
+    <div class="card-body">B</div>
+  </div>
+  <div class="border-base-content card bg-base-100 border text-center">
+    <div class="card-body">C</div>
+  </div>
+</div>
+```
+
+```jsx
+<div className="stack stack-end size-28">
+  <div className="border-base-content card bg-base-100 border text-center">
+    <div className="card-body">A</div>
+  </div>
+  <div className="border-base-content card bg-base-100 border text-center">
+    <div className="card-body">B</div>
+  </div>
+  <div className="border-base-content card bg-base-100 border text-center">
+    <div className="card-body">C</div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Secondary Color Select (React)
+
+Source: https://daisyui.com/components/select
+
+This React example uses DaisyUI's secondary color for a select dropdown, allowing users to choose a programming language. It employs React-specific props for control.
+
+```jsx
+<select defaultValue="Pick a language" className="select select-secondary">
+  <option disabled={true}>Pick a language</option>
+  <option>Zig</option>
+  <option>Go</option>
+  <option>Rust</option>
+</select>
+```
+
+--------------------------------
+
+### DaisyUI Checkbox Component Syntax
+
+Source: https://daisyui.com/llms
+
+The DaisyUI checkbox component allows users to select or deselect values. It utilizes the `checkbox` class and supports color and size modifiers. The `{MODIFIER}` can be a combination of color and size class names.
+
+```html
+<input type="checkbox" class="checkbox {MODIFIER}" />
+```
+
+--------------------------------
+
+### Styled Vertical Timeline with Primary Color (React JSX)
+
+Source: https://daisyui.com/components/timeline
+
+A React JSX example demonstrating a vertical timeline styled with DaisyUI's primary color. It features SVG icons and custom-colored dividers.
+
+```jsx
+<ul className="timeline timeline-vertical">
+  <li>
+    <div className="timeline-start timeline-box">First Macintosh computer</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="text-primary h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <hr className="bg-primary" />
+  </li>
+  <li>
+    <hr className="bg-primary" />
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="text-primary h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">iMac</div>
+    <hr className="bg-primary" />
+  </li>
+  <li>
+    <hr className="bg-primary" />
+    <div className="timeline-start timeline-box">iPod</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="text-primary h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">iPhone</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div className="timeline-start timeline-box">Apple Watch</div>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+  </li>
+</ul>
+```
+
+--------------------------------
+
+### Display Radial Progress with Different Values
+
+Source: https://daisyui.com/components/radial-progress
+
+Demonstrates how to set the radial progress component to various percentage values. Each example shows a different `--value` CSS variable to represent distinct progress levels from 0% to 100%.
+
+```html
+<div class="radial-progress" style="--value:0;" aria-valuenow="0" role="progressbar">0%</div>
+<div class="radial-progress" style="--value:20;" aria-valuenow="20" role="progressbar">20%</div>
+<div class="radial-progress" style="--value:60;" aria-valuenow="60" role="progressbar">60%</div>
+<div class="radial-progress" style="--value:80;" aria-valuenow="80" role="progressbar">80%</div>
+<div class="radial-progress" style="--value:100;" aria-valuenow="100" role="progressbar">100%</div>
+```
+
+```tsx
+import React from 'react';
+
+// ... other components
+
+<div className="radial-progress" style={{ "--value": 0 } as React.CSSProperties}
+  aria-valuenow={0} role="progressbar">0%</div>
+
+<div className="radial-progress" style={{ "--value": 20 } as React.CSSProperties}
+aria-valuenow={20} role="progressbar">20%</div>
+
+<div className="radial-progress" style={{ "--value": 60 } as React.CSSProperties}
+  aria-valuenow={60} role="progressbar">60%</div>
+
+<div className="radial-progress" style={{ "--value": 80 } as React.CSSProperties}
+  aria-valuenow={80} role="progressbar">80%</div>
+
+<div className="radial-progress" style={{ "--value": 100 } as React.CSSProperties}
+  aria-valuenow={100} role="progressbar">100%</div>
+```
+
+--------------------------------
+
+### Update Form Control Structure to Fieldset and Legend in HTML
+
+Source: https://daisyui.com/docs/upgrade
+
+Migrate from deprecated form-control, label-text, and label-text-alt classes to semantic HTML5 fieldset and legend elements with DaisyUI fieldset class for improved accessibility and styling.
+
+```html
+before
+<label class="form-control w-full max-w-xs">
+  Login
+  <div class="label">
+    <span class="label-text">Name</span>
+  </div>
+  <input class="input" placeholder="Name" />
+</label>
+
+after
+<fieldset class="fieldset">
+  <legend>Login</legend>
+  <label class="label" for="name">Name</label>
+  <input id="name" class="input" placeholder="Name" />
+</fieldset>
+```
+
+--------------------------------
+
+### Indicator Middle End Positioning (HTML)
+
+Source: https://daisyui.com/components/indicator
+
+Demonstrates the default 'indicator-middle' and 'indicator-end' positioning for a DaisyUI indicator. This setup places a secondary badge indicator in the middle and to the right of the content. No external dependencies are required beyond DaisyUI.
+
+```html
+<div class="indicator">
+  <span class="indicator-item indicator-middle badge badge-secondary"></span>
+  <div class="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
+
+```jsx
+<div className="indicator">
+  <span className="indicator-item indicator-middle badge badge-secondary"></span>
+  <div className="bg-base-300 grid h-32 w-32 place-items-center">content</div>
+</div>
+```
+
+--------------------------------
+
+### Basic DaisyUI Timeline Structure
+
+Source: https://daisyui.com/components/timeline
+
+This snippet shows the fundamental structure of a DaisyUI timeline. It uses a ul element with the 'timeline' class. Each list item represents an event in the timeline and contains elements for the start, middle, and end of the event.
+
+```html
+<ul class="timeline">
+  <li>
+    <div class="timeline-start timeline-box">Apple</div>
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div class="timeline-end timeline-box">iPhone</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div class="timeline-start timeline-box">Apple Watch</div>
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+  </li>
+</ul>
+```
+
+--------------------------------
+
+### Chat Bubble with Start and End Alignment - JSX
+
+Source: https://daisyui.com/components/chat
+
+React/JSX implementation of chat bubbles using className instead of class attribute. Demonstrates the same conversation layout with proper JSX syntax for component-based development.
+
+```jsx
+<div className="chat chat-start">
+  <div className="chat-bubble">
+    It's over Anakin,
+    <br />
+    I have the high ground.
+  </div>
+</div>
+<div className="chat chat-end">
+  <div className="chat-bubble">You underestimate my power!</div>
+</div>
+```
+
+--------------------------------
+
+### Create Data Table with Optional Modifiers
+
+Source: https://daisyui.com/llms
+
+Display tabular data with responsive horizontal scrolling on smaller screens. Supports optional modifiers for zebra striping (table-zebra), pinned rows/columns, and various size options from extra-small to extra-large.
 
 ```html
 <div class="overflow-x-auto">
@@ -10612,1498 +11312,1863 @@ The DaisyUI table component structures data in a tabular format. It supports mod
 </div>
 ```
 
----
+--------------------------------
 
-### HTML Progress Bar with Color Modifiers
+### Create Timeline Component for Chronological Events
 
-Source: https://context7_llms
+Source: https://daisyui.com/llms
 
-Displays a progress bar with customizable colors using DaisyUI's progress component. Requires 'value' and 'max' attributes. The optional {MODIFIER} can be one of the predefined color classes.
-
-```html
-<progress class="progress progress-primary" value="50" max="100"></progress>
-<progress class="progress progress-secondary" value="75" max="100"></progress>
-<progress class="progress progress-accent" value="25" max="100"></progress>
-<progress class="progress progress-info" value="90" max="100"></progress>
-<progress class="progress progress-success" value="10" max="100"></progress>
-<progress class="progress progress-warning" value="60" max="100"></progress>
-<progress class="progress progress-error" value="40" max="100"></progress>
-<progress class="progress progress-neutral" value="100" max="100"></progress>
-```
-
----
-
-### Customizing Component Size Scale with CSS Variables
-
-Source: https://daisyui.com/docs/v5
-
-Illustrates how to customize the size scale of DaisyUI components using CSS variables. The `--size-field` variable controls the base size for inputs and buttons, while `--size-selector` affects checkboxes and toggles. This allows for global or theme-specific adjustments.
-
-```CSS
-/* Example for customizing input/button size */
-:root {
-  --size-field: 10px; /* Adjust base size for fields */
-}
-
-/* Example for customizing selector size */
-:root {
-  --size-selector: 8px; /* Adjust base size for selectors */
-}
-```
-
----
-
-### Modal using Anchor Links (Legacy)
-
-Source: https://daisyui.com/components/modal
-
-A legacy method that controls modal visibility by adding a parameter to the URL. The modal only appears when the URL contains the specific parameter. Closing the modal scrolls the page to the top due to the anchor link. May not work well with SPAs.
+Display events in chronological order using timeline component with directional layout options (vertical or horizontal). Supports positioning variants (timeline-start, timeline-middle, timeline-end) and display modifiers (timeline-snap-icon, timeline-box, timeline-compact).
 
 ```html
-<!-- Modal using anchor link -->
-<div id="my_modal_8" class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">This modal works with anchor links</p>
-    <div class="modal-action">
-      <a href="#" class="btn">Yay!</a>
-    </div>
-  </div>
-</div>
-<a href="#my_modal_8" class="btn">open modal</a>
-```
-
----
-
-### DaisyUI Zebra-Striped Table
-
-Source: https://daisyui.com/components/table
-
-Illustrates how to apply zebra striping to table rows for better readability using the `table-zebra` modifier. This enhancement aids in visually distinguishing rows. It relies on standard HTML table structure with the added DaisyUI class.
-
-```html
-<div class="overflow-x-auto">
-  <table class="table table-zebra">
-    <!-- head -->
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- row 1 -->
-      <tr>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      <!-- row 2 -->
-      <tr>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      <!-- row 3 -->
-      <tr>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="timeline">
+  <!-- timeline items with timeline-start, timeline-middle, timeline-end parts -->
 </div>
 ```
-
----
-
-### DaisyUI Card with Action on Top
-
-Source: https://daisyui.com/components/card
-
-A DaisyUI card variation where the primary action is placed at the top of the card body, above the main content. This can be used for quick access to a primary function associated with the card's content.
-
-```html
-<div class="card w-96 bg-base-100 shadow-xl">
-  <div class="card-body">
-    <h2 class="card-title">Card Title</h2>
-    <p>We are using cookies for no reason.</p>
-    <div class="card-actions">
-      <button class="btn btn-primary">Primary Action</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Toggle Requirement Validator (HTML)
-
-Source: https://daisyui.com/components/validator
-
-Shows how to validate a toggle switch using DaisyUI. Similar to checkboxes, the 'validator' class is used, and the 'validator-hint' indicates it is a required field.
-
-```html
-<input type="checkbox" class="toggle validator" />
-<p class="validator-hint">Required</p>
-```
-
----
-
-### DaisyUI Table Sizing (Extra Small to Extra Large)
-
-Source: https://daisyui.com/components/table
-
-Shows how to adjust the size of DaisyUI tables using size modifiers like `table-xs`, `table-sm`, `table-md` (default), `table-lg`, and `table-xl`. This allows for responsive table design based on content and layout needs. Standard HTML table structure applies.
-
-```html
-<div class="overflow-x-auto">
-  <table class="table table-xs">
-    ...
-  </table>
-  <table class="table table-sm">
-    ...
-  </table>
-  <table class="table">
-    ...
-  </table>
-  <!-- Default table-md -->
-  <table class="table table-lg">
-    ...
-  </table>
-  <table class="table table-xl">
-    ...
-  </table>
-</div>
-```
-
----
-
-### DaisyUI Drawer Toggle Button
-
-Source: https://context7_llms
-
-How to create a button that toggles a DaisyUI Drawer. A label element is used with its `for` attribute pointing to the `id` of the `drawer-toggle` input. Clicking this label will change the checked state of the input, thereby opening or closing the drawer.
-
-```html
-<label for="my-drawer" class="btn drawer-button">Open/close drawer</label>
-```
-
----
-
-### Large Text Countdown with Labels Underneath (HTML)
-
-Source: https://daisyui.com/components/countdown
-
-An alternative layout for displaying a countdown with labels, where the labels appear directly below the numerical values. This uses flexbox for arrangement.
-
-```html
-<div class="grid grid-flow-row gap-3 text-center auto-rows-max">
-  <div class="flex flex-col p-2 bg-base-100 rounded-box">
-    <span class="countdown font-mono text-4xl">
-      <span style="--value:15"></span>
-    </span>
-    days
-  </div>
-  <div class="flex flex-col p-2 bg-base-100 rounded-box">
-    <span class="countdown font-mono text-4xl">
-      <span style="--value:10"></span>
-    </span>
-    hours
-  </div>
-  <div class="flex flex-col p-2 bg-base-100 rounded-box">
-    <span class="countdown font-mono text-4xl">
-      <span style="--value:24"></span>
-    </span>
-    min
-  </div>
-  <div class="flex flex-col p-2 bg-base-100 rounded-box">
-    <span class="countdown font-mono text-4xl">
-      <span style="--value:59"></span>
-    </span>
-    sec
-  </div>
-</div>
-```
-
----
-
-### Toggle Switch for DaisyUI Forms
-
-Source: https://context7_llms
-
-A styled checkbox input that mimics a switch button. It supports various color and size modifiers to match the application's design. This component is useful for binary choices.
-
-```html
-<input type="checkbox" class="toggle {MODIFIER}" />
-```
-
----
-
-### DaisyUI Card with No Image
-
-Source: https://daisyui.com/components/card
-
-This snippet shows a DaisyUI card component that does not include an image. It focuses solely on text content, featuring a title, descriptive text, and a call-to-action button. This is suitable for content-heavy cards where visuals are not primary.
-
-```html
-<div class="card w-96 bg-base-100 shadow-xl">
-  <div class="card-body">
-    <h2 class="card-title">Card title!</h2>
-    <p>
-      A card component has a figure, a body part, and inside body there are
-      title and actions parts
-    </p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Textarea Component Size Variations - daisyUI
-
-Source: https://daisyui.com/components/textarea
-
-Demonstrates the different size variants available for the Textarea component in daisyUI, ranging from extra-small (xs) to extra-large (xl), including the default medium (md) size.
-
-````html
-```html
-<textarea class="textarea textarea-xs" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-sm" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-md" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-lg" placeholder="Bio"></textarea>
-<textarea class="textarea textarea-xl" placeholder="Bio"></textarea>
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Rating with Heart Icon and Multiple Colors
-
-Source: https://daisyui.com/components/rating
-
-This snippet demonstrates using a heart icon ('mask-heart') for the rating component and applies multiple colors to different rating options, allowing for a visually distinct rating scale.
-
-```html
-<div class="rating">
-  <input type="radio" name="rating-heart" class="mask mask-heart" />
-  <input type="radio" name="rating-heart" class="mask mask-heart" checked />
-  <input type="radio" name="rating-heart" class="mask mask-heart" />
-  <input type="radio" name="rating-heart" class="mask mask-heart" />
-  <input type="radio" name="rating-heart" class="mask mask-heart" />
-</div>
-<div class="rating">
-  <input type="radio" name="rating-heart-colors" class="bg-red-400 mask mask-heart" />
-  <input type="radio" name="rating-heart-colors" class="bg-orange-400 mask mask-heart" />
-  <input type="radio" name="rating-heart-colors" class="bg-yellow-400 mask mask-heart" />
-  <input type="radio" name="rating-heart-colors" class="bg-lime-400 mask mask-heart" checked />
-  <input type="radio" name="rating-heart-colors" class="bg-green-400 mask mask-heart" />
-</div>
-````
-
----
-
-### DaisyUI Rating Sizes (XS to XL)
-
-Source: https://daisyui.com/components/rating
-
-This snippet illustrates the different size variants for the DaisyUI Rating component, ranging from extra small ('rating-xs') to extra large ('rating-xl').
-
-```html
-<!-- Extra small -->
-<div class="rating rating-xs">
-  <input type="radio" name="rating-xs" class="mask mask-star-2" />
-  <input type="radio" name="rating-xs" class="mask mask-star-2" checked />
-  <input type="radio" name="rating-xs" class="mask mask-star-2" />
-  <input type="radio" name="rating-xs" class="mask mask-star-2" />
-  <input type="radio" name="rating-xs" class="mask mask-star-2" />
-</div>
-
-<!-- Small -->
-<div class="rating rating-sm">
-  <input type="radio" name="rating-sm" class="mask mask-star-2" />
-  <input type="radio" name="rating-sm" class="mask mask-star-2" checked />
-  <input type="radio" name="rating-sm" class="mask mask-star-2" />
-  <input type="radio" name="rating-sm" class="mask mask-star-2" />
-  <input type="radio" name="rating-sm" class="mask mask-star-2" />
-</div>
-
-<!-- Medium (Default) -->
-<div class="rating rating-md">
-  <input type="radio" name="rating-md" class="mask mask-star-2" />
-  <input type="radio" name="rating-md" class="mask mask-star-2" checked />
-  <input type="radio" name="rating-md" class="mask mask-star-2" />
-  <input type="radio" name="rating-md" class="mask mask-star-2" />
-  <input type="radio" name="rating-md" class="mask mask-star-2" />
-</div>
-
-<!-- Large -->
-<div class="rating rating-lg">
-  <input type="radio" name="rating-lg" class="mask mask-star-2" />
-  <input type="radio" name="rating-lg" class="mask mask-star-2" checked />
-  <input type="radio" name="rating-lg" class="mask mask-star-2" />
-  <input type="radio" name="rating-lg" class="mask mask-star-2" />
-  <input type="radio" name="rating-lg" class="mask mask-star-2" />
-</div>
-
-<!-- Extra large -->
-<div class="rating rating-xl">
-  <input type="radio" name="rating-xl" class="mask mask-star-2" />
-  <input type="radio" name="rating-xl" class="mask mask-star-2" checked />
-  <input type="radio" name="rating-xl" class="mask mask-star-2" />
-  <input type="radio" name="rating-xl" class="mask mask-star-2" />
-  <input type="radio" name="rating-xl" class="mask mask-star-2" />
-</div>
-```
-
----
-
-### Carousel Structure (HTML)
-
-Source: https://context7_llms
-
-Shows the HTML structure for a basic carousel component in DaisyUI. Carousels are used to display images or content in a scrollable area.
-
-```html
-<div class="carousel w-full">
-  <div id="slide1" class="carousel-item relative w-full">
-    <img
-      src="/images/stock/photo-1609621038510-57099756704b.jpg"
-      class="w-full"
-    />
-    <div
-      class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-    >
-      <a href="#slide4" class="btn btn-circle">❮</a>
-      <a href="#slide2" class="btn btn-circle">❯</a>
-    </div>
-  </div>
-  <div id="slide2" class="carousel-item relative w-full">
-    <img
-      src="/images/stock/photo-1609621038510-57099756704b.jpg"
-      class="w-full"
-    />
-    <div
-      class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-    >
-      <a href="#slide1" class="btn btn-circle">❮</a>
-      <a href="#slide3" class="btn btn-circle">❯</a>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Radio Button Sizes
-
-Source: https://daisyui.com/components/radio
-
-Illustrates how to control the size of DaisyUI radio buttons using size utility classes. Available sizes include extra small (xs), small (sm), medium (md), large (lg), and extra large (xl).
-
-```html
-<!-- Radio Extra Small -->
-<input type="radio" name="radio-size" class="radio radio-xs" checked />
-
-<!-- Radio Small -->
-<input type="radio" name="radio-size" class="radio radio-sm" checked />
-
-<!-- Radio Medium -->
-<input type="radio" name="radio-size" class="radio radio-md" checked />
-
-<!-- Radio Large -->
-<input type="radio" name="radio-size" class="radio radio-lg" checked />
-
-<!-- Radio Extra Large -->
-<input type="radio" name="radio-size" class="radio radio-xl" checked />
-```
-
----
-
-### HTML Radial Progress Indicator
-
-Source: https://context7_llms
-
-Implements a circular progress indicator using a div element and CSS variables. The `--value` CSS variable controls the progress (0-100). Accessible via `aria-valuenow`. Size and thickness can be adjusted with `--size` and `--thickness`.
-
-```html
-<div
-  class="radial-progress"
-  style="--value:70;"
-  aria-valuenow="70"
-  role="progressbar"
->
-  70%
-</div>
-<div
-  class="radial-progress"
-  style="--value:30; --size: 8rem; --thickness: 4px;"
-  aria-valuenow="30"
-  role="progressbar"
->
-  30%
-</div>
-```
-
----
-
-### FAB with Rectangle Buttons - HTML
-
-Source: https://context7_llms
-
-A FAB variant that uses rectangular buttons instead of circular ones. This allows for more content within the button, such as text labels, making them more descriptive.
-
-```html
-<div class="fab">
-  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
-    {IconOriginal}
-  </div>
-  <button class="btn btn-lg">{Label1}</button>
-  <button class="btn btn-lg">{Label2}</button>
-  <button class="btn btn-lg">{Label3}</button>
-</div>
-```
-
----
-
-### HTML Star Rating Input
-
-Source: https://context7_llms
-
-A star rating component built with radio buttons and 'mask-star' class. Each set needs a unique 'name' attribute. 'rating-half' and 'rating-hidden' modifiers are available for half-star selection and clearing.
-
-```html
-<div class="rating">
-  <input type="radio" name="rating-1" class="mask mask-star" />
-  <input type="radio" name="rating-1" class="mask mask-star" checked />
-  <input type="radio" name="rating-1" class="mask mask-star" />
-  <input type="radio" name="rating-1" class="mask mask-star" />
-  <input type="radio" name="rating-1" class="mask mask-star" />
-</div>
-<div class="rating rating-half">
-  <input type="radio" name="rating-2" class="bg-warning mask mask-star-2" />
-  <input
-    type="radio"
-    name="rating-2"
-    class="bg-warning mask mask-star-2"
-    checked
-  />
-</div>
-<div class="rating rating-hidden">
-  <input type="radio" name="rating-3" class="mask mask-star" />
-  <input type="radio" name="rating-3" class="mask mask-star" />
-  <input type="radio" name="rating-3" class="mask mask-star" />
-  <input type="radio" name="rating-3" class="mask mask-star" />
-  <input type="radio" name="rating-3" class="mask mask-star" />
-</div>
-```
-
----
-
-### HTML Select Dropdown
-
-Source: https://context7_llms
-
-A customizable select dropdown component. The {MODIFIER} can include style, color, and size classes.
-
-```html
-<select class="select select-bordered">
-  <option disabled selected>Select option</option>
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<select class="select select-primary select-lg">
-  <option>Option A</option>
-  <option>Option B</option>
-</select>
-```
-
----
-
-### Vertical Stat Layout (HTML)
-
-Source: https://daisyui.com/components/stat
-
-This code snippet shows how to arrange Stat components vertically. This layout is typically used when space is limited or for specific design requirements.
-
-```html
-<div class="stats stats-vertical lg:stats-horizontal">
-  <div class="stat">
-    <div class="stat-title">Downloads</div>
-    <div class="stat-value">31K</div>
-    <div class="stat-desc">Jan 1st - Feb 1st</div>
-  </div>
-  <div class="stat">
-    <div class="stat-title">New Users</div>
-    <div class="stat-value">4,200</div>
-    <div class="stat-desc">↗︎ 400 (22%)</div>
-  </div>
-  <div class="stat">
-    <div class="stat-title">New Registers</div>
-    <div class="stat-value">1,200</div>
-    <div class="stat-desc">↘︎ 90 (14%)</div>
-  </div>
-</div>
-```
-
----
-
-### Responsive DaisyUI Card (Vertical/Horizontal)
-
-Source: https://daisyui.com/components/card
-
-A responsive DaisyUI card that displays vertically on small screens and horizontally on larger screens. It includes an image, a title, descriptive text, and a call-to-action button, adapting its layout for optimal viewing across different devices.
-
-```html
-<div
-  class="card lg:card-side bg-base-100 shadow-xl max-w-xl flex-col lg:flex-row"
->
-  <figure class="w-full lg:w-1/3">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-      alt="Album"
-      class="w-full h-full object-cover"
-    />
-  </figure>
-  <div class="card-body lg:w-2/3 p-4">
-    <h2 class="card-title">New album is released!</h2>
-    <p>Click the button to listen on Spotiwhy app.</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Listen</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Radio Button with Custom Colors
-
-Source: https://daisyui.com/components/radio
-
-Explains how to apply custom colors to DaisyUI radio buttons using inline styles or CSS variables. This allows for greater design flexibility beyond the predefined color themes.
-
-```html
-<!-- Radio with custom color -->
-<input
-  type="radio"
-  name="radio-custom"
-  class="radio border-2 border-purple-600 text-purple-600 checked:bg-purple-600"
-  checked
-/>
-
-<!-- Radio with custom color and label -->
-<label class="cursor-pointer label">
-  <span class="label-text">Custom Color Radio</span>
-  <input
-    type="radio"
-    name="radio-custom-label"
-    class="radio border-2 border-green-500 text-green-500 checked:bg-green-500"
-  />
-</label>
-```
-
----
-
-### Modal using Checkbox (Legacy)
-
-Source: https://daisyui.com/components/modal
-
-A legacy method for modal control using a hidden checkbox. Labels can toggle the checkbox to open/close the modal. This method might have compatibility issues with modern practices.
-
-```html
-<!-- Modal using checkbox -->
-<input type="checkbox" id="my-modal-checkbox" class="modal-toggle" />
-<div class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">This modal works with a hidden checkbox!</p>
-    <div class="modal-action">
-      <label for="my-modal-checkbox" class="btn">Close!</label>
-    </div>
-  </div>
-</div>
-<label for="my-modal-checkbox" class="btn">open modal</label>
-```
-
----
-
-### Validator Class for Form Input Feedback
-
-Source: https://context7_llms
-
-Applies error or success styling to form elements based on validation rules. It includes the 'validator-hint' class for displaying feedback messages. Use this with input, select, and textarea elements.
-
-```html
-<input type="{type}" class="input validator" required />
-<p class="validator-hint">Error message</p>
-```
-
----
-
-### DaisyUI Text Input: Email with Icon, Validator, and Button
-
-Source: https://daisyui.com/components/input
-
-Combines an email input with an icon, validation message, and an adjacent button for actions like joining a newsletter. This is a common pattern for subscription forms.
-
-````html
-```html
-<label class="input input-bordered flex items-center gap-2">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 16 16"
-    fill="currentColor"
-    class="w-4 h-4 opacity-70"
-  >
-    <path
-      d="M2.5 3A1.5 1.5 0 0 0 1 4.5v5.086a1.5 1.5 0 0 0 .437.971l3.147 3.147a1.5 1.5 0 0 0 2.072.012l3.147-3.147a1.5 1.5 0 0 0 .437-.971V4.5A1.5 1.5 0 0 0 11.5 3H2.5Z"
-    />
-    <path
-      d="M1.75 5.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 .75.75v3.086a.75.75 0 0 1-.22.547l-3.147 3.147a.75.75 0 0 1-1.06.012l-3.147-3.147a.75.75 0 0 1-.22-.547V5.75Z"
-    />
-  </svg>
-  <input type="email" class="grow" placeholder="Email" />
-</label>
-<button class="btn btn-primary">Join</button>
-<label class="label">
-  <span class="label-text-alt">Enter valid email address</span>
-</label>
-````
-
-````
-
---------------------------------
-
-### Modal with Backdrop Click to Close (Legacy)
-
-Source: https://daisyui.com/components/modal
-
-This legacy modal uses a hidden checkbox and a 'modal-backdrop' class to allow closing the modal by clicking outside of it. Labels are used to toggle the checkbox state.
-
-```html
-<!-- Modal that closes when clicked outside -->
-<input type="checkbox" id="my-modal-checkbox-backdrop" class="modal-toggle" />
-<div class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">This modal works with a hidden checkbox!</p>
-    <div class="modal-action">
-      <label for="my-modal-checkbox-backdrop" class="btn">Close</label>
-    </div>
-  </div>
-</div>
-<label for="my-modal-checkbox-backdrop" class="btn">open modal</label>
-<label class="modal-backdrop" for="my-modal-checkbox-backdrop"></label>
-````
-
----
-
-### Disabled File Input - daisyUI
-
-Source: https://daisyui.com/components/file-input
-
-Shows how to disable the file input component, making it non-interactive and visually indicating that it cannot be used. This is useful for forms where file uploads are conditional or not yet allowed.
-
-```html
-<div>
-  <input
-    type="file"
-    placeholder="disabled placeholder"
-    class="file-input file-input-bordered w-full max-w-xs"
-    disabled
-  />
-  <input
-    type="file"
-    class="file-input file-input-ghost w-full max-w-xs"
-    disabled
-  />
-</div>
-```
-
----
-
-### DaisyUI Range Slider Sizes
-
-Source: https://daisyui.com/components/range
-
-Illustrates the different size variations available for the DaisyUI range slider component, including extra small (xs), small (sm), medium (md), large (lg), and extra large (xl).
-
-```html
-<input type="range" class="range range-xs" />
-<input type="range" class="range range-sm" />
-<input type="range" class="range range-md" />
-<input type="range" class="range range-lg" />
-<input type="range" class="range range-xl" />
-```
-
----
-
-### FAB and Speed Dial (Vertical) - With Text Labels
-
-Source: https://daisyui.com/components/fab
-
-Shows how to add text labels to the speed dial buttons. This structure includes the main FAB and the content for the speed dial buttons, with each button having associated text labels.
-
-```html
-<div class="fab">
-  <button class="fab-main-action">F</button>
-  <div class="fab-content">
-    <div class="flex items-center gap-2">
-      <label>Label A</label>
-      <button class="btn btn-xs">A</button>
-    </div>
-    <div class="flex items-center gap-2">
-      <label>Label B</label>
-      <button class="btn btn-xs">B</button>
-    </div>
-    <div class="flex items-center gap-2">
-      <label>Label C</label>
-      <button class="btn btn-xs">C</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Filter with HTML Form, Radio Buttons, and Reset Button - daisyUI
-
-Source: https://daisyui.com/components/filter
-
-This snippet demonstrates how to implement a filter using an HTML form with radio buttons. When a radio button is selected, other options are hidden, and a reset button appears next to the selected one. This is ideal for single-choice filtering.
-
-```html
-<form>
-  <div class="filter">
-    <input
-      type="radio"
-      name="filter-group"
-      id="option1"
-      class="filter-radio"
-      checked
-    />
-    <label for="option1">Option 1</label>
-
-    <input type="radio" name="filter-group" id="option2" class="filter-radio" />
-    <label for="option2">Option 2</label>
-
-    <input type="radio" name="filter-group" id="option3" class="filter-radio" />
-    <label for="option3">Option 3</label>
-
-    <button type="reset" class="filter-reset">Reset</button>
-  </div>
-</form>
-```
-
----
-
-### HTML Range Slider Input
-
-Source: https://context7_llms
-
-A customizable range slider input using the 'range' class. Requires 'min', 'max', and 'value' attributes. Color and size modifiers can be applied.
-
-```html
-<input type="range" min="0" max="100" value="40" class="range range-primary" />
-<input
-  type="range"
-  min="0"
-  max="200"
-  value="150"
-  class="range range-lg range-success"
-/>
-```
-
----
-
-### HTML Radio Button Group
-
-Source: https://context7_llms
-
-Creates a group of radio buttons using the 'radio' class. Each radio input should have a unique 'name' attribute for proper grouping. Optional color and size modifiers can be applied.
-
-```html
-<input type="radio" name="radio-group-1" class="radio radio-primary" checked />
-<input type="radio" name="radio-group-1" class="radio radio-secondary" />
-<input type="radio" name="radio-group-1" class="radio radio-lg radio-accent" />
-<input type="radio" name="radio-group-2" class="radio radio-sm radio-warning" />
-```
-
----
-
-### Filter Component without HTML Form in HTML
-
-Source: https://context7_llms
-
-This demonstrates the filter component used without an HTML form, employing a div container instead. It includes the 'filter-reset' class for the reset radio button and standard radio inputs for options.
-
-```html
-<div class="filter">
-  <input class="btn filter-reset" type="radio" name="my-radio" aria-label="×" />
-  <input class="btn" type="radio" name="my-radio" aria-label="Tab 1 title" />
-  <input class="btn" type="radio" name="my-radio" aria-label="Tab 2 title" />
-</div>
-```
-
----
-
-### HTML Stat Display
-
-Source: https://context7_llms
-
-Component for displaying statistics or numerical data in a structured block. Uses 'stats' for the container and parts like 'stat', 'stat-title', 'stat-value', etc. Supports horizontal and vertical layouts.
-
-```html
-<div class="stats stats-vertical shadow">
-  <div class="stat">
-    <div class="stat-title">Total Page Views</div>
-    <div class="stat-value">89,400</div>
-    <div class="stat-desc">21% more than last month</div>
-  </div>
-  <div class="stat">
-    <div class="stat-title">New Users</div>
-    <div class="stat-value">4,200</div>
-    <div class="stat-desc">40% more than last month</div>
-  </div>
-</div>
-<div class="stats stats-horizontal shadow">
-  <div class="stat place-items-center">
-    <div class="stat-title">Downloads</div>
-    <div class="stat-value">31K</div>
-    <div class="stat-desc">Jan 1st - Feb 1st</div>
-  </div>
-</div>
-```
-
----
-
-### Radial Progress with Custom Color (Vue)
-
-Source: https://daisyui.com/components/radial-progress
-
-Demonstrates how to apply a custom color to the radial-progress component in Vue.js by setting the '--progress-color' CSS variable for a 70% progress indicator.
-
-```vue
-<template>
-  <div
-    class="radial-progress"
-    :style="{ '--value': 70, '--progress-color': 'oklch(var(--p))' }"
-    role="progressbar"
-  >
-    70%
-  </div>
-</template>
-
-<script setup lang="ts">
-// No script needed for basic example
-</script>
-
-<style>
-/* DaisyUI styles are assumed to be globally imported */
-</style>
-```
-
----
-
-### DaisyUI Neutral Button with Outline/Dash
+### Button with Icon (JSX)
 
 Source: https://daisyui.com/components/button
 
-Shows how to combine the neutral button style with outline or dash modifiers for specific design needs. These buttons are intended for light backgrounds and offer a subtle visual distinction.
+Illustrates how to implement buttons with leading or trailing icons in a React environment using DaisyUI classes. This JSX example uses `className` for styling and assumes SVG components are correctly imported or defined.
 
-```html
-<button class="btn btn-neutral btn-outline">Outline</button>
-<button class="btn btn-neutral btn-dash">Dash</button>
+```jsx
+<button className="btn">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="size-[1.2em]"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+  Like
+</button>
+<button className="btn">
+  Like
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="size-[1.2em]"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+</button>
 ```
-
----
-
-### Apply Bold Star Mask with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a bold star mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a thicker star shape. No external JavaScript dependencies are required.
-
-```css
-.mask-star-2 {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50,5 L 61.2,37.8 L 96.3,37.8 L 67.5,58.3 L 78.7,91.2 L 50,70.5 L 21.3,91.2 L 32.5,58.3 L 3.7,37.8 L 38.8,37.8 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### DaisyUI Stack Component: Stacked Cards (Top Direction)
-
-Source: https://daisyui.com/components/stack
-
-Demonstrates stacking card elements vertically with the 'stack-top' modifier, aligning them to the top of the stack. This affects how the elements are positioned relative to each other within the stack.
-
-```html
-<div class="stack stack-top">
-  <div>A</div>
-  <div>B</div>
-  <div>C</div>
-</div>
-```
-
----
-
-### Apply Triangle Mask (Pointing Top) with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a triangle mask pointing upwards to an element using DaisyUI CSS classes. This utility crops the content of the element into a top-pointing triangle shape. No external JavaScript dependencies are required.
-
-```css
-.mask-triangle {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50,10 L 90,90 L 10,90 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### DaisyUI Image Card with Side Image
-
-Source: https://daisyui.com/components/card
-
-This DaisyUI card features an image positioned on the side, with the text content adjacent to it. It's suitable for displaying articles, products, or media where the image is a key visual element alongside descriptive text and a call to action.
-
-```html
-<div class="card card-side bg-base-100 shadow-xl max-w-md">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-      alt="Movie"
-    />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">New movie is released!</h2>
-    <p>Click the button to watch on Jetflix app.</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Watch</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Apply Triangle Mask (Pointing Left) with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a triangle mask pointing leftwards to an element using DaisyUI CSS classes. This utility crops the content of the element into a left-pointing triangle shape. No external JavaScript dependencies are required.
-
-```css
-.mask-triangle-3 {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 90,50 L 10,10 L 10,90 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### FAB with Close Button - HTML
-
-Source: https://context7_llms
-
-This FAB includes a specific 'close' button that appears when the FAB is open, replacing the original icon. It is styled with a red error button and a '✕' symbol.
-
-```html
-<div class="fab">
-  <div tabindex="0" role="button" class="btn btn-lg btn-circle btn-primary">
-    {IconOriginal}
-  </div>
-  <div class="fab-close">
-    Close <span class="btn btn-circle btn-lg btn-error">✕</span>
-  </div>
-  <div>{Label1}<button class="btn btn-lg btn-circle">{Icon1}</button></div>
-  <div>{Label2}<button class="btn btn-lg btn-circle">{Icon2}</button></div>
-  <div>{Label3}<button class="btn btn-lg btn-circle">{Icon3}</button></div>
-</div>
-```
-
----
-
-### Dialog Modal with Close Button
-
-Source: https://daisyui.com/components/modal
-
-A basic dialog modal with a close button in the corner. It can be opened using JavaScript's showModal() method. Closing is handled by the '✕' button or by pressing the ESC key.
-
-```html
-<!-- Dialog modal with a close button at corner -->
-<dialog id="my_modal_3" class="modal">
-  <div class="modal-box">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-        ✕
-      </button>
-    </form>
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Press ESC key or click on ✕ button to close</p>
-  </div>
-</dialog>
-<button class="btn" onclick="my_modal_3.showModal()">open modal</button>
-```
-
----
-
-### Apply Pentagon Mask with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a pentagon mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a pentagon (5-sided polygon) shape. No external JavaScript dependencies are required.
-
-```css
-.mask-pentagon {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50,10 C 55.5228,10 60,14.4772 60,20 L 60,40 C 60,45.5228 55.5228,50 50,50 C 44.4772,50 40,45.5228 40,40 L 40,20 C 40,14.4772 44.4772,10 50,10 Z M 70.7107,40 C 74.6401,40 77.7107,43.0706 77.7107,47 L 77.7107,53 C 77.7107,56.9294 74.6401,60 70.7107,60 L 50,80 C 44.4772,80 40,75.5228 40,70 L 40,47 C 40,43.0706 43.0706,40 47,40 L 70.7107,40 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### FAB and Speed Dial (Flower Shape) - Basic Structure
-
-Source: https://daisyui.com/components/fab
-
-Shows the HTML structure for a FAB that opens its speed dial buttons in a quarter-circle ('flower') arrangement. This uses the `fab-flower` modifier to alter the display.
-
-```html
-<div class="fab fab-flower">
-  <button class="fab-main-action">F</button>
-  <div class="fab-content">
-    <button class="btn btn-xs">A</button>
-    <button class="btn btn-xs">B</button>
-    <button class="btn btn-xs">C</button>
-  </div>
-</div>
-```
-
----
-
-### Centered DaisyUI Card with Neutral Color
-
-Source: https://daisyui.com/components/card
-
-This DaisyUI card is centered and uses a neutral color scheme. It includes a title and two action buttons, 'Accept' and 'Deny'. This is useful for confirmation dialogs or cookie consent banners.
-
-```html
-<div class="card w-96 bg-neutral text-neutral-content shadow-xl text-center">
-  <div class="card-body">
-    <h2 class="card-title">Cookies!</h2>
-    <p>We are using cookies for no reason.</p>
-    <div class="card-actions justify-center">
-      <button class="btn btn-primary">Accept</button>
-      <button class="btn">Deny</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Apply Star Mask with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a star mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a star shape. No external JavaScript dependencies are required.
-
-```css
-.mask-star {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50,0 L 61.8,38.2 L 100,38.2 L 68.2,58.3 L 75,100 L 50,78.2 L 25,100 L 31.8,58.3 L 0,38.2 L 38.2,38.2 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### Apply Circle Mask with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a circle mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a perfect circle. No external JavaScript dependencies are required.
-
-```css
-.mask-circle {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### Apply Triangle Mask (Pointing Right) with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a triangle mask pointing rightwards to an element using DaisyUI CSS classes. This utility crops the content of the element into a right-pointing triangle shape. No external JavaScript dependencies are required.
-
-```css
-.mask-triangle-4 {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 10,50 L 90,10 L 90,90 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### Apply Triangle Mask (Pointing Down) with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a triangle mask pointing downwards to an element using DaisyUI CSS classes. This utility crops the content of the element into a bottom-pointing triangle shape. No external JavaScript dependencies are required.
-
-```css
-.mask-triangle-2 {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50,90 L 10,10 L 90,10 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### Apply Squircle Mask with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a squircle mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a squircle shape. No external JavaScript dependencies are required.
-
-```css
-.mask-squircle {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 85.4477,21.6518 C 89.7135,21.6518 93.1266,25.0649 93.1266,29.3307 L 93.1266,70.6693 C 93.1266,74.9351 89.7135,78.3482 85.4477,78.3482 L 14.5523,78.3482 C 10.2865,78.3482 6.8734,74.9351 6.8734,70.6693 L 6.8734,29.3307 C 6.8734,25.0649 10.2865,21.6518 14.5523,21.6518 Z M 75.8168,34.1832 C 74.1769,32.5433 71.7675,32.5433 70.1276,34.1832 L 50.0000,54.3105 L 29.8724,34.1832 C 28.2325,32.5433 25.8231,32.5433 24.1832,34.1832 C 22.5433,35.8231 22.5433,38.2325 24.1832,39.8724 L 45.7017,61.4000 L 45.7017,61.4000 C 47.3416,63.0400 49.7510,63.0400 51.3909,61.4000 L 51.3909,61.4000 L 75.8168,39.8724 C 77.4567,38.2325 77.4567,35.8231 75.8168,34.1832 Z'/%3E%3C/svg%3E');
-}
-```
-
----
-
-### DaisyUI Toast Placement: Middle-Center
-
-Source: https://daisyui.com/components/toast
-
-Illustrates the DaisyUI Toast component placed in the middle-center (vertically and horizontally centered) of the screen. This configuration uses 'toast-middle' and 'toast-center'.
-
-```html
-<div class="toast toast-center toast-middle">
-  <div class="alert alert-info">
-    <div>
-      <span>New mail arrived.</span>
-      <span>Message sent successfully.</span>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### DaisyUI Stack Component: Stacked Cards (End Direction)
-
-Source: https://daisyui.com/components/stack
-
-Shows how to stack card elements vertically using the 'stack-end' modifier, aligning them to the end (right) side of the stack. This is useful for right-aligned stacked content.
-
-```html
-<div class="stack stack-end">
-  <div>A</div>
-  <div>B</div>
-  <div>C</div>
-</div>
-```
-
----
-
-### Apply Square Mask with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a square mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a square shape. No external JavaScript dependencies are required.
-
-```css
-.mask-square {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 10,10 H 90 V 90 H 10 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### Apply Diamond Mask with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a diamond mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a diamond shape. No external JavaScript dependencies are required.
-
-```css
-.mask-diamond {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50,10 L 90,50 L 50,90 L 10,50 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### Apply First Half Mask Modifier with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a modifier to mask the first half of an element's content using DaisyUI CSS. This is used in conjunction with other mask classes to create partial masks. No external JavaScript dependencies are required.
-
-```css
-.mask-half-1 {
-  mask-composite: intersect;
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 50%, transparent 50%);
-}
-```
-
----
-
-### Hero with Reversed Figure - HTML
-
-Source: https://daisyui.com/components/hero
-
-This HTML code snippet illustrates a DaisyUI hero component where the image is positioned to the left of the content. This variation is useful for A/B testing layouts or when a specific visual flow is desired. It uses standard DaisyUI and Tailwind CSS classes.
-
-```html
-<div class="hero min-h-screen bg-base-200">
-  <div class="hero-content flex-col lg:flex-row-reverse">
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-      class="max-w-sm rounded-lg shadow-2xl"
-    />
-    <div>
-      <h1 class="text-5xl font-bold">Box Office News!</h1>
-      <p class="py-6">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-        excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
-        id nisi.
-      </p>
-      <button class="btn btn-primary">Get Started</button>
-    </div>
-  </div>
-</div>
-```
-
----
-
-### Radial Progress with Custom Color (React TSX)
-
-Source: https://daisyui.com/components/radial-progress
-
-This React (TSX) snippet demonstrates applying a custom color to the radial-progress component using the '--progress-color' CSS variable. It shows a 70% progress indicator with a specified color.
-
-```tsx
-function RadialProgressCustomColorTsx() {
-  return (
-    <div
-      className="radial-progress"
-      style={
-        {
-          "--value": 70,
-          "--progress-color": "oklch(var(--p))",
-        } as React.CSSProperties
-      }
-      role="progressbar"
-    >
-      70%
-    </div>
-  );
-}
-```
-
----
-
-### Disabled Checkbox States (HTML)
-
-Source: https://daisyui.com/components/checkbox
-
-Shows how to render checkboxes in a disabled state, preventing user interaction. This is achieved by adding the `disabled` attribute to the input element.
-
-````html
-```html
-<input type="checkbox" class="checkbox" disabled />
-<input type="checkbox" class="checkbox" disabled checked />
-````
-
-````
 
 --------------------------------
 
-### DaisyUI Range Slider with Custom Color and No Fill
+### Activate Swap with Class Name (HTML)
 
-Source: https://daisyui.com/components/range
+Source: https://daisyui.com/components/swap
 
-Demonstrates advanced customization of the range slider, allowing for a custom color and disabling the fill effect. This provides greater control over the component's appearance.
+Shows how to activate the DaisyUI swap component by adding the `swap-active` class, instead of relying on a checkbox. This allows for programmatic control of the swap state using JavaScript. Two examples are provided, one inactive and one active.
 
 ```html
-<input type="range" class="range range-xs" style="--value: 60;" value="60">
-<input type="range" class="range range-sm" style="--value: 60;" value="60">
-<input type="range" class="range range-md" style="--value: 60;" value="60">
-<input type="range" class="range range-lg" style="--value: 60;" value="60">
-<input type="range" class="range range-xl" style="--value: 60;" value="60">
+<label class="swap text-6xl">
+  <div class="swap-on">🥵</div>
+  <div class="swap-off">🥶</div>
+</label>
+<label class="swap swap-active text-6xl">
+  <div class="swap-on">🥳</div>
+  <div class="swap-off">😭</div>
+</label>
+```
 
-<input type="range" class="range range-primary" style="--value: 60;" value="60">
-<input type="range" class="range range-secondary" style="--value: 60;" value="60">
-<input type="range" class="range range-accent" style="--value: 60;" value="60">
-<input type="range" class="range range-success" style="--value: 60;" value="60">
-<input type="range" class="range range-warning" style="--value: 60;" value="60">
-<input type="range" class="range range-info" style="--value: 60;" value="60">
-<input type="range" class="range range-error" style="--value: 60;" value="60">
-````
+```html
+<label className="swap text-6xl">
+  <div className="swap-on">🥵</div>
+  <div className="swap-off">🥶</div>
+</label>
+<label className="swap swap-active text-6xl">
+  <div className="swap-on">🥳</div>
+  <div className="swap-off">😭</div>
+</label>
+```
 
----
+--------------------------------
 
-### Apply Second Half Mask Modifier with DaisyUI CSS
+### DaisyUI Error Progress Bar Examples
 
-Source: https://daisyui.com/components/mask
+Source: https://daisyui.com/components/progress
 
-Applies a modifier to mask the second half of an element's content using DaisyUI CSS. This is used in conjunction with other mask classes to create partial masks. No external JavaScript dependencies are required.
+Demonstrates the usage of the error color variant for the DaisyUI progress bar. This is useful for indicating failure states or critical issues. It accepts a 'value' attribute to show progress and a 'max' attribute for the maximum value.
+
+```html
+<progress class="progress progress-error w-56" value="0" max="100"></progress>
+<progress class="progress progress-error w-56" value="10" max="100"></progress>
+<progress class="progress progress-error w-56" value="40" max="100"></progress>
+<progress class="progress progress-error w-56" value="70" max="100"></progress>
+<progress class="progress progress-error w-56" value="100" max="100"></progress>
+```
+
+```jsx
+<progress className="progress progress-error w-56" value={0} max="100"></progress>
+<progress className="progress progress-error w-56" value="10" max="100"></progress>
+<progress className="progress progress-error w-56" value="40" max="100"></progress>
+<progress className="progress progress-error w-56" value="70" max="100"></progress>
+<progress className="progress progress-error w-56" value="100" max="100"></progress>
+```
+
+--------------------------------
+
+### CSS Dark Mode and Theme Support Implementation
+
+Source: https://daisyui.com/pages/ui-library-for-hackaton
+
+Illustrates the complexity of implementing dark mode support using CSS media queries and data attributes. Shows how to manage light/dark theme variants for components, requiring duplicate CSS rules and manual theme toggle support, which multiplies maintenance overhead across all UI elements.
 
 ```css
-.mask-half-2 {
-  mask-composite: intersect;
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 50%, transparent 50%);
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    color: #f9fafb;
+  }
+}
+
+[data-theme="dark"] .card {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  color: #f9fafb;
 }
 ```
 
----
+--------------------------------
 
-### Indeterminate Checkbox State (JavaScript)
+### CSS Color Variables - Before daisyUI 5
 
-Source: https://daisyui.com/components/checkbox
+Source: https://daisyui.com/docs/v5
 
-Provides JavaScript code to set a checkbox to an indeterminate state, which is visually distinct from checked or unchecked. This is useful for hierarchical selections.
+Previous daisyUI color variable implementation using abbreviated variable names in oklch space format. Colors were stored as individual lightness, chroma, and hue components making them difficult to read and customize in browser developer tools.
 
-````javascript
+```css
+/* hard to read variable names, hard to customize values */
+{
+--b1: 100% 0 0;
+--b2: 96.1151% 0 0;
+--b3: 92.4169% .00108 197.137559;
+--bc: 27.8078% .029596 256.847952;
+--p: 49.12% .3096 275.75;
+--pc: 89.824% .06192 275.75;
+--s: 69.71% .329 342.55;
+--sc: 98.71% .0106 342.55;
+--a: 76.76% .184 183.61;
+--ac: 15.352% .0368 183.61;
+--n: 32.1785% .02476 255.701624;
+--nc: 89.4994% .011585 252.096176;
+--in: 72.06% .191 231.6;
+--inc: 0% 0 0;
+--su: 64.8% .15 160;
+--suc: 0% 0 0;
+--wa: 84.71% .199 83.87;
+--wac: 0% 0 0;
+--er: 71.76% .221 22.18;
+--erc: 0% 0 0;
+}
+```
+
+--------------------------------
+
+### Navbar with Colors (React JSX)
+
+Source: https://daisyui.com/components/navbar
+
+Demonstrates applying different background and text colors to a DaisyUI navbar within a React JSX environment. This example uses 'bg-neutral', 'bg-base-300', and 'bg-primary' for varied color schemes.
+
+```jsx
+<div className="navbar bg-neutral text-neutral-content">
+  <button className="btn btn-ghost text-xl">daisyUI</button>
+</div>
+
+<div className="navbar bg-base-300">
+  <button className="btn btn-ghost text-xl">daisyUI</button>
+</div>
+
+<div className="navbar bg-primary text-primary-content">
+  <button className="btn btn-ghost text-xl">daisyUI</button>
+</div>
+```
+
+--------------------------------
+
+### Configure Tailwind CSS in Nuxt Vite Config
+
+Source: https://daisyui.com/docs/install/nuxt
+
+Adds the Tailwind CSS Vite plugin to the Nuxt configuration file (`nuxt.config.ts`). This enables Tailwind CSS processing within the Vite build process for the Nuxt project.
+
+```typescript
+import tailwindcss from "@tailwindcss/vite";
+export default defineNuxtConfig({
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  css: ["./app/tailwind.css"],
+});
+```
+
+--------------------------------
+
+### DaisyUI Neutral Color Select (React)
+
+Source: https://daisyui.com/components/select
+
+This React example utilizes DaisyUI's neutral color for a select dropdown, allowing users to pick a server location. It's configured using React props.
+
+```jsx
+<select defaultValue="Server location" className="select select-neutral">
+  <option disabled={true}>Server location</option>
+  <option>North America</option>
+  <option>EU west</option>
+  <option>South East Asia</option>
+</select>
+```
+
+--------------------------------
+
+### React Hover Gallery Example
+
+Source: https://daisyui.com/components/hover-gallery
+
+This React code demonstrates how to implement the daisyUI Hover Gallery component within a React application. It utilizes JSX syntax with className for applying the 'hover-gallery' class to a `<figure>` element. Similar to the HTML version, it allows for sequential image display on horizontal hover and supports up to 10 images.
+
+```jsx
+<figure className="hover-gallery max-w-60">
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-1.webp" />
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-2.webp" />
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-3.webp" />
+  <img src="https://img.daisyui.com/images/stock/daisyui-hat-4.webp" />
+</figure>
+```
+
+--------------------------------
+
+### Theme Controller Toggle Input (React)
+
+Source: https://daisyui.com/components/theme-controller
+
+Example of a theme controller using a React checkbox input styled as a toggle. This component changes the page theme based on its checked state and the 'value' attribute. It works with CSS only.
+
+```jsx
+<input type="checkbox" value="synthwave" className="toggle theme-controller" />
+```
+
+```jsx
+<input type="checkbox" value="synthwave" className="toggle theme-controller" />
+```
+
+--------------------------------
+
+### DaisyUI Alert Component - Info Color React
+
+Source: https://daisyui.com/components/alert
+
+This React snippet displays an info-colored DaisyUI alert. Similar to the HTML version, it uses the `alert-info` class and `stroke-current` for the icon. This example is tailored for React projects.
+
+```jsx
+<div role="alert" className="alert alert-info">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="h-6 w-6 shrink-0 stroke-current">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+  </svg>
+  <span>New software update available.</span>
+</div>
+```
+
+--------------------------------
+
+### Migrate Tab Component Class Names in HTML
+
+Source: https://daisyui.com/docs/upgrade
+
+Update DaisyUI Tab component class names from deprecated to new naming conventions. This applies to tabs-bordered, tabs-lifted, and tabs-boxed classes which have been renamed to tabs-border, tabs-lift, and tabs-box respectively.
+
+```html
+- <div class="tabs tabs-bordered">
++ <div class="tabs tabs-border">
+```
+
+```html
+- <div class="tabs tabs-lifted">
++ <div class="tabs tabs-lift">
+```
+
+```html
+- <div class="tabs tabs-boxed">
++ <div class="tabs tabs-box">
+```
+
+--------------------------------
+
+### Configure Vite for Tailwind CSS in Ember
+
+Source: https://daisyui.com/docs/install/ember
+
+Integrates Tailwind CSS into the Vite configuration file (`vite.config.mjs`) for an Ember project. It adds the tailwindcss plugin and ensures compatibility with Ember's build process via @embroider/vite plugins.
+
 ```javascript
-document.getElementById("my-checkbox").indeterminate = true;
-````
+  import { defineConfig } from 'vite';
+  import { extensions, classicEmberSupport, ember } from '@embroider/vite';
+  import { babel } from '@rollup/plugin-babel';
++ import tailwindcss from '@tailwindcss/vite';
 
-````
+  export default defineConfig({
+    plugins: [
++     tailwindcss(),
+      classicEmberSupport(),
+      ember(),
+      // extra plugins here
+      babel({
+        babelHelpers: 'runtime',
+        extensions,
+      }),
+    ],
+  });
+```
 
 --------------------------------
 
-### Apply Decagon Mask with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a decagon mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a decagon (10-sided polygon) shape. No external JavaScript dependencies are required.
-
-```css
-.mask-decagon {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 79.3893,20.6107 C 84.035,22.7609 86.8374,27.4881 85.1203,32.1340 L 72.0557,72.9443 C 70.3386,77.5901 65.6114,80.3925 60.9657,78.6754 L 39.0343,71.3246 C 34.3886,69.6075 31.5862,64.8803 33.3033,60.2346 L 40.6533,40.0000 L 33.3033,19.7654 C 31.5862,15.1197 34.3886,10.3925 39.0343,8.6754 L 60.9657,1.3246 C 65.6114,-0.3925 70.3386,2.4099 72.0557,7.0557 L 79.3893,20.6107 Z'/%3E%3C/svg%3E");
-}
-````
-
----
-
-### Apply Hexagon Mask with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a hexagon mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a hexagon shape. No external JavaScript dependencies are required.
-
-```css
-.mask-hexagon {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 75,25 L 25,25 L 0,50 L 25,75 L 75,75 L 100,50 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### Apply Heart Mask with DaisyUI CSS
-
-Source: https://daisyui.com/components/mask
-
-Applies a heart mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a heart shape. No external JavaScript dependencies are required.
-
-```css
-.mask-heart {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50,25 C 38.9543,25 25,38.9543 25,50 C 25,61.0457 30.7724,71.3803 41.3168,77.7119 C 41.3168,77.7119 43.0786,78.7341 45.0000,77.0000 C 46.9214,78.7341 48.6832,77.7119 48.6832,77.7119 C 59.2276,71.3803 65,61.0457 65,50 C 65,38.9543 51.0457,25 50,25 Z'/%3E%3C/svg%3E");
-}
-```
-
----
-
-### Disabled Textarea Component - daisyUI
-
-Source: https://daisyui.com/components/textarea
-
-Illustrates how to disable the Textarea component in daisyUI, making it non-interactive and visually indicating its inactive state. This is useful for form states where input is not permitted.
-
-````html
-```html <textarea class="textarea" placeholder="Bio" disabled></textarea>
-````
-
-````
-
---------------------------------
-
-### DaisyUI Disabled Radio Button
+### DaisyUI Radio Button with Primary Color (HTML)
 
 Source: https://daisyui.com/components/radio
 
-Demonstrates how to disable DaisyUI radio buttons, making them unselectable by the user. Disabled radio buttons typically appear visually distinct to indicate their state.
+Demonstrates the usage of the primary color variant for DaisyUI radio buttons, achieved by applying the 'radio-primary' class. This example shows a checked and an unchecked primary radio button.
 
 ```html
-<!-- Disabled Radio -->
-<input type="radio" name="radio-disabled" class="radio radio-disabled" checked disabled />
-
-<!-- Disabled Radio with Label -->
-<label class="cursor-not-allowed label">
-  <span class="label-text">Disabled Radio</span>
-  <input type="radio" name="radio-disabled-label" class="radio radio-disabled" disabled />
-</label>
-````
-
----
-
-### DaisyUI Text Input: Disabled State
-
-Source: https://daisyui.com/components/input
-
-Shows how to disable a DaisyUI text input field, making it non-interactive and visually distinct. Disabled inputs are useful for preventing user input in certain states.
-
-````html
-```html
-<input
-  type="text"
-  placeholder="Disabled placeholder"
-  class="input input-bordered input-disabled w-full max-w-xs"
-  disabled
-/>
-````
-
-````
+<input type="radio" name="radio-4" class="radio radio-primary" checked="checked" />
+<input type="radio" name="radio-4" class="radio radio-primary" />
+```
 
 --------------------------------
 
-### Apply Horizontal Hexagon Mask with DaisyUI CSS
+### Using Mary UI Components in Laravel Blade
 
-Source: https://daisyui.com/components/mask
+Source: https://daisyui.com/blog/mary-ui
 
-Applies a horizontal hexagon mask to an element using DaisyUI CSS classes. This utility crops the content of the element into a horizontally oriented hexagon shape. No external JavaScript dependencies are required.
+Demonstrates how to use Mary UI's pre-built components like forms, inputs, and buttons within a Laravel blade file using Livewire syntax. This example showcases input fields with labels, prefixes, and monetary formatting, alongside action buttons with primary styling and a submit spinner.
+
+```html
+<x-form wire:submit="save">
+  <x-input label="Name" wire:model="name" />
+  <x-input
+    label="Amount"
+    wire:model="amount"
+    prefix="USD"
+    money
+    hint="It submits an unmasked value" />
+  <x-slot:actions>
+    <x-button label="Cancel" />
+    <x-button label="Click me!" class="btn-primary" type="submit" spinner="save" />
+  </x-slot:actions>
+</x-form>
+```
+
+--------------------------------
+
+### JavaScript Build Pipeline Commands
+
+Source: https://daisyui.com/pages/best-component-library-for-2026
+
+This is a typical sequence of commands for building a modern JavaScript application. It demonstrates the complexity and time-consuming nature of build processes, contributing to slow development cycles and debugging challenges.
+
+```bash
+# Typical modern build pipeline
+npm run build:css
+npm run build:js 
+npm run optimize:images
+npm run bundle:analyze
+npm run test:unit
+npm run test:e2e
+npm run build:prod
+
+# Total build time: 3-8 minutes for a medium-sized app
+```
+
+--------------------------------
+
+### DaisyUI Dock with Custom Neutral Colors
+
+Source: https://daisyui.com/components/dock
+
+This example shows a basic dock component with buttons for Home, Inbox, and Settings. It utilizes DaisyUI's neutral color scheme for the dock's background and text, providing a subtle and clean appearance. The 'Inbox' button is marked as active using the 'dock-active' class.
+
+```html
+<div class="dock bg-neutral text-neutral-content">
+  <button>
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><polyline points="1 11 12 2 23 11" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><path d="m5,13v7c0,1.105.895,2,2,2h10c1.105,0,2-.895,2-2v-7" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path><line x1="12" y1="22" x2="12" y2="18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></line></g></svg>
+    <span class="dock-label">Home</span>
+  </button>
+  
+  <button class="dock-active">
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><polyline points="3 14 9 14 9 17 15 17 15 14 21 14" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></rect></g></svg>
+    <span class="dock-label">Inbox</span>
+  </button>
+  
+  <button>
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></circle><path d="m22,13.25v-2.5l-2.318-.966c-.167-.581-.395-1.135-.682-1.654l.954-2.318-1.768-1.768-2.318.954c-.518-.287-1.073-.515-1.654-.682l-.966-2.318h-2.5l-.966,2.318c-.581.167-1.135.395-1.654.682l-2.318-.954-1.768,1.768.954,2.318c-.287.518-.515,1.073-.682,1.654l-2.318.966v2.5l2.318.966c.167.581.395,1.135.682,1.654l-.954,2.318,1.768,1.768,2.318-.954c.518.287,1.073.515,1.654.682l.966,2.318h2.5l.966-2.318c.581-.167,1.135-.395,1.654-.682l2.318.954,1.768-1.768-.954-2.318c.287-.518.515-1.073.682-1.654l2.318-.966Z" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path></g></svg>
+    <span class="dock-label">Settings</span>
+  </button>
+</div>
+```
+
+--------------------------------
+
+### HTML Navbar with Start/End Icons
+
+Source: https://daisyui.com/components/navbar
+
+This HTML snippet demonstrates a navbar component with icons at the start and end. It uses DaisyUI classes for styling and layout. The navbar includes a button with a menu icon on the left and a button with a more options icon on the right, flanking the site title.
+
+```html
+<div class="navbar bg-base-100 shadow-sm">
+  <div class="flex-none">
+    <button class="btn btn-square btn-ghost">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg>
+    </button>
+  </div>
+  <div class="flex-1">
+    <a class="btn btn-ghost text-xl">daisyUI</a>
+  </div>
+  <div class="flex-none">
+    <button class="btn btn-square btn-ghost">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path> </svg>
+    </button>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Accent Color Progress Bar (React)
+
+Source: https://daisyui.com/components/progress
+
+Provides an example of a progress bar with an accent color theme in a React component using DaisyUI. It uses `className` for styling and JavaScript expressions within curly braces for the `value` attribute. Ensure DaisyUI is available in your React build.
+
+```jsx
+<progress className="progress progress-accent w-56" value={0} max="100"></progress>
+<progress className="progress progress-accent w-56" value="10" max="100"></progress>
+<progress className="progress progress-accent w-56" value="40" max="100"></progress>
+<progress className="progress progress-accent w-56" value="70" max="100"></progress>
+<progress className="progress progress-accent w-56" value="100" max="100"></progress>
+```
+
+--------------------------------
+
+### HTML Full-bleed Carousel with Images
+
+Source: https://daisyui.com/components/carousel
+
+This snippet shows a basic implementation of a full-bleed carousel using DaisyUI. It utilizes the `carousel` and `carousel-item` classes to structure the carousel and displays a series of images. The carousel is styled with a neutral background and rounded corners.
+
+```html
+<div class="carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4">
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
+      class="rounded-box" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+      class="rounded-box" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+      class="rounded-box" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
+      class="rounded-box" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp"
+      class="rounded-box" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp"
+      class="rounded-box" />
+  </div>
+  <div class="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
+      class="rounded-box" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Configure daisyUI Class Name Prefix
+
+Source: https://daisyui.com/docs/config
+
+Explains how to set a custom prefix for all daisyUI class names using the `prefix` option. This helps in avoiding class name collisions with other CSS frameworks or custom styles. Example shows `btn` becoming `d-btn`.
 
 ```css
-.mask-hexagon-2 {
-  mask-type: alpha;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 50,0 L 100,25 L 100,75 L 50,100 L 0,75 L 0,25 Z'/%3E%3C/svg%3E");
+@plugin "daisyui" {
+  prefix: "d-";
 }
-````
+```
 
-=== COMPLETE CONTENT === This response contains all available snippets from this library. No additional content exists. Do not make further requests.
+--------------------------------
+
+### Divider in Different Positions
+
+Source: https://daisyui.com/components/divider
+
+This snippet demonstrates how to control the alignment of DaisyUI dividers. It shows dividers positioned at the start, the default center position, and the end of their container. This is achieved using the `divider-start` and `divider-end` utility classes.
+
+```html
+<div class="flex w-full flex-col">
+  <div class="divider divider-start">Start</div>
+  <div class="divider">Default</div>
+  <div class="divider divider-end">End</div>
+</div>
+```
+
+```jsx
+<div className="flex w-full flex-col">
+  <div className="divider divider-start">Start</div>
+  <div className="divider">Default</div>
+  <div className="divider divider-end">End</div>
+</div>
+```
+
+--------------------------------
+
+### Calendar Component for Cally, Pikaday, and React Day Picker
+
+Source: https://daisyui.com/llms
+
+DaisyUI provides styles for various calendar libraries. It includes specific classes for the Cally web component ('cally'), the Pikaday input field ('pika-single'), and the React Day Picker component ('react-day-picker').
+
+```html
+<!-- For Cally -->
+<calendar-date class="cally">{CONTENT}</calendar-date>
+
+<!-- For Pikaday -->
+<input type="text" class="input pika-single">
+
+<!-- For React Day Picker -->
+<DayPicker className="react-day-picker">
+```
+
+--------------------------------
+
+### Update Tailwind CSS Configuration
+
+Source: https://daisyui.com/docs/upgrade
+
+Before running the Tailwind CSS upgrade tool, remove daisyUI themes and plugins from your `tailwind.config.js` file. This ensures the upgrade tool can safely replace daisyUI-specific configurations with standard CSS file references.
+
+```javascript
+module.exports = {
+   content: ['./your-files/**/*.{html,js}'],
+   // other stuff...
+-  daisyui: {
+-    themes: ['light', 'dark', 'cupcake'],
+-  },
+- plugins: [require("daisyui")],
+}
+```
+
+--------------------------------
+
+### Dropdown Bottom Center Alignment (JSX)
+
+Source: https://daisyui.com/components/dropdown
+
+Provides a JSX example for a dropdown menu aligned to the bottom and center of its trigger button. This implementation is suitable for React applications and uses corresponding className attributes for DaisyUI styling.
+
+```jsx
+<div className="dropdown dropdown-bottom dropdown-center">
+  <div tabIndex={0} role="button" className="btn m-1">Click ⬇️</div>
+  <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Dock Small Size React Example
+
+Source: https://daisyui.com/components/dock
+
+This React JSX snippet demonstrates the small-sized DaisyUI dock component. It utilizes className for styling and includes SVG icons within buttons, with one button marked as 'dock-active'.
+
+```jsx
+<div className="dock dock-sm">
+  <button>
+    <svg className="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" strokeLinejoin="miter" strokeLinecap="butt"><polyline points="1 11 12 2 23 11" fill="none" stroke="currentColor" stroke-miterlimit="10" strokeWidth="2"></polyline><path d="m5,13v7c0,1.105.895,2,2,2h10c1.105,0,2-.895,2-2v-7" fill="none" stroke="currentColor" strokeLinecap="square" stroke-miterlimit="10" strokeWidth="2"></path><line x1="12" y1="22" x2="12" y2="18" fill="none" stroke="currentColor" strokeLinecap="square" stroke-miterlimit="10" strokeWidth="2"></line></g></svg>
+  </button>
+  
+  <button className="dock-active">
+
+```
+
+--------------------------------
+
+### Window Mockup with Background Color - React
+
+Source: https://daisyui.com/components/mockup-window
+
+This React code snippet demonstrates how to create a window mockup with a background color in a React environment using daisyUI classes. It allows for easy customization of the window's appearance.
+
+```jsx
+<div className="mockup-window bg-base-100 border border-base-300">
+  <div className="grid place-content-center h-80">Hello!</div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Footer Component (React JSX)
+
+Source: https://daisyui.com/components/footer
+
+Provides an example of implementing the daisyUI footer component within a React application using JSX. It mirrors the HTML structure, applying daisyUI classes for styling and layout. The `sm:footer-horizontal` class ensures responsive horizontal arrangement.
+
+```jsx
+<footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
+  <nav>
+    <h6 className="footer-title">Services</h6>
+    <a className="link link-hover">Branding</a>
+    <a className="link link-hover">Design</a>
+    <a className="link link-hover">Marketing</a>
+    <a className="link link-hover">Advertisement</a>
+  </nav>
+  <nav>
+    <h6 className="footer-title">Company</h6>
+    <a className="link link-hover">About us</a>
+    <a className="link link-hover">Contact</a>
+    <a className="link link-hover">Jobs</a>
+    <a className="link link-hover">Press kit</a>
+  </nav>
+  <nav>
+    <h6 className="footer-title">Legal</h6>
+    <a className="link link-hover">Terms of use</a>
+    <a className="link link-hover">Privacy policy</a>
+    <a className="link link-hover">Cookie policy</a>
+  </nav>
+</footer>
+```
+
+--------------------------------
+
+### Basic DaisyUI Code Mockup
+
+Source: https://daisyui.com/components/mockup-code
+
+Displays a single line of code within a styled code block. This is useful for showing commands or short code snippets. It utilizes the `mockup-code` class and a `pre` tag with an optional `data-prefix` attribute.
+
+```html
+<div class="mockup-code w-full">
+  <pre data-prefix="$"><code>npm i daisyui</code></pre>
+</div>
+```
+
+```html
+<div className="mockup-code w-full">
+  <pre data-prefix="$"><code>npm i daisyui</code></pre>
+</div>
+```
+
+--------------------------------
+
+### Basic DaisyUI Countdown Example (HTML)
+
+Source: https://daisyui.com/components/countdown
+
+A simple DaisyUI countdown component displaying a single digit with a transition effect. It requires JavaScript to update the `--value` CSS variable and the span text. The value must be between 0 and 999.
+
+```html
+<span class="countdown">
+  <span style="--value:59;" aria-live="polite" aria-label="59">59</span>
+</span>
+```
+
+--------------------------------
+
+### Build Carousel with Indicator Buttons in HTML
+
+Source: https://daisyui.com/components/carousel
+
+Creates a full-width carousel container with multiple image items and anchor-link based indicator buttons. Each carousel item is identified with unique IDs that correspond to button href attributes, allowing browser-native snap scrolling when buttons are clicked.
+
+```HTML
+<div class="carousel w-full">
+  <div id="item1" class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
+      class="w-full" />
+  </div>
+  <div id="item2" class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
+      class="w-full" />
+  </div>
+  <div id="item3" class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
+      class="w-full" />
+  </div>
+  <div id="item4" class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
+      class="w-full" />
+  </div>
+</div>
+<div class="flex w-full justify-center gap-2 py-2">
+  <a href="#item1" class="btn btn-xs">1</a>
+  <a href="#item2" class="btn btn-xs">2</a>
+  <a href="#item3" class="btn btn-xs">3</a>
+  <a href="#item4" class="btn btn-xs">4</a>
+</div>
+```
+
+--------------------------------
+
+### Create Text Rotation Animation Component
+
+Source: https://daisyui.com/llms
+
+Display up to 6 lines of text that rotate through a continuous loop with 10-second default duration. Animation pauses on hover. Supports custom durations via utility classes and styling for individual words with colors and backgrounds.
+
+```html
+<span class="text-rotate">
+  <span>
+    <span>Word 1</span>
+    <span>Word 2</span>
+    <span>Word 3</span>
+    <span>Word 4</span>
+    <span>Word 5</span>
+    <span>Word 6</span>
+  </span>
+</span>
+```
+
+```html
+<span class="text-rotate max-md:text-3xl text-7xl font-title">
+  <span class="justify-items-center">
+    <span>DESIGN</span>
+    <span>DEVELOP</span>
+    <span>DEPLOY</span>
+    <span>SCALE</span>
+    <span>MAINTAIN</span>
+    <span>REPEAT</span>
+  </span>
+</span>
+```
+
+```html
+<span>
+  Providing AI Agents for 
+  <span class="text-rotate">
+    <span>
+      <span class="bg-teal-400 text-teal-800 px-2">Designers</span>
+      <span class="bg-red-400 text-red-800 px-2">Developers</span>
+      <span class="bg-blue-400 text-blue-800 px-2">Managers</span>
+    </span>
+  </span>
+</span>
+```
+
+```html
+<span class="text-rotate max-md:text-3xl text-7xl font-title leading-[2]">
+  <span class="justify-items-center">
+    <span>📐 DESIGN</span>
+    <span>⌨️ DEVELOP</span>
+    <span>🌎 DEPLOY</span>
+    <span>🌱 SCALE</span>
+    <span>🔧 MAINTAIN</span>
+    <span>♻️ REPEAT</span>
+  </span>
+</span>
+```
+
+--------------------------------
+
+### HTML Dialog Modal with Backdrop Close
+
+Source: https://daisyui.com/components/modal
+
+This modal example uses the HTML `<dialog>` element and includes a `modal-backdrop` class. Clicking outside the modal content area (on the backdrop) will close the modal, providing a common user interaction pattern.
+
+```html
+<!-- Open the modal using ID.showModal() method -->
+<button class="btn" onclick="my_modal_1.showModal()">open modal</button>
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+```
+
+--------------------------------
+
+### Dropdown with Details and Summary (HTML)
+
+Source: https://daisyui.com/components/dropdown
+
+This snippet demonstrates creating a dropdown component using native HTML 'details' and 'summary' elements combined with daisyUI classes. The dropdown is triggered by clicking the summary, and its content is defined within the details tag. This method relies on standard HTML behavior for toggling visibility.
+
+```html
+<details class="dropdown">
+  <summary class="btn m-1">open or close</summary>
+  <ul class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</details>
+```
+
+--------------------------------
+
+### HTML Scrollable Steps Example
+
+Source: https://daisyui.com/components/steps
+
+This snippet shows a basic implementation of scrollable steps using DaisyUI. The steps are contained within a div with the 'overflow-x-auto' class, allowing horizontal scrolling if the content exceeds the viewport width. It utilizes various step states like 'step-secondary', 'step-accent', 'step-error', 'step-warning', and 'step-neutral' to indicate progress or status.
+
+```html
+<div class="overflow-x-auto">
+  <ul class="steps">
+    <li class="step">start</li>
+    <li class="step step-secondary">2</li>
+    <li class="step step-secondary">3</li>
+    <li class="step step-secondary">4</li>
+    <li class="step">5</li>
+    <li class="step step-accent">6</li>
+    <li class="step step-accent">7</li>
+    <li class="step">8</li>
+    <li class="step step-error">9</li>
+    <li class="step step-error">10</li>
+    <li class="step">11</li>
+    <li class="step">12</li>
+    <li class="step step-warning">13</li>
+    <li class="step step-warning">14</li>
+    <li class="step">15</li>
+    <li class="step step-neutral">16</li>
+    <li class="step step-neutral">17</li>
+    <li class="step step-neutral">18</li>
+    <li class="step step-neutral">19</li>
+    <li class="step step-neutral">20</li>
+    <li class="step step-neutral">21</li>
+    <li class="step step-neutral">22</li>
+    <li class="step step-neutral">23</li>
+    <li class="step step-neutral">end</li>
+  </ul>
+</div>
+```
+
+--------------------------------
+
+### Replace Table Hover Class with Utility Classes in HTML
+
+Source: https://daisyui.com/docs/upgrade
+
+Remove the deprecated hover class from table rows and replace it with DaisyUI utility classes like hover:bg-base-300 for better control over hover styling.
+
+```html
+- <tr class="hover">
++ <tr class="hover:bg-base-300">
+```
+
+--------------------------------
+
+### Create a Button with Tailwind UI
+
+Source: https://daisyui.com/blog/daisyui-vs-tailwindui
+
+Illustrates how to create a button using Tailwind CSS's utility classes. This approach involves more verbose class names for styling.
+
+```html
+<button
+  class="rounded-md bg-indigo-600 px-3.5 py-2.5
+  text-sm font-semibold text-white shadow-sm
+  hover:bg-indigo-500 focus-visible:outline
+  focus-visible:outline-2 focus-visible:outline-offset-2
+  focus-visible:outline-indigo-600">
+  Button
+</button>
+```
+
+--------------------------------
+
+### DaisyUI Rating Component Sizes (HTML)
+
+Source: https://daisyui.com/components/rating
+
+This snippet showcases the HTML structure for different sizes of the DaisyUI rating component. It includes examples for xs, sm, md, lg, and xl sizes, demonstrating how to apply the respective CSS classes to achieve the desired visual output. No external JavaScript dependencies are required for basic rendering.
+
+```html
+<!-- xs -->
+<div class="rating rating-xs">
+  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" aria-label="2 star" checked="checked" />
+  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+  <input type="radio" name="rating-5" class="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+</div>
+<!-- sm -->
+<div class="rating rating-sm">
+  <input type="radio" name="rating-6" class="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+  <input type="radio" name="rating-6" class="mask mask-star-2 bg-orange-400" aria-label="2 star" checked="checked" />
+  <input type="radio" name="rating-6" class="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+  <input type="radio" name="rating-6" class="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+  <input type="radio" name="rating-6" class="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+</div>
+<!-- md -->
+<div class="rating rating-md">
+  <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+  <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-400" aria-label="2 star" checked="checked" />
+  <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+  <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+  <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+</div>
+<!-- lg -->
+<div class="rating rating-lg">
+  <input type="radio" name="rating-8" class="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+  <input type="radio" name="rating-8" class="mask mask-star-2 bg-orange-400" aria-label="2 star" checked="checked" />
+  <input type="radio" name="rating-8" class="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+  <input type="radio" name="rating-8" class="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+  <input type="radio" name="rating-8" class="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+</div>
+<!-- xl -->
+<div class="rating rating-xl">
+  <input type="radio" name="rating-9" class="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+  <input type="radio" name="rating-9" class="mask mask-star-2 bg-orange-400" aria-label="2 star" checked="checked" />
+  <input type="radio" name="rating-9" class="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+  <input type="radio" name="rating-9" class="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+  <input type="radio" name="rating-9" class="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+</div>
+```
+
+--------------------------------
+
+### Customize Border Size using CSS Variable
+
+Source: https://daisyui.com/docs/v5
+
+The border size for various components like buttons and inputs is customizable using the '--border' CSS variable. This allows for consistent border styling across the project.
+
+```css
+:root {
+  --border: 2px; /* Example: Sets border width */
+}
+```
+
+--------------------------------
+
+### DaisyUI Alert Component (HTML)
+
+Source: https://daisyui.com/llms
+
+Renders an alert message using the 'alert' component in DaisyUI. Various styles like 'alert-outline', 'alert-dash', and 'alert-soft' can be applied, along with color variants ('alert-info', 'alert-success', etc.) and layout directions ('alert-vertical', 'alert-horizontal'). Responsive adjustments can be made using utility classes like 'sm:alert-horizontal'.
+
+```html
+<div role="alert" class="alert {MODIFIER}">{CONTENT}</div>
+```
+
+--------------------------------
+
+### DaisyUI Hover Gallery Component
+
+Source: https://daisyui.com/llms
+
+The hover-gallery component acts as a container for multiple images, displaying one by default and revealing others on horizontal hover. It's suitable for product displays or image showcases and can accommodate up to 10 images. The component itself is marked with the 'hover-gallery' class.
+
+```html
+<div class="hover-gallery">
+  <img src="https://img.daisyui.com/images/stock/photo-1507358522786-5576f8843bad.jpg" alt="Product Image 1" />
+  <img src="https://img.daisyui.com/images/stock/photo-1507358522786-5576f8843bad.jpg" alt="Product Image 2" />
+  <img src="https://img.daisyui.com/images/stock/photo-1507358522786-5576f8843bad.jpg" alt="Product Image 3" />
+  <img src="https://img.daisyui.com/images/stock/photo-1507358522786-5576f8843bad.jpg" alt="Product Image 4" />
+  <img src="https://img.daisyui.com/images/stock/photo-1507358522786-5576f8843bad.jpg" alt="Product Image 5" />
+</div>
+```
+
+--------------------------------
+
+### React Full-bleed Carousel with Images
+
+Source: https://daisyui.com/components/carousel
+
+This snippet demonstrates how to implement a full-bleed carousel in a React environment using DaisyUI. It uses JSX syntax with `className` instead of `class` for DaisyUI utility classes. The structure is identical to the HTML version, ensuring a consistent carousel display.
+
+```jsx
+<div className="carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4">
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
+      className="rounded-box" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+      className="rounded-box" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+      className="rounded-box" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
+      className="rounded-box" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp"
+      className="rounded-box" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp"
+      className="rounded-box" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
+      className="rounded-box" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Badge Component with Styles, Colors, and Sizes
+
+Source: https://daisyui.com/llms
+
+Badges are used to inform users about the status of specific data. They can be styled with outline, dash, soft, or ghost variants, and colored with neutral, primary, secondary, accent, info, success, warning, or error classes. Sizes range from extra-small to extra-large. Modifiers are optional.
+
+```html
+<span class="badge badge-primary badge-outline badge-lg">Badge</span>
+```
+
+--------------------------------
+
+### Configure daisyUI in Tailwind CSS config
+
+Source: https://daisyui.com/blog/what-is-daisyui
+
+Add daisyUI to the plugins array in your tailwind.config.js file. This enables all daisyUI component classes to be available in your Tailwind CSS project. The configuration allows Tailwind to process and include daisyUI's component class definitions.
+
+```javascript
+module.exports = {
+  //...
+  plugins: [require("daisyui")],
+}
+```
+
+--------------------------------
+
+### Apply Custom Color to Radial Progress
+
+Source: https://daisyui.com/components/radial-progress
+
+This example shows how to apply a custom color to the radial progress component using DaisyUI's text color utility classes. The `text-primary` class is used here to set the color.
+
+```html
+<div class="radial-progress text-primary" style="--value:70;" aria-valuenow="70" role="progressbar">70%</div>
+```
+
+```tsx
+import React from 'react';
+
+// ... other components
+
+<div className="radial-progress text-primary" style={{ "--value": 70 } as React.CSSProperties} aria-valuenow={70} role="progressbar">
+  70%
+</div>
+```
+
+--------------------------------
+
+### React Email Input with DaisyUI
+
+Source: https://daisyui.com/components/input
+
+This snippet demonstrates the same email input functionality as the HTML version, but implemented using React and JSX. It leverages DaisyUI classes for styling, mirroring the structure and behavior of the HTML example for a consistent look and feel.
+
+```jsx
+<div className="join">
+  <div>
+    <label className="input validator join-item">
+      <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <g
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          strokeWidth="2.5"
+          fill="none"
+          stroke="currentColor"
+        >
+          <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+        </g>
+      </svg>
+      <input type="email" placeholder="mail@site.com" required />
+    </label>
+    <div className="validator-hint hidden">Enter valid email address</div>
+  </div>
+  <button className="btn btn-neutral join-item">Join</button>
+</div>
+```
+
+--------------------------------
+
+### Centered Card Component
+
+Source: https://daisyui.com/components/card
+
+A card component with centered content, suitable for messages or alerts. This example uses a neutral color theme and includes primary and secondary action buttons. DaisyUI classes handle the layout and styling.
+
+```html
+<div class="card bg-neutral text-neutral-content w-96">
+  <div class="card-body items-center text-center">
+    <h2 class="card-title">Cookies!</h2>
+    <p>We are using cookies for no reason.</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Accept</button>
+      <button class="btn btn-ghost">Deny</button>
+    </div>
+  </div>
+</div>
+```
+
+```jsx
+<div className="card bg-neutral text-neutral-content w-96">
+  <div className="card-body items-center text-center">
+    <h2 className="card-title">Cookies!</h2>
+    <p>We are using cookies for no reason.</p>
+    <div className="card-actions justify-end">
+      <button className="btn btn-primary">Accept</button>
+      <button className="btn btn-ghost">Deny</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Radio Button with Neutral Color (HTML)
+
+Source: https://daisyui.com/components/radio
+
+Shows how to apply the neutral color variant to DaisyUI radio buttons using the 'radio-neutral' class. This example includes both a checked and an unchecked state for the neutral radio button.
+
+```html
+<input type="radio" name="radio-3" class="radio radio-neutral" checked="checked" />
+<input type="radio" name="radio-3" class="radio radio-neutral" />
+```
+
+--------------------------------
+
+### Stat Component for Data Display
+
+Source: https://daisyui.com/llms
+
+Component for displaying numerical data and statistics in blocks with horizontal or vertical direction. Includes stat-title, stat-value, stat-desc, stat-figure, and stat-actions subcomponents. Defaults to horizontal layout but can be switched to vertical with stats-vertical modifier.
+
+```html
+<div class="stats {MODIFIER}">
+  <div class="stat">{CONTENT}</div>
+</div>
+```
+
+--------------------------------
+
+### Card Component for Content Grouping
+
+Source: https://daisyui.com/llms
+
+Cards are used to group and display content. They can include a figure for an image, a card body for text and title, and card actions. Available styles include 'card-border' and 'card-dash'. Modifiers like 'card-side' and 'image-full' change the layout. Sizes can be adjusted from extra-small to extra-large.
+
+```html
+<div class="card card-md card-bordered">
+  <figure><img src="image-url" alt="alt-text" /></figure>
+  <div class="card-body">
+    <h2 class="card-title">Card Title</h2>
+    <p>This is the card content.</p>
+    <div class="card-actions">
+      <button class="btn btn-primary">Action</button>
+    </div>
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Responsive DaisyUI Menu (Vertical/Horizontal)
+
+Source: https://daisyui.com/components/menu
+
+An example of a responsive DaisyUI menu that displays vertically on small screens and horizontally on larger screens using Tailwind CSS's responsive prefixes. The classes 'menu-vertical' and 'lg:menu-horizontal' control this behavior.
+
+```html
+<ul class="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
+  <li><a>Item 1</a></li>
+  <li><a>Item 2</a></li>
+  <li><a>Item 3</a></li>
+</ul>
+```
+
+--------------------------------
+
+### Customize Selector Size Scale using CSS Variable
+
+Source: https://daisyui.com/docs/v5
+
+The base size scale for selectors such as checkboxes and toggles can be customized using the '--size-selector' CSS variable. This provides flexibility in defining the dimensions of these components.
+
+```css
+:root {
+  --size-selector: 8px; /* Example: Adjusts base size */
+}
+```
+
+--------------------------------
+
+### Use Dark Variant with daisyUI Themes in HTML
+
+Source: https://daisyui.com/docs/themes
+
+Apply Tailwind's dark: prefix utilities in HTML elements to create theme-responsive styles. The example shows how padding changes between the 'winter' theme (10 units) and 'night' theme (20 units) using the dark:p-20 utility class.
+
+```html
+<div class="p-10 dark:p-20">
+  I will have 10 padding on winter theme and 20 padding on night theme
+</div>
+```
+
+--------------------------------
+
+### DaisyUI Clock Countdown (HTML)
+
+Source: https://daisyui.com/components/countdown
+
+Example of a DaisyUI countdown component formatted as a clock, displaying hours, minutes, and seconds. Each time unit is represented by a separate span with its respective `--value` CSS variable. Text is styled with a monospace font and a size of text-2xl.
+
+```html
+<span class="countdown font-mono text-2xl">
+  <span style="--value:10;" aria-live="polite" aria-label="10">10</span>
+  h
+  <span style="--value:24;" aria-live="polite" aria-label="24">24</span>
+  m
+  <span style="--value:59;" aria-live="polite" aria-label="59">59</span>
+  s
+</span>
+```
+
+--------------------------------
+
+### Dropdown Left Aligned End Vertically (HTML)
+
+Source: https://daisyui.com/components/dropdown
+
+This example displays a dropdown menu aligned to the left and positioned at the end vertically relative to the button. It utilizes DaisyUI's 'dropdown-left' and 'dropdown-end' classes. Basic HTML and DaisyUI are the only requirements.
+
+```html
+<div class="dropdown dropdown-left dropdown-end">
+  <div tabindex="0" role="button" class="btn m-1">Click ⬅️</div>
+  <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</div>
+```
+
+--------------------------------
+
+### Multiple Indicators with DaisyUI
+
+Source: https://daisyui.com/components/indicator
+
+Demonstrates how to display multiple indicators around a central content box using DaisyUI's indicator classes. This is useful for notifications or status markers. The example uses various classes like `indicator-item`, `indicator-top`, `indicator-middle`, `indicator-bottom`, `indicator-start`, `indicator-center`, and `indicator-end` to position badges.
+
+```html
+<div class="indicator">
+  <span class="indicator-item indicator-top indicator-start badge">↖︎</span>
+  <span class="indicator-item indicator-top indicator-center badge">↑</span>
+  <span class="indicator-item indicator-top indicator-end badge">↗︎</span>
+  <span class="indicator-item indicator-middle indicator-start badge">←</span>
+  <span class="indicator-item indicator-middle indicator-center badge">●</span>
+  <span class="indicator-item indicator-middle indicator-end badge">→</span>
+  <span class="indicator-item indicator-bottom indicator-start badge">↙︎</span>
+  <span class="indicator-item indicator-bottom indicator-center badge">↓</span>
+  <span class="indicator-item indicator-bottom indicator-end badge">↘︎</span>
+  <div class="bg-base-300 grid h-32 w-60 place-items-center">Box</div>
+</div>
+```
+
+```jsx
+<div className="indicator">
+  <span className="indicator-item indicator-top indicator-start badge">↖︎</span>
+  <span className="indicator-item indicator-top indicator-center badge">↑</span>
+  <span className="indicator-item indicator-top indicator-end badge">↗︎</span>
+  <span className="indicator-item indicator-middle indicator-start badge">←</span>
+  <span className="indicator-item indicator-middle indicator-center badge">●</span>
+  <span className="indicator-item indicator-middle indicator-end badge">→</span>
+  <span className="indicator-item indicator-bottom indicator-start badge">↙︎</span>
+  <span className="indicator-item indicator-bottom indicator-center badge">↓</span>
+  <span className="indicator-item indicator-bottom indicator-end badge">↘︎</span>
+  <div className="bg-base-300 grid h-32 w-60 place-items-center">Box</div>
+</div>
+```
+
+--------------------------------
+
+### HTML Theme Customization with daisyUI Data Attribute
+
+Source: https://daisyui.com/pages/best-component-library-for-beginners
+
+Shows how to apply a theme to an entire HTML document using a data attribute. Changing the 'data-theme' value allows for quick and easy global styling updates across the website.
+
+```html
+<html data-theme="light">
+  <!-- Your website content goes here -->
+</html>
+```
+
+--------------------------------
+
+### JSX Carousel Snap to Center with DaisyUI
+
+Source: https://daisyui.com/components/carousel
+
+This JSX snippet demonstrates how to create a carousel that snaps to the center using DaisyUI classes within a React component. It utilizes standard HTML elements with DaisyUI's responsive and layout utilities.
+
+```jsx
+<div className="carousel carousel-center rounded-box">
+  <div className="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" alt="Pizza" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+      alt="Pizza" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+      alt="Pizza" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
+      alt="Pizza" />
+  </div>
+  <div className="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" alt="Pizza" />
+  </div>
+  <div className="carousel-item">
+    <img src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" alt="Pizza" />
+  </div>
+  <div className="carousel-item">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
+      alt="Pizza" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### HTML Chat Bubbles with DaisyUI
+
+Source: https://daisyui.com/components/chat
+
+This snippet shows a basic implementation of chat bubbles for 'start' and 'end' aligned messages using DaisyUI and HTML. It includes sender images, names, timestamps, message content, and delivery status. No external JavaScript dependencies are required for this HTML structure.
+
+```html
+<div class="chat chat-start">
+  <div class="chat-image avatar">
+    <div class="w-10 rounded-full">
+      <img
+        alt="Tailwind CSS chat bubble component"
+        src="https://img.daisyui.com/images/profile/demo/kenobee@192.webp"
+      />
+    </div>
+  </div>
+  <div class="chat-header">
+    Obi-Wan Kenobi
+    <time class="text-xs opacity-50">12:45</time>
+  </div>
+  <div class="chat-bubble">You were the Chosen One!</div>
+  <div class="chat-footer opacity-50">Delivered</div>
+</div>
+<div class="chat chat-end">
+  <div class="chat-image avatar">
+    <div class="w-10 rounded-full">
+      <img
+        alt="Tailwind CSS chat bubble component"
+        src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp"
+      />
+    </div>
+  </div>
+  <div class="chat-header">
+    Anakin
+    <time class="text-xs opacity-50">12:46</time>
+  </div>
+  <div class="chat-bubble">I hate you!</div>
+  <div class="chat-footer opacity-50">Seen at 12:46</div>
+</div>
+```
+
+--------------------------------
+
+### VS Code MCP Server Configuration
+
+Source: https://daisyui.com/blueprint
+
+This JSON configuration snippet is used to set up the daisyUI Blueprint MCP server within VS Code's user settings. It specifies the command to execute and environment variables required for the server, such as LICENSE and EMAIL.
+
+```json
+{
+    "servers": {
+      "daisyui-blueprint": {
+        "type": "stdio",
+        "command": "npx",
+        "args": ["-y", "daisyui-blueprint@latest"],
+        "env": {
+          "LICENSE": "",
+          "EMAIL": ""
+        }
+      }
+    }
+  }
+```
+
+--------------------------------
+
+### Customize Button with Tailwind CSS Utility Classes
+
+Source: https://daisyui.com/docs/customize
+
+Use Tailwind CSS utility classes directly on daisyUI components for fine-grained styling control. Examples include rounded-full for fully rounded corners and custom padding utilities.
+
+```html
+<button class="btn rounded-full">One</button>
+<button class="btn rounded-none px-16">Two</button>
+```
+
+--------------------------------
+
+### Fieldset with Multiple Inputs (React)
+
+Source: https://daisyui.com/components/fieldset
+
+Provides a React JSX example for a fieldset containing input fields for 'Title', 'Slug', and 'Author'. It utilizes 'className' for styling, suitable for React applications. Proper 'id' and 'for' attributes are crucial for accessibility.
+
+```jsx
+<fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+  <legend className="fieldset-legend">Page details</legend>
+
+  <label className="label">Title</label>
+  <input type="text" className="input" placeholder="My awesome page" />
+
+  <label className="label">Slug</label>
+  <input type="text" className="input" placeholder="my-awesome-page" />
+
+  <label className="label">Author</label>
+  <input type="text" className="input" placeholder="Name" />
+</fieldset>
+```
+
+--------------------------------
+
+### Bootstrap Button Component Customization
+
+Source: https://daisyui.com/pages/best-component-library-for-beginners
+
+Bootstrap button implementation with custom styling overrides. Bootstrap provides pre-built components but requires using !important flags to override default styles, resulting in specificity conflicts and reduced maintainability.
+
+```HTML
+<!-- Bootstrap example -->
+<button class="btn btn-primary">Click Me</button>
+
+<!-- Want a custom style? Get ready for this: -->
+<style>
+  .btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #6200ee !important; /* Have to use !important to override */
+    --bs-btn-border-color: #6200ee !important;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #5000c7 !important;
+    --bs-btn-hover-border-color: #4b00bd !important;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #4b00bd !important;
+    --bs-btn-active-border-color: #4700b3 !important;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #6200ee !important;
+    --bs-btn-disabled-border-color: #6200ee !important;
+  }
+</style>
+```
+
+--------------------------------
+
+### DaisyUI Timeline Component with React JSX
+
+Source: https://daisyui.com/components/timeline
+
+A React component demonstrating a timeline structure using DaisyUI classes. This example showcases a product history including the Macintosh, iMac, iPod, iPhone, and Apple Watch. It's suitable for displaying product evolution or historical milestones in a web application.
+
+```jsx
+<ul className="timeline">
+  <li>
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">First Macintosh computer</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">iMac</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">iPod</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">iPhone</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div className="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+    <div className="timeline-end timeline-box">Apple Watch</div>
+  </li>
+</ul>
+```
+
+--------------------------------
+
+### DaisyUI Empty Badges with Different Sizes (HTML)
+
+Source: https://daisyui.com/components/badge
+
+Provides examples of creating empty badges with various size modifiers in DaisyUI. These can be used as placeholders or for purely functional indicators where only the styling is important. The available sizes include lg, md, sm, and xs.
+
+```html
+<div class="badge badge-primary badge-lg"></div>
+<div class="badge badge-primary badge-md"></div>
+<div class="badge badge-primary badge-sm"></div>
+<div class="badge badge-primary badge-xs"></div>
+```
+
+```jsx
+<div className="badge badge-primary badge-lg"></div>
+<div className="badge badge-primary badge-md"></div>
+<div className="badge badge-primary badge-sm"></div>
+<div className="badge badge-primary badge-xs"></div>
+```
+
+--------------------------------
+
+### HTML Carousel with Full Width Items
+
+Source: https://daisyui.com/components/carousel
+
+This snippet shows a basic carousel implementation using DaisyUI and Tailwind CSS classes. Each carousel item takes up the full width of the carousel container, displaying a single image. It relies on the DaisyUI carousel component and basic HTML structure.
+
+```html
+<div class="carousel rounded-box w-64">
+  <div class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
+      class="w-full"
+      alt="Tailwind CSS Carousel component" />
+  </div>
+  <div class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+      class="w-full"
+      alt="Tailwind CSS Carousel component" />
+  </div>
+  <div class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+      class="w-full"
+      alt="Tailwind CSS Carousel component" />
+  </div>
+  <div class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
+      class="w-full"
+      alt="Tailwind CSS Carousel component" />
+  </div>
+  <div class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp"
+      class="w-full"
+      alt="Tailwind CSS Carousel component" />
+  </div>
+  <div class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp"
+      class="w-full"
+      alt="Tailwind CSS Carousel component" />
+  </div>
+  <div class="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
+      class="w-full"
+      alt="Tailwind CSS Carousel component" />
+  </div>
+</div>
+```
+
+--------------------------------
+
+### Button Component with Various Styles, Colors, and Sizes
+
+Source: https://daisyui.com/llms
+
+Buttons allow users to perform actions. They can be styled with outline, dash, soft, ghost, or link variants, and colored using primary, secondary, accent, info, success, warning, or error classes. Sizes range from extra-small to extra-large. Modifiers like 'wide', 'block', 'square', or 'circle' can also be applied. Buttons can be active or disabled.
+
+```html
+<button class="btn btn-primary btn-outline btn-lg btn-wide">Click Me</button>
+<button class="btn btn-secondary btn-disabled">Disabled</button>
+```
+
+--------------------------------
+
+### DaisyUI Select with Fieldset and Labels (React)
+
+Source: https://daisyui.com/components/select
+
+Presents the DaisyUI select component integrated into a fieldset with a legend and an optional label, implemented in React. This example showcases accessible form design patterns using JSX and DaisyUI classes.
+
+```jsx
+<fieldset className="fieldset">
+  <legend className="fieldset-legend">Browsers</legend>
+  <select defaultValue="Pick a browser" className="select">
+    <option disabled={true}>Pick a browser</option>
+    <option>Chrome</option>
+    <option>FireFox</option>
+    <option>Safari</option>
+  </select>
+  <span className="label">Optional</span>
+</fieldset>
+```
+
+--------------------------------
+
+### DaisyUI Dash Buttons: Various Color Styles
+
+Source: https://daisyui.com/components/button
+
+Demonstrates how to apply the 'dash' style to buttons in DaisyUI, with examples for different color themes like primary, secondary, accent, info, success, warning, and error. These buttons utilize the base 'btn' class along with the 'btn-dash' modifier and a color-specific class.
+
+```html
+<button class="btn btn-dash">Default</button>
+<button class="btn btn-dash btn-primary">Primary</button>
+<button class="btn btn-dash btn-secondary">Secondary</button>
+<button class="btn btn-dash btn-accent">Accent</button>
+<button class="btn btn-dash btn-info">Info</button>
+<button class="btn btn-dash btn-success">Success</button>
+<button class="btn btn-dash btn-warning">Warning</button>
+<button class="btn btn-dash btn-error">Error</button>
+```
+
+```jsx
+<button className="btn btn-dash">Default</button>
+<button className="btn btn-dash btn-primary">Primary</button>
+<button className="btn btn-dash btn-secondary">Secondary</button>
+<button className="btn btn-dash btn-accent">Accent</button>
+<button className="btn btn-dash btn-info">Info</button>
+<button className="btn btn-dash btn-success">Success</button>
+<button className="btn btn-dash btn-warning">Warning</button>
+<button className="btn btn-dash btn-error">Error</button>
+```
+
+--------------------------------
+
+### Custom CSS Button Styling from Scratch
+
+Source: https://daisyui.com/pages/best-component-library-for-beginners
+
+Complete CSS implementation of a styled button component with hover, active, focus, and disabled states. This approach requires writing extensive CSS for each component variant, leading to code duplication and inconsistency across pages.
+
+```CSS
+/* Writing CSS from scratch example */
+.my-button {
+  background-color: #4338ca;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.my-button:hover {
+  background-color: #3730a3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.my-button:active {
+  background-color: #312e81;
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.my-button:focus {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+}
+.my-button:disabled {
+  background-color: #c7d2fe;
+  color: #6366f1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+```
+
+--------------------------------
+
+### DaisyUI Countdown Component Syntax
+
+Source: https://daisyui.com/llms
+
+The DaisyUI countdown component provides a transition effect for numbers between 0 and 999. It uses a `span` with the `countdown` class and a nested `span` to set the number via the `--value` CSS variable. JavaScript is required to update the number and the span's text.
+
+```html
+<span class="countdown">
+  <span style="--value:{number};">number</span>
+</span>
+```
+
+--------------------------------
+
+### Build Carousel with Indicator Buttons in React
+
+Source: https://daisyui.com/components/carousel
+
+React/JSX implementation of a carousel component with indicator buttons using DaisyUI classes. Uses className attributes and anchor links for seamless navigation between carousel items with native browser scrolling behavior.
+
+```JSX
+<div className="carousel w-full">
+  <div id="item1" className="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
+      className="w-full" />
+  </div>
+  <div id="item2" className="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
+      className="w-full" />
+  </div>
+  <div id="item3" className="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
+      className="w-full" />
+  </div>
+  <div id="item4" className="carousel-item w-full">
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
+      className="w-full" />
+  </div>
+</div>
+<div className="flex w-full justify-center gap-2 py-2">
+  <a href="#item1" className="btn btn-xs">1</a>
+  <a href="#item2" className="btn btn-xs">2</a>
+  <a href="#item3" className="btn btn-xs">3</a>
+  <a href="#item4" className="btn btn-xs">4</a>
+</div>
+```

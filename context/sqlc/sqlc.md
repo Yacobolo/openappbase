@@ -10,7 +10,7 @@ go build ./...
 
 ```
 
----
+--------------------------------
 
 ### Fetch MySQL driver and build Go project
 
@@ -23,7 +23,7 @@ go get github.com/go-sql-driver/mysql
 go build ./...
 ```
 
----
+--------------------------------
 
 ### Fetch SQLite Driver and Build
 
@@ -36,7 +36,7 @@ go get modernc.org/sqlite
 go build ./...
 ```
 
----
+--------------------------------
 
 ### Go Application Using Generated Code
 
@@ -105,7 +105,7 @@ func main() {
 
 ```
 
----
+--------------------------------
 
 ### Verify Queries Against Schema
 
@@ -117,7 +117,7 @@ This command verifies your previously published queries against a specified targ
 $ sqlc verify --against tutorial
 ```
 
----
+--------------------------------
 
 ### sqlc.yaml configuration for MySQL
 
@@ -137,7 +137,7 @@ sql:
         out: "tutorial"
 ```
 
----
+--------------------------------
 
 ### Configure sqlc for PostgreSQL
 
@@ -156,9 +156,10 @@ sql:
         package: "tutorial"
         out: "tutorial"
         sql_package: "pgx/v5"
+
 ```
 
----
+--------------------------------
 
 ### Fetch SQLite Driver and Build Go Program
 
@@ -172,7 +173,7 @@ go build ./...
 
 ```
 
----
+--------------------------------
 
 ### Initialize Go Module
 
@@ -184,7 +185,7 @@ Initializes a new Go module for the project. This command is essential for manag
 go mod init tutorial.sqlc.dev/app
 ```
 
----
+--------------------------------
 
 ### Go Program Using Generated Code
 
@@ -253,7 +254,7 @@ func main() {
 
 ```
 
----
+--------------------------------
 
 ### Define SQLite Queries
 
@@ -289,7 +290,7 @@ DELETE FROM authors
 WHERE id = ?;
 ```
 
----
+--------------------------------
 
 ### Configure sqlc with YAML
 
@@ -308,7 +309,7 @@ version: "2"sql:
         out: "tutorial"
 ```
 
----
+--------------------------------
 
 ### Push Code with Tag using Sqlc CLI
 
@@ -320,7 +321,7 @@ This command shows how to use the sqlc CLI to push your code with a specific tag
 $ sqlc push --tag tutorial
 ```
 
----
+--------------------------------
 
 ### Set SQLC_AUTH_TOKEN Environment Variable
 
@@ -333,7 +334,7 @@ export SQLC_AUTH_TOKEN="<your sqlc auth token>"
 
 ```
 
----
+--------------------------------
 
 ### Go program using generated sqlc code
 
@@ -405,7 +406,7 @@ func main() {
 }
 ```
 
----
+--------------------------------
 
 ### Push Queries to sqlc Cloud
 
@@ -418,7 +419,7 @@ $ sqlc push --tag tutorial
 
 ```
 
----
+--------------------------------
 
 ### Define PostgreSQL Queries
 
@@ -457,7 +458,7 @@ WHERE id = $1;
 
 ```
 
----
+--------------------------------
 
 ### Define PostgreSQL Schema
 
@@ -474,7 +475,7 @@ CREATE TABLE authors (
 
 ```
 
----
+--------------------------------
 
 ### Use Generated Go Code with SQLite
 
@@ -551,7 +552,7 @@ func main() {
 
 ```
 
----
+--------------------------------
 
 ### Configure sqlc for SQLite
 
@@ -569,9 +570,10 @@ sql:
       go:
         package: "tutorial"
         out: "tutorial"
+
 ```
 
----
+--------------------------------
 
 ### Define SQLite Schema
 
@@ -587,7 +589,7 @@ CREATE TABLE authors (
 );
 ```
 
----
+--------------------------------
 
 ### Set SQLC_AUTH_TOKEN Environment Variable
 
@@ -599,7 +601,7 @@ This command demonstrates how to set the SQLC_AUTH_TOKEN environment variable, w
 export SQLC_AUTH_TOKEN="<your sqlc auth token>"
 ```
 
----
+--------------------------------
 
 ### Go Application Using Generated Code
 
@@ -671,7 +673,7 @@ func main() {
 }
 ```
 
----
+--------------------------------
 
 ### SQL Queries for Author Operations
 
@@ -701,7 +703,7 @@ DELETE FROM authors
 WHERE id = ?;
 ```
 
----
+--------------------------------
 
 ### Start Databases with Docker Compose
 
@@ -713,7 +715,7 @@ Starts database services in detached mode using Docker Compose. Requires Docker 
 docker compose up -d
 ```
 
----
+--------------------------------
 
 ### MySQL Queries for Go Code Generation
 
@@ -744,7 +746,7 @@ DELETE FROM authors
 WHERE id = ?;
 ```
 
----
+--------------------------------
 
 ### Configure sqlc.yaml for Cloud Verification
 
@@ -766,9 +768,10 @@ sql:
         package: "tutorial"
         out: "tutorial"
         sql_package: "pgx/v5"
+
 ```
 
----
+--------------------------------
 
 ### MySQL Schema Definition
 
@@ -784,7 +787,7 @@ CREATE TABLE authors (
 );
 ```
 
----
+--------------------------------
 
 ### Configure sqlc.yaml for Cloud Integration
 
@@ -808,7 +811,7 @@ sql:
         sql_package: "pgx/v5"
 ```
 
----
+--------------------------------
 
 ### Verify Queries Against Database Schema
 
@@ -821,7 +824,7 @@ $ sqlc verify --against tutorial
 
 ```
 
----
+--------------------------------
 
 ### Configure sqlc.yaml for Cloud Verification
 
@@ -842,9 +845,10 @@ sql:
       go:
         package: "tutorial"
         out: "tutorial"
+
 ```
 
----
+--------------------------------
 
 ### Generate Go Code with sqlc
 
@@ -857,7 +861,7 @@ sqlc generate
 
 ```
 
----
+--------------------------------
 
 ### Configure sqlc.yaml for Cloud Integration
 
@@ -880,7 +884,7 @@ sql:
         out: "tutorial"
 ```
 
----
+--------------------------------
 
 ### Update PostgreSQL Query with RETURNING
 
@@ -898,7 +902,7 @@ RETURNING *;
 
 ```
 
----
+--------------------------------
 
 ### Go Program Using Generated Code
 
@@ -974,7 +978,7 @@ func main() {
 }
 ```
 
----
+--------------------------------
 
 ### Golang-migrate Migration File Example
 
@@ -991,7 +995,7 @@ CREATE TABLE post (
 );
 ```
 
----
+--------------------------------
 
 ### Run Go Tests with Examples Tag
 
@@ -1003,7 +1007,7 @@ Executes Go tests specifically tagged with 'examples'. This is useful for testin
 go test --tags=examples ./...
 ```
 
----
+--------------------------------
 
 ### Update Author Query with Return
 
@@ -1020,7 +1024,7 @@ WHERE id = ?
 RETURNING *;
 ```
 
----
+--------------------------------
 
 ### Define SQLite Schema
 
@@ -1037,7 +1041,7 @@ CREATE TABLE authors (
 
 ```
 
----
+--------------------------------
 
 ### SQLC Rule Examples for EXPLAIN Output
 
@@ -1047,21 +1051,21 @@ Illustrates how to define custom rules in sqlc's configuration file that analyze
 
 ```yaml
 rules:
-  - name: postgresql-query-too-costly
-    message: "Query cost estimate is too high"
-    rule: "postgresql.explain.plan.total_cost > 1.0"
-  - name: postgresql-no-seq-scan
-    message: "Query plan results in a sequential scan"
-    rule: "postgresql.explain.plan.node_type == 'Seq Scan'"
-  - name: mysql-query-too-costly
-    message: "Query cost estimate is too high"
-    rule: "has(mysql.explain.query_block.cost_info) && double(mysql.explain.query_block.cost_info.query_cost) > 2.0"
-  - name: mysql-must-use-primary-key
-    message: "Query plan doesn't use primary key"
-    rule: "has(mysql.explain.query_block.table.key) && mysql.explain.query_block.table.key != 'PRIMARY'"
+- name: postgresql-query-too-costly
+  message: "Query cost estimate is too high"
+  rule: "postgresql.explain.plan.total_cost > 1.0"
+- name: postgresql-no-seq-scan
+  message: "Query plan results in a sequential scan"
+  rule: "postgresql.explain.plan.node_type == 'Seq Scan'"
+- name: mysql-query-too-costly
+  message: "Query cost estimate is too high"
+  rule: "has(mysql.explain.query_block.cost_info) && double(mysql.explain.query_block.cost_info.query_cost) > 2.0"
+- name: mysql-must-use-primary-key
+  message: "Query plan doesn't use primary key"
+  rule: "has(mysql.explain.query_block.table.key) && mysql.explain.query_block.table.key != 'PRIMARY'"
 ```
 
----
+--------------------------------
 
 ### Install sqlc on Ubuntu using Snap
 
@@ -1073,7 +1077,7 @@ Installs the sqlc CLI tool on Ubuntu using the Snap package manager. Snap provid
 sudo snap install sqlc
 ```
 
----
+--------------------------------
 
 ### sqlc Configuration Example (PostgreSQL & MySQL)
 
@@ -1086,27 +1090,28 @@ version: "2"
 cloud:
   project: "<PROJECT_ID>"
 sql:
-  - schema: "postgresql/schema.sql"
-    queries: "postgresql/query.sql"
-    engine: "postgresql"
-    gen:
-      go:
-        package: "authors"
-        out: "postgresql"
-    database:
-      managed: true
-    rules:
-      - sqlc/db-prepare
-  - schema: "mysql/schema.sql"
-    queries: "mysql/query.sql"
-    engine: "mysql"
-    gen:
-      go:
-        package: "authors"
-        out: "mysql"
+- schema: "postgresql/schema.sql"
+  queries: "postgresql/query.sql"
+  engine: "postgresql"
+  gen:
+    go:
+      package: "authors"
+      out: "postgresql"
+  database:
+    managed: true
+  rules:
+    - sqlc/db-prepare
+- schema: "mysql/schema.sql"
+  queries: "mysql/query.sql"
+  engine: "mysql"
+  gen:
+    go:
+      package: "authors"
+      out: "mysql"
+
 ```
 
----
+--------------------------------
 
 ### Golang-migrate Down Migration File Example
 
@@ -1118,7 +1123,7 @@ An SQL file example for golang-migrate, showing the 'down' SQL to drop the 'post
 DROP TABLE post;
 ```
 
----
+--------------------------------
 
 ### Install sqlc using Go
 
@@ -1130,7 +1135,7 @@ Installs the latest version of the sqlc CLI tool using the Go toolchain. Require
 go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
 ```
 
----
+--------------------------------
 
 ### Update sqlc Installation Path
 
@@ -1146,7 +1151,7 @@ go install github.com/kyleconroy/sqlc/cmd/sqlc@v1.20.0
 go install github.com/sqlc-dev/sqlc/cmd/sqlc@v1.20.0
 ```
 
----
+--------------------------------
 
 ### Define SQLite Queries
 
@@ -1194,7 +1199,7 @@ RETURNING *;
 
 ```
 
----
+--------------------------------
 
 ### sqlc diff example
 
@@ -1202,7 +1207,7 @@ Source: https://docs.sqlc.dev/en/latest/_sources/howto/ci-cd
 
 Demonstrates the output of `sqlc diff` which highlights changes in generated SQL code, ensuring generated files are up-to-date.
 
-````diff
+```diff
 ```diff
 % sqlc diff
 --- a/postgresql/query.sql.go
@@ -1214,9 +1219,8 @@ Demonstrates the output of `sqlc diff` which highlights changes in generated SQL
 -ORDER BY name
 +ORDER BY bio
  `
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -1228,9 +1232,9 @@ Builds the sqlc-dev executable and places it in the go bin directory. Requires G
 
 ```bash
 go build -o ~/go/bin/sqlc-dev ./cmd/sqlc
-````
+```
 
----
+--------------------------------
 
 ### dbmate Up and Down Migrations
 
@@ -1246,7 +1250,7 @@ CREATE TABLE foo (bar INT NOT NULL);
 DROP TABLE foo;
 ```
 
----
+--------------------------------
 
 ### Run sqlc diff in GitHub Actions
 
@@ -1254,7 +1258,7 @@ Source: https://docs.sqlc.dev/en/latest/_sources/howto/ci-cd
 
 A GitHub Actions workflow to automatically run `sqlc diff` on every push. It utilizes the `setup-sqlc` action for installation.
 
-````yaml
+```yaml
 ```yaml
 name: sqlc
 on: [push]
@@ -1267,9 +1271,8 @@ jobs:
       with:
         sqlc-version: '1.30.0'
     - run: sqlc diff
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -1282,17 +1285,17 @@ Demonstrates the output of the `sqlc diff` command, which compares generated cod
 ```diff
 %% sqlc diff
 ---
-+++
++++ 
 @@ -55,7 +55,7 @@
-
+ 
  const listAuthors = "-- name: ListAuthors :many\n SELECT id, name, bio FROM authors\n-ORDER BY name
 +ORDER BY bio
  "
+ 
 
+```
 
-````
-
----
+--------------------------------
 
 ### Install sqlc on macOS using Homebrew
 
@@ -1304,7 +1307,7 @@ Installs the sqlc CLI tool on macOS using the Homebrew package manager. Homebrew
 brew install sqlc
 ```
 
----
+--------------------------------
 
 ### Run sqlc generate with Docker on Windows Command Prompt
 
@@ -1316,7 +1319,7 @@ Executes the sqlc generate command within a Docker container on Windows Command 
 docker run --rm -v "%cd%:/src" -w /src sqlc/sqlc generate
 ```
 
----
+--------------------------------
 
 ### SQL Schema Example
 
@@ -1338,7 +1341,7 @@ CREATE TABLE user_actions (
 
 ```
 
----
+--------------------------------
 
 ### sqlc Configuration with Lint Rules
 
@@ -1378,9 +1381,10 @@ rules:
     message: "don't use exec"
     rule: |
       query.cmd == "exec"
+
 ```
 
----
+--------------------------------
 
 ### Goose Up and Down Migration SQL
 
@@ -1401,7 +1405,7 @@ CREATE TABLE post (
 DROP TABLE post;
 ```
 
----
+--------------------------------
 
 ### golang-migrate SQL Migration Example (Corrected Naming)
 
@@ -1417,7 +1421,7 @@ Example of golang-migrate migration filenames that ensure correct lexicographica
 
 ```
 
----
+--------------------------------
 
 ### Migrate package configuration to use codegen (JSON)
 
@@ -1444,7 +1448,7 @@ Example of a sqlc package configuration in JSON, updated to use the 'codegen' di
   ]
 ```
 
----
+--------------------------------
 
 ### Push Project with Tags using sqlc push
 
@@ -1457,7 +1461,7 @@ $ sqlc push --tag main
 
 ```
 
----
+--------------------------------
 
 ### SQL Query Example
 
@@ -1473,7 +1477,7 @@ ORDER BY created_at;
 
 ```
 
----
+--------------------------------
 
 ### Pull sqlc Docker image
 
@@ -1485,7 +1489,7 @@ Pulls the latest official sqlc Docker image from Docker Hub. This image contains
 docker pull sqlc/sqlc
 ```
 
----
+--------------------------------
 
 ### Migrate package configuration to use codegen (YAML)
 
@@ -1494,18 +1498,18 @@ Source: https://docs.sqlc.dev/en/latest/_sources/guides/migrating-to-sqlc-gen-ko
 Example of a sqlc package configuration in YAML, updated to use the 'codegen' directive with the 'kt' plugin and options for Kotlin code generation.
 
 ```yaml
-sql:
+  sql:
   - schema: "schema.sql"
     queries: "query.sql"
     engine: "postgresql"
     codegen:
-      - plugin: "kt"
-        out: "src/main/kotlin/com/example/foo"
-        options:
-          package: "com.example.foo"
+    - plugin: "kt"
+      out: "src/main/kotlin/com/example/foo"
+      options:
+        package: "com.example.foo"
 ```
 
----
+--------------------------------
 
 ### Configure sqlc for PostgreSQL Migrations
 
@@ -1525,7 +1529,7 @@ sql:
         out: "tutorial"
 ```
 
----
+--------------------------------
 
 ### Perform atomic record update within a transaction (pgx/v5)
 
@@ -1557,7 +1561,7 @@ func bumpCounter(ctx context.Context, db *pgx.Conn, queries *tutorial.Queries, i
 
 ```
 
----
+--------------------------------
 
 ### sqlc Plugin Configuration (Python)
 
@@ -1566,27 +1570,28 @@ Source: https://docs.sqlc.dev/en/latest/reference/config
 Example of configuring sqlc to use a custom plugin for Python code generation, specifying the output directory, plugin details, and generation options.
 
 ```yaml
-version: "2"
+version: '2'
 plugins:
-  - name: py
-    wasm:
-      url: https://github.com/sqlc-dev/sqlc-gen-python/releases/download/v0.16.0-alpha/sqlc-gen-python.wasm
-      sha256: 428476c7408fd4c032da4ec74e8a7344f4fa75e0f98a5a3302f238283b9b95f2
+- name: py
+  wasm:
+    url: https://github.com/sqlc-dev/sqlc-gen-python/releases/download/v0.16.0-alpha/sqlc-gen-python.wasm
+    sha256: 428476c7408fd4c032da4ec74e8a7344f4fa75e0f98a5a3302f238283b9b95f2
 sql:
-  - schema: "schema.sql"
-    queries: "query.sql"
-    engine: postgresql
-    codegen:
-      - out: src/authors
-        plugin: py
-        options:
-          package: authors
-          emit_sync_querier: true
-          emit_async_querier: true
-          query_parameter_limit: 5
+- schema: "schema.sql"
+  queries: "query.sql"
+  engine: postgresql
+  codegen:
+  - out: src/authors
+    plugin: py
+    options:
+      package: authors
+      emit_sync_querier: true
+      emit_async_querier: true
+      query_parameter_limit: 5
+
 ```
 
----
+--------------------------------
 
 ### Run sqlc generate command via Docker
 
@@ -1598,7 +1603,7 @@ Executes the sqlc generate command within a Docker container. It mounts the curr
 docker run --rm -v $(pwd):/src -w /src sqlc/sqlc generate
 ```
 
----
+--------------------------------
 
 ### PostgreSQL EXPLAIN query format
 
@@ -1610,7 +1615,7 @@ Shows the SQL command executed by sqlc to get EXPLAIN output for PostgreSQL, inc
 EXPLAIN (ANALYZE false, VERBOSE, COSTS, SETTINGS, BUFFERS, FORMAT JSON) ...
 ```
 
----
+--------------------------------
 
 ### Migrate package configuration for sqlc-gen-python (JSON)
 
@@ -1640,7 +1645,7 @@ Example of a package configuration in JSON format after migrating to the sqlc-ge
   ]
 ```
 
----
+--------------------------------
 
 ### Goose SQL Migration Example (Corrected Naming)
 
@@ -1656,7 +1661,7 @@ Example of Goose migration filenames that ensure correct lexicographical and num
 
 ```
 
----
+--------------------------------
 
 ### Migrate package configuration for sqlc-gen-python (YAML)
 
@@ -1665,21 +1670,21 @@ Source: https://docs.sqlc.dev/en/latest/_sources/guides/migrating-to-sqlc-gen-py
 Example of a package configuration in YAML format after migrating to the sqlc-gen-python plugin. It replaces the 'gen' mapping with 'codegen' and moves Python-specific options into an 'options' object.
 
 ```yaml
-sql:
+  sql:
   - schema: "schema.sql"
     queries: "query.sql"
     engine: "postgresql"
     codegen:
-      - plugin: "py"
-        out: "src"
-        options:
-          package: "foo"
-          emit_sync_querier: true
-          emit_async_querier: true
-          query_parameter_limit: 5
+    - plugin: "py"
+      out: "src"
+      options:
+        package: "foo"
+        emit_sync_querier: true
+        emit_async_querier: true
+        query_parameter_limit: 5
 ```
 
----
+--------------------------------
 
 ### Run sqlc generate command via Docker on Windows Command Prompt
 
@@ -1691,7 +1696,7 @@ Executes the sqlc generate command within a Docker container on Windows Command 
 docker run --rm -v "%cd%":/src -w /src sqlc/sqlc generate
 ```
 
----
+--------------------------------
 
 ### dbmate SQL Migration Example
 
@@ -1708,7 +1713,7 @@ DROP TABLE foo;
 
 ```
 
----
+--------------------------------
 
 ### sql-migrate SQL Migration Example
 
@@ -1728,7 +1733,7 @@ DROP TABLE people;
 
 ```
 
----
+--------------------------------
 
 ### Add sqlc-gen-kotlin plugin configuration (YAML)
 
@@ -1745,7 +1750,7 @@ plugins:
     sha256: "7620dc5d462de41fdc90e2011232c842117b416c98fd5c163d27c5738431a45c
 ```
 
----
+--------------------------------
 
 ### Connection Pooling with pgxpool in Go
 
@@ -1772,7 +1777,7 @@ func main() {
 }
 ```
 
----
+--------------------------------
 
 ### SQL Schema Alteration Example
 
@@ -1785,7 +1790,7 @@ ALTER TABLE users ADD COLUMN created_at TIMESTAMP;
 
 ```
 
----
+--------------------------------
 
 ### Go - Count Authors using SQLC
 
@@ -1826,7 +1831,7 @@ func (q *Queries) CountAuthors(ctx context.Context) (int, error) {
 }
 ```
 
----
+--------------------------------
 
 ### Shell Output of Verification Failure
 
@@ -1844,7 +1849,7 @@ FAIL: app query.sql
 
 ```
 
----
+--------------------------------
 
 ### Atlas SQL Migration Example
 
@@ -1858,7 +1863,7 @@ CREATE TABLE "public"."post" ("id" integer NOT NULL, "title" text NULL, "body" t
 
 ```
 
----
+--------------------------------
 
 ### Add sqlc-gen-kotlin plugin configuration (JSON)
 
@@ -1881,7 +1886,7 @@ Configuration for adding the sqlc-gen-kotlin plugin to your sqlc setup in JSON f
 }
 ```
 
----
+--------------------------------
 
 ### SQLC Configuration for Migrations
 
@@ -1899,9 +1904,10 @@ sql:
       go:
         package: "tutorial"
         out: "tutorial"
+
 ```
 
----
+--------------------------------
 
 ### Go: Get Author QueryRow
 
@@ -1916,7 +1922,7 @@ func (q *Queries) GetAuthor(ctx context.Context, id int64) (Author, error) {
 }
 ```
 
----
+--------------------------------
 
 ### Get multiple columns 'bio' and 'birth_year' for an author
 
@@ -1968,7 +1974,7 @@ func (q *Queries) GetInfoForAuthor(ctx context.Context, id int) (GetInfoForAutho
 }
 ```
 
----
+--------------------------------
 
 ### Go - Count Authors By Town using SQLC
 
@@ -2032,7 +2038,7 @@ func (q *Queries) CountAuthorsByTown(ctx context.Context) ([]CountAuthorsByTownR
 }
 ```
 
----
+--------------------------------
 
 ### SQL Query Fix Example
 
@@ -2048,7 +2054,7 @@ ORDER BY u.created_at;
 
 ```
 
----
+--------------------------------
 
 ### SQL: Get Author Query Annotation
 
@@ -2062,7 +2068,7 @@ SELECT * FROM authors
 WHERE id = $1 LIMIT 1;
 ```
 
----
+--------------------------------
 
 ### Get single column 'bio' for an author
 
@@ -2109,7 +2115,7 @@ func (q *Queries) GetBioForAuthor(ctx context.Context, id int) (string, error) {
 }
 ```
 
----
+--------------------------------
 
 ### Get Author using :one
 
@@ -2130,7 +2136,7 @@ func (q *Queries) GetAuthor(ctx context.Context, id int64) (Author, error) {
 }
 ```
 
----
+--------------------------------
 
 ### Get single author row using MySQL/SQLite syntax
 
@@ -2158,7 +2164,7 @@ func (q *Queries) GetAuthor(ctx context.Context, id int) (Author, error) {
 }
 ```
 
----
+--------------------------------
 
 ### tern SQL Migration Example
 
@@ -2173,7 +2179,7 @@ DROP TABLE comment;
 
 ```
 
----
+--------------------------------
 
 ### Get single author row using PostgreSQL syntax
 
@@ -2201,7 +2207,7 @@ func (q *Queries) GetAuthor(ctx context.Context, id int) (Author, error) {
 }
 ```
 
----
+--------------------------------
 
 ### CAST support for MySQL (SQL)
 
@@ -2216,7 +2222,7 @@ CREATE TABLE foo (bar BOOLEAN NOT NULL);
 SELECT CAST(bar AS BIGINT) FROM foo;
 ```
 
----
+--------------------------------
 
 ### Define CEL Lint Rules for SQL Queries
 
@@ -2258,7 +2264,7 @@ rules:
       query.cmd == "exec"
 ```
 
----
+--------------------------------
 
 ### Create Author Table with Returning
 
@@ -2276,7 +2282,7 @@ CREATE TABLE authors (
 
 ```
 
----
+--------------------------------
 
 ### SQL - Count Authors and By Town
 
@@ -2299,7 +2305,7 @@ GROUP BY 1
 ORDER BY 1;
 ```
 
----
+--------------------------------
 
 ### sqlc CLI Usage and Commands
 
@@ -2333,7 +2339,7 @@ Flags:
 Use "sqlc [command] --help" for more information about a command.
 ```
 
----
+--------------------------------
 
 ### Nullable Parameter Handling with sqlc.narg() - sqlc
 
@@ -2359,7 +2365,7 @@ type UpdateAuthorParams struct {
 }
 ```
 
----
+--------------------------------
 
 ### Configure sqlc for go-geos with pgx/v5
 
@@ -2400,6 +2406,7 @@ SELECT id, name, ST_Centroid(geom)::geometry FROM shapes;
     }
   }
 }
+
 ```
 
 ```go
@@ -2419,7 +2426,7 @@ config.AfterConnect = func(ctx context.Context, conn *pgx.Conn) error {
 
 ```
 
----
+--------------------------------
 
 ### SQL Schema Definitions for Tables
 
@@ -2440,7 +2447,7 @@ CREATE TABLE book_publishers (
 );
 ```
 
----
+--------------------------------
 
 ### Default Parameter Naming in SQL - sqlc
 
@@ -2466,7 +2473,7 @@ type UpdateAuthorNameParams struct {
 }
 ```
 
----
+--------------------------------
 
 ### Named Parameter Naming with sqlc.arg() - sqlc
 
@@ -2492,7 +2499,7 @@ type UpdateAuthorNameParams struct {
 }
 ```
 
----
+--------------------------------
 
 ### Run sqlc vet in GitHub Actions
 
@@ -2500,7 +2507,7 @@ Source: https://docs.sqlc.dev/en/latest/_sources/howto/ci-cd
 
 A GitHub Actions workflow to execute `sqlc vet` on every push. This workflow includes setting up a PostgreSQL server if lint rules require a database connection.
 
-````yaml
+```yaml
 ```yaml
 name: sqlc
 on: [push]
@@ -2520,9 +2527,8 @@ jobs:
     - run: sqlc vet
       env:
         POSTGRESQL_SERVER_URI: ${{ steps.postgres.outputs.connection-uri }}?sslmode=disable
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -2534,14 +2540,14 @@ This example demonstrates how to set global type overrides for UUIDs in sqlc ver
 
 ```yaml
 version: "1"
-packages: [...]
+packages: [...] 
 overrides:
   - db_type: "uuid"
     go_type: "github.com/gofrs/uuid.UUID"
 
-````
+```
 
----
+--------------------------------
 
 ### Disable all lint rules for a SQL query - sqlc
 
@@ -2557,7 +2563,7 @@ WHERE id = ? LIMIT 1;
 
 ```
 
----
+--------------------------------
 
 ### Enable database preparation rule in sqlc
 
@@ -2580,7 +2586,7 @@ version: 2sql:
       - sqlc/db-prepare
 ```
 
----
+--------------------------------
 
 ### Advanced Go Type Mapping with Import and Package
 
@@ -2607,7 +2613,7 @@ version: "2"sql:
             pointer: true
 ```
 
----
+--------------------------------
 
 ### SQLC CLI Usage
 
@@ -2642,7 +2648,7 @@ Use "sqlc [command] --help" for more information about a command.
 
 ```
 
----
+--------------------------------
 
 ### Configure sqlc for go-geom
 
@@ -2686,9 +2692,10 @@ SELECT * FROM shapes;
     }
   ]
 }
+
 ```
 
----
+--------------------------------
 
 ### Perform atomic record update within a transaction (lib/pq)
 
@@ -2720,7 +2727,7 @@ func bumpCounter(ctx context.Context, db *sql.DB, queries *tutorial.Queries, id 
 
 ```
 
----
+--------------------------------
 
 ### GitHub Actions: Run sqlc diff
 
@@ -2735,14 +2742,16 @@ jobs:
   diff:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: sqlc-dev/setup-sqlc@v3
-        with:
-          sqlc-version: "1.30.0"
-      - run: sqlc diff
+    - uses: actions/checkout@v3
+    - uses: sqlc-dev/setup-sqlc@v3
+      with:
+        sqlc-version: '1.30.0'
+    - run: sqlc diff
+
+
 ```
 
----
+--------------------------------
 
 ### Custom SQL Validation Rules
 
@@ -2784,7 +2793,7 @@ rules:
       query.cmd == "exec"
 ```
 
----
+--------------------------------
 
 ### MySQL EXPLAIN rules for sqlc
 
@@ -2794,15 +2803,15 @@ Defines rules in sqlc configuration for MySQL that analyze EXPLAIN output. It de
 
 ```yaml
 rules:
-  - name: mysql-query-too-costly
-    message: "Query cost estimate is too high"
-    rule: "has(mysql.explain.query_block.cost_info) && double(mysql.explain.query_block.cost_info.query_cost) > 2.0"
-  - name: mysql-must-use-primary-key
-    message: "Query plan doesn't use primary key"
-    rule: "has(mysql.explain.query_block.table.key) && mysql.explain.query_block.table.key != 'PRIMARY'"
+- name: mysql-query-too-costly
+  message: "Query cost estimate is too high"
+  rule: "has(mysql.explain.query_block.cost_info) && double(mysql.explain.query_block.cost_info.query_cost) > 2.0"
+- name: mysql-must-use-primary-key
+  message: "Query plan doesn't use primary key"
+  rule: "has(mysql.explain.query_block.table.key) && mysql.explain.query_block.table.key != 'PRIMARY'"
 ```
 
----
+--------------------------------
 
 ### Debugging EXPLAIN Output in SQLC
 
@@ -2825,11 +2834,11 @@ sql:
     rules:
       - debug
 rules:
-  - name: debug
-    rule: "!has(postgresql.explain)" # A dummy rule to trigger explain
+- name: debug
+  rule: "!has(postgresql.explain)" # A dummy rule to trigger explain
 ```
 
----
+--------------------------------
 
 ### PostgreSQL EXPLAIN rules for sqlc
 
@@ -2839,15 +2848,15 @@ Defines rules in sqlc configuration for PostgreSQL that analyze EXPLAIN output. 
 
 ```yaml
 rules:
-  - name: postgresql-query-too-costly
-    message: "Query cost estimate is too high"
-    rule: "postgresql.explain.plan.total_cost > 1.0"
-  - name: postgresql-no-seq-scan
-    message: "Query plan results in a sequential scan"
-    rule: "postgresql.explain.plan.node_type == 'Seq Scan'"
+- name: postgresql-query-too-costly
+  message: "Query cost estimate is too high"
+  rule: "postgresql.explain.plan.total_cost > 1.0"
+- name: postgresql-no-seq-scan
+  message: "Query plan results in a sequential scan"
+  rule: "postgresql.explain.plan.node_type == 'Seq Scan'"
 ```
 
----
+--------------------------------
 
 ### Configure sqlc vet with database connectivity (YAML)
 
@@ -2871,7 +2880,7 @@ version: 2sql:
 
 ```
 
----
+--------------------------------
 
 ### Build sqlc-gen-json with Go
 
@@ -2883,7 +2892,7 @@ Builds the sqlc-gen-json executable and places it in the go bin directory. Requi
 go build -o ~/go/bin/sqlc-gen-json ./cmd/sqlc-gen-json
 ```
 
----
+--------------------------------
 
 ### Disable specific lint rules in SQL query - sqlc
 
@@ -2899,7 +2908,7 @@ WHERE id = ? LIMIT 1;
 
 ```
 
----
+--------------------------------
 
 ### SQLC Configuration: Complex Go type override with import, package, and pointer
 
@@ -2927,7 +2936,7 @@ version: "2"sql:
 
 ```
 
----
+--------------------------------
 
 ### Disable lint rules across multiple lines in SQL query - sqlc
 
@@ -2944,7 +2953,7 @@ WHERE id = ? LIMIT 1;
 
 ```
 
----
+--------------------------------
 
 ### GitHub Actions: Run sqlc vet
 
@@ -2959,21 +2968,23 @@ jobs:
   vet:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: sqlc-dev/setup-sqlc@v3
-        with:
-          sqlc-version: "1.30.0"
-      # Start a PostgreSQL server
-      - uses: sqlc-dev/action-setup-postgres@master
-        with:
-          postgres-version: "16"
-        id: postgres
-      - run: sqlc vet
-        env:
-          POSTGRESQL_SERVER_URI: ${{ steps.postgres.outputs.connection-uri }}?sslmode=disable
+    - uses: actions/checkout@v3
+    - uses: sqlc-dev/setup-sqlc@v3
+      with:
+        sqlc-version: '1.30.0'
+    # Start a PostgreSQL server
+    - uses: sqlc-dev/action-setup-postgres@master
+      with:
+        postgres-version: "16"
+      id: postgres
+    - run: sqlc vet
+      env:
+        POSTGRESQL_SERVER_URI: ${{ steps.postgres.outputs.connection-uri }}?sslmode=disable
+
+
 ```
 
----
+--------------------------------
 
 ### SQL Query to Get Student's Highest Score (Embedded)
 
@@ -2993,7 +3004,7 @@ FROM students
 JOIN high_scores ON high_scores.student_id = students.id;
 ```
 
----
+--------------------------------
 
 ### Generate Go Code with sqlc
 
@@ -3005,7 +3016,7 @@ This bash command initiates the code generation process using sqlc. It reads the
 sqlc generate
 ```
 
----
+--------------------------------
 
 ### Go Code for Prepared Queries with SQLC
 
@@ -3081,7 +3092,7 @@ func (q *Queries) GetRecord(ctx context.Context, id int32) (int32, error) {
 }
 ```
 
----
+--------------------------------
 
 ### SQL Query to Get Student's Highest Score (Standard)
 
@@ -3101,7 +3112,7 @@ FROM students
 JOIN high_scores ON high_scores.student_id = students.id;
 ```
 
----
+--------------------------------
 
 ### Use pgx connection for database operations in Go
 
@@ -3143,7 +3154,7 @@ func main() {
 }
 ```
 
----
+--------------------------------
 
 ### Run sqlc verify and push in GitHub Actions
 
@@ -3151,7 +3162,7 @@ Source: https://docs.sqlc.dev/en/latest/_sources/howto/ci-cd
 
 A comprehensive GitHub Actions workflow that includes running `sqlc verify` to check schema changes against existing queries and `sqlc push` for main branch merges. It sets up PostgreSQL and uses `SQLC_AUTH_TOKEN`.
 
-````yaml
+```yaml
 ```yaml
 name: sqlc
 on: [push]
@@ -3181,9 +3192,8 @@ jobs:
     - run: sqlc push
       env:
         SQLC_AUTH_TOKEN: ${{ secrets.SQLC_AUTH_TOKEN }}
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -3204,9 +3214,9 @@ sql:
         package: "tutorial"
         out: "tutorial"
         sql_package: "pgx/v5"
-````
+```
 
----
+--------------------------------
 
 ### Configure sqlc linting rules
 
@@ -3237,7 +3247,7 @@ rules:
       query.sql.contains("DELETE")
 ```
 
----
+--------------------------------
 
 ### Proto Definitions for SQL Configuration and Queries
 
@@ -3259,7 +3269,7 @@ message Query
   // SQL body
   string sql = 1;
   // Name of the query
-  string name = 2;
+  string name = 2; 
   // One of "many", "one", "exec", etc.
   string cmd = 3;
   // Query parameters, if any
@@ -3272,7 +3282,7 @@ message Parameter
 }
 ```
 
----
+--------------------------------
 
 ### MySQL EXPLAIN query format
 
@@ -3284,7 +3294,7 @@ Demonstrates the SQL command used by sqlc to retrieve EXPLAIN output for MySQL, 
 EXPLAIN FORMAT=JSON ...
 ```
 
----
+--------------------------------
 
 ### Use `sqlc createdb` command
 
@@ -3300,7 +3310,7 @@ The `sqlc createdb` command allows spinning up ephemeral databases for cloud pro
 
 ```
 
----
+--------------------------------
 
 ### GitHub Actions: Run sqlc push
 
@@ -3316,16 +3326,18 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: sqlc-dev/setup-sqlc@v3
-        with:
-          sqlc-version: "1.30.0"
-      - run: sqlc push
-        env:
-          SQLC_AUTH_TOKEN: ${{ secrets.SQLC_AUTH_TOKEN }}
+    - uses: actions/checkout@v3
+    - uses: sqlc-dev/setup-sqlc@v3
+      with:
+        sqlc-version: '1.30.0'
+    - run: sqlc push
+      env:
+        SQLC_AUTH_TOKEN: ${{ secrets.SQLC_AUTH_TOKEN }}
+
+
 ```
 
----
+--------------------------------
 
 ### Configure Plugins for sqlc (WASM and CLI)
 
@@ -3336,18 +3348,18 @@ Demonstrates how to define plugins for sqlc, supporting both WebAssembly modules
 ```yaml
 version: "2"
 plugins:
-  - name: "py"
-    wasm:
-      url: "https://github.com/sqlc-dev/sqlc-gen-python/releases/download/v0.16.0-alpha/sqlc-gen-python.wasm"
-      sha256: "428476c7408fd4c032da4ec74e8a7344f4fa75e0f98a5a3302f238283b9b95f2"
-  - name: "js"
-    env:
-      - PATH
-    process:
-      cmd: "sqlc-gen-json"
+- name: "py"
+  wasm: 
+    url: "https://github.com/sqlc-dev/sqlc-gen-python/releases/download/v0.16.0-alpha/sqlc-gen-python.wasm"
+    sha256: "428476c7408fd4c032da4ec74e8a7344f4fa75e0f98a5a3302f238283b9b95f2"
+- name: "js"
+  env:
+  - PATH
+  process: 
+    cmd: "sqlc-gen-json"
 ```
 
----
+--------------------------------
 
 ### Connect to PostgreSQL using pgx in Go
 
@@ -3364,7 +3376,7 @@ import (
 	"os"
 
 	"github.com/jackc/pgx/v5"
-
+    
 	"example.com/sqlc-tutorial/db"
 )
 
@@ -3389,7 +3401,7 @@ func main() {
 }
 ```
 
----
+--------------------------------
 
 ### Configure WASM Plugin for Greeter Output
 
@@ -3398,24 +3410,24 @@ Source: https://docs.sqlc.dev/en/latest/_sources/guides/plugins
 This YAML configuration sets up a WASM plugin named 'greeter' for sqlc. It specifies the plugin's WASM URL and SHA256 hash, and configures the codegen process to output files to the 'gen' directory using the 'greeter' plugin with a 'lang' option set to 'en-US'.
 
 ```yaml
-version: "2"
+version: '2'
 plugins:
-  - name: greeter
-    wasm:
-      url: https://github.com/sqlc-dev/sqlc-gen-greeter/releases/download/v0.1.0/sqlc-gen-greeter.wasm
-      sha256: afc486dac2068d741d7a4110146559d12a013fd0286f42a2fc7dcd802424ad07
+- name: greeter
+  wasm:
+    url: https://github.com/sqlc-dev/sqlc-gen-greeter/releases/download/v0.1.0/sqlc-gen-greeter.wasm
+    sha256: afc486dac2068d741d7a4110146559d12a013fd0286f42a2fc7dcd802424ad07
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    codegen:
-      - out: gen
-        plugin: greeter
-        options:
-          lang: en-US
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  codegen:
+  - out: gen
+    plugin: greeter
+    options:
+      lang: en-US
 ```
 
----
+--------------------------------
 
 ### Push Project with sqlc push
 
@@ -3428,7 +3440,7 @@ $ sqlc push
 
 ```
 
----
+--------------------------------
 
 ### Push Project to sqlc Cloud
 
@@ -3440,7 +3452,7 @@ This is the command to execute after configuring and verifying your project. Rem
 $ sqlc push
 ```
 
----
+--------------------------------
 
 ### Configure WASM Plugin with Environment Variables
 
@@ -3449,24 +3461,24 @@ Source: https://docs.sqlc.dev/en/latest/_sources/guides/plugins
 This configuration demonstrates how to set up a WASM plugin in sqlc. It includes defining the plugin, specifying its WASM URL and SHA256 hash, and granting access to the 'PATH' environment variable. The 'codegen' section specifies the output directory and the plugin to use.
 
 ```yaml
-version: "2"
+version: '2'
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    codegen:
-      - out: gen
-        plugin: test
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  codegen:
+  - out: gen
+    plugin: test
 plugins:
-  - name: test
-    env:
-      - PATH
-    wasm:
-      url: https://github.com/sqlc-dev/sqlc-gen-test/releases/download/v0.1.0/sqlc-gen-test.wasm
-      sha256: 138220eae508d4b65a5a8cea555edd155eb2290daf576b7a8b96949acfeb3790
+- name: test
+  env:
+  - PATH
+  wasm:
+    url: https://github.com/sqlc-dev/sqlc-gen-test/releases/download/v0.1.0/sqlc-gen-test.wasm
+    sha256: 138220eae508d4b65a5a8cea555edd155eb2290daf576b7a8b96949acfeb3790
 ```
 
----
+--------------------------------
 
 ### Basic sqlc.yaml Configuration for PostgreSQL
 
@@ -3487,7 +3499,7 @@ version: "2"sql:
 
 ```
 
----
+--------------------------------
 
 ### sqlc Database Connection URI
 
@@ -3496,20 +3508,20 @@ Source: https://docs.sqlc.dev/en/latest/_sources/reference/config
 Sets up a PostgreSQL database connection for sqlc using a URI that includes an environment variable for the password.
 
 ```yaml
-version: "2"
+version: '2'
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    database:
-      uri: postgresql://postgres:${PG_PASSWORD}@localhost:5432/authors
-    gen:
-      go:
-        package: authors
-        out: postgresql
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  database:
+    uri: postgresql://postgres:${PG_PASSWORD}@localhost:5432/authors
+  gen:
+    go:
+      package: authors
+      out: postgresql
 ```
 
----
+--------------------------------
 
 ### Configure WASM plugin for code generation
 
@@ -3518,24 +3530,25 @@ Source: https://docs.sqlc.dev/en/latest/guides/plugins
 This configuration defines a WASM plugin named 'greeter' that generates code in the 'gen' directory. It specifies the plugin's WebAssembly module URL and SHA256 hash for security. The plugin receives 'en-US' as a language option for code generation.
 
 ```yaml
-version: "2"
+version: '2'
 plugins:
-  - name: greeter
-    wasm:
-      url: https://github.com/sqlc-dev/sqlc-gen-greeter/releases/download/v0.1.0/sqlc-gen-greeter.wasm
-      sha256: afc486dac2068d741d7a4110146559d12a013fd0286f42a2fc7dcd802424ad07
+- name: greeter
+  wasm:
+    url: https://github.com/sqlc-dev/sqlc-gen-greeter/releases/download/v0.1.0/sqlc-gen-greeter.wasm
+    sha256: afc486dac2068d741d7a4110146559d12a013fd0286f42a2fc7dcd802424ad07
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    codegen:
-      - out: gen
-        plugin: greeter
-        options:
-          lang: en-US
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  codegen:
+  - out: gen
+    plugin: greeter
+    options:
+      lang: en-US
+
 ```
 
----
+--------------------------------
 
 ### sqlc Configuration File (YAML)
 
@@ -3573,9 +3586,10 @@ packages:
     output_querier_file_name: "querier.go"
     output_copyfrom_file_name: "copyfrom.go"
     query_parameter_limit: 1
+
 ```
 
----
+--------------------------------
 
 ### Configure sqlc for pgx/v5
 
@@ -3595,7 +3609,7 @@ version: "2"sql:
         out: "db"
 ```
 
----
+--------------------------------
 
 ### Go: Create Book Batch Insert
 
@@ -3624,33 +3638,34 @@ func (b *CreateBookBatchResults) Close() error {
 }
 ```
 
----
+--------------------------------
 
 ### Configure process-based plugin for code generation
 
 Source: https://docs.sqlc.dev/en/latest/guides/plugins
 
-This configuration sets up a process-based plugin named 'jsonb' that executes the 'sqlc-gen-json' command to generate code. It directs the output to the 'gen' directory and passes 'indent: " "' and 'filename: codegen.json' as options to the plugin.
+This configuration sets up a process-based plugin named 'jsonb' that executes the 'sqlc-gen-json' command to generate code. It directs the output to the 'gen' directory and passes 'indent: "  "' and 'filename: codegen.json' as options to the plugin.
 
 ```yaml
-version: "2"
+version: '2'
 plugins:
-  - name: jsonb
-    process:
-      cmd: sqlc-gen-json
+- name: jsonb
+  process:
+    cmd: sqlc-gen-json
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    codegen:
-      - out: gen
-        plugin: jsonb
-        options:
-          indent: "  "
-          filename: codegen.json
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  codegen:
+  - out: gen
+    plugin: jsonb
+    options:
+      indent: "  "
+      filename: codegen.json
+
 ```
 
----
+--------------------------------
 
 ### sqlc Configuration - Package Settings (YAML)
 
@@ -3690,7 +3705,7 @@ packages:
     query_parameter_limit: 1
 ```
 
----
+--------------------------------
 
 ### sqlc Configuration (Version 2)
 
@@ -3703,27 +3718,27 @@ version: "2"
 cloud:
   project: "<PROJECT_ID>"
 sql:
-  - schema: "postgresql/schema.sql"
-    queries: "postgresql/query.sql"
-    engine: "postgresql"
-    gen:
-      go:
-        package: "authors"
-        out: "postgresql"
-    database:
-      managed: true
-    rules:
-      - sqlc/db-prepare
-  - schema: "mysql/schema.sql"
-    queries: "mysql/query.sql"
-    engine: "mysql"
-    gen:
-      go:
-        package: "authors"
-        out: "mysql"
+- schema: "postgresql/schema.sql"
+  queries: "postgresql/query.sql"
+  engine: "postgresql"
+  gen:
+    go:
+      package: "authors"
+      out: "postgresql"
+  database:
+    managed: true
+  rules:
+    - sqlc/db-prepare
+- schema: "mysql/schema.sql"
+  queries: "mysql/query.sql"
+  engine: "mysql"
+  gen:
+    go:
+      package: "authors"
+      out: "mysql"
 ```
 
----
+--------------------------------
 
 ### Go Code for Prepared Statements with sqlc
 
@@ -3800,7 +3815,7 @@ func (q *Queries) GetRecord(ctx context.Context, id int32) (int32, error) {
 
 ```
 
----
+--------------------------------
 
 ### Python Code Generation Options
 
@@ -3817,7 +3832,7 @@ emit_async_querier: true
 emit_pydantic_models: true
 ```
 
----
+--------------------------------
 
 ### sqlc Database URI Configuration
 
@@ -3826,20 +3841,21 @@ Source: https://docs.sqlc.dev/en/latest/reference/config
 Demonstrates configuring a PostgreSQL database connection in sqlc using a connection URI that includes an environment variable for the password.
 
 ```yaml
-version: "2"
+version: '2'
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    database:
-      uri: postgresql://postgres:${PG_PASSWORD}@localhost:5432/authors
-    gen:
-      go:
-        package: authors
-        out: postgresql
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  database:
+    uri: postgresql://postgres:${PG_PASSWORD}@localhost:5432/authors
+  gen:
+    go:
+      package: authors
+      out: postgresql
+
 ```
 
----
+--------------------------------
 
 ### Environment Variables for Push
 
@@ -3856,7 +3872,7 @@ GITHUB_SHA
 
 ```
 
----
+--------------------------------
 
 ### Analyzing sqlc trace output with Go tool
 
@@ -3868,7 +3884,7 @@ Demonstrates how to use the Go tool to analyze the trace output file generated b
 go tool trace trace.out
 ```
 
----
+--------------------------------
 
 ### Go sqlc Generated Queries with Transaction Support
 
@@ -3907,7 +3923,7 @@ func (q *Queries) WithTx(tx *sql.Tx) *Queries {
 
 ```
 
----
+--------------------------------
 
 ### SQL Queries for PostgreSQL
 
@@ -3943,7 +3959,7 @@ DELETE FROM authors
 WHERE id = $1;
 ```
 
----
+--------------------------------
 
 ### Shell Command for Local Verification
 
@@ -3955,7 +3971,7 @@ Runs the 'sqlc verify' command locally to check existing queries against the mos
 $ sqlc verify --against main
 ```
 
----
+--------------------------------
 
 ### SQLC Configuration for db-prepare Rule (Managed PostgreSQL)
 
@@ -3981,7 +3997,7 @@ sql:
       - sqlc/db-prepare
 ```
 
----
+--------------------------------
 
 ### Run sqlc push in GitHub Actions
 
@@ -3989,7 +4005,7 @@ Source: https://docs.sqlc.dev/en/latest/_sources/howto/ci-cd
 
 A GitHub Actions workflow that runs `sqlc push` on pushes to the main branch. It requires an `SQLC_AUTH_TOKEN` environment variable for authentication with sqlc Cloud.
 
-````yaml
+```yaml
 ```yaml
 name: sqlc
 on: [push]
@@ -4005,9 +4021,8 @@ jobs:
     - run: sqlc push
       env:
         SQLC_AUTH_TOKEN: ${{ secrets.SQLC_AUTH_TOKEN }}
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -4031,9 +4046,9 @@ sql:
       uri: "postgresql://postgres:password@localhost:5432/postgres"
     rules:
       - sqlc/db-prepare
-````
+```
 
----
+--------------------------------
 
 ### Proto Messages for sqlc vet Linting
 
@@ -4055,7 +4070,7 @@ message Query
   // SQL body
   string sql = 1;
   // Name of the query
-  string name = 2;
+  string name = 2; 
   // One of "many", "one", "exec", etc.
   string cmd = 3;
   // Query parameters, if any
@@ -4069,7 +4084,7 @@ message Parameter
 
 ```
 
----
+--------------------------------
 
 ### sqlc Migration and Release Notes
 
@@ -4077,7 +4092,7 @@ Source: https://docs.sqlc.dev/en/latest/reference/changelog
 
 Information regarding the sqlc repository migration and the release notes for version 1.20.0.
 
-````APIDOC
+```APIDOC
 ## Release v1.20.0
 
 **Released:** 2023-07-31
@@ -4089,10 +4104,9 @@ The `kyleconroy/sqlc` repository has been migrated to `sqlc-dev/sqlc`. All exist
 **Incorrect Installation:**
 ```bash
 go install github.com/kyleconroy/sqlc/cmd/sqlc@v1.20.0
-````
+```
 
 **Correct Installation:**
-
 ```bash
 go install github.com/sqlc-dev/sqlc/cmd/sqlc@v1.20.0
 ```
@@ -4104,7 +4118,6 @@ Users encountering issues during the upgrade are encouraged to file bug reports 
 The `sqlc vet` command now supports using `EXPLAIN` output within lint rules. This allows for more sophisticated query analysis, such as verifying index usage.
 
 **Example Lint Rule Configuration:**
-
 ```yaml
 version: 2
 sql:
@@ -4120,26 +4133,23 @@ sql:
     rules:
       - has-index
 rules:
-  - name: has-index
-    rule: >
-      query.sql.startsWith("SELECT") &&
-      !(postgresql.explain.plan.plans.all(p, has(p.index_name) || p.plans.all(p, has(p.index_name))))
+- name: has-index
+  rule: >
+    query.sql.startsWith("SELECT") &&
+    !(postgresql.explain.plan.plans.all(p, has(p.index_name) || p.plans.all(p, has(p.index_name))))
 ```
 
 **Available `EXPLAIN` Data:**
-
-- For PostgreSQL: `postgresql.explain` (parsed into `PostgreSQLExplain` proto message)
-- For MySQL: `mysql.explain` (parsed into `MySQLExplain` proto message)
+*   For PostgreSQL: `postgresql.explain` (parsed into `PostgreSQLExplain` proto message)
+*   For MySQL: `mysql.explain` (parsed into `MySQLExplain` proto message)
 
 **`EXPLAIN` Command Execution:**
-
-- PostgreSQL: `EXPLAIN (ANALYZE false, VERBOSE, COSTS, SETTINGS, BUFFERS, FORMAT JSON) ...`
-- MySQL: `EXPLAIN FORMAT=JSON ...`
+*   PostgreSQL: `EXPLAIN (ANALYZE false, VERBOSE, COSTS, SETTINGS, BUFFERS, FORMAT JSON) ...`
+*   MySQL: `EXPLAIN FORMAT=JSON ...`
 
 **Debug Mode:**
 Set `SQLCDEBUG=dumpexplain=1` environment variable to view the raw `EXPLAIN` JSON output for debugging lint rules.
-
-````
+```
 
 --------------------------------
 
@@ -4183,9 +4193,8 @@ sql:
     go:
       package: "authors"
       out: "mysql"
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -4226,9 +4235,9 @@ jobs:
         SQLC_AUTH_TOKEN: ${{ secrets.SQLC_AUTH_TOKEN }}
 
 
-````
+```
 
----
+--------------------------------
 
 ### SQL-migrate Up and Down Migration SQL
 
@@ -4247,7 +4256,7 @@ CREATE TABLE people (id int);
 DROP TABLE people;
 ```
 
----
+--------------------------------
 
 ### Add Tags to Push with sqlc
 
@@ -4260,7 +4269,7 @@ $ sqlc push --tag v1.0.0
 
 ```
 
----
+--------------------------------
 
 ### Set Go build tags with `emit_build_tags`
 
@@ -4277,9 +4286,10 @@ schema: "schema.sql"
     emit_build_tags: true
     package: "main"
     out: "./generated"
+
 ```
 
----
+--------------------------------
 
 ### Update dependency: github.com/jackc/pgx/v5
 
@@ -4289,14 +4299,14 @@ Updates the `github.com/jackc/pgx/v5` dependency from version `5.4.3` to `5.5.0`
 
 ```go
 require (
-	...
+	... 
 	github.com/jackc/pgx/v5 v5.5.0
 	...
 )
 
 ```
 
----
+--------------------------------
 
 ### Plugin Configuration
 
@@ -4304,7 +4314,7 @@ Source: https://docs.sqlc.dev/en/latest/_sources/reference/config
 
 Defines how to configure and execute external plugins within SQLC, specifying their names, environment variables, execution commands, and WASM details.
 
-````APIDOC
+```APIDOC
 ## Plugin Configuration
 
 ### Description
@@ -4327,17 +4337,16 @@ Each plugin configuration is a mapping with the following keys:
 version: "2"
 plugins:
 - name: "py"
-  wasm:
+  wasm: 
     url: "https://github.com/sqlc-dev/sqlc-gen-python/releases/download/v0.16.0-alpha/sqlc-gen-python.wasm"
     sha256: "428476c7408fd4c032da4ec74e8a7344f4fa75e0f98a5a3302f238283b9b95f2"
 - name: "js"
   env:
   - PATH
-  process:
+  process: 
     cmd: "sqlc-gen-json"
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -4350,24 +4359,24 @@ Includes a new script designed to mirror code changes to the `sqlc-gen-go` repos
 ```bash
 # Example script content (conceptual)
 # #!/bin/bash
-#
+# 
 # SOURCE_REPO="git@github.com:sqlc-dev/sqlc.git"
 # TARGET_REPO="git@github.com:sqlc-dev/sqlc-gen-go.git"
-#
+# 
 # git clone $SOURCE_REPO sqlc-dev
 # git clone $TARGET_REPO sqlc-gen-go-dev
-#
+# 
 # # Copy relevant Go code from sqlc-dev to sqlc-gen-go-dev
 # cp -r sqlc-dev/internal/compiler/golang sqlc-gen-go-dev/golang
-#
+# 
 # cd sqlc-gen-go-dev
 # git add .
 # git commit -m "Mirror Go code from sqlc"
 # git push origin main
 
-````
+```
 
----
+--------------------------------
 
 ### Configure Process Plugin for JSON Output
 
@@ -4376,24 +4385,24 @@ Source: https://docs.sqlc.dev/en/latest/_sources/guides/plugins
 This configuration illustrates how to use a process-based plugin for serializing sqlc output to JSON. It defines a plugin named 'jsonb' that executes 'sqlc-gen-json'. Options for indentation and filename are provided, and the 'codegen' section specifies the output directory.
 
 ```yaml
-version: "2"
+version: '2'
 plugins:
-  - name: jsonb
-    process:
-      cmd: sqlc-gen-json
+- name: jsonb
+  process:
+    cmd: sqlc-gen-json
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    codegen:
-      - out: gen
-        plugin: jsonb
-        options:
-          indent: "  "
-          filename: codegen.json
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  codegen:
+  - out: gen
+    plugin: jsonb
+    options:
+      indent: "  "
+      filename: codegen.json
 ```
 
----
+--------------------------------
 
 ### Generated Go Struct for dbmate Foo
 
@@ -4409,13 +4418,13 @@ type Foo struct {
 }
 ```
 
----
+--------------------------------
 
 ### Create Author and Return All Columns (PostgreSQL)
 
 Source: https://docs.sqlc.dev/en/latest/_sources/howto/insert
 
-Inserts a new author and returns all columns of the newly inserted row using PostgreSQL's RETURNING \* syntax. It takes context, name, and bio as input.
+Inserts a new author and returns all columns of the newly inserted row using PostgreSQL's RETURNING * syntax. It takes context, name, and bio as input.
 
 ```go
 package db
@@ -4448,7 +4457,7 @@ func (q *Queries) CreateAuthor(ctx context.Context, arg CreateAuthorParams) (Aut
 
 ```
 
----
+--------------------------------
 
 ### JSON Output Configuration
 
@@ -4462,7 +4471,7 @@ filename: "schema.json"
 indent: "  "
 ```
 
----
+--------------------------------
 
 ### sqlc Lint Rule with EXPLAIN (PostgreSQL)
 
@@ -4485,13 +4494,13 @@ sql:
     rules:
       - has-index
 rules:
-  - name: has-index
-    rule: >
-      query.sql.startsWith("SELECT") &&
-      !(postgresql.explain.plan.plans.all(p, has(p.index_name) || p.plans.all(p, has(p.index_name))))
+- name: has-index
+  rule: >
+    query.sql.startsWith("SELECT") &&
+    !(postgresql.explain.plan.plans.all(p, has(p.index_name) || p.plans.all(p, has(p.index_name))))
 ```
 
----
+--------------------------------
 
 ### Tern Migration SQL
 
@@ -4505,7 +4514,7 @@ CREATE TABLE comment (id int NOT NULL, text text NOT NULL);
 DROP TABLE comment;
 ```
 
----
+--------------------------------
 
 ### Enable dumpexplain Output with SQLCDEBUG
 
@@ -4517,7 +4526,7 @@ Enables the dumpexplain functionality to print JSON-formatted EXPLAIN results wh
 SQLCDEBUG=dumpexplain=1
 ```
 
----
+--------------------------------
 
 ### Update dependency: github.com/google/cel-go
 
@@ -4527,14 +4536,14 @@ Updates the `github.com/google/cel-go` dependency from version `0.18.1` to `0.18
 
 ```go
 require (
-	...
+	... 
 	github.com/google/cel-go v0.18.2
 	...
 )
 
 ```
 
----
+--------------------------------
 
 ### SQL Schema with Prepared Query
 
@@ -4552,7 +4561,7 @@ SELECT * FROM records
 WHERE id = $1;
 ```
 
----
+--------------------------------
 
 ### Shell Command for Verification with Specific Tag
 
@@ -4564,7 +4573,7 @@ Runs 'sqlc verify' against a specific tag, allowing analysis of queries against 
 $ sqlc verify --against [tag]
 ```
 
----
+--------------------------------
 
 ### Run Go Tests
 
@@ -4576,7 +4585,7 @@ Executes all Go tests within the project. Assumes tests are written in Go.
 go test ./...
 ```
 
----
+--------------------------------
 
 ### Verify Changes Against a Tag with sqlc
 
@@ -4589,7 +4598,7 @@ $ sqlc verify --against v1.0.0
 
 ```
 
----
+--------------------------------
 
 ### Push Project with a Tag
 
@@ -4601,7 +4610,7 @@ You can associate a tag with a `push` operation using the `--tag` flag. This tag
 $ sqlc push --tag main
 ```
 
----
+--------------------------------
 
 ### Add sqlc-gen-python plugin configuration (JSON)
 
@@ -4624,7 +4633,7 @@ Configuration to add the sqlc-gen-python plugin using its WASM URL and SHA256 ha
 }
 ```
 
----
+--------------------------------
 
 ### sqlc.yaml for Enhanced Analysis with Managed PostgreSQL Database
 
@@ -4635,8 +4644,8 @@ This configuration enables enhanced query analysis by automatically creating and
 ```yaml
 version: "2"
 servers:
-  - engine: postgresql
-    uri: "postgres://locahost:5432/postgres?sslmode=disable"
+- engine: postgresql
+  uri: "postgres://locahost:5432/postgres?sslmode=disable"
 sql:
   - engine: "postgresql"
     queries: "query.sql"
@@ -4649,7 +4658,7 @@ sql:
         sql_package: "pgx/v5"
 ```
 
----
+--------------------------------
 
 ### List all author rows using PostgreSQL syntax
 
@@ -4693,7 +4702,7 @@ func (q *Queries) ListAuthors(ctx context.Context) ([]Author, error) {
 }
 ```
 
----
+--------------------------------
 
 ### Update dependency: golang.org/x/sync
 
@@ -4703,14 +4712,14 @@ Updates the `golang.org/x/sync` dependency from version `0.4.0` to `0.5.0`.
 
 ```go
 require (
-	...
+	... 
 	golang.org/x/sync v0.5.0
 	...
 )
 
 ```
 
----
+--------------------------------
 
 ### Lint Queries with Managed Databases - sqlc
 
@@ -4719,21 +4728,22 @@ Source: https://docs.sqlc.dev/en/latest/howto/managed-databases
 This configuration enables managed databases in sqlc for linting queries, specifically for rules that require database connections like 'EXPLAIN ...'. It includes the 'sqlc/db-prepare' rule.
 
 ```yaml
-version: "2"
+version: '2'
 servers:
-  - engine: postgresql
-    uri: "postgres://localhost:5432/postgres?sslmode=disable"
+- engine: postgresql
+  uri: "postgres://localhost:5432/postgres?sslmode=disable"
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    database:
-      managed: true
-    rules:
-      - sqlc/db-prepare
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  database:
+    managed: true
+  rules:
+  - sqlc/db-prepare
+
 ```
 
----
+--------------------------------
 
 ### Add support for MySQL
 
@@ -4753,7 +4763,7 @@ Introduces native support for MySQL databases, expanding sqlc's compatibility an
 
 ```
 
----
+--------------------------------
 
 ### Python Code Generation Settings
 
@@ -4777,7 +4787,7 @@ Configure the generation of Python code from your SQL schema and queries.
 - `emit_pydantic_models` (boolean) - If true, generates Pydantic models. Otherwise, uses dataclasses. Defaults to `false`.
 ```
 
----
+--------------------------------
 
 ### Add Project ID to sqlc Configuration
 
@@ -4789,9 +4799,10 @@ This snippet shows how to add your project ID to the sqlc configuration file (`s
 version: "2"
 cloud:
   project: "<PROJECT_ID>"
+
 ```
 
----
+--------------------------------
 
 ### PostgreSQL: List Authors by IDs using ANY operator
 
@@ -4871,7 +4882,7 @@ func (q *Queries) ListAuthorsByIDs(ctx context.Context, ids []int) ([]Author, er
 
 ```
 
----
+--------------------------------
 
 ### Go: Count rows using sqlc
 
@@ -4947,7 +4958,7 @@ func (q *Queries) CountAuthorsByTown(ctx context.Context) ([]CountAuthorsByTownR
 
 ```
 
----
+--------------------------------
 
 ### Verify Queries Against a Tag
 
@@ -4960,7 +4971,7 @@ $ sqlc verify --against main
 
 ```
 
----
+--------------------------------
 
 ### Apply Global Type and Field Overrides for Go in sqlc
 
@@ -4983,23 +4994,23 @@ overrides:
           package: "null"
           type: "Time"
 sql:
-  - schema: "postgresql/schema.sql"
-    queries: "postgresql/query.sql"
-    engine: "postgresql"
-    gen:
-      go:
-        package: "authors"
-        out: "postgresql"
-  - schema: "mysql/schema.sql"
-    queries: "mysql/query.sql"
-    engine: "mysql"
-    gen:
-      go:
-        package: "authors"
-        out: "mysql"
+- schema: "postgresql/schema.sql"
+  queries: "postgresql/query.sql"
+  engine: "postgresql"
+  gen:
+    go:
+      package: "authors"
+      out: "postgresql"
+- schema: "mysql/schema.sql"
+  queries: "mysql/query.sql"
+  engine: "mysql"
+  gen:
+    go:
+      package: "authors"
+      out: "mysql"
 ```
 
----
+--------------------------------
 
 ### Set SQLC Authentication Token
 
@@ -5011,7 +5022,7 @@ This command sets the `SQLC_AUTH_TOKEN` environment variable, which is required 
 export SQLC_AUTH_TOKEN=sqlc_xxxxxxxx
 ```
 
----
+--------------------------------
 
 ### Verify Queries Against Most Recent Push
 
@@ -5024,7 +5035,7 @@ $ sqlc verify --against [tag]
 
 ```
 
----
+--------------------------------
 
 ### MySQL/SQLite: List Authors by IDs using sqlc.slice()
 
@@ -5121,7 +5132,7 @@ func (q *Queries) ListAuthorsByIDs(ctx context.Context, ids []int64) ([]Author, 
 
 ```
 
----
+--------------------------------
 
 ### sqlc.yaml for Enhanced Analysis with User's PostgreSQL
 
@@ -5143,7 +5154,7 @@ version: "2"sql:
 
 ```
 
----
+--------------------------------
 
 ### Dry Run Project Upload with sqlc push
 
@@ -5156,7 +5167,7 @@ $ sqlc push --dry-run
 
 ```
 
----
+--------------------------------
 
 ### Bulk insert for MySQL (SQL)
 
@@ -5171,7 +5182,7 @@ CREATE TABLE foo (a text, b integer, c DATETIME, d DATE);
 INSERT INTO foo (a, b, c, d) VALUES (?, ?, ?, ?);
 ```
 
----
+--------------------------------
 
 ### Add `verify` command for queries and migrations
 
@@ -5186,7 +5197,7 @@ Introduces a new `verify` command that allows users to check the validity of the
 
 ```
 
----
+--------------------------------
 
 ### Go Structs After Renaming
 
@@ -5213,7 +5224,7 @@ type Publisher struct {
 }
 ```
 
----
+--------------------------------
 
 ### New workflow for sqlc-gen-python
 
@@ -5224,9 +5235,9 @@ Establishes a new continuous integration workflow specifically for the `sqlc-gen
 ```yaml
 # .github/workflows/python-build.yml
 # name: Python CI
-#
+# 
 # on: [push]
-#
+# 
 # jobs:
 #   build:
 #     runs-on: ubuntu-latest
@@ -5243,9 +5254,10 @@ Establishes a new continuous integration workflow specifically for the `sqlc-gen
 #     - name: Run tests
 #       run:
 #         pytest
+
 ```
 
----
+--------------------------------
 
 ### Trace SQL execution with go tool trace
 
@@ -5262,7 +5274,7 @@ go tool trace trace.out
 SQLCDEBUG=trace=name.out
 ```
 
----
+--------------------------------
 
 ### SQL Schema Definitions
 
@@ -5283,7 +5295,7 @@ CREATE TABLE user_actions (
 );
 ```
 
----
+--------------------------------
 
 ### Go: Books By Title Year Batch Query
 
@@ -5312,7 +5324,7 @@ func (b *BooksByTitleYearBatchResults) Close() error {
 }
 ```
 
----
+--------------------------------
 
 ### Configure sqlc vet with custom rules (YAML)
 
@@ -5354,7 +5366,7 @@ rules:
 
 ```
 
----
+--------------------------------
 
 ### Add nil pointer check to prevent `db/prepare` panic
 
@@ -5374,7 +5386,7 @@ Implements a nil pointer check in the `vet` component to prevent a panic that co
 
 ```
 
----
+--------------------------------
 
 ### Batch Query Books by Title and Year using :batchmany (PostgreSQL)
 
@@ -5409,7 +5421,7 @@ func (b *BooksByTitleYearBatchResults) Close() error {
 }
 ```
 
----
+--------------------------------
 
 ### Atlas Migration Schema Creation
 
@@ -5422,7 +5434,7 @@ An SQL statement for creating a 'post' table with 'id', 'title', and 'body' colu
 CREATE TABLE "public"."post" ("id" integer NOT NULL, "title" text NULL, "body" text NULL, PRIMARY KEY ("id"));
 ```
 
----
+--------------------------------
 
 ### Configure Plugin Environment Variables (YAML)
 
@@ -5448,7 +5460,7 @@ plugins:
 
 ```
 
----
+--------------------------------
 
 ### SQL Query for User Actions
 
@@ -5463,7 +5475,7 @@ JOIN user_actions ua ON u.id = ua.user_id
 ORDER BY created_at;
 ```
 
----
+--------------------------------
 
 ### Add sqlc-gen-python plugin configuration (YAML)
 
@@ -5480,7 +5492,7 @@ plugins:
       sha256: "aca83e1f59f8ffdc604774c2f6f9eb321a2b23e07dc83fc12289d25305fa065b"
 ```
 
----
+--------------------------------
 
 ### UUIDs to github.com/google/uuid
 
@@ -5506,13 +5518,13 @@ type Author struct {
 }
 ```
 
----
+--------------------------------
 
 ### Create Author and Return All Columns (SQLite)
 
 Source: https://docs.sqlc.dev/en/latest/_sources/howto/insert
 
-Inserts a new author and returns all columns using SQLite's RETURNING \* syntax. This function is suitable for SQLite databases that support the RETURNING clause.
+Inserts a new author and returns all columns using SQLite's RETURNING * syntax. This function is suitable for SQLite databases that support the RETURNING clause.
 
 ```go
 package db
@@ -5545,7 +5557,7 @@ func (q *Queries) CreateAuthor(ctx context.Context, arg CreateAuthorParams) (Aut
 
 ```
 
----
+--------------------------------
 
 ### Set SQLC Auth Token Environment Variable
 
@@ -5558,7 +5570,7 @@ export SQLC_AUTH_TOKEN=sqlc_xxxxxxxx
 
 ```
 
----
+--------------------------------
 
 ### Update dependency: github.com/spf13/cobra
 
@@ -5568,14 +5580,14 @@ Updates the `github.com/spf13/cobra` dependency from version `1.7.0` to `1.8.0`.
 
 ```go
 require (
-	...
+	... 
 	github.com/spf13/cobra v1.8.0
 	...
 )
 
 ```
 
----
+--------------------------------
 
 ### SQL Schema and Query for Preparing Statements
 
@@ -5594,7 +5606,7 @@ WHERE id = $1;
 
 ```
 
----
+--------------------------------
 
 ### Batch Delete Books using :batchexec (PostgreSQL)
 
@@ -5625,7 +5637,7 @@ func (b *DeleteBookBatchResults) Close() error {
 }
 ```
 
----
+--------------------------------
 
 ### PostgreSQL COPY FROM SQLC Configuration
 
@@ -5644,9 +5656,10 @@ sql:
         package: "db"
         sql_package: "pgx/v5"
         out: "db"
+
 ```
 
----
+--------------------------------
 
 ### Go: List Authors Query
 
@@ -5661,7 +5674,7 @@ func (q *Queries) ListAuthors(ctx context.Context) ([]Author, error) {
 }
 ```
 
----
+--------------------------------
 
 ### Handle simplified `CASE` statements in MySQL
 
@@ -5683,7 +5696,7 @@ FROM orders;
 
 ```
 
----
+--------------------------------
 
 ### Search `SELECT` and `UPDATE` the same way
 
@@ -5700,7 +5713,7 @@ Standardizes the search mechanism for `SELECT` and `UPDATE` statements within th
 
 ```
 
----
+--------------------------------
 
 ### Dry Run sqlc Push
 
@@ -5716,7 +5729,7 @@ $ sqlc push --dry-run
 2023/11/21 10:39:51 INFO query queryset=app file=queries/app.sql bytes=1150
 ```
 
----
+--------------------------------
 
 ### Generate Go Code for PostgreSQL Batch Inserts (:batchone)
 
@@ -5759,7 +5772,7 @@ func (b *CreateBookBatchResults) Close() error {
 
 ```
 
----
+--------------------------------
 
 ### Bump Go version in CI and Dockerfile
 
@@ -5773,10 +5786,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v4
-        with:
-          go-version: "1.21.4"
+    - uses: actions/checkout@v3
+    - uses: actions/setup-go@v4
+      with:
+        go-version: '1.21.4'
+
 ```
 
 ```dockerfile
@@ -5785,7 +5799,7 @@ FROM golang:1.21.4-alpine
 
 WORKDIR /app
 
-COPY go.mod go.sum ./
+COPY go.mod go.sum ./ 
 RUN go mod download
 
 COPY *.go ./
@@ -5795,7 +5809,7 @@ CMD ["./main"]
 
 ```
 
----
+--------------------------------
 
 ### Configure Per-Package Overrides (sqlc v1)
 
@@ -5811,10 +5825,11 @@ packages:
     queries: "./sql/query/"
     schema: "./sql/schema/"
     engine: "postgresql"
-    overrides: [...]
+    overrides: [...] 
+
 ```
 
----
+--------------------------------
 
 ### Migrate Python package config to sqlc.yaml
 
@@ -5823,7 +5838,7 @@ Source: https://docs.sqlc.dev/en/latest/guides/migrating-to-sqlc-gen-python
 Shows the transformation of the Python generation configuration within sqlc.yaml from the old 'gen' format to the new 'codegen' format for the sqlc-gen-python plugin.
 
 ```yaml
-sql:
+  sql:
   - schema: "schema.sql"
     queries: "query.sql"
     engine: "postgresql"
@@ -5834,24 +5849,28 @@ sql:
         emit_sync_querier: true
         emit_async_querier: true
         query_parameter_limit: 5
+
+
 ```
 
 ```yaml
-sql:
+  sql:
   - schema: "schema.sql"
     queries: "query.sql"
     engine: "postgresql"
     codegen:
-      - plugin: "py"
-        out: "src"
-        options:
-          package: "foo"
-          emit_sync_querier: true
-          emit_async_querier: true
-          query_parameter_limit: 5
+    - plugin: "py"
+      out: "src"
+      options:
+        package: "foo"
+        emit_sync_querier: true
+        emit_async_querier: true
+        query_parameter_limit: 5
+
+
 ```
 
----
+--------------------------------
 
 ### Go Struct for Named Parameters
 
@@ -5866,7 +5885,7 @@ type UpdateAuthorNameParams struct {
 }
 ```
 
----
+--------------------------------
 
 ### sqlc.yaml for Enhanced Analysis with Managed PostgreSQL
 
@@ -5891,7 +5910,7 @@ servers:
 
 ```
 
----
+--------------------------------
 
 ### Migrate Python package config to sqlc.json
 
@@ -5942,7 +5961,7 @@ Shows the transformation of the Python generation configuration within sqlc.json
 
 ```
 
----
+--------------------------------
 
 ### Go: Delete Book Batch Execution
 
@@ -5967,7 +5986,7 @@ func (b *DeleteBookBatchResults) Close() error {
 }
 ```
 
----
+--------------------------------
 
 ### Generated Go Struct for Atlas Post
 
@@ -5985,7 +6004,7 @@ type Post struct {
 }
 ```
 
----
+--------------------------------
 
 ### Select specific columns for an author (Go)
 
@@ -6056,7 +6075,7 @@ func (q *Queries) GetInfoForAuthor(ctx context.Context, id int) (GetInfoForAutho
 
 ```
 
----
+--------------------------------
 
 ### Create Author and Return ID (SQLite)
 
@@ -6095,7 +6114,7 @@ func (q *Queries) CreateAuthorAndReturnId(ctx context.Context, arg CreateAuthorA
 
 ```
 
----
+--------------------------------
 
 ### sqlc Dependency Updates
 
@@ -6128,7 +6147,7 @@ This section lists recent dependency updates for the sqlc project.
 *   Updated `actions/checkout` from 3 to 4
 ```
 
----
+--------------------------------
 
 ### Go struct generation with JSON tags
 
@@ -6149,7 +6168,7 @@ type Author struct {
 }
 ```
 
----
+--------------------------------
 
 ### SQL: Create Book Batch Insert Annotation
 
@@ -6169,7 +6188,7 @@ INSERT INTO books (
 RETURNING book_id, author_id, isbn
 ```
 
----
+--------------------------------
 
 ### Pull opts into its own package
 
@@ -6180,12 +6199,12 @@ Organizes the Go code generation component by extracting option-related logic in
 ```go
 // Conceptual structure with a separate options package
 // package main
-//
+// 
 // import (
 // 	"github.com/sqlc-dev/sqlc/internal/opts"
 // 	// ...
 // )
-//
+// 
 // func main() {
 // 	// ... use options from opts package
 // 	cfg := opts.LoadConfig()
@@ -6194,7 +6213,7 @@ Organizes the Go code generation component by extracting option-related logic in
 
 ```
 
----
+--------------------------------
 
 ### Update dependency: github.com/mattn/go-sqlite3
 
@@ -6204,14 +6223,14 @@ Updates the `github.com/mattn/go-sqlite3` dependency from version `1.14.17` to `
 
 ```go
 require (
-	...
+	... 
 	github.com/mattn/go-sqlite3 v1.14.18
 	...
 )
 
 ```
 
----
+--------------------------------
 
 ### MySQL LOAD DATA SQLC Configuration
 
@@ -6231,9 +6250,10 @@ sql:
         sql_package: "database/sql"
         sql_driver: "github.com/go-sql-driver/mysql"
         out: "db"
+
 ```
 
----
+--------------------------------
 
 ### Add Project ID to sqlc Configuration
 
@@ -6247,7 +6267,7 @@ cloud:
   project: "<PROJECT_ID>"
 ```
 
----
+--------------------------------
 
 ### JSON Output Settings
 
@@ -6268,7 +6288,7 @@ Customize the generation of codegen request information into JSON format.
 - `indent` (string) - The string to use for indentation in the JSON document. Defaults to two spaces (`  `).
 ```
 
----
+--------------------------------
 
 ### Add glob pattern tests to sqlpath.Glob
 
@@ -6282,7 +6302,7 @@ Enhances the `sqlpath.Glob` functionality by adding test cases that specifically
 // 	"testing"
 // 	"github.com/sqlc-dev/sqlc/internal/sqlpath"
 // )
-//
+// 
 // func TestGlob(t *testing.T) {
 // 	matches, err := sqlpath.Glob("*.sql")
 // 	if err != nil {
@@ -6293,7 +6313,7 @@ Enhances the `sqlpath.Glob` functionality by adding test cases that specifically
 
 ```
 
----
+--------------------------------
 
 ### List Authors using :many
 
@@ -6309,13 +6329,12 @@ ORDER BY name;
 
 ```go
 func (q *Queries) ListAuthors(ctx context.Context) ([]Author, error) {
-
-ows, err := q.db.QueryContext(ctx, listAuthors)
+ows, err := q.db.QueryContext(ctx, listAuthors)
 	// ...
 }
 ```
 
----
+--------------------------------
 
 ### Add sqlc-gen-python plugin to sqlc.yaml
 
@@ -6332,7 +6351,7 @@ plugins:
       sha256: "aca83e1f59f8ffdc604774c2f6f9eb321a2b23e07dc83fc12289d25305fa065b
 ```
 
----
+--------------------------------
 
 ### Use hosted MySQL databases for tests
 
@@ -6347,7 +6366,7 @@ Updates the testing infrastructure to utilize hosted MySQL databases, providing 
 // 	"github.com/go-sql-driver/mysql"
 // 	// ...
 // )
-//
+// 
 // func TestMain(m *testing.M) {
 // 	// Connect to hosted MySQL instance
 // 	// db, err := sql.Open("mysql", "user:password@tcp(mysql.example.com:3306)/testdb")
@@ -6356,7 +6375,7 @@ Updates the testing infrastructure to utilize hosted MySQL databases, providing 
 
 ```
 
----
+--------------------------------
 
 ### Bulk Insert Values (MySQL with LOAD DATA)
 
@@ -6371,7 +6390,7 @@ func (q *Queries) InsertValues(ctx context.Context, arg []InsertValuesParams) (i
 
 ```
 
----
+--------------------------------
 
 ### Configure Managed Databases with Environment Variable - sqlc
 
@@ -6380,19 +6399,20 @@ Source: https://docs.sqlc.dev/en/latest/howto/managed-databases
 This configuration enables managed databases in sqlc using an environment variable for the database URI. It requires a running database server and is used for query analysis and linting.
 
 ```yaml
-version: "2"
+version: '2'
 servers:
-  - engine: postgresql
-    uri: ${DATABASE_URI}
+- engine: postgresql
+  uri: ${DATABASE_URI}
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    database:
-      managed: true
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  database:
+    managed: true
+
 ```
 
----
+--------------------------------
 
 ### Go Struct for Positional Parameters
 
@@ -6407,7 +6427,7 @@ type UpdateAuthorNameParams struct {
 }
 ```
 
----
+--------------------------------
 
 ### Configure SQL Generation with Rules in sqlc
 
@@ -6432,7 +6452,7 @@ sql:
       - no-exec
 ```
 
----
+--------------------------------
 
 ### Define Author struct and DBTX interface
 
@@ -6468,7 +6488,7 @@ type Queries struct {
 }
 ```
 
----
+--------------------------------
 
 ### SQLC Go Client for Returning Inserted Columns
 
@@ -6528,7 +6548,7 @@ func (q *Queries) CreateAuthorAndReturnId(ctx context.Context, arg CreateAuthorA
 
 ```
 
----
+--------------------------------
 
 ### sqlc Code Generation with Plugins (Python)
 
@@ -6537,27 +6557,27 @@ Source: https://docs.sqlc.dev/en/latest/_sources/reference/config
 Configures sqlc to use a WASM plugin for Python code generation, specifying output directory, package, and query emission options.
 
 ```yaml
-version: "2"
+version: '2'
 plugins:
-  - name: py
-    wasm:
-      url: https://github.com/sqlc-dev/sqlc-gen-python/releases/download/v0.16.0-alpha/sqlc-gen-python.wasm
-      sha256: 428476c7408fd4c032da4ec74e8a7344f4fa75e0f98a5a3302f238283b9b95f2
+- name: py
+  wasm:
+    url: https://github.com/sqlc-dev/sqlc-gen-python/releases/download/v0.16.0-alpha/sqlc-gen-python.wasm
+    sha256: 428476c7408fd4c032da4ec74e8a7344f4fa75e0f98a5a3302f238283b9b95f2
 sql:
-  - schema: "schema.sql"
-    queries: "query.sql"
-    engine: postgresql
-    codegen:
-      - out: src/authors
-        plugin: py
-        options:
-          package: authors
-          emit_sync_querier: true
-          emit_async_querier: true
-          query_parameter_limit: 5
+- schema: "schema.sql"
+  queries: "query.sql"
+  engine: postgresql
+  codegen:
+  - out: src/authors
+    plugin: py
+    options:
+      package: authors
+      emit_sync_querier: true
+      emit_async_querier: true
+      query_parameter_limit: 5
 ```
 
----
+--------------------------------
 
 ### Go struct generation using singular table name
 
@@ -6575,7 +6595,7 @@ type Author struct {
 }
 ```
 
----
+--------------------------------
 
 ### Generated Go Struct for Tern Comment
 
@@ -6592,7 +6612,7 @@ type Comment struct {
 }
 ```
 
----
+--------------------------------
 
 ### SQL: Books By Title Year Batch Query Annotation
 
@@ -6606,7 +6626,7 @@ SELECT * FROM books
 WHERE title = $1 AND year = $2;
 ```
 
----
+--------------------------------
 
 ### SQLCDEBUG: trace command for performance analysis
 
@@ -6622,7 +6642,7 @@ SQLCDEBUG=trace=1
 SQLCDEBUG=trace=name.out
 ```
 
----
+--------------------------------
 
 ### Configure WASM plugin with environment variable access
 
@@ -6631,26 +6651,27 @@ Source: https://docs.sqlc.dev/en/latest/guides/plugins
 This configuration enables a WASM plugin named 'test' and grants it access to the 'PATH' environment variable. The plugin is defined by its WebAssembly URL and SHA256 hash, specifying its sandboxed execution environment.
 
 ```yaml
-version: "2"
+version: '2'
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    codegen:
-      - out: gen
-        plugin: test
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  codegen:
+  - out: gen
+    plugin: test
 plugins:
-  - name: test
-    env:
-      - PATH
-    wasm:
-      url: https://github.com/sqlc-dev/sqlc-gen-test/releases/download/v0.1.0/sqlc-gen-test.wasm
-      sha256: 138220eae508d4b65a5a8cea555edd155eb2290daf576b7a8b96949acfeb3790
+- name: test
+  env:
+  - PATH
+  wasm:
+    url: https://github.com/sqlc-dev/sqlc-gen-test/releases/download/v0.1.0/sqlc-gen-test.wasm
+    sha256: 138220eae508d4b65a5a8cea555edd155eb2290daf576b7a8b96949acfeb3790
+
 ```
 
----
+--------------------------------
 
-### Nullable TEXT to \*string with emit_pointers_for_null_types
+### Nullable TEXT to *string with emit_pointers_for_null_types
 
 Source: https://docs.sqlc.dev/en/latest/_sources/reference/datatypes
 
@@ -6666,7 +6687,7 @@ Explains how to map nullable TEXT columns to Go pointer types (`*string`) using 
 // ]
 ```
 
----
+--------------------------------
 
 ### Sqlc Verify Command Output
 
@@ -6685,7 +6706,7 @@ FAIL: app query.sql
 
 ```
 
----
+--------------------------------
 
 ### JSON to Go Struct with pgx/v5
 
@@ -6715,9 +6736,9 @@ CREATE TABLE books (
     {
       "column": "books.data",
       "go_type": {
-        "import": "example.com/db",
+        "import":"example.com/db",
         "package": "dto",
-        "type": "BookData",
+        "type":"BookData",
         "pointer": true
       }
     }
@@ -6737,7 +6758,7 @@ type Book struct {
 }
 ```
 
----
+--------------------------------
 
 ### SQLCDEBUG: dumpast command for SQL AST
 
@@ -6749,7 +6770,7 @@ Enables the 'dumpast' debug mode in sqlc, which displays the generic SQL Abstrac
 SQLCDEBUG=dumpast=1
 ```
 
----
+--------------------------------
 
 ### Create Author and Return All Columns (PostgreSQL)
 
@@ -6768,7 +6789,7 @@ RETURNING *;
 
 ```
 
----
+--------------------------------
 
 ### sqlc verify command output
 
@@ -6785,7 +6806,7 @@ FAIL: app query.sql
     ERROR: column reference "created_at" is ambiguous (SQLSTATE 42702) (SQLSTATE 42702)
 ```
 
----
+--------------------------------
 
 ### SQLCDEBUG: dumpcatalog command for database catalog
 
@@ -6797,7 +6818,7 @@ Enables the 'dumpcatalog' debug mode in sqlc to output the entire database catal
 SQLCDEBUG=dumpcatalog=1
 ```
 
----
+--------------------------------
 
 ### Rely on go.mod for Go version
 
@@ -6811,14 +6832,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v4
-        with:
-          # This line ensures go.mod is used to determine the Go version
-          discover: true
+    - uses: actions/checkout@v3
+    - uses: actions/setup-go@v4
+      with:
+        # This line ensures go.mod is used to determine the Go version
+        discover: true 
+
 ```
 
----
+--------------------------------
 
 ### Create Author and Return ID (PostgreSQL)
 
@@ -6857,7 +6879,7 @@ func (q *Queries) CreateAuthorAndReturnId(ctx context.Context, arg CreateAuthorA
 
 ```
 
----
+--------------------------------
 
 ### Validate `database` config in all cases
 
@@ -6871,7 +6893,7 @@ Ensures that the `database` configuration parameter is validated correctly regar
 // 	database DatabaseConfig
 // 	// ...
 // }
-//
+// 
 // func ValidateConfig(cfg Config) error {
 // 	if cfg.database.Type == "" {
 // 		return errors.New("database type is required")
@@ -6882,7 +6904,7 @@ Ensures that the `database` configuration parameter is validated correctly regar
 
 ```
 
----
+--------------------------------
 
 ### Nullable Text Fields to sql.NullString
 
@@ -6912,7 +6934,7 @@ type Author struct {
 }
 ```
 
----
+--------------------------------
 
 ### Generate Author Name Update Query with Named Parameters
 
@@ -6931,7 +6953,7 @@ SET
 RETURNING *;
 ```
 
----
+--------------------------------
 
 ### Move Go-specific config validation to plugin
 
@@ -6942,7 +6964,7 @@ Refactors the Go code generation component by moving Go-specific configuration v
 ```go
 // Conceptual refactoring of validation logic
 // package golang
-//
+// 
 // func ValidateConfig(cfg Config) error {
 // 	// ... validation logic moved here from main compiler
 // 	return nil
@@ -6950,7 +6972,7 @@ Refactors the Go code generation component by moving Go-specific configuration v
 
 ```
 
----
+--------------------------------
 
 ### Configure Remote Code Generation with sqlc.json
 
@@ -6969,7 +6991,7 @@ Configures sqlc for remote code generation by specifying organization and projec
 }
 ```
 
----
+--------------------------------
 
 ### Configure Managed Databases with URI - sqlc
 
@@ -6978,19 +7000,20 @@ Source: https://docs.sqlc.dev/en/latest/howto/managed-databases
 This configuration enables managed databases in sqlc by setting 'managed: true' and providing a database URI within the 'servers' mapping. It requires a running database server and is used for query analysis and linting.
 
 ```yaml
-version: "2"
+version: '2'
 servers:
-  - engine: postgresql
-    uri: "postgres://localhost:5432/postgres?sslmode=disable"
+- engine: postgresql
+  uri: "postgres://localhost:5432/postgres?sslmode=disable"
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    database:
-      managed: true
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  database:
+    managed: true
+
 ```
 
----
+--------------------------------
 
 ### Generated Go Struct for SQL-migrate People
 
@@ -7006,7 +7029,7 @@ type People struct {
 }
 ```
 
----
+--------------------------------
 
 ### Configure Python Code Generation in sqlc
 
@@ -7023,7 +7046,7 @@ emit_async_querier: false
 emit_pydantic_models: true
 ```
 
----
+--------------------------------
 
 ### MySQL/SQLite: List Authors by IDs using sqlc.slice()
 
@@ -7096,8 +7119,7 @@ func (q *Queries) ListAuthorsByIDs(ctx context.Context, ids []int64) ([]Author, 
 		queryParams = append(queryParams, v)
 	}
 	sql = strings.Replace(sql, "/*SLICE:ids*/?", strings.Repeat(",?", len(ids))[1:], 1)
-
-ows, err := q.db.QueryContext(ctx, sql, queryParams...)
+ows, err := q.db.QueryContext(ctx, sql, queryParams...)
 	if err != nil {
 		return nil, err
 	}
@@ -7121,7 +7143,7 @@ ows, err := q.db.QueryContext(ctx, sql, queryParams...)
 
 ```
 
----
+--------------------------------
 
 ### Bulk Insert Authors (PostgreSQL with COPY FROM)
 
@@ -7141,7 +7163,7 @@ func (q *Queries) CreateAuthors(ctx context.Context, arg []CreateAuthorsParams) 
 
 ```
 
----
+--------------------------------
 
 ### Create Author and Return All Columns (SQLite)
 
@@ -7160,7 +7182,7 @@ RETURNING *;
 
 ```
 
----
+--------------------------------
 
 ### Configure Managed Databases with Direct URI
 
@@ -7169,19 +7191,19 @@ Source: https://docs.sqlc.dev/en/latest/_sources/howto/managed-databases
 This configuration sets up sqlc to use a managed database by disabling the 'uri' key and enabling 'managed: true'. It requires access to a running PostgreSQL server specified in the 'servers' mapping.
 
 ```yaml
-version: "2"
+version: '2'
 servers:
-  - engine: postgresql
-    uri: "postgres://localhost:5432/postgres?sslmode=disable"
+- engine: postgresql
+  uri: "postgres://localhost:5432/postgres?sslmode=disable"
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    database:
-      managed: true
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  database:
+    managed: true
 ```
 
----
+--------------------------------
 
 ### Go Struct for Nullable Parameters
 
@@ -7197,7 +7219,7 @@ type UpdateAuthorParams struct {
 }
 ```
 
----
+--------------------------------
 
 ### Update Author Query with Nullable Parameters
 
@@ -7215,7 +7237,7 @@ WHERE id = sqlc.arg('id')
 RETURNING *;
 ```
 
----
+--------------------------------
 
 ### golang-migrate SQL Create Table Statement
 
@@ -7233,7 +7255,7 @@ CREATE TABLE post (
 
 ```
 
----
+--------------------------------
 
 ### MySQL Bulk Insert Go Function
 
@@ -7248,7 +7270,7 @@ func (q *Queries) InsertValues(ctx context.Context, arg []InsertValuesParams) (i
 
 ```
 
----
+--------------------------------
 
 ### SQL Generation Configuration with Rules
 
@@ -7256,7 +7278,7 @@ Source: https://docs.sqlc.dev/en/latest/_sources/reference/config
 
 Specifies the SQL schema, queries, engine, and code generation settings, including the application of custom validation rules.
 
-````APIDOC
+```APIDOC
 ## SQL Generation Configuration
 
 ### Description
@@ -7272,7 +7294,7 @@ Each SQL configuration is a mapping within the `sql` collection:
     - `go` (mapping): Go language specific generation settings.
         - `package` (string): The Go package name for the generated code. Required.
         - `out` (string): The output directory for the generated Go code. Required.
-- `rules` (array of strings): A list of rule names to apply to this SQL configuration.
+- `rules` (array of strings): A list of rule names to apply to this SQL configuration. 
 
 ### Example Usage
 ```yaml
@@ -7290,9 +7312,8 @@ sql:
   - no-delete
   - only-one-param
   - no-exec
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -7330,9 +7351,9 @@ func (q *Queries) DeleteAuthor(ctx context.Context, id int) error {
 	_, err := q.db.ExecContext(ctx, deleteAuthor, id)
 	return err
 }
-````
+```
 
----
+--------------------------------
 
 ### Set SQLC_AUTH_TOKEN Environment Variable
 
@@ -7344,7 +7365,7 @@ Sets the SQLC_AUTH_TOKEN environment variable, which is required for remote code
 export SQLC_AUTH_TOKEN=<token>
 ```
 
----
+--------------------------------
 
 ### Verify changes against a specific tag
 
@@ -7356,7 +7377,7 @@ Enables verification of schema changes against a previously tagged set of querie
 $ sqlc verify --against v1.0.0
 ```
 
----
+--------------------------------
 
 ### Configure Managed Databases with Environment Variable URI
 
@@ -7365,19 +7386,19 @@ Source: https://docs.sqlc.dev/en/latest/_sources/howto/managed-databases
 This configuration enables sqlc's managed database feature using an environment variable for the database connection string. It's a flexible way to manage credentials and access to a PostgreSQL server.
 
 ```yaml
-version: "2"
+version: '2'
 servers:
-  - engine: postgresql
-    uri: ${DATABASE_URI}
+- engine: postgresql
+  uri: ${DATABASE_URI}
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    database:
-      managed: true
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  database:
+    managed: true
 ```
 
----
+--------------------------------
 
 ### Update Python dependency: certifi
 
@@ -7398,7 +7419,7 @@ Updates the `certifi` Python dependency from version `2023.7.22` to `2023.11.17`
 
 ```
 
----
+--------------------------------
 
 ### Update Python dependency: urllib3
 
@@ -7419,7 +7440,7 @@ Updates the `urllib3` Python dependency from version `2.0.7` to `2.1.0` in the `
 
 ```
 
----
+--------------------------------
 
 ### Configure Query Parameter Limit for Go
 
@@ -7433,7 +7454,7 @@ Sets the `query_parameter_limit` configuration option in sqlc. If set to 0, all 
 }
 ```
 
----
+--------------------------------
 
 ### SQL Query with sqlc.slice for MySQL IN Clause
 
@@ -7443,11 +7464,11 @@ Demonstrates the use of `sqlc.slice` for generating dynamic queries with the IN 
 
 ```sql
 /* name: SelectStudents :many */
-SELECT * FROM students
+SELECT * FROM students 
 WHERE age IN (sqlc.slice("ages"))
 ```
 
----
+--------------------------------
 
 ### SQL table definition with timestamp
 
@@ -7462,7 +7483,7 @@ CREATE TABLE authors (
 );
 ```
 
----
+--------------------------------
 
 ### SQL Schema Modifications (PostgreSQL)
 
@@ -7482,7 +7503,7 @@ ALTER TABLE authors RENAME TO writers;
 
 ```
 
----
+--------------------------------
 
 ### Alternative YAML for Renaming Go Structs
 
@@ -7503,7 +7524,7 @@ overrides:
       book_publisher: Publisher
 ```
 
----
+--------------------------------
 
 ### Push schema with tags
 
@@ -7515,7 +7536,7 @@ Allows users to add tags when pushing schema and queries to sqlc Cloud. Tags can
 $ sqlc push --tag v1.0.0
 ```
 
----
+--------------------------------
 
 ### SQLC Query Annotations - :execresult
 
@@ -7523,7 +7544,7 @@ Source: https://docs.sqlc.dev/en/latest/reference/query-annotations
 
 The :execresult annotation generates a Go function that returns the sql.Result from ExecContext.
 
-````APIDOC
+```APIDOC
 ## GET /api/users/{id}
 
 ### Description
@@ -7552,9 +7573,8 @@ GET
   "name": "Jane Doe",
   "email": "jane.doe@example.com"
 }
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -7573,9 +7593,9 @@ SET
     ELSE name
     END
 RETURNING *;
-````
+```
 
----
+--------------------------------
 
 ### Use gRPC interface for codegen plugin communication
 
@@ -7586,12 +7606,12 @@ Improves the communication mechanism between sqlc and its code generation plugin
 ```go
 // Conceptual gRPC client/server setup
 // package plugin
-//
+// 
 // import (
 // 	"google.golang.org/grpc"
 // 	"path/to/your/proto"
 // )
-//
+// 
 // func main() {
 // 	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
 // 	if err != nil {
@@ -7604,7 +7624,7 @@ Improves the communication mechanism between sqlc and its code generation plugin
 
 ```
 
----
+--------------------------------
 
 ### Make struct and field names less confusing
 
@@ -7618,7 +7638,7 @@ Improves the clarity of the configuration system by renaming confusing struct an
 // 	DatabaseURL string
 // 	SchemaPath  string
 // }
-//
+// 
 // type Config struct {
 // 	DBConnString string // Renamed from DatabaseURL
 // 	SchemaFiles  []string // Renamed from SchemaPath
@@ -7626,7 +7646,7 @@ Improves the clarity of the configuration system by renaming confusing struct an
 
 ```
 
----
+--------------------------------
 
 ### Configure JSON Output in sqlc
 
@@ -7640,7 +7660,7 @@ filename: "custom_codegen.json"
 indent: "  "
 ```
 
----
+--------------------------------
 
 ### SQLC Query Annotations - :copyfrom
 
@@ -7648,7 +7668,7 @@ Source: https://docs.sqlc.dev/en/latest/reference/query-annotations
 
 The :copyfrom annotation is used for efficient bulk insertion of rows, with specific driver and package implementations.
 
-````APIDOC
+```APIDOC
 ## POST /api/books/bulk
 
 ### Description
@@ -7669,23 +7689,19 @@ POST
 author_id,isbn
 123e4567-e89b-12d3-a456-426614174000,978-3-16-148410-0
 87654321-e89b-12d3-a456-426614174000,978-1-23-456789-7
-````
+```
 
 ### Response
-
 #### Success Response (200)
-
 - **message** (string) - A confirmation message indicating the bulk insertion process completed.
 
 #### Response Example
-
 ```json
 {
   "message": "Bulk book insertion completed."
 }
 ```
-
-````
+```
 
 --------------------------------
 
@@ -7709,9 +7725,9 @@ sql:
   gen:
     go:
       out: "db"
-````
+```
 
----
+--------------------------------
 
 ### Define DBTX interface and New Queries constructor
 
@@ -7744,7 +7760,7 @@ type Queries struct {
 
 ```
 
----
+--------------------------------
 
 ### SQLC Query Annotations - :one
 
@@ -7752,7 +7768,7 @@ Source: https://docs.sqlc.dev/en/latest/reference/query-annotations
 
 The :one annotation generates a Go function that returns a single record via QueryRowContext.
 
-````APIDOC
+```APIDOC
 ## GET /api/books/{id}
 
 ### Description
@@ -7783,9 +7799,8 @@ GET
   "author_id": "123e4567-e89b-12d3-a456-426614174000",
   "genre": "Fiction"
 }
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -7802,9 +7817,9 @@ FROM students
 JOIN test_scores ON test_scores.student_id = students.id
 WHERE students.id = $1;
 
-````
+```
 
----
+--------------------------------
 
 ### Insert Author Row (PostgreSQL)
 
@@ -7843,7 +7858,7 @@ func (q *Queries) CreateAuthor(ctx context.Context, bio string) error {
 
 ```
 
----
+--------------------------------
 
 ### Default Go Structs Generated from SQL Tables
 
@@ -7870,7 +7885,7 @@ type Publisher struct {
 }
 ```
 
----
+--------------------------------
 
 ### Global Overrides for Code Generation
 
@@ -7878,7 +7893,7 @@ Source: https://docs.sqlc.dev/en/latest/_sources/reference/config
 
 Applies global overrides for type mapping and field renaming across different database engines and language targets, primarily for Go.
 
-````APIDOC
+```APIDOC
 ## Global Overrides
 
 ### Description
@@ -7915,11 +7930,10 @@ overrides:
         import: "gopkg.in/guregu/null.v4"
         package: "null"
         type: "Time"
-````
+```
 
 **Note:** The `engine` field in global type overrides is crucial when defining mappings for multiple database engines. If only one engine is in use, this field defaults to the current engine.
-
-````
+```
 
 --------------------------------
 
@@ -7933,9 +7947,9 @@ Annotates a SQL DELETE query for batch execution using ':batchexec'. Requires Po
 -- name: DeleteBook :batchexec
 DELETE FROM books
 WHERE book_id = $1;
-````
+```
 
----
+--------------------------------
 
 ### Configure Go Type Overrides in sqlc.yaml
 
@@ -7949,7 +7963,7 @@ version: "2"sql:
   queries: "postgresql/query.sql"
   engine: "postgresql"
   gen:
-    go:
+    go: 
       package: "authors"
       out: "db"
       sql_package: "pgx/v5"
@@ -7963,7 +7977,7 @@ version: "2"sql:
           go_type: "time.Time"
 ```
 
----
+--------------------------------
 
 ### Associate queries with a transaction using WithTx
 
@@ -7980,7 +7994,7 @@ func (q *Queries) WithTx(tx *sql.Tx) *Queries {
 
 ```
 
----
+--------------------------------
 
 ### Support `->` and `->>` operators in SQLite engine
 
@@ -7999,7 +8013,7 @@ FROM user_data;
 
 ```
 
----
+--------------------------------
 
 ### Calculate SHA256 if it does not exist
 
@@ -8015,20 +8029,20 @@ Adds functionality to calculate the SHA256 hash for files if it is not already p
 // 	"io/ioutil"
 // 	"os"
 // )
-//
+// 
 // func CalculateSHA256(filePath string) (string, error) {
 // 	data, err := ioutil.ReadFile(filePath)
 // 	if err != nil {
 // 		return "", err
 // 	}
-//
+// 	
 // 	hash := sha256.Sum256(data)
 // 	return hex.EncodeToString(hash[:]), nil
 // }
 
 ```
 
----
+--------------------------------
 
 ### Generate Author Name Update Query with '@' Operator Shortcut
 
@@ -8047,7 +8061,7 @@ SET
 RETURNING *;
 ```
 
----
+--------------------------------
 
 ### Go: Insert Author Last ID
 
@@ -8062,7 +8076,7 @@ func (q *Queries) InsertAuthor(ctx context.Context, name string) (int64, error) 
 }
 ```
 
----
+--------------------------------
 
 ### Insert Author Row (MySQL and SQLite)
 
@@ -8101,7 +8115,7 @@ func (q *Queries) CreateAuthor(ctx context.Context, bio string) error {
 
 ```
 
----
+--------------------------------
 
 ### sqlc.yaml for Enhanced Analysis with Self-Managed PostgreSQL Database
 
@@ -8123,7 +8137,7 @@ sql:
         sql_package: "pgx/v5"
 ```
 
----
+--------------------------------
 
 ### SQLC rename mapping configuration
 
@@ -8138,7 +8152,7 @@ rename:
   spotify_url: "SpotifyURL"
 ```
 
----
+--------------------------------
 
 ### SQLC Query Annotations - :batchone
 
@@ -8146,7 +8160,7 @@ Source: https://docs.sqlc.dev/en/latest/reference/query-annotations
 
 The :batchone annotation is used for PostgreSQL with pgx drivers to execute batch queries that return a single row.
 
-````APIDOC
+```APIDOC
 ## POST /api/books/batch/onerow
 
 ### Description
@@ -8178,19 +8192,16 @@ POST
     }
   ]
 }
-````
+```
 
 ### Response
-
 #### Success Response (200)
-
 - **results** (array) - An array of results, where each element corresponds to a book insertion.
   - **book_id** (string) - The generated ID of the inserted book.
   - **author_id** (string) - The ID of the author.
   - **isbn** (string) - The ISBN of the book.
 
 #### Response Example
-
 ```json
 {
   "results": [
@@ -8207,8 +8218,7 @@ POST
   ]
 }
 ```
-
-````
+```
 
 --------------------------------
 
@@ -8261,9 +8271,8 @@ GET
     }
   ]
 }
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -8275,9 +8284,9 @@ Enables the 'dumpvetenv' debug mode in sqlc, which prints all variables accessib
 
 ```bash
 SQLCDEBUG=dumpvetenv=1
-````
+```
 
----
+--------------------------------
 
 ### Improve Codegen with Managed Databases - sqlc
 
@@ -8286,22 +8295,23 @@ Source: https://docs.sqlc.dev/en/latest/howto/managed-databases
 This configuration enables managed databases in sqlc to improve code generation by providing a schema-aware database for analysis. It includes a 'go' output configuration.
 
 ```yaml
-version: "2"
+version: '2'
 servers:
-  - engine: postgresql
-    uri: "postgres://localhost:5432/postgres?sslmode=disable"
+- engine: postgresql
+  uri: "postgres://localhost:5432/postgres?sslmode=disable"
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    database:
-      managed: true
-    gen:
-      go:
-        out: "db"
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  database:
+    managed: true
+  gen:
+    go:
+      out: "db"
+
 ```
 
----
+--------------------------------
 
 ### SQLC Query Annotations - :batchexec
 
@@ -8309,7 +8319,7 @@ Source: https://docs.sqlc.dev/en/latest/reference/query-annotations
 
 The :batchexec annotation is used for PostgreSQL with pgx drivers to execute multiple statements in a batch and return results.
 
-````APIDOC
+```APIDOC
 ## POST /api/books/batch/exec
 
 ### Description
@@ -8331,23 +8341,19 @@ POST
 {
   "book_ids": ["b0f8e5a7-7d2b-4c3e-8f1a-9a0a1b2c3d4e", "c1a9f6b8-8e3c-4d4f-9f2b-0b1a2c3d4e5f"]
 }
-````
+```
 
 ### Response
-
 #### Success Response (200)
-
 - **message** (string) - A confirmation message indicating the batch deletion process has started.
 
 #### Response Example
-
 ```json
 {
   "message": "Batch book deletion initiated."
 }
 ```
-
-````
+```
 
 --------------------------------
 
@@ -8380,18 +8386,15 @@ POST
   "name": "John Doe",
   "email": "john.doe@example.com"
 }
-````
+```
 
 ### Response
-
 #### Success Response (200)
-
 - **id** (string) - The unique identifier for the newly created user.
 - **name** (string) - The name of the user.
 - **email** (string) - The email address of the user.
 
 #### Response Example
-
 ```json
 {
   "id": "123e4567-e89b-12d3-a456-426614174000",
@@ -8399,8 +8402,7 @@ POST
   "email": "john.doe@example.com"
 }
 ```
-
-````
+```
 
 --------------------------------
 
@@ -8416,9 +8418,9 @@ CREATE TABLE foo (bar BOOLEAN NOT NULL);
 -- name: SelectColumnCast :many
 SELECT CAST(bar AS BIGINT) FROM foo;
 
-````
+```
 
----
+--------------------------------
 
 ### Lint Queries with Managed Database and db-prepare Rule
 
@@ -8427,21 +8429,21 @@ Source: https://docs.sqlc.dev/en/latest/_sources/howto/managed-databases
 This configuration enables sqlc's linting capabilities with managed databases. It includes the 'sqlc/db-prepare' rule, which validates queries by preparing them against the managed database.
 
 ```yaml
-version: "2"
+version: '2'
 servers:
-  - engine: postgresql
-    uri: "postgres://localhost:5432/postgres?sslmode=disable"
+- engine: postgresql
+  uri: "postgres://localhost:5432/postgres?sslmode=disable"
 sql:
-  - schema: schema.sql
-    queries: query.sql
-    engine: postgresql
-    database:
-      managed: true
-    rules:
-      - sqlc/db-prepare
+- schema: schema.sql
+  queries: query.sql
+  engine: postgresql
+  database:
+    managed: true
+  rules:
+  - sqlc/db-prepare
 ```
 
----
+--------------------------------
 
 ### PostgreSQL Arrays to Go Slices
 
@@ -8465,7 +8467,7 @@ type Place struct {
 }
 ```
 
----
+--------------------------------
 
 ### Default Field Renaming Algorithm - sqlc
 
@@ -8479,7 +8481,7 @@ spotify_url -> SpotifyUrl
 app_id      -> AppID
 ```
 
----
+--------------------------------
 
 ### Support more `UNION`s for MySQL
 
@@ -8499,7 +8501,7 @@ SELECT col1 FROM table3;
 
 ```
 
----
+--------------------------------
 
 ### SQL Query with Ambiguity Fix
 
@@ -8514,7 +8516,7 @@ JOIN user_actions ua ON u.id = ua.user_id
 ORDER BY u.created_at;
 ```
 
----
+--------------------------------
 
 ### Define sqlc linting rules
 
@@ -8555,7 +8557,7 @@ rules:
       query.cmd == "exec"
 ```
 
----
+--------------------------------
 
 ### Delete All Authors using :execresult
 
@@ -8574,7 +8576,7 @@ func (q *Queries) DeleteAllAuthors(ctx context.Context) (sql.Result, error) {
 }
 ```
 
----
+--------------------------------
 
 ### Go Struct for dbmate Foo Table
 
@@ -8591,7 +8593,7 @@ type Foo struct {
 
 ```
 
----
+--------------------------------
 
 ### Support pgvector with pgx in Go
 
@@ -8610,7 +8612,7 @@ import "github.com/pgvector/pgvector-go"
 
 ```
 
----
+--------------------------------
 
 ### Bulk insert for MySQL (Go)
 
@@ -8624,7 +8626,7 @@ func (q *Queries) InsertValues(ctx context.Context, arg []InsertValuesParams) (i
 }
 ```
 
----
+--------------------------------
 
 ### SQL Schema Definitions
 
@@ -8647,7 +8649,7 @@ CREATE TABLE test_scores (
 
 ```
 
----
+--------------------------------
 
 ### Update author bio with multiple parameters
 
@@ -8700,7 +8702,7 @@ func (q *Queries) UpdateAuthor(ctx context.Context, arg UpdateAuthorParams) erro
 }
 ```
 
----
+--------------------------------
 
 ### Go Struct for Atlas Post Table
 
@@ -8719,7 +8721,7 @@ type Post struct {
 
 ```
 
----
+--------------------------------
 
 ### Correct column names in `:copyfrom`
 
@@ -8737,7 +8739,7 @@ VALUES (:col1, :col2);
 
 ```
 
----
+--------------------------------
 
 ### Update author bio with single parameter
 
@@ -8783,7 +8785,7 @@ func (q *Queries) UpdateAuthorBios(ctx context.Context, bio string) error {
 }
 ```
 
----
+--------------------------------
 
 ### Use correct func signature for `CommentSyntax` on Windows
 
@@ -8801,7 +8803,7 @@ Fixes an issue on Windows where the `CommentSyntax` function used an incorrect s
 
 ```
 
----
+--------------------------------
 
 ### SQL: List Authors Query Annotation
 
@@ -8815,7 +8817,7 @@ SELECT * FROM authors
 ORDER BY name;
 ```
 
----
+--------------------------------
 
 ### Renaming SQL column 'spotify_url' to 'SpotifyURL' in Go
 
@@ -8826,18 +8828,18 @@ This YAML configuration demonstrates how to use the 'rename' mapping within the 
 ```yaml
 version: "2"
 sql:
-  - schema: "postgresql/schema.sql"
-    queries: "postgresql/query.sql"
-    engine: "postgresql"
-    gen:
-      go:
-        package: "authors"
-        out: "postgresql"
-        rename:
-          spotify_url: "SpotifyURL"
+- schema: "postgresql/schema.sql"
+  queries: "postgresql/query.sql"
+  engine: "postgresql"
+  gen:
+    go: 
+      package: "authors"
+      out: "postgresql"
+      rename:
+        spotify_url: "SpotifyURL"
 ```
 
----
+--------------------------------
 
 ### Define Author table and retrieve single/multiple authors (MySQL/SQLite)
 
@@ -8857,7 +8859,7 @@ SELECT * FROM authors
 ORDER BY id;
 ```
 
----
+--------------------------------
 
 ### Define Author table and retrieve single/multiple authors (PostgreSQL)
 
@@ -8954,7 +8956,7 @@ func (q *Queries) ListAuthors(ctx context.Context) ([]Author, error) {
 
 ```
 
----
+--------------------------------
 
 ### Return error for duplicate Go names
 
@@ -8975,7 +8977,7 @@ Enhances the generation process to return an error when duplicate Go names are d
 
 ```
 
----
+--------------------------------
 
 ### Prevent panic when compiler is nil
 
@@ -8995,7 +8997,7 @@ Addresses a panic condition by ensuring the compiler is not nil before performin
 
 ```
 
----
+--------------------------------
 
 ### Delete Author using :exec
 
@@ -9016,7 +9018,7 @@ func (q *Queries) DeleteAuthor(ctx context.Context, id int64) error {
 }
 ```
 
----
+--------------------------------
 
 ### Configure Output File Name for Batch Operations
 
@@ -9030,7 +9032,7 @@ Allows configuration of the output file name for batch operations using the `out
 }
 ```
 
----
+--------------------------------
 
 ### Modify Database Schema with SQL Statements
 
@@ -9049,7 +9051,7 @@ ALTER TABLE authors DROP COLUMN birth_year;
 ALTER TABLE authors RENAME TO writers;
 ```
 
----
+--------------------------------
 
 ### Support functions with `OUT` parameters
 
@@ -9070,7 +9072,7 @@ $$ LANGUAGE plpgsql;
 
 ```
 
----
+--------------------------------
 
 ### Renaming Go Structs 'author' to 'Writer' and 'book_publisher' to 'Publisher'
 
@@ -9079,18 +9081,18 @@ Source: https://docs.sqlc.dev/en/latest/_sources/howto/rename
 This YAML configuration demonstrates how to rename generated Go structs. It maps the default struct names derived from table names ('author', 'book_publisher') to custom names ('Writer', 'Publisher').
 
 ```yaml
-version: "1"
+version: '1'
 packages:
-  - path: db
-    engine: postgresql
-    schema: query.sql
-    queries: query.sql
+- path: db
+  engine: postgresql
+  schema: query.sql
+  queries: query.sql
 rename:
   author: Writer
   book_publisher: Publisher
 ```
 
----
+--------------------------------
 
 ### Opt-out of specific lint rules in SQL queries
 
@@ -9113,7 +9115,7 @@ SELECT * FROM authors
 WHERE id = ? LIMIT 1;
 ```
 
----
+--------------------------------
 
 ### Account for parameters without parents
 
@@ -9135,7 +9137,7 @@ Addresses an issue where parameters lacking a parent element in the SQL AST were
 
 ```
 
----
+--------------------------------
 
 ### Support `CASE` expression in SQLite engine
 
@@ -9153,7 +9155,7 @@ FROM users;
 
 ```
 
----
+--------------------------------
 
 ### Go: Delete All Authors Execution Result
 
@@ -9167,7 +9169,7 @@ func (q *Queries) DeleteAllAuthors(ctx context.Context) (sql.Result, error) {
 }
 ```
 
----
+--------------------------------
 
 ### Configure temporary directory for WASM codegen with SQLCTMPDIR
 
@@ -9179,7 +9181,7 @@ The `SQLCTMPDIR` environment variable allows you to specify a base directory for
 export SQLCTMPDIR=/path/to/your/temp/dir
 ```
 
----
+--------------------------------
 
 ### PostgreSQL COPY FROM Statement
 
@@ -9193,7 +9195,7 @@ INSERT INTO authors (name, bio) VALUES ($1, $2);
 
 ```
 
----
+--------------------------------
 
 ### Go Function Signature for SelectStudents
 
@@ -9205,7 +9207,7 @@ The Go function signature generated by sqlc for the `SelectStudents` query. It a
 func (q *Queries) SelectStudents(ctx context.Context, ages []int32) ([]Student, error) {
 ```
 
----
+--------------------------------
 
 ### Insert Author (MySQL/SQLite)
 
@@ -9219,7 +9221,7 @@ INSERT INTO authors (bio) VALUES (?);
 
 ```
 
----
+--------------------------------
 
 ### Opt-out of all lint rules in SQL queries
 
@@ -9234,7 +9236,7 @@ SELECT * FROM authors
 WHERE id = ? LIMIT 1;
 ```
 
----
+--------------------------------
 
 ### Create Author and Return ID (PostgreSQL)
 
@@ -9253,7 +9255,7 @@ RETURNING id;
 
 ```
 
----
+--------------------------------
 
 ### Configure SQLC with go-geos for PostGIS Geometry Types
 
@@ -9311,7 +9313,7 @@ config.AfterConnect = func(ctx context.Context, conn *pgx.Conn) error {
 }
 ```
 
----
+--------------------------------
 
 ### Update Author by ID (MySQL/SQLite)
 
@@ -9363,7 +9365,7 @@ func (q *Queries) UpdateAuthor(ctx context.Context, arg UpdateAuthorParams) erro
 
 ```
 
----
+--------------------------------
 
 ### PostgreSQL COPY FROM Table Definition
 
@@ -9380,7 +9382,7 @@ CREATE TABLE authors (
 
 ```
 
----
+--------------------------------
 
 ### Timestamps to time.Time and sql.NullTime
 
@@ -9411,7 +9413,7 @@ type Author struct {
 }
 ```
 
----
+--------------------------------
 
 ### Update Author Bio (MySQL/SQLite)
 
@@ -9456,7 +9458,7 @@ func (q *Queries) UpdateAuthorBios(ctx context.Context, bio string) error {
 
 ```
 
----
+--------------------------------
 
 ### Error Handling for pgx Batch Closed
 
@@ -9468,7 +9470,7 @@ Shows how to check if a pgx batch has already been closed using `errors.Is` with
 errors.Is(err, generated_package.ErrBatchAlreadyClosed)
 ```
 
----
+--------------------------------
 
 ### Insert Author using :execlastid
 
@@ -9488,7 +9490,7 @@ func (q *Queries) InsertAuthor(ctx context.Context, name string) (int64, error) 
 }
 ```
 
----
+--------------------------------
 
 ### Insert Author (PostgreSQL)
 
@@ -9502,7 +9504,7 @@ INSERT INTO authors (bio) VALUES ($1);
 
 ```
 
----
+--------------------------------
 
 ### SQL Schema Definition
 
@@ -9524,7 +9526,7 @@ CREATE TABLE test_scores (
 );
 ```
 
----
+--------------------------------
 
 ### Create Author Table
 
@@ -9540,7 +9542,7 @@ CREATE TABLE authors (
 
 ```
 
----
+--------------------------------
 
 ### Update Author by ID (PostgreSQL)
 
@@ -9592,7 +9594,7 @@ func (q *Queries) UpdateAuthor(ctx context.Context, arg UpdateAuthorParams) erro
 
 ```
 
----
+--------------------------------
 
 ### Configure Global Go Type Override for UUID (sqlc v1)
 
@@ -9608,7 +9610,7 @@ overrides:
     go_type: "github.com/gofrs/uuid.UUID"
 ```
 
----
+--------------------------------
 
 ### SQLC Query Annotations - :batchmany
 
@@ -9616,7 +9618,7 @@ Source: https://docs.sqlc.dev/en/latest/reference/query-annotations
 
 The :batchmany annotation is used for PostgreSQL with pgx drivers to execute batch queries that return multiple rows.
 
-````APIDOC
+```APIDOC
 ## POST /api/books/batch/query
 
 ### Description
@@ -9648,12 +9650,10 @@ POST
     }
   ]
 }
-````
+```
 
 ### Response
-
 #### Success Response (200)
-
 - **results** (array) - An array of results, where each element corresponds to a query in the batch.
   - **books** (array) - An array of book objects matching the query criteria.
     - **id** (string) - The unique identifier for the book.
@@ -9662,7 +9662,6 @@ POST
     - **genre** (string) - The genre of the book.
 
 #### Response Example
-
 ```json
 {
   "results": [
@@ -9689,8 +9688,7 @@ POST
   ]
 }
 ```
-
-````
+```
 
 --------------------------------
 
@@ -9702,9 +9700,9 @@ Disables process-based plugins in sqlc by setting 'processplugins=0'. If any pro
 
 ```bash
 SQLCDEBUG=processplugins=0
-````
+```
 
----
+--------------------------------
 
 ### SQL Queries for Record Operations
 
@@ -9723,7 +9721,7 @@ WHERE id = $1;
 
 ```
 
----
+--------------------------------
 
 ### Configure Global Go Type Overrides for PostgreSQL Timestamps (sqlc v2)
 
@@ -9744,23 +9742,24 @@ overrides:
           package: "null"
           type: "Time"
 sql:
-  - schema: "service1/schema.sql"
-    queries: "service1/query.sql"
-    engine: "postgresql"
-    gen:
-      go:
-        package: "service1"
-        out: "service1"
-  - schema: "service2/schema.sql"
-    queries: "service2/query.sql"
-    engine: "postgresql"
-    gen:
-      go:
-        package: "service2"
-        out: "service2"
+- schema: "service1/schema.sql"
+  queries: "service1/query.sql"
+  engine: "postgresql"
+  gen:
+    go: 
+      package: "service1"
+      out: "service1"
+- schema: "service2/schema.sql"
+  queries: "service2/query.sql"
+  engine: "postgresql"
+  gen:
+    go:
+      package: "service2"
+      out: "service2"
+
 ```
 
----
+--------------------------------
 
 ### sqlc Lint Rule Annotations
 
@@ -9768,7 +9767,7 @@ Source: https://docs.sqlc.dev/en/latest/reference/changelog
 
 Demonstrates how to disable lint rules for specific queries using annotations.
 
-````APIDOC
+```APIDOC
 ## Lint Rule Disabling
 
 ### Query Annotation
@@ -9781,9 +9780,8 @@ You can prevent `sqlc vet` from evaluating lint rules for a specific query by ad
 /* @sqlc-vet-disable */
 SELECT * FROM authors
 WHERE id = ? LIMIT 1;
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -9817,18 +9815,15 @@ PUT
 {
   "email": "jane.doe.updated@example.com"
 }
-````
+```
 
 ### Response
-
 #### Success Response (200)
-
 - **id** (string) - The unique identifier for the updated user.
 - **name** (string) - The updated name of the user.
 - **email** (string) - The updated email address of the user.
 
 #### Response Example
-
 ```json
 {
   "id": "123e4567-e89b-12d3-a456-426614174000",
@@ -9836,8 +9831,7 @@ PUT
   "email": "jane.doe.updated@example.com"
 }
 ```
-
-````
+```
 
 --------------------------------
 
@@ -9862,7 +9856,7 @@ FROM students
 JOIN test_scores ON test_scores.student_id = students.id
 WHERE students.id = $1;
 
-````
+```
 
 ```go
 type GetStudentAndScoreRow struct {
@@ -9876,7 +9870,7 @@ func (q *Queries) GetStudentAndScore(ctx context.Context, id int64) (GetStudentA
 
 ```
 
----
+--------------------------------
 
 ### SQL table definition for authors
 
@@ -9891,7 +9885,7 @@ CREATE TABLE authors (
 );
 ```
 
----
+--------------------------------
 
 ### Update Author Bio (PostgreSQL)
 
@@ -9936,7 +9930,7 @@ func (q *Queries) UpdateAuthorBios(ctx context.Context, bio string) error {
 
 ```
 
----
+--------------------------------
 
 ### Create Author and Return ID (SQLite)
 
@@ -9955,7 +9949,7 @@ RETURNING id;
 
 ```
 
----
+--------------------------------
 
 ### Go: Delete Author Execution
 
@@ -9970,7 +9964,7 @@ func (q *Queries) DeleteAuthor(ctx context.Context, id int64) error {
 }
 ```
 
----
+--------------------------------
 
 ### MySQL LOAD DATA Statement
 
@@ -9986,7 +9980,7 @@ INSERT INTO foo (a, b, c, d) VALUES (?, ?, ?, ?);
 
 ```
 
----
+--------------------------------
 
 ### Never generate return structs for :exec
 
@@ -10003,7 +9997,7 @@ INSERT INTO users (name, email) VALUES (:name, :email);
 
 ```
 
----
+--------------------------------
 
 ### Define Custom Validation Rules in sqlc
 
@@ -10032,7 +10026,7 @@ rules:
       query.cmd == "exec"
 ```
 
----
+--------------------------------
 
 ### Remove Go specific overrides from codegen proto
 
@@ -10043,7 +10037,7 @@ Enhances the code generation protocol by removing Go-specific override directive
 ```protobuf
 // Conceptual proto definition without Go-specific overrides
 // syntax = "proto3";
-//
+// 
 // message GenerateRequest {
 // 	string schema = 1;
 // 	map<string, string> options = 2;
@@ -10052,7 +10046,7 @@ Enhances the code generation protocol by removing Go-specific override directive
 
 ```
 
----
+--------------------------------
 
 ### No panic on fully-qualified column names
 
@@ -10070,7 +10064,7 @@ FROM my_table;
 
 ```
 
----
+--------------------------------
 
 ### SQL Schema for Student Test Scores
 
@@ -10092,7 +10086,7 @@ CREATE TABLE test_scores (
 )
 ```
 
----
+--------------------------------
 
 ### Generated Go Struct for Standard Query
 
@@ -10112,7 +10106,7 @@ type ScoreAndTestsRow struct {
 
 ```
 
----
+--------------------------------
 
 ### Go Struct for tern Comment Table
 
@@ -10130,7 +10124,7 @@ type Comment struct {
 
 ```
 
----
+--------------------------------
 
 ### sqlc.arg: Name SQL Parameters
 
@@ -10153,7 +10147,7 @@ WHERE lower(name) = ?;
 
 ```
 
----
+--------------------------------
 
 ### Generated Go Struct for Modified Schema
 
@@ -10170,7 +10164,7 @@ type Writer struct {
 }
 ```
 
----
+--------------------------------
 
 ### Escape reserved keywords in Go
 
@@ -10186,7 +10180,7 @@ Ensures that Go keywords used as identifiers in generated code are properly esca
 
 ```
 
----
+--------------------------------
 
 ### Go Struct for Flattened Query Results
 
@@ -10205,13 +10199,13 @@ type ScoreAndTestsRow struct {
 }
 ```
 
----
+--------------------------------
 
-### Map Nullable TEXT to Go \*string
+### Map Nullable TEXT to Go *string
 
 Source: https://docs.sqlc.dev/en/latest/reference/datatypes
 
-Nullable TEXT columns in PostgreSQL are mapped to pgtype.Text with pgx/v5. To map them to \*string, use the emit_pointers_for_null_types option or override the datatype with pointer: true.
+Nullable TEXT columns in PostgreSQL are mapped to pgtype.Text with pgx/v5. To map them to *string, use the emit_pointers_for_null_types option or override the datatype with pointer: true.
 
 ```go
 // Configuration using emit_pointers_for_null_types:
@@ -10232,7 +10226,7 @@ Nullable TEXT columns in PostgreSQL are mapped to pgtype.Text with pgx/v5. To ma
 // }
 ```
 
----
+--------------------------------
 
 ### Pull in array information from analyzer
 
@@ -10253,7 +10247,7 @@ INSERT INTO items (tags) VALUES (ARRAY['tag1', 'tag2']);
 
 ```
 
----
+--------------------------------
 
 ### sqlc.slice: Dynamic Parameter Slicing for IN Clauses
 
@@ -10263,18 +10257,18 @@ The `sqlc.slice` macro is designed for database drivers that do not natively sup
 
 ```sql
 /* name: SelectStudents :many */
-SELECT * FROM students
+SELECT * FROM students 
 WHERE age IN (sqlc.slice("ages"))
 
 -- >>> EXPANDS TO >>>
 
 /* name: SelectStudents :many */
-SELECT id, name, age FROM authors
+SELECT id, name, age FROM authors 
 WHERE age IN (/*SLICE:ages*/?)
 
 ```
 
----
+--------------------------------
 
 ### sqlc.narg: Mark SQL Parameters as Nullable
 
@@ -10297,7 +10291,7 @@ WHERE LOWER(name) = ?;
 
 ```
 
----
+--------------------------------
 
 ### Error on unexpanded star expression
 
@@ -10315,7 +10309,7 @@ FROM users;
 
 ```
 
----
+--------------------------------
 
 ### Define Table and Delete Author SQL (MySQL/SQLite)
 
@@ -10333,7 +10327,7 @@ CREATE TABLE authors (
 DELETE FROM authors WHERE id = ?;
 ```
 
----
+--------------------------------
 
 ### Custom Rule Definition
 
@@ -10341,7 +10335,7 @@ Source: https://docs.sqlc.dev/en/latest/_sources/reference/config
 
 Enables the creation of custom validation rules using the Common Expression Language (CEL) to enforce specific constraints on SQL queries.
 
-````APIDOC
+```APIDOC
 ## Custom Rule Definition
 
 ### Description
@@ -10366,11 +10360,10 @@ rules:
   message: "don't use delete statements"
   rule: |
     query.sql.contains("DELETE")
-````
+```
 
 Refer to the [vet documentation](../howto/vet.md) for a list of built-in rules and guidance on writing custom rules.
-
-````
+```
 
 --------------------------------
 
@@ -10392,9 +10385,9 @@ MODIFY COLUMN priority ENUM('low', 'medium', 'high', 'urgent');
 -- MODIFY COLUMN priority ENUM('low', 'medium', 'urgent');
 */
 
-````
+```
 
----
+--------------------------------
 
 ### Goose SQL Migration Script
 
@@ -10416,7 +10409,7 @@ DROP TABLE post;
 
 ```
 
----
+--------------------------------
 
 ### CAST support for MySQL (Go)
 
@@ -10440,7 +10433,7 @@ func (q *Queries) SelectColumnCast(ctx context.Context) ([]int64, error) {
 }
 ```
 
----
+--------------------------------
 
 ### SQLC Query Annotations - :execlastid
 
@@ -10448,7 +10441,7 @@ Source: https://docs.sqlc.dev/en/latest/reference/query-annotations
 
 The :execlastid annotation generates a Go function that returns the last inserted ID from ExecContext.
 
-````APIDOC
+```APIDOC
 ## DELETE /api/users/{id}
 
 ### Description
@@ -10473,9 +10466,8 @@ DELETE
 {
   "message": "User with ID 123e4567-e89b-12d3-a456-426614174000 deleted successfully."
 }
-````
-
-````
+```
+```
 
 --------------------------------
 
@@ -10491,9 +10483,9 @@ CREATE TABLE records (
   counter INT NOT NULL
 );
 
-````
+```
 
----
+--------------------------------
 
 ### SQL: Delete Author Query Annotation
 
@@ -10507,7 +10499,7 @@ DELETE FROM authors
 WHERE id = $1;
 ```
 
----
+--------------------------------
 
 ### Define Table and Delete Author SQL (PostgreSQL)
 
@@ -10525,7 +10517,7 @@ CREATE TABLE authors (
 DELETE FROM authors WHERE id = $1;
 ```
 
----
+--------------------------------
 
 ### SQL: Count all rows and count rows by town
 
@@ -10549,7 +10541,7 @@ ORDER BY 1;
 
 ```
 
----
+--------------------------------
 
 ### Go Struct for Authors Table
 
@@ -10567,7 +10559,7 @@ type Writer struct {
 
 ```
 
----
+--------------------------------
 
 ### Go Struct for Standard High Score Query
 
@@ -10584,7 +10576,7 @@ type HighScoreRow struct {
 }
 ```
 
----
+--------------------------------
 
 ### PostgreSQL Enums to Aliased String Types
 
@@ -10620,7 +10612,7 @@ type Store struct {
 }
 ```
 
----
+--------------------------------
 
 ### Embedded SQL Query for Students and Scores
 
@@ -10637,7 +10629,7 @@ WHERE students.id = $1;
 
 ```
 
----
+--------------------------------
 
 ### Generated Go Struct for Embedded Query
 
@@ -10653,7 +10645,7 @@ type ScoreAndTestsRow struct {
 
 ```
 
----
+--------------------------------
 
 ### Configure SQLC with go-geom for PostGIS Geometry Types
 
@@ -10698,7 +10690,7 @@ SELECT * FROM shapes;
 }
 ```
 
----
+--------------------------------
 
 ### Remove `ROLLBACK` statements from DDL
 
@@ -10718,7 +10710,7 @@ CREATE TABLE my_table (
 
 ```
 
----
+--------------------------------
 
 ### Go Struct for sql-migrate People Table
 
@@ -10735,7 +10727,7 @@ type People struct {
 
 ```
 
----
+--------------------------------
 
 ### Remove temporary pool config
 
@@ -10746,7 +10738,7 @@ Cleans up the PostgreSQL engine by removing temporary pool configuration setting
 ```go
 // Conceptual removal of temporary pool config
 // package postgresql
-//
+// 
 // func NewDatabase() (*sql.DB, error) {
 // 	// ...
 // 	// Removed temporary pool settings
@@ -10758,7 +10750,7 @@ Cleans up the PostgreSQL engine by removing temporary pool configuration setting
 
 ```
 
----
+--------------------------------
 
 ### Disable Remote Code Generation Locally
 
@@ -10770,7 +10762,7 @@ Disables remote code generation and forces local generation when the 'cloud' con
 sqlc generate --no-remote
 ```
 
----
+--------------------------------
 
 ### SQL Schema Alteration
 
@@ -10782,7 +10774,7 @@ Alters the 'users' table by adding a new 'created_at' timestamp column. This sch
 ALTER TABLE users ADD COLUMN created_at TIMESTAMP;
 ```
 
----
+--------------------------------
 
 ### SQL Query with Embedded Structs
 
@@ -10798,7 +10790,7 @@ JOIN test_scores ON test_scores.student_id = students.id
 WHERE students.id = $1;
 ```
 
----
+--------------------------------
 
 ### MySQL CAST Support Go Function
 
@@ -10823,7 +10815,7 @@ func (q *Queries) SelectColumnCast(ctx context.Context) ([]int64, error) {
 
 ```
 
----
+--------------------------------
 
 ### SQLC Configuration: Override UUID and Birthday column types
 
@@ -10837,7 +10829,7 @@ version: "2"sql:
   queries: "postgresql/query.sql"
   engine: "postgresql"
   gen:
-    go:
+    go: 
       package: "authors"
       out: "db"
       sql_package: "pgx/v5"
@@ -10852,7 +10844,7 @@ version: "2"sql:
 
 ```
 
----
+--------------------------------
 
 ### Customizing Field Names with 'rename' in sqlc Config
 
@@ -10863,18 +10855,18 @@ Shows how to use the 'rename' mapping within the sqlc configuration file to spec
 ```yaml
 version: "2"
 sql:
-  - schema: "postgresql/schema.sql"
-    queries: "postgresql/query.sql"
-    engine: "postgresql"
-    gen:
-      go:
-        package: "authors"
-        out: "postgresql"
-        rename:
-          spotify_url: "SpotifyURL"
+- schema: "postgresql/schema.sql"
+  queries: "postgresql/query.sql"
+  engine: "postgresql"
+  gen:
+    go:
+      package: "authors"
+      out: "postgresql"
+      rename:
+        spotify_url: "SpotifyURL"
 ```
 
----
+--------------------------------
 
 ### Delete All Authors using :execrows
 
@@ -10894,7 +10886,7 @@ func (q *Queries) DeleteAllAuthors(ctx context.Context) (int64, error) {
 }
 ```
 
----
+--------------------------------
 
 ### Create authors table
 
@@ -10909,7 +10901,7 @@ CREATE TABLE authors (
 );
 ```
 
----
+--------------------------------
 
 ### Previous pgx Batch Closed Error Check
 
@@ -10921,7 +10913,7 @@ Illustrates the older method of checking if a pgx batch was closed by directly c
 err.Error() == "batch already closed"
 ```
 
----
+--------------------------------
 
 ### SQL Query for Scores and Tests (Flattened)
 
@@ -10937,7 +10929,7 @@ JOIN test_scores ON test_scores.student_id = students.id
 WHERE students.id = $1;
 ```
 
----
+--------------------------------
 
 ### Go: Delete All Authors Affected Rows
 
@@ -10952,7 +10944,7 @@ func (q *Queries) DeleteAllAuthors(ctx context.Context) (int64, error) {
 }
 ```
 
----
+--------------------------------
 
 ### Go Struct for Embedded Query Results
 
@@ -10967,7 +10959,7 @@ type ScoreAndTestsRow struct {
 }
 ```
 
----
+--------------------------------
 
 ### SQL: Delete All Authors Query Annotation
 
@@ -10980,7 +10972,7 @@ Annotates a SQL query to delete all authors, returning the execution result.
 DELETE FROM authors;
 ```
 
----
+--------------------------------
 
 ### Configure Global Go Type Override for PostgreSQL timestamptz (sqlc v2)
 
@@ -11001,23 +10993,23 @@ overrides:
           package: "null"
           type: "Time"
 sql:
-  - schema: "service1/schema.sql"
-    queries: "service1/query.sql"
-    engine: "postgresql"
-    gen:
-      go:
-        package: "service1"
-        out: "service1"
-  - schema: "service2/schema.sql"
-    queries: "service2/query.sql"
-    engine: "postgresql"
-    gen:
-      go:
-        package: "service2"
-        out: "service2"
+- schema: "service1/schema.sql"
+  queries: "service1/query.sql"
+  engine: "postgresql"
+  gen:
+    go:
+      package: "service1"
+      out: "service1"
+- schema: "service2/schema.sql"
+  queries: "service2/query.sql"
+  engine: "postgresql"
+  gen:
+    go:
+      package: "service2"
+      out: "service2"
 ```
 
----
+--------------------------------
 
 ### Go Struct for Embedded High Score Query
 
@@ -11032,7 +11024,7 @@ type HighScoreRow struct {
 }
 ```
 
----
+--------------------------------
 
 ### Support `ENUM` in `ALTER` definition for MySQL
 
@@ -11049,7 +11041,7 @@ MODIFY COLUMN status ENUM('pending', 'processing', 'shipped') DEFAULT 'pending';
 
 ```
 
----
+--------------------------------
 
 ### Overriding UUID Type Mapping in MySQL
 
@@ -11068,7 +11060,7 @@ Provides a JSON configuration to override the default mapping for UUID columns i
 }
 ```
 
----
+--------------------------------
 
 ### SQL: Insert Author Last ID Annotation
 
@@ -11081,7 +11073,7 @@ Annotates an SQL INSERT query to return the last inserted ID.
 INSERT INTO authors (name) VALUES (?);
 ```
 
----
+--------------------------------
 
 ### SQL: Delete All Authors Affected Rows Annotation
 
@@ -11094,7 +11086,7 @@ Annotates a SQL query to delete all authors, returning the number of affected ro
 DELETE FROM authors;
 ```
 
----
+--------------------------------
 
 ### Delete author by ID (MySQL and SQLite)
 
@@ -11107,7 +11099,7 @@ SQL statement for MySQL and SQLite to delete an author from the 'authors' table 
 DELETE FROM authors WHERE id = ?;
 ```
 
----
+--------------------------------
 
 ### Delete author by ID (PostgreSQL)
 
@@ -11120,7 +11112,7 @@ SQL statement for PostgreSQL to delete an author from the 'authors' table based 
 DELETE FROM authors WHERE id = $1;
 ```
 
----
+--------------------------------
 
 ### Prevent filtering of embedded struct fields in Go
 
@@ -11133,12 +11125,12 @@ Corrects the Go code generation logic to prevent the accidental filtering of fie
 // type Base struct {
 // 	ID int
 // }
-//
+// 
 // type User struct {
 // 	Base
 // 	Name string
 // }
-//
+// 
 // // Generated code should include both ID and Name fields for User.
 
 ```

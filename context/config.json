@@ -1,0 +1,46 @@
+{
+  "libraries": [
+    {
+      "name": "daisyui",
+      "context7_id": "websites/daisyui",
+      "output_dir": "context/daisyui",
+      "output_file": "daisyui.md",
+      "tokens": 1000000
+    },
+    {
+      "name": "datastar",
+      "context7_id": "websites/data-star_dev",
+      "output_dir": "context/datastar",
+      "output_file": "datastar.md",
+      "tokens": 1000000
+    },
+    {
+      "name": "nats",
+      "context7_id": "websites/nats_io",
+      "output_dir": "context/nats",
+      "output_file": "nats.md",
+      "tokens": 1000000
+    },
+    {
+      "name": "sqlc",
+      "context7_id": "websites/sqlc_dev_en",
+      "output_dir": "context/sqlc",
+      "output_file": "sqlc.md",
+      "tokens": 1000000
+    },
+    {
+      "name": "templ",
+      "context7_id": "websites/templ_guide",
+      "output_dir": "context/templ",
+      "output_file": "templ.md",
+      "tokens": 1000000
+    },
+    {
+      "name": "tailwindcss",
+      "context7_id": "websites/tailwindcss",
+      "output_dir": "context/tailwindcss",
+      "output_file": "tailwindcss.md",
+      "tokens": 1000000
+    }
+  ]
+}
