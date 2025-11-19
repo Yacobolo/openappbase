@@ -1,75 +1,75 @@
-# File Map: daisyui.md
+# File Map: llms.md
 
-- [L0009] daisyUI 5
-  - [L0018] daisyUI 5 install notes
-  - [L0034] daisyUI 5 usage rules
-  - [L0059] Config
-  - [L0096] daisyUI 5 colors
-    - [L0098] daisyUI color names
-    - [L0120] daisyUI color rules
-    - [L0132] daisyUI custom theme with custom colors
-  - [L0185] daisyUI 5 components
-    - [L0187] accordion
-    - [L0215] alert
-    - [L0235] avatar
-    - [L0259] badge
-    - [L0280] breadcrumbs
-    - [L0300] button
-    - [L0323] calendar
-    - [L0351] card
-    - [L0381] carousel
-    - [L0402] chat
-    - [L0428] checkbox
-    - [L0446] collapse
-    - [L0469] countdown
-    - [L0489] diff
-    - [L0510] divider
-    - [L0530] dock
-    - [L0558] drawer
-    - [L0657] dropdown
-    - [L0697] fab
-    - [L0796] fieldset
-    - [L0817] file-input
-    - [L0836] filter
-    - [L0869] footer
-    - [L0891] hero
-    - [L0911] hover-3d
-    - [L0945] hover-gallery
-    - [L0969] indicator
-    - [L0991] input
-    - [L1012] join
-    - [L1032] kbd
-    - [L1049] label
-    - [L1077] link
-    - [L1095] list
-    - [L1116] loading
-    - [L1134] mask
-    - [L1154] menu
-    - [L1187] mockup-browser
-    - [L1210] mockup-code
-    - [L1230] mockup-phone
-    - [L1250] mockup-window
-    - [L1265] modal
-    - [L1310] navbar
-    - [L1329] pagination
-    - [L1348] progress
-    - [L1366] radial-progress
-    - [L1385] radio
-    - [L1405] range
-    - [L1424] rating
-    - [L1446] select
-    - [L1467] skeleton
-    - [L1488] stack
-    - [L1506] stat
-    - [L1528] status
-    - [L1547] steps
-    - [L1571] swap
-    - [L1605] tab
-    - [L1637] table
-    - [L1669] text-rotate
-    - [L1737] textarea
-    - [L1756] theme-controller
-    - [L1772] timeline
-    - [L1800] toast
-    - [L1817] toggle
-    - [L1835] validator
+- [9:1844] daisyUI 5
+  - [18:16] daisyUI 5 install notes
+  - [34:25] daisyUI 5 usage rules
+  - [59:37] Config
+  - [96:89] daisyUI 5 colors
+    - [98:22] daisyUI color names
+    - [120:12] daisyUI color rules
+    - [132:53] daisyUI custom theme with custom colors
+  - [185:1668] daisyUI 5 components
+    - [187:28] accordion
+    - [215:20] alert
+    - [235:24] avatar
+    - [259:21] badge
+    - [280:20] breadcrumbs
+    - [300:23] button
+    - [323:28] calendar
+    - [351:30] card
+    - [381:21] carousel
+    - [402:26] chat
+    - [428:18] checkbox
+    - [446:23] collapse
+    - [469:20] countdown
+    - [489:21] diff
+    - [510:20] divider
+    - [530:28] dock
+    - [558:99] drawer
+    - [657:40] dropdown
+    - [697:99] fab
+    - [796:21] fieldset
+    - [817:19] file-input
+    - [836:33] filter
+    - [869:22] footer
+    - [891:20] hero
+    - [911:34] hover-3d
+    - [945:24] hover-gallery
+    - [969:22] indicator
+    - [991:21] input
+    - [1012:20] join
+    - [1032:17] kbd
+    - [1049:28] label
+    - [1077:18] link
+    - [1095:21] list
+    - [1116:18] loading
+    - [1134:20] mask
+    - [1154:33] menu
+    - [1187:23] mockup-browser
+    - [1210:20] mockup-code
+    - [1230:20] mockup-phone
+    - [1250:15] mockup-window
+    - [1265:45] modal
+    - [1310:19] navbar
+    - [1329:19] pagination
+    - [1348:18] progress
+    - [1366:19] radial-progress
+    - [1385:20] radio
+    - [1405:19] range
+    - [1424:22] rating
+    - [1446:21] select
+    - [1467:21] skeleton
+    - [1488:18] stack
+    - [1506:22] stat
+    - [1528:19] status
+    - [1547:24] steps
+    - [1571:34] swap
+    - [1605:32] tab
+    - [1637:32] table
+    - [1669:68] text-rotate
+    - [1737:19] textarea
+    - [1756:16] theme-controller
+    - [1772:28] timeline
+    - [1800:17] toast
+    - [1817:18] toggle
+    - [1835:18] validator

@@ -4,37 +4,25 @@
       "name": "daisyui",
       "url": "https://daisyui.com/llms.txt",
       "output_dir": "context/daisyui",
-      "output_file": "daisyui.md"
+      "output_file": "llms.md"
     },
     {
       "name": "nats",
       "url": "https://context7.com/api/v1/websites/nats_io?type=txt&tokens=1000000",
       "output_dir": "context/nats",
-      "output_file": "nats.md"
-    },
-    {
-      "name": "sqlc",
-      "url": "https://context7.com/api/v1/websites/sqlc_dev_en?type=txt&tokens=1000000",
-      "output_dir": "context/sqlc",
-      "output_file": "sqlc.md"
+      "output_file": "llms.md"
     },
     {
       "name": "templ",
       "url": "https://templ.guide/llms.md",
       "output_dir": "context/templ",
-      "output_file": "templ.md"
-    },
-    {
-      "name": "tailwindcss",
-      "url": "https://context7.com/api/v1/websites/tailwindcss?type=txt&tokens=1000000",
-      "output_dir": "context/tailwindcss",
-      "output_file": "tailwindcss.md"
+      "output_file": "llms.md"
     },
     {
       "name": "opencode",
       "url": "https://context7.com/api/v1/websites/opencode_ai?type=txt&tokens=1000000",
       "output_dir": "context/opencode",
-      "output_file": "opencode.md"
+      "output_file": "llms.md"
     }
   ]
 }

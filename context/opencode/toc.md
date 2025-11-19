@@ -1,544 +1,544 @@
-# File Map: opencode.md
+# File Map: llms.md
 
-    - [L0001] Opencode Config API Examples
-    - [L0016] Install Opencode SDK
-    - [L0028] OpenCode Configuration - Basic LSP Setup
-    - [L0043] Opencode Project API Examples
-    - [L0060] Opencode Path API Example
-    - [L0073] Start OpenCode TUI - Shell Command
-    - [L0086] Opencode App API Examples
-    - [L0109] Install clipboard utilities for Linux (X11)
-- [L0117] or
-    - [L0123] Install clipboard utilities for Linux (Wayland)
-    - [L0135] Set up headless environment for Linux
-- [L0143] and run:
-    - [L0150] GitLab CI/CD YAML Configuration for Opencode Setup
-    - [L0234] Basic Formatter Configuration
-    - [L0249] Create Opencode Client Instance
-    - [L0264] opencode Explain Issue Example
-    - [L0276] Load Specific Model via Command Line in JSON
-    - [L0291] Use MCP tool in prompt
-    - [L0303] opencode GitHub Install Command
-    - [L0315] Set Authentication Credentials (JavaScript)
-    - [L0330] Custom Provider Setup in opencode.json
-    - [L0386] Create basic OpenCode plugin structure
-    - [L0404] OpenCode Configuration - Adding a Custom LSP Server
-    - [L0424] Implement TypeScript plugin with type safety
-    - [L0442] Authenticate with Private NPM Registry (Shell)
-    - [L0454] Configure OpenCode Providers in JSON
-    - [L0515] Documentation agent configuration in YAML
-    - [L0544] Set provider credentials via environment variables
-    - [L0568] Default Keybinds Configuration in JSON
-    - [L0624] Add test MCP server locally
-    - [L0644] Authenticate with a provider using opencode auth login
-    - [L0656] Disable Specific Formatter
-    - [L0675] GET /zen/v1/models
-  - [L0682] GET /zen/v1/models
-    - [L0684] Description
-    - [L0687] Method
-    - [L0690] Endpoint
-    - [L0693] Parameters
-    - [L0703] Request Example
-    - [L0708] Response
-    - [L0733] Custom Formatter Configuration
-    - [L0760] Re-authenticate with provider
-    - [L0772] Add custom tools to OpenCode via plugins
-    - [L0800] opencode Review and Modify PR Example
-    - [L0812] opencode Fix Issue Example
-    - [L0824] Configure Auto-Update - JSON
-    - [L0839] Disable Keybind in JSON Configuration
-    - [L0856] Create new agent via CLI command
-    - [L0868] Configure Zed Editor for OpenCode ACP
-    - [L0887] Configure agents via JSON (opencode.json)
-    - [L0932] Send system notifications on plugin events
-    - [L0953] Configure agents via Markdown files
-    - [L0986] Create Custom Tool with Helper
-    - [L1024] Clear provider package cache
-    - [L1036] Configure provider-specific options in JSON
-    - [L1057] Clear OpenCode configuration
-    - [L1069] Set log level for debugging
-    - [L1081] Set Google Vertex AI environment variables for opencode
-    - [L1099] Configure Context7 MCP server
-    - [L1134] Configure LM Studio provider in opencode JSON config
-    - [L1162] Configure provider baseURL in OpenCode config
-    - [L1183] Control Web Fetch Permissions in JSON
-    - [L1200] Override Permissions for Specific Agents in JSON
-    - [L1228] Override Agent Model in JSON
-    - [L1246] Create Opencode Client (Existing Server)
-    - [L1263] Deny All Bash Commands Except Specific Ones in JSON
-    - [L1284] Create and Manage Sessions (JavaScript)
-    - [L1312] Protect .env files from being read
-    - [L1332] Security auditor agent configuration in YAML
-    - [L1363] Configure List Tool
-    - [L1380] Force Subagent Invocation with Subtask in JSON
-    - [L1398] Configure Webfetch Tool
-    - [L1415] Disable Share Feature (JSON)
-    - [L1430] Configure and Create Opencode Instance
-    - [L1457] Configure providers and models (JSON)
-    - [L1469] Run OpenCode with custom config path or directory (bash)
-    - [L1485] Listen to Real-Time Events (JavaScript)
-    - [L1501] Configure Todowrite Tool
-    - [L1518] Configure Instructions - JSON
-    - [L1533] Sessions API
-  - [L1540] Sessions API
-    - [L1542] Description
-    - [L1545] Methods
-    - [L1566] Parameters
-    - [L1579] Request Example
-    - [L1596] Response
-    - [L1624] Configure Todoread Tool
-    - [L1641] POST /zen/v1/chat/completions
-  - [L1648] POST /zen/v1/chat/completions
-    - [L1650] Description
-    - [L1653] Method
-    - [L1656] Endpoint
-    - [L1659] Parameters
-    - [L1672] Request Example
-    - [L1685] Response
-    - [L1712] Create custom command with markdown
-    - [L1733] Create project-specific custom theme directory
-    - [L1746] Control TUI Interface (JavaScript)
-    - [L1764] Create user-wide custom theme directory
-    - [L1777] Configure Glob Tool
-    - [L1794] Configure Write Tool
-    - [L1811] Apply global OpenCode config (JSONC)
-    - [L1823] Auth API
-  - [L1830] Auth API
-    - [L1832] Description
-    - [L1835] Methods
-    - [L1838] Parameters
-    - [L1846] Request Example
-    - [L1857] Response
-    - [L1869] App APIs
-  - [L1876] GET /app
-    - [L1878] Description
-    - [L1881] Method
-    - [L1884] Endpoint
-    - [L1887] Parameters
-    - [L1890] Response
-  - [L1899] POST /app/init
-    - [L1901] Description
-    - [L1904] Method
-    - [L1907] Endpoint
-    - [L1910] Parameters
-    - [L1913] Request Body
-    - [L1916] Response
-    - [L1923] Configure Patch Tool
-    - [L1940] Config API
-  - [L1947] Config
-    - [L1949] Description
-    - [L1952] Method
-    - [L1955] Endpoint
-    - [L1958] Parameters
-    - [L1968] Get Config Info
-    - [L1980] List Providers and Defaults
-    - [L2003] Configure Custom Commands - JSON
-    - [L2029] Search and Read Files (JavaScript)
-    - [L2051] Configure Tools in Markdown
-    - [L2072] File Content Substitution - JSON
-    - [L2094] Configure Grep Tool
-    - [L2111] Configure Tools with Wildcards
-    - [L2128] Environment Variable Substitution - JSON
-    - [L2151] Configure Read Tool
-    - [L2168] Project API
-  - [L2175] Project
-    - [L2177] Description
-    - [L2180] Method
-    - [L2183] Endpoint
-    - [L2186] Parameters
-    - [L2196] List Projects
-    - [L2214] Get Current Project
-    - [L2229] Use command arguments in prompt
-    - [L2248] Configure Avante.nvim with Environment Variables for OpenCode ACP
-    - [L2270] Configure Keybindings - JSON
-    - [L2285] POST /zen/v1/responses
-  - [L2292] POST /zen/v1/responses
-    - [L2294] Description
-    - [L2297] Method
-    - [L2300] Endpoint
-    - [L2303] Parameters
-    - [L2315] Request Example
-    - [L2327] Response
-    - [L2354] Export Multiple Tools from File
-    - [L2414] Inject shell command output
-    - [L2436] App API
-  - [L2443] App
-    - [L2445] Description
-    - [L2448] Method
-    - [L2451] Endpoint
-    - [L2454] Parameters
-    - [L2466] Request Example
-    - [L2473] Response
-    - [L2482] Agents API
-    - [L2515] Configure MCP Servers - JSON
-    - [L2530] Configure Bash Tool
-    - [L2547] Configure Grep by Vercel MCP server
-    - [L2567] Configure custom command with JSON
-    - [L2589] Configure Avante.nvim for OpenCode ACP
-    - [L2608] Configure Permissions - JSON
-    - [L2626] Config APIs
-  - [L2633] GET /config
-    - [L2635] Description
-    - [L2638] Method
-    - [L2641] Endpoint
-    - [L2644] Parameters
-    - [L2647] Response
-  - [L2656] GET /config/providers
-    - [L2658] Description
-    - [L2661] Method
-    - [L2664] Endpoint
-    - [L2667] Parameters
-    - [L2670] Response
-    - [L2677] Files API
-  - [L2684] Files API
-    - [L2686] Description
-    - [L2689] Methods
-    - [L2696] Parameters
-    - [L2705] Request Example
-    - [L2712] Response
-    - [L2742] Configure local MCP server
-    - [L2767] OpenCode TUI Configuration - JSON
-    - [L2784] Configure MCP servers in OpenCode
-    - [L2807] Nord Theme Configuration in JSON
-    - [L3041] Sessions APIs
-  - [L3048] GET /session
-    - [L3050] Description
-    - [L3053] Method
-    - [L3056] Endpoint
-    - [L3059] Parameters
-    - [L3062] Response
-  - [L3066] GET /session/:id
-    - [L3068] Description
-    - [L3071] Method
-    - [L3074] Endpoint
-    - [L3077] Parameters
-    - [L3081] Response
-  - [L3085] GET /session/:id/children
-    - [L3087] Description
-    - [L3090] Method
-    - [L3093] Endpoint
-    - [L3096] Parameters
-    - [L3100] Response
-  - [L3104] POST /session
-    - [L3106] Description
-    - [L3109] Method
-    - [L3112] Endpoint
-    - [L3115] Parameters
-    - [L3118] Request Body
-    - [L3122] Response
-  - [L3126] DELETE /session/:id
-    - [L3128] Description
-    - [L3131] Method
-    - [L3134] Endpoint
-    - [L3137] Parameters
-    - [L3141] Response
-  - [L3145] PATCH /session/:id
-    - [L3147] Description
-    - [L3150] Method
-    - [L3153] Endpoint
-    - [L3156] Parameters
-    - [L3160] Request Body
-    - [L3163] Response
-  - [L3167] POST /session/:id/init
-    - [L3169] Description
-    - [L3172] Method
-    - [L3175] Endpoint
-    - [L3178] Parameters
-    - [L3182] Request Body
-    - [L3187] Response
-  - [L3191] POST /session/:id/abort
-    - [L3193] Description
-    - [L3196] Method
-    - [L3199] Endpoint
-    - [L3202] Parameters
-    - [L3206] Response
-  - [L3210] POST /session/:id/share
-    - [L3212] Description
-    - [L3215] Method
-    - [L3218] Endpoint
-    - [L3221] Parameters
-    - [L3225] Response
-  - [L3229] DELETE /session/:id/share
-    - [L3231] Description
-    - [L3234] Method
-    - [L3237] Endpoint
-    - [L3240] Parameters
-    - [L3244] Response
-  - [L3248] POST /session/:id/summarize
-    - [L3250] Description
-    - [L3253] Method
-    - [L3256] Endpoint
-    - [L3259] Parameters
-    - [L3263] Response
-  - [L3267] GET /session/:id/message
-    - [L3269] Description
-    - [L3272] Method
-    - [L3275] Endpoint
-    - [L3278] Parameters
-    - [L3282] Response
-  - [L3286] GET /session/:id/message/:messageID
-    - [L3288] Description
-    - [L3291] Method
-    - [L3294] Endpoint
-    - [L3297] Parameters
-    - [L3302] Response
-  - [L3306] POST /session/:id/message
-    - [L3308] Description
-    - [L3311] Method
-    - [L3314] Endpoint
-    - [L3317] Parameters
-    - [L3321] Request Body
-    - [L3324] Response
-  - [L3328] POST /session/:id/shell
-    - [L3330] Description
-    - [L3333] Method
-    - [L3336] Endpoint
-    - [L3339] Parameters
-    - [L3343] Request Body
-    - [L3346] Response
-  - [L3350] POST /session/:id/revert
-    - [L3352] Description
-    - [L3355] Method
-    - [L3358] Endpoint
-    - [L3361] Parameters
-    - [L3365] Request Body
-    - [L3368] Response
-  - [L3372] POST /session/:id/unrevert
-    - [L3374] Description
-    - [L3377] Method
-    - [L3380] Endpoint
-    - [L3383] Parameters
-    - [L3387] Response
-  - [L3391] POST /session/:id/permissions/:permissionID
-    - [L3393] Description
-    - [L3396] Method
-    - [L3399] Endpoint
-    - [L3402] Parameters
-    - [L3407] Request Body
-    - [L3410] Response
-    - [L3417] Set OpenCode theme (JSON)
-    - [L3429] Configure Global Tools
-    - [L3448] Configure remote MCP server
-    - [L3472] Documentation API
-  - [L3479] GET /doc
-    - [L3481] Description
-    - [L3484] Method
-    - [L3487] Endpoint
-    - [L3490] Parameters
-    - [L3493] Response
-    - [L3497] Response Example
-    - [L3503] Configure .npmrc for Private Registry (Config)
-    - [L3516] Path API
-  - [L3523] Path
-    - [L3525] Description
-    - [L3528] Method
-    - [L3531] Endpoint
-    - [L3534] Parameters
-    - [L3544] Get Current Path
-    - [L3559] Authentication API
-  - [L3566] PUT /auth/:id
-    - [L3568] Description
-    - [L3571] Method
-    - [L3574] Endpoint
-    - [L3577] Parameters
-    - [L3584] Response
-    - [L3588] Request Example
-    - [L3597] Response Example
-    - [L3607] GitHub Workflow for opencode
-    - [L3646] Configure Global Permissions in JSON
-    - [L3665] Configure Permissions for OpenCode Agents
-    - [L3761] Configure Edit Tool
-    - [L3778] Configure Agent-Specific Tools
-    - [L3804] Set Bash Tool Permissions Globally in JSON
-    - [L3821] Reference files in command prompt
-    - [L3840] Configure TUI scroll speed (JSON)
-    - [L3852] Control Edit Tool Permissions in JSON
-    - [L3869] Create Tool with Plain Object
-    - [L3907] Configure Granular Bash Command Permissions in JSON
-    - [L3931] Access Tool Context Information
-    - [L3967] Set Custom Prompt for Agent in JSON
-    - [L3985] Handle SDK Errors
-    - [L4001] Configure Agent Permissions in YAML
-    - [L4020] Files APIs
-  - [L4027] GET /find?pattern=<pat>
-    - [L4029] Description
-    - [L4032] Method
-    - [L4035] Endpoint
-    - [L4038] Parameters
-    - [L4042] Response
-  - [L4046] GET /find/file?query=<q>
-    - [L4048] Description
-    - [L4051] Method
-    - [L4054] Endpoint
-    - [L4057] Parameters
-    - [L4061] Response
-  - [L4065] GET /find/symbol?query=<q>
-    - [L4067] Description
-    - [L4070] Method
-    - [L4073] Endpoint
-    - [L4076] Parameters
-    - [L4080] Response
-  - [L4084] GET /file?path=<path>
-    - [L4086] Description
-    - [L4089] Method
-    - [L4092] Endpoint
-    - [L4095] Parameters
-    - [L4099] Response
-  - [L4103] GET /file/status
-    - [L4105] Description
-    - [L4108] Method
-    - [L4111] Endpoint
-    - [L4114] Parameters
-    - [L4117] Response
-    - [L4124] Configure Code Formatters - JSON
-    - [L4150] Logging APIs
-  - [L4157] POST /log
-    - [L4159] Description
-    - [L4162] Method
-    - [L4165] Endpoint
-    - [L4168] Parameters
-    - [L4171] Request Body
-    - [L4177] Response
-    - [L4184] Execute Shell Command in TUI - Shell
-    - [L4196] Import TypeScript Definitions
-    - [L4208] TUI API
-  - [L4215] TUI API
-    - [L4217] Description
-    - [L4220] Methods
-    - [L4231] Parameters
-    - [L4238] Request Example
-    - [L4245] Response
-    - [L4257] Events API
-  - [L4264] Events API
-    - [L4266] Description
-    - [L4269] Methods
-    - [L4272] Parameters
-    - [L4275] Request Example
-    - [L4278] Response
-    - [L4297] Bind Keyboard Shortcut in Zed for OpenCode ACP
-    - [L4315] Configure theme in OpenCode config
-    - [L4330] POST /zen/v1/messages
-  - [L4337] POST /zen/v1/messages
-    - [L4339] Description
-    - [L4342] Method
-    - [L4345] Endpoint
-    - [L4348] Parameters
-    - [L4361] Request Example
-    - [L4374] Response
-    - [L4398] Check terminal truecolor support
-    - [L4410] Configure Global Model Options in JSON
-    - [L4450] Enable truecolor in terminal
-    - [L4462] Configure Agent Description in JSON
-    - [L4480] GitHub Permissions for opencode
-    - [L4496] Control Agent Tools in JSON
-    - [L4537] Specify Agent for Command in JSON
-    - [L4555] Agents APIs
-  - [L4562] GET /agent
-    - [L4564] Description
-    - [L4567] Method
-    - [L4570] Endpoint
-    - [L4573] Parameters
-    - [L4576] Response
-    - [L4583] TUI API Endpoints
-  - [L4590] POST /tui/append-prompt
-    - [L4592] Description
-    - [L4595] Method
-    - [L4598] Endpoint
-    - [L4601] Parameters
-    - [L4605] Response
-    - [L4609] Request Example
-    - [L4616] Response Example
-  - [L4625] POST /tui/open-help
-    - [L4627] Description
-    - [L4630] Method
-    - [L4633] Endpoint
-    - [L4636] Parameters
-    - [L4639] Response
-    - [L4643] Response Example
-  - [L4652] POST /tui/open-sessions
-    - [L4654] Description
-    - [L4657] Method
-    - [L4660] Endpoint
-    - [L4663] Parameters
-    - [L4666] Response
-    - [L4670] Response Example
-  - [L4679] POST /tui/open-themes
-    - [L4681] Description
-    - [L4684] Method
-    - [L4687] Endpoint
-    - [L4690] Parameters
-    - [L4693] Response
-    - [L4697] Response Example
-  - [L4706] POST /tui/open-models
-    - [L4708] Description
-    - [L4711] Method
-    - [L4714] Endpoint
-    - [L4717] Parameters
-    - [L4720] Response
-    - [L4724] Response Example
-  - [L4733] POST /tui/submit-prompt
-    - [L4735] Description
-    - [L4738] Method
-    - [L4741] Endpoint
-    - [L4744] Parameters
-    - [L4747] Response
-    - [L4751] Response Example
-  - [L4760] POST /tui/clear-prompt
-    - [L4762] Description
-    - [L4765] Method
-    - [L4768] Endpoint
-    - [L4771] Parameters
-    - [L4774] Response
-    - [L4778] Response Example
-  - [L4787] POST /tui/execute-command
-    - [L4789] Description
-    - [L4792] Method
-    - [L4795] Endpoint
-    - [L4798] Parameters
-    - [L4802] Response
-    - [L4806] Request Example
-    - [L4813] Response Example
-  - [L4822] POST /tui/show-toast
-    - [L4824] Description
-    - [L4827] Method
-    - [L4830] Endpoint
-    - [L4833] Parameters
-    - [L4839] Response
-    - [L4843] Request Example
-    - [L4852] Response Example
-  - [L4861] GET /tui/control/next
-    - [L4863] Description
-    - [L4866] Method
-    - [L4869] Endpoint
-    - [L4872] Parameters
-    - [L4875] Response
-    - [L4879] Response Example
-  - [L4891] POST /tui/control/response
-    - [L4893] Description
-    - [L4896] Method
-    - [L4899] Endpoint
-    - [L4902] Parameters
-    - [L4906] Response
-    - [L4910] Request Example
-    - [L4919] Response Example
-    - [L4929] Configure MCP server per agent
-    - [L4960] Events API
-  - [L4967] GET /event
-    - [L4969] Description
-    - [L4972] Method
-    - [L4975] Endpoint
-    - [L4978] Parameters
-    - [L4981] Response
-    - [L4985] Response Example
-    - [L4999] Define Custom Models in JSON Config
-    - [L5035] Use Wildcards to Deny Terraform Commands in JSON
-    - [L5054] Configure agent mode in JSON
-    - [L5072] Disable specific OpenCode tools (JSON)
-    - [L5084] Override Model for Command in JSON
-    - [L5102] Set Default Model in JSON Config
-    - [L5117] Configure Agent Temperature in JSON
-    - [L5156] Configure Disabled Providers - JSON
-    - [L5171] OpenCode Configuration - Disabling TypeScript LSP Server
-    - [L5190] Set EDITOR Environment Variable for OpenCode
-    - [L5214] Globally disable MCP tools
-    - [L5241] Disable Agent in JSON
+    - [1:15] Opencode Config API Examples
+    - [16:12] Install Opencode SDK
+    - [28:15] OpenCode Configuration - Basic LSP Setup
+    - [43:17] Opencode Project API Examples
+    - [60:13] Opencode Path API Example
+    - [73:13] Start OpenCode TUI - Shell Command
+    - [86:23] Opencode App API Examples
+    - [109:8] Install clipboard utilities for Linux (X11)
+- [117:26] or
+    - [123:12] Install clipboard utilities for Linux (Wayland)
+    - [135:8] Set up headless environment for Linux
+- [143:5115] and run:
+    - [150:84] GitLab CI/CD YAML Configuration for Opencode Setup
+    - [234:15] Basic Formatter Configuration
+    - [249:15] Create Opencode Client Instance
+    - [264:12] opencode Explain Issue Example
+    - [276:15] Load Specific Model via Command Line in JSON
+    - [291:12] Use MCP tool in prompt
+    - [303:12] opencode GitHub Install Command
+    - [315:15] Set Authentication Credentials (JavaScript)
+    - [330:56] Custom Provider Setup in opencode.json
+    - [386:18] Create basic OpenCode plugin structure
+    - [404:20] OpenCode Configuration - Adding a Custom LSP Server
+    - [424:18] Implement TypeScript plugin with type safety
+    - [442:12] Authenticate with Private NPM Registry (Shell)
+    - [454:61] Configure OpenCode Providers in JSON
+    - [515:29] Documentation agent configuration in YAML
+    - [544:24] Set provider credentials via environment variables
+    - [568:56] Default Keybinds Configuration in JSON
+    - [624:20] Add test MCP server locally
+    - [644:12] Authenticate with a provider using opencode auth login
+    - [656:19] Disable Specific Formatter
+    - [675:7] GET /zen/v1/models
+  - [682:858] GET /zen/v1/models
+    - [684:3] Description
+    - [687:3] Method
+    - [690:3] Endpoint
+    - [693:10] Parameters
+    - [703:5] Request Example
+    - [708:25] Response
+    - [733:27] Custom Formatter Configuration
+    - [760:12] Re-authenticate with provider
+    - [772:28] Add custom tools to OpenCode via plugins
+    - [800:12] opencode Review and Modify PR Example
+    - [812:12] opencode Fix Issue Example
+    - [824:15] Configure Auto-Update - JSON
+    - [839:17] Disable Keybind in JSON Configuration
+    - [856:12] Create new agent via CLI command
+    - [868:19] Configure Zed Editor for OpenCode ACP
+    - [887:45] Configure agents via JSON (opencode.json)
+    - [932:21] Send system notifications on plugin events
+    - [953:33] Configure agents via Markdown files
+    - [986:38] Create Custom Tool with Helper
+    - [1024:12] Clear provider package cache
+    - [1036:21] Configure provider-specific options in JSON
+    - [1057:12] Clear OpenCode configuration
+    - [1069:12] Set log level for debugging
+    - [1081:18] Set Google Vertex AI environment variables for opencode
+    - [1099:35] Configure Context7 MCP server
+    - [1134:28] Configure LM Studio provider in opencode JSON config
+    - [1162:21] Configure provider baseURL in OpenCode config
+    - [1183:17] Control Web Fetch Permissions in JSON
+    - [1200:28] Override Permissions for Specific Agents in JSON
+    - [1228:18] Override Agent Model in JSON
+    - [1246:17] Create Opencode Client (Existing Server)
+    - [1263:21] Deny All Bash Commands Except Specific Ones in JSON
+    - [1284:28] Create and Manage Sessions (JavaScript)
+    - [1312:20] Protect .env files from being read
+    - [1332:31] Security auditor agent configuration in YAML
+    - [1363:17] Configure List Tool
+    - [1380:18] Force Subagent Invocation with Subtask in JSON
+    - [1398:17] Configure Webfetch Tool
+    - [1415:15] Disable Share Feature (JSON)
+    - [1430:27] Configure and Create Opencode Instance
+    - [1457:12] Configure providers and models (JSON)
+    - [1469:16] Run OpenCode with custom config path or directory (bash)
+    - [1485:16] Listen to Real-Time Events (JavaScript)
+    - [1501:17] Configure Todowrite Tool
+    - [1518:15] Configure Instructions - JSON
+    - [1533:7] Sessions API
+  - [1540:108] Sessions API
+    - [1542:3] Description
+    - [1545:21] Methods
+    - [1566:13] Parameters
+    - [1579:17] Request Example
+    - [1596:28] Response
+    - [1624:17] Configure Todoread Tool
+    - [1641:7] POST /zen/v1/chat/completions
+  - [1648:182] POST /zen/v1/chat/completions
+    - [1650:3] Description
+    - [1653:3] Method
+    - [1656:3] Endpoint
+    - [1659:13] Parameters
+    - [1672:13] Request Example
+    - [1685:27] Response
+    - [1712:21] Create custom command with markdown
+    - [1733:13] Create project-specific custom theme directory
+    - [1746:18] Control TUI Interface (JavaScript)
+    - [1764:13] Create user-wide custom theme directory
+    - [1777:17] Configure Glob Tool
+    - [1794:17] Configure Write Tool
+    - [1811:12] Apply global OpenCode config (JSONC)
+    - [1823:7] Auth API
+  - [1830:46] Auth API
+    - [1832:3] Description
+    - [1835:3] Methods
+    - [1838:8] Parameters
+    - [1846:11] Request Example
+    - [1857:12] Response
+    - [1869:7] App APIs
+  - [1876:23] GET /app
+    - [1878:3] Description
+    - [1881:3] Method
+    - [1884:3] Endpoint
+    - [1887:3] Parameters
+    - [1890:9] Response
+  - [1899:48] POST /app/init
+    - [1901:3] Description
+    - [1904:3] Method
+    - [1907:3] Endpoint
+    - [1910:3] Parameters
+    - [1913:3] Request Body
+    - [1916:7] Response
+    - [1923:17] Configure Patch Tool
+    - [1940:7] Config API
+  - [1947:228] Config
+    - [1949:3] Description
+    - [1952:3] Method
+    - [1955:3] Endpoint
+    - [1958:10] Parameters
+    - [1968:12] Get Config Info
+    - [1980:23] List Providers and Defaults
+    - [2003:26] Configure Custom Commands - JSON
+    - [2029:22] Search and Read Files (JavaScript)
+    - [2051:21] Configure Tools in Markdown
+    - [2072:22] File Content Substitution - JSON
+    - [2094:17] Configure Grep Tool
+    - [2111:17] Configure Tools with Wildcards
+    - [2128:23] Environment Variable Substitution - JSON
+    - [2151:17] Configure Read Tool
+    - [2168:7] Project API
+  - [2175:117] Project
+    - [2177:3] Description
+    - [2180:3] Method
+    - [2183:3] Endpoint
+    - [2186:10] Parameters
+    - [2196:18] List Projects
+    - [2214:15] Get Current Project
+    - [2229:19] Use command arguments in prompt
+    - [2248:22] Configure Avante.nvim with Environment Variables for OpenCode ACP
+    - [2270:15] Configure Keybindings - JSON
+    - [2285:7] POST /zen/v1/responses
+  - [2292:151] POST /zen/v1/responses
+    - [2294:3] Description
+    - [2297:3] Method
+    - [2300:3] Endpoint
+    - [2303:12] Parameters
+    - [2315:12] Request Example
+    - [2327:27] Response
+    - [2354:60] Export Multiple Tools from File
+    - [2414:22] Inject shell command output
+    - [2436:7] App API
+  - [2443:190] App
+    - [2445:3] Description
+    - [2448:3] Method
+    - [2451:3] Endpoint
+    - [2454:12] Parameters
+    - [2466:7] Request Example
+    - [2473:9] Response
+    - [2482:33] Agents API
+    - [2515:15] Configure MCP Servers - JSON
+    - [2530:17] Configure Bash Tool
+    - [2547:20] Configure Grep by Vercel MCP server
+    - [2567:22] Configure custom command with JSON
+    - [2589:19] Configure Avante.nvim for OpenCode ACP
+    - [2608:18] Configure Permissions - JSON
+    - [2626:7] Config APIs
+  - [2633:23] GET /config
+    - [2635:3] Description
+    - [2638:3] Method
+    - [2641:3] Endpoint
+    - [2644:3] Parameters
+    - [2647:9] Response
+  - [2656:28] GET /config/providers
+    - [2658:3] Description
+    - [2661:3] Method
+    - [2664:3] Endpoint
+    - [2667:3] Parameters
+    - [2670:7] Response
+    - [2677:7] Files API
+  - [2684:364] Files API
+    - [2686:3] Description
+    - [2689:7] Methods
+    - [2696:9] Parameters
+    - [2705:7] Request Example
+    - [2712:30] Response
+    - [2742:25] Configure local MCP server
+    - [2767:17] OpenCode TUI Configuration - JSON
+    - [2784:23] Configure MCP servers in OpenCode
+    - [2807:234] Nord Theme Configuration in JSON
+    - [3041:7] Sessions APIs
+  - [3048:18] GET /session
+    - [3050:3] Description
+    - [3053:3] Method
+    - [3056:3] Endpoint
+    - [3059:3] Parameters
+    - [3062:4] Response
+  - [3066:19] GET /session/:id
+    - [3068:3] Description
+    - [3071:3] Method
+    - [3074:3] Endpoint
+    - [3077:4] Parameters
+    - [3081:4] Response
+  - [3085:19] GET /session/:id/children
+    - [3087:3] Description
+    - [3090:3] Method
+    - [3093:3] Endpoint
+    - [3096:4] Parameters
+    - [3100:4] Response
+  - [3104:22] POST /session
+    - [3106:3] Description
+    - [3109:3] Method
+    - [3112:3] Endpoint
+    - [3115:3] Parameters
+    - [3118:4] Request Body
+    - [3122:4] Response
+  - [3126:19] DELETE /session/:id
+    - [3128:3] Description
+    - [3131:3] Method
+    - [3134:3] Endpoint
+    - [3137:4] Parameters
+    - [3141:4] Response
+  - [3145:22] PATCH /session/:id
+    - [3147:3] Description
+    - [3150:3] Method
+    - [3153:3] Endpoint
+    - [3156:4] Parameters
+    - [3160:3] Request Body
+    - [3163:4] Response
+  - [3167:24] POST /session/:id/init
+    - [3169:3] Description
+    - [3172:3] Method
+    - [3175:3] Endpoint
+    - [3178:4] Parameters
+    - [3182:5] Request Body
+    - [3187:4] Response
+  - [3191:19] POST /session/:id/abort
+    - [3193:3] Description
+    - [3196:3] Method
+    - [3199:3] Endpoint
+    - [3202:4] Parameters
+    - [3206:4] Response
+  - [3210:19] POST /session/:id/share
+    - [3212:3] Description
+    - [3215:3] Method
+    - [3218:3] Endpoint
+    - [3221:4] Parameters
+    - [3225:4] Response
+  - [3229:19] DELETE /session/:id/share
+    - [3231:3] Description
+    - [3234:3] Method
+    - [3237:3] Endpoint
+    - [3240:4] Parameters
+    - [3244:4] Response
+  - [3248:19] POST /session/:id/summarize
+    - [3250:3] Description
+    - [3253:3] Method
+    - [3256:3] Endpoint
+    - [3259:4] Parameters
+    - [3263:4] Response
+  - [3267:19] GET /session/:id/message
+    - [3269:3] Description
+    - [3272:3] Method
+    - [3275:3] Endpoint
+    - [3278:4] Parameters
+    - [3282:4] Response
+  - [3286:20] GET /session/:id/message/:messageID
+    - [3288:3] Description
+    - [3291:3] Method
+    - [3294:3] Endpoint
+    - [3297:5] Parameters
+    - [3302:4] Response
+  - [3306:22] POST /session/:id/message
+    - [3308:3] Description
+    - [3311:3] Method
+    - [3314:3] Endpoint
+    - [3317:4] Parameters
+    - [3321:3] Request Body
+    - [3324:4] Response
+  - [3328:22] POST /session/:id/shell
+    - [3330:3] Description
+    - [3333:3] Method
+    - [3336:3] Endpoint
+    - [3339:4] Parameters
+    - [3343:3] Request Body
+    - [3346:4] Response
+  - [3350:22] POST /session/:id/revert
+    - [3352:3] Description
+    - [3355:3] Method
+    - [3358:3] Endpoint
+    - [3361:4] Parameters
+    - [3365:3] Request Body
+    - [3368:4] Response
+  - [3372:19] POST /session/:id/unrevert
+    - [3374:3] Description
+    - [3377:3] Method
+    - [3380:3] Endpoint
+    - [3383:4] Parameters
+    - [3387:4] Response
+  - [3391:88] POST /session/:id/permissions/:permissionID
+    - [3393:3] Description
+    - [3396:3] Method
+    - [3399:3] Endpoint
+    - [3402:5] Parameters
+    - [3407:3] Request Body
+    - [3410:7] Response
+    - [3417:12] Set OpenCode theme (JSON)
+    - [3429:19] Configure Global Tools
+    - [3448:24] Configure remote MCP server
+    - [3472:7] Documentation API
+  - [3479:44] GET /doc
+    - [3481:3] Description
+    - [3484:3] Method
+    - [3487:3] Endpoint
+    - [3490:3] Parameters
+    - [3493:4] Response
+    - [3497:6] Response Example
+    - [3503:13] Configure .npmrc for Private Registry (Config)
+    - [3516:7] Path API
+  - [3523:43] Path
+    - [3525:3] Description
+    - [3528:3] Method
+    - [3531:3] Endpoint
+    - [3534:10] Parameters
+    - [3544:15] Get Current Path
+    - [3559:7] Authentication API
+  - [3566:461] PUT /auth/:id
+    - [3568:3] Description
+    - [3571:3] Method
+    - [3574:3] Endpoint
+    - [3577:7] Parameters
+    - [3584:4] Response
+    - [3588:9] Request Example
+    - [3597:10] Response Example
+    - [3607:39] GitHub Workflow for opencode
+    - [3646:19] Configure Global Permissions in JSON
+    - [3665:96] Configure Permissions for OpenCode Agents
+    - [3761:17] Configure Edit Tool
+    - [3778:26] Configure Agent-Specific Tools
+    - [3804:17] Set Bash Tool Permissions Globally in JSON
+    - [3821:19] Reference files in command prompt
+    - [3840:12] Configure TUI scroll speed (JSON)
+    - [3852:17] Control Edit Tool Permissions in JSON
+    - [3869:38] Create Tool with Plain Object
+    - [3907:24] Configure Granular Bash Command Permissions in JSON
+    - [3931:36] Access Tool Context Information
+    - [3967:18] Set Custom Prompt for Agent in JSON
+    - [3985:16] Handle SDK Errors
+    - [4001:19] Configure Agent Permissions in YAML
+    - [4020:7] Files APIs
+  - [4027:19] GET /find?pattern=<pat>
+    - [4029:3] Description
+    - [4032:3] Method
+    - [4035:3] Endpoint
+    - [4038:4] Parameters
+    - [4042:4] Response
+  - [4046:19] GET /find/file?query=<q>
+    - [4048:3] Description
+    - [4051:3] Method
+    - [4054:3] Endpoint
+    - [4057:4] Parameters
+    - [4061:4] Response
+  - [4065:19] GET /find/symbol?query=<q>
+    - [4067:3] Description
+    - [4070:3] Method
+    - [4073:3] Endpoint
+    - [4076:4] Parameters
+    - [4080:4] Response
+  - [4084:19] GET /file?path=<path>
+    - [4086:3] Description
+    - [4089:3] Method
+    - [4092:3] Endpoint
+    - [4095:4] Parameters
+    - [4099:4] Response
+  - [4103:54] GET /file/status
+    - [4105:3] Description
+    - [4108:3] Method
+    - [4111:3] Endpoint
+    - [4114:3] Parameters
+    - [4117:7] Response
+    - [4124:26] Configure Code Formatters - JSON
+    - [4150:7] Logging APIs
+  - [4157:58] POST /log
+    - [4159:3] Description
+    - [4162:3] Method
+    - [4165:3] Endpoint
+    - [4168:3] Parameters
+    - [4171:6] Request Body
+    - [4177:7] Response
+    - [4184:12] Execute Shell Command in TUI - Shell
+    - [4196:12] Import TypeScript Definitions
+    - [4208:7] TUI API
+  - [4215:49] TUI API
+    - [4217:3] Description
+    - [4220:11] Methods
+    - [4231:7] Parameters
+    - [4238:7] Request Example
+    - [4245:12] Response
+    - [4257:7] Events API
+  - [4264:73] Events API
+    - [4266:3] Description
+    - [4269:3] Methods
+    - [4272:3] Parameters
+    - [4275:3] Request Example
+    - [4278:19] Response
+    - [4297:18] Bind Keyboard Shortcut in Zed for OpenCode ACP
+    - [4315:15] Configure theme in OpenCode config
+    - [4330:7] POST /zen/v1/messages
+  - [4337:225] POST /zen/v1/messages
+    - [4339:3] Description
+    - [4342:3] Method
+    - [4345:3] Endpoint
+    - [4348:13] Parameters
+    - [4361:13] Request Example
+    - [4374:24] Response
+    - [4398:12] Check terminal truecolor support
+    - [4410:40] Configure Global Model Options in JSON
+    - [4450:12] Enable truecolor in terminal
+    - [4462:18] Configure Agent Description in JSON
+    - [4480:16] GitHub Permissions for opencode
+    - [4496:41] Control Agent Tools in JSON
+    - [4537:18] Specify Agent for Command in JSON
+    - [4555:7] Agents APIs
+  - [4562:28] GET /agent
+    - [4564:3] Description
+    - [4567:3] Method
+    - [4570:3] Endpoint
+    - [4573:3] Parameters
+    - [4576:7] Response
+    - [4583:7] TUI API Endpoints
+  - [4590:35] POST /tui/append-prompt
+    - [4592:3] Description
+    - [4595:3] Method
+    - [4598:3] Endpoint
+    - [4601:4] Parameters
+    - [4605:4] Response
+    - [4609:7] Request Example
+    - [4616:9] Response Example
+  - [4625:27] POST /tui/open-help
+    - [4627:3] Description
+    - [4630:3] Method
+    - [4633:3] Endpoint
+    - [4636:3] Parameters
+    - [4639:4] Response
+    - [4643:9] Response Example
+  - [4652:27] POST /tui/open-sessions
+    - [4654:3] Description
+    - [4657:3] Method
+    - [4660:3] Endpoint
+    - [4663:3] Parameters
+    - [4666:4] Response
+    - [4670:9] Response Example
+  - [4679:27] POST /tui/open-themes
+    - [4681:3] Description
+    - [4684:3] Method
+    - [4687:3] Endpoint
+    - [4690:3] Parameters
+    - [4693:4] Response
+    - [4697:9] Response Example
+  - [4706:27] POST /tui/open-models
+    - [4708:3] Description
+    - [4711:3] Method
+    - [4714:3] Endpoint
+    - [4717:3] Parameters
+    - [4720:4] Response
+    - [4724:9] Response Example
+  - [4733:27] POST /tui/submit-prompt
+    - [4735:3] Description
+    - [4738:3] Method
+    - [4741:3] Endpoint
+    - [4744:3] Parameters
+    - [4747:4] Response
+    - [4751:9] Response Example
+  - [4760:27] POST /tui/clear-prompt
+    - [4762:3] Description
+    - [4765:3] Method
+    - [4768:3] Endpoint
+    - [4771:3] Parameters
+    - [4774:4] Response
+    - [4778:9] Response Example
+  - [4787:35] POST /tui/execute-command
+    - [4789:3] Description
+    - [4792:3] Method
+    - [4795:3] Endpoint
+    - [4798:4] Parameters
+    - [4802:4] Response
+    - [4806:7] Request Example
+    - [4813:9] Response Example
+  - [4822:39] POST /tui/show-toast
+    - [4824:3] Description
+    - [4827:3] Method
+    - [4830:3] Endpoint
+    - [4833:6] Parameters
+    - [4839:4] Response
+    - [4843:9] Request Example
+    - [4852:9] Response Example
+  - [4861:30] GET /tui/control/next
+    - [4863:3] Description
+    - [4866:3] Method
+    - [4869:3] Endpoint
+    - [4872:3] Parameters
+    - [4875:4] Response
+    - [4879:12] Response Example
+  - [4891:76] POST /tui/control/response
+    - [4893:3] Description
+    - [4896:3] Method
+    - [4899:3] Endpoint
+    - [4902:4] Parameters
+    - [4906:4] Response
+    - [4910:9] Request Example
+    - [4919:10] Response Example
+    - [4929:31] Configure MCP server per agent
+    - [4960:7] Events API
+  - [4967:291] GET /event
+    - [4969:3] Description
+    - [4972:3] Method
+    - [4975:3] Endpoint
+    - [4978:3] Parameters
+    - [4981:4] Response
+    - [4985:14] Response Example
+    - [4999:36] Define Custom Models in JSON Config
+    - [5035:19] Use Wildcards to Deny Terraform Commands in JSON
+    - [5054:18] Configure agent mode in JSON
+    - [5072:12] Disable specific OpenCode tools (JSON)
+    - [5084:18] Override Model for Command in JSON
+    - [5102:15] Set Default Model in JSON Config
+    - [5117:39] Configure Agent Temperature in JSON
+    - [5156:15] Configure Disabled Providers - JSON
+    - [5171:19] OpenCode Configuration - Disabling TypeScript LSP Server
+    - [5190:24] Set EDITOR Environment Variable for OpenCode
+    - [5214:27] Globally disable MCP tools
+    - [5241:17] Disable Agent in JSON
