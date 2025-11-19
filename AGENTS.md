@@ -8,7 +8,26 @@
 - **Database migrations**: `task db:migrate:up` | `task db:migrate:down` | `task db:migrate:status`
 - **Create migration**: `task db:migrate:create -- migration_name`
 - **Reset database**: `task db:reset` (WARNING: deletes all data)
+- **Context search**: `task context:search -- "query"` (token-efficient search using OpenCode CLI subagent)
 - **Tests**: No test files currently exist; use manual testing via the dev server
+
+### Context Documentation Search
+
+**IMPORTANT**: When searching context documentation, use the Taskfile command via bash instead of the `task` tool:
+
+```bash
+task context:search -- "your search query"
+```
+
+This runs the `context-searcher` subagent externally via OpenCode CLI, reducing token usage by ~97% compared to using the `task` tool directly. The subagent's exploration happens outside your token budget - you only receive the final summary.
+
+**Examples:**
+
+```bash
+task context:search -- "find daisyui modal component documentation"
+task context:search -- "show datastar SSE server examples"
+task context:search -- "how to use NATS pub/sub patterns"
+```
 
 ## Code Style & Conventions
 
