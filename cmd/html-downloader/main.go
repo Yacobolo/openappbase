@@ -26,7 +26,7 @@ func run() error {
 	// Configuration
 	url := "https://data-star.dev/docs"
 	outputDir := "context/datastar"
-	outputFile := "datastar.md"
+	outputFile := "llms.md"
 
 	slog.Info("Starting HTML to Markdown conversion", "url", url)
 
