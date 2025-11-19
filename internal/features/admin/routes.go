@@ -6,9 +6,10 @@ import (
 	"northstar/internal/store"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/nats-io/nats.go"
 )
 
-func SetupRoutes(router chi.Router, q *store.Queries) error {
+func SetupRoutes(router chi.Router, q *store.Queries, nc *nats.Conn) error {
 
 	// 32 byte encrept key for secure cookies
 	encryptionKey := config.Global.EncryptionKey
@@ -19,15 +20,24 @@ func SetupRoutes(router chi.Router, q *store.Queries) error {
 		return err
 	}
 
-	handlers := NewHandlers(connectionService)
+	handlers := NewHandlers(connectionService, nc)
 
+	// Page routes
 	router.Get("/admin", handlers.AdminPage)
 
-	// router.Route("/api", func(apirouter chi.Router) {
-	// 	apirouter.Route("/admin", func(adminrouter chi.Router) {
-	// 		adminrouter.Get("/", handlers.AdminSSE)
-	// 	})
-	// })
+	// API routes
+	router.Route("/api/admin", func(adminrouter chi.Router) {
+		adminrouter.Route("/connections", func(connectionsRouter chi.Router) {
+			// SSE endpoint for real-time updates
+			connectionsRouter.Get("/", handlers.AdminConnectionsSSE)
+			// RESTful CRUD endpoints
+			connectionsRouter.Post("/", handlers.CreateConnection)
+			connectionsRouter.Route("/{id}", func(connectionRouter chi.Router) {
+				connectionRouter.Post("/test", handlers.TestConnection)
+				connectionRouter.Delete("/", handlers.DeleteConnection)
+			})
+		})
+	})
 
 	return nil
 }

@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"net/http"
 	"sync"
-	"time"
 
 	"northstar/config"
 	"northstar/internal/features/admin"
@@ -16,11 +15,12 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/gorilla/sessions"
+	"github.com/nats-io/nats.go"
 	"github.com/nats-io/nats.go/jetstream"
 	"github.com/starfederation/datastar-go/datastar"
 )
 
-func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.CookieStore, js jetstream.JetStream, db *sql.DB, q *store.Queries) (err error) {
+func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.CookieStore, js jetstream.JetStream, db *sql.DB, q *store.Queries, nc *nats.Conn) (err error) {
 
 	if config.Global.Environment == config.Dev {
 		setupReload(ctx, router)
@@ -28,20 +28,10 @@ func SetupRoutes(ctx context.Context, router chi.Router, sessionStore *sessions.
 
 	router.Handle("/static/*", resources.Handler())
 
-	// Create NATS KV bucket for editor sessions
-	_, err = js.CreateKeyValue(ctx, jetstream.KeyValueConfig{
-		Bucket:  "editor_sessions",
-		TTL:     24 * time.Hour,
-		Storage: jetstream.MemoryStorage,
-	})
-	if err != nil && err != jetstream.ErrBucketExists {
-		return fmt.Errorf("error creating editor_sessions KV bucket: %w", err)
-	}
-
 	if err := errors.Join(
 		// explorer.SetupRoutes(router, sessionStore, js, q),
 		// editor.SetupRoutes(router, sessionStore, js, db, q),
-		admin.SetupRoutes(router, q),
+		admin.SetupRoutes(router, q, nc),
 	); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)
 	}

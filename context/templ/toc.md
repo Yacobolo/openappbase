@@ -1,0 +1,316 @@
+# File Map: llms.md
+
+- [1:143] HTTP Streaming
+  - [7:33] Rendering lifecycle
+  - [40:35] Enabling streaming
+  - [75:69] Suspense
+    - [91:53] Declarative Shadow DOM
+- [144:56] HTMX
+  - [148:7] Usage
+  - [155:14] Installation
+  - [169:31] Count example
+- [200:206] Example: Counter application
+  - [213:93] Updating global state
+  - [306:100] Adding per-user session state
+- [406:208] Datastar
+  - [412:7] Usage
+  - [419:8] Installation
+  - [427:10] Datastar examples using Templ
+  - [437:177] Counter Example
+    - [441:66] Frontend
+    - [507:95] Backend
+    - [602:4] Per-user session state
+    - [606:8] Signal-only patching
+- [614:136] Creating an HTTP server with templ
+    - [616:30] Static pages
+    - [646:52] Displaying fixed data
+  - [698:52] Displaying dynamic data
+- [750:49] View models
+- [799:224] Testing
+  - [806:182] Expectation testing
+    - [814:77] Testing components
+    - [891:12] Testing whole pages
+    - [903:79] Testing the HTTP handler
+    - [982:6] Summary
+  - [988:35] Snapshot testing
+- [1023:132] Components
+  - [1063:37] Code-only components
+  - [1100:55] Method components
+- [1155:95] Template generation
+  - [1172:78] Advanced options
+- [1250:256] Project structure
+  - [1267:32] Application architecture
+  - [1299:33] Dependency injection
+  - [1332:63] HTTP layer
+  - [1395:60] Service layer
+  - [1455:51] Entrypoint
+- [1506:31] urlbuilder
+  - [1534:3] Feedback
+- [1537:14] Experimental packages
+  - [1548:3] Approval Process
+- [1551:89] Using with `html/template`
+  - [1555:36] Using `html/template` in a templ component
+  - [1591:49] Using a templ component with	`html/template`
+- [1640:37] Switch
+- [1677:31] Rendering raw HTML
+- [1708:102] Render once
+  - [1714:48] Example
+  - [1762:6] Common use cases
+  - [1768:42] Usage across packages
+- [1810:320] Template composition
+  - [1846:105] Children
+    - [1876:75] Using children in code components
+  - [1951:97] Components as parameters
+  - [2048:37] Joining Components
+  - [2085:45] Sharing and re-using components
+    - [2101:12] Exporting components
+    - [2113:17] Importing components
+- [2130:697] Forms and validation
+  - [2136:186] Hypermedia approach
+    - [2146:44] Create a View Model
+    - [2190:54] Create a form template
+    - [2244:27] Display the form
+    - [2271:51] Handle form submission
+  - [2322:505] Example project
+    - [2334:69] Entrypoint
+    - [2403:96] Listing contacts
+    - [2499:31] Layout
+    - [2530:204] Adding and editing contacts
+    - [2734:93] Deleting a contact
+- [2827:167] Fragments
+  - [2833:27] Define fragments
+  - [2860:33] Use with HTTP
+  - [2893:18] Use outside of an HTTP handler
+  - [2911:20] Nested fragments
+  - [2931:63] HTMX example
+- [2994:48] Basic syntax
+  - [2996:11] Package name and imports
+  - [3007:16] Components
+  - [3023:19] Go code
+- [3042:116] Expressions
+  - [3044:114] Interpolation expressions
+    - [3060:18] Literals
+    - [3078:38] Variables
+    - [3116:27] Functions
+    - [3143:15] Escaping
+- [3158:23] For loops
+- [3181:572] Using JavaScript with templ
+  - [3183:21] Script tags
+  - [3204:180] Pass Go data to JavaScript
+    - [3206:16] Pass Go data to a JavaScript event handler
+    - [3222:31] Pass event objects to an Event Handler
+    - [3253:28] Call client side functions with server side data
+    - [3281:33] Pass server-side data to the client in a HTML attribute
+    - [3314:20] Pass server-side data to the client in a script element
+    - [3334:50] Interpolate Go data within JavaScript code in a script tag
+  - [3384:85] Avoiding inline event handlers
+  - [3469:45] Importing scripts
+  - [3514:81] Working with NPM projects
+    - [3520:25] Creating a TypeScript project
+    - [3545:20] Bundling TypeScript code
+    - [3565:30] Using the output JavaScript
+  - [3595:158] Script templates
+- [3753:101] Statements
+  - [3755:12] Control flow
+  - [3767:35] if/switch/for within text
+  - [3802:52] Design considerations
+- [3854:280] Attributes
+  - [3856:14] Constant attributes
+  - [3870:62] String expression attributes
+  - [3932:31] Boolean attributes
+  - [3963:18] Conditional attributes
+  - [3981:22] Attribute key expressions
+  - [4003:31] Spread attributes
+  - [4034:48] URL attributes
+  - [4082:31] JavaScript attributes
+  - [4113:4] CSS attributes
+  - [4117:17] JSON attributes
+- [4134:81] Elements
+  - [4169:22] Tags must be closed
+  - [4191:24] Attributes and elements can contain expressions
+- [4215:181] Context
+  - [4217:75] What problems does `context` solve?
+    - [4219:34] "Prop drilling"
+    - [4253:39] Coupling
+  - [4292:63] Using `context`
+    - [4328:27] Tidying up
+  - [4355:41] Using `context` with HTTP middleware
+- [4396:2] Comments
+- [4398:24] HTML comments
+- [4422:14] Go comments
+- [4436:280] Using React with templ
+  - [4444:134] Using React components
+    - [4448:10] Create React components
+    - [4458:30] Create a templ page
+    - [4488:25] Render React components into the IDs
+    - [4513:12] Create a client-side bundle
+    - [4525:32] Serve the templ component and client side bundle
+    - [4557:21] Results
+  - [4578:135] Passing server-side data to React components
+    - [4582:10] Add a React component that accepts data arguments
+    - [4592:14] Export a JavaScript function that renders the React component to a HTML element
+    - [4606:50] Update the templ component to use the new function
+    - [4656:8] Update the `esbuild` command
+    - [4664:49] Results
+  - [4713:3] Example code
+- [4716:448] CSS style management
+  - [4718:16] HTML class and style attributes
+  - [4734:208] Style attribute
+    - [4790:80] Style attribute examples
+    - [4870:9] Pattern use cases
+    - [4879:38] Sanitization behaviour
+    - [4917:25] Error Handling
+  - [4942:65] Class attributes
+    - [4964:43] Dynamic class names
+  - [5007:42] CSS elements
+  - [5049:115] CSS components
+    - [5097:28] CSS component arguments
+    - [5125:18] CSS Sanitization
+    - [5143:21] CSS Middleware
+- [5164:24] Raw Go
+  - [5170:18] Variable declarations
+- [5188:32] If/else
+- [5220:7] FAQ
+  - [5222:5] How can I migrate from templ version 0.1.x to templ 0.2.x syntax?
+- [5227:13] Getting help
+  - [5231:6] Slack
+  - [5237:3] GitHub Discussion
+- [5240:7] Code signing
+- [5247:86] Content security policy
+  - [5249:14] Nonces
+  - [5263:70] Setting a nonce
+- [5333:87] Injection attacks
+- [5420:106] Web frameworks
+    - [5426:6] Chi
+    - [5432:6] Echo
+    - [5438:6] Gin
+    - [5444:6] Go Fiber
+    - [5450:65] github.com/gorilla/csrf
+  - [5515:6] Project scaffolding
+  - [5521:5] Other templates
+    - [5523:3] `template/html`
+- [5526:95] Internationalization
+  - [5530:91] ctxi18n
+    - [5536:10] Storing translations
+    - [5546:23] Selecting the language
+    - [5569:22] Using the middleware
+    - [5591:30] Fetching translations in templates
+- [5621:2] Media and talks
+- [5623:4] Go Podcast 2024
+- [5627:6] Gophercon 2024
+- [5633:6] Big Sky Dev Con 2024
+- [5639:4] Go Time
+- [5643:6] Gophercon UK 2023
+- [5649:5] How To Setup A Golang + Templ Project Structure
+- [5654:244] Blog example
+  - [5658:87] Create a blog template
+  - [5745:15] Rendering HTML directly
+  - [5760:73] Creating the static pages
+  - [5833:65] Results
+- [5898:103] Generating static HTML files with templ
+  - [5917:15] Setup project
+  - [5932:14] Create a templ file
+  - [5946:18] Generate Go code from the templ file
+  - [5964:26] Write a program that renders to stdout
+  - [5990:11] Run the program
+- [6001:30] Deploying static files
+  - [6017:14] fly.io
+- [6031:6] Hosting using Docker
+- [6037:11] Static content
+    - [6039:9] Adding static content to the Docker container
+- [6048:9] Build.
+- [6057:73] Deploy.
+    - [6068:36] Serving static content
+  - [6104:18] Building and running the Docker container locally
+  - [6122:8] Example deployment
+- [6130:98] Hosting on AWS Lambda
+  - [6138:39] Entrypoint
+  - [6177:32] Building and deploying
+  - [6209:16] Static content
+  - [6225:3] Deployed example
+- [6228:124] Installation
+  - [6230:10] go install (global)
+  - [6240:14] go install (as tool)
+  - [6254:4] GitHub binaries
+  - [6258:69] Nix
+  - [6327:25] Docker
+- [6352:6] Fetch
+- [6358:6] Generate
+- [6364:6] Build
+- [6370:4] Test
+- [6374:8] Deploy
+- [6382:47] Running your first templ application
+  - [6386:26] Create a web server
+  - [6412:17] Run the program
+- [6429:85] Creating a simple templ component
+  - [6433:16] Setup project
+  - [6449:14] Create a templ file
+  - [6463:18] Generate Go code from the templ file
+  - [6481:18] Write a program that renders to stdout
+  - [6499:15] Run the program
+- [6514:38] Component Libraries
+  - [6518:34] templUI
+    - [6522:4] About
+    - [6526:8] Features
+    - [6534:13] Example
+    - [6547:5] Links
+- [6552:12] Ensuring templ files have been committed
+- [6564:517] IDE support
+  - [6566:50] Visual Studio Code
+    - [6575:14] Format on Save
+    - [6589:15] Tailwind CSS Intellisense
+    - [6604:12] Emmet HTML completion
+  - [6616:278] Neovim &gt; 0.5.0
+    - [6707:70] Formatting
+    - [6777:10] Troubleshooting
+    - [6787:107] Minimal Config
+  - [6894:77] Vim
+  - [6971:8] Helix
+  - [6979:6] Emacs
+  - [6985:96] Troubleshooting
+    - [6987:14] Check that go, gopls and templ are installed and are present in the path
+    - [7001:15] Check that you can run the templ binary
+    - [7016:44] Enable LSP logging
+    - [7060:4] Make a minimal reproduction, and include the logs
+    - [7064:4] Look at the web server
+    - [7068:4] Run templ info
+    - [7072:9] "missing metadata for import" / "could not import"
+- [7081:122] CLI
+  - [7100:54] Generating Go code from templ files
+  - [7154:23] Formatting templ files
+  - [7177:26] Language Server for IDE integration
+- [7203:169] Live reload with other tools
+  - [7211:8] Example
+  - [7219:17] How does it work
+  - [7236:131] Setting up the Makefile
+    - [7240:10] templ watch mode
+    - [7250:10] Tailwind CSS
+    - [7260:10] esbuild
+    - [7270:21] Re-build Go source
+    - [7291:26] Reload event
+    - [7317:50] Serving static assets
+  - [7367:5] Putting it all together
+- [7372:1] run templ generation in watch mode to detect all .templ files and
+- [7373:1] re-create _templ.txt files on change, then send reload event to browser.
+- [7374:4] Default url: http://localhost:7331
+- [7378:9] run air to detect any go file changes to re-build and re-run the server.
+- [7387:4] run tailwindcss to generate the styles.css bundle in watch mode.
+- [7391:4] run esbuild to generate the index.js bundle in watch mode.
+- [7395:10] watch for any js or css change in the assets/ folder, then reload the browser via templ proxy.
+- [7405:10] start all 5 watch processes in parallel.
+- [7415:13] Coding assistants / LLMs
+  - [7421:7] LLM tools
+    - [7423:5] https://github.com/CopilotC-Nvim/CopilotChat.nvim
+- [7428:208] Live reload
+  - [7443:40] Example
+  - [7483:47] How it works
+    - [7485:11] templ watches files for changes
+    - [7496:12] templ restarts your server automatically
+    - [7508:22] templ uses a proxy to auto-reload the browser
+  - [7530:37] Live reload process
+    - [7553:14] Triggering live reload from outside `templ generate --watch`
+  - [7567:69] Alternatives
+    - [7571:12] wgo
+    - [7583:53] air
+- [7636:26] Introduction
+  - [7638:24] templ - build HTML with Go

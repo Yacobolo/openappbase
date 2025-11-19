@@ -1,5 +1,7 @@
 version: "3"
 
+dotenv: ['.env']
+
 env:
   NATS_PORT: 4222
   STATIC_DIR: "web/resources/static"
@@ -121,6 +123,27 @@ tasks:
           echo "✓ .env file already exists."
         fi
       - task: db:migrate:up
+
+  # Context documentation tasks
+  context:download:
+    desc: "Download latest Context7 documentation for all configured libraries"
+    cmds:
+      - go run cmd/context-downloader/main.go
+
+  context:toc:
+    desc: "Generate Table of Contents for all markdown files in context/ subdirectories"
+    cmds:
+      - go run cmd/toc/main.go
+
+  context:godoc:
+    desc: "Generate Go package documentation for context/go-packages/"
+    cmds:
+      - go run cmd/godoc/main.go
+
+  context:search:
+    desc: "Search context documentation using OpenCode CLI subagent"
+    cmds:
+      - opencode run --agent context-searcher "{{.CLI_ARGS}}"
 
   default:
     cmds:

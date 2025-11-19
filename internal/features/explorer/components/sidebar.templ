@@ -32,7 +32,7 @@ templ SchemaItem(schema SchemaView, isOpen bool) {
 					<li>
 						<a
 							class={ templ.KV("active", table.IsActive) }
-							data-on-click={ datastar.GetSSE(fmt.Sprintf("/explorer/%s/%s", schema.Name, table.Name)) }
+							data-on:click={ datastar.GetSSE(fmt.Sprintf("/explorer/%s/%s", schema.Name, table.Name)) }
 						>
 							@TableIcon()
 							{ table.Name }

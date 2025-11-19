@@ -87,7 +87,7 @@ func run(ctx context.Context) error {
 		return fmt.Errorf("error creating jetstream client: %w", err)
 	}
 
-	if err := internal.SetupRoutes(egctx, router, sessionStore, js, database.DB, queries); err != nil {
+	if err := internal.SetupRoutes(egctx, router, sessionStore, js, database.DB, queries, nc); err != nil {
 		return fmt.Errorf("error setting up routes: %w", err)
 	}
 

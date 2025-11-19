@@ -1,0 +1,28 @@
+{
+  "libraries": [
+    {
+      "name": "daisyui",
+      "url": "https://daisyui.com/llms.txt",
+      "output_dir": "context/daisyui",
+      "output_file": "llms.md"
+    },
+    {
+      "name": "nats",
+      "url": "https://context7.com/api/v1/websites/nats_io?type=txt&tokens=1000000",
+      "output_dir": "context/nats",
+      "output_file": "llms.md"
+    },
+    {
+      "name": "templ",
+      "url": "https://templ.guide/llms.md",
+      "output_dir": "context/templ",
+      "output_file": "llms.md"
+    },
+    {
+      "name": "opencode",
+      "url": "https://context7.com/api/v1/websites/opencode_ai?type=txt&tokens=1000000",
+      "output_dir": "context/opencode",
+      "output_file": "llms.md"
+    }
+  ]
+}

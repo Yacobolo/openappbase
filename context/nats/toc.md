@@ -1,0 +1,734 @@
+# File Map: llms.md
+
+    - [1:16] Install nats-top CLI Tool
+    - [17:12] NATS Server Authentication Example
+    - [29:18] Start Local NATS Server
+    - [47:30] Start Nex Node with Configuration
+    - [77:13] Install and Start NATS Windows Service using sc.exe
+    - [90:12] Start nats-top Monitoring Tool
+    - [102:26] Example Nex Node Configuration JSON
+    - [128:24] C# NKey Authentication
+    - [152:12] NATS Server TLS Configuration Example
+    - [164:12] NATS Three Server Cluster Example with Debug (Bash)
+    - [176:12] Install NATS Server Binary from Source (Go)
+    - [188:12] Start NATS Server
+    - [200:16] Install NATS CLI Tools (Go)
+    - [216:12] Install nk Command-line Tool
+    - [228:12] Install Go NATS Client SDK
+    - [240:12] Start NATS Server with Configuration
+    - [252:20] Install NATS Server via Package Managers (Windows, Mac, Arch)
+    - [272:21] Install NATS Server and Generate Configuration
+    - [293:12] Install Nex CLI using curl
+    - [305:14] Running a Simple NATS Cluster (Bash)
+    - [319:12] Start NATS Account Server
+    - [331:16] Download NATS Server Binary (Shell)
+    - [347:18] Basic NATS Connection and Dispatcher Setup in Java
+    - [365:12] NATS Client Connection with Authentication
+    - [377:16] Install and Run NATS Server with Docker
+    - [393:20] Install nats-top via Go
+    - [413:13] Download NATS Python Examples
+    - [426:46] C NKey Authentication Setup
+    - [472:12] Starting NATS Cluster with Docker Compose
+    - [484:12] Start NATS Server with User/Password
+    - [496:12] List NATS Microservices
+    - [508:12] NATS INFO Message Example
+    - [520:12] Install nsc Tool
+    - [532:29] NATS Context JSON Configuration Example
+    - [561:14] NATS Server Configuration with JWT Authentication
+- [575:1] debug = true
+- [576:59] trace = true
+    - [581:12] Start NATS Server with Single User Credentials (CLI)
+    - [593:26] Perform Nex Node Preflight Check
+    - [619:16] Configure NATS Ping/Pong Settings (Python)
+- [635:205] Do something with the connection.
+    - [641:12] Start NATS Seed Node Server
+    - [653:12] Listing NATS Accounts with NSC
+    - [665:17] NATS Account and User Creation using NSC
+    - [682:13] Go Client Example Connection Message
+    - [695:23] NATS JWT Generation in C# using NATS.Jwt Package
+    - [718:14] NATS Server Log Output - Seed Accepting Third Server Route
+    - [732:13] Start and Reload NATS Server Configuration
+    - [745:19] Build NATS Server Release from Source (Go & Goreleaser)
+    - [764:21] NATS Configuration: Include Directive Example
+    - [785:12] NATS CONNECT Message Example
+    - [797:12] Start NATS Server with Configuration
+    - [809:12] Run NATS Service Locally
+    - [821:12] Start NATS Server with Token Authentication
+    - [833:7] NATS Configuration File Syntax Examples
+- [840:1] Lines can be commented with `#` and `//`
+- [841:1] Values can be assigned to properties with delimiters:
+- [842:1] Equals sign: foo = 2
+- [843:1] Colon: foo: 2
+- [844:1] Whitespace: foo 2
+- [845:1] Arrays are enclosed in brackets: ["a", "b", "c"]
+- [846:1] Maps are enclosed in braces: {foo: 2}
+- [847:1] Maps can be assigned with no delimiter accounts { SYS {...}, cloud-user {...} }
+- [848:174] Semicolons can be optionally used as terminators host: 127.0.0.1; port: 4222;
+    - [853:35] NATS Authorization Configuration with Variables
+    - [888:127] Java NATS JetStream Publisher and Subscriber Setup
+    - [1015:7] Publish and Subscribe with NATS in C
+- [1022:1] include <stdio.h>
+- [1023:1] include <stdlib.h>
+- [1024:1] include <string.h>
+- [1025:65] include "nats/nats.h"
+    - [1083:7] NATS Server Configuration File Example
+- [1090:4] General settings
+- [1094:1] Various server level options
+- [1095:2] ...
+- [1097:1101] The following sections are maps with a set of (nested) properties
+    - [1160:12] Start NATS Server with TLS Verification via Command Line
+    - [1172:16] NATS Server Output Indicating Leaf Node Connection
+    - [1188:89] Configure NATS Stream with Sources using JSON
+    - [1277:20] Configure NATS Ping/Pong Settings (Go)
+    - [1297:12] Install NATS Helm Chart
+    - [1309:52] NATS Server Event JSON Output
+    - [1361:12] Start NATS Server with Monitoring
+    - [1373:32] NATS Server Mapping Configuration Examples
+    - [1405:39] NATS Server Configuration with NKEYS Authentication
+    - [1444:13] Install NATS.py and Dependencies
+    - [1457:19] List NATS Nodes using 'nex'
+    - [1476:20] NATS Server Syslog Configuration Examples
+    - [1496:13] Generate Config and Start NATS Server
+    - [1509:30] NATS Subject Mappings Configuration Example
+    - [1539:14] NATS Server Configuration Example
+    - [1553:35] NATS Cluster Authorization Configuration
+    - [1588:12] Run NATS Server Docker Image
+    - [1600:86] Go: User Provisioning Service and Process Example
+    - [1686:26] NATS PUB Message Syntax and Example
+    - [1712:32] Python NATS Subscribe, Publish, and Drain Example
+    - [1744:56] Manage NATS JetStream Streams and Consumers in JavaScript
+    - [1800:28] NATS Server Startup Log Output
+    - [1828:31] Account JWT Example
+    - [1859:12] Running NATS Server with Configuration File
+    - [1871:21] NKEY Account Configuration Example
+    - [1892:28] C NATS Client TLS Connection Setup
+    - [1920:12] Start NATS Server with Leaf Node Configuration
+    - [1932:12] Verify Statically Linked Binary
+    - [1944:12] Start NATS Server with Configuration
+    - [1956:24] User JWT Example
+    - [1980:24] Create NATS Subscriber using CLI
+    - [2004:67] JavaScript JetStream Pull Subscription Example
+    - [2071:12] Get nsc Tool Help
+    - [2083:12] Run NATS Box Container
+    - [2095:12] Nex Node Firecracker VM Startup
+    - [2107:15] Configure NATS Stream and Consumers for ORDERS Scenario
+    - [2122:65] C# JetStream Publish and Consume Example
+    - [2187:11] Configure JetStream with a File
+- [2198:326] js.conf
+    - [2206:26] NATS Server Configuration File Example
+    - [2232:23] Go NATS Request-Reply Example
+    - [2255:25] NATS Export Configuration Example (DSL)
+    - [2280:23] Operator JWT Example
+    - [2303:13] NATS CLI Subscriber and Publisher Example
+    - [2316:60] C# NATS Request-Reply Example
+    - [2376:20] NATS Cluster Configuration File Example (HOCON)
+    - [2396:13] Start Service on Red Leaf Node (NATS CLI)
+    - [2409:39] Example: Requesting Stream Info with NATS CLI
+    - [2448:19] List All Microservices using NATS CLI
+    - [2467:12] Start NATS Server with Encryption Key from Environment
+    - [2479:20] Start NATS Queue Group Member (Bash)
+    - [2499:12] Enable JetStream (Shell)
+    - [2511:13] Flush and Ping Example in Python
+- [2524:1] Sends a PING and wait for a PONG from the server, up to the given timeout.
+- [2525:320] This gives guarantee that the server has processed above message.
+    - [2531:42] Python JetStream Publish and Pull Subscribe Example
+    - [2573:28] Flush and Ping Example in Go
+    - [2601:12] NATS Server Log File Redirection Example
+    - [2613:59] Create NATS Echo Service in Go
+    - [2672:55] NATS JetStream Stream and Consumer Management (C#)
+    - [2727:19] NATS Server Subscription and Reply
+    - [2746:15] Create and Save NATS Contexts
+    - [2761:12] nats-top Command-Line Usage
+    - [2773:15] Deploy Service with Environment Variable using Nex CLI
+    - [2788:12] Get Value from KV Bucket (Shell)
+    - [2800:16] JavaScript NATS Subscribe, Publish, and Drain Example
+    - [2816:12] Start Third NATS Server in Cluster
+    - [2828:17] Python NKey Authentication
+- [2845:133] Do something with the connection
+    - [2852:12] Nex Node Execution Engine Status
+    - [2864:12] Create NATS Windows Service with Explicit Log File
+    - [2876:16] C#: Put Data in NATS KV Store
+    - [2892:17] NATS Server Startup Log (Basic TLS)
+    - [2909:12] NATS Cluster Server Startup Command
+    - [2921:12] Subject Naming - Pragmatic Example
+    - [2933:20] Fetch Message by Stream Sequence - Response Example
+    - [2953:15] Flush and Ping Example in JavaScript
+    - [2968:10] Connect to Default NATS Server in Python
+- [2978:14] Do something with the connection
+    - [2985:7] C NATS Subscription Callback Example
+- [2992:118] include "examples.h"
+    - [3031:13] Initialize NATS Operator and System Account
+    - [3044:22] Flush and Ping Example in C#
+    - [3066:12] Flow Control Subject Example in NATS JetStream
+    - [3078:25] NATS Server CONNECT Message with NKEY
+    - [3103:7] JetStream Subscriptions in C (NATS)
+- [3110:313] include "examples.h"
+    - [3217:13] Start NATS with WebSocket on Docker - Bash Command
+    - [3230:12] Subject Naming - Less Useful Example
+    - [3242:12] Subscribe to Remote NATS Server
+    - [3254:12] Enable NATS Monitoring via Command Line
+    - [3266:29] Flush and Ping Example in C
+    - [3295:12] Nex Node Encrypted Run Request Key
+    - [3307:12] Basic NATS TLS Configuration (Command Line)
+    - [3319:12] Start NATS Server with JetStream in Docker
+    - [3331:26] Flush and Ping Example in Ruby
+    - [3357:40] NATS Subscription Callback (C)
+    - [3397:13] Run First NATS Leaf Node (Docker)
+    - [3410:13] NATS Configuration: String and Number Handling
+- [3423:999] Fixed Config:
+    - [3433:16] View NATS JetStream Stream Information
+    - [3449:12] Statically Compile Go Service
+    - [3461:44] Drain NATS Connection (Python)
+    - [3505:12] Start Lightweight Docker Container
+    - [3517:31] Publish Messages with NATS in JavaScript
+    - [3548:47] Create and Configure NATS User with JWT and Credentials (Go)
+    - [3595:33] Get Nex Node Information using Nex CLI
+    - [3628:12] Create a NATS Object Store Bucket
+    - [3640:12] Add NATS Helm Repository
+    - [3652:12] Generate Replication Graphviz Report using NATS CLI
+    - [3664:16] Connect to Default NATS Server in JavaScript
+    - [3680:17] Server Configuration: Basic Mappings
+    - [3697:12] View a Private Key File
+    - [3709:92] Go JetStream Push Subscribe Example
+    - [3801:17] Flush and Ping Example in Java
+    - [3818:19] Connect to Default NATS Server in Ruby
+    - [3837:7] Stream Info Endpoint Example
+  - [3844:179] GET $JS.API.STREAM.INFO.<stream_name>
+    - [3846:3] Description
+    - [3849:3] Method
+    - [3852:3] Endpoint
+    - [3855:10] Parameters
+    - [3865:5] Request Example
+    - [3870:80] Response
+    - [3950:12] Run NATS Publisher Example
+    - [3962:12] Restart nats-top with Query and Sort Options
+    - [3974:14] Get Keys List in NATS KV Store (C)
+    - [3988:28] Example JWT Header and Payload (JSON)
+    - [4016:7] C# JetStream Stream and Consumer Management
+  - [4023:92] C# JetStream API
+    - [4025:20] Stream Management
+    - [4045:21] Consumer Management
+    - [4066:30] Python NATS Request-Reply Example
+    - [4096:12] Generate User NKey Shell Command
+    - [4108:7] Object Operations
+  - [4115:28] GET /websites/nats_io/INatsObjStore/GetBytesAsync
+    - [4117:3] Description
+    - [4120:3] Method
+    - [4123:3] Endpoint
+    - [4126:8] Parameters
+    - [4134:9] Response
+  - [4143:37] GET /websites/nats_io/INatsObjStore/GetAsync
+    - [4145:3] Description
+    - [4148:3] Method
+    - [4151:3] Endpoint
+    - [4154:10] Parameters
+    - [4164:16] Response
+  - [4180:38] POST /websites/nats_io/INatsObjStore/PutAsync (byte array)
+    - [4182:3] Description
+    - [4185:3] Method
+    - [4188:3] Endpoint
+    - [4191:11] Parameters
+    - [4202:16] Response
+  - [4218:39] POST /websites/nats_io/INatsObjStore/PutAsync (stream)
+    - [4220:3] Description
+    - [4223:3] Method
+    - [4226:3] Endpoint
+    - [4229:12] Parameters
+    - [4241:16] Response
+  - [4257:39] POST /websites/nats_io/INatsObjStore/PutAsync (metadata and stream)
+    - [4259:3] Description
+    - [4262:3] Method
+    - [4265:3] Endpoint
+    - [4268:12] Parameters
+    - [4280:16] Response
+  - [4296:38] PUT /websites/nats_io/INatsObjStore/UpdateMetaAsync
+    - [4298:3] Description
+    - [4301:3] Method
+    - [4304:3] Endpoint
+    - [4307:11] Parameters
+    - [4318:16] Response
+  - [4334:88] POST /websites/nats_io/INatsObjStore/AddLink
+    - [4336:3] Description
+    - [4339:3] Method
+    - [4342:3] Endpoint
+    - [4345:8] Parameters
+    - [4353:14] Response
+    - [4367:29] Initialize NATS JetStream Connection (Python)
+    - [4396:19] Connect to NATS Cluster in Ruby
+    - [4415:7] NATS Configuration Variables Example
+- [4422:3] Define a variable in the config
+- [4425:7] Reference the variable
+- [4432:1] Define a variable in the config
+- [4433:3] But TOKEN is never used resulting in a config parsing error
+- [4436:16] Reference the variable
+- [4452:214] TOKEN is defined in the environment
+    - [4460:32] Receive JSON Data in Python
+    - [4492:19] Rust Project Configuration for WebAssembly
+    - [4511:12] Add a NATS JetStream Consumer (CLI)
+    - [4523:19] NATS Server Log Output - Seed Node
+    - [4542:33] Get Nex Node Information
+    - [4575:7] Get Key-Value Entries
+  - [4582:84] Get Key-Value Entries
+    - [4584:4] Description
+    - [4588:5] Methods
+    - [4593:11] Parameters
+    - [4604:6] Responses
+    - [4610:42] Examples
+    - [4652:14] Connect to NATS Cluster in Python
+- [4666:989] Do something with the connection
+    - [4673:7] Get Store Status
+  - [4680:40] GET /object/store/status
+    - [4682:3] Description
+    - [4685:3] Method
+    - [4688:3] Endpoint
+    - [4691:3] Parameters
+    - [4694:3] Request Example
+    - [4697:16] Response
+    - [4713:7] Get Object Info
+  - [4720:46] GET /object/store/info
+    - [4722:3] Description
+    - [4725:3] Method
+    - [4728:3] Endpoint
+    - [4731:5] Parameters
+    - [4736:3] Request Example
+    - [4739:14] Response
+    - [4753:6] Errors
+    - [4759:7] GET /varz - General Server Information
+  - [4766:327] GET /varz - General Server Information
+    - [4768:3] Description
+    - [4771:3] Method
+    - [4774:3] Endpoint
+    - [4777:11] Parameters
+    - [4788:3] Request Example
+    - [4791:108] Response
+    - [4899:32] Get Echo Service Information using NATS CLI
+    - [4931:80] Connect to NATS with TLS in Java
+    - [5011:13] Full Wildcard '>' Mapping Example
+    - [5024:62] Create and Manage JetStream KeyValue Stores
+    - [5086:7] GET /connz
+  - [5093:433] GET /connz
+    - [5095:3] Description
+    - [5098:3] Method
+    - [5101:3] Endpoint
+    - [5104:147] Response
+    - [5251:12] Confirm NATS Connection with CONNECT Command
+    - [5263:24] Configure NATS Ping/Pong Settings (C#)
+    - [5287:66] Java JetStream Push Subscribe Durable Queue Example
+    - [5353:12] Download an Object with a Specific Output Path
+    - [5365:12] Start Leaf Node Server
+    - [5377:20] Download NATS Server Release Build (Shell)
+    - [5397:12] Display NATS CLI Help Information
+    - [5409:24] Request-Reply with NATS.io in Python
+    - [5433:32] NATS Dispatcher with CountDownLatch (Java)
+    - [5465:34] NATS Messaging with Fibers (Ruby)
+    - [5499:20] Publish Time Data to NATS Subjects (Ruby)
+    - [5519:7] GET /connz - Connection Information
+  - [5526:129] GET /connz - Connection Information
+    - [5528:3] Description
+    - [5531:3] Method
+    - [5534:3] Endpoint
+    - [5537:12] Parameters
+    - [5549:3] Request Example
+    - [5552:55] Response
+    - [5607:21] NATS Gateway Configuration Example
+    - [5628:12] Run NATS Subscriber Example
+    - [5640:15] NATS Request-Reply in Python
+- [5655:1253] Send the request
+    - [5666:7] GET /subsz
+  - [5673:134] GET /subsz
+    - [5675:3] Description
+    - [5678:3] Method
+    - [5681:3] Endpoint
+    - [5684:10] Response
+    - [5694:17] Get List of All Accounts
+    - [5711:22] Server Configuration: Account-Specific Mappings
+    - [5733:43] GET /connz
+    - [5776:24] Connect to NATS with TLS in JavaScript (Node.js)
+    - [5800:7] GET /jsz - JetStream Information
+  - [5807:110] GET /jsz
+    - [5809:3] Description
+    - [5812:3] Method
+    - [5815:3] Endpoint
+    - [5818:12] Parameters
+    - [5830:5] Request Example
+    - [5835:57] Response
+    - [5892:18] Get Keys in NATS KV Store (C#)
+    - [5910:7] Object Operations
+  - [5917:88] Object Operations API
+    - [5919:4] Description
+    - [5923:14] Methods
+    - [5937:23] Parameters
+    - [5960:15] Request Example (Put)
+    - [5975:23] Response Example (Get Info)
+    - [5998:7] GET /leafz
+  - [6005:83] GET /leafz
+    - [6007:3] Description
+    - [6010:3] Method
+    - [6013:6] Endpoint
+    - [6019:7] Request Example
+    - [6026:43] Response
+    - [6069:12] Subject Hierarchy Example - General Namespace
+    - [6081:7] Get Consumer Info
+  - [6088:201] POST $JS.API.CONSUMER.INFO.<stream>.<consumer>
+    - [6090:3] Description
+    - [6093:3] Method
+    - [6096:3] Endpoint
+    - [6099:8] Parameters
+    - [6107:7] Response
+    - [6114:41] Java NKey Authentication
+    - [6155:12] Get Information About an Object Store Bucket
+    - [6167:19] Connect to NATS Server using URL (Ruby)
+    - [6186:12] Listing NATS Users for an Account with NSC
+    - [6198:15] Deploy JavaScript Function with Nex
+    - [6213:12] Get Information about a NATS JetStream Stream
+    - [6225:57] Publish and Subscribe with NATS in C#
+    - [6282:7] GET /gatewayz
+  - [6289:164] GET /gatewayz
+    - [6291:3] Description
+    - [6294:3] Method
+    - [6297:3] Endpoint
+    - [6300:6] Parameters
+    - [6306:7] Request Example
+    - [6313:46] Response
+    - [6359:35] Publish and Subscribe with NATS in Ruby
+    - [6394:12] Request Data from NATS Service
+    - [6406:14] NATS Server Clustering Configuration
+    - [6420:26] NATS Server INFO Message with Nonce
+    - [6446:7] Leaf Node Connections - Outgoing (Non Operator Mode)
+  - [6453:203] Leaf Node Connections - Outgoing (Non Operator Mode)
+    - [6455:3] Description
+    - [6458:18] Configuration Example
+    - [6476:9] Notes
+    - [6485:71] Manage KV Buckets (Java)
+    - [6556:47] Get Key History in Go, Java, JavaScript, C#, C
+    - [6603:14] Create Pull-Based Consumer (CLI)
+    - [6617:19] Go JWT Package for Auth Callout Data Structures
+    - [6636:13] Create Push-Based Consumer (CLI)
+    - [6649:7] GET /routez
+  - [6656:74] GET /routez
+    - [6658:3] Description
+    - [6661:3] Method
+    - [6664:3] Endpoint
+    - [6667:4] Parameters
+    - [6671:7] Request Example
+    - [6678:45] Response
+    - [6723:7] GET /connz
+  - [6730:178] GET /connz
+    - [6732:3] Description
+    - [6735:3] Method
+    - [6738:3] Endpoint
+    - [6741:4] Parameters
+    - [6745:7] Request Example
+    - [6752:68] Response
+    - [6820:13] Get Keys in NATS KV Store (Go)
+    - [6833:20] Get Keys in NATS KV Store (Java)
+    - [6853:35] Go Subscriber Service Connection with NKEY Authentication
+    - [6888:13] Add Users with Tags for Templated Permissions (NATS CLI)
+    - [6901:7] Publish to NATS JetStream Stream (C - Usage)
+- [6908:294] include "examples.h"
+    - [6923:23] NATS Server Log Output - Connecting Server
+    - [6946:12] Get Keys in NATS KV Store (JavaScript)
+    - [6958:7] GET /accstatz - Account Statistics
+  - [6965:237] GET /accstatz
+    - [6967:3] Description
+    - [6970:3] Method
+    - [6973:3] Endpoint
+    - [6976:4] Parameters
+    - [6980:4] Request Example
+    - [6984:63] Response
+    - [7047:72] Get Specific Account Details
+    - [7119:14] Generate CA and Server Certificates with mkcert
+    - [7133:13] Run a Single NATS Server with Docker
+    - [7146:12] Generating NATS Configuration with Mem Resolver
+    - [7158:12] Run 1:N Throughput Test with NATS Bench
+    - [7170:21] Get Subscription Routing Information
+    - [7191:11] Asynchronous NATS Subscribe with Callback (Python)
+- [7202:75] Use queue to wait for 4 messages to arrive
+    - [7213:32] Manage KV Buckets (Go)
+    - [7245:12] Pull NATS Server Docker Image
+    - [7257:20] Unsubscribe from NATS (Python)
+- [7277:3] Remove interest in subject
+- [7280:663] Won't be received...
+    - [7287:31] C#: Create an Ordered Consumer
+    - [7318:121] NATS Server Connection Information (/connz) Example
+    - [7439:34] JavaScript NATS JetStream Consumer Setup
+    - [7473:37] Manage KV Buckets (JavaScript)
+    - [7510:12] Create NATS Operator with System Account using NSC
+    - [7522:45] Create NATS JetStream Stream (Interactive)
+    - [7567:22] Go NKey Authentication
+    - [7589:12] Add NATS JetStream Stream Sourced from Other Streams
+    - [7601:12] Run NATS Server with Docker
+    - [7613:15] NATS Server Authorization Configuration with Bcrypt
+    - [7628:33] Publish and Subscribe with Max Messages (Ruby)
+    - [7661:61] Publish and Subscribe with NATS in Java
+    - [7722:17] Allow Multiple Connection Types for MQTT User
+    - [7739:17] Enable WebSocket on Docker - NATS Configuration
+    - [7756:57] NATS JetStream: Consume Messages (C)
+    - [7813:12] Configure NATS Service User with sc config
+    - [7825:67] NATS Server General Information Endpoint Response
+    - [7892:15] Publish Messages to US Time Subjects (JavaScript)
+    - [7907:12] Upload a File to an Object Store Bucket
+    - [7919:16] Subject Hierarchy Example
+    - [7935:8] Configure NATS Ping/Pong Settings (Ruby)
+- [7943:175] Set Ping Interval to 20 seconds and Max Pings Outstanding to 5
+    - [7960:44] Send JSON Data with NATS in C#
+    - [8004:12] Get a Specific Message from a NATS JetStream Stream
+    - [8016:102] Asynchronous Subscribe to 'updates' Subject
+- [8118:201] Wait for message to come in
+    - [8196:13] Set Operator Service URLs and Publish Message
+    - [8209:70] Configure NATS Stream with Mirror using JSON
+    - [8279:18] Configure NATS Ping/Pong Settings (JavaScript)
+    - [8297:12] Initialize Managed Operator with 'nsc init'
+    - [8309:10] NATS JetStream Consumer Acknowledgement Functions (Python)
+- [8319:858] Assuming 'msg' is a received Msg object from a JetStream subscription
+    - [8341:7] Python JetStream Initialization
+  - [8348:451] Python JetStream API
+    - [8350:21] Initialize JetStream
+    - [8371:23] NATS Account Configuration Example
+    - [8394:24] Handling String vs. Number Parsing in NATS Config
+    - [8418:12] Watch NATS Object Bucket Changes
+    - [8430:12] Verify NATS Server is Running via Telnet
+    - [8442:50] NATS Cluster Docker Compose Output
+    - [8492:28] NATS Configuration with Encryption Enabled
+    - [8520:35] NATS Client Request and Receive
+    - [8555:24] NATS Server Log Output - Third Server Connecting
+    - [8579:16] Send JSON Data with NATS in Python
+    - [8595:14] NATS Server Log Output - Seed Accepting Route
+    - [8609:12] Send Request to NATS System (Server Side)
+    - [8621:12] NATS Weighted Mapping for Traffic Shaping in Testing
+    - [8633:12] Download an Object from a Bucket
+    - [8645:36] Pull Consumer Fetch (Node.js)
+    - [8681:14] NATS Configuration: Initial Canary Deployment (v1)
+    - [8695:12] NATS.IO CLI for System Event Publishing
+    - [8707:27] Connect to NATS Cluster in C
+    - [8734:12] Define Well-Known Operator with Environment Variable
+    - [8746:46] NATS JetStream: Add and Get Stream Info (C)
+    - [8792:7] Discovering Servers + Stats
+  - [8799:378] GET $SYS.REQ.SERVER.PING
+    - [8801:3] Description
+    - [8804:3] Method
+    - [8807:3] Endpoint
+    - [8810:7] Parameters
+    - [8817:5] Request Example
+    - [8822:60] Response
+    - [8882:12] List Objects in a Bucket
+    - [8894:24] NATS JetStream Stream Subject Transform Configuration
+    - [8918:14] JavaScript JQuery Example for NATS Monitoring
+    - [8932:12] Responding to NATS JetStream Flow Control Messages
+    - [8944:12] Subject Hierarchy Example - Identifiers
+    - [8956:15] NATS CLI Message Deduplication Example
+    - [8971:12] Watch KV Bucket Changes (Shell)
+    - [8983:17] NATS Seed Node Configuration
+    - [9000:27] Create a NATS JetStream Stream
+    - [9027:31] Java NATS Subscription and Drain Example
+    - [9058:32] Echo Function in Rust for WebAssembly (WASI)
+    - [9090:68] Retrieve KeyValue Entries (Get)
+    - [9158:12] Generate NATS Server Config with Memory Resolver
+    - [9170:7] Publish Messages with Error Handling (C)
+- [9177:751] include "examples.h"
+    - [9253:28] NATS Operator and Account Configuration
+    - [9281:21] Disable NATS Message Echo (JavaScript)
+    - [9302:7] Key/Value Bucket Management
+  - [9309:619] Key/Value Bucket Management
+    - [9313:29] Create Key/Value Bucket
+    - [9342:17] Get Bucket Info
+    - [9359:13] Get List of Bucket Names
+    - [9372:19] Delete Key/Value Bucket
+    - [9391:12] NATS IO Agent Handshake Log
+    - [9403:60] C# NATS Subscribe, Publish, and Drain Example
+    - [9463:12] Build WebAssembly Module with Cargo
+    - [9475:27] NATS Operator Mode Configuration
+    - [9502:188] C NATS JetStream Subscription and Message Handling
+    - [9690:35] NATS Authorization Configuration with Explicit Allow/Deny
+    - [9725:18] C: Put, PutString, and Create Data in NATS KV Store
+    - [9743:12] Test NATS Configuration with Publish
+    - [9755:15] Send Request from Blue Leaf Node (NATS CLI)
+    - [9770:12] Requesting Next Message with Pull-Based Consumer (API)
+    - [9782:17] NATS Message Structure Definition
+    - [9799:12] Create KV Bucket (Shell)
+    - [9811:41] C NATS Subscribe, Publish, and Drain Example
+    - [9852:12] Get CA Certificate Root Path with mkcert
+    - [9864:27] Configure NATS Client Authentication with NKey (Node.js)
+    - [9891:30] Get NATS Connection Status (Go)
+    - [9921:7] Mimic Connect Timeout - Ruby NATS Client
+- [9928:768] There is currently no connect timeout as part of the Ruby NATS client API, but you can use a timer to mimic it.
+    - [9944:26] Python Queue Subscription
+    - [9970:12] Describe User Permissions with nsc
+    - [9982:35] Unsubscribe from NATS (C#)
+    - [10017:12] Fetch Next Message (No Wait) - NATS CLI Example
+    - [10029:12] Create NATS CLI Context
+    - [10041:33] Publish Time Data to NATS Subjects (C# .NET)
+    - [10074:42] Send JSON Data with NATS in Java
+    - [10116:30] NATS Leaf Node Information (/leafz) Example
+    - [10146:13] Create NATS Overlay Network and Seed Server (Bash)
+    - [10159:12] Run NATS Server in a Cluster with Docker
+    - [10171:37] NATS JetStream Server Configuration (Nats)
+    - [10208:12] Get NATS JetStream Server Report (Bash)
+    - [10220:41] Publish to NATS JetStream Stream (Go)
+    - [10261:26] Connect to NATS using C
+    - [10287:12] NATS Configuration: Artificial Message Loss
+    - [10299:12] Get NATS Stream Information
+    - [10311:36] C NATS Client Error Handling Setup
+    - [10347:12] Connect to NATS Demo Instance using Telnet
+    - [10359:12] Persist JetStream Data with Docker Volume
+    - [10371:27] Monitor NATS Connection Status (Ruby)
+    - [10398:20] Connect to Default NATS Server in C
+    - [10418:14] Generating NKey for Account Issuer using nsc
+    - [10432:97] Java Object Store Interface for Key-Value Operations
+    - [10529:13] Generate Data using NATS CLI
+    - [10542:18] Get NATS Connection Status (Java)
+    - [10560:7] C JetStream Publish Error Handling and Stream Creation
+  - [10567:129] C JetStream API
+    - [10569:16] Asynchronous Publish Error Handling
+    - [10585:15] Stream Creation
+    - [10600:12] Verify NATS Cluster Routes via HTTP
+    - [10612:12] Upload a File with a Specific Name
+    - [10624:14] Configure NATS Server Token Authentication
+    - [10638:21] Connect to NATS Cluster in JavaScript (Node.js)
+    - [10659:37] Get Maximum Payload Size in NATS Clients
+- [10696:112] Do something with the max payload.
+    - [10748:12] Create NATS JetStream Stream (Config File)
+    - [10760:12] Signal Specific NATS Server by PID
+    - [10772:14] NATS CLI Publish Command - Payload Violation Error
+    - [10786:22] Disable NATS Message Echo (Python)
+- [10808:808] Do something with the connection
+    - [10817:39] View Nex Node Information and Workloads
+    - [10856:57] Send String Message to Subject - Go, Java, JavaScript, Python, C#, Ruby
+    - [10913:15] Configure NATS JetStream Encryption using Environment Variable
+    - [10928:17] Receive JSON Data in JavaScript
+    - [10945:19] Configure Leaf Node with TLS Remote
+    - [10964:55] Receive JSON Data in Java
+    - [11019:33] Set Up Queued Subscribers in Ruby
+    - [11052:15] Deploy WebAssembly Function with Nex CLI
+    - [11067:13] Publish Message to NATS Subject using PUB Command
+    - [11080:17] Get NATS Client Info and Stats (JavaScript)
+    - [11097:12] Edit NATS Operator Settings with NSC
+    - [11109:42] Query NATS JetStream Stream Information (JSON Output)
+    - [11151:62] NATS JetStream Pull Subscription in Go
+    - [11213:12] Signal NATS Servers using Glob Expression
+    - [11225:42] C# Object Store Management Methods
+    - [11267:53] Add Stream with Mirroring (Bash)
+    - [11320:28] nats-top In-App Commands
+    - [11348:17] Configure NATS Server for Leaf Node Connections
+    - [11365:35] Drain NATS Connection (Java)
+    - [11400:12] Display NKEYS Directory Tree
+    - [11412:12] Signal Specific NATS Server by PID File
+    - [11424:66] Drain Subscription and Verify Message Handling in Go
+    - [11490:62] Drain NATS Connection (Go)
+    - [11552:12] Subscribe with NKEY Authentication
+    - [11564:7] Key-Value Management API
+  - [11571:45] Key-Value Management API
+    - [11573:4] Description
+    - [11577:6] Methods
+    - [11583:15] Parameters
+    - [11598:14] Responses
+    - [11612:4] Examples
+- [11616:984] Assuming 'kv' is an instance of the KeyValue interface
+    - [11647:13] Slice Tokens with SliceFromLeft and SliceFromRight
+    - [11660:22] Configure NATS Ping/Pong Settings (Java)
+    - [11682:14] Configure Dedicated Account Routes (NATS)
+    - [11696:22] NATS User JWT and NKEY Seed Generation
+    - [11718:21] Telnet Connection to NATS Server
+    - [11739:59] Receive JSON Data in C#
+    - [11798:16] nats-top Sorting Options
+    - [11814:51] Handle Slow Consumer Errors in Python with Async
+    - [11865:47] Publish to NATS JetStream Stream (C#)
+    - [11912:16] NATS Service Reply (Bash)
+    - [11928:44] Drain NATS Subscription (C#)
+    - [11972:12] Authenticate MQTT Users with JWT in Operator Mode
+    - [11984:41] Subscribe to Specific Wildcard Subjects with NATS in JavaScript
+    - [12025:120] NATS Object Store Manager Interface (Go)
+    - [12145:13] List and Select NATS Contexts
+    - [12158:12] Subscribe to a NATS Subject using SUB Command
+    - [12170:20] NATS Leaf Node Remote Connection Configuration
+    - [12190:19] Connect to NATS Cluster in Java
+    - [12209:12] Add NATS Operator using NSC
+    - [12221:19] Connect to Default NATS Server in C#
+    - [12240:22] Configure NATS Server OCSP Stapling Modes
+    - [12262:49] Get Account Statistics (accstatz) - JSON Response
+    - [12311:16] Configure NATS Authentication Timeout
+    - [12327:13] Run Second NATS Leaf Node (Docker)
+    - [12340:7] Key-Value Store Operations
+  - [12347:126] Key-Value Store Operations
+    - [12351:15] Creating a Key
+    - [12366:29] Updating a Key
+    - [12395:32] Deleting Keys
+    - [12427:26] Retrieving Keys
+    - [12453:13] NATS CLI: Subscribe and Publish to Server A
+    - [12466:7] Discovering Servers
+  - [12473:127] GET $SYS.REQ.SERVER.PING.IDZ
+    - [12475:3] Description
+    - [12478:3] Method
+    - [12481:3] Endpoint
+    - [12484:7] Parameters
+    - [12491:5] Request Example
+    - [12496:18] Response
+    - [12514:12] Add Durable Pull Consumer in NATS JetStream
+    - [12526:16] Connect to Default NATS Server in Java
+    - [12542:26] Connect to NATS using C#
+    - [12568:12] Publish with NKEY Authentication
+    - [12580:13] NATS Server Clustering Command Line Options (Bash)
+    - [12593:7] NATS Configuration File Syntax
+- [12600:1] Lines can be commented with # and //
+- [12601:1] Values can be assigned to properties with delimiters:
+- [12602:1] Equals sign: foo = 2
+- [12603:1] Colon: foo: 2
+- [12604:1] Whitespace: foo 2
+- [12605:1] Arrays are enclosed in brackets: ["a", "b", "c"]
+- [12606:1] Maps are enclosed in braces: {foo: 2}
+- [12607:1] Maps can be assigned with no delimiter accounts { SYS {...}, cloud-user {...} }
+- [12608:12] Semicolons can be optionally used as terminators host: 127.0.0.1; port: 4222;
+    - [12613:7] NATS Configuration: Variable Definition and Usage
+- [12620:3] Define a variable in the config
+- [12623:7] Reference the variable
+- [12630:1] Define a variable in the config
+- [12631:3] But TOKEN is never used resulting in a config parsing error
+- [12634:7] Reference the variable
+- [12641:996] TOKEN is defined in the environment
+    - [12649:23] NATS Include Directive for Modular Configuration
+    - [12672:16] NATS CLI: Pushing Account Changes to Servers
+    - [12688:52] Configure NATS Discovered Servers Callback (C)
+    - [12740:128] Add NATS JetStream Stream Configuration and Publish
+    - [12868:19] Interactive Subject Mapping
+    - [12887:12] Add NATS Account using NSC
+    - [12899:32] NATS CLI: Revocations Command Structure
+    - [12931:13] Enable and Verify JetStream
+    - [12944:12] Create Account with nsc
+    - [12956:12] Add Consumer with JSON Config (CLI)
+    - [12968:12] Add a NATS User to an Account
+    - [12980:34] Publish to NATS JetStream Stream (Python)
+    - [13014:12] Publish Message to NATS Server
+    - [13026:12] Add NATS User using NSC
+    - [13038:13] List All NATS Keys and Entities
+    - [13051:15] Send Request to Echo Service using NATS CLI
+    - [13066:15] Authenticate NATS Client with Credentials File (C#)
+    - [13081:69] Publish and Subscribe with NATS in Go
+    - [13150:15] Trigger WebAssembly Function via NATS
+    - [13165:12] Describe NATS Account using NSC
+    - [13177:14] Create NATS Operator, Account, and User with NSC
+    - [13191:12] NATS.IO CLI for System Event Subscription
+    - [13203:29] Manage KV Buckets (Python)
+    - [13232:12] Import System Account JWT (nsc)
+    - [13244:15] Echo Function in JavaScript for Nex
+    - [13259:13] Add NATS Servers to a Cluster with Docker
+    - [13272:13] Manage Consumers (CLI)
+    - [13285:12] Create NATS User with Signing Key using nsc
+    - [13297:7] NATS Client Connection Options
+  - [13304:29] Client Connection Options
+    - [13308:7] Fields
+    - [13315:11] Example (Go Client)
+    - [13326:7] INFO Protocol Options
+  - [13333:304] INFO Protocol Options
+    - [13335:4] Description
+    - [13339:4] Method
+    - [13343:4] Endpoint
+    - [13347:27] Parameters
+    - [13374:31] Request Example
+    - [13405:61] Response
+    - [13466:12] View NSC Environment Configuration
+    - [13478:12] List NATS Entity Keys (Bash)
+    - [13490:63] Watch Key/Value Store Updates in Go, Java, JavaScript, C#, C
+    - [13553:13] Download NATS CPU Profile (Shell)
+    - [13566:40] Request-Reply with NATS.io in Go
+    - [13606:20] Connect to NATS with TLS in Python
+    - [13626:11] NATS CLI: Subscribe and Publish within Accounts

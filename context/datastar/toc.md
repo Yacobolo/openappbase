@@ -1,0 +1,158 @@
+# File Map: llms.md
+
+- [1:2] Guide
+- [3:242] Getting Started
+  - [14:21] Installation
+  - [35:20] `data-*`
+  - [55:190] Patching Elements
+- [245:4] Create a Datastar::Dispatcher instance
+- [249:1] In a Rack handler, you can instantiate from the Rack env
+- [250:2] datastar = Datastar.from_rack_env(env)
+- [252:43] Start a streaming response
+- [295:413] Reactive Signals
+  - [303:182] Data Attributes
+    - [309:16] `data-bind`
+    - [325:28] `data-text`
+    - [353:17] `data-computed`
+    - [370:26] `data-show`
+    - [396:25] `data-class`
+    - [421:23] `data-attr`
+    - [444:22] `data-signals`
+    - [466:19] `data-on`
+  - [485:54] Frontend Reactivity
+  - [539:169] Patching Signals
+- [708:4] Create a Datastar::Dispatcher instance
+- [712:1] In a Rack handler, you can instantiate from the Rack env
+- [713:2] datastar = Datastar.from_rack_env(env)
+- [715:43] Start a streaming response
+- [758:215] Datastar Expressions
+  - [762:62] Datastar Expressions
+  - [824:96] Using JavaScript
+    - [834:46] External Scripts
+    - [880:40] Web Components
+  - [920:53] Executing Scripts
+- [973:132] Backend Requests
+  - [977:38] Sending Signals
+    - [983:32] Nesting Signals
+  - [1015:90] Reading Signals
+- [1105:3] Setup with request
+- [1108:128] Read signals
+  - [1116:120] SSE Events
+- [1236:4] Create a Datastar::Dispatcher instance
+- [1240:1] In a Rack handler, you can instantiate from the Rack env
+- [1241:2] datastar = Datastar.from_rack_env(env)
+- [1243:199] Start a streaming response
+    - [1316:23] `data-indicator`
+  - [1339:97] Backend Actions
+  - [1436:6] Congratulations
+- [1442:2] Reference
+- [1444:890] Attributes
+    - [1450:14] `data-attr`
+    - [1464:80] `data-bind`
+    - [1544:31] `data-class`
+    - [1575:38] `data-computed`
+    - [1613:8] `data-effect`
+    - [1621:16] `data-ignore`
+    - [1637:12] `data-ignore-morph`
+    - [1649:43] `data-indicator`
+    - [1692:24] `data-init`
+    - [1716:33] `data-json-signals`
+    - [1749:58] `data-on`
+    - [1807:37] `data-on-intersect`
+    - [1844:23] `data-on-interval`
+    - [1867:41] `data-on-signal-patch`
+    - [1908:17] `data-on-signal-patch-filter`
+    - [1925:20] `data-preserve-attr`
+    - [1945:35] `data-ref`
+    - [1980:14] `data-show`
+    - [1994:52] `data-signals`
+    - [2046:33] `data-style`
+    - [2079:8] `data-text`
+  - [2087:177] Pro Attributes
+    - [2091:4] `data-animate` Pro
+    - [2095:14] `data-custom-validity` Pro
+    - [2109:23] `data-on-raf` Pro
+    - [2132:29] `data-on-resize` Pro
+    - [2161:31] `data-persist` Pro
+    - [2192:25] `data-query-string` Pro
+    - [2217:8] `data-replace-url` Pro
+    - [2225:25] `data-scroll-into-view` Pro
+    - [2250:4] `data-rocket` Pro
+    - [2254:10] `data-view-transition` Pro
+  - [2264:8] Attribute Order
+  - [2272:13] Attribute Casing
+  - [2285:10] Aliasing Attributes
+  - [2295:12] Datastar Expressions
+  - [2307:27] Error Handling
+- [2334:323] Actions
+    - [2340:12] `@peek()`
+    - [2352:25] `@setAll()`
+    - [2377:25] `@toggleAll()`
+  - [2402:201] Backend Actions
+    - [2404:35] `@get()`
+    - [2439:10] `@post()`
+    - [2449:10] `@put()`
+    - [2459:10] `@patch()`
+    - [2469:10] `@delete()`
+    - [2479:34] Options
+    - [2513:26] Request Cancellation
+    - [2539:48] Response Handling
+    - [2587:16] Events
+  - [2603:54] Pro Actions
+    - [2605:16] `@clipboard()` Pro
+    - [2621:36] `@fit()` Pro
+- [2657:834] Rocket
+    - [2665:137] Basic example
+  - [2802:43] Overview
+    - [2810:6] Bridging Web Components and Datastar
+    - [2816:29] Signal Scoping
+  - [2845:21] Defining Rocket Components
+  - [2866:65] Signal Management
+    - [2870:33] Component Signals
+    - [2903:28] Global Signals
+  - [2931:33] Props
+  - [2964:74] Setup Scripts
+    - [2968:43] Component Setup Scripts
+    - [3011:27] Static Setup Scripts
+  - [3038:104] Module Imports
+    - [3042:55] ESM Imports
+    - [3097:45] IIFE Imports
+  - [3142:58] Rocket Attributes
+    - [3146:10] `data-if`
+    - [3156:13] `data-else-if`
+    - [3169:11] `data-else`
+    - [3180:20] `data-for`
+  - [3200:104] Reactive Patterns
+    - [3204:47] Computed Values
+    - [3251:53] Effects and Watchers
+  - [3304:80] Element References
+  - [3384:60] Validation with Codecs
+    - [3388:44] Type Codecs
+    - [3432:12] Validation Rules
+  - [3444:37] Component Lifecycle
+  - [3481:6] Optimistic UI
+  - [3487:4] Examples
+- [3491:83] SSE Events
+  - [3497:77] Event Types
+    - [3499:48] `datastar-patch-elements`
+    - [3547:27] `datastar-patch-signals`
+- [3574:119] SDKs
+  - [3580:8] Clojure
+  - [3588:9] C\#
+  - [3597:10] Go
+  - [3607:9] Java
+  - [3616:8] Kotlin
+  - [3624:22] PHP
+    - [3632:8] Craft CMS
+    - [3640:6] Laravel
+  - [3646:9] Python
+  - [3655:8] Ruby
+  - [3663:15] Rust
+    - [3672:6] Rama
+  - [3678:15] TypeScript
+    - [3687:6] PocketPages
+- [3693:25] Security
+  - [3697:4] Escape User Input
+  - [3701:4] Avoid Sensitive Data
+  - [3705:4] Ignore Unsafe Input
+  - [3709:9] Content Security Policy

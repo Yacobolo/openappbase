@@ -1,0 +1,75 @@
+# File Map: llms.md
+
+- [9:1844] daisyUI 5
+  - [18:16] daisyUI 5 install notes
+  - [34:25] daisyUI 5 usage rules
+  - [59:37] Config
+  - [96:89] daisyUI 5 colors
+    - [98:22] daisyUI color names
+    - [120:12] daisyUI color rules
+    - [132:53] daisyUI custom theme with custom colors
+  - [185:1668] daisyUI 5 components
+    - [187:28] accordion
+    - [215:20] alert
+    - [235:24] avatar
+    - [259:21] badge
+    - [280:20] breadcrumbs
+    - [300:23] button
+    - [323:28] calendar
+    - [351:30] card
+    - [381:21] carousel
+    - [402:26] chat
+    - [428:18] checkbox
+    - [446:23] collapse
+    - [469:20] countdown
+    - [489:21] diff
+    - [510:20] divider
+    - [530:28] dock
+    - [558:99] drawer
+    - [657:40] dropdown
+    - [697:99] fab
+    - [796:21] fieldset
+    - [817:19] file-input
+    - [836:33] filter
+    - [869:22] footer
+    - [891:20] hero
+    - [911:34] hover-3d
+    - [945:24] hover-gallery
+    - [969:22] indicator
+    - [991:21] input
+    - [1012:20] join
+    - [1032:17] kbd
+    - [1049:28] label
+    - [1077:18] link
+    - [1095:21] list
+    - [1116:18] loading
+    - [1134:20] mask
+    - [1154:33] menu
+    - [1187:23] mockup-browser
+    - [1210:20] mockup-code
+    - [1230:20] mockup-phone
+    - [1250:15] mockup-window
+    - [1265:45] modal
+    - [1310:19] navbar
+    - [1329:19] pagination
+    - [1348:18] progress
+    - [1366:19] radial-progress
+    - [1385:20] radio
+    - [1405:19] range
+    - [1424:22] rating
+    - [1446:21] select
+    - [1467:21] skeleton
+    - [1488:18] stack
+    - [1506:22] stat
+    - [1528:19] status
+    - [1547:24] steps
+    - [1571:34] swap
+    - [1605:32] tab
+    - [1637:32] table
+    - [1669:68] text-rotate
+    - [1737:19] textarea
+    - [1756:16] theme-controller
+    - [1772:28] timeline
+    - [1800:17] toast
+    - [1817:18] toggle
+    - [1835:18] validator
