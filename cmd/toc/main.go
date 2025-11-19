@@ -1,5 +1,7 @@
 package main
 
+// TODO: change output file name to summary.md
+
 import (
 	"bufio"
 	"flag"
@@ -79,8 +81,10 @@ func generateTOC(mdFilePath string, maxDepth int) error {
 
 	scanner := bufio.NewScanner(file)
 	lineNum := 0
+	totalLines := 0
 	for scanner.Scan() {
 		lineNum++
+		totalLines++
 		line := scanner.Text()
 
 		// Check if line starts with #
@@ -121,13 +125,26 @@ func generateTOC(mdFilePath string, maxDepth int) error {
 	baseName := filepath.Base(mdFilePath)
 	fmt.Fprintf(writer, "# File Map: %s\n\n", baseName)
 
-	// Write TOC entries with hierarchy
-	for _, h := range headers {
+	// Write TOC entries with hierarchy and line counts
+	for i, h := range headers {
 		// Indent based on level (level 1 = no indent, level 2 = 2 spaces, etc.)
 		indent := strings.Repeat("  ", h.level-1)
 
-		// Format: - [L0001] Header Text
-		fmt.Fprintf(writer, "%s- [L%04d] %s\n", indent, h.lineNum, h.text)
+		// Calculate line count to next section at same or higher level
+		lineCount := 0
+		for j := i + 1; j < len(headers); j++ {
+			if headers[j].level <= h.level {
+				lineCount = headers[j].lineNum - h.lineNum
+				break
+			}
+		}
+		// If no next section found, calculate to end of file
+		if lineCount == 0 {
+			lineCount = totalLines - h.lineNum + 1
+		}
+
+		// Format: - [295:413] Header Text (start:count)
+		fmt.Fprintf(writer, "%s- [%d:%d] %s\n", indent, h.lineNum, lineCount, h.text)
 	}
 
 	if err := writer.Flush(); err != nil {
