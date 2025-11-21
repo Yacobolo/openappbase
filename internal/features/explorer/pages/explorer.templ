@@ -10,7 +10,7 @@ type ExplorerPageData struct {
 
 templ ExplorerPage(data ExplorerPageData) {
 	@layouts.AppShell("Unity Explorer - test") {
-		<div id="table-explorer-component" class="flex h-screen font-sans">
+		<div id="table-explorer-component">
 			@components.Sidebar(data.SidebarSchemas)
 			@components.MainContent(data.MainContent)
 		</div>

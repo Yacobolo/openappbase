@@ -11,26 +11,25 @@ const (
 )
 
 templ Navigation(page page) {
-	<div class="drawer-side">
-		<label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-		<ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-			// Sidebar content
-			<li class="menu-title">
-				<span>Nav</span>
-			</li>
-			// You can use logic to highlight the currently active page.
-			<li>
-				<a href="/">Home</a>
-			</li>
-			// <li>
-			// 	<a href="/explorer">Explorer</a>
-			// </li>
-			// <li>
-			// 	<a href="/editor">Editor</a>
-			// </li>
-			<li>
-				<a href="/admin">Admin</a>
-			</li>
-		</ul>
-	</div>
+	<aside>
+		<header>
+			<h2>Navigation</h2>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<a href="/">Home</a>
+				</li>
+				// <li>
+				// 	<a href="/explorer">Explorer</a>
+				// </li>
+				// <li>
+				// 	<a href="/editor">Editor</a>
+				// </li>
+				<li>
+					<a href="/admin">Admin</a>
+				</li>
+			</ul>
+		</nav>
+	</aside>
 }

@@ -18,7 +18,7 @@ type EditorPageData struct {
 // --- Main Page Component ---
 templ EditorPage(data EditorPageData) {
 	@layouts.AppShell("Data Table Editor") {
-		<div class="max-w-7xl mx-auto">
+		<div class="container">
 			<div id="table-container" data-init={ datastar.GetSSE("/api/editor") }></div>
 		</div>
 	}

@@ -1,9 +1,17 @@
-@import "tailwindcss";
+/*
+ * PostgreSQL UI - Context-Based CSS Architecture
+ * "Context over Classes" - 95% Clean HTML
+ */
 
+/* Import order: Variables → Reset → Base → Layout → Components → Utilities */
+@import "./variables.css";
+@import "./reset.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./components.css";
+@import "./utilities.css";
+
+/* Enable View Transitions API for smooth page navigation */
 @view-transition {
   navigation: auto;
-}
-
-@plugin "./daisyui/daisyui.js" {
-  themes: dark --default;
 }

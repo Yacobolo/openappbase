@@ -19,42 +19,39 @@ type SchemaView struct {
 
 // SchemaItem is a collapsible component for a single schema and its tables.
 templ SchemaItem(schema SchemaView, isOpen bool) {
-	<div class="collapse collapse-arrow bg-base-100 rounded-lg mb-1">
-		<input type="checkbox" checked?={ isOpen }/>
-		<div class="collapse-title font-medium flex items-center gap-2">
+	<details open?={ isOpen }>
+		<summary>
 			@FolderIcon()
 			{ schema.Name }
-			<div class="badge badge-neutral badge-sm">{ strconv.Itoa(len(schema.Tables)) }</div>
-		</div>
-		<div class="collapse-content">
-			<ul class="menu menu-compact p-0 pl-4">
-				for _, table := range schema.Tables {
-					<li>
-						<a
-							class={ templ.KV("active", table.IsActive) }
-							data-on:click={ datastar.GetSSE(fmt.Sprintf("/explorer/%s/%s", schema.Name, table.Name)) }
-						>
-							@TableIcon()
-							{ table.Name }
-						</a>
-					</li>
-				}
-			</ul>
-		</div>
-	</div>
+			<span class="count">{ strconv.Itoa(len(schema.Tables)) }</span>
+		</summary>
+		<ul>
+			for _, table := range schema.Tables {
+				<li>
+					<a
+						class={ templ.KV("active", table.IsActive) }
+						data-on:click={ datastar.GetSSE(fmt.Sprintf("/explorer/%s/%s", schema.Name, table.Name)) }
+					>
+						@TableIcon()
+						{ table.Name }
+					</a>
+				</li>
+			}
+		</ul>
+	</details>
 }
 
 // Sidebar is the main sidebar component.
 templ Sidebar(schemas []SchemaView) {
-	<aside class="w-80 bg-base-200 p-4 flex flex-col shrink-0">
-		<header class="mb-4 text-center border-b border-base-100 pb-4">
-			<h1 class="text-2xl font-bold text-primary">Unity Explorer</h1>
-			<p class="text-xs text-base-content/60">Postgres Edition</p>
+	<aside>
+		<header>
+			<h1>Unity Explorer</h1>
+			<p>Postgres Edition</p>
 		</header>
-		<div class="mb-4">
-			<input type="text" id="catalog-search" placeholder="Search tables..." class="input input-bordered w-full"/>
+		<div>
+			<input type="text" id="catalog-search" placeholder="Search tables..."/>
 		</div>
-		<nav id="catalog-nav" class="flex-grow overflow-y-auto pr-2">
+		<nav id="catalog-nav">
 			for _, schema := range schemas {
 				{{
 	var isOpen bool
@@ -68,8 +65,8 @@ templ Sidebar(schemas []SchemaView) {
 				@SchemaItem(schema, isOpen)
 			}
 		</nav>
-		<footer class="text-center pt-4 border-t border-base-100">
-			<div class="badge badge-outline">Connected</div>
+		<footer>
+			<span class="badge badge-outline">Connected</span>
 		</footer>
 	</aside>
 }

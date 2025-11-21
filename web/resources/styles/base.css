@@ -1,0 +1,308 @@
+/*
+ * Base Tag Styles
+ * Global defaults for naked HTML elements
+ * 95% of styling happens here - minimal classes needed
+ */
+
+/* ==================== Document ==================== */
+
+body {
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-family: var(--font-sans);
+}
+
+/* ==================== Typography ==================== */
+
+h1 {
+  font-size: var(--text-3xl);
+  line-height: var(--text-3xl--line-height);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-md);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+  line-height: var(--text-2xl--line-height);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-md);
+}
+
+h3 {
+  font-size: var(--text-xl);
+  line-height: var(--text-xl--line-height);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-sm);
+}
+
+h4 {
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-sm);
+}
+
+p {
+  margin-bottom: var(--space-md);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-duration) var(--transition-timing);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* ==================== Lists ==================== */
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin: 0;
+}
+
+/* ==================== Buttons ==================== */
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--text-sm--line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--transition-duration) var(--transition-timing);
+  white-space: nowrap;
+}
+
+button:hover {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-gray-400);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+button:disabled:hover {
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+/* ==================== Form Elements ==================== */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.6;
+  background-color: var(--color-bg-subtle);
+  cursor: not-allowed;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+select {
+  cursor: pointer;
+  padding-right: var(--space-xl);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right var(--space-sm) center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+
+label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  height: 1rem;
+  margin-right: var(--space-sm);
+  cursor: pointer;
+}
+
+/* ==================== Tables ==================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+th {
+  padding: var(--space-md);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  background-color: var(--color-bg-subtle);
+  border-bottom: 2px solid var(--color-border);
+}
+
+td {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+tr:hover {
+  background-color: var(--color-bg-subtle);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==================== Code ==================== */
+
+code {
+  padding: 0.125rem 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: var(--color-bg-muted);
+  border-radius: var(--border-radius-sm);
+}
+
+pre {
+  padding: var(--space-md);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  background-color: var(--color-bg-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+pre code {
+  padding: 0;
+  background-color: transparent;
+}
+
+/* ==================== Details/Summary ==================== */
+
+details {
+  margin-bottom: var(--space-sm);
+}
+
+summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  user-select: none;
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-duration) var(--transition-timing);
+}
+
+summary:hover {
+  background-color: var(--color-bg-subtle);
+}
+
+details[open] summary {
+  margin-bottom: var(--space-sm);
+}
+
+/* Remove default marker and add custom one */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::before {
+  content: '▶';
+  display: inline-block;
+  width: 0.75em;
+  transition: transform var(--transition-duration) var(--transition-timing);
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* ==================== HR ==================== */
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-lg) 0;
+}
+
+/* ==================== SVG ==================== */
+
+svg {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  fill: currentColor;
+  vertical-align: middle;
+}
+
+/* ==================== Images ==================== */
+
+img {
+  max-width: 100%;
+  height: auto;
+}

@@ -18,11 +18,8 @@ templ Base(title string) {
 			<script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@1.0.0-RC.6/bundles/datastar.js"></script>
 			<link rel="icon" type="image/x-icon" href={ resources.StaticPath("assets/favicon.ico") }/>
 			<link href={ resources.StaticPath("index.css") } rel="stylesheet" type="text/css"/>
-			<!-- Table specific -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/colresizable@1.6.0/colResizable-1.6.min.js"></script>
 		</head>
-		<body class="flex flex-col h-screen">
+		<body>
 			if config.Global.Environment == config.Dev {
 				<div data-init="@get('/reload', {retryMaxCount: 1000, retryInterval:20, retryMaxWaitMs:200})"></div>
 			}

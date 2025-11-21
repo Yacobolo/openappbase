@@ -5,28 +5,17 @@ import "northstar/internal/features/common/components"
 
 templ AppShell(title string) {
 	@Base(title) {
-		// This main flex container creates the app shell.
-		// The header is a direct child, and the drawer system takes the remaining height.
-		<div class="flex flex-col h-screen">
-			@components.Header()
-			// This container holds the sidebar and main content, taking the remaining screen height.
-			<div class="flex-1 overflow-hidden">
-				<div class="drawer lg:drawer-open h-full">
-					<input id="my-drawer-2" type="checkbox" class="drawer-toggle"/>
-					// Main Page Content Area (Scrollable if content overflows)
-					<div class="drawer-content flex flex-col overflow-auto">
-						<main class="p-6">
-							{ children... }
-							// <h1 class="text-3xl font-bold">Dashboard</h1>
-							// <p class="py-4">Your main page content starts here.</p>
-							// Example container from your original code
-							// <div id="todos-container" data-init={ datastar.GetSSE("/api/todos") }></div>
-						</main>
-					</div>
-					// The Navigation component acts as the sidebar.
-					@components.Navigation(components.PageIndex)
-				</div>
-			</div>
-		</div>
+		// Header sits at the top
+		@components.Header()
+		// Hidden checkbox for mobile drawer toggle
+		<input id="my-drawer-2" type="checkbox"/>
+		// Drawer overlay for mobile
+		<div class="drawer-overlay"></div>
+		// The Navigation component acts as the sidebar
+		@components.Navigation(components.PageIndex)
+		// Main content area
+		<main>
+			{ children... }
+		</main>
 	}
 }

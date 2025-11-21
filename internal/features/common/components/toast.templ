@@ -11,7 +11,7 @@ const (
 
 templ Toast(message string, toastType ToastType) {
 	<div
-		class={ "alert " + string(toastType) + " transition-opacity duration-300" }
+		class={ string(toastType) }
 		data-init__delay.3000ms="el.style.opacity = '0'; setTimeout(() => el.remove(), 300)"
 	>
 		<span>{ message }</span>

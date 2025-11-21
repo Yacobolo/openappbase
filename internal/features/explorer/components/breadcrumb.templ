@@ -24,138 +24,129 @@ type MainContentData struct {
 
 // --- Components ---
 templ Breadcrumbs(items []BreadcrumbItem) {
-	<div id="breadcrumbs" class="text-sm breadcrumbs mb-4">
-		<ul>
-			for i, item := range items {
-				if i == 0 && item.Href != "" {
-					// First item is typically a link
-					<li><a class="text-primary font-semibold" href={ templ.URL(item.Href) }>{ item.Name }</a></li>
-				} else {
-					// Subsequent items are just text
-					<li>{ item.Name }</li>
-				}
+	<div id="breadcrumbs" class="breadcrumb">
+		for i, item := range items {
+			if i == 0 && item.Href != "" {
+				// First item is typically a link
+				<a href={ templ.URL(item.Href) }>{ item.Name }</a>
+			} else {
+				// Subsequent items are just text
+				<span>{ item.Name }</span>
 			}
-		</ul>
+		}
 	</div>
 }
 
 templ DataView(data TableData) {
-	<div role="tabpanel" class="tab-content p-4">
-		<div class="overflow-x-auto">
-			if len(data.Rows) == 0 {
-				<div class="text-center p-8 text-base-content/60">No data to display.</div>
-			} else {
-				<table class="table table-zebra w-full">
-					<thead>
-						<tr>
-							for _, header := range data.Headers {
-								<th>{ header }</th>
-							}
-						</tr>
-					</thead>
-					<tbody>
-						for _, row := range data.Rows {
-							<tr>
-								for i, cell := range row {
-									<td>
-										// Special handling for a "status" column to render a badge
-										if data.Headers[i] == "status" {
-											switch fmt.Sprintf("%v", cell) {
-												case "active":
-													<div class="badge badge-success">active</div>
-												case "inactive":
-													<div class="badge badge-ghost">inactive</div>
-												default:
-													<div class="badge badge-outline">{ fmt.Sprintf("%v", cell) }</div>
-											}
-										} else {
-											{ fmt.Sprintf("%v", cell) }
-										}
-									</td>
-								}
-							</tr>
-						}
-					</tbody>
-				</table>
-			}
-		</div>
-	</div>
-}
-
-templ ColumnsView(columns []domain.Column) {
-	<div role="tabpanel" class="tab-content p-4">
-		<div class="overflow-x-auto">
-			<table class="table w-full">
+	<div role="tabpanel">
+		if len(data.Rows) == 0 {
+			<div class="empty-state">No data to display.</div>
+		} else {
+			<table>
 				<thead>
 					<tr>
-						<th>Column</th>
-						<th>Type</th>
-						<th>Nullable</th>
-						<th>Default</th>
+						for _, header := range data.Headers {
+							<th>{ header }</th>
+						}
 					</tr>
 				</thead>
 				<tbody>
-					for _, col := range columns {
+					for _, row := range data.Rows {
 						<tr>
-							<td>{ col.Name }</td>
-							<td class="font-mono">{ col.DataType }</td>
-							<td>
-								if col.IsNullable {
-									Yes
-								} else {
-									No
-								}
-							</td>
-							<td class="font-mono">{ col.ColumnDefault }</td>
+							for i, cell := range row {
+								<td>
+									// Special handling for a "status" column to render a badge
+									if data.Headers[i] == "status" {
+										switch fmt.Sprintf("%v", cell) {
+											case "active":
+												<span class="badge badge-success">active</span>
+											case "inactive":
+												<span class="badge">inactive</span>
+											default:
+												<span class="badge badge-outline">{ fmt.Sprintf("%v", cell) }</span>
+										}
+									} else {
+										{ fmt.Sprintf("%v", cell) }
+									}
+								</td>
+							}
 						</tr>
 					}
 				</tbody>
 			</table>
-		</div>
+		}
+	</div>
+}
+
+templ ColumnsView(columns []domain.Column) {
+	<div role="tabpanel">
+		<table>
+			<thead>
+				<tr>
+					<th>Column</th>
+					<th>Type</th>
+					<th>Nullable</th>
+					<th>Default</th>
+				</tr>
+			</thead>
+			<tbody>
+				for _, col := range columns {
+					<tr>
+						<td>{ col.Name }</td>
+						<td><code>{ col.DataType }</code></td>
+						<td>
+							if col.IsNullable {
+								Yes
+							} else {
+								No
+							}
+						</td>
+						<td><code>{ col.ColumnDefault }</code></td>
+					</tr>
+				}
+			</tbody>
+		</table>
 	</div>
 }
 
 templ DetailsView(details domain.Table) {
-	<div role="tabpanel" class="tab-content p-4">
-		<div class="space-y-2">
-			<div class="grid grid-cols-3 gap-4">
-				<div class="font-semibold">Table Owner</div>
-				<div class="col-span-2 font-mono">{ details.Owner }</div>
-			</div>
-			<div class="grid grid-cols-3 gap-4">
-				<div class="font-semibold">Row Security</div>
-				<div class="col-span-2">
-					if details.RowSecurityEnabled {
-						<div class="badge badge-success">Enabled</div>
-					} else {
-						<div class="badge badge-error">Disabled</div>
-					}
-				</div>
-			</div>
-			<div class="grid grid-cols-3 gap-4">
-				<div class="font-semibold">Estimated Rows</div>
-				<div class="col-span-2 font-mono">{ fmt.Sprintf("%d", details.EstimatedRows) }</div>
-			</div>
-		</div>
+	<div role="tabpanel">
+		<dl>
+			<dt>Table Owner</dt>
+			<dd><code>{ details.Owner }</code></dd>
+			
+			<dt>Row Security</dt>
+			<dd>
+				if details.RowSecurityEnabled {
+					<span class="badge badge-success">Enabled</span>
+				} else {
+					<span class="badge badge-danger">Disabled</span>
+				}
+			</dd>
+			
+			<dt>Estimated Rows</dt>
+			<dd><code>{ fmt.Sprintf("%d", details.EstimatedRows) }</code></dd>
+		</dl>
 	</div>
 }
 
 templ MainContent(params MainContentData) {
-	<main class="flex-1 p-6 overflow-y-auto">
+	<main>
 		// Access data through the 'params' variable
 		@Breadcrumbs(params.Breadcrumbs)
-		<div id="view-container">
-			<div class="card bg-base-100 shadow-xl">
-				<div class="card-body">
-					<div role="tablist" class="tabs tabs-bordered">
-						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Details" checked/>
-						@DetailsView(params.TableDetails)
-						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Data"/>
-						@DataView(params.TableData)
-						<input type="radio" name="table_tabs" role="tab" class="tab" aria-label="Columns"/>
-						@ColumnsView(params.Columns)
-					</div>
-				</div>
+		<div id="view-container" class="card">
+			<div class="tabs">
+				<button class="active">Details</button>
+				<button>Data</button>
+				<button>Columns</button>
+			</div>
+			<div role="tablist">
+				<input type="radio" name="table_tabs" role="tab" aria-label="Details" checked/>
+				@DetailsView(params.TableDetails)
+				<input type="radio" name="table_tabs" role="tab" aria-label="Data"/>
+				@DataView(params.TableData)
+				<input type="radio" name="table_tabs" role="tab" aria-label="Columns"/>
+				@ColumnsView(params.Columns)
 			</div>
 		</div>
 	</main>
