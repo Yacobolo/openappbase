@@ -34,7 +34,7 @@ task context:search -- "how to use NATS pub/sub patterns"
 ### Project Structure
 
 - **Backend**: Go 1.25+ with chi router, templ templates, SQLite (app state) + PostgreSQL (target databases)
-- **Frontend**: Datastar (reactive SSE), Templ (Go templates), Tailwind v4 + DaisyUI, iconify-icon web components
+- **Frontend**: Datastar (reactive SSE), Templ (Go templates), Native CSS with custom properties, iconify-icon web components
 - **Real-time**: Embedded NATS for pub/sub messaging between services
 - **Database queries**: sqlc (see sqlc.yml) - never write raw SQL in Go, always use sqlc-generated queries
 
@@ -51,7 +51,7 @@ task context:search -- "how to use NATS pub/sub patterns"
 ### Frontend Style (Templ + Datastar)
 
 - **Templates**: Use templ (_.templ files, generates _\_templ.go). Run `task build:templ` or use `task live` for watch mode
-- **Styling**: Use DaisyUI semantic tokens (bg-base-100, btn-primary, text-base-content) NOT raw Tailwind colors. See DESIGN.md for full guide
+- **Styling**: Context-based CSS architecture - style elements by location/context, not utility classes. Use semantic CSS custom properties (--color-primary, --space-md). See DESIGN.md for full guide
 - **Icons**: Use `<iconify-icon icon="mdi:name">` web component, NOT SVG sprites
 - **SSE/Datastar**: Use `datastar.NewSSE(w, r)` for real-time updates. Patch fragments with `sse.PatchElementTempl(component)`
 - **NATS topics**: Subscribe to topics like `admin.connections.update` in SSE handlers for real-time push

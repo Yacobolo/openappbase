@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PostgreSQL UI - Component Showcase</title>
+  <link rel="stylesheet" href="../web/resources/static/index.css">
+  <style>
+    /* Showcase-specific layout */
+    body {
+      display: grid;
+      grid-template-columns: 16rem 1fr;
+      grid-template-rows: 4rem 1fr;
+      min-height: 100vh;
+      gap: 0;
+    }
+
+    header {
+      grid-column: 1 / -1;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      background-color: var(--color-bg-subtle);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: var(--text-2xl);
+    }
+
+    aside {
+      background-color: var(--color-bg-subtle);
+      border-right: 1px solid var(--color-border);
+      padding: 1rem 0;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+    }
+
+    aside nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    aside nav li {
+      margin: 0;
+    }
+
+    aside nav a {
+      display: block;
+      padding: 0.75rem 1.5rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: all var(--transition-duration) var(--transition-timing);
+      border-left: 2px solid transparent;
+    }
+
+    aside nav a:hover {
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      border-left-color: var(--color-primary);
+    }
+
+    aside nav a.active {
+      color: var(--color-primary);
+      background-color: var(--color-bg);
+      border-left-color: var(--color-primary);
+    }
+
+    main {
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .component-group {
+      margin-bottom: 3rem;
+    }
+
+    .component-group h3 {
+      font-size: var(--text-lg);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .component-example {
+      background-color: var(--color-bg-subtle);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-md);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .component-example.vertical {
+      flex-direction: column;
+    }
+
+    .component-example p {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      margin: 0;
+      flex: 1;
+      min-width: 8rem;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        display: none;
+      }
+
+      main {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PostgreSQL UI Components</h1>
+  </header>
+
+  <aside>
+    <nav>
+      <ul>
+        <li><a href="#" data-section="typography" class="nav-link active">Typography</a></li>
+        <li><a href="#" data-section="buttons" class="nav-link">Buttons</a></li>
+        <li><a href="#" data-section="forms" class="nav-link">Forms</a></li>
+        <li><a href="#" data-section="cards" class="nav-link">Cards</a></li>
+        <li><a href="#" data-section="modals" class="nav-link">Modals</a></li>
+        <li><a href="#" data-section="tables" class="nav-link">Tables</a></li>
+        <li><a href="#" data-section="badges" class="nav-link">Badges</a></li>
+        <li><a href="#" data-section="breadcrumb" class="nav-link">Breadcrumb</a></li>
+        <li><a href="#" data-section="loading" class="nav-link">Loading</a></li>
+        <li><a href="#" data-section="pagination" class="nav-link">Pagination</a></li>
+        <li><a href="#" data-section="tabs" class="nav-link">Tabs</a></li>
+        <li><a href="#" data-section="toolbar" class="nav-link">Toolbar</a></li>
+        <li><a href="#" data-section="connections" class="nav-link">Connections</a></li>
+        <li><a href="#" data-section="empty-state" class="nav-link">Empty State</a></li>
+        <li><a href="#" data-section="error" class="nav-link">Error Messages</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+    <!-- TYPOGRAPHY SECTION -->
+    <section id="typography" class="section active">
+      <h2>Typography</h2>
+
+      <div class="component-group">
+        <h3>Headings</h3>
+        <div class="component-example vertical">
+          <h1>Heading 1 (text-3xl, bold)</h1>
+          <h2>Heading 2 (text-2xl, bold)</h2>
+          <h3>Heading 3 (text-xl, semibold)</h3>
+          <h4>Heading 4 (text-lg, semibold)</h4>
+          <p>Paragraph (text-base)</p>
+          <small style="font-size: var(--text-sm);">Small text (text-sm)</small>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Links</h3>
+        <div class="component-example vertical">
+          <a href="#">Primary Link</a>
+          <a href="#">Another Link with Hover State</a>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Code</h3>
+        <div class="component-example vertical">
+          <p>Inline <code>code example</code> in text</p>
+          <pre><code>function example() {
+  return "code block with formatting";
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Lists</h3>
+        <div class="component-example vertical">
+          <ul style="margin-left: 1.5rem;">
+            <li>First item</li>
+            <li>Second item</li>
+            <li>Third item</li>
+          </ul>
+          <ol style="margin-left: 1.5rem;">
+            <li>First numbered</li>
+            <li>Second numbered</li>
+            <li>Third numbered</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS SECTION -->
+    <section id="buttons" class="section">
+      <h2>Buttons</h2>
+
+      <div class="component-group">
+        <h3>Default Buttons</h3>
+        <div class="component-example">
+          <button>Default Button</button>
+          <button class="primary">Primary Button</button>
+          <button class="danger">Danger Button</button>
+          <button disabled>Disabled Button</button>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Button States</h3>
+        <div class="component-example">
+          <button style="cursor: default;">Normal</button>
+          <button style="cursor: default; background-color: var(--color-bg-subtle); border-color: var(--color-gray-400);">Hover</button>
+          <button style="transform: scale(0.98);">Active</button>
+          <button disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Buttons with Icons</h3>
+        <div class="component-example">
+          <button>
+            <svg><use href="#icon-save"></use></svg>
+            Save
+          </button>
+          <button class="danger">
+            <svg><use href="#icon-delete"></use></svg>
+            Delete
+          </button>
+          <button>
+            <svg><use href="#icon-search"></use></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMS SECTION -->
+    <section id="forms" class="section">
+      <h2>Forms</h2>
+
+      <div class="component-group">
+        <h3>Form Groups</h3>
+        <div class="component-example vertical" style="max-width: 20rem;">
+          <div class="form-group">
+            <label for="text-input">Text Input</label>
+            <input type="text" id="text-input" placeholder="Enter text...">
+          </div>
+
+          <div class="form-group">
+            <label for="email-input">Email Input</label>
+            <input type="email" id="email-input" placeholder="user@example.com">
+          </div>
+
+          <div class="form-group">
+            <label for="password-input">Password Input</label>
+            <input type="password" id="password-input" placeholder="Enter password...">
+          </div>
+
+          <div class="form-group">
+            <label for="number-input">Number Input</label>
+            <input type="number" id="number-input" placeholder="0">
+          </div>
+
+          <div class="form-group">
+            <label for="date-input">Date Input</label>
+            <input type="date" id="date-input">
+          </div>
+
+          <div class="form-group">
+            <label for="select-input">Select Input</label>
+            <select id="select-input">
+              <option>Choose an option</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="textarea-input">Textarea</label>
+            <textarea id="textarea-input" placeholder="Enter your message..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox"> Remember me
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="radio" name="option"> Option A
+            </label>
+            <label>
+              <input type="radio" name="option"> Option B
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Focused Input</h3>
+        <div class="component-example vertical" style="max-width: 20rem;">
+          <input type="text" placeholder="Focused input (try it!)" autofocus>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Disabled Input</h3>
+        <div class="component-example vertical" style="max-width: 20rem;">
+          <input type="text" placeholder="Disabled input" disabled>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Field Group</h3>
+        <div class="component-example vertical" style="max-width: 100%;">
+          <div class="field-group">
+            <div class="field">
+              <label>First Name <span class="required">*</span></label>
+              <input type="text" placeholder="John">
+            </div>
+            <div class="field">
+              <label>Last Name <span class="required">*</span></label>
+              <input type="text" placeholder="Doe">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Form Actions</h3>
+        <div class="component-example vertical" style="max-width: 20rem; border: none; background: transparent; padding: 0;">
+          <div class="form-actions">
+            <button>Cancel</button>
+            <button class="primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDS SECTION -->
+    <section id="cards" class="section">
+      <h2>Cards</h2>
+
+      <div class="component-group">
+        <h3>Basic Card</h3>
+        <div class="component-example vertical">
+          <div class="card">
+            <header>
+              <h3>Card Title</h3>
+            </header>
+            <p>This is the card content. It can contain any HTML elements.</p>
+            <footer>
+              <button>Action</button>
+            </footer>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Multiple Cards</h3>
+        <div class="component-example vertical">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <div class="card">
+              <h3>Card 1</h3>
+              <p>First card content</p>
+            </div>
+            <div class="card">
+              <h3>Card 2</h3>
+              <p>Second card content</p>
+            </div>
+            <div class="card">
+              <h3>Card 3</h3>
+              <p>Third card content</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODALS SECTION -->
+    <section id="modals" class="section">
+      <h2>Modals & Dialogs</h2>
+
+      <div class="component-group">
+        <h3>Dialog Structure</h3>
+        <div class="component-example vertical">
+          <p style="font-size: var(--text-xs); color: var(--color-text-muted);">
+            Note: Use &lt;dialog&gt; element with .showModal() method. Example structure below:
+          </p>
+          <pre><code>&lt;dialog&gt;
+  &lt;header&gt;
+    &lt;h2&gt;Dialog Title&lt;/h2&gt;
+    &lt;button class="dialog-close"&gt;×&lt;/button&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    Dialog content here
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;button&gt;Cancel&lt;/button&gt;
+    &lt;button class="primary"&gt;Confirm&lt;/button&gt;
+  &lt;/footer&gt;
+&lt;/dialog&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Dialog Styling</h3>
+        <div class="component-example vertical">
+          <p>Dialogs are styled with:</p>
+          <ul style="margin-left: 1.5rem;">
+            <li>Max-width: 90vw, Max-height: 90vh</li>
+            <li>Semi-transparent backdrop (rgba(0,0,0,0.5))</li>
+            <li>Border and shadow for depth</li>
+            <li>Header with bottom border</li>
+            <li>Main content area with padding</li>
+            <li>Footer with action buttons</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABLES SECTION -->
+    <section id="tables" class="section">
+      <h2>Tables</h2>
+
+      <div class="component-group">
+        <h3>Basic Table</h3>
+        <div class="component-example vertical">
+          <table>
+            <thead>
+              <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Row 1, Col 1</td>
+                <td>Row 1, Col 2</td>
+                <td>Row 1, Col 3</td>
+                <td><button style="font-size: var(--text-xs); padding: var(--space-xs) var(--space-sm);">Edit</button></td>
+              </tr>
+              <tr>
+                <td>Row 2, Col 1</td>
+                <td>Row 2, Col 2</td>
+                <td>Row 2, Col 3</td>
+                <td><button style="font-size: var(--text-xs); padding: var(--space-xs) var(--space-sm);">Edit</button></td>
+              </tr>
+              <tr>
+                <td>Row 3, Col 1</td>
+                <td>Row 3, Col 2</td>
+                <td>Row 3, Col 3</td>
+                <td><button style="font-size: var(--text-xs); padding: var(--space-xs) var(--space-sm);">Edit</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- BADGES SECTION -->
+    <section id="badges" class="section">
+      <h2>Badges & Indicators</h2>
+
+      <div class="component-group">
+        <h3>Badge Indicators</h3>
+        <div class="component-example">
+          <button class="indicator" data-count="5">
+            Notifications
+          </button>
+          <button class="indicator" data-count="12">
+            Messages
+          </button>
+          <button class="indicator" data-count="1">
+            Alert
+          </button>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Status Badges</h3>
+        <div class="component-example">
+          <div class="badge-success">
+            <span class="badge-dot"></span> Active
+          </div>
+          <div class="badge-danger">
+            <span class="badge-dot"></span> Failed
+          </div>
+          <div class="badge-warning">
+            <span class="badge-dot"></span> Warning
+          </div>
+          <div class="badge-info">
+            <span class="badge-dot"></span> Info
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BREADCRUMB SECTION -->
+    <section id="breadcrumb" class="section">
+      <h2>Breadcrumb Navigation</h2>
+
+      <div class="component-group">
+        <h3>Breadcrumb Path</h3>
+        <div class="component-example vertical">
+          <nav class="breadcrumb">
+            <ol>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Database</a></li>
+              <li><a href="#">Tables</a></li>
+              <li>Current Page</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOADING SECTION -->
+    <section id="loading" class="section">
+      <h2>Loading States</h2>
+
+      <div class="component-group">
+        <h3>Loading Spinner</h3>
+        <div class="component-example">
+          <div class="loading"></div>
+          <span style="margin-left: 1rem;">Loading...</span>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Loading Overlay</h3>
+        <div class="component-example vertical">
+          <div style="position: relative; height: 8rem; border: 1px solid var(--color-border); border-radius: var(--border-radius-md);">
+            <p style="padding: 1rem;">Content behind overlay</p>
+            <div class="loading-overlay">
+              <div class="loading"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGINATION SECTION -->
+    <section id="pagination" class="section">
+      <h2>Pagination</h2>
+
+      <div class="component-group">
+        <h3>Pagination Controls</h3>
+        <div class="component-example vertical">
+          <div class="pagination">
+            <div class="pagination-mobile">
+              <button>← Previous</button>
+              <button>Next →</button>
+            </div>
+            <div class="pagination-desktop" style="display: flex; gap: 0.5rem;">
+              <div class="pagination-controls">
+                <button class="pagination-prev" disabled>←</button>
+                <span class="pagination-current">1</span>
+                <button>2</button>
+                <button>3</button>
+                <button>...</button>
+                <button>10</button>
+                <button class="pagination-next">→</button>
+              </div>
+              <div class="pagination-info">
+                <p>Showing <strong>1</strong> to <strong>10</strong> of <strong>98</strong> results</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABS SECTION -->
+    <section id="tabs" class="section">
+      <h2>Tabs</h2>
+
+      <div class="component-group">
+        <h3>Tab Navigation</h3>
+        <div class="component-example vertical">
+          <div class="tabs">
+            <button style="border-bottom-color: var(--color-primary); color: var(--color-text);">Tab 1</button>
+            <button>Tab 2</button>
+            <button>Tab 3</button>
+          </div>
+          <p>Tab content goes here</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLBAR SECTION -->
+    <section id="toolbar" class="section">
+      <h2>Toolbar</h2>
+
+      <div class="component-group">
+        <h3>Toolbar with Actions</h3>
+        <div class="component-example vertical">
+          <div class="toolbar">
+            <input type="search" placeholder="Search...">
+            <button>Filter</button>
+            <button>Sort</button>
+            <button class="primary">New</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONNECTIONS SECTION -->
+    <section id="connections" class="section">
+      <h2>Connection Cards</h2>
+
+      <div class="component-group">
+        <h3>Connection Grid</h3>
+        <div class="component-example vertical">
+          <div class="connection-grid">
+            <div class="connection-card">
+              <div class="connection-card-header">
+                <div class="connection-card-title">
+                  <div class="connection-icon" style="background-color: #336791;">
+                    <img src="/postgres-logo.svg" alt="PostgreSQL">
+                  </div>
+                  <div>
+                    <h3>Production DB</h3>
+                    <p style="margin: 0;">PostgreSQL 14</p>
+                  </div>
+                </div>
+              </div>
+              <div class="connection-details">
+                <div class="connection-detail">
+                  <span>host.example.com:5432</span>
+                </div>
+                <div class="connection-detail">
+                  <span>production_db</span>
+                </div>
+              </div>
+              <div class="connection-card-footer">
+                <span class="timestamp">Last connected 2 hours ago</span>
+              </div>
+              <div class="connection-card-actions">
+                <button>Connect</button>
+                <button>Edit</button>
+              </div>
+            </div>
+
+            <div class="connection-card">
+              <div class="connection-card-header">
+                <div class="connection-card-title">
+                  <div class="connection-icon" style="background-color: #336791;">
+                    <img src="/postgres-logo.svg" alt="PostgreSQL">
+                  </div>
+                  <div>
+                    <h3>Development DB</h3>
+                    <p style="margin: 0;">PostgreSQL 15</p>
+                  </div>
+                </div>
+              </div>
+              <div class="connection-details">
+                <div class="connection-detail">
+                  <span>localhost:5432</span>
+                </div>
+                <div class="connection-detail">
+                  <span>dev_db</span>
+                </div>
+              </div>
+              <div class="connection-card-footer">
+                <span class="timestamp">Never connected</span>
+              </div>
+              <div class="connection-card-actions">
+                <button>Connect</button>
+                <button>Edit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMPTY STATE SECTION -->
+    <section id="empty-state" class="section">
+      <h2>Empty States</h2>
+
+      <div class="component-group">
+        <h3>Empty State</h3>
+        <div class="component-example vertical">
+          <div class="empty-state">
+            <div class="empty-state-icon" style="background-color: #336791;"></div>
+            <h3>No Connections</h3>
+            <p>Get started by creating your first database connection.</p>
+            <button class="primary">Add Connection</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ERROR SECTION -->
+    <section id="error" class="section">
+      <h2>Error Messages</h2>
+
+      <div class="component-group">
+        <h3>Error Alert</h3>
+        <div class="component-example vertical">
+          <div class="error-message">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <div>
+              <h3>Connection Failed</h3>
+              <p>Unable to connect to the database. Please check your connection settings and try again.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="component-group">
+        <h3>Multiple Errors</h3>
+        <div class="component-example vertical">
+          <div class="error-message">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <div>
+              <h3>Validation Errors</h3>
+              <ul style="margin-left: 1.5rem; margin-bottom: 0;">
+                <li>Host is required</li>
+                <li>Port must be a number</li>
+                <li>Database name cannot be empty</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Navigation
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const sectionId = link.dataset.section;
+
+        // Remove active class from all
+        navLinks.forEach(l => l.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        // Add active class to clicked and corresponding section
+        link.classList.add('active');
+        document.getElementById(sectionId).classList.add('active');
+      });
+    });
+
+    // Add button color classes
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add primary class styling
+      const style = document.createElement('style');
+      style.textContent = `
+        button.primary {
+          background-color: var(--color-primary);
+          color: var(--color-white);
+          border-color: var(--color-primary);
+        }
+
+        button.primary:hover {
+          background-color: var(--color-primary-hover);
+          border-color: var(--color-primary-hover);
+        }
+
+        button.danger {
+          background-color: var(--color-danger);
+          color: var(--color-white);
+          border-color: var(--color-danger);
+        }
+
+        button.danger:hover {
+          background-color: var(--color-danger-hover);
+          border-color: var(--color-danger-hover);
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>

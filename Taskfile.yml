@@ -18,9 +18,9 @@ tasks:
 
   build:styles:
     cmds:
-      - go tool gotailwind -i web/resources/styles/styles.css -o $STATIC_DIR/index.css
+      - go run github.com/evanw/esbuild/cmd/esbuild web/resources/styles/styles.css --bundle --outfile=$STATIC_DIR/index.css
     sources:
-      - "./web/resources/**/*.{html,ts,templ,go,css}"
+      - "./web/resources/styles/*.css"
     generates:
       - "{{.STATIC_DIR}}/index.css"
 
@@ -59,7 +59,7 @@ tasks:
 
   live:styles:
     cmds:
-      - go tool gotailwind -i web/resources/styles/styles.css -o $STATIC_DIR/index.css -w
+      - go run github.com/evanw/esbuild/cmd/esbuild web/resources/styles/styles.css --bundle --outfile=$STATIC_DIR/index.css --watch
 
   live:wc:
     cmds:

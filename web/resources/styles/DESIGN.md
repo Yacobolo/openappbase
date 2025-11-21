@@ -61,4 +61,5 @@ Templ: `datastar.PostSSE("/path")`
 
 ## Build
 
-`task build:styles` - Compiles styles.css → index.css
+`task build:styles` - Bundles styles.css → index.css using esbuild
+`task live:styles` - Watch mode with automatic rebuild

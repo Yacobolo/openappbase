@@ -77,7 +77,6 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/securecookie v1.1.2 // indirect
 	github.com/hashicorp/golang-lru v1.0.2 // indirect
-	github.com/hookenz/gotailwind/v4 v4.1.13 // indirect
 	github.com/iancoleman/strcase v0.3.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
@@ -144,5 +143,4 @@ tool (
 	github.com/air-verse/air
 	github.com/go-delve/delve/cmd/dlv
 	github.com/go-task/task/v3/cmd/task
-	github.com/hookenz/gotailwind/v4
 )

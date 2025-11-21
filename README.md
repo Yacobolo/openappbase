@@ -50,7 +50,7 @@ The application uses a "Targeted Ping" architecture to achieve scalable, real-ti
 
 - **Backend:** Go (Golang)
 - **Frontend:** Datastar & Templ
-- **Frontend Styling:** Tailwind CSS
+- **Frontend Styling:** Native CSS with custom properties (context-based architecture)
 - **Application Database:** SQLite (for storing roles, user preferences, and app state)
 - **Database Migrations:** Goose (for managing schema changes)
 - **Real-time Messaging:** Embedded NATS (for high-performance Pub/Sub)

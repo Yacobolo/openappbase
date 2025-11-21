@@ -389,7 +389,7 @@ web/resources/styles/
 
 ## Examples
 
-### Before (Tailwind + DaisyUI)
+### Before (Utility Classes)
 
 ```html
 <div class="w-80 bg-base-200 p-4 flex flex-col shrink-0">
@@ -408,7 +408,7 @@ web/resources/styles/
 </div>
 ```
 
-### After (Context-Based)
+### After (Context-Based CSS)
 
 ```html
 <aside>
